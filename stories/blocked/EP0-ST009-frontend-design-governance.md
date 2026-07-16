@@ -1,7 +1,7 @@
 ---
 id: EP0-ST009
 title: Frontend Architecture and Design Governance
-status: ready
+status: blocked
 type: documentation
 priority: high
 phase: phase-0-foundation
@@ -62,3 +62,18 @@ EnglishPath landing page and subsequent Phase 1 learning experiences.
 - pnpm story:test
 - pnpm story:checks
 - git diff --check
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+- Exit code: 1
+- Attempts: 2
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+```
