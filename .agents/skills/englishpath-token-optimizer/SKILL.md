@@ -1,3 +1,8 @@
+---
+name: englishpath-token-optimizer
+description: Keep EnglishPath story context focused and within the project token budget.
+---
+
 # EnglishPath Token Optimizer Skill
 
 Use this skill before planning or implementing any story.

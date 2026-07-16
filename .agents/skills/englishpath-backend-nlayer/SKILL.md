@@ -1,3 +1,8 @@
+---
+name: englishpath-backend-nlayer
+description: Enforce EnglishPath NestJS modular N-layer architecture for backend stories.
+---
+
 # EnglishPath Backend N-layer Skill
 
 Use this skill when working on:

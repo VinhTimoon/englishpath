@@ -1,7 +1,7 @@
 ---
 id: EP0-ST006
 title: Project Skill Metadata Compliance
-status: blocked
+status: review
 type: tooling
 priority: high
 phase: phase-0-foundation
@@ -61,12 +61,13 @@ ignored because their `SKILL.md` files lack required YAML frontmatter.
 
 
 
-## Blocked Report
+## Recovery Report
 
 - Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 - Exit code: 42
 - Attempts: 1
 - Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+- Recovery: The outer project manager applied the scoped metadata and validation changes that the Windows Agent sandbox could not write.
 
 ### Evidence
 
@@ -74,3 +75,11 @@ ignored because their `SKILL.md` files lack required YAML frontmatter.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## Verification Report
+
+- `pnpm story:test`: passed, 26/26 tests in the outer project environment.
+- `pnpm story:checks`: passed lint, typecheck, unit tests, and production builds.
+- Story doctor, story verifier, and `git diff --check`: passed.
+- Codex CLI smoke test loaded the project without any missing-frontmatter skill errors.
+- Codex review identified one missing-frontmatter negative-case gap; it was fixed and the full story test suite passed again.

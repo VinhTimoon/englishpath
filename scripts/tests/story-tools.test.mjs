@@ -46,6 +46,30 @@ function writeFile(repoDir, relativePath, content) {
   fs.writeFileSync(target, content);
 }
 
+const PROJECT_SKILL_FILES = [
+  ".agents/skills/englishpath-backend-nlayer/SKILL.md",
+  ".agents/skills/englishpath-frontend-quality/SKILL.md",
+  ".agents/skills/englishpath-prisma-supabase/SKILL.md",
+  ".agents/skills/englishpath-token-optimizer/SKILL.md",
+];
+
+function validateSkillMetadata(content) {
+  const { frontmatter, body } = parseFrontmatter(content);
+  const issues = [];
+
+  if (typeof frontmatter.name !== "string" || !frontmatter.name.trim()) {
+    issues.push("Missing non-empty skill name.");
+  }
+  if (typeof frontmatter.description !== "string" || !frontmatter.description.trim()) {
+    issues.push("Missing non-empty skill description.");
+  }
+  if (!body.trim()) {
+    issues.push("Skill instruction body is empty.");
+  }
+
+  return issues;
+}
+
 function createTrackedRepo() {
   const repoDir = makeTempRepo();
   writeFile(repoDir, "README.md", "base\n");
@@ -118,6 +142,26 @@ allowed_paths:
   assert.equal(parsed.frontmatter.requires_human_approval, false);
   assert.equal(parsed.frontmatter.max_fix_rounds, 2);
   assert.deepEqual(parsed.frontmatter.allowed_paths, ["scripts/**", "stories/**"]);
+});
+
+test("EnglishPath project skills contain valid metadata and instruction bodies", () => {
+  for (const skillFile of PROJECT_SKILL_FILES) {
+    const content = fs.readFileSync(skillFile, "utf8");
+    assert.deepEqual(validateSkillMetadata(content), [], skillFile);
+  }
+});
+
+test("skill metadata validation reports missing required fields", () => {
+  const invalidSkill = "---\nname: \ndescription: \n---\n\n# Instructions\n";
+
+  assert.deepEqual(validateSkillMetadata(invalidSkill), [
+    "Missing non-empty skill name.",
+    "Missing non-empty skill description.",
+  ]);
+  assert.throws(
+    () => validateSkillMetadata("# Instructions\n"),
+    /missing frontmatter/i
+  );
 });
 
 test("validateStory accepts absolute story paths when lifecycle matches", () => {

@@ -1,3 +1,8 @@
+---
+name: englishpath-prisma-supabase
+description: Guide safe Prisma 7 and Supabase PostgreSQL changes for EnglishPath.
+---
+
 # EnglishPath Prisma Supabase Skill
 
 Use this skill when working on:

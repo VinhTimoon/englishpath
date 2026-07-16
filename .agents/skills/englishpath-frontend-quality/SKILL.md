@@ -1,3 +1,8 @@
+---
+name: englishpath-frontend-quality
+description: Enforce EnglishPath frontend architecture, UX states, and responsive quality.
+---
+
 # EnglishPath Frontend Quality Skill
 
 Use this skill when working on:
