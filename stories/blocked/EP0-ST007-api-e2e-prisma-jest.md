@@ -1,7 +1,7 @@
 ---
 id: EP0-ST007
 title: API E2E Prisma Jest Compatibility
-status: ready
+status: blocked
 type: testing
 priority: high
 phase: phase-0-foundation
@@ -68,3 +68,18 @@ current health endpoint without requiring a live database.
 - pnpm --filter api test:e2e
 - pnpm story:checks
 - git diff --check
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+- Exit code: 1
+- Attempts: 3
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+```
