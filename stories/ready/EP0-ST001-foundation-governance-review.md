@@ -1,27 +1,26 @@
 ---
 id: EP0-ST001
-title: Foundation Review
+title: Foundation Governance Review
 status: ready
-type: review
+type: docs
 priority: high
 phase: phase-0-foundation
 allowed_paths:
   - AGENTS.md
-  - docs/**
   - ai-skills/**
   - _bmad-output/**
   - stories/**
+  - docs/**
 forbidden_paths:
-  - apps/api/prisma/schema.prisma
-  - apps/api/src/generated/**
+  - apps/**
+  - packages/**
+  - .env
   - apps/api/.env
-  - apps/web/**
-  - apps/api/**
 requires_human_approval: false
-max_fix_rounds: 2
+max_fix_rounds: 1
 ---
 
-# Story: Foundation Review
+# Story: Foundation Governance Review
 
 ## Goal
 
@@ -29,34 +28,26 @@ Review and complete the project governance foundation before automated implement
 
 ## Business Rules
 
+- Codex must follow AGENTS.md.
 - Codex must follow BMAD artifacts.
 - Codex must use skill-router instead of loading every skill.
-- The project must be ready for story-based loop engineering.
-
-## FE Requirements
-
-- No frontend code change required.
-
-## BE Requirements
-
-- No backend code change required.
+- Codex must not modify app source code in this story.
 
 ## Documentation Requirements
 
 - Ensure AGENTS.md explains BMAD + Codex + skill routing.
-- Ensure project-context.md exists.
-- Ensure definition-of-done.md exists.
 - Ensure skill-router.md exists.
-- Ensure story template exists.
+- Ensure BMAD planning and implementation artifacts exist.
+- Ensure story folders exist.
 
 ## Acceptance Criteria
 
-- BMAD planning artifacts folder exists.
-- BMAD implementation artifacts folder exists.
-- AGENTS.md references BMAD workflow.
+- AGENTS.md exists and references BMAD workflow.
 - ai-skills/routing/skill-router.md exists.
-- stories/templates/fullstack-story-template.md exists.
-- No app source code is modified.
+- _bmad-output/planning-artifacts exists.
+- _bmad-output/implementation-artifacts exists.
+- stories folders exist.
+- No files under apps/** are changed.
 
 ## Verification
 

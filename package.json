@@ -9,12 +9,17 @@
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
     "test": "turbo test",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "story:doctor": "node scripts/story-doctor.mjs",
+    "story:prompt": "node scripts/create-codex-prompt.mjs",
+    "story:verify": "node scripts/verify-story.mjs",
+    "story:checks": "node scripts/run-checks.mjs",
+    "story:loop": "node scripts/codex-loop.mjs"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.24",
     "turbo": "^2.10.5",
-    "typescript": "^7.0.2"
+    "typescript": "^5.9.3"
   },
   "devEngines": {
     "packageManager": {
