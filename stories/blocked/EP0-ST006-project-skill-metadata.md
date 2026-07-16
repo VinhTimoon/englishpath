@@ -1,7 +1,7 @@
 ---
 id: EP0-ST006
 title: Project Skill Metadata Compliance
-status: ready
+status: blocked
 type: tooling
 priority: high
 phase: phase-0-foundation
@@ -58,3 +58,19 @@ ignored because their `SKILL.md` files lack required YAML frontmatter.
 - node scripts/story-doctor.mjs stories/ready/EP0-ST006-project-skill-metadata.md --ready-only
 - pnpm story:checks
 - git diff --check
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
