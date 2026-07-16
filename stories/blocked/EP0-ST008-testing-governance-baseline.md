@@ -1,7 +1,7 @@
 ---
 id: EP0-ST008
 title: Testing Governance Baseline
-status: ready
+status: blocked
 type: documentation
 priority: medium
 phase: phase-0-foundation
@@ -61,3 +61,18 @@ router so future stories use consistent, deterministic verification.
 - pnpm story:test
 - pnpm story:checks
 - git diff --check
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+- Exit code: 1
+- Attempts: 2
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+```
