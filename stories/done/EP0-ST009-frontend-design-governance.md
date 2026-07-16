@@ -1,7 +1,7 @@
 ---
 id: EP0-ST009
 title: Frontend Architecture and Design Governance
-status: review
+status: done
 type: documentation
 priority: high
 phase: phase-0-foundation
@@ -87,3 +87,9 @@ Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".code
 - Codex review confirmed the FSD boundaries, accessibility rules, and visual direction;
   the requested landing-page widget stack was added.
 - The lifecycle finding is resolved by this tracked move to `review`.
+
+## Manager Approval
+
+- Approved and merged into `dev` after all gates and review findings were resolved.
+- Phase 1 landing-page implementation now has architecture, visual tokens, and widget order.
+- Promotion from `dev` to `main` remains under human control.
