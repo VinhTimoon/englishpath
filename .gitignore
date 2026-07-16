@@ -48,3 +48,10 @@ tree-main.txt
 .netlify/
 # Codex generated task prompt
 .codex-task.md
+
+# Codex generated prompts
+.codex-task.md
+.codex-plan.md
+.codex-plan-task.md
+.codex-build-task.md
+.codex-review-task.md

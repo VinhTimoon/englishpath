@@ -14,7 +14,10 @@
     "story:prompt": "node scripts/create-codex-prompt.mjs",
     "story:verify": "node scripts/verify-story.mjs",
     "story:checks": "node scripts/run-checks.mjs",
-    "story:loop": "node scripts/codex-loop.mjs"
+    "story:loop": "node scripts/codex-loop.mjs",
+    "story:plan": "node scripts/codex-runner.mjs plan .codex-plan-task.md",
+    "story:build": "node scripts/codex-runner.mjs build .codex-build-task.md",
+    "story:review": "node scripts/codex-runner.mjs review .codex-review-task.md"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.24",

@@ -1,0 +1,18 @@
+{
+  "plan": {
+    "model": "gpt-5.6-sol",
+    "reasoning": "high"
+  },
+  "build": {
+    "model": "gpt-5.4",
+    "reasoning": "medium"
+  },
+  "review": {
+    "model": "gpt-5.6-terra",
+    "reasoning": "medium"
+  },
+  "debug": {
+    "model": "gpt-5.6-sol",
+    "reasoning": "high"
+  }
+}

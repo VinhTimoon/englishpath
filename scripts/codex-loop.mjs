@@ -87,9 +87,16 @@ function main() {
 
   try {
     sh(`node scripts/story-doctor.mjs ${inProgressStory}`);
-    sh(`node scripts/create-codex-prompt.mjs ${inProgressStory} > .codex-task.md`);
+    sh(`node scripts/create-plan-prompt.mjs ${inProgressStory} > .codex-plan-task.md`);
+    sh(`node scripts/codex-runner.mjs plan .codex-plan-task.md`);
 
-    sh(`codex exec < .codex-task.md`);
+    sh(`node scripts/create-build-prompt.mjs ${inProgressStory} > .codex-build-task.md`);
+    sh(`node scripts/codex-runner.mjs build .codex-build-task.md`);
+
+    sh(`node scripts/run-checks.mjs`);
+
+    sh(`node scripts/create-review-prompt.mjs ${inProgressStory} > .codex-review-task.md`);
+    sh(`node scripts/codex-runner.mjs review .codex-review-task.md`);
 
     sh(`node scripts/run-checks.mjs`);
     sh(`node scripts/verify-story.mjs ${inProgressStory}`);
