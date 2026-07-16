@@ -1,7 +1,7 @@
 ---
 id: EP0-ST005
 title: Typecheck Quality Gate Baseline
-status: ready
+status: blocked
 type: tooling
 priority: high
 phase: phase-0-foundation
@@ -65,3 +65,19 @@ the API and web workspaces instead of succeeding with zero Turbo tasks.
 - pnpm typecheck
 - pnpm story:checks
 - pnpm build
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+```

@@ -528,6 +528,66 @@ test("review prompt stays noninteractive and excludes checkpoint skill bodies", 
   assert.doesNotMatch(result.stdout, /# Context: \.agents\/skills\/bmad-review-edge-case-hunter\/SKILL\.md/);
 });
 
+
+
+test("validateRequiredWorkspaceScripts reports missing workspace typecheck coverage", () => {
+  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-run-checks-"));
+  const previousCwd = process.cwd();
+  process.chdir(repoDir);
+
+  try {
+    writeFile(
+      repoDir,
+      "apps/api/package.json",
+      JSON.stringify({ name: "api", scripts: {} }, null, 2)
+    );
+    writeFile(
+      repoDir,
+      "apps/web/package.json",
+      JSON.stringify({ name: "web", scripts: { typecheck: "tsc --noEmit" } }, null, 2)
+    );
+
+    const failures = validateRequiredWorkspaceScripts([{ command: "pnpm typecheck", script: "typecheck" }]);
+
+    assert.deepEqual(failures, ['Missing required workspace script "typecheck" in apps/api/package.json']);
+  } finally {
+    process.chdir(previousCwd);
+  }
+});
+
+test("run-checks exits clearly when a required workspace typecheck script is missing", (t) => {
+  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-run-checks-cli-"));
+  writeFile(
+    repoDir,
+    "package.json",
+    JSON.stringify({ name: "root", scripts: { typecheck: "echo ok" } }, null, 2)
+  );
+  writeFile(
+    repoDir,
+    "apps/api/package.json",
+    JSON.stringify({ name: "api", scripts: {} }, null, 2)
+  );
+  writeFile(
+    repoDir,
+    "apps/web/package.json",
+    JSON.stringify({ name: "web", scripts: { typecheck: "tsc --noEmit" } }, null, 2)
+  );
+
+  const result = spawnSync(process.execPath, [path.resolve("scripts/run-checks.mjs")], {
+    cwd: repoDir,
+    encoding: "utf8",
+  });
+
+  if (result.error?.message.includes("EPERM")) {
+    t.skip("Node child processes are blocked in this sandbox");
+    return;
+  }
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Missing required workspace script "typecheck" in apps\/api\/package\.json/);
+  assert.doesNotMatch(result.stdout, /\$ pnpm typecheck/);
+});
+
 test("AI request classification and formatting stay structured", () => {
   assert.equal(classifyDecisionCategory("Missing env config blocks the build."), "environment");
 
