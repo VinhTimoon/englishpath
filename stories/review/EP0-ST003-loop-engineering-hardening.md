@@ -1,7 +1,7 @@
 ---
 id: EP0-ST003
 title: Loop Engineering Hardening
-status: ready
+status: review
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -71,3 +71,13 @@ production changes under human control.
 - pnpm story:doctor stories/ready/EP0-ST003-loop-engineering-hardening.md
 - pnpm story:checks
 - pnpm build
+
+## Verification Report
+
+- `pnpm story:test`: passed, 13 tests.
+- `pnpm story:doctor`: passed for the in-progress lifecycle.
+- `pnpm story:verify`: passed with committed, staged, unstaged, and untracked changes.
+- `pnpm story:checks`: passed.
+- `pnpm build`: passed.
+- Codex runner smoke test: returned `RUNNER_OK` through stdin.
+- Review result: fixed, with two bounded debug rounds completed.

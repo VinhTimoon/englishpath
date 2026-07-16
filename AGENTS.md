@@ -137,5 +137,8 @@ If a command does not exist yet, report it clearly and do not pretend it passed.
 ## Automation
 
 - Never auto-merge production.
+- Story automation must start from a clean, up-to-date local `dev` branch.
+- Story branches must be created from `dev` and may fast-forward merge back into `dev` only after checks and review pass.
+- `main` remains production and requires human-controlled promotion.
 - Auto PR to staging is allowed after checks pass.
 - If blocked, write the reason clearly.

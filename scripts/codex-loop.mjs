@@ -1,131 +1,172 @@
-import { execSync } from "node:child_process";
-import fs from "node:fs";
-import path from "node:path";
+﻿import fs from "node:fs";
 
-const READY_DIR = "stories/ready";
-const IN_PROGRESS_DIR = "stories/in-progress";
-const REVIEW_DIR = "stories/review";
-const BLOCKED_DIR = "stories/blocked";
+import { classifyDecisionCategory, createAiRequestFile } from "./lib/ai-request-utils.mjs";
+import { checkoutNewBranch, commit, ensureLoopBaseState, mergeStoryBranchIntoDev, stageAll } from "./lib/git-utils.mjs";
+import { formatCommand, runCommand } from "./lib/process-utils.mjs";
+import { runWithRetries } from "./lib/retry-utils.mjs";
+import { STORY_LIFECYCLE_DIRS, ensureDir, findStoryFile, moveStoryToStatus, parseStoryFile } from "./lib/story-utils.mjs";
 
-function sh(command) {
-  console.log(`\n$ ${command}`);
-  execSync(command, { stdio: "inherit" });
-}
-
-function out(command) {
-  return execSync(command, { encoding: "utf8", stdio: "pipe" }).trim();
-}
-
-function ensureDir(dir) {
-  fs.mkdirSync(dir, { recursive: true });
-}
+const READY_DIR = STORY_LIFECYCLE_DIRS.ready;
+const REVIEW_DIR = STORY_LIFECYCLE_DIRS.review;
+const BLOCKED_DIR = STORY_LIFECYCLE_DIRS.blocked;
+const DEBUG_PROMPT_FILE = ".codex-debug-task.md";
+const DEBUG_FAILURE_LOG = ".codex-debug-failure.log";
+const LOOP_BASE_BRANCH = "dev";
 
 function pickStory() {
   ensureDir(READY_DIR);
-  const files = fs
-    .readdirSync(READY_DIR)
-    .filter((file) => file.endsWith(".md"))
-    .sort();
-
+  const files = fs.readdirSync(READY_DIR).filter((file) => file.endsWith(".md")).sort();
   if (files.length === 0) {
     console.log("No ready stories.");
     process.exit(0);
   }
-
-  return path.join(READY_DIR, files[0]);
+  return `${READY_DIR}/${files[0]}`;
 }
 
-function getStoryId(file) {
-  const content = fs.readFileSync(file, "utf8");
-  const match = content.match(/id:\s*(.+)/);
-  if (!match) throw new Error("Story missing id.");
-  return match[1].trim();
+function executeNodeScript(args) {
+  return runCommand("node", args, { printCommand: true, stdio: "inherit" });
 }
 
-function moveStory(from, toDir) {
-  ensureDir(toDir);
-  const to = path.join(toDir, path.basename(from));
-  fs.renameSync(from, to);
-  return to;
+function writePromptFromScript(scriptName, args, promptFile) {
+  const result = runCommand("node", [scriptName, ...args], { printCommand: true });
+  fs.writeFileSync(promptFile, result.stdout);
 }
 
-function assertGitReady() {
-  try {
-    out("git rev-parse --is-inside-work-tree");
-  } catch {
-    console.error("This project is not a git repository. Run git init first.");
-    process.exit(1);
-  }
-
-  const status = out("git status --short");
-
-  if (status.length > 0) {
-    console.error("Working tree is not clean. Commit or stash changes before running the loop.");
-    console.error(status);
-    process.exit(1);
-  }
+function appendBlockedReport(storyFile, report) {
+  fs.appendFileSync(
+    storyFile,
+    `\n## Blocked Report\n\n- Failed step: ${report.failedStep}\n- Exit code: ${report.exitCode}\n- Attempts: ${report.attempts}\n- Summary: ${report.summary}\n\n### Evidence\n\n\`\`\`text\n${report.failureOutput.trim()}\n\`\`\`\n`
+  );
 }
 
-function main() {
-  ensureDir(IN_PROGRESS_DIR);
+function createDebugPrompt(storyFile, failedStep, failureOutput) {
+  fs.writeFileSync(DEBUG_FAILURE_LOG, failureOutput);
+  writePromptFromScript("scripts/create-debug-prompt.mjs", [storyFile, failedStep, DEBUG_FAILURE_LOG], DEBUG_PROMPT_FILE);
+}
+
+async function runGateWithDebug({ storyFile, label, gateCommand, maxFixRounds }) {
+  return runWithRetries({
+    maxRetries: maxFixRounds,
+    run: () => gateCommand(),
+    onRetry: async (error, retryNumber, retryLimit) => {
+      const output = error.output || error.message;
+      console.error(`\nGate failed: ${label}`);
+      if (output) {
+        console.error(output);
+      }
+
+      console.log(`\nRetrying ${label} with debug phase (${retryNumber}/${retryLimit}).`);
+      createDebugPrompt(storyFile, label, output || "Unknown failure");
+      executeNodeScript(["scripts/codex-runner.mjs", "debug", DEBUG_PROMPT_FILE]);
+    },
+  });
+}
+
+async function main() {
   ensureDir(REVIEW_DIR);
   ensureDir(BLOCKED_DIR);
 
-  assertGitReady();
+  ensureLoopBaseState(LOOP_BASE_BRANCH);
 
   const storyFile = pickStory();
-  const storyId = getStoryId(storyFile);
+  executeNodeScript(["scripts/story-doctor.mjs", storyFile, "--ready-only"]);
+
+  const story = parseStoryFile(storyFile);
+  const storyId = story.frontmatter.id;
   const branch = `story/${storyId.toLowerCase()}`;
+  const maxFixRounds = story.frontmatter.max_fix_rounds;
 
   console.log(`Picked story: ${storyFile}`);
   console.log(`Story id: ${storyId}`);
   console.log(`Branch: ${branch}`);
 
-  sh(`git checkout -b ${branch}`);
-
-  const inProgressStory = moveStory(storyFile, IN_PROGRESS_DIR);
+  checkoutNewBranch(branch);
+  const inProgressStory = moveStoryToStatus(storyFile, "in-progress");
 
   try {
-    sh(`node scripts/story-doctor.mjs ${inProgressStory}`);
-    sh(`node scripts/create-plan-prompt.mjs ${inProgressStory} > .codex-plan-task.md`);
-    sh(`node scripts/codex-runner.mjs plan .codex-plan-task.md`);
+    writePromptFromScript("scripts/create-plan-prompt.mjs", [inProgressStory], ".codex-plan-task.md");
+    executeNodeScript(["scripts/codex-runner.mjs", "plan", ".codex-plan-task.md"]);
 
-    sh(`node scripts/create-build-prompt.mjs ${inProgressStory} > .codex-build-task.md`);
-    sh(`node scripts/codex-runner.mjs build .codex-build-task.md`);
+    writePromptFromScript("scripts/create-build-prompt.mjs", [inProgressStory], ".codex-build-task.md");
+    await runGateWithDebug({
+      storyFile: inProgressStory,
+      label: "build phase",
+      gateCommand: () => executeNodeScript(["scripts/codex-runner.mjs", "build", ".codex-build-task.md"]),
+      maxFixRounds,
+    });
 
-    sh(`node scripts/run-checks.mjs`);
+    await runGateWithDebug({
+      storyFile: inProgressStory,
+      label: "checks",
+      gateCommand: () => executeNodeScript(["scripts/run-checks.mjs"]),
+      maxFixRounds,
+    });
 
-    sh(`node scripts/create-review-prompt.mjs ${inProgressStory} > .codex-review-task.md`);
-    sh(`node scripts/codex-runner.mjs review .codex-review-task.md`);
+    writePromptFromScript("scripts/create-review-prompt.mjs", [inProgressStory], ".codex-review-task.md");
+    await runGateWithDebug({
+      storyFile: inProgressStory,
+      label: "review phase",
+      gateCommand: () => executeNodeScript(["scripts/codex-runner.mjs", "review", ".codex-review-task.md"]),
+      maxFixRounds,
+    });
 
-    sh(`node scripts/run-checks.mjs`);
-    sh(`node scripts/verify-story.mjs ${inProgressStory}`);
+    await runGateWithDebug({
+      storyFile: inProgressStory,
+      label: "checks",
+      gateCommand: () => executeNodeScript(["scripts/run-checks.mjs"]),
+      maxFixRounds,
+    });
 
-    const reviewStory = moveStory(inProgressStory, REVIEW_DIR);
+    await runGateWithDebug({
+      storyFile: inProgressStory,
+      label: "story verification",
+      gateCommand: () => executeNodeScript(["scripts/verify-story.mjs", inProgressStory]),
+      maxFixRounds,
+    });
 
-    sh("git add .");
-    sh(`git commit -m "${storyId}: complete story"`);
+    const reviewStory = moveStoryToStatus(inProgressStory, "review");
+    stageAll();
+    commit(`${storyId}: complete story`);
+    mergeStoryBranchIntoDev(branch);
 
     console.log("");
     console.log("Loop completed.");
     console.log(`Story moved to review: ${reviewStory}`);
-    console.log("Next step: manually inspect diff, then open PR later.");
+    console.log('Story branch was fast-forward merged into "dev".');
   } catch (error) {
     console.error("");
     console.error("Loop failed. Moving story to blocked.");
 
-    const blockedStory = moveStory(inProgressStory, BLOCKED_DIR);
+    const currentStoryFile = findStoryFile(story.fileName) ?? inProgressStory;
+    const blockedStory = moveStoryToStatus(currentStoryFile, "blocked");
+    const failureOutput = error.output || error.message || "Unknown failure";
+    const category = classifyDecisionCategory(failureOutput);
 
-    fs.appendFileSync(
-      blockedStory,
-      `\n\n## Blocked Report\n\nThe automated loop failed. Review terminal output and fix manually.\n`
-    );
+    appendBlockedReport(blockedStory, {
+      failedStep: error.command ? formatCommand(error.command, error.args) : "loop",
+      exitCode: error.status ?? 1,
+      attempts: maxFixRounds + 1,
+      summary: "The automated loop could not complete this story.",
+      failureOutput,
+    });
 
-    sh("git add .");
-    sh(`git commit -m "${storyId}: blocked by loop" || true`);
+    if (category) {
+      const aiRequestFile = createAiRequestFile({
+        storyId,
+        summary: `Story blocked by ${category} decision.`,
+        evidence: failureOutput,
+        attempts: `Loop attempted the failing gate up to ${maxFixRounds + 1} times.`,
+        decisionNeeded: `Resolve the ${category} blocker so ${storyId} can continue.`,
+        impact: "The story remains blocked and cannot be merged into dev.",
+        category,
+      });
+      console.error(`Created AI request: ${aiRequestFile}`);
+    }
 
+    stageAll();
+    commit(`${storyId}: blocked by loop`);
     process.exit(1);
   }
 }
 
-main();
+await main();

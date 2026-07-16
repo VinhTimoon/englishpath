@@ -13,24 +13,24 @@ function run(command) {
 }
 
 const checks = [
-  { filter: "web", packageJson: "apps/web/package.json", scripts: ["lint", "build"] },
-  { filter: "api", packageJson: "apps/api/package.json", scripts: ["lint", "build", "test"] },
+  { command: "pnpm lint", script: "lint" },
+  { command: "pnpm typecheck", script: "typecheck" },
+  { command: "pnpm test", script: "test" },
+  { command: "pnpm build", script: "build" },
 ];
 
 let failed = false;
 
 for (const item of checks) {
-  for (const script of item.scripts) {
-    if (!hasScript(item.packageJson, script)) {
-      console.log(`Skip: ${item.filter} has no script "${script}"`);
-      continue;
-    }
+  if (!hasScript("package.json", item.script)) {
+    console.log(`Skip: root has no script "${item.script}"`);
+    continue;
+  }
 
-    try {
-      run(`pnpm --filter ${item.filter} ${script}`);
-    } catch {
-      failed = true;
-    }
+  try {
+    run(item.command);
+  } catch {
+    failed = true;
   }
 }
 

@@ -55,3 +55,5 @@ tree-main.txt
 .codex-plan-task.md
 .codex-build-task.md
 .codex-review-task.md
+.codex-debug-task.md
+.codex-debug-failure.log

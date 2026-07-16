@@ -17,7 +17,8 @@
     "story:loop": "node scripts/codex-loop.mjs",
     "story:plan": "node scripts/codex-runner.mjs plan .codex-plan-task.md",
     "story:build": "node scripts/codex-runner.mjs build .codex-build-task.md",
-    "story:review": "node scripts/codex-runner.mjs review .codex-review-task.md"
+    "story:review": "node scripts/codex-runner.mjs review .codex-review-task.md",
+    "story:test": "node scripts/run-story-tests.mjs"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.24",
