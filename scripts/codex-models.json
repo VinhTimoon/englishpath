@@ -1,18 +1,22 @@
 {
   "plan": {
     "model": "gpt-5.6-sol",
-    "reasoning": "high"
+    "reasoning": "high",
+    "timeout_ms": 180000
   },
   "build": {
     "model": "gpt-5.4",
-    "reasoning": "medium"
+    "reasoning": "medium",
+    "timeout_ms": 240000
   },
   "review": {
     "model": "gpt-5.6-terra",
-    "reasoning": "medium"
+    "reasoning": "medium",
+    "timeout_ms": 180000
   },
   "debug": {
     "model": "gpt-5.6-sol",
-    "reasoning": "high"
+    "reasoning": "high",
+    "timeout_ms": 180000
   }
 }

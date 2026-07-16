@@ -7,7 +7,14 @@ import path from "node:path";
 import { classifyDecisionCategory, createAiRequestFile } from "../lib/ai-request-utils.mjs";
 import { collectChangedFiles, ensureLoopBaseState, getCurrentBranch, mergeStoryBranchIntoDev } from "../lib/git-utils.mjs";
 import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
-import { runCommand } from "../lib/process-utils.mjs";
+import {
+  PHASE_ARTIFACTS,
+  createPhaseContractError,
+  removePhaseArtifacts,
+  runCommand,
+  runCommand as runProcessCommand,
+  validatePhaseArtifacts,
+} from "../lib/process-utils.mjs";
 import { runWithRetries } from "../lib/retry-utils.mjs";
 import { moveStoryToStatus, parseFrontmatter, validateStory } from "../lib/story-utils.mjs";
 
@@ -74,6 +81,18 @@ AC
 Check
 `
   );
+}
+
+function withTempCwd(callback) {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-phase-"));
+  const previousCwd = process.cwd();
+  process.chdir(tempDir);
+
+  try {
+    return callback(tempDir);
+  } finally {
+    process.chdir(previousCwd);
+  }
 }
 
 test("parseFrontmatter reads lists, booleans, and integers", () => {
@@ -315,6 +334,168 @@ process.stdin.on("end", () => {
   assert.equal(stderrChunks.join(""), commandError.stderr);
 });
 
+test("runCommand marks timeout failures", (t) => {
+  let commandError;
+
+  try {
+    runProcessCommand(process.execPath, ["-e", "setTimeout(() => {}, 1000)"], { timeoutMs: 50 });
+  } catch (error) {
+    commandError = error;
+  }
+
+  if (commandError?.message.includes("EPERM")) {
+    t.skip("Node child processes are blocked in this sandbox");
+    return;
+  }
+
+  assert.equal(commandError?.timedOut, true);
+  assert.equal(commandError?.timeoutMs, 50);
+});
+
+test("phase validation rejects confirmation-only build responses", () => {
+  withTempCwd(() => {
+    const startedAt = Date.now();
+    fs.writeFileSync(PHASE_ARTIFACTS.build.responseFile, "Please confirm and I will continue.");
+
+    assert.throws(
+      () =>
+        validatePhaseArtifacts({
+          phase: "build",
+          prompt: "story",
+          startedAt,
+          commandResult: { command: "codex", args: [], output: "" },
+        }),
+      /Confirmation-only/
+    );
+  });
+});
+
+test("phase validation rejects missing planning output", () => {
+  withTempCwd(() => {
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan created.");
+
+    assert.throws(
+      () =>
+        validatePhaseArtifacts({
+          phase: "plan",
+          prompt: "\nid: EP0-ST004\n",
+          startedAt: Date.now() - 10,
+          commandResult: { command: "codex", args: [], output: "" },
+        }),
+      /Missing required artifact: \.codex-plan\.md/
+    );
+  });
+});
+
+test("phase validation accepts valid completion statuses and plan artifacts", () => {
+  withTempCwd(() => {
+    const startedAt = Date.now() - 10;
+    fs.writeFileSync(PHASE_ARTIFACTS.review.responseFile, "Status: fixed\nRemaining risks: none\n");
+    const reviewResult = validatePhaseArtifacts({
+      phase: "review",
+      prompt: "story",
+      startedAt,
+      commandResult: { command: "codex", args: [], output: "" },
+    });
+    assert.equal(reviewResult.status, "fixed");
+
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      ".codex-plan.md",
+      `# Implementation Plan: EP0-ST004\n\n## 1. Story ID\nEP0-ST004\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`
+    );
+
+    const planResult = validatePhaseArtifacts({
+      phase: "plan",
+      prompt: "\nid: EP0-ST004\n",
+      startedAt,
+      commandResult: { command: "codex", args: [], output: "" },
+    });
+    assert.equal(planResult.status, "completed");
+  });
+});
+
+test("phase validation rejects stale artifacts from earlier runs", () => {
+  withTempCwd(() => {
+    fs.writeFileSync(PHASE_ARTIFACTS.build.responseFile, "Status: completed\n");
+    const staleTime = new Date(Date.now() - 5000);
+    fs.utimesSync(PHASE_ARTIFACTS.build.responseFile, staleTime, staleTime);
+
+    assert.throws(
+      () =>
+        validatePhaseArtifacts({
+          phase: "build",
+          prompt: "story",
+          startedAt: Date.now() - 1000,
+          commandResult: { command: "codex", args: [], output: "" },
+        }),
+      /Stale artifact detected/
+    );
+  });
+});
+
+test("removePhaseArtifacts clears stale response and plan files", () => {
+  withTempCwd(() => {
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "old response");
+    fs.writeFileSync(".codex-plan.md", "old plan");
+
+    removePhaseArtifacts("plan");
+
+    assert.equal(fs.existsSync(PHASE_ARTIFACTS.plan.responseFile), false);
+    assert.equal(fs.existsSync(".codex-plan.md"), false);
+  });
+});
+
+test("blocked contract errors stop retry loops immediately", async () => {
+  let attempts = 0;
+  let retries = 0;
+
+  await assert.rejects(
+    runWithRetries({
+      maxRetries: 2,
+      run: async () => {
+        attempts += 1;
+        throw createPhaseContractError({
+          phase: "debug",
+          reason: "Blocked by environment decision.",
+          blocked: true,
+        });
+      },
+      onRetry: async (error) => {
+        retries += 1;
+        if (error.blocked) {
+          throw error;
+        }
+      },
+    }),
+    /Blocked by environment decision/
+  );
+
+  assert.equal(attempts, 1);
+  assert.equal(retries, 1);
+});
+
+test("review prompt stays noninteractive and excludes checkpoint skill bodies", (t) => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-review-story-"));
+  const storyPath = path.join(tempDir, "EP0-ST004.md");
+  writeFile(tempDir, "EP0-ST004.md", "---\nid: EP0-ST004\nstatus: in-progress\nallowed_paths:\n  - scripts/**\nforbidden_paths:\n  - apps/**\n---\n");
+
+  let result;
+  try {
+    result = runCommand("node", ["scripts/create-review-prompt.mjs", storyPath], { cwd: process.cwd() });
+  } catch (error) {
+    if (error.message.includes("EPERM")) {
+      t.skip("Node child processes are blocked in this sandbox");
+      return;
+    }
+    throw error;
+  }
+
+  assert.match(result.stdout, /Run non-interactively/);
+  assert.doesNotMatch(result.stdout, /\.agents\/skills\/bmad-code-review\/SKILL\.md/);
+  assert.doesNotMatch(result.stdout, /\.agents\/skills\/bmad-review-edge-case-hunter\/SKILL\.md/);
+});
+
 test("AI request classification and formatting stay structured", () => {
   assert.equal(classifyDecisionCategory("Missing env config blocks the build."), "environment");
 
@@ -339,3 +520,4 @@ test("AI request classification and formatting stay structured", () => {
     process.chdir(previousCwd);
   }
 });
+

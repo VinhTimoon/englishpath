@@ -31,14 +31,23 @@ Task:
 - Do not modify unrelated files.
 - Do not modify .env files.
 - Do not run destructive commands.
-- If implementation requires forbidden paths, stop and write a blocked report.
+- Run non-interactively.
+- Never ask for confirmation, approval, or a checkpoint.
+- If implementation requires forbidden paths, stop and return a blocked result.
+- If you cannot complete the story safely within scope, return a blocked result.
 - Keep changes minimal and focused.
 
 Final response must include:
-1. Summary
-2. Files changed
-3. Verification commands to run
-4. Risks
+- Status: completed | blocked
+- Summary
+- Files changed
+- Verification commands to run
+- Risks
+
+Final response rules:
+- Return one terminal result only.
+- Do not ask the user to continue.
+- If blocked, explain the blocker concretely.
 `;
 
 output += `\n\n# Story\n\n${story}\n`;

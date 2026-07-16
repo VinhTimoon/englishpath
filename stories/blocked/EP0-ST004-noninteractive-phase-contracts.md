@@ -1,7 +1,7 @@
 ---
 id: EP0-ST004
 title: Noninteractive Codex Phase Contracts
-status: ready
+status: blocked
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -67,3 +67,18 @@ clearly, without silently stopping at an interactive checkpoint.
 - node scripts/story-doctor.mjs stories/ready/EP0-ST004-noninteractive-phase-contracts.md --ready-only
 - pnpm story:checks
 - pnpm build
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+- Exit code: 1
+- Attempts: 3
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+```

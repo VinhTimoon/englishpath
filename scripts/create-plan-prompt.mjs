@@ -31,6 +31,9 @@ Task:
 - Create a short implementation plan.
 - Do not modify source code.
 - Do not implement anything.
+- Run non-interactively.
+- Never ask for confirmation, approval, or a checkpoint.
+- If the plan cannot be completed within scope, state the blocker clearly in the final response.
 - Write the plan to .codex-plan.md.
 
 The plan must include:
@@ -42,6 +45,11 @@ The plan must include:
 6. Implementation steps
 7. Verification steps
 8. Risks
+
+Final response rules:
+- Return a terminal result only.
+- Do not ask the user to continue.
+- Summarize whether .codex-plan.md was created successfully.
 `;
 
 output += `\n\n# Story\n\n${story}\n`;

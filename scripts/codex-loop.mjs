@@ -1,8 +1,8 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 
 import { classifyDecisionCategory, createAiRequestFile } from "./lib/ai-request-utils.mjs";
 import { checkoutNewBranch, commit, ensureLoopBaseState, mergeStoryBranchIntoDev, stageAll } from "./lib/git-utils.mjs";
-import { formatCommand, runCommand } from "./lib/process-utils.mjs";
+import { createPhaseContractError, formatCommand, runCommand } from "./lib/process-utils.mjs";
 import { runWithRetries } from "./lib/retry-utils.mjs";
 import { STORY_LIFECYCLE_DIRS, ensureDir, findStoryFile, moveStoryToStatus, parseStoryFile } from "./lib/story-utils.mjs";
 
@@ -49,6 +49,10 @@ async function runGateWithDebug({ storyFile, label, gateCommand, maxFixRounds })
     maxRetries: maxFixRounds,
     run: () => gateCommand(),
     onRetry: async (error, retryNumber, retryLimit) => {
+      if (error.blocked || error.retriable === false) {
+        throw error;
+      }
+
       const output = error.output || error.message;
       console.error(`\nGate failed: ${label}`);
       if (output) {
@@ -57,7 +61,22 @@ async function runGateWithDebug({ storyFile, label, gateCommand, maxFixRounds })
 
       console.log(`\nRetrying ${label} with debug phase (${retryNumber}/${retryLimit}).`);
       createDebugPrompt(storyFile, label, output || "Unknown failure");
-      executeNodeScript(["scripts/codex-runner.mjs", "debug", DEBUG_PROMPT_FILE]);
+
+      try {
+        executeNodeScript(["scripts/codex-runner.mjs", "debug", DEBUG_PROMPT_FILE]);
+      } catch (debugError) {
+        if (debugError.blocked || debugError.retriable === false) {
+          throw debugError;
+        }
+        throw createPhaseContractError({
+          phase: "debug",
+          reason: "Debug phase did not produce a terminal fix or blocked result.",
+          evidence: debugError.output || debugError.message,
+          output,
+          command: debugError.command || "node",
+          args: debugError.args || ["scripts/codex-runner.mjs", "debug", DEBUG_PROMPT_FILE],
+        });
+      }
     },
   });
 }
@@ -145,8 +164,10 @@ async function main() {
     appendBlockedReport(blockedStory, {
       failedStep: error.command ? formatCommand(error.command, error.args) : "loop",
       exitCode: error.status ?? 1,
-      attempts: maxFixRounds + 1,
-      summary: "The automated loop could not complete this story.",
+      attempts: error.blocked ? 1 : maxFixRounds + 1,
+      summary: error.blocked
+        ? "The automated loop produced a valid blocked outcome and stopped without further retries."
+        : "The automated loop could not complete this story.",
       failureOutput,
     });
 
@@ -155,7 +176,7 @@ async function main() {
         storyId,
         summary: `Story blocked by ${category} decision.`,
         evidence: failureOutput,
-        attempts: `Loop attempted the failing gate up to ${maxFixRounds + 1} times.`,
+        attempts: `Loop attempted the failing gate up to ${error.blocked ? 1 : maxFixRounds + 1} times.`,
         decisionNeeded: `Resolve the ${category} blocker so ${storyId} can continue.`,
         impact: "The story remains blocked and cannot be merged into dev.",
         category,

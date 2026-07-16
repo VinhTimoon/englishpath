@@ -46,14 +46,16 @@ tree-main.txt
 # deployment local
 .vercel/
 .netlify/
-# Codex generated task prompt
-.codex-task.md
 
-# Codex generated prompts
+# Codex generated prompts and phase artifacts
 .codex-task.md
 .codex-plan.md
 .codex-plan-task.md
+.codex-plan.result.md
 .codex-build-task.md
+.codex-build.result.md
 .codex-review-task.md
+.codex-review.result.md
 .codex-debug-task.md
+.codex-debug.result.md
 .codex-debug-failure.log

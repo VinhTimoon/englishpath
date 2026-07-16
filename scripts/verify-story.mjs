@@ -29,9 +29,13 @@ const changedFiles = collectChangedFiles("dev");
 const ignoredFiles = [
   ".codex-plan.md",
   ".codex-plan-task.md",
+  ".codex-plan.result.md",
   ".codex-build-task.md",
+  ".codex-build.result.md",
   ".codex-review-task.md",
+  ".codex-review.result.md",
   ".codex-debug-task.md",
+  ".codex-debug.result.md",
   ".codex-debug-failure.log",
 ];
 

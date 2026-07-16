@@ -12,7 +12,7 @@ if (!storyFile || !failedStep || !failureLogFile) {
 const read = (file) => (fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "");
 
 const story = read(storyFile);
-const plan = read(".codex-plan-task.md");
+const plan = read(".codex-plan.md");
 const failureLog = read(failureLogFile);
 
 let output = `# Codex Debug Phase\n\n`;
@@ -26,13 +26,21 @@ Task:
 - Do not modify unrelated files.
 - Do not modify .env files.
 - Re-run only the failing gate after the fix.
-- If the failure is caused by a business, dependency, infrastructure, security, or environment decision, report it clearly so the loop can block the story and create an AI request.
+- Run non-interactively.
+- Never ask for confirmation, approval, or a checkpoint.
+- If the failure is caused by a business, dependency, infrastructure, security, or environment decision, return a blocked result.
+- If the failing gate cannot be fixed safely within scope, return a blocked result.
 
 Return:
-1. Gate fixed / still blocked
-2. Root cause
-3. Files changed
-4. Remaining blocker if any
+- Status: fixed | blocked
+- Root cause
+- Files changed
+- Remaining blocker if any
+
+Final response rules:
+- Return one terminal result only.
+- Do not ask the user to continue.
+- If blocked, explain the blocker concretely.
 `;
 
 output += `\n\n# Failed Gate\n\n${failedStep}\n`;

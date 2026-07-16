@@ -324,3 +324,55 @@ Khi đọc file này, Agent phải ưu tiên:
 ```
 
 Nếu không chắc, Agent phải dừng lại, ghi rõ blocker, không đoán bừa và không sửa lan rộng.
+
+---
+
+## 13. Noninteractive phase contracts
+
+Mỗi pha `plan`, `build`, `review`, `debug` phải tự kết thúc mà không chờ human input.
+
+Rules:
+
+```txt
+- Không hỏi confirm, approve, checkpoint, hay "shall I continue?"
+- Mỗi pha phải ghi final response artifact riêng
+- Exit code 0 không đủ để xem là pass
+- Final response phải là terminal result hợp lệ cho đúng phase
+```
+
+Artifact mặc định:
+
+```txt
+plan   -> .codex-plan.result.md + .codex-plan.md
+build  -> .codex-build.result.md
+review -> .codex-review.result.md
+debug  -> .codex-debug.result.md
+```
+
+Contract theo phase:
+
+```txt
+plan:
+- phải tạo .codex-plan.md mới
+- plan phải chứa story id và đủ 8 section bắt buộc
+
+build:
+- final response phải có `Status: completed` hoặc `Status: blocked`
+
+review:
+- final response phải có `Status: pass`, `Status: fixed`, hoặc `Status: blocked`
+- automation không được nạp checkpoint review skill body vào prompt review
+
+debug:
+- final response phải có `Status: fixed` hoặc `Status: blocked`
+```
+
+Timeout được cấu hình trong `scripts/codex-models.json` theo từng phase. Nếu timeout xảy ra, lỗi phải ghi rõ tên phase và thời lượng timeout, đồng thời giữ lại stdout, stderr và final response artifact để debug.
+
+Retry flow:
+
+```txt
+- timeout hoặc incomplete result -> vào bounded debug retry flow
+- blocked result hợp lệ -> dừng ngay và chuyển story sang blocked
+- debug trả blocked -> không retry thêm
+```

@@ -27,9 +27,7 @@ const contextFiles = [
   "AGENTS.md",
   "ai-skills/routing/skill-router.md",
   "_bmad-output/implementation-artifacts/definition-of-done.md",
-  "_bmad-output/implementation-artifacts/qa-checklist.md",
-  ".agents/skills/bmad-code-review/SKILL.md",
-  ".agents/skills/bmad-review-edge-case-hunter/SKILL.md"
+  "_bmad-output/implementation-artifacts/qa-checklist.md"
 ];
 
 let output = `# Codex Review and Test Phase\n\n`;
@@ -46,14 +44,22 @@ Task:
 - If safe and necessary, add or update tests.
 - Do not broaden the feature scope.
 - Do not modify .env files.
+- Run non-interactively.
+- Never ask for confirmation, approval, a checkpoint, or human review before returning a result.
 - If changes are needed, make minimal fixes only.
+- If the story cannot be approved safely within scope, return a blocked result.
 
 Return:
-1. Review result: pass / fixed / blocked
-2. P0/P1/P2 findings
-3. Tests added or updated
-4. Commands to run
-5. Remaining risks
+- Status: pass | fixed | blocked
+- P0/P1/P2 findings
+- Tests added or updated
+- Commands to run
+- Remaining risks
+
+Final response rules:
+- Return one terminal result only.
+- Do not ask the user to continue.
+- Do not request a checkpoint or confirmation.
 `;
 
 output += `\n\n# Story\n\n${story}\n`;
