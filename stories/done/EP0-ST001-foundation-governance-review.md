@@ -1,7 +1,7 @@
 ---
 id: EP0-ST001
 title: Foundation Governance Review
-status: ready
+status: done
 type: docs
 priority: high
 phase: phase-0-foundation
