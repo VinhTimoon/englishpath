@@ -1,7 +1,7 @@
 ---
 id: EP0-ST010
 title: Plan Contract Heading Normalization
-status: review
+status: done
 type: tooling
 priority: high
 phase: phase-0-foundation
@@ -78,3 +78,9 @@ Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".code
 - Lowercase heading capitalization now passes.
 - Missing, duplicated, renamed, and out-of-order section contracts remain enforced.
 - `pnpm story:checks`, story doctor, story verifier, and `git diff --check`: passed.
+
+## Manager Approval
+
+- Approved and merged into `dev` after all regression and repository gates passed.
+- Planning contracts now tolerate capitalization without accepting structural drift.
+- Promotion from `dev` to `main` remains under human control.
