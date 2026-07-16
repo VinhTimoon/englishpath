@@ -1,7 +1,7 @@
 ---
 id: EP0-ST005
 title: Typecheck Quality Gate Baseline
-status: blocked
+status: review
 type: tooling
 priority: high
 phase: phase-0-foundation
@@ -68,12 +68,13 @@ the API and web workspaces instead of succeeding with zero Turbo tasks.
 
 
 
-## Blocked Report
+## Recovery Report
 
 - Failed step: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
 - Exit code: 42
 - Attempts: 1
 - Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+- Recovery: The outer project manager is applying the two missing test imports that the Windows Agent sandbox could not write.
 
 ### Evidence
 
@@ -81,3 +82,12 @@ the API and web workspaces instead of succeeding with zero Turbo tasks.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
 ```
+
+## Verification Report
+
+- `pnpm story:test`: passed, 24/24 tests in the outer project environment.
+- `pnpm typecheck`: passed with exactly two Turbo tasks, `api` and `web`.
+- `pnpm story:checks`: passed lint, typecheck, unit tests, and production builds.
+- Story doctor, story verifier, and `git diff --check`: passed.
+- Codex CLI review: `Status: pass` with no P0, P1, or P2 findings.
+- The sandbox-only subprocess skip was independently covered by the successful outer test run.

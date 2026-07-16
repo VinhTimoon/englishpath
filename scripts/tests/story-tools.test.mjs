@@ -3,10 +3,12 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 
 import { classifyDecisionCategory, createAiRequestFile } from "../lib/ai-request-utils.mjs";
 import { collectChangedFiles, ensureLoopBaseState, getCurrentBranch, mergeStoryBranchIntoDev } from "../lib/git-utils.mjs";
 import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
+import { validateRequiredWorkspaceScripts } from "../run-checks.mjs";
 import {
   BLOCKED_EXIT_CODE,
   CommandError,
@@ -527,8 +529,6 @@ test("review prompt stays noninteractive and excludes checkpoint skill bodies", 
   assert.doesNotMatch(result.stdout, /# Context: \.agents\/skills\/bmad-code-review\/SKILL\.md/);
   assert.doesNotMatch(result.stdout, /# Context: \.agents\/skills\/bmad-review-edge-case-hunter\/SKILL\.md/);
 });
-
-
 
 test("validateRequiredWorkspaceScripts reports missing workspace typecheck coverage", () => {
   const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-run-checks-"));
