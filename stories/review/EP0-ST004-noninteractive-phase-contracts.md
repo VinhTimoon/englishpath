@@ -1,7 +1,7 @@
 ---
 id: EP0-ST004
 title: Noninteractive Codex Phase Contracts
-status: blocked
+status: review
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -70,15 +70,24 @@ clearly, without silently stopping at an interactive checkpoint.
 
 
 
-## Blocked Report
+## Recovery Report
 
 - Failed step: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
 - Exit code: 1
 - Attempts: 3
-- Summary: The automated loop could not complete this story.
+- Summary: The first automated run exposed a process-boundary blocked-status bug. Recovery is technical and does not require a product decision.
 
 ### Evidence
 
 ```text
 Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
 ```
+
+## Verification Report
+
+- `pnpm story:test`: passed, 22/22 tests.
+- `node scripts/story-doctor.mjs stories/in-progress/EP0-ST004-noninteractive-phase-contracts.md`: passed.
+- `node scripts/verify-story.mjs stories/in-progress/EP0-ST004-noninteractive-phase-contracts.md`: passed.
+- `pnpm story:checks`: passed.
+- `git diff --check`: passed; only Git line-ending conversion warnings were reported.
+- Recovery preserves blocked results with exit code `42`, marks them non-retriable, and prevents review from rerunning the ready-only doctor against a moved story.

@@ -8,6 +8,8 @@ import { classifyDecisionCategory, createAiRequestFile } from "../lib/ai-request
 import { collectChangedFiles, ensureLoopBaseState, getCurrentBranch, mergeStoryBranchIntoDev } from "../lib/git-utils.mjs";
 import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
 import {
+  BLOCKED_EXIT_CODE,
+  CommandError,
   PHASE_ARTIFACTS,
   createPhaseContractError,
   removePhaseArtifacts,
@@ -16,6 +18,7 @@ import {
   validatePhaseArtifacts,
 } from "../lib/process-utils.mjs";
 import { runWithRetries } from "../lib/retry-utils.mjs";
+import { normalizeChildProcessError } from "../codex-loop.mjs";
 import { moveStoryToStatus, parseFrontmatter, validateStory } from "../lib/story-utils.mjs";
 
 const supportsGitChildProcess = (() => {
@@ -446,6 +449,26 @@ test("removePhaseArtifacts clears stale response and plan files", () => {
   });
 });
 
+test("blocked child-process exit code maps to a non-retriable blocked error", () => {
+  const childError = new CommandError("Command failed with exit code 42: node scripts/codex-runner.mjs debug .codex-debug-task.md", {
+    command: "node",
+    args: ["scripts/codex-runner.mjs", "debug", ".codex-debug-task.md"],
+    status: BLOCKED_EXIT_CODE,
+    stdout: "",
+    stderr: "",
+    output: "Status: blocked\nReason: environment decision",
+  });
+
+  const normalized = normalizeChildProcessError(childError, childError.args);
+
+  assert.notEqual(normalized, childError);
+  assert.equal(normalized.phase, "debug");
+  assert.equal(normalized.status, BLOCKED_EXIT_CODE);
+  assert.equal(normalized.blocked, true);
+  assert.equal(normalized.retriable, false);
+  assert.match(normalized.output, /Status: blocked/);
+});
+
 test("blocked contract errors stop retry loops immediately", async () => {
   let attempts = 0;
   let retries = 0;
@@ -480,6 +503,11 @@ test("review prompt stays noninteractive and excludes checkpoint skill bodies", 
   const storyPath = path.join(tempDir, "EP0-ST004.md");
   writeFile(tempDir, "EP0-ST004.md", "---\nid: EP0-ST004\nstatus: in-progress\nallowed_paths:\n  - scripts/**\nforbidden_paths:\n  - apps/**\n---\n");
 
+  fs.writeFileSync(
+    ".codex-plan.md",
+    "# Implementation Plan\n\n- Review references .agents/skills/bmad-code-review/SKILL.md and .agents/skills/bmad-review-edge-case-hunter/SKILL.md as plain text mentions only.\n"
+  );
+
   let result;
   try {
     result = runCommand("node", ["scripts/create-review-prompt.mjs", storyPath], { cwd: process.cwd() });
@@ -489,11 +517,15 @@ test("review prompt stays noninteractive and excludes checkpoint skill bodies", 
       return;
     }
     throw error;
+  } finally {
+    fs.rmSync(".codex-plan.md", { force: true });
   }
 
   assert.match(result.stdout, /Run non-interactively/);
-  assert.doesNotMatch(result.stdout, /\.agents\/skills\/bmad-code-review\/SKILL\.md/);
-  assert.doesNotMatch(result.stdout, /\.agents\/skills\/bmad-review-edge-case-hunter\/SKILL\.md/);
+  assert.match(result.stdout, /Ready-only story-doctor already ran before this story moved to in-progress/);
+  assert.match(result.stdout, /# Plan[\s\S]*\.agents\/skills\/bmad-code-review\/SKILL\.md/);
+  assert.doesNotMatch(result.stdout, /# Context: \.agents\/skills\/bmad-code-review\/SKILL\.md/);
+  assert.doesNotMatch(result.stdout, /# Context: \.agents\/skills\/bmad-review-edge-case-hunter\/SKILL\.md/);
 });
 
 test("AI request classification and formatting stay structured", () => {

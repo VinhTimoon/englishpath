@@ -44,6 +44,7 @@ Task:
 - If safe and necessary, add or update tests.
 - Do not broaden the feature scope.
 - Do not modify .env files.
+- Ready-only story-doctor already ran before this story moved to in-progress; do not rerun story-doctor against the old ready-path file during review.
 - Run non-interactively.
 - Never ask for confirmation, approval, a checkpoint, or human review before returning a result.
 - If changes are needed, make minimal fixes only.

@@ -38,6 +38,7 @@ const STATUS_RULES = {
 };
 
 const CONFIRMATION_ONLY_PATTERN = /\b(confirm|confirmation|approve|approval|checkpoint|ready to proceed|shall i|would you like me to|do you want me to|waiting for your input)\b/i;
+export const BLOCKED_EXIT_CODE = 42;
 
 export const PHASE_ARTIFACTS = {
   plan: {
@@ -207,6 +208,10 @@ export function validatePhaseArtifacts({ phase, prompt, startedAt, commandResult
 
 export function formatPhaseTimeoutMessage(phase, timeoutMs, command, args = []) {
   return `Phase "${phase}" timed out after ${timeoutMs}ms while running ${formatCommand(command, args)}.`;
+}
+
+export function isBlockedExitStatus(status) {
+  return status === BLOCKED_EXIT_CODE;
 }
 
 export function runCommand(command, args = [], options = {}) {

@@ -2,7 +2,7 @@ import fs from "node:fs";
 
 import { classifyDecisionCategory, createAiRequestFile } from "./lib/ai-request-utils.mjs";
 import { checkoutNewBranch, commit, ensureLoopBaseState, mergeStoryBranchIntoDev, stageAll } from "./lib/git-utils.mjs";
-import { createPhaseContractError, formatCommand, runCommand } from "./lib/process-utils.mjs";
+import { BLOCKED_EXIT_CODE, createPhaseContractError, formatCommand, isBlockedExitStatus, runCommand } from "./lib/process-utils.mjs";
 import { runWithRetries } from "./lib/retry-utils.mjs";
 import { STORY_LIFECYCLE_DIRS, ensureDir, findStoryFile, moveStoryToStatus, parseStoryFile } from "./lib/story-utils.mjs";
 
@@ -23,8 +23,29 @@ function pickStory() {
   return `${READY_DIR}/${files[0]}`;
 }
 
+export function normalizeChildProcessError(error, args) {
+  if (!isBlockedExitStatus(error.status)) {
+    return error;
+  }
+
+  return createPhaseContractError({
+    phase: args[1] ?? "child-process",
+    reason: `Child process returned blocked exit code ${BLOCKED_EXIT_CODE}.`,
+    evidence: error.output || error.message,
+    output: error.output,
+    status: error.status,
+    blocked: true,
+    command: error.command || "node",
+    args: error.args || args,
+  });
+}
+
 function executeNodeScript(args) {
-  return runCommand("node", args, { printCommand: true, stdio: "inherit" });
+  try {
+    return runCommand("node", args, { printCommand: true, stdio: "inherit" });
+  } catch (error) {
+    throw normalizeChildProcessError(error, args);
+  }
 }
 
 function writePromptFromScript(scriptName, args, promptFile) {
@@ -190,4 +211,8 @@ async function main() {
   }
 }
 
-await main();
+const isDirectRun = process.argv[1] && new URL(import.meta.url).pathname.endsWith(process.argv[1].replace(/\\/g, "/"));
+
+if (isDirectRun) {
+  await main();
+}
