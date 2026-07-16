@@ -112,9 +112,36 @@ function validatePlanArtifact(planText, expectedStoryId) {
     return `Plan artifact does not reference story ${expectedStoryId}.`;
   }
 
-  const missingSections = PLAN_SECTIONS.filter((section) => !planText.includes(section));
+  const normalizeHeading = (heading) =>
+    heading
+      .trim()
+      .replace(/^##\s*/u, "")
+      .replace(/\s+/gu, " ")
+      .toLowerCase();
+  const expectedHeadings = PLAN_SECTIONS.map(normalizeHeading);
+  const actualHeadings = planText
+    .split(/\r?\n/u)
+    .map((line) => line.match(/^##\s+(.+?)\s*$/u)?.[1])
+    .filter(Boolean)
+    .map(normalizeHeading);
+
+  const missingSections = PLAN_SECTIONS.filter(
+    (_, index) => !actualHeadings.includes(expectedHeadings[index])
+  );
   if (missingSections.length > 0) {
     return `Plan artifact is missing required sections: ${missingSections.join(", ")}`;
+  }
+
+  const duplicatedSections = PLAN_SECTIONS.filter(
+    (_, index) => actualHeadings.filter((heading) => heading === expectedHeadings[index]).length > 1
+  );
+  if (duplicatedSections.length > 0) {
+    return `Plan artifact has duplicated required sections: ${duplicatedSections.join(", ")}`;
+  }
+
+  const sectionIndexes = expectedHeadings.map((heading) => actualHeadings.indexOf(heading));
+  if (sectionIndexes.some((index, position) => position > 0 && index < sectionIndexes[position - 1])) {
+    return "Plan artifact required sections are out of order.";
   }
 
   return null;

@@ -464,6 +464,68 @@ test("phase validation accepts valid completion statuses and plan artifacts", ()
   });
 });
 
+test("phase validation accepts plan headings with different capitalization", () => {
+  withTempCwd(() => {
+    const startedAt = Date.now() - 10;
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      ".codex-plan.md",
+      `# Plan EP0-ST010\n\n## 1. Story id\nEP0-ST010\n\n## 2. Scope summary\nA\n\n## 3. Allowed paths\nA\n\n## 4. Forbidden paths\nA\n\n## 5. Files likely to change\nA\n\n## 6. Implementation steps\nA\n\n## 7. Verification steps\nA\n\n## 8. Risks\nA\n`
+    );
+
+    const result = validatePhaseArtifacts({
+      phase: "plan",
+      prompt: "\nid: EP0-ST010\n",
+      startedAt,
+      commandResult: { command: "codex", args: [], output: "" },
+    });
+
+    assert.equal(result.status, "completed");
+  });
+});
+
+test("phase validation rejects duplicated or out-of-order plan sections", () => {
+  withTempCwd(() => {
+    const startedAt = Date.now() - 10;
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      ".codex-plan.md",
+      `# Plan EP0-ST010\n\n## 1. Story ID\nEP0-ST010\n\n## 3. Allowed Paths\nA\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`
+    );
+
+    assert.throws(
+      () =>
+        validatePhaseArtifacts({
+          phase: "plan",
+          prompt: "\nid: EP0-ST010\n",
+          startedAt,
+          commandResult: { command: "codex", args: [], output: "" },
+        }),
+      /duplicated required sections/
+    );
+  });
+
+  withTempCwd(() => {
+    const startedAt = Date.now() - 10;
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      ".codex-plan.md",
+      `# Plan EP0-ST010\n\n## 1. Story ID\nEP0-ST010\n\n## 3. Allowed Paths\nA\n\n## 2. Scope Summary\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`
+    );
+
+    assert.throws(
+      () =>
+        validatePhaseArtifacts({
+          phase: "plan",
+          prompt: "\nid: EP0-ST010\n",
+          startedAt,
+          commandResult: { command: "codex", args: [], output: "" },
+        }),
+      /out of order/
+    );
+  });
+});
+
 test("phase validation rejects stale artifacts from earlier runs", () => {
   withTempCwd(() => {
     fs.writeFileSync(PHASE_ARTIFACTS.build.responseFile, "Status: completed\n");

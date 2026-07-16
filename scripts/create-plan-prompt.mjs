@@ -37,13 +37,13 @@ Task:
 - Write the plan to .codex-plan.md.
 
 The plan must include:
-1. Story id
-2. Scope summary
-3. Allowed paths
-4. Forbidden paths
-5. Files likely to change
-6. Implementation steps
-7. Verification steps
+1. Story ID
+2. Scope Summary
+3. Allowed Paths
+4. Forbidden Paths
+5. Files Likely to Change
+6. Implementation Steps
+7. Verification Steps
 8. Risks
 
 Final response rules:
