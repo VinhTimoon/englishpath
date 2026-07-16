@@ -1,7 +1,7 @@
 ---
 id: EP0-ST009
 title: Frontend Architecture and Design Governance
-status: blocked
+status: review
 type: documentation
 priority: high
 phase: phase-0-foundation
@@ -65,15 +65,25 @@ EnglishPath landing page and subsequent Phase 1 learning experiences.
 
 
 
-## Blocked Report
+## Recovery Report
 
 - Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
 - Exit code: 1
 - Attempts: 2
 - Summary: The automated loop could not complete this story.
+- Recovery: The outer project manager implemented the validated Codex plan after the phase contract rejected heading capitalization.
 
 ### Evidence
 
 ```text
 Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
 ```
+
+## Verification Report
+
+- `pnpm story:test`: passed, 28/28 tests.
+- `pnpm story:checks`: passed lint, typecheck, unit tests, API e2e, and builds.
+- Story doctor, story verifier, and `git diff --check`: passed.
+- Codex review confirmed the FSD boundaries, accessibility rules, and visual direction;
+  the requested landing-page widget stack was added.
+- The lifecycle finding is resolved by this tracked move to `review`.
