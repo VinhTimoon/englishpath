@@ -27,6 +27,13 @@ Read in this order:
 
 Do not implement features without a story.
 
+## Skill Routing
+
+Codex must use `ai-skills/routing/skill-router.md` to decide which docs and skills to load for a story.
+
+Do not load all project skills by default.
+Load only the story, AGENTS, skill router, and the minimum relevant BMAD artifacts, docs, and skills for the current task.
+
 ## Story Rule
 
 Implement one story at a time.
@@ -70,7 +77,7 @@ Rules:
 Backend stack:
 - NestJS
 - Modular N-layer
-- Controller → Service → Repository
+- Controller -> Service -> Repository
 - REST API
 - Swagger/OpenAPI
 - PostgreSQL + Prisma
