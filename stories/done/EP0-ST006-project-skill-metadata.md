@@ -1,7 +1,7 @@
 ---
 id: EP0-ST006
 title: Project Skill Metadata Compliance
-status: review
+status: done
 type: tooling
 priority: high
 phase: phase-0-foundation
@@ -83,3 +83,9 @@ Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".co
 - Story doctor, story verifier, and `git diff --check`: passed.
 - Codex CLI smoke test loaded the project without any missing-frontmatter skill errors.
 - Codex review identified one missing-frontmatter negative-case gap; it was fixed and the full story test suite passed again.
+
+## Manager Approval
+
+- Approved and merged into `dev` after all scoped and repository gates passed.
+- All four EnglishPath project skills now load through Codex skill discovery.
+- Promotion from `dev` to `main` remains under human control.
