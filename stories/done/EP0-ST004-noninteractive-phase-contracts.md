@@ -1,7 +1,7 @@
 ---
 id: EP0-ST004
 title: Noninteractive Codex Phase Contracts
-status: review
+status: done
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -91,3 +91,9 @@ Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "debug" ".cod
 - `pnpm story:checks`: passed.
 - `git diff --check`: passed; only Git line-ending conversion warnings were reported.
 - Recovery preserves blocked results with exit code `42`, marks them non-retriable, and prevents review from rerunning the ready-only doctor against a moved story.
+
+## Manager Approval
+
+- Approved on `dev` after the recovered implementation passed all story and repository quality gates.
+- The engineering loop is enabled for subsequent ready stories.
+- Promotion from `dev` to `main` remains a human-controlled decision.
