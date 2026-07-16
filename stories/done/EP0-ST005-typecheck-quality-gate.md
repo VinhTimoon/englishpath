@@ -1,7 +1,7 @@
 ---
 id: EP0-ST005
 title: Typecheck Quality Gate Baseline
-status: review
+status: done
 type: tooling
 priority: high
 phase: phase-0-foundation
@@ -91,3 +91,9 @@ Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "debug" ".co
 - Story doctor, story verifier, and `git diff --check`: passed.
 - Codex CLI review: `Status: pass` with no P0, P1, or P2 findings.
 - The sandbox-only subprocess skip was independently covered by the successful outer test run.
+
+## Manager Approval
+
+- Approved and merged into `dev` after all repository gates passed.
+- `pnpm typecheck` now validates both application workspaces instead of reporting zero tasks.
+- Promotion from `dev` to `main` remains under human control.
