@@ -1,7 +1,7 @@
 ---
 id: EP0-ST007
 title: API E2E Prisma Jest Compatibility
-status: review
+status: done
 type: testing
 priority: high
 phase: phase-0-foundation
@@ -93,3 +93,9 @@ Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".code
 - Story doctor, story verifier, and `git diff --check`: passed.
 - Codex review: `Status: pass`, with no P0 or P1 findings.
 - The review P2 coverage gap for workspace-scoped command execution was fixed and retested.
+
+## Manager Approval
+
+- Approved and merged into `dev` after all repository and e2e gates passed.
+- Prisma generated files and application source remained unchanged.
+- Promotion from `dev` to `main` remains under human control.
