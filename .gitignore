@@ -1,0 +1,48 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# env
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
+!.env.example
+!**/.env.example
+
+# build outputs
+.next/
+**/.next/
+dist/
+**/dist/
+coverage/
+**/coverage/
+.turbo/
+out/
+build/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# local tree/debug files
+tree-main.txt
+
+# editor optional
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# deployment local
+.vercel/
+.netlify/

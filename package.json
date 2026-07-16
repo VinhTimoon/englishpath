@@ -1,0 +1,26 @@
+{
+  "name": "englishpath",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EnglishPath - free-first English learning platform",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.24",
+    "turbo": "^2.10.5",
+    "typescript": "^7.0.2"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.13.1",
+      "onFail": "download"
+    }
+  }
+}
