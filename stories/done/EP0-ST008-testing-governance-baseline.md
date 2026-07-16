@@ -1,7 +1,7 @@
 ---
 id: EP0-ST008
 title: Testing Governance Baseline
-status: review
+status: done
 type: documentation
 priority: medium
 phase: phase-0-foundation
@@ -87,3 +87,9 @@ Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".code
   the repository; its module-format wording finding was corrected.
 - The lifecycle-path finding was caused by an unstaged recovery rename and is
   resolved by this tracked move to `review`.
+
+## Manager Approval
+
+- Approved and merged into `dev` after documentation and repository gates passed.
+- Testing agents now receive a concrete EnglishPath strategy and concise rules.
+- Promotion from `dev` to `main` remains under human control.
