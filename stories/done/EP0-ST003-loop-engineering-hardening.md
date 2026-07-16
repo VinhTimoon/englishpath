@@ -1,7 +1,7 @@
 ---
 id: EP0-ST003
 title: Loop Engineering Hardening
-status: review
+status: done
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -81,3 +81,4 @@ production changes under human control.
 - `pnpm build`: passed.
 - Codex runner smoke test: returned `RUNNER_OK` through stdin.
 - Review result: fixed, with two bounded debug rounds completed.
+- Manager approval: accepted into `dev`.
