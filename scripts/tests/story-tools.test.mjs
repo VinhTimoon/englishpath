@@ -8,7 +8,7 @@ import { spawnSync } from "node:child_process";
 import { classifyDecisionCategory, createAiRequestFile } from "../lib/ai-request-utils.mjs";
 import { collectChangedFiles, ensureLoopBaseState, getCurrentBranch, mergeStoryBranchIntoDev } from "../lib/git-utils.mjs";
 import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
-import { validateRequiredWorkspaceScripts } from "../run-checks.mjs";
+import { runChecks, validateRequiredWorkspaceScripts } from "../run-checks.mjs";
 import {
   BLOCKED_EXIT_CODE,
   CommandError,
@@ -594,6 +594,64 @@ test("validateRequiredWorkspaceScripts reports missing workspace typecheck cover
     const failures = validateRequiredWorkspaceScripts([{ command: "pnpm typecheck", script: "typecheck" }]);
 
     assert.deepEqual(failures, ['Missing required workspace script "typecheck" in apps/api/package.json']);
+  } finally {
+    process.chdir(previousCwd);
+  }
+});
+
+test("validateRequiredWorkspaceScripts requires the API e2e quality task", () => {
+  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-e2e-checks-"));
+  const previousCwd = process.cwd();
+  process.chdir(repoDir);
+
+  try {
+    writeFile(
+      repoDir,
+      "apps/api/package.json",
+      JSON.stringify({ name: "api", scripts: {} }, null, 2)
+    );
+
+    const failures = validateRequiredWorkspaceScripts([
+      {
+        command: "pnpm --filter api test:e2e",
+        script: "test:e2e",
+        packageJson: "apps/api/package.json",
+      },
+    ]);
+
+    assert.deepEqual(failures, ['Missing required workspace script "test:e2e" in apps/api/package.json']);
+  } finally {
+    process.chdir(previousCwd);
+  }
+});
+
+test("runChecks executes a workspace-scoped e2e command from its package manifest", () => {
+  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-e2e-runner-"));
+  const previousCwd = process.cwd();
+  const commands = [];
+  process.chdir(repoDir);
+
+  try {
+    writeFile(
+      repoDir,
+      "apps/api/package.json",
+      JSON.stringify({ name: "api", scripts: { "test:e2e": "jest" } }, null, 2)
+    );
+
+    runChecks(
+      [
+        {
+          command: "pnpm --filter api test:e2e",
+          script: "test:e2e",
+          packageJson: "apps/api/package.json",
+        },
+      ],
+      {
+        execute: (command) => commands.push(command),
+      }
+    );
+
+    assert.deepEqual(commands, ["pnpm --filter api test:e2e"]);
   } finally {
     process.chdir(previousCwd);
   }

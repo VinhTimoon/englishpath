@@ -22,11 +22,13 @@ const checks = [
   { command: "pnpm lint", script: "lint" },
   { command: "pnpm typecheck", script: "typecheck" },
   { command: "pnpm test", script: "test" },
+  { command: "pnpm --filter api test:e2e", script: "test:e2e", packageJson: "apps/api/package.json" },
   { command: "pnpm build", script: "build" },
 ];
 
 const requiredWorkspaceScripts = {
   typecheck: ["apps/api/package.json", "apps/web/package.json"],
+  "test:e2e": ["apps/api/package.json"],
 };
 
 export function validateRequiredWorkspaceScripts(items, workspaceScripts = requiredWorkspaceScripts) {
@@ -45,7 +47,8 @@ export function validateRequiredWorkspaceScripts(items, workspaceScripts = requi
   return failures;
 }
 
-export function runChecks(items = checks) {
+export function runChecks(items = checks, options = {}) {
+  const execute = options.execute ?? run;
   const missingScripts = validateRequiredWorkspaceScripts(items);
   if (missingScripts.length > 0) {
     for (const message of missingScripts) {
@@ -58,13 +61,14 @@ export function runChecks(items = checks) {
   let failed = false;
 
   for (const item of items) {
-    if (!hasScript("package.json", item.script)) {
-      console.log(`Skip: root has no script "${item.script}"`);
+    const packageJsonPath = item.packageJson ?? "package.json";
+    if (!hasScript(packageJsonPath, item.script)) {
+      console.log(`Skip: ${packageJsonPath} has no script "${item.script}"`);
       continue;
     }
 
     try {
-      run(item.command);
+      execute(item.command);
     } catch {
       failed = true;
     }
