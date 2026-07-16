@@ -40,8 +40,6 @@ const command = [
   "exec",
   "--sandbox",
   "workspace-write",
-  "--ask-for-approval",
-  "on-request",
   "-c",
   `model=${JSON.stringify(selected.model)}`,
   "-c",
