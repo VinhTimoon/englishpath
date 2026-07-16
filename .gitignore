@@ -46,3 +46,5 @@ tree-main.txt
 # deployment local
 .vercel/
 .netlify/
+# Codex generated task prompt
+.codex-task.md
