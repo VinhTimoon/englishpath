@@ -1,7 +1,7 @@
 ---
 id: EP0-ST008
 title: Testing Governance Baseline
-status: blocked
+status: review
 type: documentation
 priority: medium
 phase: phase-0-foundation
@@ -64,15 +64,26 @@ router so future stories use consistent, deterministic verification.
 
 
 
-## Blocked Report
+## Recovery Report
 
 - Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
 - Exit code: 1
 - Attempts: 2
 - Summary: The automated loop could not complete this story.
+- Recovery: The outer project manager completed the scoped documentation after the known Windows sandbox write failure.
 
 ### Evidence
 
 ```text
 Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
 ```
+
+## Verification Report
+
+- `pnpm story:test`: passed, 28/28 tests.
+- `pnpm story:checks`: passed lint, typecheck, unit tests, API e2e, and builds.
+- Story doctor, story verifier, and `git diff --check`: passed.
+- Codex review confirmed the command matrix and deterministic e2e boundary match
+  the repository; its module-format wording finding was corrected.
+- The lifecycle-path finding was caused by an unstaged recovery rename and is
+  resolved by this tracked move to `review`.

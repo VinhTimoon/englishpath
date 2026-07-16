@@ -15,6 +15,9 @@
 
 ## Verification
 
+- Read `docs/10_TEST_STRATEGY.md` for testing stories.
 - Run the story verification commands.
 - Run project verification commands when required by `AGENTS.md`.
+- Confirm API-affecting stories run `pnpm --filter api test:e2e`.
+- Confirm tests use no real secrets or external service dependencies.
 - If any command is missing or failing, record it explicitly.
