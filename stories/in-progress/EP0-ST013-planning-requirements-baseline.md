@@ -1,7 +1,7 @@
 ---
 id: EP0-ST013
 title: Planning Requirements Baseline
-status: blocked
+status: in-progress
 type: planning
 priority: critical
 phase: phase-0-foundation
@@ -91,3 +91,4 @@ scope, requirements, user journeys, epics, and dependency ordering.
 ```text
 Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
 ```
+
