@@ -5,8 +5,16 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 
-import { classifyDecisionCategory, createAiRequestFile } from "../lib/ai-request-utils.mjs";
-import { collectChangedFiles, ensureLoopBaseState, getCurrentBranch, mergeStoryBranchIntoDev } from "../lib/git-utils.mjs";
+import {
+  classifyDecisionCategory,
+  createAiRequestFile,
+} from "../lib/ai-request-utils.mjs";
+import {
+  collectChangedFiles,
+  ensureLoopBaseState,
+  getCurrentBranch,
+  mergeStoryBranchIntoDev,
+} from "../lib/git-utils.mjs";
 import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
 import { runChecks, validateRequiredWorkspaceScripts } from "../run-checks.mjs";
 import {
@@ -14,6 +22,8 @@ import {
   CommandError,
   PHASE_ARTIFACTS,
   createPhaseContractError,
+  getPhaseSandbox,
+  materializePlanArtifact,
   removePhaseArtifacts,
   runCommand,
   runCommand as runProcessCommand,
@@ -21,7 +31,11 @@ import {
 } from "../lib/process-utils.mjs";
 import { runWithRetries } from "../lib/retry-utils.mjs";
 import { normalizeChildProcessError } from "../codex-loop.mjs";
-import { moveStoryToStatus, parseFrontmatter, validateStory } from "../lib/story-utils.mjs";
+import {
+  moveStoryToStatus,
+  parseFrontmatter,
+  validateStory,
+} from "../lib/story-utils.mjs";
 
 const supportsGitChildProcess = (() => {
   try {
@@ -33,10 +47,14 @@ const supportsGitChildProcess = (() => {
 })();
 
 function makeTempRepo() {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-story-tools-"));
+  const tempDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-story-tools-"),
+  );
   runCommand("git", ["init", "-b", "dev"], { cwd: tempDir });
   runCommand("git", ["config", "user.name", "Codex Test"], { cwd: tempDir });
-  runCommand("git", ["config", "user.email", "codex@example.com"], { cwd: tempDir });
+  runCommand("git", ["config", "user.email", "codex@example.com"], {
+    cwd: tempDir,
+  });
   return tempDir;
 }
 
@@ -60,7 +78,10 @@ function validateSkillMetadata(content) {
   if (typeof frontmatter.name !== "string" || !frontmatter.name.trim()) {
     issues.push("Missing non-empty skill name.");
   }
-  if (typeof frontmatter.description !== "string" || !frontmatter.description.trim()) {
+  if (
+    typeof frontmatter.description !== "string" ||
+    !frontmatter.description.trim()
+  ) {
     issues.push("Missing non-empty skill description.");
   }
   if (!body.trim()) {
@@ -76,7 +97,9 @@ function createTrackedRepo() {
   runCommand("git", ["add", "."], { cwd: repoDir });
   runCommand("git", ["commit", "-m", "base"], { cwd: repoDir });
 
-  const remoteDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-remote-"));
+  const remoteDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-remote-"),
+  );
   runCommand("git", ["init", "--bare", remoteDir], { cwd: repoDir });
   runCommand("git", ["remote", "add", "origin", remoteDir], { cwd: repoDir });
   runCommand("git", ["push", "-u", "origin", "dev"], { cwd: repoDir });
@@ -108,7 +131,7 @@ AC
 
 ## Verification
 Check
-`
+`,
   );
 }
 
@@ -141,7 +164,10 @@ allowed_paths:
   assert.equal(parsed.frontmatter.id, "EP0-ST003");
   assert.equal(parsed.frontmatter.requires_human_approval, false);
   assert.equal(parsed.frontmatter.max_fix_rounds, 2);
-  assert.deepEqual(parsed.frontmatter.allowed_paths, ["scripts/**", "stories/**"]);
+  assert.deepEqual(parsed.frontmatter.allowed_paths, [
+    "scripts/**",
+    "stories/**",
+  ]);
 });
 
 test("EnglishPath project skills contain valid metadata and instruction bodies", () => {
@@ -160,14 +186,23 @@ test("skill metadata validation reports missing required fields", () => {
   ]);
   assert.throws(
     () => validateSkillMetadata("# Instructions\n"),
-    /missing frontmatter/i
+    /missing frontmatter/i,
   );
 });
 
 test("validateStory accepts absolute story paths when lifecycle matches", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-story-"));
-  const storyPath = path.join(tempDir, "stories", "in-progress", "EP0-ST003.md");
-  writeStory(tempDir, path.join("stories", "in-progress", "EP0-ST003.md"), "in-progress");
+  const storyPath = path.join(
+    tempDir,
+    "stories",
+    "in-progress",
+    "EP0-ST003.md",
+  );
+  writeStory(
+    tempDir,
+    path.join("stories", "in-progress", "EP0-ST003.md"),
+    "in-progress",
+  );
 
   const result = validateStory(storyPath);
   assert.deepEqual(result.issues, []);
@@ -176,7 +211,11 @@ test("validateStory accepts absolute story paths when lifecycle matches", () => 
 test("validateStory enforces lifecycle folder and required structure", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-story-"));
   const storyPath = path.join(tempDir, "stories", "ready", "EP0-ST003.md");
-  writeStory(tempDir, path.join("stories", "ready", "EP0-ST003.md"), "in-progress");
+  writeStory(
+    tempDir,
+    path.join("stories", "ready", "EP0-ST003.md"),
+    "in-progress",
+  );
 
   const result = validateStory(storyPath);
   assert.equal(result.issues.length, 1);
@@ -209,12 +248,21 @@ test("forbidden paths override allowed paths and support glob matching", () => {
     ["scripts/lib/test.mjs", "apps/api/main.ts", ".codex-plan.md"],
     ["scripts/**", "apps/**", ".codex-plan.md"],
     ["apps/**", ".codex-plan.md"],
-    { ignoredPaths: [".codex-plan.md"] }
+    { ignoredPaths: [".codex-plan.md"] },
   );
 
-  assert.equal(result.find((entry) => entry.file === "scripts/lib/test.mjs")?.ok, true);
-  assert.equal(result.find((entry) => entry.file === "apps/api/main.ts")?.ok, false);
-  assert.match(result.find((entry) => entry.file === "apps/api/main.ts")?.reason ?? "", /forbidden path pattern/);
+  assert.equal(
+    result.find((entry) => entry.file === "scripts/lib/test.mjs")?.ok,
+    true,
+  );
+  assert.equal(
+    result.find((entry) => entry.file === "apps/api/main.ts")?.ok,
+    false,
+  );
+  assert.match(
+    result.find((entry) => entry.file === "apps/api/main.ts")?.reason ?? "",
+    /forbidden path pattern/,
+  );
 });
 
 test("ensureLoopBaseState rejects non-dev branches", (t) => {
@@ -225,7 +273,10 @@ test("ensureLoopBaseState rejects non-dev branches", (t) => {
 
   const repoDir = createTrackedRepo();
   runCommand("git", ["checkout", "-b", "story/ep0-st003"], { cwd: repoDir });
-  assert.throws(() => ensureLoopBaseState("dev", { cwd: repoDir }), /Loop must start on "dev"/);
+  assert.throws(
+    () => ensureLoopBaseState("dev", { cwd: repoDir }),
+    /Loop must start on "dev"/,
+  );
 });
 
 test("ensureLoopBaseState rejects branches without upstream", (t) => {
@@ -238,7 +289,10 @@ test("ensureLoopBaseState rejects branches without upstream", (t) => {
   writeFile(repoDir, "README.md", "base\n");
   runCommand("git", ["add", "."], { cwd: repoDir });
   runCommand("git", ["commit", "-m", "base"], { cwd: repoDir });
-  assert.throws(() => ensureLoopBaseState("dev", { cwd: repoDir }), /must track an upstream branch/);
+  assert.throws(
+    () => ensureLoopBaseState("dev", { cwd: repoDir }),
+    /must track an upstream branch/,
+  );
 });
 
 test("ensureLoopBaseState rejects dirty dev worktrees", (t) => {
@@ -249,7 +303,10 @@ test("ensureLoopBaseState rejects dirty dev worktrees", (t) => {
 
   const repoDir = createTrackedRepo();
   writeFile(repoDir, "dirty.txt", "change\n");
-  assert.throws(() => ensureLoopBaseState("dev", { cwd: repoDir }), /clean worktree/);
+  assert.throws(
+    () => ensureLoopBaseState("dev", { cwd: repoDir }),
+    /clean worktree/,
+  );
 });
 
 test("collectChangedFiles includes committed, staged, unstaged, and untracked files", (t) => {
@@ -272,7 +329,12 @@ test("collectChangedFiles includes committed, staged, unstaged, and untracked fi
   writeFile(repoDir, "untracked.txt", "untracked\n");
 
   const changedFiles = collectChangedFiles("dev", { cwd: repoDir });
-  assert.deepEqual(changedFiles, ["README.md", "committed.txt", "staged.txt", "untracked.txt"]);
+  assert.deepEqual(changedFiles, [
+    "README.md",
+    "committed.txt",
+    "staged.txt",
+    "untracked.txt",
+  ]);
 });
 
 test("mergeStoryBranchIntoDev fast-forwards and leaves repository on dev", (t) => {
@@ -307,7 +369,7 @@ test("runWithRetries honors the retry bound", async () => {
         retries += 1;
       },
     }),
-    /fail/
+    /fail/,
   );
 
   assert.equal(attempts, 3);
@@ -361,7 +423,7 @@ process.stdin.on("end", () => {
       {
         input: "prompt input\n",
         forwardOutput: true,
-      }
+      },
     );
   } catch (error) {
     commandError = error;
@@ -387,7 +449,9 @@ test("runCommand marks timeout failures", (t) => {
   let commandError;
 
   try {
-    runProcessCommand(process.execPath, ["-e", "setTimeout(() => {}, 1000)"], { timeoutMs: 50 });
+    runProcessCommand(process.execPath, ["-e", "setTimeout(() => {}, 1000)"], {
+      timeoutMs: 50,
+    });
   } catch (error) {
     commandError = error;
   }
@@ -404,7 +468,10 @@ test("runCommand marks timeout failures", (t) => {
 test("phase validation rejects confirmation-only build responses", () => {
   withTempCwd(() => {
     const startedAt = Date.now();
-    fs.writeFileSync(PHASE_ARTIFACTS.build.responseFile, "Please confirm and I will continue.");
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.build.responseFile,
+      "Please confirm and I will continue.",
+    );
 
     assert.throws(
       () =>
@@ -414,7 +481,7 @@ test("phase validation rejects confirmation-only build responses", () => {
           startedAt,
           commandResult: { command: "codex", args: [], output: "" },
         }),
-      /Confirmation-only/
+      /Confirmation-only/,
     );
   });
 });
@@ -431,15 +498,117 @@ test("phase validation rejects missing planning output", () => {
           startedAt: Date.now() - 10,
           commandResult: { command: "codex", args: [], output: "" },
         }),
-      /Missing required artifact: \.codex-plan\.md/
+      /Missing required artifact: \.codex-plan\.md/,
     );
+  });
+});
+
+test("plan handoff materializes a validated response byte-for-byte", () => {
+  withTempCwd(() => {
+    const startedAt = Date.now() - 10;
+    const prompt = "\nid: EP0-ST011\n";
+    const plan = `## 1. Story ID\nEP0-ST011\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`;
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, plan);
+
+    const planFile = materializePlanArtifact({ prompt, startedAt });
+
+    assert.equal(planFile, ".codex-plan.md");
+    assert.equal(fs.readFileSync(planFile, "utf8"), plan);
+    assert.equal(
+      validatePhaseArtifacts({
+        phase: "plan",
+        prompt,
+        startedAt,
+        commandResult: { command: "codex", args: [], output: "" },
+      }).status,
+      "completed",
+    );
+  });
+});
+
+test("plan handoff rejects invalid or stale responses before writing", () => {
+  withTempCwd(() => {
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.plan.responseFile,
+      "not a structured plan",
+    );
+    assert.throws(
+      () =>
+        materializePlanArtifact({
+          prompt: "\nid: EP0-ST011\n",
+          startedAt: Date.now() - 10,
+        }),
+      /does not reference story|missing required sections/i,
+    );
+    assert.equal(fs.existsSync(".codex-plan.md"), false);
+  });
+
+  withTempCwd(() => {
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "stale plan");
+    const staleTime = new Date(Date.now() - 5000);
+    fs.utimesSync(PHASE_ARTIFACTS.plan.responseFile, staleTime, staleTime);
+    assert.throws(
+      () =>
+        materializePlanArtifact({
+          prompt: "\nid: EP0-ST011\n",
+          startedAt: Date.now() - 1000,
+        }),
+      /Stale artifact detected/,
+    );
+    assert.equal(fs.existsSync(".codex-plan.md"), false);
+  });
+});
+
+test("only planning uses the read-only Codex sandbox", () => {
+  assert.equal(getPhaseSandbox("plan"), "read-only");
+  assert.equal(getPhaseSandbox("build"), "workspace-write");
+  assert.equal(getPhaseSandbox("review"), "workspace-write");
+  assert.equal(getPhaseSandbox("debug"), "workspace-write");
+});
+
+test("plan handoff rejects prefaces and unexpected headings", () => {
+  const validPlan = `## 1. Story ID\nEP0-ST011\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`;
+
+  withTempCwd(() => {
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.plan.responseFile,
+      `Planning complete.\n\n${validPlan}`,
+    );
+    assert.throws(
+      () =>
+        materializePlanArtifact({
+          prompt: "\nid: EP0-ST011\n",
+          startedAt: Date.now() - 10,
+        }),
+      /contain no preface/i,
+    );
+    assert.equal(fs.existsSync(".codex-plan.md"), false);
+  });
+
+  withTempCwd(() => {
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.plan.responseFile,
+      `${validPlan}\n## 9. Notes\nExtra\n`,
+    );
+    assert.throws(
+      () =>
+        materializePlanArtifact({
+          prompt: "\nid: EP0-ST011\n",
+          startedAt: Date.now() - 10,
+        }),
+      /unexpected sections/i,
+    );
+    assert.equal(fs.existsSync(".codex-plan.md"), false);
   });
 });
 
 test("phase validation accepts valid completion statuses and plan artifacts", () => {
   withTempCwd(() => {
     const startedAt = Date.now() - 10;
-    fs.writeFileSync(PHASE_ARTIFACTS.review.responseFile, "Status: fixed\nRemaining risks: none\n");
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.review.responseFile,
+      "Status: fixed\nRemaining risks: none\n",
+    );
     const reviewResult = validatePhaseArtifacts({
       phase: "review",
       prompt: "story",
@@ -448,10 +617,13 @@ test("phase validation accepts valid completion statuses and plan artifacts", ()
     });
     assert.equal(reviewResult.status, "fixed");
 
-    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.plan.responseFile,
+      "Plan completed successfully.",
+    );
     fs.writeFileSync(
       ".codex-plan.md",
-      `# Implementation Plan: EP0-ST004\n\n## 1. Story ID\nEP0-ST004\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`
+      `## 1. Story ID\nEP0-ST004\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`,
     );
 
     const planResult = validatePhaseArtifacts({
@@ -467,10 +639,13 @@ test("phase validation accepts valid completion statuses and plan artifacts", ()
 test("phase validation accepts plan headings with different capitalization", () => {
   withTempCwd(() => {
     const startedAt = Date.now() - 10;
-    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.plan.responseFile,
+      "Plan completed successfully.",
+    );
     fs.writeFileSync(
       ".codex-plan.md",
-      `# Plan EP0-ST010\n\n## 1. Story id\nEP0-ST010\n\n## 2. Scope summary\nA\n\n## 3. Allowed paths\nA\n\n## 4. Forbidden paths\nA\n\n## 5. Files likely to change\nA\n\n## 6. Implementation steps\nA\n\n## 7. Verification steps\nA\n\n## 8. Risks\nA\n`
+      `## 1. Story id\nEP0-ST010\n\n## 2. Scope summary\nA\n\n## 3. Allowed paths\nA\n\n## 4. Forbidden paths\nA\n\n## 5. Files likely to change\nA\n\n## 6. Implementation steps\nA\n\n## 7. Verification steps\nA\n\n## 8. Risks\nA\n`,
     );
 
     const result = validatePhaseArtifacts({
@@ -487,10 +662,13 @@ test("phase validation accepts plan headings with different capitalization", () 
 test("phase validation rejects duplicated or out-of-order plan sections", () => {
   withTempCwd(() => {
     const startedAt = Date.now() - 10;
-    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.plan.responseFile,
+      "Plan completed successfully.",
+    );
     fs.writeFileSync(
       ".codex-plan.md",
-      `# Plan EP0-ST010\n\n## 1. Story ID\nEP0-ST010\n\n## 3. Allowed Paths\nA\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`
+      `# Plan EP0-ST010\n\n## 1. Story ID\nEP0-ST010\n\n## 3. Allowed Paths\nA\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`,
     );
 
     assert.throws(
@@ -501,16 +679,19 @@ test("phase validation rejects duplicated or out-of-order plan sections", () => 
           startedAt,
           commandResult: { command: "codex", args: [], output: "" },
         }),
-      /duplicated required sections/
+      /duplicated required sections/,
     );
   });
 
   withTempCwd(() => {
     const startedAt = Date.now() - 10;
-    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, "Plan completed successfully.");
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.plan.responseFile,
+      "Plan completed successfully.",
+    );
     fs.writeFileSync(
       ".codex-plan.md",
-      `# Plan EP0-ST010\n\n## 1. Story ID\nEP0-ST010\n\n## 3. Allowed Paths\nA\n\n## 2. Scope Summary\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`
+      `# Plan EP0-ST010\n\n## 1. Story ID\nEP0-ST010\n\n## 3. Allowed Paths\nA\n\n## 2. Scope Summary\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`,
     );
 
     assert.throws(
@@ -521,7 +702,7 @@ test("phase validation rejects duplicated or out-of-order plan sections", () => 
           startedAt,
           commandResult: { command: "codex", args: [], output: "" },
         }),
-      /out of order/
+      /out of order/,
     );
   });
 });
@@ -540,7 +721,7 @@ test("phase validation rejects stale artifacts from earlier runs", () => {
           startedAt: Date.now() - 1000,
           commandResult: { command: "codex", args: [], output: "" },
         }),
-      /Stale artifact detected/
+      /Stale artifact detected/,
     );
   });
 });
@@ -558,14 +739,17 @@ test("removePhaseArtifacts clears stale response and plan files", () => {
 });
 
 test("blocked child-process exit code maps to a non-retriable blocked error", () => {
-  const childError = new CommandError("Command failed with exit code 42: node scripts/codex-runner.mjs debug .codex-debug-task.md", {
-    command: "node",
-    args: ["scripts/codex-runner.mjs", "debug", ".codex-debug-task.md"],
-    status: BLOCKED_EXIT_CODE,
-    stdout: "",
-    stderr: "",
-    output: "Status: blocked\nReason: environment decision",
-  });
+  const childError = new CommandError(
+    "Command failed with exit code 42: node scripts/codex-runner.mjs debug .codex-debug-task.md",
+    {
+      command: "node",
+      args: ["scripts/codex-runner.mjs", "debug", ".codex-debug-task.md"],
+      status: BLOCKED_EXIT_CODE,
+      stdout: "",
+      stderr: "",
+      output: "Status: blocked\nReason: environment decision",
+    },
+  );
 
   const normalized = normalizeChildProcessError(childError, childError.args);
 
@@ -599,7 +783,7 @@ test("blocked contract errors stop retry loops immediately", async () => {
         }
       },
     }),
-    /Blocked by environment decision/
+    /Blocked by environment decision/,
   );
 
   assert.equal(attempts, 1);
@@ -607,18 +791,28 @@ test("blocked contract errors stop retry loops immediately", async () => {
 });
 
 test("review prompt stays noninteractive and excludes checkpoint skill bodies", (t) => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-review-story-"));
+  const tempDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-review-story-"),
+  );
   const storyPath = path.join(tempDir, "EP0-ST004.md");
-  writeFile(tempDir, "EP0-ST004.md", "---\nid: EP0-ST004\nstatus: in-progress\nallowed_paths:\n  - scripts/**\nforbidden_paths:\n  - apps/**\n---\n");
+  writeFile(
+    tempDir,
+    "EP0-ST004.md",
+    "---\nid: EP0-ST004\nstatus: in-progress\nallowed_paths:\n  - scripts/**\nforbidden_paths:\n  - apps/**\n---\n",
+  );
 
   fs.writeFileSync(
     ".codex-plan.md",
-    "# Implementation Plan\n\n- Review references .agents/skills/bmad-code-review/SKILL.md and .agents/skills/bmad-review-edge-case-hunter/SKILL.md as plain text mentions only.\n"
+    "# Implementation Plan\n\n- Review references .agents/skills/bmad-code-review/SKILL.md and .agents/skills/bmad-review-edge-case-hunter/SKILL.md as plain text mentions only.\n",
   );
 
   let result;
   try {
-    result = runCommand("node", ["scripts/create-review-prompt.mjs", storyPath], { cwd: process.cwd() });
+    result = runCommand(
+      "node",
+      ["scripts/create-review-prompt.mjs", storyPath],
+      { cwd: process.cwd() },
+    );
   } catch (error) {
     if (error.message.includes("EPERM")) {
       t.skip("Node child processes are blocked in this sandbox");
@@ -630,14 +824,28 @@ test("review prompt stays noninteractive and excludes checkpoint skill bodies", 
   }
 
   assert.match(result.stdout, /Run non-interactively/);
-  assert.match(result.stdout, /Ready-only story-doctor already ran before this story moved to in-progress/);
-  assert.match(result.stdout, /# Plan[\s\S]*\.agents\/skills\/bmad-code-review\/SKILL\.md/);
-  assert.doesNotMatch(result.stdout, /# Context: \.agents\/skills\/bmad-code-review\/SKILL\.md/);
-  assert.doesNotMatch(result.stdout, /# Context: \.agents\/skills\/bmad-review-edge-case-hunter\/SKILL\.md/);
+  assert.match(
+    result.stdout,
+    /Ready-only story-doctor already ran before this story moved to in-progress/,
+  );
+  assert.match(
+    result.stdout,
+    /# Plan[\s\S]*\.agents\/skills\/bmad-code-review\/SKILL\.md/,
+  );
+  assert.doesNotMatch(
+    result.stdout,
+    /# Context: \.agents\/skills\/bmad-code-review\/SKILL\.md/,
+  );
+  assert.doesNotMatch(
+    result.stdout,
+    /# Context: \.agents\/skills\/bmad-review-edge-case-hunter\/SKILL\.md/,
+  );
 });
 
 test("validateRequiredWorkspaceScripts reports missing workspace typecheck coverage", () => {
-  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-run-checks-"));
+  const repoDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-run-checks-"),
+  );
   const previousCwd = process.cwd();
   process.chdir(repoDir);
 
@@ -645,24 +853,34 @@ test("validateRequiredWorkspaceScripts reports missing workspace typecheck cover
     writeFile(
       repoDir,
       "apps/api/package.json",
-      JSON.stringify({ name: "api", scripts: {} }, null, 2)
+      JSON.stringify({ name: "api", scripts: {} }, null, 2),
     );
     writeFile(
       repoDir,
       "apps/web/package.json",
-      JSON.stringify({ name: "web", scripts: { typecheck: "tsc --noEmit" } }, null, 2)
+      JSON.stringify(
+        { name: "web", scripts: { typecheck: "tsc --noEmit" } },
+        null,
+        2,
+      ),
     );
 
-    const failures = validateRequiredWorkspaceScripts([{ command: "pnpm typecheck", script: "typecheck" }]);
+    const failures = validateRequiredWorkspaceScripts([
+      { command: "pnpm typecheck", script: "typecheck" },
+    ]);
 
-    assert.deepEqual(failures, ['Missing required workspace script "typecheck" in apps/api/package.json']);
+    assert.deepEqual(failures, [
+      'Missing required workspace script "typecheck" in apps/api/package.json',
+    ]);
   } finally {
     process.chdir(previousCwd);
   }
 });
 
 test("validateRequiredWorkspaceScripts requires the API e2e quality task", () => {
-  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-e2e-checks-"));
+  const repoDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-e2e-checks-"),
+  );
   const previousCwd = process.cwd();
   process.chdir(repoDir);
 
@@ -670,7 +888,7 @@ test("validateRequiredWorkspaceScripts requires the API e2e quality task", () =>
     writeFile(
       repoDir,
       "apps/api/package.json",
-      JSON.stringify({ name: "api", scripts: {} }, null, 2)
+      JSON.stringify({ name: "api", scripts: {} }, null, 2),
     );
 
     const failures = validateRequiredWorkspaceScripts([
@@ -681,14 +899,18 @@ test("validateRequiredWorkspaceScripts requires the API e2e quality task", () =>
       },
     ]);
 
-    assert.deepEqual(failures, ['Missing required workspace script "test:e2e" in apps/api/package.json']);
+    assert.deepEqual(failures, [
+      'Missing required workspace script "test:e2e" in apps/api/package.json',
+    ]);
   } finally {
     process.chdir(previousCwd);
   }
 });
 
 test("runChecks executes a workspace-scoped e2e command from its package manifest", () => {
-  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-e2e-runner-"));
+  const repoDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-e2e-runner-"),
+  );
   const previousCwd = process.cwd();
   const commands = [];
   process.chdir(repoDir);
@@ -697,7 +919,7 @@ test("runChecks executes a workspace-scoped e2e command from its package manifes
     writeFile(
       repoDir,
       "apps/api/package.json",
-      JSON.stringify({ name: "api", scripts: { "test:e2e": "jest" } }, null, 2)
+      JSON.stringify({ name: "api", scripts: { "test:e2e": "jest" } }, null, 2),
     );
 
     runChecks(
@@ -710,7 +932,7 @@ test("runChecks executes a workspace-scoped e2e command from its package manifes
       ],
       {
         execute: (command) => commands.push(command),
-      }
+      },
     );
 
     assert.deepEqual(commands, ["pnpm --filter api test:e2e"]);
@@ -720,27 +942,41 @@ test("runChecks executes a workspace-scoped e2e command from its package manifes
 });
 
 test("run-checks exits clearly when a required workspace typecheck script is missing", (t) => {
-  const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-run-checks-cli-"));
+  const repoDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-run-checks-cli-"),
+  );
   writeFile(
     repoDir,
     "package.json",
-    JSON.stringify({ name: "root", scripts: { typecheck: "echo ok" } }, null, 2)
+    JSON.stringify(
+      { name: "root", scripts: { typecheck: "echo ok" } },
+      null,
+      2,
+    ),
   );
   writeFile(
     repoDir,
     "apps/api/package.json",
-    JSON.stringify({ name: "api", scripts: {} }, null, 2)
+    JSON.stringify({ name: "api", scripts: {} }, null, 2),
   );
   writeFile(
     repoDir,
     "apps/web/package.json",
-    JSON.stringify({ name: "web", scripts: { typecheck: "tsc --noEmit" } }, null, 2)
+    JSON.stringify(
+      { name: "web", scripts: { typecheck: "tsc --noEmit" } },
+      null,
+      2,
+    ),
   );
 
-  const result = spawnSync(process.execPath, [path.resolve("scripts/run-checks.mjs")], {
-    cwd: repoDir,
-    encoding: "utf8",
-  });
+  const result = spawnSync(
+    process.execPath,
+    [path.resolve("scripts/run-checks.mjs")],
+    {
+      cwd: repoDir,
+      encoding: "utf8",
+    },
+  );
 
   if (result.error?.message.includes("EPERM")) {
     t.skip("Node child processes are blocked in this sandbox");
@@ -748,12 +984,18 @@ test("run-checks exits clearly when a required workspace typecheck script is mis
   }
 
   assert.equal(result.status, 1);
-  assert.match(result.stderr, /Missing required workspace script "typecheck" in apps\/api\/package\.json/);
+  assert.match(
+    result.stderr,
+    /Missing required workspace script "typecheck" in apps\/api\/package\.json/,
+  );
   assert.doesNotMatch(result.stdout, /\$ pnpm typecheck/);
 });
 
 test("AI request classification and formatting stay structured", () => {
-  assert.equal(classifyDecisionCategory("Missing env config blocks the build."), "environment");
+  assert.equal(
+    classifyDecisionCategory("Missing env config blocks the build."),
+    "environment",
+  );
 
   const repoDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-ai-req-"));
   const previousCwd = process.cwd();
@@ -776,4 +1018,3 @@ test("AI request classification and formatting stay structured", () => {
     process.chdir(previousCwd);
   }
 });
-

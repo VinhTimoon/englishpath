@@ -37,7 +37,8 @@ const STATUS_RULES = {
   debug: ["fixed", "blocked"],
 };
 
-const CONFIRMATION_ONLY_PATTERN = /\b(confirm|confirmation|approve|approval|checkpoint|ready to proceed|shall i|would you like me to|do you want me to|waiting for your input)\b/i;
+const CONFIRMATION_ONLY_PATTERN =
+  /\b(confirm|confirmation|approve|approval|checkpoint|ready to proceed|shall i|would you like me to|do you want me to|waiting for your input)\b/i;
 export const BLOCKED_EXIT_CODE = 42;
 
 export const PHASE_ARTIFACTS = {
@@ -56,6 +57,10 @@ export const PHASE_ARTIFACTS = {
   },
 };
 
+export function getPhaseSandbox(phase) {
+  return phase === "plan" ? "read-only" : "workspace-write";
+}
+
 export function formatCommand(command, args = []) {
   return [command, ...args]
     .map((part) => (/[^\\w./:-]/u.test(part) ? JSON.stringify(part) : part))
@@ -68,7 +73,10 @@ export function removePhaseArtifacts(phase) {
     throw new Error(`Unknown phase: ${phase}`);
   }
 
-  for (const file of [artifacts.responseFile, ...(artifacts.extraOutputs ?? [])]) {
+  for (const file of [
+    artifacts.responseFile,
+    ...(artifacts.extraOutputs ?? []),
+  ]) {
     if (fs.existsSync(file)) {
       fs.rmSync(file, { force: true });
     }
@@ -125,29 +133,84 @@ function validatePlanArtifact(planText, expectedStoryId) {
     .filter(Boolean)
     .map(normalizeHeading);
 
+  const unexpectedSections = actualHeadings.filter(
+    (heading) => !expectedHeadings.includes(heading),
+  );
+  if (unexpectedSections.length > 0) {
+    return `Plan artifact has unexpected sections: ${unexpectedSections.join(", ")}`;
+  }
+
   const missingSections = PLAN_SECTIONS.filter(
-    (_, index) => !actualHeadings.includes(expectedHeadings[index])
+    (_, index) => !actualHeadings.includes(expectedHeadings[index]),
   );
   if (missingSections.length > 0) {
     return `Plan artifact is missing required sections: ${missingSections.join(", ")}`;
   }
 
   const duplicatedSections = PLAN_SECTIONS.filter(
-    (_, index) => actualHeadings.filter((heading) => heading === expectedHeadings[index]).length > 1
+    (_, index) =>
+      actualHeadings.filter((heading) => heading === expectedHeadings[index])
+        .length > 1,
   );
   if (duplicatedSections.length > 0) {
     return `Plan artifact has duplicated required sections: ${duplicatedSections.join(", ")}`;
   }
 
-  const sectionIndexes = expectedHeadings.map((heading) => actualHeadings.indexOf(heading));
-  if (sectionIndexes.some((index, position) => position > 0 && index < sectionIndexes[position - 1])) {
+  const sectionIndexes = expectedHeadings.map((heading) =>
+    actualHeadings.indexOf(heading),
+  );
+  if (
+    sectionIndexes.some(
+      (index, position) => position > 0 && index < sectionIndexes[position - 1],
+    )
+  ) {
     return "Plan artifact required sections are out of order.";
+  }
+
+  const firstContentLine = planText
+    .split(/\r?\n/u)
+    .find((line) => line.trim().length > 0);
+  if (
+    !firstContentLine ||
+    normalizeHeading(firstContentLine) !== expectedHeadings[0]
+  ) {
+    return `Plan artifact must start with ${PLAN_SECTIONS[0]} and contain no preface.`;
   }
 
   return null;
 }
 
-export function createPhaseContractError({ phase, reason, evidence, output, timeoutMs, status, blocked = false, command = "codex", args = [] }) {
+export function materializePlanArtifact({ prompt, startedAt }) {
+  const artifacts = PHASE_ARTIFACTS.plan;
+  const planFile = artifacts.extraOutputs[0];
+  ensureFreshFile(artifacts.responseFile, "plan", startedAt);
+
+  const responseText = fs.readFileSync(artifacts.responseFile, "utf8");
+  const planIssue = validatePlanArtifact(responseText, extractStoryId(prompt));
+  if (planIssue) {
+    throw createPhaseContractError({
+      phase: "plan",
+      reason: planIssue,
+      evidence: `Planning response must be valid before ${planFile} is materialized.`,
+      output: responseText.trim(),
+    });
+  }
+
+  fs.writeFileSync(planFile, responseText);
+  return planFile;
+}
+
+export function createPhaseContractError({
+  phase,
+  reason,
+  evidence,
+  output,
+  timeoutMs,
+  status,
+  blocked = false,
+  command = "codex",
+  args = [],
+}) {
   const details = [reason, evidence].filter(Boolean).join("\n");
   return new CommandError(`Phase contract failed for ${phase}: ${reason}`, {
     command,
@@ -164,7 +227,12 @@ export function createPhaseContractError({ phase, reason, evidence, output, time
   });
 }
 
-export function validatePhaseArtifacts({ phase, prompt, startedAt, commandResult }) {
+export function validatePhaseArtifacts({
+  phase,
+  prompt,
+  startedAt,
+  commandResult,
+}) {
   const artifacts = PHASE_ARTIFACTS[phase];
   if (!artifacts) {
     throw new Error(`Unknown phase: ${phase}`);
@@ -187,7 +255,10 @@ export function validatePhaseArtifacts({ phase, prompt, startedAt, commandResult
   if (phase === "plan") {
     const planFile = artifacts.extraOutputs[0];
     ensureFreshFile(planFile, phase, startedAt);
-    const planIssue = validatePlanArtifact(fs.readFileSync(planFile, "utf8"), extractStoryId(prompt));
+    const planIssue = validatePlanArtifact(
+      fs.readFileSync(planFile, "utf8"),
+      extractStoryId(prompt),
+    );
     if (planIssue) {
       throw createPhaseContractError({
         phase,
@@ -233,7 +304,12 @@ export function validatePhaseArtifacts({ phase, prompt, startedAt, commandResult
   };
 }
 
-export function formatPhaseTimeoutMessage(phase, timeoutMs, command, args = []) {
+export function formatPhaseTimeoutMessage(
+  phase,
+  timeoutMs,
+  command,
+  args = [],
+) {
   return `Phase "${phase}" timed out after ${timeoutMs}ms while running ${formatCommand(command, args)}.`;
 }
 
@@ -269,7 +345,9 @@ export function runCommand(command, args = [], options = {}) {
 
   const stdout = result.stdout ?? "";
   const stderr = result.stderr ?? "";
-  const output = [stdout.trimEnd(), stderr.trimEnd()].filter(Boolean).join("\n");
+  const output = [stdout.trimEnd(), stderr.trimEnd()]
+    .filter(Boolean)
+    .join("\n");
 
   if (forwardOutput) {
     if (stdout) {
@@ -304,7 +382,7 @@ export function runCommand(command, args = [], options = {}) {
         stderr,
         output,
         timeoutMs,
-      }
+      },
     );
   }
 

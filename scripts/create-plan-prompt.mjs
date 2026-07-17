@@ -7,7 +7,8 @@ if (!storyFile) {
   process.exit(1);
 }
 
-const read = (file) => fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+const read = (file) =>
+  fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
 
 const story = read(storyFile);
 
@@ -17,7 +18,7 @@ const contextFiles = [
   ".agents/skills/englishpath-token-optimizer/SKILL.md",
   "_bmad-output/planning-artifacts/project-context.md",
   "_bmad-output/planning-artifacts/architecture.md",
-  "_bmad-output/implementation-artifacts/definition-of-done.md"
+  "_bmad-output/implementation-artifacts/definition-of-done.md",
 ];
 
 let output = `# Codex Planning Phase\n\n`;
@@ -34,7 +35,8 @@ Task:
 - Run non-interactively.
 - Never ask for confirmation, approval, or a checkpoint.
 - If the plan cannot be completed within scope, state the blocker clearly in the final response.
-- Write the plan to .codex-plan.md.
+- Do not write files. Return the complete plan in the final response so the trusted
+  outer runner can materialize .codex-plan.md.
 
 The plan must include:
 1. Story ID
@@ -47,9 +49,10 @@ The plan must include:
 8. Risks
 
 Final response rules:
-- Return a terminal result only.
+- Return only the complete implementation plan.
+- Use the exact numbered ## headings listed above, in the same order and exactly once.
 - Do not ask the user to continue.
-- Summarize whether .codex-plan.md was created successfully.
+- Do not add a preface, summary, status line, or file-write claim.
 `;
 
 output += `\n\n# Story\n\n${story}\n`;

@@ -5,6 +5,8 @@ import {
   PHASE_ARTIFACTS,
   createPhaseContractError,
   formatPhaseTimeoutMessage,
+  getPhaseSandbox,
+  materializePlanArtifact,
   removePhaseArtifacts,
   runCommand,
   validatePhaseArtifacts,
@@ -18,12 +20,14 @@ function exitWithError(error) {
   if (output) {
     console.error(output);
   }
-  process.exit(error.blocked ? BLOCKED_EXIT_CODE : error.status ?? 1);
+  process.exit(error.blocked ? BLOCKED_EXIT_CODE : (error.status ?? 1));
 }
 
 function main() {
   if (!phase || !promptFile) {
-    console.error("Usage: node scripts/codex-runner.mjs <plan|build|review|debug> <prompt-file>");
+    console.error(
+      "Usage: node scripts/codex-runner.mjs <plan|build|review|debug> <prompt-file>",
+    );
     process.exit(1);
   }
 
@@ -60,7 +64,7 @@ function main() {
   const codexArgs = [
     "exec",
     "--sandbox",
-    "workspace-write",
+    getPhaseSandbox(phase),
     "-c",
     `model=${selected.model}`,
     "-c",
@@ -87,8 +91,14 @@ function main() {
     if (error.timedOut) {
       throw createPhaseContractError({
         phase,
-        reason: formatPhaseTimeoutMessage(phase, selected.timeout_ms, "codex", codexArgs),
-        evidence: "The phase exceeded its configured timeout and did not produce a complete terminal result.",
+        reason: formatPhaseTimeoutMessage(
+          phase,
+          selected.timeout_ms,
+          "codex",
+          codexArgs,
+        ),
+        evidence:
+          "The phase exceeded its configured timeout and did not produce a complete terminal result.",
         output: [error.output, artifactOutput].filter(Boolean).join("\n\n"),
         timeoutMs: selected.timeout_ms,
         command: "codex",
@@ -97,9 +107,15 @@ function main() {
     }
 
     if (artifactOutput) {
-      error.output = [error.output, artifactOutput].filter(Boolean).join("\n\n");
+      error.output = [error.output, artifactOutput]
+        .filter(Boolean)
+        .join("\n\n");
     }
     throw error;
+  }
+
+  if (phase === "plan") {
+    materializePlanArtifact({ prompt, startedAt });
   }
 
   const result = validatePhaseArtifacts({
