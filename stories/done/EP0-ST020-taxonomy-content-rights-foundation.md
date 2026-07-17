@@ -1,7 +1,7 @@
 ---
 id: EP0-ST020
 title: Shared Taxonomy And Content Rights Foundation
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-0-foundation
@@ -107,7 +107,7 @@ persist or expose learning material.
 - `pnpm --filter api test:e2e`
 - `pnpm build`
 - `pnpm e2e`
-- `pnpm story:verify stories/review/EP0-ST020-taxonomy-content-rights-foundation.md`
+- `pnpm story:verify stories/done/EP0-ST020-taxonomy-content-rights-foundation.md`
 - `git diff --check`
 
 ## Implementation Report
