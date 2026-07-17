@@ -1,7 +1,7 @@
 ---
 id: EP0-ST017
 title: CI Migration And Planning Safety
-status: review
+status: done
 type: tooling
 priority: critical
 phase: phase-0-foundation
