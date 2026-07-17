@@ -32,6 +32,16 @@ export type LearnerOnboarding = Prisma.LearnerOnboardingModel;
  */
 export type PlacementAttempt = Prisma.PlacementAttemptModel;
 /**
+ * Model Roadmap
+ *
+ */
+export type Roadmap = Prisma.RoadmapModel;
+/**
+ * Model RoadmapItem
+ *
+ */
+export type RoadmapItem = Prisma.RoadmapItemModel;
+/**
  * Model UserProfile
  *
  */

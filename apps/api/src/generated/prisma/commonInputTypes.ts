@@ -336,6 +336,195 @@ export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonFilter<$PrismaModel>;
 };
 
+export type EnumRoadmapStatusFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.RoadmapStatus | Prisma.EnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapStatus[]
+    | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapStatus[]
+    | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedEnumRoadmapStatusFilter<$PrismaModel> | $Enums.RoadmapStatus;
+};
+
+export type DateTimeNullableFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null;
+  in?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  notIn?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null;
+};
+
+export type EnumRoadmapStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.RoadmapStatus | Prisma.EnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapStatus[]
+    | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapStatus[]
+    | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapStatusWithAggregatesFilter<$PrismaModel>
+    | $Enums.RoadmapStatus;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRoadmapStatusFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRoadmapStatusFilter<$PrismaModel>;
+};
+
+export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null;
+  in?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  notIn?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedDateTimeNullableWithAggregatesFilter<$PrismaModel>
+    | Date
+    | string
+    | null;
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>;
+  _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
+  _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
+};
+
+export type EnumRoadmapPhaseFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.RoadmapPhase | Prisma.EnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumRoadmapPhaseFilter<$PrismaModel> | $Enums.RoadmapPhase;
+};
+
+export type EnumLearningSkillFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.LearningSkill | Prisma.EnumLearningSkillFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.LearningSkill[]
+    | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.LearningSkill[]
+    | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedEnumLearningSkillFilter<$PrismaModel> | $Enums.LearningSkill;
+};
+
+export type EnumRoadmapTaskTypeFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RoadmapTaskType
+    | Prisma.EnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapTaskTypeFilter<$PrismaModel>
+    | $Enums.RoadmapTaskType;
+};
+
+export type EnumRoadmapItemStatusFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RoadmapItemStatus
+    | Prisma.EnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>
+    | $Enums.RoadmapItemStatus;
+};
+
+export type EnumRoadmapPhaseWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.RoadmapPhase | Prisma.EnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapPhaseWithAggregatesFilter<$PrismaModel>
+    | $Enums.RoadmapPhase;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRoadmapPhaseFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRoadmapPhaseFilter<$PrismaModel>;
+};
+
+export type EnumLearningSkillWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.LearningSkill | Prisma.EnumLearningSkillFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.LearningSkill[]
+    | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.LearningSkill[]
+    | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumLearningSkillWithAggregatesFilter<$PrismaModel>
+    | $Enums.LearningSkill;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumLearningSkillFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumLearningSkillFilter<$PrismaModel>;
+};
+
+export type EnumRoadmapTaskTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RoadmapTaskType
+    | Prisma.EnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapTaskTypeWithAggregatesFilter<$PrismaModel>
+    | $Enums.RoadmapTaskType;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRoadmapTaskTypeFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRoadmapTaskTypeFilter<$PrismaModel>;
+};
+
+export type EnumRoadmapItemStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RoadmapItemStatus
+    | Prisma.EnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapItemStatusWithAggregatesFilter<$PrismaModel>
+    | $Enums.RoadmapItemStatus;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>;
+};
+
 export type EnumRoleCodeFilter<$PrismaModel = never> = {
   equals?: $Enums.RoleCode | Prisma.EnumRoleCodeFieldRefInput<$PrismaModel>;
   in?: $Enums.RoleCode[] | Prisma.ListEnumRoleCodeFieldRefInput<$PrismaModel>;
@@ -654,6 +843,203 @@ export type NestedJsonFilterBase<$PrismaModel = never> = {
     | runtime.InputJsonValue
     | Prisma.JsonFieldRefInput<$PrismaModel>
     | Prisma.JsonNullValueFilter;
+};
+
+export type NestedEnumRoadmapStatusFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.RoadmapStatus | Prisma.EnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapStatus[]
+    | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapStatus[]
+    | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedEnumRoadmapStatusFilter<$PrismaModel> | $Enums.RoadmapStatus;
+};
+
+export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null;
+  in?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  notIn?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null;
+};
+
+export type NestedEnumRoadmapStatusWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.RoadmapStatus
+      | Prisma.EnumRoadmapStatusFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.RoadmapStatus[]
+      | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.RoadmapStatus[]
+      | Prisma.ListEnumRoadmapStatusFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumRoadmapStatusWithAggregatesFilter<$PrismaModel>
+      | $Enums.RoadmapStatus;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumRoadmapStatusFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumRoadmapStatusFilter<$PrismaModel>;
+  };
+
+export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel> | null;
+  in?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  notIn?:
+    Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel> | null;
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedDateTimeNullableWithAggregatesFilter<$PrismaModel>
+    | Date
+    | string
+    | null;
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>;
+  _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
+  _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>;
+};
+
+export type NestedEnumRoadmapPhaseFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.RoadmapPhase | Prisma.EnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumRoadmapPhaseFilter<$PrismaModel> | $Enums.RoadmapPhase;
+};
+
+export type NestedEnumLearningSkillFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.LearningSkill | Prisma.EnumLearningSkillFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.LearningSkill[]
+    | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.LearningSkill[]
+    | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedEnumLearningSkillFilter<$PrismaModel> | $Enums.LearningSkill;
+};
+
+export type NestedEnumRoadmapTaskTypeFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RoadmapTaskType
+    | Prisma.EnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapTaskTypeFilter<$PrismaModel>
+    | $Enums.RoadmapTaskType;
+};
+
+export type NestedEnumRoadmapItemStatusFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RoadmapItemStatus
+    | Prisma.EnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>
+    | $Enums.RoadmapItemStatus;
+};
+
+export type NestedEnumRoadmapPhaseWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    $Enums.RoadmapPhase | Prisma.EnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapPhase[]
+    | Prisma.ListEnumRoadmapPhaseFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapPhaseWithAggregatesFilter<$PrismaModel>
+    | $Enums.RoadmapPhase;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRoadmapPhaseFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRoadmapPhaseFilter<$PrismaModel>;
+};
+
+export type NestedEnumLearningSkillWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.LearningSkill
+      | Prisma.EnumLearningSkillFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.LearningSkill[]
+      | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.LearningSkill[]
+      | Prisma.ListEnumLearningSkillFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumLearningSkillWithAggregatesFilter<$PrismaModel>
+      | $Enums.LearningSkill;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumLearningSkillFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumLearningSkillFilter<$PrismaModel>;
+  };
+
+export type NestedEnumRoadmapTaskTypeWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RoadmapTaskType
+    | Prisma.EnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapTaskType[]
+    | Prisma.ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapTaskTypeWithAggregatesFilter<$PrismaModel>
+    | $Enums.RoadmapTaskType;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRoadmapTaskTypeFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRoadmapTaskTypeFilter<$PrismaModel>;
+};
+
+export type NestedEnumRoadmapItemStatusWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RoadmapItemStatus
+    | Prisma.EnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RoadmapItemStatus[]
+    | Prisma.ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRoadmapItemStatusWithAggregatesFilter<$PrismaModel>
+    | $Enums.RoadmapItemStatus;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>;
 };
 
 export type NestedEnumRoleCodeFilter<$PrismaModel = never> = {

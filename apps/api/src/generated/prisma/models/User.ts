@@ -221,6 +221,7 @@ export type UserWhereInput = {
     Prisma.LearnerOnboardingWhereInput
   > | null;
   placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
+  roadmaps?: Prisma.RoadmapListRelationFilter;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -237,6 +238,7 @@ export type UserOrderByWithRelationInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleOrderByRelationAggregateInput;
   onboarding?: Prisma.LearnerOnboardingOrderByWithRelationInput;
   placementAttempts?: Prisma.PlacementAttemptOrderByRelationAggregateInput;
+  roadmaps?: Prisma.RoadmapOrderByRelationAggregateInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -265,6 +267,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
       Prisma.LearnerOnboardingWhereInput
     > | null;
     placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
+    roadmaps?: Prisma.RoadmapListRelationFilter;
   },
   'id' | 'email' | 'authProvider_externalSubject'
 >;
@@ -320,6 +323,7 @@ export type UserCreateInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateInput = {
@@ -336,6 +340,7 @@ export type UserUncheckedCreateInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserUpdateInput = {
@@ -355,6 +360,7 @@ export type UserUpdateInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -374,6 +380,7 @@ export type UserUncheckedUpdateInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateManyInput = {
@@ -535,6 +542,32 @@ export type UserUpdateOneRequiredWithoutPlacementAttemptsNestedInput = {
   >;
 };
 
+export type UserCreateNestedOneWithoutRoadmapsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoadmapsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutRoadmapsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoadmapsInput;
+  upsert?: Prisma.UserUpsertWithoutRoadmapsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutRoadmapsInput,
+      Prisma.UserUpdateWithoutRoadmapsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutRoadmapsInput
+  >;
+};
+
 export type UserCreateNestedOneWithoutProfileInput = {
   create?: Prisma.XOR<
     Prisma.UserCreateWithoutProfileInput,
@@ -628,6 +661,7 @@ export type UserCreateWithoutOnboardingInput = {
   roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutOnboardingInput = {
@@ -643,6 +677,7 @@ export type UserUncheckedCreateWithoutOnboardingInput = {
   roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutOnboardingInput = {
@@ -689,6 +724,7 @@ export type UserUpdateWithoutOnboardingInput = {
   roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutOnboardingInput = {
@@ -707,6 +743,7 @@ export type UserUncheckedUpdateWithoutOnboardingInput = {
   roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutPlacementAttemptsInput = {
@@ -722,6 +759,7 @@ export type UserCreateWithoutPlacementAttemptsInput = {
   roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
@@ -737,6 +775,7 @@ export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
   roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutPlacementAttemptsInput = {
@@ -783,6 +822,7 @@ export type UserUpdateWithoutPlacementAttemptsInput = {
   roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
@@ -801,6 +841,105 @@ export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
   roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutRoadmapsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutRoadmapsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutRoadmapsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+};
+
+export type UserUpsertWithoutRoadmapsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoadmapsInput,
+    Prisma.UserUncheckedUpdateWithoutRoadmapsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutRoadmapsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoadmapsInput,
+    Prisma.UserUncheckedUpdateWithoutRoadmapsInput
+  >;
+};
+
+export type UserUpdateWithoutRoadmapsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutRoadmapsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutProfileInput = {
@@ -816,6 +955,7 @@ export type UserCreateWithoutProfileInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -831,6 +971,7 @@ export type UserUncheckedCreateWithoutProfileInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -877,6 +1018,7 @@ export type UserUpdateWithoutProfileInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -895,6 +1037,7 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutRoleAssignmentsInput = {
@@ -910,6 +1053,7 @@ export type UserCreateWithoutRoleAssignmentsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
@@ -925,6 +1069,7 @@ export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsInput = {
@@ -948,6 +1093,7 @@ export type UserCreateWithoutRoleAssignmentsAuthoredInput = {
   roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
@@ -963,6 +1109,7 @@ export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
   roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput = {
@@ -1009,6 +1156,7 @@ export type UserUpdateWithoutRoleAssignmentsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
@@ -1027,6 +1175,7 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUpsertWithoutRoleAssignmentsAuthoredInput = {
@@ -1065,6 +1214,7 @@ export type UserUpdateWithoutRoleAssignmentsAuthoredInput = {
   roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
@@ -1083,6 +1233,7 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
   roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 /**
@@ -1093,6 +1244,7 @@ export type UserCountOutputType = {
   roleAssignments: number;
   roleAssignmentsAuthored: number;
   placementAttempts: number;
+  roadmaps: number;
 };
 
 export type UserCountOutputTypeSelect<
@@ -1103,6 +1255,7 @@ export type UserCountOutputTypeSelect<
   roleAssignmentsAuthored?:
     boolean | UserCountOutputTypeCountRoleAssignmentsAuthoredArgs;
   placementAttempts?: boolean | UserCountOutputTypeCountPlacementAttemptsArgs;
+  roadmaps?: boolean | UserCountOutputTypeCountRoadmapsArgs;
 };
 
 /**
@@ -1148,6 +1301,16 @@ export type UserCountOutputTypeCountPlacementAttemptsArgs<
   where?: Prisma.PlacementAttemptWhereInput;
 };
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRoadmapsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.RoadmapWhereInput;
+};
+
 export type UserSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -1167,6 +1330,7 @@ export type UserSelect<
       boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>;
     onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
     placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
+    roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
@@ -1241,6 +1405,7 @@ export type UserInclude<
     boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>;
   onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
   placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
+  roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>;
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
@@ -1263,6 +1428,7 @@ export type $UserPayload<
     roleAssignmentsAuthored: Prisma.$UserRolePayload<ExtArgs>[];
     onboarding: Prisma.$LearnerOnboardingPayload<ExtArgs> | null;
     placementAttempts: Prisma.$PlacementAttemptPayload<ExtArgs>[];
+    roadmaps: Prisma.$RoadmapPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1879,6 +2045,17 @@ export interface Prisma__UserClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$PlacementAttemptPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  roadmaps<T extends Prisma.User$roadmapsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$roadmapsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$RoadmapPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -2502,6 +2679,35 @@ export type User$placementAttemptsArgs<
   distinct?:
     | Prisma.PlacementAttemptScalarFieldEnum
     | Prisma.PlacementAttemptScalarFieldEnum[];
+};
+
+/**
+ * User.roadmaps
+ */
+export type User$roadmapsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Roadmap
+   */
+  select?: Prisma.RoadmapSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Roadmap
+   */
+  omit?: Prisma.RoadmapOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoadmapInclude<ExtArgs> | null;
+  where?: Prisma.RoadmapWhereInput;
+  orderBy?:
+    | Prisma.RoadmapOrderByWithRelationInput
+    | Prisma.RoadmapOrderByWithRelationInput[];
+  cursor?: Prisma.RoadmapWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.RoadmapScalarFieldEnum | Prisma.RoadmapScalarFieldEnum[];
 };
 
 /**

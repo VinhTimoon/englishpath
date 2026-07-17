@@ -111,3 +111,18 @@ The question bank and answer key remain application-owned fixtures in this first
 they are not persisted or returned by the public question contract. Rollback order and
 all constraints are documented in the migration SQL. Automation validates the migration
 and generated client but does not apply it to shared or remote databases.
+
+## Physical Roadmap Baseline
+
+Migration `20260717183000_roadmap_today` adds versioned `Roadmap` and owner-child
+`RoadmapItem` records. Exactly one application workflow treats a roadmap as active;
+recalculation marks the prior version `SUPERSEDED`, records `previousRoadmapId`, and
+creates a new immutable plan shape in one transaction. Completed task status remains on
+the historical version rather than being silently copied into the replacement.
+
+Roadmap items are ordered by `(roadmapId, dayNumber, sequence)` and indexed for today's
+owner-scoped status query. A partial unique index on `userId` where status is `ACTIVE`
+prevents concurrent generation from leaving multiple active plans. Duration, daily
+minutes, day number, and task minutes have
+database checks. The migration is additive; its owner-approved rollback removes items,
+roadmaps, and then roadmap enums, and is never executed automatically.

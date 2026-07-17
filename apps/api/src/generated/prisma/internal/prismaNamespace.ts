@@ -414,6 +414,8 @@ export const ModelName = {
   User: 'User',
   LearnerOnboarding: 'LearnerOnboarding',
   PlacementAttempt: 'PlacementAttempt',
+  Roadmap: 'Roadmap',
+  RoadmapItem: 'RoadmapItem',
   UserProfile: 'UserProfile',
   Role: 'Role',
   UserRole: 'UserRole',
@@ -442,6 +444,8 @@ export type TypeMap<
       | 'user'
       | 'learnerOnboarding'
       | 'placementAttempt'
+      | 'roadmap'
+      | 'roadmapItem'
       | 'userProfile'
       | 'role'
       | 'userRole';
@@ -672,6 +676,158 @@ export type TypeMap<
           args: Prisma.PlacementAttemptCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.PlacementAttemptCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    Roadmap: {
+      payload: Prisma.$RoadmapPayload<ExtArgs>;
+      fields: Prisma.RoadmapFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.RoadmapFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.RoadmapFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>;
+        };
+        findFirst: {
+          args: Prisma.RoadmapFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.RoadmapFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>;
+        };
+        findMany: {
+          args: Prisma.RoadmapFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>[];
+        };
+        create: {
+          args: Prisma.RoadmapCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>;
+        };
+        createMany: {
+          args: Prisma.RoadmapCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.RoadmapCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>[];
+        };
+        delete: {
+          args: Prisma.RoadmapDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>;
+        };
+        update: {
+          args: Prisma.RoadmapUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>;
+        };
+        deleteMany: {
+          args: Prisma.RoadmapDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.RoadmapUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.RoadmapUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>[];
+        };
+        upsert: {
+          args: Prisma.RoadmapUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapPayload>;
+        };
+        aggregate: {
+          args: Prisma.RoadmapAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRoadmap>;
+        };
+        groupBy: {
+          args: Prisma.RoadmapGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.RoadmapGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.RoadmapCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.RoadmapCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    RoadmapItem: {
+      payload: Prisma.$RoadmapItemPayload<ExtArgs>;
+      fields: Prisma.RoadmapItemFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.RoadmapItemFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.RoadmapItemFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>;
+        };
+        findFirst: {
+          args: Prisma.RoadmapItemFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.RoadmapItemFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>;
+        };
+        findMany: {
+          args: Prisma.RoadmapItemFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>[];
+        };
+        create: {
+          args: Prisma.RoadmapItemCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>;
+        };
+        createMany: {
+          args: Prisma.RoadmapItemCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.RoadmapItemCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>[];
+        };
+        delete: {
+          args: Prisma.RoadmapItemDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>;
+        };
+        update: {
+          args: Prisma.RoadmapItemUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>;
+        };
+        deleteMany: {
+          args: Prisma.RoadmapItemDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.RoadmapItemUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.RoadmapItemUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>[];
+        };
+        upsert: {
+          args: Prisma.RoadmapItemUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapItemPayload>;
+        };
+        aggregate: {
+          args: Prisma.RoadmapItemAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRoadmapItem>;
+        };
+        groupBy: {
+          args: Prisma.RoadmapItemGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.RoadmapItemGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.RoadmapItemCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.RoadmapItemCountAggregateOutputType>
             | number;
         };
       };
@@ -987,6 +1143,40 @@ export const PlacementAttemptScalarFieldEnum = {
 export type PlacementAttemptScalarFieldEnum =
   (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum];
 
+export const RoadmapScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  version: 'version',
+  goal: 'goal',
+  level: 'level',
+  durationDays: 'durationDays',
+  dailyMinutes: 'dailyMinutes',
+  status: 'status',
+  previousRoadmapId: 'previousRoadmapId',
+  generatedAt: 'generatedAt',
+  supersededAt: 'supersededAt',
+} as const;
+
+export type RoadmapScalarFieldEnum =
+  (typeof RoadmapScalarFieldEnum)[keyof typeof RoadmapScalarFieldEnum];
+
+export const RoadmapItemScalarFieldEnum = {
+  id: 'id',
+  roadmapId: 'roadmapId',
+  dayNumber: 'dayNumber',
+  sequence: 'sequence',
+  phase: 'phase',
+  skill: 'skill',
+  taskType: 'taskType',
+  title: 'title',
+  minutes: 'minutes',
+  status: 'status',
+  completedAt: 'completedAt',
+} as const;
+
+export type RoadmapItemScalarFieldEnum =
+  (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum];
+
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',
   displayName: 'displayName',
@@ -1202,6 +1392,62 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
+ * Reference to a field of type 'RoadmapStatus'
+ */
+export type EnumRoadmapStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'RoadmapStatus'
+>;
+
+/**
+ * Reference to a field of type 'RoadmapStatus[]'
+ */
+export type ListEnumRoadmapStatusFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'RoadmapStatus[]'>;
+
+/**
+ * Reference to a field of type 'RoadmapPhase'
+ */
+export type EnumRoadmapPhaseFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'RoadmapPhase'
+>;
+
+/**
+ * Reference to a field of type 'RoadmapPhase[]'
+ */
+export type ListEnumRoadmapPhaseFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'RoadmapPhase[]'
+>;
+
+/**
+ * Reference to a field of type 'RoadmapTaskType'
+ */
+export type EnumRoadmapTaskTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'RoadmapTaskType'
+>;
+
+/**
+ * Reference to a field of type 'RoadmapTaskType[]'
+ */
+export type ListEnumRoadmapTaskTypeFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'RoadmapTaskType[]'>;
+
+/**
+ * Reference to a field of type 'RoadmapItemStatus'
+ */
+export type EnumRoadmapItemStatusFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'RoadmapItemStatus'>;
+
+/**
+ * Reference to a field of type 'RoadmapItemStatus[]'
+ */
+export type ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'RoadmapItemStatus[]'>;
+
+/**
  * Reference to a field of type 'RoleCode'
  */
 export type EnumRoleCodeFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -1354,6 +1600,8 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit;
   learnerOnboarding?: Prisma.LearnerOnboardingOmit;
   placementAttempt?: Prisma.PlacementAttemptOmit;
+  roadmap?: Prisma.RoadmapOmit;
+  roadmapItem?: Prisma.RoadmapItemOmit;
   userProfile?: Prisma.UserProfileOmit;
   role?: Prisma.RoleOmit;
   userRole?: Prisma.UserRoleOmit;

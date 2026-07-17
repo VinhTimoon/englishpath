@@ -7,6 +7,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { VocabularyModule } from './modules/vocabulary/vocabulary.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { OnboardingModule } from './modules/onboarding/onboarding.module';
+import { RoadmapModule } from './modules/roadmap/roadmap.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { OnboardingModule } from './modules/onboarding/onboarding.module';
     VocabularyModule,
     AuthModule,
     OnboardingModule,
+    RoadmapModule,
   ],
   controllers: [AppController],
   providers: [AppService],

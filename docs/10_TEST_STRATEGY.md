@@ -167,3 +167,15 @@ Node VM modules because the approved `jose` v6 package is ESM-only.
 - A 360px Playwright journey intercepts only backend requests and exercises auth,
   onboarding, all ten placement answers, dashboard result rendering, bearer propagation,
   answer-key absence, and horizontal-overflow protection without credentials or network.
+
+## Roadmap And Today Tests
+
+- Pure rule-engine tests cover all four phases, the three-task cap below 30 minutes, five
+  tasks at 60 minutes, TOEIC Parts 1-7 coverage, and communication speaking/daily-sentence
+  invariants.
+- API e2e tests preserve guards, validation, controller, and service while replacing the
+  repository. They prove principal-owned seed usage, today projection, status allowlisting,
+  authentication, and missing-prerequisite behavior without a database or credentials.
+- A 360px Playwright journey covers no-roadmap generation, task completion, progress
+  persistence in the response, phase overview navigation, bearer propagation, and mobile
+  overflow without external network access.

@@ -22,6 +22,7 @@ model User {
   roleAssignmentsAuthored UserRole[]         @relation("RoleAssignmentActor")
   onboarding              LearnerOnboarding?
   placementAttempts       PlacementAttempt[]
+  roadmaps                Roadmap[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -54,6 +55,46 @@ model PlacementAttempt {
 
   @@unique([userId, clientSubmissionId])
   @@index([userId, submittedAt])
+}
+
+model Roadmap {
+  id                String           @id @default(cuid())
+  userId            String
+  version           Int
+  goal              LearningGoal
+  level             ProficiencyLevel
+  durationDays      Int
+  dailyMinutes      Int
+  status            RoadmapStatus    @default(ACTIVE)
+  previousRoadmapId String?
+  generatedAt       DateTime         @default(now())
+  supersededAt      DateTime?
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  previousRoadmap   Roadmap?         @relation("RoadmapLineage", fields: [previousRoadmapId], references: [id], onDelete: SetNull)
+  nextRoadmaps      Roadmap[]        @relation("RoadmapLineage")
+  items             RoadmapItem[]
+
+  @@unique([userId, version])
+  @@index([userId, status])
+  @@index([previousRoadmapId])
+}
+
+model RoadmapItem {
+  id          String            @id @default(cuid())
+  roadmapId   String
+  dayNumber   Int
+  sequence    Int
+  phase       RoadmapPhase
+  skill       LearningSkill
+  taskType    RoadmapTaskType
+  title       String
+  minutes     Int
+  status      RoadmapItemStatus @default(PENDING)
+  completedAt DateTime?
+  roadmap     Roadmap           @relation(fields: [roadmapId], references: [id], onDelete: Cascade)
+
+  @@unique([roadmapId, dayNumber, sequence])
+  @@index([roadmapId, dayNumber, status])
 }
 
 model UserProfile {
@@ -134,4 +175,35 @@ enum LearningSkill {
   READING
   SPEAKING
   WRITING
+}
+
+enum RoadmapStatus {
+  ACTIVE
+  SUPERSEDED
+}
+
+enum RoadmapPhase {
+  FOUNDATION
+  SKILL_BUILDING
+  PRACTICE_CORRECTION
+  SIMULATION_REVIEW
+}
+
+enum RoadmapTaskType {
+  VOCABULARY
+  GRAMMAR
+  LISTENING
+  READING
+  SPEAKING
+  WRITING
+  DAILY_SENTENCE
+  TOEIC_PART
+  REVIEW
+  SIMULATION
+}
+
+enum RoadmapItemStatus {
+  PENDING
+  COMPLETED
+  SKIPPED
 }

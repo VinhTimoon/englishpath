@@ -57,6 +57,8 @@ export const ModelName = {
   User: 'User',
   LearnerOnboarding: 'LearnerOnboarding',
   PlacementAttempt: 'PlacementAttempt',
+  Roadmap: 'Roadmap',
+  RoadmapItem: 'RoadmapItem',
   UserProfile: 'UserProfile',
   Role: 'Role',
   UserRole: 'UserRole',
@@ -121,6 +123,40 @@ export const PlacementAttemptScalarFieldEnum = {
 
 export type PlacementAttemptScalarFieldEnum =
   (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum];
+
+export const RoadmapScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  version: 'version',
+  goal: 'goal',
+  level: 'level',
+  durationDays: 'durationDays',
+  dailyMinutes: 'dailyMinutes',
+  status: 'status',
+  previousRoadmapId: 'previousRoadmapId',
+  generatedAt: 'generatedAt',
+  supersededAt: 'supersededAt',
+} as const;
+
+export type RoadmapScalarFieldEnum =
+  (typeof RoadmapScalarFieldEnum)[keyof typeof RoadmapScalarFieldEnum];
+
+export const RoadmapItemScalarFieldEnum = {
+  id: 'id',
+  roadmapId: 'roadmapId',
+  dayNumber: 'dayNumber',
+  sequence: 'sequence',
+  phase: 'phase',
+  skill: 'skill',
+  taskType: 'taskType',
+  title: 'title',
+  minutes: 'minutes',
+  status: 'status',
+  completedAt: 'completedAt',
+} as const;
+
+export type RoadmapItemScalarFieldEnum =
+  (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum];
 
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',

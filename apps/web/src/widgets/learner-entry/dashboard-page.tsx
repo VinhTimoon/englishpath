@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { clearSession } from "@/features/auth/model/auth-session";
 import { requestLearnerApi } from "@/shared/api/learner-api-client";
+import { TodayRoadmap } from "@/widgets/roadmap/today-roadmap";
 import styles from "./learner-entry.module.css";
 
 type Result = {
@@ -50,8 +51,8 @@ export function DashboardPage() {
           <p className={styles.progress}>Dashboard học viên</p>
           <h1>Hôm nay học gì?</h1>
           <p className={styles.intro}>
-            Điểm xuất phát đã sẵn sàng. Story tiếp theo sẽ biến kết quả này
-            thành roadmap hằng ngày.
+            Điểm xuất phát đã sẵn sàng. Hãy hoàn thành từng việc nhỏ trong lộ trình
+            được thiết kế theo nhịp học của bạn.
           </p>
           {error && <p className={styles.error}>{error}</p>}
           <div className={styles.dashboardGrid}>
@@ -80,6 +81,7 @@ export function DashboardPage() {
               </Link>
             </aside>
           </div>
+          <TodayRoadmap />
         </section>
       </div>
     </main>

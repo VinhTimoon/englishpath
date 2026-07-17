@@ -211,3 +211,18 @@ as proof that an actor is human or has review/publish permission.
 All learner-entry endpoints require backend-verified bearer authentication. Local
 development may use the exact fixture token only when `AUTH_MODE=local`; startup/runtime
 verification rejects that mode when `NODE_ENV=production`.
+
+## Roadmap Endpoints
+
+- `POST /api/v1/roadmaps/generate` derives the plan only from the authenticated learner's
+  onboarding and latest placement result. It replays an existing active roadmap.
+- `GET /api/v1/roadmaps/current` returns the active version, ordered items, computed
+  `todayNumber`, `todayItems`, and completion totals, or `null` before generation.
+- `POST /api/v1/roadmaps/recalculate` supersedes the active version and creates the next
+  version with lineage in one repository transaction.
+- `PATCH /api/v1/roadmaps/items/:itemId/status` accepts only `PENDING`, `COMPLETED`, or
+  `SKIPPED` and updates an item only when it belongs to the caller's active roadmap.
+
+Generation never accepts user identity, goal, level, duration, or answer evidence from
+the request body. Missing onboarding/placement prerequisites return a sanitized 409;
+unknown or non-owned items return 404 without revealing ownership.

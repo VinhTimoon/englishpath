@@ -66,3 +66,44 @@ export const LearningSkill = {
 } as const;
 
 export type LearningSkill = (typeof LearningSkill)[keyof typeof LearningSkill];
+
+export const RoadmapStatus = {
+  ACTIVE: 'ACTIVE',
+  SUPERSEDED: 'SUPERSEDED',
+} as const;
+
+export type RoadmapStatus = (typeof RoadmapStatus)[keyof typeof RoadmapStatus];
+
+export const RoadmapPhase = {
+  FOUNDATION: 'FOUNDATION',
+  SKILL_BUILDING: 'SKILL_BUILDING',
+  PRACTICE_CORRECTION: 'PRACTICE_CORRECTION',
+  SIMULATION_REVIEW: 'SIMULATION_REVIEW',
+} as const;
+
+export type RoadmapPhase = (typeof RoadmapPhase)[keyof typeof RoadmapPhase];
+
+export const RoadmapTaskType = {
+  VOCABULARY: 'VOCABULARY',
+  GRAMMAR: 'GRAMMAR',
+  LISTENING: 'LISTENING',
+  READING: 'READING',
+  SPEAKING: 'SPEAKING',
+  WRITING: 'WRITING',
+  DAILY_SENTENCE: 'DAILY_SENTENCE',
+  TOEIC_PART: 'TOEIC_PART',
+  REVIEW: 'REVIEW',
+  SIMULATION: 'SIMULATION',
+} as const;
+
+export type RoadmapTaskType =
+  (typeof RoadmapTaskType)[keyof typeof RoadmapTaskType];
+
+export const RoadmapItemStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  SKIPPED: 'SKIPPED',
+} as const;
+
+export type RoadmapItemStatus =
+  (typeof RoadmapItemStatus)[keyof typeof RoadmapItemStatus];
