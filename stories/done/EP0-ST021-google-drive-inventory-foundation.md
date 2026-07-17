@@ -1,7 +1,7 @@
 ---
 id: EP0-ST021
 title: Google Drive Inventory Manifest Foundation
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-0-foundation
@@ -108,7 +108,7 @@ business database, public delivery path, or automatic publication channel.
 - `pnpm --filter api test:e2e`
 - `pnpm build`
 - `pnpm e2e`
-- `pnpm story:verify stories/review/EP0-ST021-google-drive-inventory-foundation.md`
+- `pnpm story:verify stories/done/EP0-ST021-google-drive-inventory-foundation.md`
 - `git diff --check`
 
 ## Implementation Report
