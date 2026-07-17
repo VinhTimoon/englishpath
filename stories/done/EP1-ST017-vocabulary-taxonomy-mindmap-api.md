@@ -1,7 +1,7 @@
 ---
 id: EP1-ST017
 title: Vocabulary Taxonomy And Mindmap API
-status: review
+status: done
 type: backend
 priority: high
 phase: phase-1-learning-core
@@ -90,7 +90,7 @@ content-governance and future CMS persistence boundaries.
 ## Verification
 
 - `pnpm story:checks`
-- `pnpm story:verify stories/review/EP1-ST017-vocabulary-taxonomy-mindmap-api.md`
+- `pnpm story:verify stories/done/EP1-ST017-vocabulary-taxonomy-mindmap-api.md`
 - `git diff --check`
 
 ## Implementation Report
