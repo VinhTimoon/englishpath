@@ -1,7 +1,7 @@
 ---
 id: EP0-ST015R
 title: Product V2 Roadmap Recovery
-status: review
+status: done
 type: planning
 priority: critical
 phase: phase-0-foundation
