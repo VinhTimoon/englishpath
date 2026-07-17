@@ -1,7 +1,7 @@
 ---
 id: EP1-ST002
 title: Public Blog SEO Foundation
-status: review
+status: done
 type: frontend
 priority: critical
 phase: phase-1-mvp
@@ -103,4 +103,5 @@ database in this story.
   only as a development/build fallback.
 - Before public deployment, Vercel must define `NEXT_PUBLIC_SITE_URL` with the final
   HTTPS origin and no trailing slash.
+
 
