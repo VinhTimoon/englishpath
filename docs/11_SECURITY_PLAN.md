@@ -103,3 +103,15 @@
 - Private media access tests
 - Answer-protection and official-timer tests
 - Audit emission and redaction tests
+
+## Persisted Identity And Ownership
+
+- Provider subject, not email, is the external identity key; application user ID is the
+  ownership key used by repositories.
+- Profiles enforce owner and target equality before any database operation and recheck
+  active user status inside write transactions.
+- JWT claims never populate application roles. Canonical roles are database records;
+  `GUEST` remains anonymous request state.
+- Suspended and retained identities fail closed for profile and role operations.
+- Duplicate and unexpected persistence failures return stable typed messages without
+  email, provider subject, profile data, SQL, or provider details.

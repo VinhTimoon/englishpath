@@ -77,3 +77,23 @@ the exact content ID, version ID, checksum, and source version.
 
 Unknown, blocked, expired, or incompatible rights are default-denied. A changed source
 never inherits approval automatically.
+
+## Physical Identity Baseline
+
+The Phase 1 identity schema preserves the original `User` table and adds provider
+identity, explicit status, one-to-one `UserProfile`, canonical `Role`, and unique
+`UserRole` assignment records. The application user ID remains independent from the
+Supabase subject. The unique `(authProvider, externalSubject)` index allows legacy null
+subjects during additive migration while preventing two linked users from sharing a
+provider identity.
+
+Profiles contain only display name, HTTPS avatar URL, locale, and timezone. Onboarding
+goals, target scores, daily study time, skill preferences, entitlement, and progress are
+not identity profile columns. Persisted roles are `FREE_USER`, `PREMIUM_USER`,
+`CONTENT_EDITOR`, `ADMIN`, and `SUPER_ADMIN`; anonymous guests do not receive database
+rows or role assignments.
+
+Migration `20260717113000_identity_schema` is additive and must be validated/generated
+without applying it to remote infrastructure in automation. Its manual rollback order
+is recorded in the SQL: remove new foreign keys/tables/indexes/columns, then new enums,
+while preserving all original user columns and rows.

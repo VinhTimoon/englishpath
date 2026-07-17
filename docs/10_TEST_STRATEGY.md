@@ -117,3 +117,15 @@ the separate API e2e command.
 Tests must stay inside the story's allowed paths. If meaningful verification
 requires a forbidden path, mark the story blocked rather than weakening the test.
 Report commands that were skipped or unavailable; never claim they passed.
+
+## Identity Repository Tests
+
+- Validate Prisma schema and regenerate the checked-in client without a database
+  connection.
+- Exercise identity, profile, and role repositories through mocked Prisma delegates and
+  callback transactions; no Supabase, PostgreSQL, credentials, or network is required.
+- Cover provider-subject uniqueness, missing/inactive identity, owner isolation before
+  query execution, canonical role separation, idempotent assignment, sanitized provider
+  failures, and immutable domain outputs.
+- Inspect the additive migration for required keys/indexes/foreign keys, canonical role
+  rows, rollback notes, and absence of executable drop/delete statements.

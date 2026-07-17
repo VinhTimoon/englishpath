@@ -140,3 +140,17 @@ sensitive keys before local, no-op, or future provider adapters receive an event
 Phase 0 supplies deterministic in-memory collectors and no-op adapters only. It adds no
 middleware or Nest registration. `EP1-ST038` owns PostHog/Sentry delivery, buffering,
 retry behavior, dashboards, alert thresholds, credentials, and production wiring.
+
+## Persisted Application Identity
+
+The `identity` module owns persisted users, minimal profiles, application roles, and
+ownership-aware repository adapters. A `(provider, externalSubject)` pair resolves one
+application user; email remains contact data and is never an ownership key. Existing
+baseline users may temporarily have a null external subject until a later verified
+linking flow migrates them. Repository reads fail closed for inactive users and sanitize
+unexpected persistence errors.
+
+`GUEST` is request state and is not persisted. Role assignments come only from the
+application role catalog and are written transactionally with optional assigning-actor
+metadata. `EP1-ST008` owns Supabase verification, default learner-role assignment,
+guards, APIs, and runtime registration.

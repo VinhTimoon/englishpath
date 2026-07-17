@@ -1,7 +1,7 @@
 ---
 id: EP1-ST007
 title: Identity Schema And Ownership Repositories
-status: ready
+status: review
 type: backend
 priority: critical
 phase: phase-1-learning-core
@@ -116,3 +116,15 @@ later Supabase guard can resolve verified external subjects without trusting tok
 - `pnpm e2e`
 - `pnpm story:verify stories/review/EP1-ST007-identity-schema-ownership-repositories.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added an additive physical identity schema/migration preserving the baseline user
+  table, canonical non-guest roles, one-to-one profiles, unique role assignments, and
+  explicit rollback notes.
+- Added immutable identity/profile models, stable sanitized errors, repository ports,
+  and injected Prisma adapters without Nest runtime registration.
+- Added owner isolation, active-user enforcement, sanitized persistence failures, and
+  transactional idempotent role assignment.
+- Added credential-free unit and migration-invariant tests and regenerated the checked-in
+  Prisma client.
