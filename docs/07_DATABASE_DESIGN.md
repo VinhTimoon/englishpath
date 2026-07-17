@@ -55,3 +55,22 @@ does not prescribe a physical Prisma schema in this story.
 - Learner progress and submissions retain historical traceability required for
   scoring, support, and abuse review.
 - Deletion behavior must respect entitlement, licensing, and audit obligations.
+
+## Planned Content Version Invariants
+
+Each future canonical content version persists one normalized taxonomy reference plus
+source ID/URL, checksum, source version, provenance, usage scope, access tier, rights
+owner, license state, allowed usage scopes/access tiers, review evidence, and
+publication state. Review evidence binds to
+the exact content ID, version ID, checksum, and source version.
+
+| Transition                 | Required evidence                                                        | Result                                            |
+| -------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------- |
+| create/import/AI assist    | Complete classification, source, and rights metadata                     | New immutable draft without review evidence       |
+| draft to approved/rejected | Policy-issued human actor/action decision plus matching version evidence | New reviewed projection; original draft unchanged |
+| approved to published      | Compatible rights, matching review, policy-issued human publish decision | New immutable published projection                |
+| any version to revision    | New version ID and changed checksum or source version                    | Linked draft with prior review evidence removed   |
+| published to edited draft  | Never allowed in place                                                   | Create a linked revision instead                  |
+
+Unknown, blocked, expired, or incompatible rights are default-denied. A changed source
+never inherits approval automatically.

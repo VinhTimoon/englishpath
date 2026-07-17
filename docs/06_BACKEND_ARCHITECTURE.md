@@ -104,3 +104,20 @@ not be registered by an application runtime module.
 - Purpose: API and database reachability probe
 - Role in v2 baseline: minimal evidence of the `/api/v1` convention only, not
   proof that the wider module set is implemented
+
+## Content Governance Contract Foundation
+
+The framework-independent `content-governance` contract owns shared taxonomy and
+publication policy for later vocabulary, daily learning, roadmap, Error Notebook,
+TOEIC, library, and CMS modules. Feature modules reference this taxonomy rather than
+creating incompatible level/topic/skill/track trees.
+
+The current foundation validates and freezes metadata in memory only. `EP1-ST029`
+owns Prisma persistence, repositories, services, guarded CMS endpoints, and audit
+integration. No current route or runtime module is implied by these contracts.
+
+Review and publish transitions consume a policy-issued authorization decision rather
+than caller-provided booleans. The access boundary must resolve an authenticated human
+actor and the exact `content:review` or `content:publish` permission before issuing a
+decision bound to that actor and action; automated actors and forged decisions fail
+closed.

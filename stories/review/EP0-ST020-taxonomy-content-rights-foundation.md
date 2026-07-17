@@ -1,7 +1,7 @@
 ---
 id: EP0-ST020
 title: Shared Taxonomy And Content Rights Foundation
-status: ready
+status: review
 type: backend
 priority: critical
 phase: phase-0-foundation
@@ -109,3 +109,17 @@ persist or expose learning material.
 - `pnpm e2e`
 - `pnpm story:verify stories/review/EP0-ST020-taxonomy-content-rights-foundation.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added framework-independent shared taxonomy and governed content-version contracts.
+- Added deterministic normalization, deep freezing, stable policy failures, trusted
+  access-port human authorization, publication provenance gating, rights compatibility,
+  and linked revision behavior.
+- Added focused tests for normalization, invalid metadata, evidence binding,
+  self-review, rejected/unreviewed content, non-publishable rights, expiry boundaries,
+  immutable publication, revision lineage, and sanitized errors.
+- Documented canonical taxonomy reuse, planned persistence lifecycle, API error mapping,
+  and default-deny content security rules.
+- Added no runtime module, route, Prisma/generated source, migration, storage, network,
+  credential, or frontend integration.

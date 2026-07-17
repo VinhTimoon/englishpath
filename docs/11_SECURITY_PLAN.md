@@ -36,6 +36,18 @@
   approved publication state.
 - Google Drive content stays inventory-only until review, rights validation, and
   controlled publication complete.
+- Imported and AI-assisted content begins as draft and cannot self-review or
+  self-publish. Review and publication require a policy-issued decision for an
+  authenticated human actor with the exact action permission, bound to the actor,
+  immutable checksum, and source version. Caller-provided booleans and automated or
+  forged actor decisions are rejected.
+- Unknown, blocked, expired, malformed, or incompatible license evidence fails closed.
+  Approved rights must explicitly allow both the content usage scope and delivery
+  access tier; an approved status alone is insufficient.
+  Source changes create a linked draft and invalidate prior review evidence instead of
+  mutating a published version.
+- Taxonomy and content-policy failures are sanitized before HTTP mapping; private
+  source locations and reviewer-only evidence are not returned to clients.
 
 ## Assessment Integrity
 
