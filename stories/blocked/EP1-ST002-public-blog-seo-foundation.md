@@ -1,7 +1,7 @@
 ---
 id: EP1-ST002
 title: Public Blog SEO Foundation
-status: ready
+status: blocked
 type: frontend
 priority: critical
 phase: phase-1-mvp
@@ -77,3 +77,18 @@ database in this story.
 - pnpm --filter web build
 - pnpm story:checks
 - git diff --check
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+- Exit code: 1
+- Attempts: 3
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+```
