@@ -1,7 +1,7 @@
 ---
 id: EP0-ST014
 title: Product V2 Core Rebaseline
-status: review
+status: done
 type: planning
 priority: critical
 phase: phase-0-foundation
@@ -123,4 +123,5 @@ Mandatory invariants:
 - pnpm prettier --check docs/01_PRODUCT_SCOPE.md docs/02_PRD.md docs/03_USER_FLOWS.md _bmad-output/planning-artifacts/prd.md _bmad-output/planning-artifacts/project-context.md stories/ready/EP0-ST014-product-v2-core-rebaseline.md
 - pnpm story:checks
 - git diff --check
+
 
