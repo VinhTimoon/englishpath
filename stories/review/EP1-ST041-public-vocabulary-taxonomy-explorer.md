@@ -1,7 +1,7 @@
 ---
 id: EP1-ST041
 title: Public Vocabulary Taxonomy Explorer
-status: ready
+status: review
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -78,3 +78,20 @@ progress exists before authenticated learning stories are complete.
 - `pnpm story:checks`
 - `pnpm story:verify stories/review/EP1-ST041-public-vocabulary-taxonomy-explorer.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added a statically rendered `/vocabulary` route with Vietnamese canonical/social
+  metadata, one H1, semantic landmarks, six crawlable v2 levels, and guest disclosure.
+- Added a strict Zod vocabulary contract plus a validated `/api/v1` client with an
+  eight-second timeout and normalized configuration/network/timeout/response errors.
+- Added a minimal TanStack Query client boundary with URL-owned level, track, skill,
+  TOEIC Part, root, and depth filters and finite automatic/manual retry behavior.
+- Added skeleton, sanitized error, catalogue-empty, filtered-empty, and success states;
+  the semantic nested list preserves backend domain/topic/subtopic order and evidence.
+- Added the real route to landing navigation and sitemap without adding auth, SRS,
+  mastery, progress, vocabulary items, dependencies, environment files, or backend code.
+- Added intercepted browser coverage for loading, strict parsing, URL/keyboard filters,
+  retry, empty states, nested ordering, guest disclosure, 360px containment, and axe.
+- The Codex build agent timed out before writing source; the manager implemented the
+  accepted Codex plan and retained independent Codex review as the approval gate.

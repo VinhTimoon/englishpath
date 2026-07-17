@@ -1,0 +1,53 @@
+.treeList {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.treeList .treeList {
+  margin: 0.75rem 0 0 clamp(0.65rem, 3vw, 2rem);
+  padding-left: clamp(0.65rem, 3vw, 1.5rem);
+  border-left: 1px solid var(--border);
+}
+
+.treeNode {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.25rem 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.treeNode h3,
+.treeNode p {
+  margin: 0;
+}
+
+.nodeKind {
+  color: var(--brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nodeCount {
+  color: var(--brand-strong);
+  font-weight: 800;
+}
+
+.nodeMeta {
+  grid-column: 1 / -1;
+  color: var(--ink-muted);
+  font-size: 0.83rem;
+}
+
+@media (max-width: 420px) {
+  .treeNode {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

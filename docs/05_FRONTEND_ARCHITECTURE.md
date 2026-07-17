@@ -83,6 +83,12 @@ only assembles the widgets and page metadata.
 - Do not duplicate the same value in Query cache, Zustand, and local state.
 - API access goes through `shared/api`; components do not scatter raw `fetch` calls.
 
+The public vocabulary explorer follows this boundary directly: `shared/api` validates
+the local/runtime `/api/v1` origin, applies a finite timeout, and normalizes transport
+failures; the vocabulary feature owns strict envelope parsing, query keys, and
+URL-search-parameter filters. The widget owns composition and operational states, while
+the `/vocabulary` route remains a metadata and server-content boundary.
+
 ## Forms And Validation
 
 - Use React Hook Form for form state and submission lifecycle.

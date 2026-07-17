@@ -21,6 +21,7 @@ export function PublicHeader() {
         <div className="nav-links">
           <a href="#lo-trinh">Lộ trình</a>
           <a href="#cach-hoc">Cách học</a>
+          <Link href="/vocabulary">Từ vựng</Link>
           <Link href="/blog">Blog</Link>
         </div>
         <a className="button button-small" href="#guest-trial">
@@ -302,6 +303,7 @@ export function PublicFooter() {
         </div>
         <nav aria-label="Điều hướng chân trang">
           <a href="#lo-trinh">Lộ trình</a>
+          <Link href="/vocabulary">Từ vựng</Link>
           <Link href="/blog">Blog</Link>
           <a href="mailto:hello@englishpath.local">Liên hệ</a>
         </nav>

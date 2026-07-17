@@ -20,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: getAbsoluteSiteUrl("/vocabulary"),
+      lastModified: latestUpdate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     ...publishedArticles.map(({ slug, updatedAt }) => ({
       url: getAbsoluteSiteUrl(`/blog/${slug}`),
       lastModified: updatedAt,

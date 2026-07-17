@@ -1,0 +1,315 @@
+.page {
+  min-width: 0;
+  overflow: clip;
+  background: var(--canvas);
+  color: var(--ink);
+  line-height: 1.65;
+}
+.container {
+  width: min(72rem, calc(100% - 3rem));
+  margin-inline: auto;
+}
+.page :where(a, button, select, input):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--focus-offset);
+}
+.skipLink {
+  position: fixed;
+  z-index: 20;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1rem;
+  transform: translateY(-180%);
+  border-radius: 0.625rem;
+  background: var(--surface);
+  font-weight: 800;
+}
+.skipLink:focus {
+  transform: translateY(0);
+}
+.header {
+  border-bottom: 1px solid var(--ink-border-subtle);
+  background: var(--canvas-translucent);
+  backdrop-filter: blur(14px);
+}
+.header nav {
+  display: flex;
+  min-height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.header nav > div {
+  display: flex;
+  gap: 1.5rem;
+}
+.header a,
+.footer a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 750;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  text-decoration: none;
+}
+.brand span {
+  color: var(--brand);
+}
+.hero {
+  padding-block: clamp(4rem, 10vw, 7rem);
+}
+.hero h1 {
+  max-width: 16ch;
+  font-size: clamp(3rem, 7vw, 6.2rem);
+}
+.kicker {
+  margin: 0 0 0.75rem;
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.lead {
+  max-width: 52rem;
+  margin: 1.5rem 0 0;
+  color: var(--ink-muted);
+  font-size: 1.12rem;
+}
+.disclosure {
+  max-width: 48rem;
+  margin: 2rem 0 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--accent);
+  background: var(--surface);
+}
+.levels {
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+.levels > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 2rem;
+}
+.levels h2,
+.explorer h2 {
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+}
+.levels ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 3rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+.levels li {
+  min-width: 0;
+  padding: 1.5rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.levels li span {
+  color: var(--amber-ink);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+.levels li h3 {
+  margin-top: 1rem;
+}
+.levels li p {
+  margin-bottom: 0;
+  color: var(--ink-muted);
+}
+.explorer {
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  background: var(--surface-muted);
+}
+.explorerHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.75fr);
+  gap: 2rem;
+  align-items: end;
+}
+.explorerHeading > p {
+  color: var(--ink-muted);
+}
+.filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: 2.5rem;
+}
+.filters label {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+.filters select,
+.filters input {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.625rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+}
+.resetButton,
+.state button {
+  min-height: 2.9rem;
+  align-self: end;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--brand);
+  border-radius: 0.625rem;
+  background: var(--brand);
+  color: var(--on-brand);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.skeleton {
+  display: grid;
+  gap: 0.75rem;
+  padding-block: 1rem;
+}
+.skeleton span {
+  display: block;
+  height: 5.25rem;
+  border-radius: 0.75rem;
+  background: var(--border);
+  animation: skeleton-pulse 1.3s ease-in-out infinite alternate;
+}
+.state {
+  padding: 2rem;
+  border: 1px dashed var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  text-align: center;
+}
+.state h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+}
+.state p {
+  color: var(--ink-muted);
+}
+.results {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.34fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+.results aside {
+  position: sticky;
+  top: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+.results aside p {
+  margin-top: 0;
+}
+.results aside strong {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--brand);
+  font-size: 2.5rem;
+  line-height: 1;
+}
+.results aside ol {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.results aside li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+}
+.results aside small {
+  flex: 0 0 auto;
+  color: var(--ink-muted);
+}
+.footer {
+  margin-top: clamp(4rem, 9vw, 7rem);
+  padding-block: 2rem;
+  background: var(--footer-surface);
+  color: var(--footer-ink);
+}
+.footer > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.footer nav {
+  display: flex;
+  gap: 1.5rem;
+}
+@keyframes skeleton-pulse {
+  to {
+    opacity: 0.45;
+  }
+}
+@media (max-width: 760px) {
+  .levels > div,
+  .explorerHeading,
+  .results {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .levels ol,
+  .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .results aside {
+    position: static;
+  }
+}
+@media (max-width: 520px) {
+  .container {
+    width: min(100% - 2rem, 72rem);
+  }
+  .header nav,
+  .footer > div {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 1rem;
+  }
+  .hero {
+    padding-top: 3.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.75rem, 14vw, 4rem);
+  }
+  .levels ol,
+  .filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .explorer {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton span {
+    animation: none;
+  }
+}

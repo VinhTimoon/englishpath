@@ -145,3 +145,7 @@ Report commands that were skipped or unavailable; never claim they passed.
   both must produce only a correlated, sanitized `INTERNAL_ERROR` envelope without
   partial data or private adapter details. Tests also remove known database/Supabase
   credentials and spy on `fetch` while exercising both routes.
+- Public vocabulary browser tests intercept every port-3000 taxonomy request and cover
+  delayed loading, strict success parsing, URL-owned filters, retryable failures, empty
+  variants, semantic nesting, keyboard controls, mobile overflow, and axe findings.
+  They never require the API process, credentials, or private governance fixtures.

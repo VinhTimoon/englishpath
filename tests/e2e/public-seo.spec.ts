@@ -66,6 +66,7 @@ test.describe("public technical SEO", () => {
   for (const [path, type] of [
     ["/", "website"],
     ["/blog", "website"],
+    ["/vocabulary", "website"],
     ...articlePaths.map((path) => [path, "article"] as const),
   ] as const) {
     test(`serves canonical social metadata for ${path}`, async ({ page }) => {
@@ -101,6 +102,7 @@ test.describe("public technical SEO", () => {
     const expectedUrls = [
       origin,
       `${origin}/blog`,
+      `${origin}/vocabulary`,
       ...articlePaths.map((path) => `${origin}${path}`),
     ];
     for (const url of expectedUrls) {
@@ -130,6 +132,9 @@ test.describe("public technical SEO", () => {
     await expect(
       page.getByRole("link", { name: "Blog", exact: true }).first(),
     ).toHaveAttribute("href", "/blog");
+    await expect(
+      page.getByRole("link", { name: "Từ vựng", exact: true }).first(),
+    ).toHaveAttribute("href", "/vocabulary");
     await page.goto("/blog");
     await expect(page.getByRole("link", { name: "Trang chủ" })).toHaveAttribute(
       "href",
@@ -175,7 +180,7 @@ test.describe("public technical SEO", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 360, height: 800 });
-    for (const path of ["/", "/blog", ...articlePaths]) {
+    for (const path of ["/", "/blog", "/vocabulary", ...articlePaths]) {
       await page.goto(path);
       const width = await page.evaluate(() => ({
         client: document.documentElement.clientWidth,
