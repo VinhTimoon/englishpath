@@ -9,20 +9,51 @@ datasource db {
 }
 
 model User {
-  id                      String           @id @default(cuid())
-  email                   String           @unique
-  legacyName              String?          @map("name")
-  authProvider            IdentityProvider @default(SUPABASE)
+  id                      String             @id @default(cuid())
+  email                   String             @unique
+  legacyName              String?            @map("name")
+  authProvider            IdentityProvider   @default(SUPABASE)
   externalSubject         String?
-  status                  UserStatus       @default(ACTIVE)
-  createdAt               DateTime         @default(now())
-  updatedAt               DateTime         @updatedAt
+  status                  UserStatus         @default(ACTIVE)
+  createdAt               DateTime           @default(now())
+  updatedAt               DateTime           @updatedAt
   profile                 UserProfile?
-  roleAssignments         UserRole[]       @relation("AssignedUserRoles")
-  roleAssignmentsAuthored UserRole[]       @relation("RoleAssignmentActor")
+  roleAssignments         UserRole[]         @relation("AssignedUserRoles")
+  roleAssignmentsAuthored UserRole[]         @relation("RoleAssignmentActor")
+  onboarding              LearnerOnboarding?
+  placementAttempts       PlacementAttempt[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
+}
+
+model LearnerOnboarding {
+  userId         String           @id
+  primaryGoal    LearningGoal
+  secondaryGoals LearningGoal[]
+  currentLevel   ProficiencyLevel
+  dailyMinutes   Int
+  targetDays     Int
+  prioritySkills LearningSkill[]
+  completedAt    DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PlacementAttempt {
+  id                 String           @id @default(cuid())
+  userId             String
+  clientSubmissionId String
+  answers            Json
+  score              Int
+  total              Int
+  level              ProficiencyLevel
+  skillBreakdown     Json
+  submittedAt        DateTime         @default(now())
+  user               User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, clientSubmissionId])
+  @@index([userId, submittedAt])
 }
 
 model UserProfile {
@@ -76,4 +107,31 @@ enum RoleCode {
   CONTENT_EDITOR
   ADMIN
   SUPER_ADMIN
+}
+
+enum LearningGoal {
+  ENGLISH_FOUNDATION
+  DAILY_COMMUNICATION
+  FOUR_SKILL_ENGLISH
+  WORKPLACE_ENGLISH
+  TOEIC_LISTENING_READING
+  TOEIC_SPEAKING_WRITING
+  TOEIC_FOUR_SKILLS
+}
+
+enum ProficiencyLevel {
+  BEGINNER
+  ELEMENTARY
+  INTERMEDIATE
+  UPPER_INTERMEDIATE
+  ADVANCED
+}
+
+enum LearningSkill {
+  VOCABULARY
+  GRAMMAR
+  LISTENING
+  READING
+  SPEAKING
+  WRITING
 }

@@ -54,6 +54,21 @@ export class ConfiguredSupabaseJwtVerifier implements ExternalIdentityVerifier {
 
   async verify(token: string) {
     try {
+      if (this.config.get<string>('AUTH_MODE') === 'local') {
+        if (
+          this.config.get<string>('NODE_ENV') === 'production' ||
+          token !== 'englishpath.local.learner'
+        ) {
+          throw new AccessError(ACCESS_ERROR_CODES.INVALID_IDENTITY_EVIDENCE);
+        }
+        return createExternalIdentity({
+          provider: 'SUPABASE',
+          subject: 'local-learner-001',
+          issuer: 'englishpath-local',
+          audience: 'authenticated',
+          verifiedEmail: 'learner@englishpath.local',
+        });
+      }
       this.verifier ??= this.createVerifier();
       return (await this.verifier).verify(token);
     } catch (error: unknown) {

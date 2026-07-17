@@ -21,9 +21,11 @@ import {
 import { ProfileController } from './profile.controller';
 import { ProfileService } from './profile.service';
 import { ConfiguredSupabaseJwtVerifier } from './supabase-jwt.verifier';
+import { AuthBootstrapController } from './auth-bootstrap.controller';
+import { AuthBootstrapService } from './auth-bootstrap.service';
 
 @Module({
-  controllers: [ProfileController],
+  controllers: [ProfileController, AuthBootstrapController],
   providers: [
     ProfileService,
     AuthenticationGuard,
@@ -31,6 +33,7 @@ import { ConfiguredSupabaseJwtVerifier } from './supabase-jwt.verifier';
     OwnerGuard,
     ConfiguredSupabaseJwtVerifier,
     DatabaseApplicationPrincipalResolver,
+    AuthBootstrapService,
     {
       provide: APPLICATION_IDENTITY_REPOSITORY,
       inject: [PrismaService],

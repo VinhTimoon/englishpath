@@ -6,6 +6,7 @@ import { HealthModule } from './modules/health/health.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { VocabularyModule } from './modules/vocabulary/vocabulary.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { OnboardingModule } from './modules/onboarding/onboarding.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule } from './modules/auth/auth.module';
     PrismaModule,
     VocabularyModule,
     AuthModule,
+    OnboardingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

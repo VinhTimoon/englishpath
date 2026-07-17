@@ -22,6 +22,16 @@ export * from './enums.js';
  */
 export type User = Prisma.UserModel;
 /**
+ * Model LearnerOnboarding
+ *
+ */
+export type LearnerOnboarding = Prisma.LearnerOnboardingModel;
+/**
+ * Model PlacementAttempt
+ *
+ */
+export type PlacementAttempt = Prisma.PlacementAttemptModel;
+/**
  * Model UserProfile
  *
  */

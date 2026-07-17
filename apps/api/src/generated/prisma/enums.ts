@@ -32,3 +32,37 @@ export const RoleCode = {
 } as const;
 
 export type RoleCode = (typeof RoleCode)[keyof typeof RoleCode];
+
+export const LearningGoal = {
+  ENGLISH_FOUNDATION: 'ENGLISH_FOUNDATION',
+  DAILY_COMMUNICATION: 'DAILY_COMMUNICATION',
+  FOUR_SKILL_ENGLISH: 'FOUR_SKILL_ENGLISH',
+  WORKPLACE_ENGLISH: 'WORKPLACE_ENGLISH',
+  TOEIC_LISTENING_READING: 'TOEIC_LISTENING_READING',
+  TOEIC_SPEAKING_WRITING: 'TOEIC_SPEAKING_WRITING',
+  TOEIC_FOUR_SKILLS: 'TOEIC_FOUR_SKILLS',
+} as const;
+
+export type LearningGoal = (typeof LearningGoal)[keyof typeof LearningGoal];
+
+export const ProficiencyLevel = {
+  BEGINNER: 'BEGINNER',
+  ELEMENTARY: 'ELEMENTARY',
+  INTERMEDIATE: 'INTERMEDIATE',
+  UPPER_INTERMEDIATE: 'UPPER_INTERMEDIATE',
+  ADVANCED: 'ADVANCED',
+} as const;
+
+export type ProficiencyLevel =
+  (typeof ProficiencyLevel)[keyof typeof ProficiencyLevel];
+
+export const LearningSkill = {
+  VOCABULARY: 'VOCABULARY',
+  GRAMMAR: 'GRAMMAR',
+  LISTENING: 'LISTENING',
+  READING: 'READING',
+  SPEAKING: 'SPEAKING',
+  WRITING: 'WRITING',
+} as const;
+
+export type LearningSkill = (typeof LearningSkill)[keyof typeof LearningSkill];

@@ -412,6 +412,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never
 
 export const ModelName = {
   User: 'User',
+  LearnerOnboarding: 'LearnerOnboarding',
+  PlacementAttempt: 'PlacementAttempt',
   UserProfile: 'UserProfile',
   Role: 'Role',
   UserRole: 'UserRole',
@@ -436,7 +438,13 @@ export type TypeMap<
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: 'user' | 'userProfile' | 'role' | 'userRole';
+    modelProps:
+      | 'user'
+      | 'learnerOnboarding'
+      | 'placementAttempt'
+      | 'userProfile'
+      | 'role'
+      | 'userRole';
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
@@ -512,6 +520,158 @@ export type TypeMap<
           args: Prisma.UserCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    LearnerOnboarding: {
+      payload: Prisma.$LearnerOnboardingPayload<ExtArgs>;
+      fields: Prisma.LearnerOnboardingFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.LearnerOnboardingFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.LearnerOnboardingFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>;
+        };
+        findFirst: {
+          args: Prisma.LearnerOnboardingFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.LearnerOnboardingFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>;
+        };
+        findMany: {
+          args: Prisma.LearnerOnboardingFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>[];
+        };
+        create: {
+          args: Prisma.LearnerOnboardingCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>;
+        };
+        createMany: {
+          args: Prisma.LearnerOnboardingCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.LearnerOnboardingCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>[];
+        };
+        delete: {
+          args: Prisma.LearnerOnboardingDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>;
+        };
+        update: {
+          args: Prisma.LearnerOnboardingUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>;
+        };
+        deleteMany: {
+          args: Prisma.LearnerOnboardingDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.LearnerOnboardingUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.LearnerOnboardingUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>[];
+        };
+        upsert: {
+          args: Prisma.LearnerOnboardingUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerOnboardingPayload>;
+        };
+        aggregate: {
+          args: Prisma.LearnerOnboardingAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLearnerOnboarding>;
+        };
+        groupBy: {
+          args: Prisma.LearnerOnboardingGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.LearnerOnboardingGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.LearnerOnboardingCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.LearnerOnboardingCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    PlacementAttempt: {
+      payload: Prisma.$PlacementAttemptPayload<ExtArgs>;
+      fields: Prisma.PlacementAttemptFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PlacementAttemptFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PlacementAttemptFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>;
+        };
+        findFirst: {
+          args: Prisma.PlacementAttemptFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PlacementAttemptFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>;
+        };
+        findMany: {
+          args: Prisma.PlacementAttemptFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>[];
+        };
+        create: {
+          args: Prisma.PlacementAttemptCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>;
+        };
+        createMany: {
+          args: Prisma.PlacementAttemptCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PlacementAttemptCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>[];
+        };
+        delete: {
+          args: Prisma.PlacementAttemptDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>;
+        };
+        update: {
+          args: Prisma.PlacementAttemptUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>;
+        };
+        deleteMany: {
+          args: Prisma.PlacementAttemptDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PlacementAttemptUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PlacementAttemptUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>[];
+        };
+        upsert: {
+          args: Prisma.PlacementAttemptUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlacementAttemptPayload>;
+        };
+        aggregate: {
+          args: Prisma.PlacementAttemptAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlacementAttempt>;
+        };
+        groupBy: {
+          args: Prisma.PlacementAttemptGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PlacementAttemptGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PlacementAttemptCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PlacementAttemptCountAggregateOutputType>
             | number;
         };
       };
@@ -797,6 +957,36 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum =
   (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 
+export const LearnerOnboardingScalarFieldEnum = {
+  userId: 'userId',
+  primaryGoal: 'primaryGoal',
+  secondaryGoals: 'secondaryGoals',
+  currentLevel: 'currentLevel',
+  dailyMinutes: 'dailyMinutes',
+  targetDays: 'targetDays',
+  prioritySkills: 'prioritySkills',
+  completedAt: 'completedAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type LearnerOnboardingScalarFieldEnum =
+  (typeof LearnerOnboardingScalarFieldEnum)[keyof typeof LearnerOnboardingScalarFieldEnum];
+
+export const PlacementAttemptScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  clientSubmissionId: 'clientSubmissionId',
+  answers: 'answers',
+  score: 'score',
+  total: 'total',
+  level: 'level',
+  skillBreakdown: 'skillBreakdown',
+  submittedAt: 'submittedAt',
+} as const;
+
+export type PlacementAttemptScalarFieldEnum =
+  (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum];
+
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',
   displayName: 'displayName',
@@ -839,6 +1029,13 @@ export const SortOrder = {
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull,
+} as const;
+
+export type JsonNullValueInput =
+  (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput];
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive',
@@ -852,6 +1049,15 @@ export const NullsOrder = {
 } as const;
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull,
+} as const;
+
+export type JsonNullValueFilter =
+  (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];
 
 /**
  * Field references
@@ -920,6 +1126,82 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
+ * Reference to a field of type 'LearningGoal'
+ */
+export type EnumLearningGoalFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'LearningGoal'
+>;
+
+/**
+ * Reference to a field of type 'LearningGoal[]'
+ */
+export type ListEnumLearningGoalFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'LearningGoal[]'
+>;
+
+/**
+ * Reference to a field of type 'ProficiencyLevel'
+ */
+export type EnumProficiencyLevelFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'ProficiencyLevel'
+>;
+
+/**
+ * Reference to a field of type 'ProficiencyLevel[]'
+ */
+export type ListEnumProficiencyLevelFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'ProficiencyLevel[]'>;
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Int'
+>;
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Int[]'
+>;
+
+/**
+ * Reference to a field of type 'LearningSkill[]'
+ */
+export type ListEnumLearningSkillFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'LearningSkill[]'>;
+
+/**
+ * Reference to a field of type 'LearningSkill'
+ */
+export type EnumLearningSkillFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'LearningSkill'
+>;
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Json'
+>;
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'QueryMode'
+>;
+
+/**
  * Reference to a field of type 'RoleCode'
  */
 export type EnumRoleCodeFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -936,19 +1218,19 @@ export type ListEnumRoleCodeFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
- * Reference to a field of type 'Int'
+ * Reference to a field of type 'Float'
  */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
-  'Int'
+  'Float'
 >;
 
 /**
- * Reference to a field of type 'Int[]'
+ * Reference to a field of type 'Float[]'
  */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
-  'Int[]'
+  'Float[]'
 >;
 
 /**
@@ -1070,6 +1352,8 @@ export type PrismaClientOptions = (
 };
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit;
+  learnerOnboarding?: Prisma.LearnerOnboardingOmit;
+  placementAttempt?: Prisma.PlacementAttemptOmit;
   userProfile?: Prisma.UserProfileOmit;
   role?: Prisma.RoleOmit;
   userRole?: Prisma.UserRoleOmit;

@@ -2,8 +2,10 @@
 
 ## Current Repository Evidence
 
-- Current documented route evidence is `GET /api/v1/health`.
-- Wider v2 resource contracts below are planned conventions, not implemented proof.
+- Implemented route groups include health, authenticated profile, learner onboarding,
+  placement, and public vocabulary taxonomy.
+- Wider v2 resource contracts below remain planned conventions unless explicitly marked
+  as implemented.
 
 ## Current Health Endpoint
 
@@ -191,3 +193,21 @@ as proof that an actor is human or has review/publish permission.
   `timezone`; role and user identifiers are rejected as mass assignment.
 - Both routes require a Supabase bearer token plus an active backend identity and return
   the standard sanitized error envelope with a correlation ID.
+
+## Learner Entry Endpoints
+
+- `POST /api/v1/auth/bootstrap` verifies the bearer token and idempotently provisions or
+  resolves the backend user before returning the minimal application principal.
+- `GET /api/v1/onboarding` returns only the authenticated learner's onboarding record.
+- `PATCH /api/v1/onboarding` upserts allowlisted goal, level, study-time, duration, and
+  priority-skill fields. It never accepts a user ID, role, or ownership override.
+- `GET /api/v1/placement/questions` returns ten deterministic questions and options but
+  never includes correct answers or grading metadata.
+- `POST /api/v1/placement/submissions` accepts exactly one answer per known question plus
+  a client submission ID. Replaying the same ID for the same owner returns the original
+  graded result; incomplete, duplicate, or unknown answers are rejected.
+- `GET /api/v1/placement/result` returns the authenticated learner's latest result.
+
+All learner-entry endpoints require backend-verified bearer authentication. Local
+development may use the exact fixture token only when `AUTH_MODE=local`; startup/runtime
+verification rejects that mode when `NODE_ENV=production`.

@@ -216,6 +216,11 @@ export type UserWhereInput = {
   > | null;
   roleAssignments?: Prisma.UserRoleListRelationFilter;
   roleAssignmentsAuthored?: Prisma.UserRoleListRelationFilter;
+  onboarding?: Prisma.XOR<
+    Prisma.LearnerOnboardingNullableScalarRelationFilter,
+    Prisma.LearnerOnboardingWhereInput
+  > | null;
+  placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -230,6 +235,8 @@ export type UserOrderByWithRelationInput = {
   profile?: Prisma.UserProfileOrderByWithRelationInput;
   roleAssignments?: Prisma.UserRoleOrderByRelationAggregateInput;
   roleAssignmentsAuthored?: Prisma.UserRoleOrderByRelationAggregateInput;
+  onboarding?: Prisma.LearnerOnboardingOrderByWithRelationInput;
+  placementAttempts?: Prisma.PlacementAttemptOrderByRelationAggregateInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -253,6 +260,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     > | null;
     roleAssignments?: Prisma.UserRoleListRelationFilter;
     roleAssignmentsAuthored?: Prisma.UserRoleListRelationFilter;
+    onboarding?: Prisma.XOR<
+      Prisma.LearnerOnboardingNullableScalarRelationFilter,
+      Prisma.LearnerOnboardingWhereInput
+    > | null;
+    placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
   },
   'id' | 'email' | 'authProvider_externalSubject'
 >;
@@ -306,6 +318,8 @@ export type UserCreateInput = {
   profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
   roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateInput = {
@@ -320,6 +334,8 @@ export type UserUncheckedCreateInput = {
   profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
   roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserUpdateInput = {
@@ -337,6 +353,8 @@ export type UserUpdateInput = {
   profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
   roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -354,6 +372,8 @@ export type UserUncheckedUpdateInput = {
   profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
   roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateManyInput = {
@@ -463,6 +483,58 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string;
 };
 
+export type UserCreateNestedOneWithoutOnboardingInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOnboardingInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutOnboardingNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOnboardingInput;
+  upsert?: Prisma.UserUpsertWithoutOnboardingInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutOnboardingInput,
+      Prisma.UserUpdateWithoutOnboardingInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutOnboardingInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutPlacementAttemptsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlacementAttemptsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutPlacementAttemptsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlacementAttemptsInput;
+  upsert?: Prisma.UserUpsertWithoutPlacementAttemptsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutPlacementAttemptsInput,
+      Prisma.UserUpdateWithoutPlacementAttemptsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput
+  >;
+};
+
 export type UserCreateNestedOneWithoutProfileInput = {
   create?: Prisma.XOR<
     Prisma.UserCreateWithoutProfileInput,
@@ -543,6 +615,194 @@ export type UserUpdateOneWithoutRoleAssignmentsAuthoredNestedInput = {
   >;
 };
 
+export type UserCreateWithoutOnboardingInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutOnboardingInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutOnboardingInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+};
+
+export type UserUpsertWithoutOnboardingInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutOnboardingInput,
+    Prisma.UserUncheckedUpdateWithoutOnboardingInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutOnboardingInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutOnboardingInput,
+    Prisma.UserUncheckedUpdateWithoutOnboardingInput
+  >;
+};
+
+export type UserUpdateWithoutOnboardingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutOnboardingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutPlacementAttemptsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutPlacementAttemptsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+};
+
+export type UserUpsertWithoutPlacementAttemptsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutPlacementAttemptsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput
+  >;
+};
+
+export type UserUpdateWithoutPlacementAttemptsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+};
+
 export type UserCreateWithoutProfileInput = {
   id?: string;
   email: string;
@@ -554,6 +814,8 @@ export type UserCreateWithoutProfileInput = {
   updatedAt?: Date | string;
   roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -567,6 +829,8 @@ export type UserUncheckedCreateWithoutProfileInput = {
   updatedAt?: Date | string;
   roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -611,6 +875,8 @@ export type UserUpdateWithoutProfileInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -627,6 +893,8 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutRoleAssignmentsInput = {
@@ -640,6 +908,8 @@ export type UserCreateWithoutRoleAssignmentsInput = {
   updatedAt?: Date | string;
   profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
@@ -653,6 +923,8 @@ export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
   updatedAt?: Date | string;
   profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsInput = {
@@ -674,6 +946,8 @@ export type UserCreateWithoutRoleAssignmentsAuthoredInput = {
   updatedAt?: Date | string;
   profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
   roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
@@ -687,6 +961,8 @@ export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
   updatedAt?: Date | string;
   profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
   roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput = {
@@ -731,6 +1007,8 @@ export type UserUpdateWithoutRoleAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
@@ -747,6 +1025,8 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUpsertWithoutRoleAssignmentsAuthoredInput = {
@@ -783,6 +1063,8 @@ export type UserUpdateWithoutRoleAssignmentsAuthoredInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
   roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
@@ -799,6 +1081,8 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
   roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 /**
@@ -808,6 +1092,7 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
 export type UserCountOutputType = {
   roleAssignments: number;
   roleAssignmentsAuthored: number;
+  placementAttempts: number;
 };
 
 export type UserCountOutputTypeSelect<
@@ -817,6 +1102,7 @@ export type UserCountOutputTypeSelect<
   roleAssignments?: boolean | UserCountOutputTypeCountRoleAssignmentsArgs;
   roleAssignmentsAuthored?:
     boolean | UserCountOutputTypeCountRoleAssignmentsAuthoredArgs;
+  placementAttempts?: boolean | UserCountOutputTypeCountPlacementAttemptsArgs;
 };
 
 /**
@@ -852,6 +1138,16 @@ export type UserCountOutputTypeCountRoleAssignmentsAuthoredArgs<
   where?: Prisma.UserRoleWhereInput;
 };
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPlacementAttemptsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PlacementAttemptWhereInput;
+};
+
 export type UserSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -869,6 +1165,8 @@ export type UserSelect<
     roleAssignments?: boolean | Prisma.User$roleAssignmentsArgs<ExtArgs>;
     roleAssignmentsAuthored?:
       boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>;
+    onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
+    placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
@@ -941,6 +1239,8 @@ export type UserInclude<
   roleAssignments?: boolean | Prisma.User$roleAssignmentsArgs<ExtArgs>;
   roleAssignmentsAuthored?:
     boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>;
+  onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
+  placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
@@ -961,6 +1261,8 @@ export type $UserPayload<
     profile: Prisma.$UserProfilePayload<ExtArgs> | null;
     roleAssignments: Prisma.$UserRolePayload<ExtArgs>[];
     roleAssignmentsAuthored: Prisma.$UserRolePayload<ExtArgs>[];
+    onboarding: Prisma.$LearnerOnboardingPayload<ExtArgs> | null;
+    placementAttempts: Prisma.$PlacementAttemptPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1559,6 +1861,30 @@ export interface Prisma__UserClient<
       >
     | Null
   >;
+  onboarding<T extends Prisma.User$onboardingArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$onboardingArgs<ExtArgs>>,
+  ): Prisma.Prisma__LearnerOnboardingClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$LearnerOnboardingPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  placementAttempts<T extends Prisma.User$placementAttemptsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$placementAttemptsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PlacementAttemptPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2123,6 +2449,59 @@ export type User$roleAssignmentsAuthoredArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[];
+};
+
+/**
+ * User.onboarding
+ */
+export type User$onboardingArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the LearnerOnboarding
+   */
+  select?: Prisma.LearnerOnboardingSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the LearnerOnboarding
+   */
+  omit?: Prisma.LearnerOnboardingOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LearnerOnboardingInclude<ExtArgs> | null;
+  where?: Prisma.LearnerOnboardingWhereInput;
+};
+
+/**
+ * User.placementAttempts
+ */
+export type User$placementAttemptsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the PlacementAttempt
+   */
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the PlacementAttempt
+   */
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  where?: Prisma.PlacementAttemptWhereInput;
+  orderBy?:
+    | Prisma.PlacementAttemptOrderByWithRelationInput
+    | Prisma.PlacementAttemptOrderByWithRelationInput[];
+  cursor?: Prisma.PlacementAttemptWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PlacementAttemptScalarFieldEnum
+    | Prisma.PlacementAttemptScalarFieldEnum[];
 };
 
 /**

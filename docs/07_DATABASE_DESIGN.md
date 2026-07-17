@@ -97,3 +97,17 @@ Migration `20260717113000_identity_schema` is additive and must be validated/gen
 without applying it to remote infrastructure in automation. Its manual rollback order
 is recorded in the SQL: remove new foreign keys/tables/indexes/columns, then new enums,
 while preserving all original user columns and rows.
+
+## Physical Learner Entry Baseline
+
+Migration `20260717170000_learner_entry` adds two owner-scoped records without changing
+or deleting existing data. `LearnerOnboarding` is unique by `userId` and stores the
+learner's goal, self-assessed level, sustainable study time, roadmap duration, selected
+skills, and completion timestamp. `PlacementAttempt` stores one immutable graded result
+per `(userId, clientSubmissionId)`, including submitted answers, aggregate score, level,
+and skill breakdown.
+
+The question bank and answer key remain application-owned fixtures in this first slice;
+they are not persisted or returned by the public question contract. Rollback order and
+all constraints are documented in the migration SQL. Automation validates the migration
+and generated client but does not apply it to shared or remote databases.

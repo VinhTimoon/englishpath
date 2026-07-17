@@ -55,6 +55,8 @@ export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
   User: 'User',
+  LearnerOnboarding: 'LearnerOnboarding',
+  PlacementAttempt: 'PlacementAttempt',
   UserProfile: 'UserProfile',
   Role: 'Role',
   UserRole: 'UserRole',
@@ -89,6 +91,36 @@ export const UserScalarFieldEnum = {
 
 export type UserScalarFieldEnum =
   (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
+
+export const LearnerOnboardingScalarFieldEnum = {
+  userId: 'userId',
+  primaryGoal: 'primaryGoal',
+  secondaryGoals: 'secondaryGoals',
+  currentLevel: 'currentLevel',
+  dailyMinutes: 'dailyMinutes',
+  targetDays: 'targetDays',
+  prioritySkills: 'prioritySkills',
+  completedAt: 'completedAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type LearnerOnboardingScalarFieldEnum =
+  (typeof LearnerOnboardingScalarFieldEnum)[keyof typeof LearnerOnboardingScalarFieldEnum];
+
+export const PlacementAttemptScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  clientSubmissionId: 'clientSubmissionId',
+  answers: 'answers',
+  score: 'score',
+  total: 'total',
+  level: 'level',
+  skillBreakdown: 'skillBreakdown',
+  submittedAt: 'submittedAt',
+} as const;
+
+export type PlacementAttemptScalarFieldEnum =
+  (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum];
 
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',
@@ -132,6 +164,13 @@ export const SortOrder = {
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull,
+} as const;
+
+export type JsonNullValueInput =
+  (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput];
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive',
@@ -145,3 +184,12 @@ export const NullsOrder = {
 } as const;
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull,
+} as const;
+
+export type JsonNullValueFilter =
+  (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];

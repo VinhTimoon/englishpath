@@ -156,3 +156,14 @@ Auth tests generate local asymmetric keys and never use live Supabase, credentia
 PostgreSQL, or network access. Coverage includes signature, issuer, audience, expiry,
 identity status, ownership, DTO allowlisting, and response redaction. Jest runs with
 Node VM modules because the approved `jose` v6 package is ESM-only.
+
+## Learner Entry Tests
+
+- Service tests cover owner-scoped onboarding persistence, answer-key redaction,
+  deterministic grading, and duplicate-question rejection.
+- API e2e tests preserve guards, DTO validation, controllers, and services while
+  replacing database and identity boundaries; they cover the complete onboarding and
+  placement contract plus mass-assignment and incomplete-submission rejection.
+- A 360px Playwright journey intercepts only backend requests and exercises auth,
+  onboarding, all ten placement answers, dashboard result rendering, bearer propagation,
+  answer-key absence, and horizontal-overflow protection without credentials or network.
