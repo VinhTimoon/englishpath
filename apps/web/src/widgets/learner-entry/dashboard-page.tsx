@@ -82,6 +82,9 @@ export function DashboardPage() {
             </aside>
           </div>
           <TodayRoadmap />
+          <Link className={styles.action} href="/daily-practice">
+            Bắt đầu Daily Practice
+          </Link>
         </section>
       </div>
     </main>

@@ -8,6 +8,7 @@ import { VocabularyModule } from './modules/vocabulary/vocabulary.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { OnboardingModule } from './modules/onboarding/onboarding.module';
 import { RoadmapModule } from './modules/roadmap/roadmap.module';
+import { PracticeModule } from './modules/practice/practice.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { RoadmapModule } from './modules/roadmap/roadmap.module';
     AuthModule,
     OnboardingModule,
     RoadmapModule,
+    PracticeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

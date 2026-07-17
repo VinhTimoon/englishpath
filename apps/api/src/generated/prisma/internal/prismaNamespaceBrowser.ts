@@ -59,6 +59,10 @@ export const ModelName = {
   PlacementAttempt: 'PlacementAttempt',
   Roadmap: 'Roadmap',
   RoadmapItem: 'RoadmapItem',
+  PracticeSession: 'PracticeSession',
+  PracticeAnswer: 'PracticeAnswer',
+  LearnerProgress: 'LearnerProgress',
+  ErrorNotebookEntry: 'ErrorNotebookEntry',
   UserProfile: 'UserProfile',
   Role: 'Role',
   UserRole: 'UserRole',
@@ -157,6 +161,61 @@ export const RoadmapItemScalarFieldEnum = {
 
 export type RoadmapItemScalarFieldEnum =
   (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum];
+
+export const PracticeSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  clientSessionId: 'clientSessionId',
+  practiceDay: 'practiceDay',
+  questionIds: 'questionIds',
+  status: 'status',
+  score: 'score',
+  total: 'total',
+  xpAwarded: 'xpAwarded',
+  startedAt: 'startedAt',
+  submittedAt: 'submittedAt',
+} as const;
+
+export type PracticeSessionScalarFieldEnum =
+  (typeof PracticeSessionScalarFieldEnum)[keyof typeof PracticeSessionScalarFieldEnum];
+
+export const PracticeAnswerScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  questionId: 'questionId',
+  selectedOption: 'selectedOption',
+  isCorrect: 'isCorrect',
+  answeredAt: 'answeredAt',
+} as const;
+
+export type PracticeAnswerScalarFieldEnum =
+  (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum];
+
+export const LearnerProgressScalarFieldEnum = {
+  userId: 'userId',
+  xp: 'xp',
+  streakDays: 'streakDays',
+  lastPracticeOn: 'lastPracticeOn',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type LearnerProgressScalarFieldEnum =
+  (typeof LearnerProgressScalarFieldEnum)[keyof typeof LearnerProgressScalarFieldEnum];
+
+export const ErrorNotebookEntryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sessionId: 'sessionId',
+  questionId: 'questionId',
+  prompt: 'prompt',
+  selectedOption: 'selectedOption',
+  correctOption: 'correctOption',
+  explanation: 'explanation',
+  createdAt: 'createdAt',
+} as const;
+
+export type ErrorNotebookEntryScalarFieldEnum =
+  (typeof ErrorNotebookEntryScalarFieldEnum)[keyof typeof ErrorNotebookEntryScalarFieldEnum];
 
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',

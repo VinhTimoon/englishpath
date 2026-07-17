@@ -525,6 +525,51 @@ export type EnumRoadmapItemStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>;
 };
 
+export type EnumPracticeStatusFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PracticeStatus
+    | Prisma.EnumPracticeStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PracticeStatus[]
+    | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PracticeStatus[]
+    | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedEnumPracticeStatusFilter<$PrismaModel> | $Enums.PracticeStatus;
+};
+
+export type EnumPracticeStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PracticeStatus
+    | Prisma.EnumPracticeStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PracticeStatus[]
+    | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PracticeStatus[]
+    | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPracticeStatusWithAggregatesFilter<$PrismaModel>
+    | $Enums.PracticeStatus;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel>;
+};
+
+export type BoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean;
+};
+
+export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedBoolFilter<$PrismaModel>;
+  _max?: Prisma.NestedBoolFilter<$PrismaModel>;
+};
+
 export type EnumRoleCodeFilter<$PrismaModel = never> = {
   equals?: $Enums.RoleCode | Prisma.EnumRoleCodeFieldRefInput<$PrismaModel>;
   in?: $Enums.RoleCode[] | Prisma.ListEnumRoleCodeFieldRefInput<$PrismaModel>;
@@ -1040,6 +1085,52 @@ export type NestedEnumRoadmapItemStatusWithAggregatesFilter<
   _count?: Prisma.NestedIntFilter<$PrismaModel>;
   _min?: Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>;
   _max?: Prisma.NestedEnumRoadmapItemStatusFilter<$PrismaModel>;
+};
+
+export type NestedEnumPracticeStatusFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PracticeStatus
+    | Prisma.EnumPracticeStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PracticeStatus[]
+    | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PracticeStatus[]
+    | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+  not?:
+    Prisma.NestedEnumPracticeStatusFilter<$PrismaModel> | $Enums.PracticeStatus;
+};
+
+export type NestedEnumPracticeStatusWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.PracticeStatus
+      | Prisma.EnumPracticeStatusFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.PracticeStatus[]
+      | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.PracticeStatus[]
+      | Prisma.ListEnumPracticeStatusFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumPracticeStatusWithAggregatesFilter<$PrismaModel>
+      | $Enums.PracticeStatus;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel>;
+  };
+
+export type NestedBoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean;
+};
+
+export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedBoolFilter<$PrismaModel>;
+  _max?: Prisma.NestedBoolFilter<$PrismaModel>;
 };
 
 export type NestedEnumRoleCodeFilter<$PrismaModel = never> = {

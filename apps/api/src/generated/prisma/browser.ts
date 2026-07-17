@@ -42,6 +42,26 @@ export type Roadmap = Prisma.RoadmapModel;
  */
 export type RoadmapItem = Prisma.RoadmapItemModel;
 /**
+ * Model PracticeSession
+ *
+ */
+export type PracticeSession = Prisma.PracticeSessionModel;
+/**
+ * Model PracticeAnswer
+ *
+ */
+export type PracticeAnswer = Prisma.PracticeAnswerModel;
+/**
+ * Model LearnerProgress
+ *
+ */
+export type LearnerProgress = Prisma.LearnerProgressModel;
+/**
+ * Model ErrorNotebookEntry
+ *
+ */
+export type ErrorNotebookEntry = Prisma.ErrorNotebookEntryModel;
+/**
  * Model UserProfile
  *
  */

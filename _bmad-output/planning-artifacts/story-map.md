@@ -68,12 +68,16 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST039`                | Browser E2E, accessibility, performance, security, content-rights, and staging readiness | `EP1-ST030` to `EP1-ST038` |
 | `EP1-ST042`                | Bundled learner entry: auth UI, onboarding API/UI, and placement API/UI                  | `EP1-ST008`                |
 | `EP1-ST043`                | Bundled deterministic roadmap API, roadmap UI, and today dashboard                       | `EP1-ST042`                |
+| `EP1-ST044`                | Bundled daily quiz session, immediate feedback, progress, streak, and error review       | `EP1-ST043`                |
 
 `EP1-ST042` supersedes the former delivery units `EP1-ST009–013`; their requirements are
 implemented and reviewed as one vertical slice to reduce loop overhead.
 
 `EP1-ST043` supersedes `EP1-ST014–016`; roadmap rules, persistence, APIs, and learner UI
 are delivered and reviewed together as one product increment.
+
+`EP1-ST044` consolidates the first usable delivery of `EP1-ST020–027`; advanced SRS and
+the dedicated review/progress surfaces remain follow-up scope.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability

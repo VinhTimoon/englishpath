@@ -9,20 +9,23 @@ datasource db {
 }
 
 model User {
-  id                      String             @id @default(cuid())
-  email                   String             @unique
-  legacyName              String?            @map("name")
-  authProvider            IdentityProvider   @default(SUPABASE)
+  id                      String               @id @default(cuid())
+  email                   String               @unique
+  legacyName              String?              @map("name")
+  authProvider            IdentityProvider     @default(SUPABASE)
   externalSubject         String?
-  status                  UserStatus         @default(ACTIVE)
-  createdAt               DateTime           @default(now())
-  updatedAt               DateTime           @updatedAt
+  status                  UserStatus           @default(ACTIVE)
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
   profile                 UserProfile?
-  roleAssignments         UserRole[]         @relation("AssignedUserRoles")
-  roleAssignmentsAuthored UserRole[]         @relation("RoleAssignmentActor")
+  roleAssignments         UserRole[]           @relation("AssignedUserRoles")
+  roleAssignmentsAuthored UserRole[]           @relation("RoleAssignmentActor")
   onboarding              LearnerOnboarding?
   placementAttempts       PlacementAttempt[]
   roadmaps                Roadmap[]
+  practiceSessions        PracticeSession[]
+  learnerProgress         LearnerProgress?
+  errorNotebookEntries    ErrorNotebookEntry[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -95,6 +98,65 @@ model RoadmapItem {
 
   @@unique([roadmapId, dayNumber, sequence])
   @@index([roadmapId, dayNumber, status])
+}
+
+model PracticeSession {
+  id              String               @id @default(cuid())
+  userId          String
+  clientSessionId String
+  practiceDay     DateTime
+  questionIds     String[]
+  status          PracticeStatus       @default(ACTIVE)
+  score           Int                  @default(0)
+  total           Int                  @default(5)
+  xpAwarded       Int                  @default(0)
+  startedAt       DateTime             @default(now())
+  submittedAt     DateTime?
+  user            User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers         PracticeAnswer[]
+  errors          ErrorNotebookEntry[]
+
+  @@unique([userId, clientSessionId])
+  @@unique([userId, practiceDay])
+  @@index([userId, status, startedAt])
+}
+
+model PracticeAnswer {
+  id             String          @id @default(cuid())
+  sessionId      String
+  questionId     String
+  selectedOption String
+  isCorrect      Boolean
+  answeredAt     DateTime        @default(now())
+  session        PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, questionId])
+}
+
+model LearnerProgress {
+  userId         String    @id
+  xp             Int       @default(0)
+  streakDays     Int       @default(0)
+  lastPracticeOn DateTime?
+  updatedAt      DateTime  @updatedAt
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ErrorNotebookEntry {
+  id             String          @id @default(cuid())
+  userId         String
+  sessionId      String
+  questionId     String
+  prompt         String
+  selectedOption String
+  correctOption  String
+  explanation    String
+  createdAt      DateTime        @default(now())
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session        PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, questionId])
+  @@index([userId, createdAt])
 }
 
 model UserProfile {
@@ -206,4 +268,9 @@ enum RoadmapItemStatus {
   PENDING
   COMPLETED
   SKIPPED
+}
+
+enum PracticeStatus {
+  ACTIVE
+  SUBMITTED
 }

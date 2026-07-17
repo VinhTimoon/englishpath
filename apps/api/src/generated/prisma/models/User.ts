@@ -222,6 +222,12 @@ export type UserWhereInput = {
   > | null;
   placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
   roadmaps?: Prisma.RoadmapListRelationFilter;
+  practiceSessions?: Prisma.PracticeSessionListRelationFilter;
+  learnerProgress?: Prisma.XOR<
+    Prisma.LearnerProgressNullableScalarRelationFilter,
+    Prisma.LearnerProgressWhereInput
+  > | null;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -239,6 +245,9 @@ export type UserOrderByWithRelationInput = {
   onboarding?: Prisma.LearnerOnboardingOrderByWithRelationInput;
   placementAttempts?: Prisma.PlacementAttemptOrderByRelationAggregateInput;
   roadmaps?: Prisma.RoadmapOrderByRelationAggregateInput;
+  practiceSessions?: Prisma.PracticeSessionOrderByRelationAggregateInput;
+  learnerProgress?: Prisma.LearnerProgressOrderByWithRelationInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryOrderByRelationAggregateInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -268,6 +277,12 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     > | null;
     placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
     roadmaps?: Prisma.RoadmapListRelationFilter;
+    practiceSessions?: Prisma.PracticeSessionListRelationFilter;
+    learnerProgress?: Prisma.XOR<
+      Prisma.LearnerProgressNullableScalarRelationFilter,
+      Prisma.LearnerProgressWhereInput
+    > | null;
+    errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter;
   },
   'id' | 'email' | 'authProvider_externalSubject'
 >;
@@ -324,6 +339,9 @@ export type UserCreateInput = {
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateInput = {
@@ -341,6 +359,9 @@ export type UserUncheckedCreateInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserUpdateInput = {
@@ -361,6 +382,9 @@ export type UserUpdateInput = {
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -381,6 +405,9 @@ export type UserUncheckedUpdateInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateManyInput = {
@@ -568,6 +595,84 @@ export type UserUpdateOneRequiredWithoutRoadmapsNestedInput = {
   >;
 };
 
+export type UserCreateNestedOneWithoutPracticeSessionsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutPracticeSessionsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeSessionsInput;
+  upsert?: Prisma.UserUpsertWithoutPracticeSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutPracticeSessionsInput,
+      Prisma.UserUpdateWithoutPracticeSessionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutLearnerProgressInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearnerProgressInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutLearnerProgressNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearnerProgressInput;
+  upsert?: Prisma.UserUpsertWithoutLearnerProgressInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutLearnerProgressInput,
+      Prisma.UserUpdateWithoutLearnerProgressInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutLearnerProgressInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutErrorNotebookEntriesInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutErrorNotebookEntriesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutErrorNotebookEntriesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutErrorNotebookEntriesInput;
+  upsert?: Prisma.UserUpsertWithoutErrorNotebookEntriesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutErrorNotebookEntriesInput,
+      Prisma.UserUpdateWithoutErrorNotebookEntriesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput
+  >;
+};
+
 export type UserCreateNestedOneWithoutProfileInput = {
   create?: Prisma.XOR<
     Prisma.UserCreateWithoutProfileInput,
@@ -662,6 +767,9 @@ export type UserCreateWithoutOnboardingInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutOnboardingInput = {
@@ -678,6 +786,9 @@ export type UserUncheckedCreateWithoutOnboardingInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutOnboardingInput = {
@@ -725,6 +836,9 @@ export type UserUpdateWithoutOnboardingInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutOnboardingInput = {
@@ -744,6 +858,9 @@ export type UserUncheckedUpdateWithoutOnboardingInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutPlacementAttemptsInput = {
@@ -760,6 +877,9 @@ export type UserCreateWithoutPlacementAttemptsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
@@ -776,6 +896,9 @@ export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutPlacementAttemptsInput = {
@@ -823,6 +946,9 @@ export type UserUpdateWithoutPlacementAttemptsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
@@ -842,6 +968,9 @@ export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutRoadmapsInput = {
@@ -858,6 +987,9 @@ export type UserCreateWithoutRoadmapsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutRoadmapsInput = {
@@ -874,6 +1006,9 @@ export type UserUncheckedCreateWithoutRoadmapsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutRoadmapsInput = {
@@ -921,6 +1056,9 @@ export type UserUpdateWithoutRoadmapsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoadmapsInput = {
@@ -940,6 +1078,339 @@ export type UserUncheckedUpdateWithoutRoadmapsInput = {
   roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutPracticeSessionsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutPracticeSessionsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutPracticeSessionsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+};
+
+export type UserUpsertWithoutPracticeSessionsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutPracticeSessionsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput
+  >;
+};
+
+export type UserUpdateWithoutPracticeSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutLearnerProgressInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutLearnerProgressInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutLearnerProgressInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+};
+
+export type UserUpsertWithoutLearnerProgressInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedUpdateWithoutLearnerProgressInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutLearnerProgressInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedUpdateWithoutLearnerProgressInput
+  >;
+};
+
+export type UserUpdateWithoutLearnerProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutLearnerProgressInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutErrorNotebookEntriesInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutErrorNotebookEntriesInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutErrorNotebookEntriesInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+};
+
+export type UserUpsertWithoutErrorNotebookEntriesInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutErrorNotebookEntriesInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput
+  >;
+};
+
+export type UserUpdateWithoutErrorNotebookEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutErrorNotebookEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutProfileInput = {
@@ -956,6 +1427,9 @@ export type UserCreateWithoutProfileInput = {
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -972,6 +1446,9 @@ export type UserUncheckedCreateWithoutProfileInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -1019,6 +1496,9 @@ export type UserUpdateWithoutProfileInput = {
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -1038,6 +1518,9 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutRoleAssignmentsInput = {
@@ -1054,6 +1537,9 @@ export type UserCreateWithoutRoleAssignmentsInput = {
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
@@ -1070,6 +1556,9 @@ export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsInput = {
@@ -1094,6 +1583,9 @@ export type UserCreateWithoutRoleAssignmentsAuthoredInput = {
   onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
@@ -1110,6 +1602,9 @@ export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
   roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput = {
@@ -1157,6 +1652,9 @@ export type UserUpdateWithoutRoleAssignmentsInput = {
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
@@ -1176,6 +1674,9 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUpsertWithoutRoleAssignmentsAuthoredInput = {
@@ -1215,6 +1716,9 @@ export type UserUpdateWithoutRoleAssignmentsAuthoredInput = {
   onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
@@ -1234,6 +1738,9 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
   onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
   placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
   roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 /**
@@ -1245,6 +1752,8 @@ export type UserCountOutputType = {
   roleAssignmentsAuthored: number;
   placementAttempts: number;
   roadmaps: number;
+  practiceSessions: number;
+  errorNotebookEntries: number;
 };
 
 export type UserCountOutputTypeSelect<
@@ -1256,6 +1765,9 @@ export type UserCountOutputTypeSelect<
     boolean | UserCountOutputTypeCountRoleAssignmentsAuthoredArgs;
   placementAttempts?: boolean | UserCountOutputTypeCountPlacementAttemptsArgs;
   roadmaps?: boolean | UserCountOutputTypeCountRoadmapsArgs;
+  practiceSessions?: boolean | UserCountOutputTypeCountPracticeSessionsArgs;
+  errorNotebookEntries?:
+    boolean | UserCountOutputTypeCountErrorNotebookEntriesArgs;
 };
 
 /**
@@ -1311,6 +1823,26 @@ export type UserCountOutputTypeCountRoadmapsArgs<
   where?: Prisma.RoadmapWhereInput;
 };
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPracticeSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PracticeSessionWhereInput;
+};
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountErrorNotebookEntriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ErrorNotebookEntryWhereInput;
+};
+
 export type UserSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -1331,6 +1863,10 @@ export type UserSelect<
     onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
     placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
     roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>;
+    practiceSessions?: boolean | Prisma.User$practiceSessionsArgs<ExtArgs>;
+    learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>;
+    errorNotebookEntries?:
+      boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
@@ -1406,6 +1942,10 @@ export type UserInclude<
   onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
   placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
   roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>;
+  practiceSessions?: boolean | Prisma.User$practiceSessionsArgs<ExtArgs>;
+  learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>;
+  errorNotebookEntries?:
+    boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>;
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
@@ -1429,6 +1969,9 @@ export type $UserPayload<
     onboarding: Prisma.$LearnerOnboardingPayload<ExtArgs> | null;
     placementAttempts: Prisma.$PlacementAttemptPayload<ExtArgs>[];
     roadmaps: Prisma.$RoadmapPayload<ExtArgs>[];
+    practiceSessions: Prisma.$PracticeSessionPayload<ExtArgs>[];
+    learnerProgress: Prisma.$LearnerProgressPayload<ExtArgs> | null;
+    errorNotebookEntries: Prisma.$ErrorNotebookEntryPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -2056,6 +2599,43 @@ export interface Prisma__UserClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$RoadmapPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  practiceSessions<T extends Prisma.User$practiceSessionsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$practiceSessionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PracticeSessionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  learnerProgress<T extends Prisma.User$learnerProgressArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$learnerProgressArgs<ExtArgs>>,
+  ): Prisma.Prisma__LearnerProgressClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$LearnerProgressPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  errorNotebookEntries<
+    T extends Prisma.User$errorNotebookEntriesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$errorNotebookEntriesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ErrorNotebookEntryPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -2708,6 +3288,90 @@ export type User$roadmapsArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.RoadmapScalarFieldEnum | Prisma.RoadmapScalarFieldEnum[];
+};
+
+/**
+ * User.practiceSessions
+ */
+export type User$practiceSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the PracticeSession
+   */
+  select?: Prisma.PracticeSessionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the PracticeSession
+   */
+  omit?: Prisma.PracticeSessionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeSessionInclude<ExtArgs> | null;
+  where?: Prisma.PracticeSessionWhereInput;
+  orderBy?:
+    | Prisma.PracticeSessionOrderByWithRelationInput
+    | Prisma.PracticeSessionOrderByWithRelationInput[];
+  cursor?: Prisma.PracticeSessionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PracticeSessionScalarFieldEnum
+    | Prisma.PracticeSessionScalarFieldEnum[];
+};
+
+/**
+ * User.learnerProgress
+ */
+export type User$learnerProgressArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the LearnerProgress
+   */
+  select?: Prisma.LearnerProgressSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the LearnerProgress
+   */
+  omit?: Prisma.LearnerProgressOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LearnerProgressInclude<ExtArgs> | null;
+  where?: Prisma.LearnerProgressWhereInput;
+};
+
+/**
+ * User.errorNotebookEntries
+ */
+export type User$errorNotebookEntriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ErrorNotebookEntry
+   */
+  select?: Prisma.ErrorNotebookEntrySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ErrorNotebookEntry
+   */
+  omit?: Prisma.ErrorNotebookEntryOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ErrorNotebookEntryInclude<ExtArgs> | null;
+  where?: Prisma.ErrorNotebookEntryWhereInput;
+  orderBy?:
+    | Prisma.ErrorNotebookEntryOrderByWithRelationInput
+    | Prisma.ErrorNotebookEntryOrderByWithRelationInput[];
+  cursor?: Prisma.ErrorNotebookEntryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ErrorNotebookEntryScalarFieldEnum
+    | Prisma.ErrorNotebookEntryScalarFieldEnum[];
 };
 
 /**

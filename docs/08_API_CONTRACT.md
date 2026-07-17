@@ -226,3 +226,13 @@ verification rejects that mode when `NODE_ENV=production`.
 Generation never accepts user identity, goal, level, duration, or answer evidence from
 the request body. Missing onboarding/placement prerequisites return a sanitized 409;
 unknown or non-owned items return 404 without revealing ownership.
+
+## Daily Practice Endpoints
+
+- `POST /api/v1/quiz/session` starts or replays one owner session from a client session
+  ID and returns five cards without keys or explanations.
+- `POST /api/v1/quiz/session/:id/answer` persists one answer and returns immediate
+  server-graded feedback; incorrect answers create a private review entry.
+- `POST /api/v1/quiz/session/:id/submit` requires all five answers, awards XP and streak
+  once, and returns the final score plus errors.
+- `GET /api/v1/quiz/session/:id/result` returns only the caller's persisted result.

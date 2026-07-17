@@ -416,6 +416,10 @@ export const ModelName = {
   PlacementAttempt: 'PlacementAttempt',
   Roadmap: 'Roadmap',
   RoadmapItem: 'RoadmapItem',
+  PracticeSession: 'PracticeSession',
+  PracticeAnswer: 'PracticeAnswer',
+  LearnerProgress: 'LearnerProgress',
+  ErrorNotebookEntry: 'ErrorNotebookEntry',
   UserProfile: 'UserProfile',
   Role: 'Role',
   UserRole: 'UserRole',
@@ -446,6 +450,10 @@ export type TypeMap<
       | 'placementAttempt'
       | 'roadmap'
       | 'roadmapItem'
+      | 'practiceSession'
+      | 'practiceAnswer'
+      | 'learnerProgress'
+      | 'errorNotebookEntry'
       | 'userProfile'
       | 'role'
       | 'userRole';
@@ -832,6 +840,310 @@ export type TypeMap<
         };
       };
     };
+    PracticeSession: {
+      payload: Prisma.$PracticeSessionPayload<ExtArgs>;
+      fields: Prisma.PracticeSessionFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PracticeSessionFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PracticeSessionFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>;
+        };
+        findFirst: {
+          args: Prisma.PracticeSessionFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PracticeSessionFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>;
+        };
+        findMany: {
+          args: Prisma.PracticeSessionFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>[];
+        };
+        create: {
+          args: Prisma.PracticeSessionCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>;
+        };
+        createMany: {
+          args: Prisma.PracticeSessionCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PracticeSessionCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>[];
+        };
+        delete: {
+          args: Prisma.PracticeSessionDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>;
+        };
+        update: {
+          args: Prisma.PracticeSessionUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>;
+        };
+        deleteMany: {
+          args: Prisma.PracticeSessionDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PracticeSessionUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PracticeSessionUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>[];
+        };
+        upsert: {
+          args: Prisma.PracticeSessionUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeSessionPayload>;
+        };
+        aggregate: {
+          args: Prisma.PracticeSessionAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePracticeSession>;
+        };
+        groupBy: {
+          args: Prisma.PracticeSessionGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PracticeSessionGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PracticeSessionCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PracticeSessionCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    PracticeAnswer: {
+      payload: Prisma.$PracticeAnswerPayload<ExtArgs>;
+      fields: Prisma.PracticeAnswerFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PracticeAnswerFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PracticeAnswerFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>;
+        };
+        findFirst: {
+          args: Prisma.PracticeAnswerFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PracticeAnswerFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>;
+        };
+        findMany: {
+          args: Prisma.PracticeAnswerFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>[];
+        };
+        create: {
+          args: Prisma.PracticeAnswerCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>;
+        };
+        createMany: {
+          args: Prisma.PracticeAnswerCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PracticeAnswerCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>[];
+        };
+        delete: {
+          args: Prisma.PracticeAnswerDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>;
+        };
+        update: {
+          args: Prisma.PracticeAnswerUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>;
+        };
+        deleteMany: {
+          args: Prisma.PracticeAnswerDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PracticeAnswerUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PracticeAnswerUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>[];
+        };
+        upsert: {
+          args: Prisma.PracticeAnswerUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeAnswerPayload>;
+        };
+        aggregate: {
+          args: Prisma.PracticeAnswerAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePracticeAnswer>;
+        };
+        groupBy: {
+          args: Prisma.PracticeAnswerGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PracticeAnswerGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PracticeAnswerCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PracticeAnswerCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    LearnerProgress: {
+      payload: Prisma.$LearnerProgressPayload<ExtArgs>;
+      fields: Prisma.LearnerProgressFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.LearnerProgressFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.LearnerProgressFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>;
+        };
+        findFirst: {
+          args: Prisma.LearnerProgressFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.LearnerProgressFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>;
+        };
+        findMany: {
+          args: Prisma.LearnerProgressFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>[];
+        };
+        create: {
+          args: Prisma.LearnerProgressCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>;
+        };
+        createMany: {
+          args: Prisma.LearnerProgressCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.LearnerProgressCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>[];
+        };
+        delete: {
+          args: Prisma.LearnerProgressDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>;
+        };
+        update: {
+          args: Prisma.LearnerProgressUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>;
+        };
+        deleteMany: {
+          args: Prisma.LearnerProgressDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.LearnerProgressUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.LearnerProgressUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>[];
+        };
+        upsert: {
+          args: Prisma.LearnerProgressUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LearnerProgressPayload>;
+        };
+        aggregate: {
+          args: Prisma.LearnerProgressAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLearnerProgress>;
+        };
+        groupBy: {
+          args: Prisma.LearnerProgressGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.LearnerProgressGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.LearnerProgressCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.LearnerProgressCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    ErrorNotebookEntry: {
+      payload: Prisma.$ErrorNotebookEntryPayload<ExtArgs>;
+      fields: Prisma.ErrorNotebookEntryFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ErrorNotebookEntryFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ErrorNotebookEntryFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>;
+        };
+        findFirst: {
+          args: Prisma.ErrorNotebookEntryFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ErrorNotebookEntryFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>;
+        };
+        findMany: {
+          args: Prisma.ErrorNotebookEntryFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>[];
+        };
+        create: {
+          args: Prisma.ErrorNotebookEntryCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>;
+        };
+        createMany: {
+          args: Prisma.ErrorNotebookEntryCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ErrorNotebookEntryCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>[];
+        };
+        delete: {
+          args: Prisma.ErrorNotebookEntryDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>;
+        };
+        update: {
+          args: Prisma.ErrorNotebookEntryUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ErrorNotebookEntryDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ErrorNotebookEntryUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ErrorNotebookEntryUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>[];
+        };
+        upsert: {
+          args: Prisma.ErrorNotebookEntryUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorNotebookEntryPayload>;
+        };
+        aggregate: {
+          args: Prisma.ErrorNotebookEntryAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateErrorNotebookEntry>;
+        };
+        groupBy: {
+          args: Prisma.ErrorNotebookEntryGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ErrorNotebookEntryGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ErrorNotebookEntryCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ErrorNotebookEntryCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     UserProfile: {
       payload: Prisma.$UserProfilePayload<ExtArgs>;
       fields: Prisma.UserProfileFieldRefs;
@@ -1177,6 +1489,61 @@ export const RoadmapItemScalarFieldEnum = {
 export type RoadmapItemScalarFieldEnum =
   (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum];
 
+export const PracticeSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  clientSessionId: 'clientSessionId',
+  practiceDay: 'practiceDay',
+  questionIds: 'questionIds',
+  status: 'status',
+  score: 'score',
+  total: 'total',
+  xpAwarded: 'xpAwarded',
+  startedAt: 'startedAt',
+  submittedAt: 'submittedAt',
+} as const;
+
+export type PracticeSessionScalarFieldEnum =
+  (typeof PracticeSessionScalarFieldEnum)[keyof typeof PracticeSessionScalarFieldEnum];
+
+export const PracticeAnswerScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  questionId: 'questionId',
+  selectedOption: 'selectedOption',
+  isCorrect: 'isCorrect',
+  answeredAt: 'answeredAt',
+} as const;
+
+export type PracticeAnswerScalarFieldEnum =
+  (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum];
+
+export const LearnerProgressScalarFieldEnum = {
+  userId: 'userId',
+  xp: 'xp',
+  streakDays: 'streakDays',
+  lastPracticeOn: 'lastPracticeOn',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type LearnerProgressScalarFieldEnum =
+  (typeof LearnerProgressScalarFieldEnum)[keyof typeof LearnerProgressScalarFieldEnum];
+
+export const ErrorNotebookEntryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sessionId: 'sessionId',
+  questionId: 'questionId',
+  prompt: 'prompt',
+  selectedOption: 'selectedOption',
+  correctOption: 'correctOption',
+  explanation: 'explanation',
+  createdAt: 'createdAt',
+} as const;
+
+export type ErrorNotebookEntryScalarFieldEnum =
+  (typeof ErrorNotebookEntryScalarFieldEnum)[keyof typeof ErrorNotebookEntryScalarFieldEnum];
+
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',
   displayName: 'displayName',
@@ -1448,6 +1815,28 @@ export type ListEnumRoadmapItemStatusFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, 'RoadmapItemStatus[]'>;
 
 /**
+ * Reference to a field of type 'PracticeStatus'
+ */
+export type EnumPracticeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'PracticeStatus'
+>;
+
+/**
+ * Reference to a field of type 'PracticeStatus[]'
+ */
+export type ListEnumPracticeStatusFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'PracticeStatus[]'>;
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Boolean'
+>;
+
+/**
  * Reference to a field of type 'RoleCode'
  */
 export type EnumRoleCodeFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -1602,6 +1991,10 @@ export type GlobalOmitConfig = {
   placementAttempt?: Prisma.PlacementAttemptOmit;
   roadmap?: Prisma.RoadmapOmit;
   roadmapItem?: Prisma.RoadmapItemOmit;
+  practiceSession?: Prisma.PracticeSessionOmit;
+  practiceAnswer?: Prisma.PracticeAnswerOmit;
+  learnerProgress?: Prisma.LearnerProgressOmit;
+  errorNotebookEntry?: Prisma.ErrorNotebookEntryOmit;
   userProfile?: Prisma.UserProfileOmit;
   role?: Prisma.RoleOmit;
   userRole?: Prisma.UserRoleOmit;

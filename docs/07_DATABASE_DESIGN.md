@@ -126,3 +126,11 @@ prevents concurrent generation from leaving multiple active plans. Duration, dai
 minutes, day number, and task minutes have
 database checks. The migration is additive; its owner-approved rollback removes items,
 roadmaps, and then roadmap enums, and is never executed automatically.
+
+## Physical Daily Practice Baseline
+
+Migration `20260718103000_daily_practice` adds owner-scoped practice sessions, unique
+question answers, learner XP/streak progress, and private Error Notebook entries. Session
+and answer uniqueness make retries safe; only an `ACTIVE` session transaction can award
+XP and update streak. Question definitions and answer keys remain backend fixtures and
+are not persisted in client-readable records before answer submission.

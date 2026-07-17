@@ -179,3 +179,10 @@ Node VM modules because the approved `jose` v6 package is ESM-only.
 - A 360px Playwright journey covers no-roadmap generation, task completion, progress
   persistence in the response, phase overview navigation, bearer propagation, and mobile
   overflow without external network access.
+
+## Daily Practice Tests
+
+- Service tests prove five-card answer-key redaction and backend grading inputs.
+- The 360px browser journey completes five cards, covers correct/incorrect feedback,
+  final score, XP, streak/error review, bearer propagation, and overflow without network
+  or credentials.

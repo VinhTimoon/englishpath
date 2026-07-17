@@ -107,3 +107,11 @@ export const RoadmapItemStatus = {
 
 export type RoadmapItemStatus =
   (typeof RoadmapItemStatus)[keyof typeof RoadmapItemStatus];
+
+export const PracticeStatus = {
+  ACTIVE: 'ACTIVE',
+  SUBMITTED: 'SUBMITTED',
+} as const;
+
+export type PracticeStatus =
+  (typeof PracticeStatus)[keyof typeof PracticeStatus];
