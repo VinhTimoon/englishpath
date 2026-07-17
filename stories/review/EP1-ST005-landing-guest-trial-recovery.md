@@ -1,7 +1,7 @@
 ---
 id: EP1-ST005
 title: Landing And Goal-Oriented Guest Trial Recovery
-status: ready
+status: review
 type: frontend
 priority: critical
 phase: phase-1-learning-core
@@ -107,3 +107,17 @@ credential-free goal-oriented guest trial aligned with product specification v2.
 - `pnpm e2e`
 - `pnpm story:verify stories/review/EP1-ST005-landing-guest-trial-recovery.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Replaced the starter screen with the documented nine-widget Vietnamese landing and
+  preserved all existing blog routes and content files.
+- Added an isolated local-only guest trial with native radio controls and exhaustive
+  sample content for all seven v2 primary learning goals.
+- Added semantic design tokens, surface-aware focus treatment, readable amber/dark
+  surfaces, responsive layouts, reduced motion, and 44px interaction targets.
+- Expanded production-browser coverage for widget order, keyboard goal selection,
+  deterministic sample updates, guest limitations, 360px overflow, and axe violations.
+- The automated build and debug agents timed out during repeated commit exploration;
+  implementation was completed by the manager against their approved plan and remains
+  subject to independent Codex review and all repository quality gates.
