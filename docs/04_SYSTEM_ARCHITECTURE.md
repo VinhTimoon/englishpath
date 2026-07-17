@@ -76,6 +76,19 @@ repository evidence from planned architecture.
 
 - Local and test environments may use mock or local adapters for storage, Drive
   inventory, queue, analytics, monitoring, email, AI, STT, TTS, and payment.
+
+### Drive Inventory Boundary
+
+The content path is `Drive source inventory -> governed canonical content ->
+controlled storage -> authorized learner delivery`. Inventory contains operational
+metadata only and grants no rights, classification, review, import, or publication
+authority. Runtime learning features never query a live Drive listing or depend on a
+public Drive URL.
+
+`EP3-ST002` owns real Google credentials, API scanning, metadata extraction, checksum
+calculation, and change detection. Later Phase 3 stories own download, segmentation,
+controlled storage, CMS import, and publication.
+
 - Production provider selection and paid-service activation remain owner-only
   decisions.
 

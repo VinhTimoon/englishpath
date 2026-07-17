@@ -1,7 +1,7 @@
 ---
 id: EP0-ST021
 title: Google Drive Inventory Manifest Foundation
-status: ready
+status: review
 type: backend
 priority: critical
 phase: phase-0-foundation
@@ -108,5 +108,18 @@ business database, public delivery path, or automatic publication channel.
 - `pnpm --filter api test:e2e`
 - `pnpm build`
 - `pnpm e2e`
-- `pnpm story:verify stories/ready/EP0-ST021-google-drive-inventory-foundation.md`
+- `pnpm story:verify stories/review/EP0-ST021-google-drive-inventory-foundation.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added metadata-only manifest/query/result contracts, stable sanitized errors, and a
+  Drive inventory port without content-byte or publication operations.
+- Added a deterministic local fixture adapter with explicit in-memory input, typed
+  validation, duplicate rejection, filtering, sorting, detached copies, and deep
+  immutability.
+- Added credential-free tests for supported resource kinds, size rules, malformed and
+  prohibited fields, query boundaries, ordering, duplicate identities, sanitization,
+  and fixture isolation.
+- Documented the inventory-to-governed-content boundary and deferred real Drive API,
+  credentials, scanning, import, storage, and publication to Phase 3 stories.

@@ -39,6 +39,9 @@ does not prescribe a physical Prisma schema in this story.
   terms, review status, publish status, and controlled-storage references.
 - A single canonical content item may support multiple learning domains such as
   track lessons, TOEIC tasks, daily learning, and library items.
+- A Drive inventory manifest is source evidence, not a canonical content row. Future
+  import persistence may retain provider/file identity, checksum, version, and scan
+  timestamps, but rights/review/publish state remains owned by governed content.
 
 ## Search and Retrieval
 

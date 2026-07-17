@@ -36,6 +36,10 @@
   approved publication state.
 - Google Drive content stays inventory-only until review, rights validation, and
   controlled publication complete.
+- Drive source references, parent IDs, and path hints are private operational metadata.
+  They are excluded from learner projections and sanitized failures. A changed checksum
+  or version is default-denied for import/publication until later rights and human-review
+  gates complete; inventory presence never conveys approval.
 - Imported and AI-assisted content begins as draft and cannot self-review or
   self-publish. Review and publication require a policy-issued decision for an
   authenticated human actor with the exact action permission, bound to the actor,

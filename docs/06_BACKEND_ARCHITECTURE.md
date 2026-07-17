@@ -121,3 +121,11 @@ than caller-provided booleans. The access boundary must resolve an authenticated
 actor and the exact `content:review` or `content:publish` permission before issuing a
 decision bound to that actor and action; automated actors and forged decisions fail
 closed.
+
+## Drive Inventory Contract Foundation
+
+The framework-independent `drive-inventory` port returns immutable metadata manifests
+only. Its local adapter receives explicit in-memory fixtures and performs no credential,
+environment, filesystem, database, storage, or network access. It exposes no byte,
+download, delivery, rights, review, or publish operation and is not registered in the
+Nest runtime graph by this foundation story.
