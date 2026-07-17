@@ -1,7 +1,7 @@
 ---
 id: EP0-ST012
 title: Secure Windows Autonomous Loop
-status: ready
+status: in-progress
 type: tooling
 priority: critical
 phase: phase-0-foundation
