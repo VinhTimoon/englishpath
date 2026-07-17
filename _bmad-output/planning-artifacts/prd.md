@@ -1,54 +1,71 @@
 # EnglishPath BMAD PRD Projection
 
-## Objective
+## Authority
 
-Create a concise planning baseline that converts the approved product specification and
-roadmap into story-ready scope, requirements, flows, epics, and dependencies.
+- Detailed source: `notes/englishpath_product_spec_v2.md`.
+- Executable requirements: `docs/02_PRD.md`.
+- Critical journeys: `docs/03_USER_FLOWS.md`.
+- Epic/story maps are rebaselined immediately in `EP0-ST015`.
 
-## Product Baseline
+## Product Outcome
 
-- Product: free-first English learning platform for Vietnamese learners.
-- Implemented baseline: governance foundation, blog SEO foundation, local runtime ports.
-- Next delivery: public landing recovery in `EP1-ST005`.
-- Planned domains: identity, onboarding, roadmap, daily learning, CMS, listening, TOEIC, AI, mobile, and monetization.
+EnglishPath gives Vietnamese learners a free-first, roadmap-driven English learning
+loop that connects daily practice, vocabulary retention, recurring-error remediation,
+licensed content, progress, and three primary TOEIC tracks. It remains broader than a
+test site and does not become a separate IELTS exam product.
 
-## MVP Scope
+## Primary Tracks And Shared Core
 
-1. Public acquisition and SEO.
-2. Supabase-backed auth and recovery.
-3. Onboarding plus placement.
-4. 30/60/90/120-day roadmap generation.
-5. Daily vocabulary, quizzes, and daily sentences.
-6. Progress tracking and dashboard.
-7. Admin RBAC and web CMS.
-8. Seed content, analytics, monitoring, and staging readiness.
+Primary TOEIC tracks:
 
-## Key Constraints
+1. TOEIC Listening & Reading.
+2. TOEIC Speaking & Writing.
+3. TOEIC Four Skills.
 
-- Do not present planned modules as already implemented.
-- Keep artifacts concise and story-loadable.
-- Production promotion, destructive migrations, and paid-service activation stay human-controlled.
-- AI must route through a backend gateway.
-- Licensed content must preserve source and license metadata.
+Shared core:
 
-## Assumptions
+- General, communication, and workplace English.
+- Onboarding, placement, dashboard, and 30/60/90/120-day roadmap.
+- Vocabulary mindmap/taxonomy, SRS, daily practice, and Error Notebook.
+- Shared CMS/content model with source, license, review, and publish governance.
+- Licensed library and reviewed Google Drive inventory/import path.
 
-- Supabase Auth.
-- Local-first adapters until approved replacements exist.
-- Web-based MVP CMS.
-- Human-reviewed AI-assisted draft content.
-- PostgreSQL plus pgvector before external vector or graph databases.
-- FE port `5173`, BE port `3000`.
+## Phase Projection
 
-## Requirement References
+| Phase | Product increment                                                                                                                       |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 0     | Governance, auth foundation, taxonomy/rights design, Drive inventory design, data/API conventions, health and observability foundations |
+| 1     | Public/guest and learning core: auth, placement, dashboard, roadmap, mindmap/SRS, daily practice, Error Notebook, CMS                   |
+| 2     | TOEIC Listening & Reading Parts 1-7, question bank, mini/half tests, timing, analysis, remediation                                      |
+| 3     | Licensed library, Drive import, media/transcript, listening/shadowing, resume/bookmark and learning links                               |
+| 4     | TOEIC Speaking, Writing and Four Skills with rubrics, submissions, advisory AI and progress                                             |
+| 5     | Full tests, exam simulation, adaptive/error learning, AI learning and moderated community                                               |
+| 6     | Mobile, push/offline, premium quotas/subscriptions and advanced analytics                                                               |
 
-- Functional: `FR-001` to `FR-019` in `docs/02_PRD.md`.
-- Non-functional: `NFR-001` to `NFR-012` in `docs/02_PRD.md`.
-- Critical flows: `UF-001` to `UF-009` in `docs/03_USER_FLOWS.md`.
+## Non-Negotiable Rules
 
-## Success Measures
+- Free baseline value cannot be replaced by a paywall.
+- Google Drive is a source/inventory input, never the production business database.
+- Imported or AI-assisted content cannot publish before license and human review.
+- Shared taxonomy/content is reused across tracks and skills.
+- Learning activities that produce reviewable errors integrate with Error Notebook.
+- Official answer keys, scores, exam timing, roles, ownership, quotas, and rights are
+  backend-owned.
+- AI feedback is advisory and cannot set official answers or official scores.
+- No unapproved exam track and no separate IELTS exam product.
+- Production credentials, paid services, destructive migrations, and `dev` to `main`
+  promotion remain owner-controlled.
 
-- All seven planning artifacts are non-empty and consistent.
-- Every MVP capability maps to an epic and story range.
-- Identifiers remain unique and traceable.
-- Landing recovery remains the next product build step.
+## Launch Evidence
+
+Useful early web delivery requires an end-to-end learner loop, governed content,
+TOEIC L&R core, licensed-library foundations, technical quality gates, observability,
+and enough reviewed content to demonstrate each critical journey. Exact content
+counts and phase story ranges are maintained in the v2 roadmap/maps, not duplicated
+here.
+
+## Current Boundary
+
+Governance/loop tooling, health, local ports, and a blog SEO baseline are implemented.
+The product v2 core planning baseline is `EP0-ST014`; detailed map alignment is
+`EP0-ST015`. All broader domain capabilities remain planned.

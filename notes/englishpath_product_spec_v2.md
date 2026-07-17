@@ -1,15 +1,43 @@
 # EnglishPath — Tài liệu mô tả nghiệp vụ, kiến trúc và stack triển khai End-to-End
 
-**Phiên bản:** 1.0  
-**Ngày tạo:** 2026-06-21  
-**Định hướng:** Website học tiếng Anh cộng đồng, có TOEIC, luyện 4 kỹ năng, AI, game hóa, SEO, miễn phí là trọng tâm, có khả năng mở rộng sang mobile app.  
+**Phiên bản:** 2.0
+**Ngày tạo:** 2026-06-21
+**Cập nhật định hướng:** 2026-07-17
+**Định hướng:** Nền tảng học tiếng Anh toàn diện cho người Việt, miễn phí là trọng tâm; TOEIC 2 kỹ năng và TOEIC 4 kỹ năng là các learning track chính; có lộ trình cá nhân hóa, kho nội dung được cấp quyền, AI, game hóa, SEO và khả năng mở rộng sang mobile app.
 **Mục tiêu kỹ thuật ban đầu:** phục vụ ổn định khoảng 300–500 người dùng đồng thời, có khả năng mở rộng theo traffic thật.
 
 ---
 
+## Nhật ký cập nhật phiên bản 2.0
+
+- Giữ nguyên định hướng nền tảng học tiếng Anh toàn diện.
+- Xác định TOEIC 2 kỹ năng và TOEIC 4 kỹ năng là nghiệp vụ chính.
+- Bổ sung TOEIC Speaking & Writing.
+- Bổ sung Vocabulary Mindmap/Knowledge Graph.
+- Bổ sung kho nội dung được cấp quyền và Google Drive Content Pipeline.
+- Bổ sung learning tracks, route map và trải nghiệm guest.
+- Điều chỉnh thứ tự phase để TOEIC xuất hiện sớm hơn.
+- Bổ sung Product Scope Guard cho Agent.
+- Không triển khai một IELTS exam platform riêng trong phạm vi hiện tại.
+
+---
+
+
 ## 1. Tóm tắt sản phẩm
 
-EnglishPath là nền tảng học tiếng Anh dành cho cộng đồng, tập trung vào việc giúp người học ở mọi trình độ có thể đi đúng lộ trình trong thời gian ngắn, tối đa 4 tháng cho mỗi lộ trình chính. Sản phẩm không đơn thuần là kho bài học hay web luyện đề TOEIC, mà là một hệ sinh thái học tập gồm:
+EnglishPath là nền tảng học tiếng Anh toàn diện dành cho người Việt, giúp người học ở nhiều trình độ đi theo một lộ trình rõ ràng và đạt tiến bộ đo được trong khoảng 30–120 ngày. Sản phẩm không chỉ là kho bài học hoặc website giải đề, mà là một hệ sinh thái học tập kết nối nội dung, luyện tập, sửa lỗi, đánh giá và cá nhân hóa.
+
+TOEIC là một trục nghiệp vụ chính của sản phẩm, bao gồm:
+
+- TOEIC Listening & Reading (2 kỹ năng).
+- TOEIC Speaking & Writing.
+- Lộ trình TOEIC 4 kỹ năng.
+- Luyện theo Part, chủ đề, kỹ năng yếu, mini test và full test.
+- Phân tích điểm, thời gian làm bài, lỗi lặp lại và gợi ý cải thiện.
+
+Bên cạnh TOEIC, EnglishPath vẫn giữ định hướng ban đầu là hỗ trợ học tiếng Anh nền tảng, giao tiếp, tiếng Anh công việc, từ vựng, ngữ pháp và luyện nghe–nói–đọc–viết. Các tài liệu IELTS, tiếng Anh học thuật hoặc nguồn tiếng Anh khác có thể được sử dụng như nội dung học được cấp quyền hoặc nguồn tham khảo, nhưng không làm thay đổi trọng tâm sản phẩm thành một nền tảng luyện thi IELTS.
+
+Hệ sinh thái gồm:
 
 - Từ vựng tổng thể chia theo trình độ, chủ đề, độ thông dụng và mục tiêu học.
 - Quiz card/game hóa tương tự Duolingo để học hằng ngày.
@@ -26,6 +54,33 @@ EnglishPath là nền tảng học tiếng Anh dành cho cộng đồng, tập t
 Triết lý sản phẩm:
 
 > Học ít nhưng đúng hướng mỗi ngày. Dễ bắt đầu, khó bỏ cuộc, có tiến bộ đo được.
+
+### 1.1. Định vị sản phẩm đã chốt
+
+> EnglishPath là nền tảng học tiếng Anh toàn diện cho người Việt, trong đó TOEIC 2 kỹ năng và TOEIC 4 kỹ năng là các learning track được đầu tư chuyên sâu.
+
+EnglishPath không bị giới hạn thành một website luyện đề TOEIC, đồng thời cũng không triển khai dàn trải thành nền tảng luyện mọi kỳ thi quốc tế. Sản phẩm phục vụ các mục tiêu:
+
+1. Học lại nền tảng tiếng Anh.
+2. Cải thiện giao tiếp và phản xạ.
+3. Cải thiện toàn diện bốn kỹ năng.
+4. Ôn TOEIC Listening & Reading.
+5. Ôn TOEIC Speaking & Writing.
+6. Ôn TOEIC 4 kỹ năng.
+7. Học tiếng Anh phục vụ công việc.
+
+Các chức năng dùng chung như từ vựng, ngữ pháp, listening, speaking, writing, error notebook và spaced repetition phải được tái sử dụng giữa các learning track thay vì xây thành các hệ thống tách rời.
+
+### 1.2. Điểm khác biệt cốt lõi
+
+- Free-first: người dùng miễn phí vẫn có thể học và tạo tiến bộ thật.
+- TOEIC chuyên sâu nhưng không bỏ học tiếng Anh tổng quát.
+- Roadmap 30/60/90/120 ngày, ưu tiên kết quả đo được sau 1–3 tháng.
+- Mindmap từ vựng theo topic, subtopic, collocation và kỹ năng liên quan.
+- Một nội dung có thể liên kết với vocabulary, listening, speaking, writing và TOEIC Part.
+- Error-driven learning: lỗi sai phải quay lại lịch học.
+- Kho tài liệu và video đã được cấp quyền, được chuẩn hóa thành lesson, quiz và learning asset.
+- AI là lớp hỗ trợ giải thích, phản hồi và cá nhân hóa; không thay thế rule engine, đáp án chuẩn hoặc quy trình duyệt nội dung.
 
 ---
 
@@ -46,19 +101,22 @@ Các phần cần nằm trong sản phẩm end-to-end:
 9. Luyện nghe.
 10. Luyện nói AI.
 11. Luyện viết AI.
-12. Luyện đề TOEIC.
-13. Exam mode chống gian lận tương đối.
-14. Daily English sentences.
-15. Error notebook.
-16. Dashboard tiến độ.
-17. Leaderboard/streak/XP/badge.
-18. CMS quản trị nội dung.
-19. Quản lý người dùng.
-20. Quản lý gói miễn phí/premium sau này.
-21. Tích hợp analytics, monitoring, logging.
-22. Bảo mật API key và third-party services.
-23. Cơ sở hạ tầng production.
-24. Lộ trình mở rộng sang mobile.
+12. TOEIC Listening & Reading: luyện Part 1–7, mini test, half test và full test.
+13. TOEIC Speaking & Writing và lộ trình TOEIC 4 kỹ năng.
+14. Exam mode chống gian lận tương đối.
+15. Daily English sentences.
+16. Error notebook.
+17. Dashboard tiến độ.
+18. Leaderboard/streak/XP/badge.
+19. CMS quản trị nội dung.
+20. Kho tài liệu/video/audio được cấp quyền.
+21. Pipeline nhập nội dung từ Google Drive.
+22. Quản lý người dùng.
+23. Quản lý gói miễn phí/premium sau này.
+24. Tích hợp analytics, monitoring, logging.
+25. Bảo mật API key và third-party services.
+26. Cơ sở hạ tầng production.
+27. Lộ trình mở rộng sang mobile.
 
 ### 2.2. Out-of-scope giai đoạn đầu
 
@@ -72,28 +130,52 @@ Những phần không nên làm ngay trong MVP đầu tiên:
 - Clone đầy đủ Duolingo ở mức animation/game phức tạp.
 - Tự động crawl đề thi/khóa học bản quyền.
 
-### 2.3. Ràng buộc bản quyền
+### 2.3. Quản trị quyền sử dụng nội dung
 
-Các khóa học đã mua chỉ nên dùng để:
+Dự án đã có quyền sử dụng đối với một số tài liệu và video lưu trên Google Drive. Các nội dung này có thể được dùng để cung cấp bài học, video, audio, transcript, quiz hoặc tài liệu luyện tập trong phạm vi quyền đã được cấp.
 
-- Tham khảo cấu trúc bài học.
-- Tham khảo cách chia trình độ.
-- Tham khảo dạng bài tập.
-- Tham khảo thứ tự học.
-- Tạo taxonomy/chủ đề riêng của hệ thống.
+Tuy vậy, mỗi tài nguyên vẫn phải được quản trị bằng metadata để tránh sử dụng vượt phạm vi:
 
-Không nên:
+```text
+source_type
+source_name
+source_file_id
+content_owner
+license_status
+usage_scope
+allowed_actions
+access_tier
+review_status
+publish_status
+license_expiration
+```
 
-- Upload lại video/tài liệu bản quyền lên hệ thống công khai.
-- Chép nguyên đề thi thật chưa được cấp phép.
-- Công khai audio/transcript/answer key của tài liệu có bản quyền.
+Các trạng thái đề xuất:
 
-Hướng an toàn:
+```text
+SELF_CREATED
+PUBLIC_DOMAIN
+OPEN_LICENSE
+LICENSED
+REFERENCE_ONLY
+UNKNOWN
+RESTRICTED
+```
 
-- Tự biên soạn question bank.
-- Dùng tài liệu public/sample có quyền sử dụng.
-- Lưu nguồn/license cho từng câu hỏi/audio/bài viết.
-- Với đề TOEIC, ưu tiên đề tự biên soạn theo format hoặc đề được cấp phép.
+`LICENSED` cần ghi rõ các quyền cụ thể:
+
+- Có được phát trực tuyến hay không.
+- Có được cho tải xuống hay không.
+- Có được cắt thành lesson nhỏ hay không.
+- Có được tạo transcript, bản dịch và quiz hay không.
+- Có giới hạn số người dùng, thời gian hoặc phạm vi thương mại hay không.
+- Có được dùng cho AI retrieval, embedding hoặc tạo nội dung phái sinh hay không.
+
+Quy tắc xuất bản:
+
+- Nội dung chỉ được publish khi `review_status = APPROVED`.
+- Nội dung `REFERENCE_ONLY`, `UNKNOWN` hoặc `RESTRICTED` không được hiển thị công khai.
+- Tài liệu IELTS hoặc kỳ thi khác có thể được dùng làm nội dung học tiếng Anh đã cấp quyền, nhưng không tự động biến EnglishPath thành nền tảng luyện thi kỳ thi đó.
 
 ---
 
@@ -118,6 +200,22 @@ Không thể:
 - Làm full test.
 - Dùng AI nhiều lượt.
 - Truy cập error notebook.
+
+### 3.1.1. Mục tiêu học được chọn khi onboarding
+
+Người dùng có thể chọn một mục tiêu chính:
+
+```text
+ENGLISH_FOUNDATION
+DAILY_COMMUNICATION
+FOUR_SKILL_ENGLISH
+WORKPLACE_ENGLISH
+TOEIC_LISTENING_READING
+TOEIC_SPEAKING_WRITING
+TOEIC_FOUR_SKILLS
+```
+
+Có thể chọn thêm mục tiêu phụ, nhưng roadmap phải luôn có một mục tiêu chính để tránh dàn trải.
 
 ### 3.2. Free User
 
@@ -258,6 +356,19 @@ Ngày 81-90:
 - Chiến thuật phòng thi
 ```
 
+### 4.3.1. Roadmap theo learning track
+
+Các template chính:
+
+- English Foundation 60/90/120 ngày.
+- Daily Communication 30/60/90 ngày.
+- Workplace English 60/90 ngày.
+- TOEIC Listening & Reading 30/60/90 ngày.
+- TOEIC Speaking & Writing 60/90 ngày.
+- TOEIC Four Skills 60/90/120 ngày.
+
+Mục tiêu 1–3 tháng được xem là khoảng thời gian tạo tiến bộ đo được, không phải cam kết một mức điểm cố định cho mọi người dùng.
+
 ### 4.4. Quy tắc điều chỉnh roadmap
 
 - Nếu người học bỏ học 2 ngày: ngày tiếp theo ưu tiên review nhẹ, không nhồi thêm bài mới.
@@ -268,6 +379,26 @@ Ngày 81-90:
 - Nếu user học 60 phút/ngày: mỗi ngày 4–5 task.
 - Nếu mục tiêu TOEIC: roadmap phải map Part 1–7.
 - Nếu mục tiêu giao tiếp: roadmap phải có speaking room + daily sentences.
+- Nếu mục tiêu TOEIC Speaking & Writing: roadmap phải có rubric practice và feedback định kỳ.
+- Nếu mục tiêu TOEIC 4 kỹ năng: không được bỏ trống một kỹ năng quá số ngày cấu hình.
+- Nội dung được cấp quyền trong library phải được ưu tiên nếu phù hợp với level, topic và learning goal.
+
+Các tín hiệu điều chỉnh:
+
+```text
+accuracy_by_part
+accuracy_by_topic
+average_response_time
+vocabulary_mastery
+review_overdue_count
+streak_consistency
+listening_replay_count
+speaking_rubric_trend
+writing_rubric_trend
+frequent_mistakes
+mock_test_score_trend
+```
+
 
 ---
 
@@ -318,7 +449,51 @@ Xây dựng kho từ vựng có thể phục vụ:
 - Environment
 - News & Current Affairs
 
-### 5.4. Dữ liệu cho mỗi từ
+### 5.4. Vocabulary Mindmap và Knowledge Graph
+
+Từ vựng phải được tổ chức theo cây kiến thức, không chỉ dưới dạng danh sách hoặc folder:
+
+```text
+Domain
+→ Topic
+→ Subtopic
+→ Vocabulary
+→ Collocation
+→ Sentence Pattern
+→ Related Lesson
+→ Related TOEIC Part
+→ User Mistake
+```
+
+Ví dụ:
+
+```text
+Workplace
+└── Meetings
+    ├── Scheduling
+    ├── Presentations
+    ├── Decisions
+    └── Vocabulary
+        ├── agenda
+        ├── attendee
+        ├── postpone
+        └── availability
+```
+
+Mỗi node mindmap cần hỗ trợ:
+
+- Số từ đã học và tổng số từ.
+- Mastery score.
+- Số từ đến hạn ôn.
+- Nội dung đã mở khóa.
+- TOEIC Part liên quan.
+- Listening, speaking, writing và quiz liên quan.
+- Các lỗi người dùng thường mắc.
+- Collocation và sentence pattern quan trọng.
+
+Mindmap là taxonomy dùng chung cho toàn hệ thống, không phải một trang minh họa độc lập.
+
+### 5.5. Dữ liệu cho mỗi từ
 
 ```text
 word
@@ -343,7 +518,7 @@ created_at
 updated_at
 ```
 
-### 5.5. Spaced repetition
+### 5.6. Spaced repetition
 
 Trạng thái từ:
 
@@ -655,25 +830,27 @@ Bạn đã sai “depend on” 4 lần. App sẽ đưa cụm này vào review ng
 
 ---
 
-## 10. Luyện TOEIC và Exam Mode
+## 10. TOEIC 2 kỹ năng, TOEIC 4 kỹ năng và Exam Mode
 
-### 10.1. Các dạng luyện
+### 10.1. Learning tracks TOEIC
 
-- Practice by Part.
-- Practice by Topic.
-- Mini Test.
-- Half Test.
-- Full Test.
-- Weakness Test.
-- Exam Simulation.
-- Yearly Test Set nếu có quyền sử dụng nội dung.
+EnglishPath hỗ trợ ba hướng học:
 
-### 10.2. Part TOEIC Listening & Reading
+1. **TOEIC Listening & Reading**
+   Phục vụ kỳ thi 2 kỹ năng với Listening Part 1–4 và Reading Part 5–7.
+
+2. **TOEIC Speaking & Writing**
+   Luyện nói và viết theo dạng nhiệm vụ TOEIC, có rubric và AI feedback.
+
+3. **TOEIC Four Skills**
+   Kết hợp Listening, Reading, Speaking và Writing trong cùng roadmap.
+
+### 10.2. TOEIC Listening & Reading
 
 Listening:
 
 - Part 1: Photographs.
-- Part 2: Question-Response.
+- Part 2: Question–Response.
 - Part 3: Conversations.
 - Part 4: Talks.
 
@@ -683,42 +860,123 @@ Reading:
 - Part 6: Text Completion.
 - Part 7: Reading Comprehension.
 
-### 10.3. Exam mode
+Hình thức luyện:
+
+- Practice by Part.
+- Practice by Topic.
+- Practice by Difficulty.
+- Vocabulary-focused practice.
+- Grammar-focused practice.
+- Weakness Test.
+- Mini Test.
+- Half Test.
+- Full Test.
+- Exam Simulation.
+
+### 10.3. TOEIC Speaking
+
+Các nhóm nhiệm vụ cần hỗ trợ:
+
+- Read a text aloud.
+- Describe a picture.
+- Respond to questions.
+- Respond using provided information.
+- Express an opinion.
+
+Tiêu chí đánh giá:
+
+- Pronunciation.
+- Intonation and stress.
+- Fluency.
+- Grammar.
+- Vocabulary.
+- Relevance.
+- Task completion.
+
+Hệ thống phải lưu audio, transcript, rubric result, lỗi lặp lại và phiên bản câu trả lời được gợi ý.
+
+### 10.4. TOEIC Writing
+
+Các nhóm nhiệm vụ cần hỗ trợ:
+
+- Write a sentence based on a picture.
+- Respond to a written request.
+- Write an opinion essay.
+
+Tiêu chí đánh giá:
+
+- Task completion.
+- Grammar.
+- Vocabulary.
+- Organization.
+- Coherence.
+- Supporting details.
+- Appropriateness of tone.
+
+AI feedback không được coi là điểm thi chính thức. Kết quả phải ghi rõ là estimated/practice score.
+
+### 10.5. Roadmap TOEIC 4 kỹ năng
+
+Roadmap phải phân bổ bốn kỹ năng theo trình độ, mục tiêu và thời gian học:
+
+```text
+Foundation
+→ Vocabulary & Grammar Core
+→ Listening/Reading Skill Building
+→ Speaking/Writing Task Practice
+→ Timed Practice
+→ Mock Test
+→ Error Review
+```
+
+Người học có thể chọn trọng số kỹ năng, nhưng hệ thống phải cảnh báo nếu một kỹ năng bị bỏ qua quá lâu.
+
+### 10.6. Exam mode
 
 Tính năng:
 
 - Timer server-side.
 - Auto submit khi hết giờ.
-- Không cho pause.
-- Strict mode không cho quay lại câu trước nếu cấu hình.
-- Disable copy/paste/right click.
-- Detect tab switch.
-- Detect window blur.
-- Random thứ tự câu hỏi nếu phù hợp.
-- Random đáp án nếu không phá logic.
-- Watermark user id.
-- Không gửi answer key xuống client trước khi submit.
+- Không cho pause trong strict mode.
+- Không cho xem answer key trước submit.
+- Disable copy/paste/right click ở mức hợp lý.
+- Detect tab switch và window blur.
+- Random thứ tự câu hỏi/đáp án khi không phá logic.
+- Watermark user id hoặc session id.
 - Log hành vi bất thường.
+- Resume policy phải được cấu hình theo loại test.
+- Speaking/Writing phải lưu trạng thái upload an toàn để tránh mất bài.
 
 Giới hạn:
 
 - Web không thể chống gian lận tuyệt đối.
-- Không thể chặn hoàn toàn quay/chụp màn hình bằng thiết bị ngoài.
-- Không thể chặn tuyệt đối việc dùng điện thoại khác để dịch.
-- Exam mode chỉ giúp giảm gian lận và tạo môi trường mô phỏng.
+- Không thể ngăn hoàn toàn việc chụp màn hình hoặc dùng thiết bị ngoài.
+- Exam mode là môi trường mô phỏng, không phải hệ thống proctoring chuyên nghiệp.
 
-### 10.4. Phân tích sau bài test
+### 10.7. Phân tích sau bài test
 
-Sau khi làm bài, hệ thống cần trả:
+Hệ thống trả về:
 
 - Estimated score.
 - Accuracy by skill.
-- Accuracy by TOEIC part.
-- Time per question.
+- Accuracy by TOEIC Part.
+- Time per question/task.
 - Mistake types.
 - Weak topics.
-- Suggested review plan.
-- Questions to review.
+- Vocabulary gaps.
+- Grammar gaps.
+- Speaking/Writing rubric breakdown.
+- Questions/tasks to review.
+- Suggested learning plan.
+- Score trend theo thời gian.
+
+### 10.8. Quy tắc chất lượng question bank
+
+- Mỗi câu có source/license rõ ràng.
+- Đáp án và explanation phải qua review.
+- Không để AI tự xác nhận đáp án cuối cùng.
+- Câu hỏi có trạng thái Draft → Reviewed → Approved → Published → Archived.
+- Cần versioning để không làm sai dữ liệu lịch sử của các bài test đã hoàn thành.
 
 ---
 
@@ -928,6 +1186,103 @@ Bài news: “5 workplace trends in 2026”
 
 ---
 
+## 14A. Kho nội dung được cấp quyền và Google Drive Content Pipeline
+
+### 14A.1. Mục tiêu
+
+Biến kho tài liệu, video, audio và course asset trên Google Drive thành một thư viện học tập có cấu trúc, tìm kiếm được và gắn với roadmap.
+
+Google Drive là nguồn nội dung, không phải database nghiệp vụ chính.
+
+### 14A.2. Pipeline nhập nội dung
+
+```text
+Google Drive
+→ Content Inventory
+→ Metadata Extraction
+→ License Validation
+→ Content Classification
+→ Segmentation
+→ Human Review
+→ CMS Import
+→ Publish
+```
+
+### 14A.3. Loại nội dung
+
+- Document/PDF.
+- Video.
+- Audio.
+- Slide.
+- Spreadsheet/question bank.
+- Transcript.
+- Image.
+- Course folder.
+- External link.
+
+### 14A.4. Metadata bắt buộc
+
+```text
+title
+source_file_id
+source_url
+content_type
+exam_type
+skill
+toeic_part
+topic
+subtopic
+level
+language
+duration
+license_status
+usage_scope
+access_tier
+review_status
+publish_status
+checksum
+version
+```
+
+### 14A.5. Phân loại `exam_type`
+
+```text
+GENERAL_ENGLISH
+TOEIC_LISTENING_READING
+TOEIC_SPEAKING_WRITING
+TOEIC_FOUR_SKILLS
+BUSINESS_ENGLISH
+COMMUNICATION
+IELTS_CONTENT
+ACADEMIC_ENGLISH
+OTHER
+```
+
+`IELTS_CONTENT` hoặc `OTHER` vẫn có thể xuất hiện trong thư viện nếu được cấp quyền và hữu ích cho học tiếng Anh, nhưng không tự động tạo một IELTS exam track.
+
+### 14A.6. Trải nghiệm người học
+
+Kho nội dung phải hỗ trợ:
+
+- Tìm kiếm và lọc theo level, skill, topic, track và loại tài nguyên.
+- Resume video/audio.
+- Theo dõi tiến độ.
+- Bookmark.
+- Gắn note cá nhân.
+- Liên kết lesson với quiz và vocabulary.
+- Đề xuất nội dung tiếp theo.
+- Hiển thị quyền truy cập rõ ràng.
+
+### 14A.7. Quy tắc đồng bộ Drive
+
+- Không phụ thuộc vào URL Drive công khai trong runtime production.
+- File đã publish cần được đồng bộ sang storage phù hợp hoặc sử dụng cơ chế truy cập có kiểm soát.
+- Dùng checksum/version để nhận biết file thay đổi.
+- Không tự động publish khi file trên Drive thay đổi.
+- Mọi cập nhật phải qua review lại nếu ảnh hưởng nội dung học.
+
+---
+
 ## 15. Admin CMS
 
 ### 15.1. Dashboard admin
@@ -1012,6 +1367,78 @@ Hiển thị:
 - Quest rules.
 - Leaderboard config.
 - Streak freeze config.
+
+---
+
+## 15A. Information Architecture và route map đề xuất
+
+### 15A.1. Public routes
+
+```text
+/
+/foundation
+/vocabulary
+/vocabulary/mindmap
+/listening
+/speaking
+/writing
+/toeic
+/toeic/listening-reading
+/toeic/speaking-writing
+/toeic/four-skills
+/library
+/blog
+/pricing
+```
+
+### 15A.2. Authenticated learner routes
+
+```text
+/dashboard
+/onboarding
+/placement-test
+/roadmap
+/daily-practice
+/vocabulary/topics
+/vocabulary/review
+/listening/lessons
+/speaking/room
+/writing/practice
+/toeic/practice
+/toeic/mock-tests
+/error-notebook
+/progress
+/library/my-learning
+/bookmarks
+```
+
+### 15A.3. Admin routes
+
+```text
+/admin
+/admin/content
+/admin/library
+/admin/vocabulary
+/admin/questions
+/admin/tests
+/admin/audio
+/admin/video
+/admin/roadmaps
+/admin/rubrics
+/admin/users
+/admin/licenses
+/admin/analytics
+/admin/ai-usage
+```
+
+### 15A.4. Nguyên tắc UX
+
+- Trang chủ định hướng theo mục tiêu học, không chỉ liệt kê tính năng.
+- Guest phải được học thử trước khi đăng ký.
+- Dashboard tập trung vào “Hôm nay học gì?”.
+- Roadmap là trung tâm kết nối toàn bộ module.
+- Một nội dung chỉ nên có một nguồn chuẩn nhưng có thể xuất hiện trong nhiều learning track.
+- Navigation không được làm người dùng cảm giác đang dùng nhiều ứng dụng rời rạc.
 
 ---
 
@@ -1903,149 +2330,140 @@ Premium chỉ nên mở rộng năng lực:
 
 ## 28. Roadmap triển khai sản phẩm
 
-### Phase 0 — Chuẩn bị dữ liệu và thiết kế
+### Phase 0 — Foundation & Governance
 
-Thời gian: 1–2 tuần.
+- Chốt product scope.
+- Story loop và Agent workflow.
+- Auth foundation.
+- Health check, logging và monitoring.
+- Content taxonomy.
+- Source/license model.
+- Google Drive content inventory design.
+- Database và API conventions.
 
-Việc cần làm:
+### Phase 1 — Learning Core
 
-- Chốt tên sản phẩm.
-- Chốt domain.
-- Chốt stack.
-- Thiết kế database MVP.
-- Thiết kế UI flow.
-- Chuẩn hóa taxonomy level/topic/skill.
-- Chuẩn bị 500–1000 từ vựng đầu tiên.
-- Chuẩn bị 50–100 quiz card.
-- Chuẩn bị 20 bài daily sentence.
-- Chuẩn bị 10–20 bài blog SEO đầu tiên.
-
-### Phase 1 — MVP Free Learning Website
-
-Thời gian: 4–6 tuần.
-
-Tính năng:
-
-- Landing page.
-- Blog/news.
-- Auth.
-- Onboarding.
+- Landing/public experience.
+- Auth và onboarding.
+- Placement test cơ bản.
 - Dashboard.
-- Daily vocabulary.
-- Quiz card.
-- Daily sentence.
-- Roadmap template 30/60/90/120 ngày.
-- Admin CMS cơ bản.
-- PostHog/Sentry.
-
-Mục tiêu:
-
-- Có người dùng thật.
-- SEO index được.
-- Người học có thể học mỗi ngày.
-
-### Phase 2 — Listening + Error Notebook
-
-Thời gian: 4–6 tuần.
-
-Tính năng:
-
-- Upload audio.
-- Transcript.
-- Listening practice.
-- Dictation.
-- Shadowing đơn giản.
-- Error notebook.
+- Roadmap 30/60/90/120 ngày.
+- Vocabulary topic mindmap.
 - Spaced repetition.
-- Review dashboard.
+- Daily practice.
+- Error notebook cơ bản.
+- CMS vocabulary/content.
 
-### Phase 3 — TOEIC Practice
-
-Thời gian: 6–8 tuần.
-
-Tính năng:
+### Phase 2 — TOEIC Listening & Reading
 
 - Question bank.
-- Practice by Part.
-- Mini test.
-- Full test.
-- Exam mode.
-- Score analysis.
-- Weakness detection.
+- Part 1–7 practice.
+- Practice by topic/difficulty.
+- Mini test và half test.
+- Timed practice.
+- Score and weakness analysis.
+- Vocabulary/grammar remediation.
 
-### Phase 4 — AI Writing + AI Speaking
+### Phase 3 — Licensed Content Library & Listening
 
-Thời gian: 6–10 tuần.
+- Google Drive inventory/import workflow.
+- Video/audio/document library.
+- Transcript.
+- Listening drills.
+- Shadowing.
+- Progress/resume/bookmark.
+- Link content to roadmap and vocabulary.
 
-Tính năng:
+### Phase 4 — TOEIC Speaking, Writing & Four Skills
 
-- AI writing feedback.
-- RAG/Graph-RAG MVP.
-- AI speaking room.
-- Speech-to-text.
-- Text-to-speech.
-- AI quota.
-- AI cost monitoring.
+- TOEIC Speaking task types.
+- TOEIC Writing task types.
+- Rubrics.
+- Audio/submission storage.
+- AI-assisted feedback.
+- TOEIC Four Skills roadmap.
+- Four-skill progress dashboard.
 
-### Phase 5 — Mobile app
+### Phase 5 — Full Test, AI Personalization & Community
 
-Thời gian: 8–12 tuần.
+- Full mock tests.
+- Exam simulation.
+- Advanced error notebook.
+- Adaptive roadmap.
+- AI explanation.
+- AI Speaking room.
+- AI Writing Coach.
+- Community sharing with moderation.
 
-Tính năng:
+### Phase 6 — Mobile & Premium Expansion
 
 - Expo mobile app.
-- Push notification.
-- Daily vocab mobile.
-- Quiz card mobile.
-- Listening mobile.
-- Speaking room mobile.
-- Offline vocabulary.
+- Push notifications.
+- Offline vocabulary/listening.
+- Premium quota and subscription.
+- Advanced analytics.
 
 ---
 
 ## 29. Thứ tự ưu tiên backlog
 
-### Must-have MVP
+### Must-have foundation
 
-1. Auth.
-2. Landing page.
-3. Blog/news SEO.
-4. Onboarding.
-5. Roadmap template.
-6. Vocabulary system.
-7. Quiz card.
-8. Daily sentence.
-9. Dashboard.
-10. Admin CMS.
-11. Analytics.
-12. Error monitoring.
+1. Agent/story workflow.
+2. Auth.
+3. Content taxonomy.
+4. Source/license governance.
+5. Onboarding.
+6. Placement test cơ bản.
+7. Dashboard.
+8. Roadmap.
+9. Vocabulary mindmap.
+10. Spaced repetition.
+11. Daily practice.
+12. Error notebook.
+13. CMS cơ bản.
+14. Analytics và monitoring.
+
+### Must-have TOEIC core
+
+1. TOEIC Listening & Reading Part 1–7.
+2. Question bank và review workflow.
+3. Mini test.
+4. Timed practice.
+5. Score/weakness analysis.
+6. TOEIC vocabulary and grammar remediation.
+7. TOEIC Speaking task framework.
+8. TOEIC Writing task framework.
+9. TOEIC Four Skills roadmap.
 
 ### Should-have
 
-1. Listening practice.
-2. Error notebook.
-3. Spaced repetition.
-4. TOEIC mini test.
-5. Leaderboard.
-6. Streak.
-7. Audio upload.
+1. Licensed content library.
+2. Google Drive import pipeline.
+3. Listening practice.
+4. Shadowing.
+5. Full mock test.
+6. AI explanation.
+7. Speaking/Writing rubric feedback.
+8. Gamification.
+9. Blog/news SEO.
 
 ### Could-have
 
-1. AI writing.
-2. AI speaking.
-3. Full TOEIC exam mode.
-4. Graph-RAG.
-5. Mobile app.
-6. Premium subscription.
+1. Advanced adaptive roadmap.
+2. Graph-RAG.
+3. Community content sharing.
+4. Mobile app.
+5. Premium subscription.
+6. Offline learning.
 
-### Won't-have in MVP
+### Won't-have in early MVP
 
-1. Proctoring chuyên nghiệp.
-2. Mentor người thật.
-3. Marketplace.
-4. Livestream.
-5. Native mobile app ngay ngày đầu.
+1. Professional camera proctoring.
+2. Marketplace.
+3. Livestream class.
+4. Separate full IELTS exam platform.
+5. Native mobile app before web business rules stabilize.
 
 ---
 
@@ -2201,9 +2619,39 @@ Các nguồn chính thức/hữu ích để đối chiếu stack:
 
 ---
 
+## 32A. Product Scope Guard dành cho Agent
+
+Trước khi triển khai một story, Agent phải xác định story phục vụ ít nhất một mục tiêu:
+
+1. Cải thiện năng lực tiếng Anh tổng quát.
+2. Cải thiện kết quả TOEIC.
+3. Cải thiện khả năng ghi nhớ từ vựng.
+4. Cải thiện tính nhất quán của việc học.
+5. Giúp phát hiện và sửa lỗi lặp lại.
+6. Giúp người dùng truy cập và học từ nội dung được cấp quyền.
+7. Cải thiện khả năng quản trị, bảo mật hoặc đo lường chất lượng học tập.
+
+Nếu story không phục vụ mục tiêu nào, Agent phải đánh dấu cần product review.
+
+Quy tắc bắt buộc:
+
+- Không tự thêm một exam track mới.
+- Không biến nội dung IELTS thành nghiệp vụ thi IELTS nếu chưa được phê duyệt.
+- Không publish nội dung chưa qua license/review.
+- Không để AI quyết định đáp án chuẩn hoặc điểm chính thức.
+- Không bỏ qua Error Notebook khi nghiệp vụ phát sinh lỗi học tập.
+- Không xây module độc lập nếu có thể tái sử dụng taxonomy/content chung.
+- Không thay đổi business rule chỉ để test pass.
+- Khi phát hiện bug nghiệp vụ, phải tạo regression test trước hoặc cùng lúc sửa.
+- Mọi thay đổi liên quan score, roadmap, quyền nội dung và exam session phải có testcase cho happy path, validation, boundary và failure path.
+
+---
+
 ## 33. Kết luận
 
-EnglishPath nên được xây như một nền tảng học tiếng Anh cộng đồng, không phải chỉ là web luyện đề. Sản phẩm cần bắt đầu bằng phần miễn phí đủ tốt: từ vựng, quiz card, daily sentence, roadmap, blog SEO và dashboard. Sau khi có người dùng thật, mở rộng dần sang listening, TOEIC practice, error notebook, AI writing, AI speaking, Graph-RAG và mobile app.
+EnglishPath được xây như một nền tảng học tiếng Anh toàn diện, không chỉ là website giải đề và cũng không bị giới hạn vào một kỳ thi duy nhất. TOEIC Listening & Reading, TOEIC Speaking & Writing và TOEIC Four Skills là các learning track trọng tâm, trong khi nền tảng tiếng Anh, giao tiếp, workplace English, vocabulary mindmap, listening, speaking, writing và nội dung được cấp quyền tiếp tục phục vụ mọi người học.
+
+Sản phẩm cần bắt đầu bằng phần miễn phí đủ tốt: onboarding, roadmap, vocabulary mindmap, daily practice, error notebook, TOEIC core và kho nội dung có cấu trúc. AI, community, Graph-RAG và mobile được mở rộng sau khi business rule và content pipeline đã ổn định.
 
 Cốt lõi sản phẩm là vòng lặp:
 

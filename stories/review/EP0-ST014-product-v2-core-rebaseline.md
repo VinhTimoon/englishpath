@@ -1,7 +1,7 @@
 ---
 id: EP0-ST014
 title: Product V2 Core Rebaseline
-status: ready
+status: review
 type: planning
 priority: critical
 phase: phase-0-foundation
@@ -42,8 +42,9 @@ requested removal of v1 because v2 clarifies the product's primary business doma
 
 ## Source Transition Requirements
 
-- Track `notes/englishpath_product_spec_v2.md` without rewriting its Vietnamese
-  content or changing its UTF-8 encoding.
+- Track `notes/englishpath_product_spec_v2.md` without changing its Vietnamese
+  semantics or UTF-8 encoding; normalize only trailing whitespace required by the
+  repository diff gate.
 - Delete `notes/englishpath_product_spec.md`; do not retain two competing detailed
   product specifications.
 - Update all in-scope source references to point only to v2.
@@ -122,3 +123,4 @@ Mandatory invariants:
 - pnpm prettier --check docs/01_PRODUCT_SCOPE.md docs/02_PRD.md docs/03_USER_FLOWS.md _bmad-output/planning-artifacts/prd.md _bmad-output/planning-artifacts/project-context.md stories/ready/EP0-ST014-product-v2-core-rebaseline.md
 - pnpm story:checks
 - git diff --check
+
