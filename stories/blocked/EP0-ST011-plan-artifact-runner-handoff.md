@@ -1,7 +1,7 @@
 ---
 id: EP0-ST011
 title: Plan Artifact Runner Handoff
-status: ready
+status: blocked
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -61,3 +61,18 @@ that response as `.codex-plan.md` before existing contract validation.
 - node --test scripts/tests/story-tools.test.mjs
 - pnpm story:checks
 - git diff --check
+
+## Blocked Report
+
+- WIP is preserved on commit `6a0deb1` of `story/ep0-st011`.
+- Passing evidence: 34/34 story-tool tests, full lint/typecheck, 5 unit tests,
+  2 API e2e tests, monorepo build, story checks, and `git diff --check`.
+- Closed findings: read-only plan sandbox, outer-runner byte-identical handoff,
+  freshness checks, invalid/malformed response rejection, exact heading set, and
+  no-preface enforcement.
+
+### Remaining P1 Finding After Two Fix Rounds
+
+- Wrong-story plans can still pass when the expected story ID appears outside the
+  `## 1. Story ID` section. Validation must parse that section and require its value
+  to equal the expected ID rather than searching the entire plan text.
