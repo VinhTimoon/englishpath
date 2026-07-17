@@ -1,7 +1,7 @@
 ---
 id: EP1-ST007
 title: Identity Schema And Ownership Repositories
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-1-learning-core
@@ -114,7 +114,7 @@ later Supabase guard can resolve verified external subjects without trusting tok
 - `pnpm --filter api test:e2e`
 - `pnpm build`
 - `pnpm e2e`
-- `pnpm story:verify stories/review/EP1-ST007-identity-schema-ownership-repositories.md`
+- `pnpm story:verify stories/done/EP1-ST007-identity-schema-ownership-repositories.md`
 - `git diff --check`
 
 ## Implementation Report
