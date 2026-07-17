@@ -22,9 +22,9 @@ import {
   CommandError,
   PHASE_ARTIFACTS,
   createPhaseContractError,
-  getPhaseSandbox,
   materializePlanArtifact,
   removePhaseArtifacts,
+  resolvePhaseSandbox,
   runCommand,
   runCommand as runProcessCommand,
   validatePhaseArtifacts,
@@ -538,7 +538,7 @@ test("plan handoff rejects invalid or stale responses before writing", () => {
           prompt: "\nid: EP0-ST011\n",
           startedAt: Date.now() - 10,
         }),
-      /does not reference story|missing required sections/i,
+      /missing required sections/i,
     );
     assert.equal(fs.existsSync(".codex-plan.md"), false);
   });
@@ -559,11 +559,168 @@ test("plan handoff rejects invalid or stale responses before writing", () => {
   });
 });
 
-test("only planning uses the read-only Codex sandbox", () => {
-  assert.equal(getPhaseSandbox("plan"), "read-only");
-  assert.equal(getPhaseSandbox("build"), "workspace-write");
-  assert.equal(getPhaseSandbox("review"), "workspace-write");
-  assert.equal(getPhaseSandbox("debug"), "workspace-write");
+test("phase sandbox policy grants full access only to scoped build and debug", () => {
+  withTempCwd((tempDir) => {
+    writeFile(tempDir, "package.json", '{"name":"englishpath"}\n');
+    const scopedPrompt = `id: EP0-ST012
+allowed_paths:
+  - scripts/**
+forbidden_paths:
+  - apps/**
+`;
+
+    assert.equal(
+      resolvePhaseSandbox({
+        phase: "plan",
+        configuredSandbox: "read-only",
+        prompt: "plan",
+      }),
+      "read-only",
+    );
+    assert.equal(
+      resolvePhaseSandbox({
+        phase: "review",
+        configuredSandbox: "read-only",
+        prompt: "review",
+      }),
+      "read-only",
+    );
+    assert.equal(
+      resolvePhaseSandbox({
+        phase: "build",
+        configuredSandbox: "danger-full-access",
+        prompt: scopedPrompt,
+      }),
+      "danger-full-access",
+    );
+    assert.equal(
+      resolvePhaseSandbox({
+        phase: "debug",
+        configuredSandbox: "danger-full-access",
+        prompt: scopedPrompt,
+      }),
+      "danger-full-access",
+    );
+  });
+});
+
+test("dangerous sandbox phases reject policy, root, and scope violations", () => {
+  withTempCwd((tempDir) => {
+    writeFile(tempDir, "package.json", '{"name":"englishpath"}\n');
+
+    assert.throws(
+      () =>
+        resolvePhaseSandbox({
+          phase: "deploy",
+          configuredSandbox: "danger-full-access",
+          prompt: "deploy",
+        }),
+      /Unknown phase sandbox policy/,
+    );
+    assert.throws(
+      () =>
+        resolvePhaseSandbox({
+          phase: "build",
+          configuredSandbox: "workspace-write",
+          prompt: "build",
+        }),
+      /Sandbox policy mismatch/,
+    );
+    assert.throws(
+      () =>
+        resolvePhaseSandbox({
+          phase: "review",
+          configuredSandbox: "danger-full-access",
+          prompt: "review",
+        }),
+      /Sandbox policy mismatch/,
+    );
+    assert.throws(
+      () =>
+        resolvePhaseSandbox({
+          phase: "build",
+          configuredSandbox: "danger-full-access",
+          prompt: "id: EP0-ST012",
+        }),
+      /missing story scope policy/,
+    );
+
+    fs.rmSync(path.join(tempDir, "package.json"));
+    assert.throws(
+      () =>
+        resolvePhaseSandbox({
+          phase: "build",
+          configuredSandbox: "danger-full-access",
+          prompt:
+            "id: EP0-ST012\nallowed_paths:\n  - scripts/**\nforbidden_paths:\n  - apps/**\n",
+        }),
+      /not running from a readable project root/,
+    );
+
+    writeFile(tempDir, "package.json", "not json\n");
+    assert.throws(
+      () =>
+        resolvePhaseSandbox({
+          phase: "build",
+          configuredSandbox: "danger-full-access",
+          prompt:
+            "id: EP0-ST012\nallowed_paths:\n  - scripts/**\nforbidden_paths:\n  - apps/**\n",
+        }),
+      /not running from a readable project root/,
+    );
+
+    writeFile(tempDir, "package.json", '{"name":"another-project"}\n');
+    assert.throws(
+      () =>
+        resolvePhaseSandbox({
+          phase: "debug",
+          configuredSandbox: "danger-full-access",
+          prompt:
+            "id: EP0-ST012\nallowed_paths:\n  - scripts/**\nforbidden_paths:\n  - apps/**\n",
+        }),
+      /outside the EnglishPath project root/,
+    );
+  });
+});
+
+test("plan handoff requires the expected ID in the Story ID section", () => {
+  withTempCwd(() => {
+    const plan = `## 1. Story ID
+EP0-ST999
+
+## 2. Scope Summary
+EP0-ST011 appears here but is not the planned story.
+
+## 3. Allowed Paths
+A
+
+## 4. Forbidden Paths
+A
+
+## 5. Files Likely to Change
+A
+
+## 6. Implementation Steps
+A
+
+## 7. Verification Steps
+A
+
+## 8. Risks
+A
+`;
+    fs.writeFileSync(PHASE_ARTIFACTS.plan.responseFile, plan);
+
+    assert.throws(
+      () =>
+        materializePlanArtifact({
+          prompt: "\nid: EP0-ST011\n",
+          startedAt: Date.now() - 10,
+        }),
+      /Story ID section must equal EP0-ST011/,
+    );
+    assert.equal(fs.existsSync(".codex-plan.md"), false);
+  });
 });
 
 test("plan handoff rejects prefaces and unexpected headings", () => {
@@ -607,7 +764,7 @@ test("phase validation accepts valid completion statuses and plan artifacts", ()
     const startedAt = Date.now() - 10;
     fs.writeFileSync(
       PHASE_ARTIFACTS.review.responseFile,
-      "Status: fixed\nRemaining risks: none\n",
+      "Status: pass\nRemaining risks: none\n",
     );
     const reviewResult = validatePhaseArtifacts({
       phase: "review",
@@ -615,7 +772,7 @@ test("phase validation accepts valid completion statuses and plan artifacts", ()
       startedAt,
       commandResult: { command: "codex", args: [], output: "" },
     });
-    assert.equal(reviewResult.status, "fixed");
+    assert.equal(reviewResult.status, "pass");
 
     fs.writeFileSync(
       PHASE_ARTIFACTS.plan.responseFile,
@@ -633,6 +790,27 @@ test("phase validation accepts valid completion statuses and plan artifacts", ()
       commandResult: { command: "codex", args: [], output: "" },
     });
     assert.equal(planResult.status, "completed");
+  });
+});
+
+test("read-only review validation rejects legacy fixed status", () => {
+  withTempCwd(() => {
+    const startedAt = Date.now() - 10;
+    fs.writeFileSync(
+      PHASE_ARTIFACTS.review.responseFile,
+      "Status: fixed\nRemaining risks: none\n",
+    );
+
+    assert.throws(
+      () =>
+        validatePhaseArtifacts({
+          phase: "review",
+          prompt: "story",
+          startedAt,
+          commandResult: { command: "codex", args: [], output: "" },
+        }),
+      /Expected one of: pass, blocked/,
+    );
   });
 });
 
@@ -824,6 +1002,15 @@ test("review prompt stays noninteractive and excludes checkpoint skill bodies", 
   }
 
   assert.match(result.stdout, /Run non-interactively/);
+  assert.match(
+    result.stdout,
+    /Do not load or follow additional workflow skill files/,
+  );
+  assert.match(
+    result.stdout,
+    /Do not rerun test or build commands that require writes/,
+  );
+  assert.match(result.stdout, /Status: pass \| blocked/);
   assert.match(
     result.stdout,
     /Ready-only story-doctor already ran before this story moved to in-progress/,

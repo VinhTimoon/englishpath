@@ -1,7 +1,7 @@
 ---
 id: EP0-ST012
 title: Secure Windows Autonomous Loop
-status: in-progress
+status: review
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -68,3 +68,4 @@ read-only planning handoff from EP0-ST011.
 - node --test scripts/tests/story-tools.test.mjs
 - pnpm story:checks
 - git diff --check
+

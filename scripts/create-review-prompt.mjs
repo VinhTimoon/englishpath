@@ -8,7 +8,8 @@ if (!storyFile) {
   process.exit(1);
 }
 
-const read = (file) => fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
+const read = (file) =>
+  fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
 
 function sh(command) {
   try {
@@ -27,7 +28,7 @@ const contextFiles = [
   "AGENTS.md",
   "ai-skills/routing/skill-router.md",
   "_bmad-output/implementation-artifacts/definition-of-done.md",
-  "_bmad-output/implementation-artifacts/qa-checklist.md"
+  "_bmad-output/implementation-artifacts/qa-checklist.md",
 ];
 
 let output = `# Codex Review and Test Phase\n\n`;
@@ -41,19 +42,21 @@ Task:
 - Check forbidden paths.
 - Check architecture boundaries.
 - Check missing tests.
-- If safe and necessary, add or update tests.
+- Review tests and identify missing coverage, but do not add or update files.
+- Do not rerun test or build commands that require writes; the trusted outer loop runs all quality gates immediately before and after this review.
 - Do not broaden the feature scope.
 - Do not modify .env files.
 - Ready-only story-doctor already ran before this story moved to in-progress; do not rerun story-doctor against the old ready-path file during review.
 - Run non-interactively.
+- Do not load or follow additional workflow skill files; the required review context is embedded below.
 - Never ask for confirmation, approval, a checkpoint, or human review before returning a result.
-- If changes are needed, make minimal fixes only.
+- Run in read-only mode and do not make fixes; return blocked when fixes are required.
 - If the story cannot be approved safely within scope, return a blocked result.
 
 Return:
-- Status: pass | fixed | blocked
+- Status: pass | blocked
 - P0/P1/P2 findings
-- Tests added or updated
+- Tests reviewed and missing coverage
 - Commands to run
 - Remaining risks
 

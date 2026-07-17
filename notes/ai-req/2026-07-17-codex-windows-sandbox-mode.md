@@ -30,10 +30,11 @@ sets directly; refusing to run unsandboxed
 - Verified project is trusted and Codex installation is healthy.
 - Kept `--sandbox workspace-write`; no global/admin configuration was changed.
 
-## Decision Needed
+## Decision Recorded
 
-Choose whether project automation may invoke implementation/debug phases with
-`--sandbox danger-full-access`.
+On 2026-07-17, the project owner approved `--sandbox danger-full-access` for
+implementation/debug phases after reviewing the risks. Planning and review remain
+`read-only`; `workspace-write` is no longer used by the loop on this Windows host.
 
 ## Options
 
@@ -45,8 +46,27 @@ Choose whether project automation may invoke implementation/debug phases with
 3. Move loop execution to WSL/container/VM: preserves a real project boundary but
    requires environment setup outside this repository.
 
-## Impact
+## Applied Controls
 
-Until a decision is made, stories can still be completed safely through the current
-bounded loop plus outer-manager recovery, but unattended continuous implementation
-is not reliable.
+- Sandbox mode is explicitly allowlisted by phase: `plan/review` are `read-only` and
+  `build/debug` are `danger-full-access`.
+- A full-access phase is rejected unless it runs from the repository root whose
+  package name is `englishpath`.
+- A full-access phase is rejected unless its prompt includes a story ID plus
+  non-empty `allowed_paths` and `forbidden_paths`.
+- Existing story path verification, quality gates, review gates, and `dev`-only
+  integration remain mandatory. The loop must never merge directly to `main`.
+- No administrator, operating-system, or global Codex configuration is changed.
+
+## Residual Risk
+
+`danger-full-access` is not an operating-system boundary. A malfunctioning or
+misdirected implementation/debug agent technically can read or modify files outside
+the repository using the current user's permissions, and Git checks cannot detect
+such external writes. WSL, a container, or a VM remains the recommended future
+option when hard filesystem isolation is required.
+
+## Outcome
+
+The Windows sandbox blocker is resolved for the project loop under the controls
+above. If any guard fails, the phase must stop before Codex CLI is invoked.

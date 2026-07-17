@@ -2,21 +2,25 @@
   "plan": {
     "model": "gpt-5.6-sol",
     "reasoning": "high",
-    "timeout_ms": 180000
+    "timeout_ms": 180000,
+    "sandbox": "read-only"
   },
   "build": {
     "model": "gpt-5.4",
     "reasoning": "medium",
-    "timeout_ms": 240000
+    "timeout_ms": 240000,
+    "sandbox": "danger-full-access"
   },
   "review": {
     "model": "gpt-5.6-terra",
     "reasoning": "medium",
-    "timeout_ms": 180000
+    "timeout_ms": 240000,
+    "sandbox": "read-only"
   },
   "debug": {
     "model": "gpt-5.6-sol",
     "reasoning": "high",
-    "timeout_ms": 180000
+    "timeout_ms": 180000,
+    "sandbox": "danger-full-access"
   }
 }

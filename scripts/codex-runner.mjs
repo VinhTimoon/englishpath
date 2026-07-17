@@ -5,9 +5,9 @@ import {
   PHASE_ARTIFACTS,
   createPhaseContractError,
   formatPhaseTimeoutMessage,
-  getPhaseSandbox,
   materializePlanArtifact,
   removePhaseArtifacts,
+  resolvePhaseSandbox,
   runCommand,
   validatePhaseArtifacts,
 } from "./lib/process-utils.mjs";
@@ -58,13 +58,20 @@ function main() {
   console.log(`Timeout: ${selected.timeout_ms}ms`);
   console.log(`Final response artifact: ${artifacts.responseFile}`);
 
+  const sandbox = resolvePhaseSandbox({
+    phase,
+    configuredSandbox: selected.sandbox,
+    prompt,
+  });
+  console.log(`Sandbox: ${sandbox}`);
+
   removePhaseArtifacts(phase);
   const startedAt = Date.now();
 
   const codexArgs = [
     "exec",
     "--sandbox",
-    getPhaseSandbox(phase),
+    sandbox,
     "-c",
     `model=${selected.model}`,
     "-c",

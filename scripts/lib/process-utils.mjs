@@ -33,7 +33,7 @@ const PLAN_SECTIONS = [
 
 const STATUS_RULES = {
   build: ["completed", "blocked"],
-  review: ["pass", "fixed", "blocked"],
+  review: ["pass", "blocked"],
   debug: ["fixed", "blocked"],
 };
 
@@ -57,8 +57,72 @@ export const PHASE_ARTIFACTS = {
   },
 };
 
-export function getPhaseSandbox(phase) {
-  return phase === "plan" ? "read-only" : "workspace-write";
+const PHASE_SANDBOX_POLICY = {
+  plan: "read-only",
+  build: "danger-full-access",
+  review: "read-only",
+  debug: "danger-full-access",
+};
+
+export function resolvePhaseSandbox({
+  phase,
+  configuredSandbox,
+  prompt,
+  cwd = process.cwd(),
+}) {
+  const requiredSandbox = PHASE_SANDBOX_POLICY[phase];
+  if (!requiredSandbox) {
+    throw new Error(`Unknown phase sandbox policy: ${phase}`);
+  }
+  if (configuredSandbox !== requiredSandbox) {
+    throw createPhaseContractError({
+      phase,
+      reason: `Sandbox policy mismatch for ${phase}.`,
+      evidence: `Expected ${requiredSandbox}; received ${configuredSandbox ?? "missing"}.`,
+    });
+  }
+
+  if (requiredSandbox !== "danger-full-access") {
+    return requiredSandbox;
+  }
+
+  const packageFile = `${cwd}/package.json`;
+  let packageName;
+  try {
+    packageName = JSON.parse(fs.readFileSync(packageFile, "utf8")).name;
+  } catch {
+    throw createPhaseContractError({
+      phase,
+      reason:
+        "Dangerous Codex phase is not running from a readable project root.",
+      evidence: `Could not read ${packageFile}.`,
+    });
+  }
+  if (packageName !== "englishpath") {
+    throw createPhaseContractError({
+      phase,
+      reason: "Dangerous Codex phase is outside the EnglishPath project root.",
+      evidence: `Expected package name englishpath; received ${packageName ?? "missing"}.`,
+    });
+  }
+
+  const hasStoryId = /(?:^|\n)id:\s*[A-Z0-9-]+\s*(?:\r?\n|$)/u.test(prompt);
+  const hasAllowedPaths = /(?:^|\n)allowed_paths:\s*\r?\n\s+-\s+\S+/u.test(
+    prompt,
+  );
+  const hasForbiddenPaths = /(?:^|\n)forbidden_paths:\s*\r?\n\s+-\s+\S+/u.test(
+    prompt,
+  );
+  if (!hasStoryId || !hasAllowedPaths || !hasForbiddenPaths) {
+    throw createPhaseContractError({
+      phase,
+      reason: "Dangerous Codex phase prompt is missing story scope policy.",
+      evidence:
+        "A story ID plus non-empty allowed_paths and forbidden_paths are required.",
+    });
+  }
+
+  return requiredSandbox;
 }
 
 export function formatCommand(command, args = []) {
@@ -116,9 +180,6 @@ function validatePlanArtifact(planText, expectedStoryId) {
   if (!planText.trim()) {
     return "Plan artifact is empty.";
   }
-  if (expectedStoryId && !planText.includes(expectedStoryId)) {
-    return `Plan artifact does not reference story ${expectedStoryId}.`;
-  }
 
   const normalizeHeading = (heading) =>
     heading
@@ -175,6 +236,27 @@ function validatePlanArtifact(planText, expectedStoryId) {
     normalizeHeading(firstContentLine) !== expectedHeadings[0]
   ) {
     return `Plan artifact must start with ${PLAN_SECTIONS[0]} and contain no preface.`;
+  }
+
+  if (expectedStoryId) {
+    const lines = planText.split(/\r?\n/u);
+    const storyHeadingIndex = lines.findIndex(
+      (line) => normalizeHeading(line) === expectedHeadings[0],
+    );
+    const nextHeadingOffset = lines
+      .slice(storyHeadingIndex + 1)
+      .findIndex((line) => /^##\s+/u.test(line));
+    const storySectionEnd =
+      nextHeadingOffset === -1
+        ? lines.length
+        : storyHeadingIndex + 1 + nextHeadingOffset;
+    const storySectionValue = lines
+      .slice(storyHeadingIndex + 1, storySectionEnd)
+      .join("\n")
+      .trim();
+    if (storySectionValue !== expectedStoryId) {
+      return `Plan artifact Story ID section must equal ${expectedStoryId}.`;
+    }
   }
 
   return null;
