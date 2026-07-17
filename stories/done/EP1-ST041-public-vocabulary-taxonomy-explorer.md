@@ -1,7 +1,7 @@
 ---
 id: EP1-ST041
 title: Public Vocabulary Taxonomy Explorer
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -95,3 +95,4 @@ progress exists before authenticated learning stories are complete.
   retry, empty states, nested ordering, guest disclosure, 360px containment, and axe.
 - The Codex build agent timed out before writing source; the manager implemented the
   accepted Codex plan and retained independent Codex review as the approval gate.
+
