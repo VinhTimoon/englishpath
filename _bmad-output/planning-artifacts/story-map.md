@@ -46,7 +46,9 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST015`                | Roadmap API, versioning, and recalculation rules                                         | `EP1-ST014`                |
 | `EP1-ST016`                | Dashboard and roadmap UI focused on today's work                                         | `EP1-ST015`                |
 | `EP1-ST017`                | Vocabulary taxonomy/mindmap API                                                          | `EP0-ST020`                |
+| `EP1-ST040`                | Vocabulary API contract and adapter hardening                                            | `EP1-ST017`                |
 | `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST017`                |
+| `EP1-ST041`                | Public vocabulary taxonomy explorer UI                                                   | `EP1-ST040`                |
 | `EP1-ST019`                | Vocabulary mindmap, item, and review UI                                                  | `EP1-ST018`                |
 | `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                |
 | `EP1-ST021`                | Daily practice/quiz-card UI                                                              | `EP1-ST020`                |
