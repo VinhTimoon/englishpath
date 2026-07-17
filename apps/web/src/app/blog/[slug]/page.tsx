@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getAbsoluteSiteUrl } from "@/entities/article/config/site-origin";
 import { articles, getArticle } from "@/entities/article/model/articles";
 import { ArticleDetail } from "@/widgets/public-blog/article-detail";
 
@@ -17,11 +18,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return {};
+  const canonicalUrl = getAbsoluteSiteUrl(`/blog/${article.slug}`);
   return {
     title: article.seoTitle,
     description: article.metaDescription,
     keywords: article.tags,
-    alternates: { canonical: `/blog/${article.slug}` },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       type: "article",
       title: article.seoTitle,
@@ -29,6 +31,7 @@ export async function generateMetadata({
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
       locale: "vi_VN",
+      url: canonicalUrl,
     },
   };
 }

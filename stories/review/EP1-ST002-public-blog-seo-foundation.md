@@ -1,7 +1,7 @@
 ---
 id: EP1-ST002
 title: Public Blog SEO Foundation
-status: in-progress
+status: review
 type: frontend
 priority: critical
 phase: phase-1-mvp
@@ -74,6 +74,7 @@ database in this story.
 - node scripts/story-doctor.mjs stories/ready/EP1-ST002-public-blog-seo-foundation.md --ready-only
 - pnpm --filter web lint
 - pnpm --filter web typecheck
+- node --experimental-strip-types --test apps/web/src/entities/article/config/site-origin.test.mjs
 - pnpm --filter web build
 - pnpm story:checks
 - git diff --check
@@ -87,6 +88,7 @@ database in this story.
   article routes, monorepo story checks, 5 unit tests, 2 API e2e tests, and diff check.
 - Review fix round closed `dynamicParams`, focus contrast, stable section IDs, and the
   Vietnamese language boundary findings.
+
 ### Decision Needed
 
 - SEO canonical URLs and Article `mainEntityOfPage` require the approved production
@@ -101,3 +103,4 @@ database in this story.
   only as a development/build fallback.
 - Before public deployment, Vercel must define `NEXT_PUBLIC_SITE_URL` with the final
   HTTPS origin and no trailing slash.
+

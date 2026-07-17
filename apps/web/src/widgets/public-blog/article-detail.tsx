@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getAbsoluteSiteUrl } from "@/entities/article/config/site-origin";
 import type { Article } from "@/entities/article/model/articles";
 import { getArticle } from "@/entities/article/model/articles";
 import { BlogFooter, BlogHeader, formatDate } from "./blog-index";
@@ -23,7 +24,7 @@ export function ArticleDetail({ article }: { article: Article }) {
     inLanguage: "vi-VN",
     author: { "@type": "Organization", name: "EnglishPath" },
     publisher: { "@type": "Organization", name: "EnglishPath" },
-    mainEntityOfPage: `/blog/${article.slug}`,
+    mainEntityOfPage: getAbsoluteSiteUrl(`/blog/${article.slug}`),
   };
   const faqJsonLd = {
     "@context": "https://schema.org",
