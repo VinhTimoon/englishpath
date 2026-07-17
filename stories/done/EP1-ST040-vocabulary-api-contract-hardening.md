@@ -1,7 +1,7 @@
 ---
 id: EP1-ST040
 title: Vocabulary API Contract And Adapter Hardening
-status: review
+status: done
 type: backend
 priority: high
 phase: phase-1-learning-core
@@ -83,4 +83,5 @@ repositories cannot leak malformed or unpublished taxonomy data through public r
   repository is an in-memory import and has no filesystem or environment adapter.
 - The Codex build agent timed out after the initial service/controller edits; the
   manager completed the accepted plan, then ran the full gate before independent review.
+
 
