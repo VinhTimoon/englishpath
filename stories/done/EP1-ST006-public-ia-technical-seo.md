@@ -1,7 +1,7 @@
 ---
 id: EP1-ST006
 title: Public Information Architecture And Technical SEO
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -69,7 +69,7 @@ internal links without adding deployment credentials or inventing unavailable pa
 ## Verification
 
 - `pnpm story:checks`
-- `pnpm story:verify stories/review/EP1-ST006-public-ia-technical-seo.md`
+- `pnpm story:verify stories/done/EP1-ST006-public-ia-technical-seo.md`
 - `git diff --check`
 
 ## Implementation Report
