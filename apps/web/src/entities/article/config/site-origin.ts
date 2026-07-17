@@ -1,4 +1,4 @@
-const LOCAL_SITE_ORIGIN = "http://localhost:3000";
+const LOCAL_SITE_ORIGIN = "http://localhost:5173";
 
 export function getSiteOrigin() {
   const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL?.trim();

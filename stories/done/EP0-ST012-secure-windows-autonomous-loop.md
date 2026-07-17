@@ -51,7 +51,8 @@ read-only planning handoff from EP0-ST011.
 - Keep path verification, checks, bounded retries, blocked handling, and dev-only merge
   policy unchanged.
 - Make review prompts explicitly read-only; fixes remain the debug phase's responsibility.
-- Record approval, mitigations, and residual risk in the original AI request.
+- Record approval, mitigations, and residual risk before the resolved request is
+  removed; decision history remains available in Git.
 
 ## Acceptance Criteria
 
@@ -68,5 +69,3 @@ read-only planning handoff from EP0-ST011.
 - node --test scripts/tests/story-tools.test.mjs
 - pnpm story:checks
 - git diff --check
-
-

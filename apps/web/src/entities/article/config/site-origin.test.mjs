@@ -10,10 +10,10 @@ test("site origin supports local development and configured deployments", () => 
   try {
     delete process.env.NEXT_PUBLIC_SITE_URL;
     delete process.env.VERCEL;
-    assert.equal(getSiteOrigin(), "http://localhost:3000");
+    assert.equal(getSiteOrigin(), "http://localhost:5173");
     assert.equal(
       getAbsoluteSiteUrl("/blog/example"),
-      "http://localhost:3000/blog/example",
+      "http://localhost:5173/blog/example",
     );
 
     process.env.NEXT_PUBLIC_SITE_URL = "https://englishpath.example/";

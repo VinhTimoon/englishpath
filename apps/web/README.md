@@ -2,19 +2,18 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+From the repository root, run both applications:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The local services use:
+
+- Web: [http://localhost:5173](http://localhost:5173)
+- API: [http://localhost:3000](http://localhost:3000)
+
+Copy the app-specific `.env.example` files when local overrides are needed.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

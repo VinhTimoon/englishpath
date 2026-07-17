@@ -1,7 +1,7 @@
 ---
 id: EP1-ST004
 title: Local Runtime Ports
-status: in-progress
+status: review
 type: fullstack
 priority: high
 phase: phase-1-mvp
@@ -13,6 +13,7 @@ allowed_paths:
   - apps/api/src/main.ts
   - apps/api/src/config/**
   - apps/web/package.json
+  - apps/web/.gitignore
   - apps/web/.env.example
   - apps/web/README.md
   - apps/web/src/entities/article/config/**

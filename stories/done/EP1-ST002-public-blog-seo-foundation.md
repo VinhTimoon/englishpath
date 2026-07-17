@@ -93,15 +93,14 @@ database in this story.
 
 - SEO canonical URLs and Article `mainEntityOfPage` require the approved production
   site origin. The repository and product spec do not define a domain, and this story
-  must not invent one. See `notes/ai-req/2026-07-17-production-site-origin.md`.
+  must not invent one. The decision history is preserved in commit `81f89ae`.
 
 ### Decision Resolution
 
-- On 2026-07-17, the project owner approved `http://localhost:3000` as the temporary
-  local origin because the site has not been deployed to Vercel.
+- On 2026-07-17, the project owner approved a local-only origin because the site has
+  not been deployed to Vercel. EP1-ST004 later standardized it as
+  `http://localhost:5173`.
 - Web code must prefer `NEXT_PUBLIC_SITE_URL` when configured and use the local origin
   only as a development/build fallback.
 - Before public deployment, Vercel must define `NEXT_PUBLIC_SITE_URL` with the final
   HTTPS origin and no trailing slash.
-
-
