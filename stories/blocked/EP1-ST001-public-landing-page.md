@@ -1,7 +1,7 @@
 ---
 id: EP1-ST001
 title: Public Landing Page
-status: ready
+status: blocked
 type: frontend
 priority: critical
 phase: phase-1-mvp
@@ -68,3 +68,18 @@ page that communicates the free daily-learning value and guides visitors to begi
 - pnpm --filter web build
 - pnpm story:checks
 - git diff --check
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+- Exit code: 1
+- Attempts: 3
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+```
