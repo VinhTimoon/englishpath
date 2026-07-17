@@ -22,7 +22,7 @@ export type Article = {
   relatedSlugs: string[];
 };
 
-export const articles: Article[] = [
+export const articles: readonly Article[] = [
   {
     title: "7 cụm tiếng Anh giúp cuộc trò chuyện tự nhiên hơn",
     slug: "7-cum-tieng-anh-giao-tiep-tu-nhien",
@@ -209,6 +209,8 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+export const publishedArticles: readonly Article[] = articles;
 
 export function getArticle(slug: string) {
   return articles.find((article) => article.slug === slug);

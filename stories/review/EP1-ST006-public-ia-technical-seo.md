@@ -1,7 +1,7 @@
 ---
 id: EP1-ST006
 title: Public Information Architecture And Technical SEO
-status: ready
+status: review
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -71,3 +71,20 @@ internal links without adding deployment credentials or inventing unavailable pa
 - `pnpm story:checks`
 - `pnpm story:verify stories/review/EP1-ST006-public-ia-technical-seo.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Centralized canonical-origin validation and site metadata under `shared/seo`, while
+  retaining the article-layer compatibility export for existing consumers.
+- Added route-specific canonical, Open Graph, and Twitter metadata for the landing,
+  blog index, and every statically generated published article.
+- Added deterministic sitemap and robots metadata routes backed only by the read-only
+  published article collection and the shared origin resolver.
+- Preserved crawlable server-rendered content and meaningful links among the landing,
+  blog index, and article routes without adding unavailable product or auth routes.
+- Expanded the required Playwright runner to validate the origin contract, all public
+  metadata, exact sitemap membership, robots output, link reachability,
+  JavaScript-disabled rendering, 360px behavior, and serious/critical axe findings.
+- The automated build agent reached its bounded timeout before making source changes;
+  implementation was completed by the manager against the accepted plan and remains
+  subject to independent Codex review and all repository quality gates.

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { articles } from "@/entities/article/model/articles";
+import { publishedArticles } from "@/entities/article/model/articles";
 import styles from "./blog.module.css";
 
 const categories = [
@@ -10,7 +10,7 @@ const categories = [
 ];
 
 export function BlogIndex() {
-  const [featured, ...items] = articles;
+  const [featured, ...items] = publishedArticles;
   return (
     <div className={styles.shell} lang="vi">
       <BlogHeader />

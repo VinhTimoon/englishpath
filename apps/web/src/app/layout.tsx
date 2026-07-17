@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { Manrope, Newsreader } from "next/font/google";
+import { getSiteOrigin } from "@/shared/seo/site-origin";
+import {
+  HOME_DESCRIPTION,
+  HOME_TITLE,
+  SITE_NAME,
+} from "@/shared/seo/site-metadata";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -13,9 +19,10 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "EnglishPath | Học tiếng Anh mỗi ngày, tiến bộ thật",
-  description:
-    "Lộ trình học tiếng Anh miễn phí cho người Việt với bài học ngắn, luyện tập thực tế và tiến bộ có thể nhìn thấy.",
+  metadataBase: new URL(getSiteOrigin()),
+  applicationName: SITE_NAME,
+  title: { default: HOME_TITLE, template: `%s | ${SITE_NAME}` },
+  description: HOME_DESCRIPTION,
 };
 
 export default function RootLayout({

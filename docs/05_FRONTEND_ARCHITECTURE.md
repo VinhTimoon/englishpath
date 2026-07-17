@@ -62,6 +62,18 @@ only assembles the widgets and page metadata.
 - Pass serializable data across the server/client boundary.
 - Do not turn an entire route into a Client Component for one interactive control.
 
+## Public SEO Boundary
+
+- `shared/seo` owns the canonical origin and site-wide metadata constants. The local
+  origin is `http://localhost:5173`; deployment configuration must be a bare HTTP(S)
+  origin without whitespace, credentials, path, query, hash, or trailing slash.
+- App Router route modules own route-specific canonical, Open Graph, and Twitter
+  metadata. SEO data renders on the server and must not require hydration.
+- `sitemap.ts` and `robots.ts` use the same origin resolver. The sitemap includes only
+  the landing page, blog index, and entries from the published article collection.
+- Public article collections are read-only. Draft filtering and CMS publication states
+  will extend this boundary rather than introducing a second route inventory.
+
 ## Data And State
 
 - TanStack Query owns asynchronous client-side server state, caching, and mutations.

@@ -56,6 +56,9 @@ repeatable on a clean machine, and independent of developer secrets.
   print actionable affected targets.
 - If the current UI fails browser or accessibility checks and the story forbids
   changing application source, mark the story blocked instead of weakening the tests.
+- Public SEO coverage verifies canonical/Open Graph/Twitter metadata for every public
+  route, exact sitemap membership, robots directives, bidirectional links, static
+  content without JavaScript, 360px overflow, and serious/critical axe findings.
 
 ## Mandatory Gates
 
