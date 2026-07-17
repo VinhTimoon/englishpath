@@ -7,22 +7,24 @@
 | `EP0-ST001` to `EP0-ST012` | Foundation history; `EP0-ST011` was superseded by `EP0-ST012` |
 | `EP0-ST013`                | Completed v1 planning baseline, superseded by v2 `EP0-ST014`  |
 | `EP0-ST014`                | Product v2 core rebaseline completed                          |
+| `EP0-ST015`                | Blocked roadmap-map attempt, superseded by `EP0-ST015R`       |
+| `EP0-ST015R`               | Product v2 roadmap-map recovery gate                          |
 | `EP1-ST002`                | Public blog SEO baseline implemented                          |
 | `EP1-ST004`                | Local ports baseline implemented                              |
 | `EP1-ST001`, `EP1-ST003`   | Blocked historical landing work, superseded by `EP1-ST005`    |
 
 ## Phase 0 Foundation
 
-| Story       | Increment                                                                          | Depends on  |
-| ----------- | ---------------------------------------------------------------------------------- | ----------- |
-| `EP0-ST015` | Product v2 epic/story maps and ready queue                                         | `EP0-ST014` |
-| `EP0-ST016` | System/backend/data/API/security architecture and decision baseline                | `EP0-ST015` |
-| `EP0-ST017` | CI, migration safety, and automated planning semantic checks                       | `EP0-ST016` |
-| `EP0-ST018` | Browser E2E, accessibility smoke, and local journey harness                        | `EP0-ST017` |
-| `EP0-ST019` | Supabase auth/JWT/application identity foundation contracts and local test adapter | `EP0-ST018` |
-| `EP0-ST020` | Shared taxonomy, source/license/review/publish data foundation                     | `EP0-ST019` |
-| `EP0-ST021` | Google Drive inventory manifest design and credential-free local adapter           | `EP0-ST020` |
-| `EP0-ST022` | Structured logging, monitoring, analytics, and correlation adapters                | `EP0-ST021` |
+| Story        | Increment                                                                          | Depends on   |
+| ------------ | ---------------------------------------------------------------------------------- | ------------ |
+| `EP0-ST015R` | Recover product v2 epic/story maps and ready queue                                 | `EP0-ST014`  |
+| `EP0-ST016`  | System/backend/data/API/security architecture and decision baseline                | `EP0-ST015R` |
+| `EP0-ST017`  | CI, migration safety, and automated planning semantic checks                       | `EP0-ST016`  |
+| `EP0-ST018`  | Browser E2E, accessibility smoke, and local journey harness                        | `EP0-ST017`  |
+| `EP0-ST019`  | Supabase auth/JWT/application identity foundation contracts and local test adapter | `EP0-ST018`  |
+| `EP0-ST020`  | Shared taxonomy, source/license/review/publish data foundation                     | `EP0-ST019`  |
+| `EP0-ST021`  | Google Drive inventory manifest design and credential-free local adapter           | `EP0-ST020`  |
+| `EP0-ST022`  | Structured logging, monitoring, analytics, and correlation adapters                | `EP0-ST021`  |
 
 Exit: architecture and automated gates pass; auth/content/Drive/observability
 foundations exist without real credentials, paid services, or destructive migrations.
@@ -31,7 +33,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 
 | Story                      | Increment                                                                                | Depends on                 |
 | -------------------------- | ---------------------------------------------------------------------------------------- | -------------------------- |
-| `EP1-ST005`                | Recover landing, add goal-oriented guest trial, close contrast/mobile findings           | `EP0-ST018`                |
+| `EP1-ST005`                | Recover landing, add goal-oriented guest trial, close contrast/mobile findings           | `EP0-ST022`                |
 | `EP1-ST006`                | Public IA, sitemap/robots/metadata/internal links and SEO tests                          | `EP1-ST005`                |
 | `EP1-ST007`                | User/Profile/Role application schema and ownership repositories                          | `EP0-ST019`                |
 | `EP1-ST008`                | Supabase JWT guards, auth/profile APIs, ownership and RBAC tests                         | `EP1-ST007`                |
@@ -71,7 +73,7 @@ pass critical browser and security gates.
 
 | Story       | Increment                                                                   | Depends on                 |
 | ----------- | --------------------------------------------------------------------------- | -------------------------- |
-| `EP2-ST001` | TOEIC L&R question/content/license schema                                   | `EP1-ST029`                |
+| `EP2-ST001` | TOEIC L&R question/content/license schema                                   | `EP1-ST039`                |
 | `EP2-ST002` | Question bank repository/API and answer protection                          | `EP2-ST001`                |
 | `EP2-ST003` | Admin import/review/publish workflow                                        | `EP2-ST002`                |
 | `EP2-ST004` | Parts 1-4 listening practice session API                                    | `EP2-ST002`                |
@@ -91,7 +93,7 @@ produce accurate analysis, and route weaknesses into remediation.
 
 | Story       | Increment                                                              | Depends on                 |
 | ----------- | ---------------------------------------------------------------------- | -------------------------- |
-| `EP3-ST001` | Library/storage/content version model and Drive manifest adapter       | `EP0-ST021`                |
+| `EP3-ST001` | Library/storage/content version model and Drive manifest adapter       | `EP2-ST012`                |
 | `EP3-ST002` | Drive inventory scan, metadata, checksum, and change detection         | `EP3-ST001`                |
 | `EP3-ST003` | License/review/import/publish workflow                                 | `EP3-ST002`, `EP1-ST028`   |
 | `EP3-ST004` | Admin library inventory/review UI                                      | `EP3-ST003`                |
@@ -111,7 +113,7 @@ resumed, practiced, linked, and audited through application data/storage.
 
 | Story       | Increment                                                              | Depends on                 |
 | ----------- | ---------------------------------------------------------------------- | -------------------------- |
-| `EP4-ST001` | Speaking/Writing task and rubric models                                | `EP2-ST001`                |
+| `EP4-ST001` | Speaking/Writing task and rubric models                                | `EP3-ST012`                |
 | `EP4-ST002` | TOEIC Speaking task/submission API                                     | `EP4-ST001`                |
 | `EP4-ST003` | Recording storage and controlled playback                              | `EP4-ST002`, `EP3-ST006`   |
 | `EP4-ST004` | TOEIC Speaking task/recording UI                                       | `EP4-ST003`                |
@@ -131,7 +133,7 @@ roadmaps work without AI authoring official scores.
 
 | Story       | Increment                                                                    | Depends on                            |
 | ----------- | ---------------------------------------------------------------------------- | ------------------------------------- |
-| `EP5-ST001` | Full mock test assembly and versioning                                       | `EP2-ST007`                           |
+| `EP5-ST001` | Full mock test assembly and versioning                                       | `EP4-ST012`                           |
 | `EP5-ST002` | Full exam session, server timer, finalization, and idempotency               | `EP5-ST001`                           |
 | `EP5-ST003` | Strict exam UI and interruption handling                                     | `EP5-ST002`                           |
 | `EP5-ST004` | Full scoring, integrity events, and weakness analysis                        | `EP5-ST002`                           |

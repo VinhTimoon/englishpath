@@ -35,7 +35,8 @@ before schema or feature implementation.
 
 ## Dependency
 
-- Requires `EP0-ST015` product v2 epic/story maps to be completed on `dev`.
+- Requires `EP0-ST015R` product v2 roadmap-map recovery to be completed on `dev`;
+  blocked `EP0-ST015` is historical evidence only.
 - Must complete before `EP0-ST017` CI/migration/planning safety implementation.
 
 ## Requirements

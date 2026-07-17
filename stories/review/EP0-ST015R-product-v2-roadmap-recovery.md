@@ -1,7 +1,7 @@
 ---
 id: EP0-ST015R
 title: Product V2 Roadmap Recovery
-status: ready
+status: review
 type: planning
 priority: critical
 phase: phase-0-foundation
@@ -63,9 +63,14 @@ EP0-ST020 -> EP0-ST021 -> EP0-ST022`.
 - Formatting, project checks, diff check, story verification, and read-only review
   pass without P0/P1 findings.
 
+## Pre-Loop Evidence
+
+- Ready-only story-doctor passed for `EP0-ST015R` before it moved from `ready` to
+  `in-progress`; that historical ready-path command is not a final-state verification
+  command and must not be rerun after the lifecycle move.
+
 ## Verification
 
-- node scripts/story-doctor.mjs stories/ready/EP0-ST015R-product-v2-roadmap-recovery.md --ready-only
 - node scripts/story-doctor.mjs stories/ready/EP0-ST016-architecture-data-security-v2.md --ready-only
 - node scripts/story-doctor.mjs stories/ready/EP0-ST017-ci-migration-planning-safety.md --ready-only
 - pnpm prettier --check _bmad-output/planning-artifacts/epic-map.md _bmad-output/planning-artifacts/story-map.md _bmad-output/planning-artifacts/epics.md
