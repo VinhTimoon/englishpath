@@ -1,7 +1,7 @@
 ---
 id: EP0-ST019
 title: Auth JWT And Application Identity Foundation Contracts
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-0-foundation
