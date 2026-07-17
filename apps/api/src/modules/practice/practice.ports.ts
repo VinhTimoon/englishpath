@@ -2,6 +2,7 @@ import type {
   PersistedPracticeAnswer,
   PracticeAnswerInput,
   PracticeSessionState,
+  ProgressSummary,
 } from './practice.models';
 
 export interface PracticeRepository {
@@ -23,4 +24,5 @@ export interface PracticeRepository {
     userId: string,
     sessionId: string,
   ): Promise<PracticeSessionState | null>;
+  summary(userId: string): Promise<ProgressSummary>;
 }

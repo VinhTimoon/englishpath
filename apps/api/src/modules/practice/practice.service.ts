@@ -87,4 +87,8 @@ export class PracticeService {
     if (!session) throw new NotFoundException();
     return session;
   }
+
+  summary(principal: ApplicationPrincipal) {
+    return this.repository.summary(principal.applicationUserId);
+  }
 }

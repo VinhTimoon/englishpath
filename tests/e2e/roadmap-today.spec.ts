@@ -70,6 +70,13 @@ test("learner generates a roadmap and completes today's work", async ({
         json: { data: { score: 6, total: 10, level: "INTERMEDIATE" } },
       });
     }
+    if (path.endsWith("/quiz/session/summary/progress")) {
+      return route.fulfill({
+        json: {
+          data: { xp: 120, streakDays: 3, completedSessions: 4, reviewErrors: 2 },
+        },
+      });
+    }
     if (path.endsWith("/roadmaps/current")) {
       return route.fulfill({ json: { data: generated ? roadmap() : null } });
     }
@@ -86,6 +93,7 @@ test("learner generates a roadmap and completes today's work", async ({
   });
 
   await page.goto("/dashboard");
+  await expect(page.getByText("120", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Tạo lộ trình của tôi" }).click();
   await expect(
     page.getByRole("heading", { name: "Việc học hôm nay" }),

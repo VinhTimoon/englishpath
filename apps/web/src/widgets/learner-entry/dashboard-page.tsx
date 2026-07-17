@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { clearSession } from "@/features/auth/model/auth-session";
 import { requestLearnerApi } from "@/shared/api/learner-api-client";
 import { TodayRoadmap } from "@/widgets/roadmap/today-roadmap";
+import { ProgressSummary } from "./progress-summary";
 import styles from "./learner-entry.module.css";
 
 type Result = {
@@ -82,6 +83,7 @@ export function DashboardPage() {
             </aside>
           </div>
           <TodayRoadmap />
+          <ProgressSummary />
           <Link className={styles.action} href="/daily-practice">
             Bắt đầu Daily Practice
           </Link>

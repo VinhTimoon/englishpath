@@ -236,3 +236,5 @@ unknown or non-owned items return 404 without revealing ownership.
 - `POST /api/v1/quiz/session/:id/submit` requires all five answers, awards XP and streak
   once, and returns the final score plus errors.
 - `GET /api/v1/quiz/session/:id/result` returns only the caller's persisted result.
+- `GET /api/v1/quiz/session/summary/progress` returns owner-derived XP, streak, completed
+  sessions, and review-error totals with zero defaults.

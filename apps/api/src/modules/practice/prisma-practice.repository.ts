@@ -188,4 +188,20 @@ export class PrismaPracticeRepository implements PracticeRepository {
     });
     return record ? state(record) : null;
   }
+
+  async summary(userId: string) {
+    const [progress, completedSessions, reviewErrors] = await Promise.all([
+      this.prisma.learnerProgress.findUnique({ where: { userId } }),
+      this.prisma.practiceSession.count({
+        where: { userId, status: 'SUBMITTED' },
+      }),
+      this.prisma.errorNotebookEntry.count({ where: { userId } }),
+    ]);
+    return {
+      xp: progress?.xp ?? 0,
+      streakDays: progress?.streakDays ?? 0,
+      completedSessions,
+      reviewErrors,
+    };
+  }
 }

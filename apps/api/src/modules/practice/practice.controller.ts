@@ -83,6 +83,14 @@ export class PracticeController {
     );
   }
 
+  @Get('summary/progress')
+  progressSummary(
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.wrap(this.service.summary(request.principal!), correlation);
+  }
+
   private async wrap<T>(data: Promise<T>, correlation?: string) {
     return {
       data: await data,

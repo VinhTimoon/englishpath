@@ -30,6 +30,7 @@ describe('PracticeService', () => {
     answer: jest.fn(),
     submit: jest.fn(),
     result: jest.fn(),
+    summary: jest.fn(),
   };
 
   beforeEach(() => {

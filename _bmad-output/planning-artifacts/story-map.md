@@ -69,6 +69,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST042`                | Bundled learner entry: auth UI, onboarding API/UI, and placement API/UI                  | `EP1-ST008`                |
 | `EP1-ST043`                | Bundled deterministic roadmap API, roadmap UI, and today dashboard                       | `EP1-ST042`                |
 | `EP1-ST044`                | Bundled daily quiz session, immediate feedback, progress, streak, and error review       | `EP1-ST043`                |
+| `EP1-ST045`                | Persisted owner progress summary on the learner dashboard                               | `EP1-ST044`                |
 
 `EP1-ST042` supersedes the former delivery units `EP1-ST009–013`; their requirements are
 implemented and reviewed as one vertical slice to reduce loop overhead.

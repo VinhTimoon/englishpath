@@ -31,3 +31,10 @@ export type PersistedPracticeAnswer = Readonly<{
   selectedOption: string;
   isCorrect: boolean;
 }>;
+
+export type ProgressSummary = Readonly<{
+  xp: number;
+  streakDays: number;
+  completedSessions: number;
+  reviewErrors: number;
+}>;
