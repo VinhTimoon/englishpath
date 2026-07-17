@@ -1,7 +1,7 @@
 ---
 id: EP0-ST013
 title: Planning Requirements Baseline
-status: ready
+status: blocked
 type: planning
 priority: critical
 phase: phase-0-foundation
@@ -76,3 +76,18 @@ scope, requirements, user journeys, epics, and dependency ordering.
 - pnpm prettier --check docs/01_PRODUCT_SCOPE.md docs/02_PRD.md docs/03_USER_FLOWS.md _bmad-output/planning-artifacts/prd.md _bmad-output/planning-artifacts/epic-map.md _bmad-output/planning-artifacts/story-map.md _bmad-output/planning-artifacts/epics.md
 - pnpm story:checks
 - git diff --check
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+- Exit code: 1
+- Attempts: 3
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
+```
