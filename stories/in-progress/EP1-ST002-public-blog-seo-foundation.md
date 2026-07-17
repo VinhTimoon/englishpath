@@ -78,8 +78,6 @@ database in this story.
 - pnpm story:checks
 - git diff --check
 
-
-
 ## Blocked Report
 
 - Initial loop failure: Windows `workspace-write` patch enforcement could not create
@@ -89,7 +87,6 @@ database in this story.
   article routes, monorepo story checks, 5 unit tests, 2 API e2e tests, and diff check.
 - Review fix round closed `dynamicParams`, focus contrast, stable section IDs, and the
   Vietnamese language boundary findings.
-
 ### Decision Needed
 
 - SEO canonical URLs and Article `mainEntityOfPage` require the approved production
@@ -104,5 +101,3 @@ database in this story.
   only as a development/build fallback.
 - Before public deployment, Vercel must define `NEXT_PUBLIC_SITE_URL` with the final
   HTTPS origin and no trailing slash.
-
-
