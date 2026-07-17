@@ -1,7 +1,7 @@
 ---
 id: EP1-ST017
 title: Vocabulary Taxonomy And Mindmap API
-status: ready
+status: review
 type: backend
 priority: high
 phase: phase-1-learning-core
@@ -92,3 +92,18 @@ content-governance and future CMS persistence boundaries.
 - `pnpm story:checks`
 - `pnpm story:verify stories/review/EP1-ST017-vocabulary-taxonomy-mindmap-api.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added an immutable vocabulary taxonomy domain with six v2 levels, graph validation,
+  deterministic filters/pagination, bounded mindmap traversal, and ancestor retention.
+- Added a replaceable repository port and local fixture adapter whose records are
+  created through authorized content review/publication policy without credentials,
+  persistence, storage, filesystem, or network access.
+- Added public topic and mindmap endpoints with local DTO validation, Swagger metadata,
+  correlation IDs, stable envelopes, and sanitized validation/not-found/internal errors.
+- Added focused unit and API e2e coverage for graph failures, governance fail-closed
+  behavior, immutable projections, sensitive evidence exclusion, and zero Prisma calls.
+- Two bounded Codex build attempts timed out before writing source; the manager completed
+  implementation against the accepted Codex plan, subject to full gates and independent
+  read-only Codex review.

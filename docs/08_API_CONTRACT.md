@@ -164,3 +164,16 @@ storage locations. The current content-governance foundation defines policy only
 does not expose an API. Future controllers may request authorization from the access
 layer, but must not accept a client boolean or client-created authorization decision
 as proof that an actor is human or has review/publish permission.
+
+## Vocabulary Taxonomy Endpoints
+
+- `GET /api/v1/vocabulary/topics` accepts optional `level`, `track`, `skill`, and
+  `toeicPart` filters plus `page` (default 1) and `size` (default 20, maximum 50).
+- `GET /api/v1/vocabulary/mindmap` accepts the same filters plus optional `rootId` and
+  `depth` (default 3, range 1-3).
+- Both endpoints are public and read-only. They return only approved, published,
+  currently licensed public-learning projections and omit source, checksum, rights,
+  reviewer, and lifecycle evidence.
+- Invalid filters, unknown fields, pagination, or depth return `VALIDATION_FAILED`;
+  an unknown mindmap root returns `RESOURCE_NOT_FOUND`; malformed internal graph data
+  returns a sanitized `INTERNAL_ERROR` without partial taxonomy data.

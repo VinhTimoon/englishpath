@@ -208,6 +208,24 @@ function rightsPermitPublication(
   return Number.isFinite(validUntil) && validUntil > now();
 }
 
+export function isPublicLearningContentVersion(
+  value: unknown,
+  now: () => number = Date.now,
+): value is GovernedContentVersion {
+  try {
+    const version = requireIssuedVersion(value);
+    return (
+      version.publishStatus === 'published' &&
+      version.reviewStatus === 'approved' &&
+      version.usageScope === 'learning' &&
+      version.accessTier === 'public' &&
+      rightsPermitPublication(version, now)
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function publishContentVersion(
   version: GovernedContentVersion,
   options: Readonly<{

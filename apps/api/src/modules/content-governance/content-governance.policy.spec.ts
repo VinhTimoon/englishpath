@@ -11,6 +11,7 @@ import {
 } from './content-governance.models';
 import {
   authorizeHumanContentAction,
+  isPublicLearningContentVersion,
   publishContentVersion,
   reviewContentVersion,
   reviseContentVersion,
@@ -100,6 +101,79 @@ function approvedVersion(input = baseInput) {
 }
 
 describe('content governance lifecycle policy', () => {
+  it('recognizes only issued, current, public learning publications', () => {
+    const draft = createGovernedContentVersion({
+      ...baseInput,
+      accessTier: 'public',
+      rights: { ...baseInput.rights, allowedAccessTiers: ['public'] },
+    });
+    const reviewed = reviewContentVersion(
+      draft,
+      evidenceFor(draft),
+      humanAuthorization('review'),
+    );
+    const published = publishContentVersion(reviewed, {
+      authorization: humanAuthorization('publish'),
+      now: fixedNow,
+    });
+
+    expect(isPublicLearningContentVersion(draft, fixedNow)).toBe(false);
+    expect(isPublicLearningContentVersion({ ...published }, fixedNow)).toBe(
+      false,
+    );
+    expect(isPublicLearningContentVersion(published, fixedNow)).toBe(true);
+    expect(
+      isPublicLearningContentVersion(published, () =>
+        Date.parse('2028-01-01T00:00:00.000Z'),
+      ),
+    ).toBe(false);
+  });
+
+  it('fails public projection closed for rejected and non-publishable rights', () => {
+    const publicInput: CreateContentVersionInput = {
+      ...baseInput,
+      accessTier: 'public',
+      rights: { ...baseInput.rights, allowedAccessTiers: ['public'] },
+    };
+    const rejectedDraft = createGovernedContentVersion(publicInput);
+    const rejected = reviewContentVersion(
+      rejectedDraft,
+      evidenceFor(rejectedDraft, { decision: 'rejected' }),
+      humanAuthorization('review'),
+    );
+    expect(isPublicLearningContentVersion(rejected, fixedNow)).toBe(false);
+
+    for (const licenseStatus of ['unknown', 'blocked'] as const) {
+      const draft = createGovernedContentVersion({
+        ...publicInput,
+        contentId: `content-${licenseStatus}`,
+        versionId: `version-${licenseStatus}`,
+        rights: { ...publicInput.rights, licenseStatus },
+      });
+      expect(isPublicLearningContentVersion(draft, fixedNow)).toBe(false);
+    }
+
+    const expiringDraft = createGovernedContentVersion({
+      ...publicInput,
+      contentId: 'content-expired',
+      versionId: 'version-expired',
+      rights: {
+        ...publicInput.rights,
+        validUntil: '2020-01-01T00:00:00.000Z',
+      },
+    });
+    const expiringReviewed = reviewContentVersion(
+      expiringDraft,
+      evidenceFor(expiringDraft),
+      humanAuthorization('review'),
+    );
+    const expired = publishContentVersion(expiringReviewed, {
+      authorization: humanAuthorization('publish'),
+      now: () => Date.parse('2019-01-01T00:00:00.000Z'),
+    });
+    expect(isPublicLearningContentVersion(expired, fixedNow)).toBe(false);
+  });
+
   it('publishes a separately reviewed version with compatible current rights', () => {
     const approved = approvedVersion();
     const published = publishContentVersion(approved, {

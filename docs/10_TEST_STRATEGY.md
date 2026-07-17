@@ -132,3 +132,12 @@ Report commands that were skipped or unavailable; never claim they passed.
   failures, and immutable domain outputs.
 - Inspect the additive migration for required keys/indexes/foreign keys, canonical role
   rows, rollback notes, and absence of executable drop/delete statements.
+
+## Vocabulary Taxonomy Tests
+
+- Service tests use one injected snapshot repository and cover graph integrity,
+  governance filtering, deterministic ordering, pagination, filters, bounded depth,
+  ancestor retention, missing roots, immutable outputs, and sensitive evidence removal.
+- API e2e tests exercise both public routes through `AppModule`, assert DTO and
+  correlation validation plus stable envelopes, and prove vocabulary requests make no
+  Prisma call and require no credentials, database, storage, or network.

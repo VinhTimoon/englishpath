@@ -154,3 +154,16 @@ unexpected persistence errors.
 application role catalog and are written transactionally with optional assigning-actor
 metadata. `EP1-ST008` owns Supabase verification, default learner-role assignment,
 guards, APIs, and runtime registration.
+
+## Vocabulary Taxonomy API
+
+The `vocabulary` module exposes public read-only topic and mindmap projections through
+controller -> service -> repository boundaries. Its current local adapter returns one
+immutable, reviewed fixture snapshot per request and performs no Prisma, credential,
+filesystem, storage, or network work. `EP1-ST029` may replace that adapter with CMS
+persistence without changing the public service contract.
+
+The service validates the complete `domain -> topic -> subtopic` graph before any
+projection, then filters out content that is not an issued, approved, published,
+license-compatible public learning version. Learner mastery, review schedules, imports,
+and content mutation remain outside this module.
