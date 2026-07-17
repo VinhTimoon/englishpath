@@ -1,3 +1,11 @@
+import {
+  authorizeHumanContentAction,
+  createGovernedContentVersion,
+  publishContentVersion,
+  reviewContentVersion,
+  type GovernedContentVersion,
+  type LicenseStatus,
+} from '../content-governance';
 import { VOCABULARY_FIXTURE } from './vocabulary.fixture';
 import { VOCABULARY_ERROR_CODES, VocabularyError } from './vocabulary.error';
 import type {
@@ -13,6 +21,63 @@ function repository(snapshot: VocabularySnapshot): VocabularyRepository & {
   loadSnapshot: jest.Mock;
 } {
   return { loadSnapshot: jest.fn().mockResolvedValue(snapshot) };
+}
+
+const human = (action: 'review' | 'publish') =>
+  authorizeHumanContentAction(
+    { authorizeHumanAction: () => `test-${action}er` },
+    action,
+  );
+
+function nonPublicGovernance(
+  id: string,
+  state: 'rejected' | 'expired' | LicenseStatus,
+): GovernedContentVersion {
+  const published = VOCABULARY_FIXTURE.nodes[1].governance;
+  const draft = createGovernedContentVersion({
+    contentId: `taxonomy:${id}`,
+    versionId: `taxonomy:${id}:v1`,
+    createdByActorId: 'test-author',
+    provenance: 'human_authored',
+    usageScope: 'learning',
+    accessTier: 'public',
+    taxonomy: published.taxonomy,
+    source: {
+      sourceId: `private-source:${id}`,
+      checksum: `private-checksum:${id}`,
+      sourceVersion: 'test',
+    },
+    rights: {
+      owner: 'EnglishPath',
+      licenseStatus:
+        state === 'rejected' || state === 'expired' ? 'approved' : state,
+      allowedUsageScopes: ['learning'],
+      allowedAccessTiers: ['public'],
+      ...(state === 'expired'
+        ? { validUntil: '2020-01-01T00:00:00.000Z' }
+        : {}),
+    },
+  });
+  if (state === 'unknown' || state === 'blocked') return draft;
+  const reviewed = reviewContentVersion(
+    draft,
+    {
+      reviewerId: 'test-reviewer',
+      decision: state === 'rejected' ? 'rejected' : 'approved',
+      reviewedAt: '2019-01-01T00:00:00.000Z',
+      contentId: draft.contentId,
+      versionId: draft.versionId,
+      checksum: draft.source.checksum,
+      sourceVersion: draft.source.sourceVersion,
+    },
+    human('review'),
+  );
+  return state === 'rejected'
+    ? reviewed
+    : publishContentVersion(reviewed, {
+        authorization: human('publish'),
+        now: () => Date.parse('2019-01-01T00:00:00.000Z'),
+      });
 }
 
 describe('VocabularyService', () => {
@@ -91,6 +156,47 @@ describe('VocabularyService', () => {
       totalItems: 3,
       totalPages: 2,
     });
+  });
+
+  it('orders equal-rank topics by id across stable pages', async () => {
+    const template = VOCABULARY_FIXTURE.nodes[1];
+    const service = new VocabularyService(
+      repository({
+        nodes: [
+          ...VOCABULARY_FIXTURE.nodes,
+          { ...template, id: 'workplace-zeta', label: 'Zeta', order: 2 },
+          { ...template, id: 'workplace-alpha', label: 'Alpha', order: 1 },
+        ],
+      }),
+    );
+
+    const first = await service.listTopics({ page: 1, size: 2 });
+    const second = await service.listTopics({ page: 2, size: 2 });
+    const third = await service.listTopics({ page: 3, size: 2 });
+
+    expect(first.data.map(({ id }) => id)).toEqual([
+      'daily-life-travel',
+      'professional-technology',
+    ]);
+    expect(second.data.map(({ id }) => id)).toEqual([
+      'workplace-alpha',
+      'workplace-meetings',
+    ]);
+    expect(third.data.map(({ id }) => id)).toEqual(['workplace-zeta']);
+    expect(first.page).toMatchObject({ totalItems: 5, totalPages: 3 });
+  });
+
+  it('applies all vocabulary filters as one intersection', async () => {
+    const service = new VocabularyService(repository(VOCABULARY_FIXTURE));
+    const result = await service.listTopics({
+      page: 1,
+      size: 20,
+      level: 'toeic-core',
+      track: 'workplace-english',
+      skill: 'speaking',
+      toeicPart: 3,
+    });
+    expect(result.data.map(({ id }) => id)).toEqual(['workplace-meetings']);
   });
 
   it('fails closed for missing roots', async () => {
@@ -191,4 +297,33 @@ describe('VocabularyService', () => {
     const result = await service.listTopics({ page: 1, size: 20 });
     expect(result.data.map(({ id }) => id)).not.toContain('forged-topic');
   });
+
+  it.each(['rejected', 'blocked', 'expired', 'unknown'] as const)(
+    'excludes %s governed topics while retaining public siblings',
+    async (state) => {
+      const template = VOCABULARY_FIXTURE.nodes[1];
+      const restrictedId = `restricted-${state}`;
+      const restricted: VocabularyTaxonomyNode = {
+        ...template,
+        id: restrictedId,
+        label: `Restricted ${state}`,
+        governance: nonPublicGovernance(restrictedId, state),
+      };
+      const service = new VocabularyService(
+        repository({ nodes: [...VOCABULARY_FIXTURE.nodes, restricted] }),
+      );
+
+      const result = await service.listTopics({ page: 1, size: 20 });
+      const mindmap = await service.getMindmap({ depth: 3 });
+      expect(result.data.map(({ id }) => id)).toContain('workplace-meetings');
+      expect(result.data.map(({ id }) => id)).not.toContain(restrictedId);
+      expect(JSON.stringify(result)).not.toMatch(
+        /private-source|private-checksum/,
+      );
+      expect(JSON.stringify(mindmap)).not.toContain(restrictedId);
+      expect(JSON.stringify(mindmap)).not.toMatch(
+        /private-source|private-checksum/,
+      );
+    },
+  );
 });

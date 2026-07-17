@@ -1,7 +1,7 @@
 ---
 id: EP1-ST040
 title: Vocabulary API Contract And Adapter Hardening
-status: ready
+status: review
 type: backend
 priority: high
 phase: phase-1-learning-core
@@ -66,3 +66,21 @@ repositories cannot leak malformed or unpublished taxonomy data through public r
 - `pnpm story:checks`
 - `pnpm story:verify stories/review/EP1-ST040-vocabulary-api-contract-hardening.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added fail-closed snapshot-shape validation before graph traversal and documented
+  sanitized adapter-failure behavior for both public vocabulary routes.
+- Standardized topic, mindmap, and error metadata on `correlationId` plus
+  `idempotencyStatus: not_applicable`, including Swagger HTTP 500 declarations.
+- Added direct service evidence for rejected, blocked, expired, unknown, and forged
+  governance states while retaining eligible siblings and omitting source evidence.
+- Added deterministic multi-page ordering, beyond-final pagination, all-filter
+  intersection, bounded ancestor retention, immutability, and one-load coverage.
+- Added AppModule e2e repository overrides for malformed snapshots and provider
+  failures, proving stable `INTERNAL_ERROR` envelopes without partial or private data.
+- Added credential removal and `fetch`/Prisma boundary assertions; the local fixture
+  repository is an in-memory import and has no filesystem or environment adapter.
+- The Codex build agent timed out after the initial service/controller edits; the
+  manager completed the accepted plan, then ran the full gate before independent review.
+

@@ -141,3 +141,7 @@ Report commands that were skipped or unavailable; never claim they passed.
 - API e2e tests exercise both public routes through `AppModule`, assert DTO and
   correlation validation plus stable envelopes, and prove vocabulary requests make no
   Prisma call and require no credentials, database, storage, or network.
+- Repository-port overrides inject malformed snapshots and rejected provider promises;
+  both must produce only a correlated, sanitized `INTERNAL_ERROR` envelope without
+  partial data or private adapter details. Tests also remove known database/Supabase
+  credentials and spy on `fetch` while exercising both routes.

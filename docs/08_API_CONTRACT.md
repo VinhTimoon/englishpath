@@ -74,7 +74,7 @@ planned v2 envelope.
   },
   "meta": {
     "correlationId": "01JABCDEFG1234567890",
-    "requestIdempotencyStatus": "not_applicable"
+    "idempotencyStatus": "not_applicable"
   }
 }
 ```
@@ -85,7 +85,8 @@ planned v2 envelope.
 {
   "data": {},
   "meta": {
-    "correlationId": "01JABCDEFG1234567890"
+    "correlationId": "01JABCDEFG1234567890",
+    "idempotencyStatus": "not_applicable"
   }
 }
 ```
@@ -177,3 +178,9 @@ as proof that an actor is human or has review/publish permission.
 - Invalid filters, unknown fields, pagination, or depth return `VALIDATION_FAILED`;
   an unknown mindmap root returns `RESOURCE_NOT_FOUND`; malformed internal graph data
   returns a sanitized `INTERNAL_ERROR` without partial taxonomy data.
+- Every vocabulary success and error envelope includes exactly one validated or
+  generated `meta.correlationId` and `meta.idempotencyStatus` set to
+  `not_applicable`; these read-only endpoints do not accept an idempotency key.
+- Repository exceptions and malformed snapshots map to HTTP 500 with
+  `INTERNAL_ERROR`, the public message `An unexpected error occurred.`, empty details,
+  and no raw adapter error, stack trace, source metadata, or partial `data`/`page`.

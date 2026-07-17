@@ -23,6 +23,19 @@ function compareNodes(
   return left.order - right.order || left.id.localeCompare(right.id, 'en');
 }
 
+function validateSnapshot(
+  snapshot: unknown,
+): readonly VocabularyTaxonomyNode[] {
+  if (!snapshot || typeof snapshot !== 'object' || !('nodes' in snapshot)) {
+    throw new VocabularyError(VOCABULARY_ERROR_CODES.INVALID_GRAPH);
+  }
+  const { nodes } = snapshot as { nodes?: unknown };
+  if (Object.prototype.toString.call(nodes) !== '[object Array]') {
+    throw new VocabularyError(VOCABULARY_ERROR_CODES.INVALID_GRAPH);
+  }
+  return nodes as readonly VocabularyTaxonomyNode[];
+}
+
 function validateGraph(nodes: readonly VocabularyTaxonomyNode[]) {
   if (
     Object.prototype.toString.call(nodes) !== '[object Array]' ||
@@ -163,8 +176,9 @@ export class VocabularyService {
 
   async listTopics(query: TopicQuery) {
     const snapshot = await this.repository.loadSnapshot();
-    const byId = validateGraph(snapshot.nodes);
-    const topics = publicNodes(snapshot.nodes, byId)
+    const nodes = validateSnapshot(snapshot);
+    const byId = validateGraph(nodes);
+    const topics = publicNodes(nodes, byId)
       .filter((node) => node.kind === 'topic' && matches(node, query))
       .sort(compareNodes)
       .map(projectTopic);
@@ -182,8 +196,9 @@ export class VocabularyService {
 
   async getMindmap(query: MindmapQuery) {
     const snapshot = await this.repository.loadSnapshot();
-    const allById = validateGraph(snapshot.nodes);
-    const nodes = publicNodes(snapshot.nodes, allById);
+    const graph = validateSnapshot(snapshot);
+    const allById = validateGraph(graph);
+    const nodes = publicNodes(graph, allById);
     const byId = new Map(nodes.map((node) => [node.id, node]));
     if (query.rootId && !byId.has(query.rootId)) {
       throw new VocabularyError(VOCABULARY_ERROR_CODES.ROOT_NOT_FOUND);
