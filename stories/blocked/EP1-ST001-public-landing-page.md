@@ -73,13 +73,18 @@ page that communicates the free daily-learning value and guides visitors to begi
 
 ## Blocked Report
 
-- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
-- Exit code: 1
-- Attempts: 3
-- Summary: The automated loop could not complete this story.
+- Initial failure: Windows `workspace-write` prevented the planning Agent from creating
+  `.codex-plan.md`; outer-manager recovery preserved the implementation on commit
+  `e77838f` of `story/ep1-st001`.
+- Failed gate: Codex read-only review after two fix rounds.
+- Passing evidence: web lint, web typecheck, production build, 5 unit tests,
+  2 API e2e tests, monorepo story checks, and `git diff --check`.
+- Environment limitation: integrated browser was unavailable for rendered 360px QA.
 
-### Evidence
+### Remaining P1 Findings
 
-```text
-Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
-```
+- Muted text using opacity on green cards does not reliably meet WCAG AA contrast.
+- Outcome proof uses a blockquote as its accessible section label instead of a heading.
+- Brand links expose a 34px rather than 44px interaction target.
+- Several translucent UI colors still bypass semantic CSS tokens.
+- Path preview needs the documented 30/60/90/120-day options, not only level cards.
