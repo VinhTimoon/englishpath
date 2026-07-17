@@ -74,13 +74,19 @@ the original story's fix-round limit.
 
 ## Blocked Report
 
-- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
-- Exit code: 1
-- Attempts: 3
-- Summary: The automated loop could not complete this story.
+- Initial loop failure: Windows `workspace-write` patch enforcement could not create
+  `.codex-plan.md`; recovery restored the landing baseline from `e77838f`.
+- WIP is preserved on commit `7dc086b` of `story/ep1-st003`.
+- Passing evidence: lint, clean standalone typecheck, production build, 5 unit tests,
+  2 API e2e tests, monorepo story checks, and `git diff --check`.
+- Closed findings: named widget composition, 30/60/90/120-day paths, semantic proof
+  heading, 44px brand targets, muted text contrast, semantic translucent tokens, and
+  progress contrast.
+- Integrated browser remained unavailable for rendered 360px verification.
 
-### Evidence
+### Remaining P1 Findings After Two Fix Rounds
 
-```text
-Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
-```
+- The global brand-green focus outline does not reach 3:1 against every dark/green
+  surface; focus styling needs a surface-aware high-contrast treatment.
+- Selector order overrides the 60-day amber card note back to white, which does not
+  meet text contrast on the amber background.
