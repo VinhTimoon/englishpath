@@ -238,3 +238,5 @@ unknown or non-owned items return 404 without revealing ownership.
 - `GET /api/v1/quiz/session/:id/result` returns only the caller's persisted result.
 - `GET /api/v1/quiz/session/summary/progress` returns owner-derived XP, streak, completed
   sessions, and review-error totals with zero defaults.
+- `GET /api/v1/quiz/session/summary/errors` returns at most 20 newest private review
+  entries for the authenticated learner.

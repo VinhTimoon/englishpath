@@ -25,4 +25,5 @@ export interface PracticeRepository {
     sessionId: string,
   ): Promise<PracticeSessionState | null>;
   summary(userId: string): Promise<ProgressSummary>;
+  errors(userId: string): Promise<PracticeSessionState['errors']>;
 }

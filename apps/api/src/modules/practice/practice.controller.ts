@@ -91,6 +91,14 @@ export class PracticeController {
     return this.wrap(this.service.summary(request.principal!), correlation);
   }
 
+  @Get('summary/errors')
+  errorNotebook(
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.wrap(this.service.errors(request.principal!), correlation);
+  }
+
   private async wrap<T>(data: Promise<T>, correlation?: string) {
     return {
       data: await data,

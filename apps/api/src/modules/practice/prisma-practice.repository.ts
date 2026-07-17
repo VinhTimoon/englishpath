@@ -204,4 +204,19 @@ export class PrismaPracticeRepository implements PracticeRepository {
       reviewErrors,
     };
   }
+
+  async errors(userId: string) {
+    return this.prisma.errorNotebookEntry.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+      select: {
+        questionId: true,
+        prompt: true,
+        selectedOption: true,
+        correctOption: true,
+        explanation: true,
+      },
+    });
+  }
 }

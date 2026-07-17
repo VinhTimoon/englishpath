@@ -91,4 +91,8 @@ export class PracticeService {
   summary(principal: ApplicationPrincipal) {
     return this.repository.summary(principal.applicationUserId);
   }
+
+  errors(principal: ApplicationPrincipal) {
+    return this.repository.errors(principal.applicationUserId);
+  }
 }
