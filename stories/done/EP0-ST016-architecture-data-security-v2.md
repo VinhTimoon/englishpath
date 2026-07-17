@@ -1,7 +1,7 @@
 ---
 id: EP0-ST016
 title: Architecture Data And Security V2
-status: review
+status: done
 type: planning
 priority: critical
 phase: phase-0-foundation
