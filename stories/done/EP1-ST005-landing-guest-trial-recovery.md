@@ -1,7 +1,7 @@
 ---
 id: EP1-ST005
 title: Landing And Goal-Oriented Guest Trial Recovery
-status: review
+status: done
 type: frontend
 priority: critical
 phase: phase-1-learning-core
@@ -105,7 +105,7 @@ credential-free goal-oriented guest trial aligned with product specification v2.
 - `pnpm --filter api test:e2e`
 - `pnpm build`
 - `pnpm e2e`
-- `pnpm story:verify stories/review/EP1-ST005-landing-guest-trial-recovery.md`
+- `pnpm story:verify stories/done/EP1-ST005-landing-guest-trial-recovery.md`
 - `git diff --check`
 
 ## Implementation Report
