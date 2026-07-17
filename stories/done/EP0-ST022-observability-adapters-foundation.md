@@ -1,7 +1,7 @@
 ---
 id: EP0-ST022
 title: Observability And Correlation Adapters Foundation
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-0-foundation
@@ -113,7 +113,7 @@ later runtime integrations can be added without coupling product code to provide
 - `pnpm --filter api test:e2e`
 - `pnpm build`
 - `pnpm e2e`
-- `pnpm story:verify stories/review/EP0-ST022-observability-adapters-foundation.md`
+- `pnpm story:verify stories/done/EP0-ST022-observability-adapters-foundation.md`
 - `git diff --check`
 
 ## Implementation Report
