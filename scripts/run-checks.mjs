@@ -46,6 +46,7 @@ const checks = [
     packageJson: "apps/api/package.json",
   },
   { command: "pnpm build", script: "build" },
+  { command: "pnpm e2e", script: "e2e" },
 ];
 
 const requiredWorkspaceScripts = {
@@ -74,9 +75,39 @@ export function validateRequiredWorkspaceScripts(
   return failures;
 }
 
+export function validateRequiredScripts(
+  items,
+  requiredRootScripts = ["e2e:install"],
+) {
+  const failures = [];
+  const scripts = [
+    ...items.map((item) => ({
+      packageJsonPath: item.packageJson ?? "package.json",
+      script: item.script,
+    })),
+    ...requiredRootScripts.map((script) => ({
+      packageJsonPath: "package.json",
+      script,
+    })),
+  ];
+
+  for (const { packageJsonPath, script } of scripts) {
+    if (hasScript(packageJsonPath, script)) {
+      continue;
+    }
+
+    failures.push(`Missing required script "${script}" in ${packageJsonPath}`);
+  }
+
+  return failures;
+}
+
 export function runChecks(items = checks, options = {}) {
   const execute = options.execute ?? run;
-  const missingScripts = validateRequiredWorkspaceScripts(items);
+  const missingScripts = [
+    ...validateRequiredScripts(items),
+    ...validateRequiredWorkspaceScripts(items),
+  ];
   if (missingScripts.length > 0) {
     for (const message of missingScripts) {
       console.error(message);
@@ -88,12 +119,6 @@ export function runChecks(items = checks, options = {}) {
   let failed = false;
 
   for (const item of items) {
-    const packageJsonPath = item.packageJson ?? "package.json";
-    if (!hasScript(packageJsonPath, item.script)) {
-      console.log(`Skip: ${packageJsonPath} has no script "${item.script}"`);
-      continue;
-    }
-
     try {
       execute(item.command);
     } catch {

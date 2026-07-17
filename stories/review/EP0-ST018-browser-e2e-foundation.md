@@ -1,7 +1,7 @@
 ---
 id: EP0-ST018
 title: Browser E2E Accessibility And Local Journey Foundation
-status: ready
+status: review
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -93,3 +93,15 @@ at the canonical local frontend port and can be extended by later critical journ
 - `pnpm e2e`
 - `pnpm story:verify stories/review/EP0-ST018-browser-e2e-foundation.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added a Chromium-only Playwright harness rooted at `http://localhost:5173`.
+- Added landing smoke coverage for navigation, main landmark content, 360px
+  horizontal overflow, and serious/critical accessibility violations.
+- Made `pnpm story:checks` validate required scripts and execute browser E2E
+  after `pnpm build`.
+- Updated CI to install Chromium after dependency install, run repository checks
+  through `pnpm story:checks`, and upload Playwright failure artifacts.
+- Replaced the browser placeholder in the test strategy with executable local and
+  CI policy.

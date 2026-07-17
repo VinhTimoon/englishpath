@@ -19,6 +19,7 @@ import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
 import {
   runChecks,
   runPrismaValidation,
+  validateRequiredScripts,
   validateRequiredWorkspaceScripts,
 } from "../run-checks.mjs";
 import {
@@ -1068,6 +1069,38 @@ test("validateRequiredWorkspaceScripts reports missing workspace typecheck cover
   }
 });
 
+test("validateRequiredScripts reports missing root browser gate scripts", () => {
+  const repoDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-root-checks-"),
+  );
+  const previousCwd = process.cwd();
+  process.chdir(repoDir);
+
+  try {
+    writeFile(
+      repoDir,
+      "package.json",
+      JSON.stringify(
+        { name: "englishpath", scripts: { build: "turbo build" } },
+        null,
+        2,
+      ),
+    );
+
+    const failures = validateRequiredScripts([
+      { command: "pnpm build", script: "build" },
+      { command: "pnpm e2e", script: "e2e" },
+    ]);
+
+    assert.deepEqual(failures, [
+      'Missing required script "e2e" in package.json',
+      'Missing required script "e2e:install" in package.json',
+    ]);
+  } finally {
+    process.chdir(previousCwd);
+  }
+});
+
 test("validateRequiredWorkspaceScripts requires the API e2e quality task", () => {
   const repoDir = fs.mkdtempSync(
     path.join(os.tmpdir(), "englishpath-e2e-checks-"),
@@ -1107,6 +1140,18 @@ test("runChecks executes a workspace-scoped e2e command from its package manifes
   process.chdir(repoDir);
 
   try {
+    writeFile(
+      repoDir,
+      "package.json",
+      JSON.stringify(
+        {
+          name: "englishpath",
+          scripts: { "e2e:install": "playwright install chromium" },
+        },
+        null,
+        2,
+      ),
+    );
     writeFile(
       repoDir,
       "apps/api/package.json",
@@ -1156,6 +1201,8 @@ test("runChecks preserves the planning, tooling, Prisma, and quality gate order"
             typecheck: "echo typecheck",
             test: "echo test",
             build: "echo build",
+            "e2e:install": "playwright install chromium",
+            e2e: "playwright test",
           },
         },
         null,
@@ -1201,10 +1248,81 @@ test("runChecks preserves the planning, tooling, Prisma, and quality gate order"
       "pnpm test",
       "pnpm --filter api test:e2e",
       "pnpm build",
+      "pnpm e2e",
     ]);
   } finally {
     process.chdir(previousCwd);
   }
+});
+
+test("runChecks exits before execution when the root browser gate is missing", (t) => {
+  const repoDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-run-checks-e2e-cli-"),
+  );
+  writeFile(
+    repoDir,
+    "package.json",
+    JSON.stringify(
+      {
+        name: "root",
+        scripts: {
+          "format:check": "echo format",
+          "planning:traceability": "echo traceability",
+          "tool:test": "echo tools",
+          "prisma:validate": "echo prisma",
+          lint: "echo lint",
+          typecheck: "echo typecheck",
+          test: "echo test",
+          build: "echo build",
+        },
+      },
+      null,
+      2,
+    ),
+  );
+  writeFile(
+    repoDir,
+    "apps/api/package.json",
+    JSON.stringify(
+      {
+        name: "api",
+        scripts: {
+          typecheck: "tsc --noEmit",
+          "test:e2e": "jest --config test/jest-e2e.json",
+        },
+      },
+      null,
+      2,
+    ),
+  );
+  writeFile(
+    repoDir,
+    "apps/web/package.json",
+    JSON.stringify(
+      { name: "web", scripts: { typecheck: "tsc --noEmit" } },
+      null,
+      2,
+    ),
+  );
+
+  const result = spawnSync(
+    process.execPath,
+    [path.resolve("scripts/run-checks.mjs")],
+    {
+      cwd: repoDir,
+      encoding: "utf8",
+    },
+  );
+
+  if (result.error?.message.includes("EPERM")) {
+    t.skip("Node child processes are blocked in this sandbox");
+    return;
+  }
+
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Missing required script "e2e" in package\.json/);
+  assert.doesNotMatch(result.stdout, /\$ pnpm build/);
+  assert.doesNotMatch(result.stdout, /\$ pnpm e2e/);
 });
 
 test("runPrismaValidation is validation-only and uses a synthetic local URL", () => {

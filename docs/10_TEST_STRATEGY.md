@@ -38,10 +38,24 @@ repeatable on a clean machine, and independent of developer secrets.
 
 ### Browser E2E Tests
 
-Browser tests will be added when user-facing flows are implemented. They should
-cover only high-value journeys such as onboarding, daily learning, quiz completion,
-and authentication recovery. Use stable accessibility selectors and mock or seed
-external boundaries deterministically.
+- Run Playwright against `http://localhost:5173` with Chromium only.
+- Install the browser binary with `pnpm e2e:install`.
+- Run the suite with `pnpm e2e`. `pnpm story:checks` runs it automatically after
+  a successful root `pnpm build`.
+- The harness owns `pnpm --filter web start` in CI and other clean environments.
+  Local runs may reuse an already-running server on port `5173`.
+- Keep execution bounded: finite Playwright timeouts, one worker, zero retries,
+  and no arbitrary sleeps.
+- Retain screenshot and trace evidence on failure only. If repository checks fail, CI
+  uploads any Playwright results available under `node_modules/.cache`.
+- Use stable accessibility-facing selectors and observable outcomes such as
+  landmarks, headings, link names, URL changes, and visible copy.
+- Scope the foundation to the public landing smoke journey. Later stories own
+  onboarding, learning, auth, payment, and other feature-specific journeys.
+- Accessibility smoke scans must fail on any serious or critical violations and
+  print actionable affected targets.
+- If the current UI fails browser or accessibility checks and the story forbids
+  changing application source, mark the story blocked instead of weakening the tests.
 
 ## Mandatory Gates
 

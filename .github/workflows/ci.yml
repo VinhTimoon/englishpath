@@ -33,29 +33,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Format check
-        run: pnpm format:check
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
 
-      - name: Planning traceability
-        run: pnpm planning:traceability
+      - name: Repository checks
+        id: repository-checks
+        run: pnpm story:checks
 
-      - name: Tool tests
-        run: pnpm tool:test
-
-      - name: Prisma schema validation
-        run: pnpm prisma:validate
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Unit tests
-        run: pnpm test
-
-      - name: API e2e tests
-        run: pnpm --filter api test:e2e
-
-      - name: Build
-        run: pnpm build
+      - name: Upload Playwright failure artifacts
+        if: failure() && steps.repository-checks.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: node_modules/.cache/playwright/test-results
+          if-no-files-found: ignore

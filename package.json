@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "format:check": "pnpm --dir apps/api exec prettier --check ../../package.json ../../docs/12_DEPLOYMENT_PLAN.md ../../_bmad-output/planning-artifacts/epic-map.md ../../_bmad-output/planning-artifacts/story-map.md ../../scripts/planning-traceability.mjs ../../scripts/run-checks.mjs ../../scripts/tests/*.mjs ../../.github/workflows/*.yml",
+    "format:check": "pnpm --dir apps/api exec prettier --check --end-of-line auto ../../package.json ../../playwright.config.ts ../../docs/10_TEST_STRATEGY.md ../../docs/12_DEPLOYMENT_PLAN.md ../../tests/e2e/**/*.ts ../../_bmad-output/planning-artifacts/epic-map.md ../../_bmad-output/planning-artifacts/story-map.md ../../scripts/planning-traceability.mjs ../../scripts/run-checks.mjs ../../scripts/tests/*.mjs ../../.github/workflows/*.yml",
     "lint": "turbo lint",
     "planning:traceability": "node scripts/planning-traceability.mjs",
     "tool:test": "node --test scripts/tests/story-tools.test.mjs scripts/tests/planning-traceability.test.mjs",
     "prisma:validate": "node scripts/run-checks.mjs --prisma-only",
     "typecheck": "turbo typecheck",
     "test": "turbo test",
+    "e2e:install": "playwright install chromium",
+    "e2e": "playwright test --config=playwright.config.ts",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
     "story:doctor": "node scripts/story-doctor.mjs",
     "story:prompt": "node scripts/create-codex-prompt.mjs",
@@ -25,7 +27,9 @@
     "story:test": "node scripts/run-story-tests.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@nestjs/cli": "^11.0.24",
+    "@playwright/test": "^1.61.1",
     "turbo": "^2.10.5",
     "typescript": "^5.9.3"
   },
