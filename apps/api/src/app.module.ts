@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { HealthModule } from './modules/health/health.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { VocabularyModule } from './modules/vocabulary/vocabulary.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { VocabularyModule } from './modules/vocabulary/vocabulary.module';
     HealthModule,
     PrismaModule,
     VocabularyModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

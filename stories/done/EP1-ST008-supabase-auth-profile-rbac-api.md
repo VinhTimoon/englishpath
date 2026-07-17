@@ -1,7 +1,7 @@
 ---
 id: EP1-ST008
 title: Supabase Auth Profile And RBAC API
-status: blocked
+status: done
 type: backend
 priority: critical
 phase: phase-1-learning-core
@@ -10,6 +10,7 @@ allowed_paths:
   - apps/api/src/modules/identity/**
   - apps/api/src/modules/auth/**
   - apps/api/src/app.module.ts
+  - apps/api/src/main.ts
   - apps/api/src/config/**
   - apps/api/test/**
   - apps/api/package.json
@@ -53,7 +54,8 @@ owner-protected profile APIs with fail-closed Nest guards and integration tests.
   resolution; tests use local keys and no network or credentials.
 - If a vetted JWT verification dependency is missing, create a structured library
   request in `notes/ai-req` before installation and record version/license/supply-chain
-  assessment; do not implement custom cryptography.
+  assessment. After owner approval, remove the resolved request and retain the permanent
+  decision in this story and Git; do not implement custom cryptography.
 - Resolve verified provider subject through application repositories; inactive/missing
   identities fail closed and JWT email/role claims never become authorization.
 - Add authentication, required-role, and owner guards plus typed request principal.
@@ -80,8 +82,21 @@ owner-protected profile APIs with fail-closed Nest guards and integration tests.
 - `pnpm story:verify stories/review/EP1-ST008-supabase-auth-profile-rbac-api.md`
 - `git diff --check`
 
-## Blocked Reason
+## Approval Record
 
-- Production JWT verification requires a vetted library; none is installed.
-- Approval request: `notes/ai-req/2026-07-17-ep1-st008-jose-dependency.md`.
-- No dependency or cryptographic implementation will be added before owner approval.
+- The owner approved exact production dependency `jose@6.2.3` on 2026-07-17.
+- The reviewed package is MIT licensed, has zero transitive runtime dependencies, and
+  is pinned by version plus registry integrity in `pnpm-lock.yaml`.
+- Future upgrades require a separate dependency review; custom JWT cryptography remains
+  forbidden.
+- The resolved `ai-req` was intentionally removed after approval under the project
+  workflow; this Approval Record and the security plan are the permanent audit trail.
+
+## Completion Evidence
+
+- `pnpm story:checks` passed after implementation and after all P1 review fixes.
+- API suites passed with 257 unit tests and 32 credential-free API e2e tests; the
+  workspace browser suite passed 25 tests.
+- `pnpm story:verify stories/review/EP1-ST008-supabase-auth-profile-rbac-api.md`
+  and `git diff --check` passed.
+- Independent read-only Codex review returned `Status: pass` with no P0/P1 findings.

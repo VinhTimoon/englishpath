@@ -167,3 +167,10 @@ The service validates the complete `domain -> topic -> subtopic` graph before an
 projection, then filters out content that is not an issued, approved, published,
 license-compatible public learning version. Learner mastery, review schedules, imports,
 and content mutation remain outside this module.
+## Supabase Authentication Boundary
+
+`AuthModule` verifies Supabase access tokens with `jose` and remote JWKS configuration,
+then resolves the verified provider subject through application repositories. JWT claims
+are identity evidence only: application roles, ownership, and entitlements always come
+from backend persistence. Missing configuration and missing/inactive identities fail
+closed without preventing public modules from starting locally.

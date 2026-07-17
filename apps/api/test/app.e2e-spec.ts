@@ -1,5 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  INestApplication,
+  Module,
+  Param,
+  UseFilters,
+  UseGuards,
+} from '@nestjs/common';
 import fs from 'node:fs';
 import request from 'supertest';
 import { App } from 'supertest/types';
@@ -9,6 +17,43 @@ import {
   type VocabularyRepository,
 } from './../src/modules/vocabulary/vocabulary.models';
 import { PrismaService } from './../src/prisma/prisma.service';
+import {
+  APPLICATION_PRINCIPAL_RESOLVER,
+  EXTERNAL_IDENTITY_VERIFIER,
+  OWNED_PROFILE_REPOSITORY,
+} from './../src/modules/auth/auth.tokens';
+import {
+  createApplicationPrincipal,
+  createExternalIdentity,
+} from './../src/modules/access';
+import { SupabaseJwtVerifier } from './../src/modules/auth/supabase-jwt.verifier';
+import { configureOpenApi } from './../src/config/openapi';
+import {
+  RequireOwner,
+  RequireRole,
+} from './../src/modules/auth/auth.decorators';
+import {
+  AuthenticationGuard,
+  OwnerGuard,
+  RequiredRoleGuard,
+} from './../src/modules/auth/auth.guards';
+import { AuthExceptionFilter } from './../src/modules/auth/auth-exception.filter';
+import { AuthModule } from './../src/modules/auth/auth.module';
+
+@Controller('api/v1/test-authz')
+@UseFilters(AuthExceptionFilter)
+@UseGuards(AuthenticationGuard, RequiredRoleGuard, OwnerGuard)
+@RequireRole('ADMIN')
+@RequireOwner('profile')
+class AuthorizationTestController {
+  @Get(':userId')
+  read(@Param('userId') userId: string) {
+    return { data: { userId } };
+  }
+}
+
+@Module({ imports: [AuthModule], controllers: [AuthorizationTestController] })
+class AuthorizationTestModule {}
 
 type HealthResponse = {
   status: string;
@@ -24,6 +69,11 @@ type ApiEnvelope = {
   meta: { correlationId: string; idempotencyStatus: string };
 };
 
+type OpenApiResponse = {
+  paths: Record<string, unknown>;
+  components: { securitySchemes: Record<string, unknown> };
+};
+
 describe('API (e2e)', () => {
   let app: INestApplication<App>;
   const prisma = {
@@ -32,8 +82,15 @@ describe('API (e2e)', () => {
 
   async function createApp(
     repository?: VocabularyRepository,
+    auth?: {
+      verifier: { verify(token: string): Promise<unknown> };
+      resolver: { resolve(identity: unknown): Promise<unknown> };
+      profiles: Record<string, jest.Mock>;
+    },
   ): Promise<INestApplication<App>> {
-    let builder = Test.createTestingModule({ imports: [AppModule] })
+    let builder = Test.createTestingModule({
+      imports: [AppModule, AuthorizationTestModule],
+    })
       .overrideProvider(PrismaService)
       .useValue(prisma);
     if (repository) {
@@ -41,8 +98,18 @@ describe('API (e2e)', () => {
         .overrideProvider(VOCABULARY_REPOSITORY)
         .useValue(repository);
     }
+    if (auth) {
+      builder = builder
+        .overrideProvider(EXTERNAL_IDENTITY_VERIFIER)
+        .useValue(auth.verifier)
+        .overrideProvider(APPLICATION_PRINCIPAL_RESOLVER)
+        .useValue(auth.resolver)
+        .overrideProvider(OWNED_PROFILE_REPOSITORY)
+        .useValue(auth.profiles);
+    }
     const moduleFixture: TestingModule = await builder.compile();
     const application = moduleFixture.createNestApplication();
+    configureOpenApi(application);
     await application.init();
     return application as INestApplication<App>;
   }
@@ -72,6 +139,249 @@ describe('API (e2e)', () => {
     });
     expect(new Date(body.timestamp).toISOString()).toBe(body.timestamp);
     expect(prisma.$queryRaw).toHaveBeenCalledTimes(1);
+  });
+
+  it('serves the OpenAPI contract with bearer-protected profile operations', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/api/docs-json')
+      .expect(200);
+    const body = response.body as OpenApiResponse;
+    expect(body.paths).toHaveProperty('/api/v1/profile');
+    expect(body.components.securitySchemes).toHaveProperty('bearer');
+  });
+
+  it('protects and updates only the authenticated profile', async () => {
+    await app.close();
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'external-user-001',
+      issuer: 'https://project.supabase.co/auth/v1',
+      audience: 'authenticated',
+    });
+    const principal = createApplicationPrincipal({
+      applicationUserId: 'application-user-001',
+      externalIdentity: external,
+      roles: ['FREE_USER'],
+      ownerships: [
+        { resourceType: 'profile', resourceId: 'application-user-001' },
+      ],
+      entitlements: [],
+    });
+    const profiles = {
+      findOwned: jest.fn().mockResolvedValue(null),
+      upsertOwned: jest
+        .fn()
+        .mockImplementation(
+          (
+            _owner: string,
+            userId: string,
+            profile: Record<string, unknown>,
+          ) => ({ userId, ...profile }),
+        ),
+    };
+    app = await createApp(undefined, {
+      verifier: { verify: jest.fn().mockResolvedValue(external) },
+      resolver: { resolve: jest.fn().mockResolvedValue(principal) },
+      profiles,
+    });
+
+    await request(app.getHttpServer()).get('/api/v1/profile').expect(401);
+    const read = await request(app.getHttpServer())
+      .get('/api/v1/profile')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+    const readBody = read.body as ApiEnvelope;
+    expect(readBody.data).toBeNull();
+    const response = await request(app.getHttpServer())
+      .patch('/api/v1/profile')
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('X-Correlation-Id', 'profile-update-001')
+      .send({ displayName: 'Lan', locale: 'vi-VN' })
+      .expect(200);
+    expect(response.body).toMatchObject({
+      data: { userId: 'application-user-001', displayName: 'Lan' },
+      meta: { correlationId: 'profile-update-001' },
+    });
+    expect(profiles.upsertOwned).toHaveBeenCalledWith(
+      'application-user-001',
+      'application-user-001',
+      expect.objectContaining({ displayName: 'Lan' }),
+    );
+  });
+
+  it('sanitizes a verified token with no active application identity', async () => {
+    await app.close();
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'missing-user-001',
+      issuer: 'issuer',
+      audience: 'audience',
+    });
+    app = await createApp(undefined, {
+      verifier: { verify: jest.fn().mockResolvedValue(external) },
+      resolver: { resolve: jest.fn().mockResolvedValue(null) },
+      profiles: { findOwned: jest.fn(), upsertOwned: jest.fn() },
+    });
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/profile')
+      .set('Authorization', 'Bearer secret-token-value')
+      .expect(401);
+    const body = response.body as ApiEnvelope;
+    expect(body.error).toEqual({
+      code: 'UNAUTHENTICATED',
+      message: 'Authentication failed.',
+      details: [],
+    });
+    expect(JSON.stringify(response.body)).not.toMatch(
+      /secret-token|missing-user/,
+    );
+  });
+
+  it('verifies a locally signed JWT through the HTTP guard', async () => {
+    await app.close();
+    const { generateKeyPair, SignJWT } = await import('jose');
+    const keys = await generateKeyPair('ES256');
+    const issuer = 'https://project.supabase.co/auth/v1';
+    const verifier = new SupabaseJwtVerifier({
+      issuer,
+      audience: 'authenticated',
+      algorithms: ['ES256'],
+      key: () => keys.publicKey,
+    });
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'external-user-001',
+      issuer,
+      audience: 'authenticated',
+    });
+    const principal = createApplicationPrincipal({
+      applicationUserId: 'application-user-001',
+      externalIdentity: external,
+      roles: ['FREE_USER'],
+      ownerships: [
+        { resourceType: 'profile', resourceId: 'application-user-001' },
+      ],
+      entitlements: [],
+    });
+    app = await createApp(undefined, {
+      verifier,
+      resolver: { resolve: jest.fn().mockResolvedValue(principal) },
+      profiles: {
+        findOwned: jest.fn().mockResolvedValue(null),
+        upsertOwned: jest.fn(),
+      },
+    });
+    const token = await new SignJWT({})
+      .setProtectedHeader({ alg: 'ES256' })
+      .setSubject('external-user-001')
+      .setIssuer(issuer)
+      .setAudience('authenticated')
+      .setIssuedAt()
+      .setExpirationTime('5m')
+      .sign(keys.privateKey);
+    await request(app.getHttpServer())
+      .get('/api/v1/profile')
+      .set('Authorization', `Bearer ${token}`)
+      .expect(200);
+    await request(app.getHttpServer())
+      .get('/api/v1/profile')
+      .set('Authorization', 'Basic malformed-secret')
+      .expect(401);
+    const malformed = await request(app.getHttpServer())
+      .get('/api/v1/profile')
+      .set('Authorization', 'Bearer malformed-secret-value')
+      .expect(401);
+    expect(JSON.stringify(malformed.body)).not.toMatch(
+      /malformed-secret|JWT|JOSE|stack/i,
+    );
+  });
+
+  it('normalizes HTTP role and ownership guard decisions', async () => {
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'external-user-001',
+      issuer: 'issuer',
+      audience: 'audience',
+    });
+    const makePrincipal = (roles: readonly string[]) =>
+      createApplicationPrincipal({
+        applicationUserId: 'application-user-001',
+        externalIdentity: external,
+        roles,
+        ownerships: [
+          { resourceType: 'profile', resourceId: 'application-user-001' },
+        ],
+        entitlements: [],
+      });
+    const open = async (principal: ReturnType<typeof makePrincipal>) => {
+      await app.close();
+      app = await createApp(undefined, {
+        verifier: { verify: jest.fn().mockResolvedValue(external) },
+        resolver: { resolve: jest.fn().mockResolvedValue(principal) },
+        profiles: { findOwned: jest.fn(), upsertOwned: jest.fn() },
+      });
+    };
+
+    await open(makePrincipal(['ADMIN']));
+    await request(app.getHttpServer())
+      .get('/api/v1/test-authz/application-user-001')
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(200);
+
+    await open(makePrincipal(['FREE_USER']));
+    const roleDenied = await request(app.getHttpServer())
+      .get('/api/v1/test-authz/application-user-001')
+      .set('Authorization', 'Bearer local.token.value')
+      .set('X-Correlation-Id', 'role-denied-001')
+      .expect(403);
+    expect(roleDenied.body).toMatchObject({
+      error: { code: 'FORBIDDEN', message: 'Access is forbidden.' },
+      meta: { correlationId: 'role-denied-001' },
+    });
+
+    await open(makePrincipal(['ADMIN']));
+    await request(app.getHttpServer())
+      .get('/api/v1/test-authz/application-user-002')
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(403);
+  });
+
+  it.each([
+    { role: 'ADMIN' },
+    { userId: 'another-user' },
+    { unknown: 'value' },
+    { locale: 'invalid_locale' },
+    { avatarUrl: 'http://insecure.example/avatar.png' },
+    { timezone: 'invalid_timezone' },
+    { displayName: 'x'.repeat(101) },
+  ])('rejects profile mass assignment or malformed DTO %p', async (payload) => {
+    await app.close();
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'external-user-001',
+      issuer: 'issuer',
+      audience: 'audience',
+    });
+    const principal = createApplicationPrincipal({
+      applicationUserId: 'application-user-001',
+      externalIdentity: external,
+      roles: ['FREE_USER'],
+      ownerships: [
+        { resourceType: 'profile', resourceId: 'application-user-001' },
+      ],
+      entitlements: [],
+    });
+    app = await createApp(undefined, {
+      verifier: { verify: jest.fn().mockResolvedValue(external) },
+      resolver: { resolve: jest.fn().mockResolvedValue(principal) },
+      profiles: { findOwned: jest.fn(), upsertOwned: jest.fn() },
+    });
+    const response = await request(app.getHttpServer())
+      .patch('/api/v1/profile')
+      .set('Authorization', 'Bearer secret-token-value')
+      .send(payload)
+      .expect(400);
+    expect(JSON.stringify(response.body)).not.toContain('secret-token-value');
   });
 
   it('/api/v1/vocabulary/topics returns governed paginated projections', async () => {

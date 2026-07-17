@@ -115,3 +115,20 @@
 - Suspended and retained identities fail closed for profile and role operations.
 - Duplicate and unexpected persistence failures return stable typed messages without
   email, provider subject, profile data, SQL, or provider details.
+## Supabase Token Verification
+
+The API allowlists `ES256` and `RS256`, verifies signature, issuer, audience, temporal
+claims, and subject through Supabase JWKS, and never maps JWT role-like claims to
+application authorization. The backend database remains authoritative for active status,
+roles, ownership, and entitlements. Authentication errors are normalized and never echo
+tokens, provider diagnostics, stack traces, or secrets.
+
+Dependency decision `EP1-ST008`: the owner approved exact `jose@6.2.3` on 2026-07-17.
+The package is MIT licensed, has zero transitive runtime dependencies, and is pinned by
+exact version and registry integrity in `pnpm-lock.yaml`. The resolved request was
+removed from `notes/ai-req` as required by project workflow; upgrades require a new
+supply-chain review and owner approval.
+
+Supabase-required `exp`, `iat`, and `sub` claims are enforced. The optional `nbf` claim
+is validated whenever present, matching Supabase's published JWT claims contract without
+rejecting valid access tokens that omit it.

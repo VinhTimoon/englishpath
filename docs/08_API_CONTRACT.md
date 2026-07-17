@@ -184,3 +184,10 @@ as proof that an actor is human or has review/publish permission.
 - Repository exceptions and malformed snapshots map to HTTP 500 with
   `INTERNAL_ERROR`, the public message `An unexpected error occurred.`, empty details,
   and no raw adapter error, stack trace, source metadata, or partial `data`/`page`.
+## Authenticated Profile
+
+- `GET /api/v1/profile` returns the authenticated application's minimal profile.
+- `PATCH /api/v1/profile` accepts only `displayName`, `avatarUrl`, `locale`, and
+  `timezone`; role and user identifiers are rejected as mass assignment.
+- Both routes require a Supabase bearer token plus an active backend identity and return
+  the standard sanitized error envelope with a correlation ID.

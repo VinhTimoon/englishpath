@@ -149,3 +149,10 @@ Report commands that were skipped or unavailable; never claim they passed.
   delayed loading, strict success parsing, URL-owned filters, retryable failures, empty
   variants, semantic nesting, keyboard controls, mobile overflow, and axe findings.
   They never require the API process, credentials, or private governance fixtures.
+
+## Authentication Tests
+
+Auth tests generate local asymmetric keys and never use live Supabase, credentials,
+PostgreSQL, or network access. Coverage includes signature, issuer, audience, expiry,
+identity status, ownership, DTO allowlisting, and response redaction. Jest runs with
+Node VM modules because the approved `jose` v6 package is ESM-only.
