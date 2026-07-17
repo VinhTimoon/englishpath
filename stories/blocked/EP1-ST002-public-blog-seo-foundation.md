@@ -82,13 +82,16 @@ database in this story.
 
 ## Blocked Report
 
-- Failed step: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
-- Exit code: 1
-- Attempts: 3
-- Summary: The automated loop could not complete this story.
+- Initial loop failure: Windows `workspace-write` patch enforcement could not create
+  `.codex-plan.md`; outer-manager recovery preserved the implementation on commit
+  `54fa149` of `story/ep1-st002`.
+- Passing evidence: web lint, typecheck, production build with `/blog` plus three SSG
+  article routes, monorepo story checks, 5 unit tests, 2 API e2e tests, and diff check.
+- Review fix round closed `dynamicParams`, focus contrast, stable section IDs, and the
+  Vietnamese language boundary findings.
 
-### Evidence
+### Decision Needed
 
-```text
-Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "plan" ".codex-plan-task.md"
-```
+- SEO canonical URLs and Article `mainEntityOfPage` require the approved production
+  site origin. The repository and product spec do not define a domain, and this story
+  must not invent one. See `notes/ai-req/2026-07-17-production-site-origin.md`.
