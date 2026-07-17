@@ -18,11 +18,33 @@ function run(command) {
   execSync(command, { stdio: "inherit" });
 }
 
+export function runPrismaValidation(options = {}) {
+  const execute = options.execute ?? execSync;
+  const env = {
+    ...process.env,
+    DATABASE_URL:
+      "postgresql://placeholder:placeholder@127.0.0.1:5432/englishpath?schema=public",
+  };
+
+  execute(
+    "pnpm --dir apps/api exec prisma validate --schema prisma/schema.prisma",
+    { stdio: "inherit", env },
+  );
+}
+
 const checks = [
+  { command: "pnpm format:check", script: "format:check" },
+  { command: "pnpm planning:traceability", script: "planning:traceability" },
+  { command: "pnpm tool:test", script: "tool:test" },
+  { command: "pnpm prisma:validate", script: "prisma:validate" },
   { command: "pnpm lint", script: "lint" },
   { command: "pnpm typecheck", script: "typecheck" },
   { command: "pnpm test", script: "test" },
-  { command: "pnpm --filter api test:e2e", script: "test:e2e", packageJson: "apps/api/package.json" },
+  {
+    command: "pnpm --filter api test:e2e",
+    script: "test:e2e",
+    packageJson: "apps/api/package.json",
+  },
   { command: "pnpm build", script: "build" },
 ];
 
@@ -31,7 +53,10 @@ const requiredWorkspaceScripts = {
   "test:e2e": ["apps/api/package.json"],
 };
 
-export function validateRequiredWorkspaceScripts(items, workspaceScripts = requiredWorkspaceScripts) {
+export function validateRequiredWorkspaceScripts(
+  items,
+  workspaceScripts = requiredWorkspaceScripts,
+) {
   const failures = [];
 
   for (const item of items) {
@@ -40,7 +65,9 @@ export function validateRequiredWorkspaceScripts(items, workspaceScripts = requi
         continue;
       }
 
-      failures.push(`Missing required workspace script "${item.script}" in ${packageJsonPath}`);
+      failures.push(
+        `Missing required workspace script "${item.script}" in ${packageJsonPath}`,
+      );
     }
   }
 
@@ -87,5 +114,9 @@ const currentFilePath = fileURLToPath(import.meta.url);
 const invokedPath = process.argv[1] ? path.resolve(process.argv[1]) : "";
 
 if (invokedPath === currentFilePath) {
-  runChecks();
+  if (process.argv.includes("--prisma-only")) {
+    runPrismaValidation();
+  } else {
+    runChecks();
+  }
 }

@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "format:check": "pnpm --dir apps/api exec prettier --check ../../package.json ../../docs/12_DEPLOYMENT_PLAN.md ../../_bmad-output/planning-artifacts/epic-map.md ../../_bmad-output/planning-artifacts/story-map.md ../../scripts/planning-traceability.mjs ../../scripts/run-checks.mjs ../../scripts/tests/*.mjs ../../.github/workflows/*.yml",
     "lint": "turbo lint",
+    "planning:traceability": "node scripts/planning-traceability.mjs",
+    "tool:test": "node --test scripts/tests/story-tools.test.mjs scripts/tests/planning-traceability.test.mjs",
+    "prisma:validate": "node scripts/run-checks.mjs --prisma-only",
     "typecheck": "turbo typecheck",
     "test": "turbo test",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",

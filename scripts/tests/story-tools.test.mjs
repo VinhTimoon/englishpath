@@ -16,7 +16,11 @@ import {
   mergeStoryBranchIntoDev,
 } from "../lib/git-utils.mjs";
 import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
-import { runChecks, validateRequiredWorkspaceScripts } from "../run-checks.mjs";
+import {
+  runChecks,
+  runPrismaValidation,
+  validateRequiredWorkspaceScripts,
+} from "../run-checks.mjs";
 import {
   BLOCKED_EXIT_CODE,
   CommandError,
@@ -1126,6 +1130,101 @@ test("runChecks executes a workspace-scoped e2e command from its package manifes
   } finally {
     process.chdir(previousCwd);
   }
+});
+
+test("runChecks preserves the planning, tooling, Prisma, and quality gate order", () => {
+  const repoDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-check-order-"),
+  );
+  const previousCwd = process.cwd();
+  const commands = [];
+  process.chdir(repoDir);
+
+  try {
+    writeFile(
+      repoDir,
+      "package.json",
+      JSON.stringify(
+        {
+          name: "englishpath",
+          scripts: {
+            "format:check": "echo format",
+            "planning:traceability": "echo traceability",
+            "tool:test": "echo tools",
+            "prisma:validate": "echo prisma",
+            lint: "echo lint",
+            typecheck: "echo typecheck",
+            test: "echo test",
+            build: "echo build",
+          },
+        },
+        null,
+        2,
+      ),
+    );
+    writeFile(
+      repoDir,
+      "apps/api/package.json",
+      JSON.stringify(
+        {
+          name: "api",
+          scripts: {
+            typecheck: "tsc --noEmit",
+            "test:e2e": "jest --config test/jest-e2e.json",
+          },
+        },
+        null,
+        2,
+      ),
+    );
+    writeFile(
+      repoDir,
+      "apps/web/package.json",
+      JSON.stringify(
+        { name: "web", scripts: { typecheck: "tsc --noEmit" } },
+        null,
+        2,
+      ),
+    );
+
+    runChecks(undefined, {
+      execute: (command) => commands.push(command),
+    });
+
+    assert.deepEqual(commands, [
+      "pnpm format:check",
+      "pnpm planning:traceability",
+      "pnpm tool:test",
+      "pnpm prisma:validate",
+      "pnpm lint",
+      "pnpm typecheck",
+      "pnpm test",
+      "pnpm --filter api test:e2e",
+      "pnpm build",
+    ]);
+  } finally {
+    process.chdir(previousCwd);
+  }
+});
+
+test("runPrismaValidation is validation-only and uses a synthetic local URL", () => {
+  let invocation;
+
+  runPrismaValidation({
+    execute: (command, options) => {
+      invocation = { command, options };
+    },
+  });
+
+  assert.equal(
+    invocation.command,
+    "pnpm --dir apps/api exec prisma validate --schema prisma/schema.prisma",
+  );
+  assert.match(invocation.options.env.DATABASE_URL, /127\.0\.0\.1:5432/);
+  assert.doesNotMatch(
+    invocation.command,
+    /migrate|reset|seed|introspect|db\s+push/i,
+  );
 });
 
 test("run-checks exits clearly when a required workspace typecheck script is missing", (t) => {

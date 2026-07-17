@@ -1,7 +1,7 @@
 ---
 id: EP0-ST017
 title: CI Migration And Planning Safety
-status: ready
+status: review
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -62,10 +62,15 @@ planning traceability checks so later stories fail early and reproducibly.
 - Project checks, diff check, story verification, and read-only review pass without
   P0/P1 findings.
 
+## Pre-Loop Evidence
+
+- Ready-only story-doctor passed before `EP0-ST017` moved from `ready` to
+  `in-progress`; that historical ready-path command is preserved as pre-loop evidence
+  and is not rerun as a final-state verification command.
+
 ## Verification
 
-- node scripts/story-doctor.mjs stories/ready/EP0-ST017-ci-migration-planning-safety.md --ready-only
-- node --test scripts/tests/story-tools.test.mjs
+- pnpm tool:test
 - node scripts/planning-traceability.mjs
 - pnpm story:checks
 - git diff --check
