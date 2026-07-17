@@ -1,7 +1,7 @@
 ---
 id: EP1-ST008
 title: Supabase Auth Profile And RBAC API
-status: ready
+status: blocked
 type: backend
 priority: critical
 phase: phase-1-learning-core
@@ -79,3 +79,9 @@ owner-protected profile APIs with fail-closed Nest guards and integration tests.
 - `pnpm story:checks`
 - `pnpm story:verify stories/review/EP1-ST008-supabase-auth-profile-rbac-api.md`
 - `git diff --check`
+
+## Blocked Reason
+
+- Production JWT verification requires a vetted library; none is installed.
+- Approval request: `notes/ai-req/2026-07-17-ep1-st008-jose-dependency.md`.
+- No dependency or cryptographic implementation will be added before owner approval.
