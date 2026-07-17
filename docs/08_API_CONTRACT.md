@@ -1,8 +1,15 @@
-# API Contract
+# API Contract V2
 
-## GET `/api/v1/health`
+## Current Repository Evidence
 
-Checks whether the API is running and whether the database is reachable through Prisma.
+- Current documented route evidence is `GET /api/v1/health`.
+- Wider v2 resource contracts below are planned conventions, not implemented proof.
+
+## Current Health Endpoint
+
+`GET /api/v1/health` currently returns the existing flat `HealthResponseDto`. It is
+an explicit compatibility exception until a later implementation story adopts the
+planned v2 envelope.
 
 ### 200 OK
 
@@ -25,3 +32,113 @@ Checks whether the API is running and whether the database is reachable through 
   "timestamp": "2026-07-16T00:00:00.000Z"
 }
 ```
+
+## Planned V2 Contract Conventions
+
+## Base Convention
+
+- Base path: `/api/v1`
+- Transport: JSON over HTTPS
+- Resource naming: plural, kebab-case collections with stable resource IDs
+- Time format: ISO 8601 UTC timestamps
+- Authentication: Bearer JWT verified by backend
+- Authorization: backend role, entitlement, and ownership policy checks
+
+## Request Rules
+
+- All non-trivial request bodies use validated DTOs.
+- Unknown fields are rejected or ignored consistently by endpoint contract.
+- List endpoints support explicit pagination parameters.
+- Mutating endpoints may require `Idempotency-Key`.
+- Correlation is carried in `X-Correlation-Id`; backend generates one when absent.
+
+## Response Rules
+
+- Successful responses exclude secrets, answer keys, internal scoring formulas,
+  private storage locations, and raw provider credentials.
+- List responses use a stable envelope:
+
+```json
+{
+  "data": [],
+  "page": {
+    "number": 1,
+    "size": 20,
+    "totalItems": 0,
+    "totalPages": 0
+  },
+  "meta": {
+    "correlationId": "01JABCDEFG1234567890",
+    "requestIdempotencyStatus": "not_applicable"
+  }
+}
+```
+
+- Non-list success responses use:
+
+```json
+{
+  "data": {},
+  "meta": {
+    "correlationId": "01JABCDEFG1234567890"
+  }
+}
+```
+
+## Error Envelope
+
+```json
+{
+  "error": {
+    "code": "RESOURCE_FORBIDDEN",
+    "message": "You do not have access to this resource.",
+    "details": []
+  },
+  "meta": {
+    "correlationId": "01JABCDEFG1234567890",
+    "idempotencyStatus": "not_applicable"
+  }
+}
+```
+
+### Stable Error Codes
+
+- `AUTH_REQUIRED`
+- `AUTH_INVALID_TOKEN`
+- `RESOURCE_FORBIDDEN`
+- `RESOURCE_NOT_FOUND`
+- `VALIDATION_FAILED`
+- `RATE_LIMITED`
+- `IDEMPOTENCY_CONFLICT`
+- `IDEMPOTENCY_REPLAYED`
+- `QUOTA_EXCEEDED`
+- `ENTITLEMENT_REQUIRED`
+- `OFFICIAL_TIMER_EXPIRED`
+- `SUSPICIOUS_ATTEMPT_BLOCKED`
+- `INTERNAL_ERROR`
+
+## Idempotency Rules
+
+- Client sends `Idempotency-Key` for retry-prone writes.
+- Backend stores request fingerprint, principal, route, first result, and expiry.
+- Replayed identical requests return the original result with
+  `idempotencyStatus: replayed`.
+- Same key with a different fingerprint returns `IDEMPOTENCY_CONFLICT`.
+
+## OpenAPI Rules
+
+- Every public endpoint must declare summary, auth requirement, parameters, DTOs,
+  success responses, and stable error responses.
+- Protected admin endpoints must document admin role requirement even though the UI
+  remains inside `apps/web`.
+
+## Domain-Specific Contract Constraints
+
+- TOEIC and placement submission endpoints never return correct answers before
+  final submission and policy-allowed reveal.
+- Timer-bearing endpoints accept client event telemetry but compute official timing
+  from backend state.
+- AI endpoints return moderated, policy-filtered results and capture prompt
+  version, model, quota, and estimated cost server-side.
+- Content delivery endpoints expose only published and licensed assets authorized
+  for the caller.

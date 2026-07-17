@@ -1,7 +1,7 @@
 ---
 id: EP0-ST016
 title: Architecture Data And Security V2
-status: ready
+status: review
 type: planning
 priority: critical
 phase: phase-0-foundation
@@ -74,9 +74,14 @@ before schema or feature implementation.
 - Formatting, project checks, diff check, story verification, and read-only review
   pass without P0/P1 findings.
 
+## Pre-Loop Evidence
+
+- Ready-only story-doctor passed before `EP0-ST016` moved from `ready` to
+  `in-progress`; the historical ready-path command is not rerun as a final-state
+  verification command.
+
 ## Verification
 
-- node scripts/story-doctor.mjs stories/ready/EP0-ST016-architecture-data-security-v2.md --ready-only
 - pnpm prettier --check docs/04_SYSTEM_ARCHITECTURE.md docs/06_BACKEND_ARCHITECTURE.md docs/07_DATABASE_DESIGN.md docs/08_API_CONTRACT.md docs/11_SECURITY_PLAN.md docs/13_DECISION_LOG.md _bmad-output/planning-artifacts/architecture.md
 - pnpm story:checks
 - git diff --check
