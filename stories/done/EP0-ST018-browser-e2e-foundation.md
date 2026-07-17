@@ -1,7 +1,7 @@
 ---
 id: EP0-ST018
 title: Browser E2E Accessibility And Local Journey Foundation
-status: review
+status: done
 type: tooling
 priority: critical
 phase: phase-0-foundation
