@@ -1,107 +1,99 @@
-# EnglishPath Epics Baseline
+# EnglishPath Product V2 Epics
 
-## `E00` Phase 0B Foundation Recovery
+## `E00` Phase 0 Foundation
 
-- Goal: Establish concise planning, architecture, CI safety, and E2E foundations for product delivery.
-- Story range: `EP0-ST013` to `EP0-ST016`.
-- Covers: `NFR-001`, `NFR-002`, `NFR-010`, `NFR-011`.
-- Depends on: completed foundation governance stories and the `EP1-ST004` runtime baseline.
-- Acceptance outcome: planning artifacts, API pagination policy, architectural baseline,
-  local port defaults, CI safety, and browser E2E readiness exist without touching
-  production controls.
+- Goal: establish safe, observable, credential-free foundations for product delivery.
+- Stories: `EP0-ST014` v2 core, `EP0-ST015` maps, `EP0-ST016` architecture,
+  `EP0-ST017` CI/migration/semantic safety, `EP0-ST018` browser E2E, `EP0-ST019`
+  auth identity, `EP0-ST020` taxonomy/rights, `EP0-ST021` Drive inventory, and
+  `EP0-ST022` observability adapters.
+- Dependencies: completed governance, health, blog SEO, and local-port baselines.
+- Coverage: foundation portions of `FR-002`, `FR-006`, `FR-010`, `FR-017`, `FR-029`;
+  `NFR-001` to `NFR-004`, `NFR-006`, `NFR-007`, `NFR-010` to `NFR-017`;
+  `UF-002`, `UF-007`.
+- Exit gate: v2 planning/architecture and automated gates agree; auth/content/Drive/
+  observability foundations pass without production credentials, paid services, or
+  destructive migrations.
 
-## `E01` Public Acquisition And SEO
+## `E01` Phase 1 Learning Core
 
-- Goal: Recover the public landing journey and technical SEO fundamentals.
-- Story range: `EP1-ST005` to `EP1-ST006`.
-- Covers: `FR-001`, `NFR-008`.
-- Depends on: `E00`.
-- Acceptance outcome: guests can discover the product, browse useful public pages, and reach signup calls to action on indexable pages.
+- Goal: ship the free-first guest and daily learner loop.
+- Stories: `EP1-ST005` to `EP1-ST039`, covering landing/guest trial, technical SEO,
+  auth, onboarding/placement, roadmap/dashboard, vocabulary mindmap/SRS, daily
+  practice/sentences, basic Error Notebook, progress, admin/CMS, reviewed content,
+  observability, and staging readiness.
+- Dependencies: `E00`; historical `EP1-ST001`/`EP1-ST003` are superseded by
+  `EP1-ST005`, while `EP1-ST002`/`EP1-ST004` remain implemented baselines.
+- Coverage: `FR-001` to `FR-011`, `FR-029`; `UF-001` to `UF-007`, `UF-009`; relevant
+  web, security, content, architecture, and testing NFRs.
+- Exit gate: guest trial and authenticated learning work end to end with reviewed
+  content, Error Notebook, progress, accessibility, observability, and browser tests.
 
-## `E02` Identity And Recovery
+## `E02` Phase 2 TOEIC Listening And Reading
 
-- Goal: Create secure learner authentication and account recovery.
-- Story range: `EP1-ST007` to `EP1-ST009`.
-- Covers: `FR-002`, `NFR-004`.
-- Depends on: `E01`.
-- Acceptance outcome: learners can register, sign in, recover access, and reach authenticated product surfaces.
+- Goal: deliver governed TOEIC Parts 1-7 and actionable remediation.
+- Stories: `EP2-ST001` to `EP2-ST012`, covering question-bank governance, Parts 1-7,
+  practice selection, mini/half tests, server timing, scoring/weakness analysis,
+  Error Notebook, remediation packs, and exit review.
+- Dependencies: `E01` content, learner, progress, and CMS foundations.
+- Coverage: `FR-009`, `FR-011` to `FR-015`; `UF-006` to `UF-008`; answer-security,
+  rights, capacity, and regression-test NFRs.
+- Exit gate: approved timed attempts protect answers, finalize exactly once, report
+  accurate weaknesses, and schedule remediation.
 
-## `E03` Onboarding And Placement
+## `E03` Phase 3 Licensed Content Library And Listening
 
-- Goal: Capture learner context and assign a credible starting level.
-- Story range: `EP1-ST010` to `EP1-ST013`.
-- Covers: `FR-003`, `FR-004`.
-- Depends on: `E02`.
-- Acceptance outcome: onboarding and placement produce persisted inputs for roadmap generation.
+- Goal: turn governed Drive assets into reusable, safe learning experiences.
+- Stories: `EP3-ST001` to `EP3-ST012`, covering manifest/inventory, checksum/version,
+  license/review/import, admin/learner library, controlled media/transcript, resume,
+  bookmark/note, drills, shadowing, links, content batch, and exit review.
+- Dependencies: `E00` Drive/content design, `E01` CMS, and `E02` TOEIC context.
+- Coverage: `FR-009`, `FR-016` to `FR-019`; `UF-004`, `UF-006`, `UF-007`, `UF-010`;
+  content, storage, search, security, capacity, and testing NFRs.
+- Exit gate: Drive remains only a source while reviewed canonical content is imported,
+  accessed, practiced, linked, and audited through application systems.
 
-## `E04` Personalized Roadmaps
+## `E04` Phase 4 TOEIC Speaking, Writing, And Four Skills
 
-- Goal: Generate bounded learner plans and expose them clearly.
-- Story range: `EP1-ST014` to `EP1-ST016`.
-- Covers: `FR-005`, `FR-006`.
-- Depends on: `E03`.
-- Acceptance outcome: every learner receives a 30/60/90/120-day plan with visible tasks and next actions.
+- Goal: add rubric-driven productive skills and balanced Four Skills roadmaps.
+- Stories: `EP4-ST001` to `EP4-ST012`, covering tasks/rubrics, audio/text submission,
+  controlled storage, UI, provider-neutral advisory feedback, balanced roadmaps,
+  progress, evaluation, and exit review.
+- Dependencies: `E02` TOEIC governance, `E03` media, and `E01` roadmap/progress.
+- Coverage: `FR-004`, `FR-009`, `FR-011`, `FR-020` to `FR-022`, `FR-025`;
+  `UF-003`, `UF-006`, `UF-009`, `UF-011`, `UF-013`; AI/score/security NFRs.
+- Exit gate: evidence and rubric feedback work across speaking/writing/Four Skills,
+  while AI remains advisory and cannot author official scores.
 
-## `E05` Daily Learning Core
+## `E05` Phase 5 Full Test, Adaptive AI, And Community
 
-- Goal: Deliver the repeatable daily-learning loop for vocabulary, quizzes, and daily sentences.
-- Story range: `EP1-ST017` to `EP1-ST023`.
-- Covers: `FR-007`, `FR-008`, `FR-009`.
-- Depends on: `E04`.
-- Acceptance outcome: learners can study daily content, submit work, and persist review-relevant outcomes.
+- Goal: deepen assessment and personalization without weakening integrity or safety.
+- Stories: `EP5-ST001` to `EP5-ST013`, covering full mocks, secure finalization,
+  strict exam UI, integrity/analysis, advanced errors, adaptive roadmap, AI
+  explanation/speaking/writing, moderated community, quota/cost operations, and exit
+  review.
+- Dependencies: `E04` productive skills and all prior shared learning/content domains.
+- Coverage: `FR-009`, `FR-011`, `FR-023` to `FR-026`, `FR-029`; `UF-006`, `UF-009`,
+  `UF-012`, `UF-013`; exam, AI, web-state, security, capacity, and regression NFRs.
+- Exit gate: exam, adaptive, AI, and community journeys pass integrity, evaluation,
+  abuse, accessibility, observability, and performance gates.
 
-## `E06` Progress And CMS Operations
+## `E06` Phase 6 Mobile And Premium Expansion
 
-- Goal: Track learner progress and enable safe admin content operations.
-- Story range: `EP1-ST024` to `EP1-ST029`.
-- Covers: `FR-010`, `FR-011`, `FR-012`, `NFR-003`, `NFR-004`.
-- Depends on: `E05`.
-- Acceptance outcome: learners see progress states while admins manage content and access through guarded tools.
+- Goal: extend proven web rules to mobile and sustainable free-first monetization.
+- Stories: `EP6-ST001` to `EP6-ST014`, covering Expo/shared contracts, mobile auth,
+  roadmap/daily/TOEIC/listening/speaking/writing, push, offline sync, entitlements,
+  Stripe webhooks/UI, analytics, backup/load/DR, and release readiness.
+- Dependencies: `E05` stable backend APIs, policies, content, and observability.
+- Coverage: `FR-027` to `FR-029`; `UF-002`, `UF-004`, `UF-010`, `UF-013`; mobile
+  state, AI, adapters, security, capacity, owner-control, and regression NFRs.
+- Exit gate: mobile shares API/RBAC and deterministic sync; free-first billing is
+  idempotent; owner accepts resilience, capacity, and release evidence.
 
-## `E07` Launch Content And Readiness
+## Governance
 
-- Goal: Publish enough useful content and operational controls to launch the web MVP.
-- Story range: `EP1-ST030` to `EP1-ST038`.
-- Covers: `FR-013`, `NFR-007`, `NFR-008`, `NFR-009`.
-- Depends on: `E06`.
-- Acceptance outcome: baseline vocabulary, quizzes, daily sentences, SEO posts, analytics, monitoring, and staging readiness are in place.
-
-## `E08` Listening And Review
-
-- Goal: Extend the learner loop with licensed audio practice and structured review.
-- Story range: `EP2-ST001` to `EP2-ST010`.
-- Covers: `FR-014`, `FR-015`.
-- Depends on: `E07`.
-- Acceptance outcome: learners can practice listening, shadowing, and mistake review with transcript-aware content.
-
-## `E09` TOEIC Practice And Exam Security
-
-- Goal: Support TOEIC practice depth without compromising answer security.
-- Story range: `EP3-ST001` to `EP3-ST012`.
-- Covers: `FR-016`, `NFR-005`.
-- Depends on: `E08`.
-- Acceptance outcome: admins manage the question bank and learners complete secure TOEIC sessions with delayed answer reveal.
-
-## `E10` AI Learning Services
-
-- Goal: Add controlled AI assistance for writing, speaking, and explanations.
-- Story range: `EP4-ST001` to `EP4-ST012`.
-- Covers: `FR-017`, `NFR-006`.
-- Depends on: `E09`.
-- Acceptance outcome: AI requests pass through a backend gateway with quota, cost, and abuse controls.
-
-## `E11` Mobile Experience
-
-- Goal: Bring the core learner loop to mobile after the web product proves out.
-- Story range: `EP5-ST001` to `EP5-ST008`.
-- Covers: `FR-018`, `NFR-012`.
-- Depends on: `E10`.
-- Acceptance outcome: learners can authenticate, study daily content, and use key retention features on mobile.
-
-## `E12` Monetization And Reliability
-
-- Goal: Introduce premium entitlements and stronger resilience after MVP traction.
-- Story range: Phase 6 backlog themes not yet split into numbered stories.
-- Covers: `FR-019`, `NFR-009`, `NFR-011`.
-- Depends on: `E11`.
-- Acceptance outcome: subscriptions, backup and restore, disaster recovery, and load validation mature without weakening free-first access.
+- Detailed story dependencies are authoritative in `story-map.md`.
+- Requirement coverage is authoritative in `epic-map.md` and cross-checked by
+  `EP0-ST017` automation.
+- Only passed story branches merge into `dev`; only the project owner promotes to
+  `main` or approves protected production decisions.

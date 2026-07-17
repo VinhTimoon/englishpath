@@ -1,47 +1,192 @@
-# EnglishPath Story Map
+# EnglishPath Product V2 Story Map
 
-## Delivery Status Legend
+## Status And Supersession
 
-- `Implemented`: completed story evidence exists.
-- `Next`: explicitly identified as the next delivery.
-- `Planned`: approved roadmap item not yet implemented.
+| Story/history              | Status                                                        |
+| -------------------------- | ------------------------------------------------------------- |
+| `EP0-ST001` to `EP0-ST012` | Foundation history; `EP0-ST011` was superseded by `EP0-ST012` |
+| `EP0-ST013`                | Completed v1 planning baseline, superseded by v2 `EP0-ST014`  |
+| `EP0-ST014`                | Product v2 core rebaseline completed                          |
+| `EP1-ST002`                | Public blog SEO baseline implemented                          |
+| `EP1-ST004`                | Local ports baseline implemented                              |
+| `EP1-ST001`, `EP1-ST003`   | Blocked historical landing work, superseded by `EP1-ST005`    |
 
-## Baseline Already Implemented
+## Phase 0 Foundation
 
-| Story                                      | Outcome                                                                                                   | Status      |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------- | ----------- |
-| `EP0-ST001` to `EP0-ST010` and `EP0-ST012` | Governance, loop, checks, and implementation safety foundation; `EP0-ST011` was superseded by `EP0-ST012` | Implemented |
-| `EP1-ST002`                                | Public blog SEO foundation                                                                                | Implemented |
-| `EP1-ST004`                                | Local runtime ports baseline                                                                              | Implemented |
+| Story       | Increment                                                                          | Depends on  |
+| ----------- | ---------------------------------------------------------------------------------- | ----------- |
+| `EP0-ST015` | Product v2 epic/story maps and ready queue                                         | `EP0-ST014` |
+| `EP0-ST016` | System/backend/data/API/security architecture and decision baseline                | `EP0-ST015` |
+| `EP0-ST017` | CI, migration safety, and automated planning semantic checks                       | `EP0-ST016` |
+| `EP0-ST018` | Browser E2E, accessibility smoke, and local journey harness                        | `EP0-ST017` |
+| `EP0-ST019` | Supabase auth/JWT/application identity foundation contracts and local test adapter | `EP0-ST018` |
+| `EP0-ST020` | Shared taxonomy, source/license/review/publish data foundation                     | `EP0-ST019` |
+| `EP0-ST021` | Google Drive inventory manifest design and credential-free local adapter           | `EP0-ST020` |
+| `EP0-ST022` | Structured logging, monitoring, analytics, and correlation adapters                | `EP0-ST021` |
 
-## Ordered Story Progression
+Exit: architecture and automated gates pass; auth/content/Drive/observability
+foundations exist without real credentials, paid services, or destructive migrations.
 
-| Phase    | Story range                | User value increment                                                  | Depends on                  | Status      |
-| -------- | -------------------------- | --------------------------------------------------------------------- | --------------------------- | ----------- |
-| Phase 0B | `EP0-ST013` to `EP0-ST016` | Planning, architecture, CI safety, and E2E readiness for product work | Existing foundation stories | In progress |
-| Phase 1A | `EP1-ST005` to `EP1-ST006` | Credible landing experience and crawlable acquisition surface         | Phase 0B                    | Next        |
-| Phase 1B | `EP1-ST007` to `EP1-ST009` | Learners can create and recover accounts                              | Phase 1A                    | Planned     |
-| Phase 1C | `EP1-ST010` to `EP1-ST013` | Learners define goals and receive a starting level                    | Phase 1B                    | Planned     |
-| Phase 1D | `EP1-ST014` to `EP1-ST016` | Learners receive bounded personalized roadmaps                        | Phase 1C                    | Planned     |
-| Phase 1E | `EP1-ST017` to `EP1-ST023` | Learners can study vocabulary, quizzes, and daily sentences daily     | Phase 1D                    | Planned     |
-| Phase 1F | `EP1-ST024` to `EP1-ST029` | Learners see progress; admins manage content and access               | Phase 1E                    | Planned     |
-| Phase 1G | `EP1-ST030` to `EP1-ST038` | MVP gains launch content, observability, and staging readiness        | Phase 1F                    | Planned     |
-| Phase 2  | `EP2-ST001` to `EP2-ST010` | Learners add listening depth and structured review loops              | Phase 1G                    | Planned     |
-| Phase 3  | `EP3-ST001` to `EP3-ST012` | Learners can practice TOEIC securely at increasing fidelity           | Phase 2                     | Planned     |
-| Phase 4  | `EP4-ST001` to `EP4-ST012` | Learners receive controlled AI assistance for writing and speaking    | Phase 3                     | Planned     |
-| Phase 5  | `EP5-ST001` to `EP5-ST008` | Mobile extends retention and access beyond the web MVP                | Phase 4                     | Planned     |
-| Phase 6  | Post-MVP backlog themes    | Monetization and resilience mature after product-market validation    | Phase 5                     | Planned     |
+## Phase 1 Learning Core
 
-## Flow To Story Alignment
+| Story                      | Increment                                                                                | Depends on                 |
+| -------------------------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| `EP1-ST005`                | Recover landing, add goal-oriented guest trial, close contrast/mobile findings           | `EP0-ST018`                |
+| `EP1-ST006`                | Public IA, sitemap/robots/metadata/internal links and SEO tests                          | `EP1-ST005`                |
+| `EP1-ST007`                | User/Profile/Role application schema and ownership repositories                          | `EP0-ST019`                |
+| `EP1-ST008`                | Supabase JWT guards, auth/profile APIs, ownership and RBAC tests                         | `EP1-ST007`                |
+| `EP1-ST009`                | Register/login/logout/recovery web flows                                                 | `EP1-ST008`                |
+| `EP1-ST010`                | Onboarding API and persistence                                                           | `EP1-ST008`                |
+| `EP1-ST011`                | Onboarding UI and operational states                                                     | `EP1-ST010`                |
+| `EP1-ST012`                | Basic placement question/result API                                                      | `EP1-ST010`                |
+| `EP1-ST013`                | Placement UI and conservative fallback                                                   | `EP1-ST012`                |
+| `EP1-ST014`                | General/TOEIC track roadmap templates and 30/60/90/120-day rule engine                   | `EP1-ST012`, `EP0-ST020`   |
+| `EP1-ST015`                | Roadmap API, versioning, and recalculation rules                                         | `EP1-ST014`                |
+| `EP1-ST016`                | Dashboard and roadmap UI focused on today's work                                         | `EP1-ST015`                |
+| `EP1-ST017`                | Vocabulary taxonomy/mindmap API                                                          | `EP0-ST020`                |
+| `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST017`                |
+| `EP1-ST019`                | Vocabulary mindmap, item, and review UI                                                  | `EP1-ST018`                |
+| `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                |
+| `EP1-ST021`                | Daily practice/quiz-card UI                                                              | `EP1-ST020`                |
+| `EP1-ST022`                | Daily sentence API and completion model                                                  | `EP1-ST020`                |
+| `EP1-ST023`                | Daily sentence UI and dashboard integration                                              | `EP1-ST022`                |
+| `EP1-ST024`                | Basic Error Notebook domain, capture API, and scheduler                                  | `EP1-ST018`, `EP1-ST020`   |
+| `EP1-ST025`                | Error Notebook review UI                                                                 | `EP1-ST024`                |
+| `EP1-ST026`                | Progress, XP, streak, accuracy, and completion aggregation                               | `EP1-ST020`, `EP1-ST024`   |
+| `EP1-ST027`                | Progress/dashboard aggregation UI                                                        | `EP1-ST026`                |
+| `EP1-ST028`                | Admin/editor RBAC, privileged audit, and guarded `/admin` shell                          | `EP1-ST008`                |
+| `EP1-ST029`                | CMS taxonomy/vocabulary/content APIs and lifecycle rules                                 | `EP1-ST028`, `EP0-ST020`   |
+| `EP1-ST030`                | CMS import and admin content UI                                                          | `EP1-ST029`                |
+| `EP1-ST031` to `EP1-ST035` | Five reviewed vocabulary batches of 100 items                                            | `EP1-ST029`                |
+| `EP1-ST036`                | Reviewed quiz and daily-sentence seed baseline                                           | `EP1-ST029`                |
+| `EP1-ST037`                | Expand useful/indexable blog baseline to ten posts                                       | `EP1-ST006`                |
+| `EP1-ST038`                | Analytics/monitoring integration and launch dashboards                                   | `EP0-ST022`, `EP1-ST027`   |
+| `EP1-ST039`                | Browser E2E, accessibility, performance, security, content-rights, and staging readiness | `EP1-ST030` to `EP1-ST038` |
 
-| Flow                                 | Earliest supporting story range                                    |
-| ------------------------------------ | ------------------------------------------------------------------ |
-| `UF-001` Guest discovery             | `EP1-ST005` to `EP1-ST006`                                         |
-| `UF-002` Authentication and recovery | `EP1-ST007` to `EP1-ST009`                                         |
-| `UF-003` Onboarding and placement    | `EP1-ST010` to `EP1-ST016`                                         |
-| `UF-004` Daily learning session      | `EP1-ST016` to `EP1-ST025`, expanded in `EP2-ST001` to `EP2-ST010` |
-| `UF-005` Quiz submission             | `EP1-ST020` to `EP1-ST021`                                         |
-| `UF-006` Error review loop           | `EP2-ST007` to `EP2-ST010`                                         |
-| `UF-007` Content publishing          | `EP1-ST026` to `EP1-ST029`, expanded in `EP3-ST001` to `EP3-ST003` |
-| `UF-008` TOEIC secure submission     | `EP3-ST004` to `EP3-ST012`                                         |
-| `UF-009` AI quota handling           | `EP4-ST001` to `EP4-ST012`, expanded by Phase 6 entitlements       |
+Exit: guest trial and the authenticated daily loop work end to end; roadmap,
+mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
+pass critical browser and security gates.
+
+## Phase 2 TOEIC Listening And Reading
+
+| Story       | Increment                                                                   | Depends on                 |
+| ----------- | --------------------------------------------------------------------------- | -------------------------- |
+| `EP2-ST001` | TOEIC L&R question/content/license schema                                   | `EP1-ST029`                |
+| `EP2-ST002` | Question bank repository/API and answer protection                          | `EP2-ST001`                |
+| `EP2-ST003` | Admin import/review/publish workflow                                        | `EP2-ST002`                |
+| `EP2-ST004` | Parts 1-4 listening practice session API                                    | `EP2-ST002`                |
+| `EP2-ST005` | Parts 5-7 reading practice session API                                      | `EP2-ST002`                |
+| `EP2-ST006` | Part/topic/difficulty practice UI                                           | `EP2-ST004`, `EP2-ST005`   |
+| `EP2-ST007` | Mini/half test assembly and server-timed session API                        | `EP2-ST004`, `EP2-ST005`   |
+| `EP2-ST008` | Timed mini/half test UI and interruption handling                           | `EP2-ST007`                |
+| `EP2-ST009` | Scoring, Part/skill weakness, and time analysis                             | `EP2-ST007`                |
+| `EP2-ST010` | TOEIC Error Notebook and remediation integration                            | `EP2-ST009`, `EP1-ST024`   |
+| `EP2-ST011` | TOEIC vocabulary/grammar remediation packs                                  | `EP2-ST010`                |
+| `EP2-ST012` | TOEIC L&R security, browser, accessibility, and content-license exit review | `EP2-ST003` to `EP2-ST011` |
+
+Exit: approved Parts 1-7 and timed mini/half tests finalize safely, protect answers,
+produce accurate analysis, and route weaknesses into remediation.
+
+## Phase 3 Licensed Content Library And Listening
+
+| Story       | Increment                                                              | Depends on                 |
+| ----------- | ---------------------------------------------------------------------- | -------------------------- |
+| `EP3-ST001` | Library/storage/content version model and Drive manifest adapter       | `EP0-ST021`                |
+| `EP3-ST002` | Drive inventory scan, metadata, checksum, and change detection         | `EP3-ST001`                |
+| `EP3-ST003` | License/review/import/publish workflow                                 | `EP3-ST002`, `EP1-ST028`   |
+| `EP3-ST004` | Admin library inventory/review UI                                      | `EP3-ST003`                |
+| `EP3-ST005` | Learner catalog, search, filters, and access policy                    | `EP3-ST003`                |
+| `EP3-ST006` | Controlled media/transcript API                                        | `EP3-ST005`                |
+| `EP3-ST007` | Player, resume, bookmark, and personal note UI                         | `EP3-ST006`                |
+| `EP3-ST008` | Listening drills and persisted outcomes                                | `EP3-ST006`                |
+| `EP3-ST009` | Shadowing workflow and progress                                        | `EP3-ST008`                |
+| `EP3-ST010` | Roadmap/vocabulary/quiz/content linking                                | `EP3-ST007`, `EP3-ST008`   |
+| `EP3-ST011` | Reviewed licensed content batch and import validation                  | `EP3-ST004`                |
+| `EP3-ST012` | Storage security, license, browser, performance, and phase exit review | `EP3-ST005` to `EP3-ST011` |
+
+Exit: Drive is only a governed source; reviewed assets are safely imported, searched,
+resumed, practiced, linked, and audited through application data/storage.
+
+## Phase 4 TOEIC Speaking, Writing, And Four Skills
+
+| Story       | Increment                                                              | Depends on                 |
+| ----------- | ---------------------------------------------------------------------- | -------------------------- |
+| `EP4-ST001` | Speaking/Writing task and rubric models                                | `EP2-ST001`                |
+| `EP4-ST002` | TOEIC Speaking task/submission API                                     | `EP4-ST001`                |
+| `EP4-ST003` | Recording storage and controlled playback                              | `EP4-ST002`, `EP3-ST006`   |
+| `EP4-ST004` | TOEIC Speaking task/recording UI                                       | `EP4-ST003`                |
+| `EP4-ST005` | TOEIC Writing task/submission API                                      | `EP4-ST001`                |
+| `EP4-ST006` | TOEIC Writing practice UI                                              | `EP4-ST005`                |
+| `EP4-ST007` | Provider-neutral advisory feedback gateway, quota, and cost log        | `EP0-ST022`                |
+| `EP4-ST008` | Speaking rubric feedback worker and fallback                           | `EP4-ST003`, `EP4-ST007`   |
+| `EP4-ST009` | Writing rubric feedback worker and fallback                            | `EP4-ST005`, `EP4-ST007`   |
+| `EP4-ST010` | TOEIC Four Skills roadmap balance rules                                | `EP1-ST015`, `EP4-ST001`   |
+| `EP4-ST011` | Four Skills progress dashboard                                         | `EP4-ST010`                |
+| `EP4-ST012` | AI evaluation, score separation, abuse, browser, and phase exit review | `EP4-ST004` to `EP4-ST011` |
+
+Exit: speaking/writing evidence, rubrics, advisory feedback, and balanced Four Skills
+roadmaps work without AI authoring official scores.
+
+## Phase 5 Full Test, Adaptive AI, And Community
+
+| Story       | Increment                                                                    | Depends on                            |
+| ----------- | ---------------------------------------------------------------------------- | ------------------------------------- |
+| `EP5-ST001` | Full mock test assembly and versioning                                       | `EP2-ST007`                           |
+| `EP5-ST002` | Full exam session, server timer, finalization, and idempotency               | `EP5-ST001`                           |
+| `EP5-ST003` | Strict exam UI and interruption handling                                     | `EP5-ST002`                           |
+| `EP5-ST004` | Full scoring, integrity events, and weakness analysis                        | `EP5-ST002`                           |
+| `EP5-ST005` | Advanced cross-skill Error Notebook                                          | `EP5-ST004`, `EP3-ST008`, `EP4-ST009` |
+| `EP5-ST006` | Adaptive roadmap evidence/rules and versioning                               | `EP5-ST005`, `EP1-ST015`              |
+| `EP5-ST007` | AI explanation service and grounded fallback                                 | `EP4-ST007`                           |
+| `EP5-ST008` | AI Speaking room                                                             | `EP4-ST008`                           |
+| `EP5-ST009` | AI Writing Coach                                                             | `EP4-ST009`                           |
+| `EP5-ST010` | Community content/report/moderation API                                      | `EP1-ST028`                           |
+| `EP5-ST011` | Community sharing/moderation UI                                              | `EP5-ST010`                           |
+| `EP5-ST012` | AI quota/cost/abuse operations dashboard                                     | `EP5-ST007` to `EP5-ST009`            |
+| `EP5-ST013` | Exam/AI/community security, evaluation, load, browser, and phase exit review | `EP5-ST003` to `EP5-ST012`            |
+
+Exit: secure full tests, adaptive review, AI learning, and moderated sharing pass
+integrity, evaluation, abuse, observability, accessibility, and performance gates.
+
+## Phase 6 Mobile And Premium Expansion
+
+| Story       | Increment                                                                        | Depends on                 |
+| ----------- | -------------------------------------------------------------------------------- | -------------------------- |
+| `EP6-ST001` | Expo foundation and shared contracts                                             | `EP5-ST013`                |
+| `EP6-ST002` | Mobile auth/recovery                                                             | `EP6-ST001`                |
+| `EP6-ST003` | Mobile dashboard/roadmap                                                         | `EP6-ST002`                |
+| `EP6-ST004` | Mobile vocabulary/daily/Error Notebook                                           | `EP6-ST003`                |
+| `EP6-ST005` | Mobile TOEIC/listening                                                           | `EP6-ST004`                |
+| `EP6-ST006` | Mobile speaking/writing submissions                                              | `EP6-ST005`                |
+| `EP6-ST007` | Push reminders and preference policy                                             | `EP6-ST002`                |
+| `EP6-ST008` | Offline vocabulary/listening sync and conflict policy                            | `EP6-ST004`, `EP6-ST005`   |
+| `EP6-ST009` | Entitlement/free-quota domain                                                    | `EP5-ST012`                |
+| `EP6-ST010` | Stripe adapter and idempotent webhooks                                           | `EP6-ST009`                |
+| `EP6-ST011` | Subscription/customer-portal UI                                                  | `EP6-ST010`                |
+| `EP6-ST012` | Advanced learning/product analytics                                              | `EP6-ST009`                |
+| `EP6-ST013` | Backup/restore, 300-500 concurrency load test, SLO, and disaster recovery        | `EP6-ST012`                |
+| `EP6-ST014` | Mobile E2E, offline/billing security, release readiness, and owner approval pack | `EP6-ST006` to `EP6-ST013` |
+
+Exit: mobile reuses API/RBAC, offline sync is deterministic, free-first billing is
+idempotent, and owner-approved resilience/capacity evidence exists.
+
+## Requirement And Flow Assignment
+
+| Coverage               | Primary stories                                                                    |
+| ---------------------- | ---------------------------------------------------------------------------------- |
+| `FR-001` to `FR-011`   | `EP1-ST005` to `EP1-ST030`                                                         |
+| `FR-012` to `FR-015`   | `EP2-ST001` to `EP2-ST011`                                                         |
+| `FR-016` to `FR-019`   | `EP3-ST001` to `EP3-ST011`                                                         |
+| `FR-020` to `FR-022`   | `EP4-ST001` to `EP4-ST011`                                                         |
+| `FR-023` to `FR-026`   | `EP5-ST001` to `EP5-ST012`                                                         |
+| `FR-027` to `FR-029`   | `EP6-ST001` to `EP6-ST013`, with admin foundation in `EP1-ST028`                   |
+| `NFR-001` to `NFR-017` | Foundation `EP0-ST016` to `EP0-ST022` plus each phase exit-review story            |
+| `UF-001` to `UF-005`   | `EP1-ST005` to `EP1-ST023`                                                         |
+| `UF-006`               | `EP1-ST024`, expanded in `EP2-ST010` and `EP5-ST005`                               |
+| `UF-007`               | `EP1-ST028` to `EP1-ST030`, `EP2-ST003`, `EP3-ST001` to `EP3-ST004`                |
+| `UF-008`               | `EP2-ST004` to `EP2-ST012`                                                         |
+| `UF-009`               | `EP1-ST014` to `EP1-ST016`, expanded in `EP5-ST006`                                |
+| `UF-010`               | `EP3-ST005` to `EP3-ST012`                                                         |
+| `UF-011`               | `EP4-ST001` to `EP4-ST012`                                                         |
+| `UF-012`               | `EP5-ST001` to `EP5-ST004`, verified in `EP5-ST013`                                |
+| `UF-013`               | `EP4-ST007` to `EP4-ST012`, `EP5-ST007` to `EP5-ST013`, `EP6-ST009` to `EP6-ST011` |

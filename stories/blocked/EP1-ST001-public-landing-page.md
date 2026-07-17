@@ -69,8 +69,6 @@ page that communicates the free daily-learning value and guides visitors to begi
 - pnpm story:checks
 - git diff --check
 
-
-
 ## Blocked Report
 
 - Initial failure: Windows `workspace-write` prevented the planning Agent from creating
@@ -88,3 +86,9 @@ page that communicates the free daily-learning value and guides visitors to begi
 - Brand links expose a 34px rather than 44px interaction target.
 - Several translucent UI colors still bypass semantic CSS tokens.
 - Path preview needs the documented 30/60/90/120-day options, not only level cards.
+
+## Supersession
+
+Superseded by `EP1-ST005`, which recovers the preserved landing work against product
+v2 and adds the required goal-oriented guest trial. Keep this story as historical
+review evidence; do not resume it directly.

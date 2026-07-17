@@ -120,4 +120,8 @@ destructive migrations.
 - pnpm story:checks
 - git diff --check
 
+## Supersession
 
+This completed story is historical v1 planning evidence. On 2026-07-17,
+`EP0-ST014` adopted `englishpath_product_spec_v2.md` and replaced its product scope,
+requirements, flows, and phase order. Do not use this story as current product scope.

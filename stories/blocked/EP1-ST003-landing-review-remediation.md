@@ -70,8 +70,6 @@ the original story's fix-round limit.
 - pnpm story:checks
 - git diff --check
 
-
-
 ## Blocked Report
 
 - Initial loop failure: Windows `workspace-write` patch enforcement could not create
@@ -90,3 +88,9 @@ the original story's fix-round limit.
   surface; focus styling needs a surface-aware high-contrast treatment.
 - Selector order overrides the 60-day amber card note back to white, which does not
   meet text contrast on the amber background.
+
+## Supersession
+
+Superseded by `EP1-ST005`, which will recover commit `7dc086b`, close the two remaining
+contrast findings, align the landing with product v2, and complete browser QA. Keep
+this story as historical review evidence; do not resume it directly.
