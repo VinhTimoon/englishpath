@@ -10,21 +10,30 @@ The SEO review correctly requires absolute canonical URLs and an absolute Articl
 `mainEntityOfPage`. The repository does not currently define the production web origin,
 and the product spec still lists domain selection as unfinished work.
 
-## Decision Needed
+## Decision Recorded
 
-Please provide the canonical production origin, including scheme and without a trailing
-slash, for example:
+On 2026-07-17, the project owner confirmed that no Vercel deployment or production
+domain exists yet and approved a temporary local origin:
 
 ```text
-https://example.com
+http://localhost:3000
 ```
 
-Also confirm one configuration approach:
+The implementation will read `NEXT_PUBLIC_SITE_URL` when configured and otherwise
+fall back to the local origin above. This keeps local canonical and JSON-LD URLs
+absolute without hard-coding localhost as the future production domain.
 
-1. Add `NEXT_PUBLIC_SITE_URL` to `.env.example` and deployment environments (recommended).
-2. Approve a fixed production origin in web source/config.
+## Deployment Follow-up
+
+Before the first public deployment, set `NEXT_PUBLIC_SITE_URL` in the Vercel project
+to the final HTTPS origin without a trailing slash, for example:
+
+```text
+https://englishpath.example
+```
 
 ## Impact
 
-Until this is decided, EP1-ST002 remains blocked and its source will not be merged into
-`dev`. No placeholder or guessed domain has been published.
+The decision blocker is resolved and EP1-ST002 may resume. Local builds use
+`http://localhost:3000`; production must not launch until the deployment variable is
+set to the real public origin.

@@ -1,7 +1,7 @@
 ---
 id: EP1-ST002
 title: Public Blog SEO Foundation
-status: blocked
+status: ready
 type: frontend
 priority: critical
 phase: phase-1-mvp
@@ -95,3 +95,13 @@ database in this story.
 - SEO canonical URLs and Article `mainEntityOfPage` require the approved production
   site origin. The repository and product spec do not define a domain, and this story
   must not invent one. See `notes/ai-req/2026-07-17-production-site-origin.md`.
+
+### Decision Resolution
+
+- On 2026-07-17, the project owner approved `http://localhost:3000` as the temporary
+  local origin because the site has not been deployed to Vercel.
+- Web code must prefer `NEXT_PUBLIC_SITE_URL` when configured and use the local origin
+  only as a development/build fallback.
+- Before public deployment, Vercel must define `NEXT_PUBLIC_SITE_URL` with the final
+  HTTPS origin and no trailing slash.
+
