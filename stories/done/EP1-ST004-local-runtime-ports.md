@@ -1,7 +1,7 @@
 ---
 id: EP1-ST004
 title: Local Runtime Ports
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-1-mvp
@@ -64,4 +64,5 @@ matching API, CORS, and SEO-origin defaults, then remove resolved AI requests.
 - node --experimental-strip-types --test apps/web/src/entities/article/config/site-origin.test.mjs
 - pnpm story:checks
 - git diff --check
+
 
