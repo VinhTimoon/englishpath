@@ -47,6 +47,19 @@ Each domain module follows the same boundary:
 - Idempotency is required for retry-prone write flows such as submissions,
   payments, publication actions, and provider callbacks.
 
+### Identity Boundary
+
+Protected request processing has two independent stages. First, an external identity
+verifier validates provider evidence and returns only provider, subject, issuer,
+audience, and optional verified email. Second, an application resolver loads the
+EnglishPath principal, roles, ownerships, and entitlements from backend application
+data. External JWT claims never satisfy role or ownership policy directly.
+
+The contracts under `modules/access` remain independent from NestJS and Prisma.
+`EP1-ST008` owns the production Supabase signature, expiry, issuer, audience, and
+subject verifier plus guard wiring. The local fixture verifier is test-only and must
+not be registered by an application runtime module.
+
 ### Planned Domain Modules
 
 - Identity and access

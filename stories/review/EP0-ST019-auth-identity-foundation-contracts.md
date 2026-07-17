@@ -1,7 +1,7 @@
 ---
 id: EP0-ST019
 title: Auth JWT And Application Identity Foundation Contracts
-status: ready
+status: review
 type: backend
 priority: critical
 phase: phase-0-foundation
@@ -104,3 +104,14 @@ tests and later auth stories.
 - `pnpm e2e`
 - `pnpm story:verify stories/review/EP0-ST019-auth-identity-foundation-contracts.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added framework-independent external identity, application principal, resolver, and
+  role/ownership policy contracts.
+- Added strict bearer extraction and sanitized fail-closed access errors.
+- Added a deterministic explicit-fixture verifier with no network, credentials, or
+  runtime registration.
+- Added focused tests for valid identity, malformed/ambiguous credentials, invalid
+  evidence, expiry, issuer/audience mismatch, redaction, and authorization separation.
+- Documented the two-stage identity flow and Phase 1 production adapter boundary.

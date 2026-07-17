@@ -117,6 +117,13 @@ planned v2 envelope.
 - `SUSPICIOUS_ATTEMPT_BLOCKED`
 - `INTERNAL_ERROR`
 
+Access-layer failures are internal typed results and are sanitized before crossing the
+HTTP boundary. Missing credentials map to `AUTH_REQUIRED`; malformed, unknown,
+expired, wrong-issuer, or wrong-audience identity evidence maps to
+`AUTH_INVALID_TOKEN`; unresolved application identity and failed role/ownership policy
+map to `RESOURCE_FORBIDDEN` unless an endpoint contract intentionally uses a safer
+not-found response. Tokens, raw claims, and provider errors never enter the envelope.
+
 ## Idempotency Rules
 
 - Client sends `Idempotency-Key` for retry-prone writes.
