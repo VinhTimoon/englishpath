@@ -78,6 +78,18 @@ the separate API e2e command.
 - Every bug fix adds a test that fails for the original defect.
 - Changed behavior updates both tests and the relevant API/product documentation.
 - Security-sensitive flows test ownership, authorization, and data redaction.
+
+## Observability Adapter Tests
+
+- Contract tests use injected clocks and correlation generators; they require no
+  PostHog/Sentry credentials or provider network.
+- Every log, metric, and analytics path tests correlation propagation, runtime enum and
+  scalar-bound validation, sensitive-key redaction, sanitized errors, and immutable
+  event graphs.
+- Local collectors test append order, defensive copies, frozen snapshots, and snapshot
+  isolation. No-op adapters validate then discard events and expose no retained state.
+- Provider integration, retries, buffering, dashboards, and production alerts belong to
+  `EP1-ST038` and require separate adapter/contract tests.
 - TOEIC answer keys must never appear in pre-submission responses or fixtures exposed
   to the frontend.
 - AI features mock the gateway/provider boundary and assert model, prompt-version,

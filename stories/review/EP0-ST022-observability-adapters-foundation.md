@@ -1,7 +1,7 @@
 ---
 id: EP0-ST022
 title: Observability And Correlation Adapters Foundation
-status: ready
+status: review
 type: backend
 priority: critical
 phase: phase-0-foundation
@@ -113,5 +113,18 @@ later runtime integrations can be added without coupling product code to provide
 - `pnpm --filter api test:e2e`
 - `pnpm build`
 - `pnpm e2e`
-- `pnpm story:verify stories/ready/EP0-ST022-observability-adapters-foundation.md`
+- `pnpm story:verify stories/review/EP0-ST022-observability-adapters-foundation.md`
 - `git diff --check`
+
+## Implementation Report
+
+- Added provider-neutral correlation, structured logging, monitoring, and analytics
+  contracts with injected clock/ID dependencies and stable sanitized errors.
+- Added centralized bounded-scalar validation and case/separator-insensitive redaction
+  before adapter delivery.
+- Added no-op adapters and deterministic in-memory collectors with defensive copies,
+  append ordering, frozen snapshots, and no external I/O.
+- Added credential-free unit tests for propagation, runtime validation, redaction,
+  sanitization, no-op behavior, collector isolation, and deep immutability.
+- Documented API correlation behavior, audit separation, test strategy, launch signals,
+  and deferral of PostHog/Sentry production wiring to `EP1-ST038`.

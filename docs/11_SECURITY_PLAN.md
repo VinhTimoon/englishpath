@@ -78,6 +78,13 @@
 - Logs and audits redact secrets, tokens, raw payment payloads, private answers,
   and unnecessary personal data.
 - Monitoring and analytics adapters receive only the minimum event data required.
+- Observability attributes are flat, scalar, and bounded. Sensitive keys are matched
+  case-insensitively after separator normalization and removed before adapter delivery,
+  including authorization, credentials, cookies, passwords, tokens, personal identity,
+  private answers/locations, provider/payment payloads, and raw free text.
+- Analytics is product telemetry, not an audit substitute. Security-significant actions
+  still require the separate append-oriented audit domain with actor/target/policy
+  evidence and retention controls.
 
 ## Owner-Controlled Operations
 

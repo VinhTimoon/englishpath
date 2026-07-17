@@ -61,3 +61,13 @@ limited to validation and build evidence until an owner explicitly approves a re
 - CI, local validation, and autonomous story execution may validate Prisma schema
   syntax only; they must never migrate, reset, seed, connect to shared databases, or
   promote a release.
+
+## Observability Readiness
+
+Phase 0 local/no-op adapters establish contracts without external delivery. Before a
+production promotion, `EP1-ST038` must configure approved PostHog/Sentry adapters,
+credentials, retention/privacy settings, retry and buffering behavior, dashboards, and
+alerts. Minimum launch signals include API latency/error rate, queue length, slow-query
+and database pressure indicators, cache hit rate, media bandwidth, active learners,
+guest-to-signup conversion, and daily active learners. AI cost is added by its owning
+gateway story.

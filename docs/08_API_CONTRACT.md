@@ -51,6 +51,11 @@ planned v2 envelope.
 - List endpoints support explicit pagination parameters.
 - Mutating endpoints may require `Idempotency-Key`.
 - Correlation is carried in `X-Correlation-Id`; backend generates one when absent.
+- Edge implementations validate an accepted correlation ID before use and generate one
+  through the application correlation factory when absent. The same immutable context
+  propagates through logs, metrics, analytics, jobs, adapters, audit events, and both
+  success/error envelopes. Invalid values fail with a sanitized stable error; this
+  foundation defines the contract but does not add middleware or routes.
 
 ## Response Rules
 

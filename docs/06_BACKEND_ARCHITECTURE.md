@@ -129,3 +129,14 @@ only. Its local adapter receives explicit in-memory fixtures and performs no cre
 environment, filesystem, database, storage, or network access. It exposes no byte,
 download, delivery, rights, review, or publish operation and is not registered in the
 Nest runtime graph by this foundation story.
+
+## Observability Contract Foundation
+
+The framework-independent `observability` module owns validated correlation contexts,
+structured log events, metric measurements, analytics events, and provider-neutral
+ports. Domain code emits bounded scalar attributes only. Central redaction removes
+sensitive keys before local, no-op, or future provider adapters receive an event.
+
+Phase 0 supplies deterministic in-memory collectors and no-op adapters only. It adds no
+middleware or Nest registration. `EP1-ST038` owns PostHog/Sentry delivery, buffering,
+retry behavior, dashboards, alert thresholds, credentials, and production wiring.
