@@ -1,0 +1,168 @@
+# generated: 2026-07-19T09:13:12+07:00
+# last_updated: 2026-07-19T02:51:06.207Z
+# project: englishpath
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic: backlog -> in-progress -> done
+# Story: backlog -> ready-for-dev -> in-progress -> review -> done
+# Retrospective: optional <-> done
+#
+# WORKFLOW NOTES:
+# ===============
+# - story-map.md is the authoritative detailed story inventory.
+# - Superseded delivery units are marked done only when their replacement vertical
+#   slice is implemented and committed.
+# - Historical blocked stories that were superseded are intentionally excluded.
+# - Re-run sprint planning after story-map changes and update last_updated whenever
+#   a status changes.
+
+generated: 2026-07-19T09:13:12+07:00
+last_updated: 2026-07-19T02:51:06.207Z
+project: englishpath
+project_key: NOKEY
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  epic-0: done
+  0-14-product-v2-core-rebaseline: done
+  0-15r-recover-product-v2-epic-story-maps-and-ready-queue: done
+  0-16-architecture-and-decision-baseline: done
+  0-17-ci-migration-and-planning-safety: done
+  0-18-browser-e2e-accessibility-and-local-journey-harness: done
+  0-19-auth-identity-foundation-contracts: done
+  0-20-taxonomy-rights-and-publish-foundation: done
+  0-21-drive-inventory-foundation: done
+  0-22-observability-foundation: done
+  0-23-harness-state-synchronization-and-loop-lock: done
+  epic-0-retrospective: optional
+
+  epic-1: in-progress
+  1-5-landing-guest-trial-and-responsive-remediation: done
+  1-6-public-ia-seo-and-internal-links: done
+  1-7-identity-schema-and-ownership-repositories: done
+  1-8-auth-profile-rbac-and-ownership-api: done
+  # Superseded by EP1-ST042.
+  1-9-register-login-logout-and-recovery-web-flows: done
+  1-10-onboarding-api-and-persistence: done
+  1-11-onboarding-ui-and-operational-states: done
+  1-12-placement-question-and-result-api: done
+  1-13-placement-ui-and-conservative-fallback: done
+  # Superseded by EP1-ST043.
+  1-14-roadmap-template-and-rule-engine: done
+  1-15-roadmap-api-versioning-and-recalculation: done
+  1-16-dashboard-and-today-roadmap-ui: done
+  1-17-vocabulary-taxonomy-mindmap-api: done
+  1-40-vocabulary-api-contract-and-adapter-hardening: done
+  1-18-vocabulary-srs-and-mastery-api: backlog
+  1-41-public-vocabulary-taxonomy-explorer-ui: done
+  1-19-vocabulary-mindmap-item-and-review-ui: backlog
+  # EP1-ST044 delivered the first usable subset; advanced work remains in 18/19/22/23.
+  1-20-daily-practice-and-quiz-session-api: done
+  1-21-daily-practice-and-quiz-card-ui: done
+  1-22-daily-sentence-api-and-completion-model: backlog
+  1-23-daily-sentence-ui-and-dashboard-integration: backlog
+  1-24-error-notebook-domain-capture-and-scheduler: done
+  1-25-error-notebook-review-ui: done
+  1-26-progress-xp-streak-and-accuracy-aggregation: done
+  1-27-progress-dashboard-aggregation-ui: done
+  1-28-admin-editor-rbac-audit-and-admin-shell: backlog
+  1-29-cms-taxonomy-vocabulary-content-api: backlog
+  1-30-cms-import-and-admin-content-ui: backlog
+  1-31-reviewed-vocabulary-batch-1: backlog
+  1-32-reviewed-vocabulary-batch-2: backlog
+  1-33-reviewed-vocabulary-batch-3: backlog
+  1-34-reviewed-vocabulary-batch-4: backlog
+  1-35-reviewed-vocabulary-batch-5: backlog
+  1-36-reviewed-quiz-and-daily-sentence-seed-baseline: backlog
+  1-37-expand-indexable-blog-baseline: backlog
+  1-38-analytics-monitoring-and-launch-dashboards: backlog
+  1-39-phase-1-staging-readiness-and-exit-review: backlog
+  1-42-bundled-learner-entry-vertical-slice: done
+  1-43-bundled-roadmap-and-today-dashboard: done
+  1-44-bundled-daily-practice-progress-and-error-review: done
+  1-45-persisted-owner-progress-summary: done
+  1-46-private-error-notebook-view: done
+  epic-1-retrospective: optional
+
+  epic-2: backlog
+  2-1-toeic-question-content-and-license-schema: backlog
+  2-2-question-bank-api-and-answer-protection: backlog
+  2-3-admin-import-review-and-publish-workflow: backlog
+  2-4-parts-1-to-4-listening-practice-api: backlog
+  2-5-parts-5-to-7-reading-practice-api: backlog
+  2-6-part-topic-and-difficulty-practice-ui: backlog
+  2-7-mini-half-test-and-server-timed-session-api: backlog
+  2-8-timed-test-ui-and-interruption-handling: backlog
+  2-9-scoring-weakness-and-time-analysis: backlog
+  2-10-toeic-error-notebook-and-remediation: backlog
+  2-11-toeic-vocabulary-and-grammar-packs: backlog
+  2-12-toeic-lr-phase-exit-review: backlog
+  epic-2-retrospective: optional
+
+  epic-3: backlog
+  3-1-library-storage-content-version-and-drive-manifest: backlog
+  3-2-drive-inventory-checksum-and-change-detection: backlog
+  3-3-license-review-import-and-publish-workflow: backlog
+  3-4-admin-library-inventory-and-review-ui: backlog
+  3-5-learner-catalog-search-filters-and-access: backlog
+  3-6-controlled-media-and-transcript-api: backlog
+  3-7-player-resume-bookmark-and-notes: backlog
+  3-8-listening-drills-and-persisted-outcomes: backlog
+  3-9-shadowing-workflow-and-progress: backlog
+  3-10-learning-content-linking: backlog
+  3-11-reviewed-licensed-content-batch: backlog
+  3-12-licensed-library-phase-exit-review: backlog
+  epic-3-retrospective: optional
+
+  epic-4: backlog
+  4-1-speaking-writing-task-and-rubric-models: backlog
+  4-2-toeic-speaking-task-and-submission-api: backlog
+  4-3-recording-storage-and-controlled-playback: backlog
+  4-4-toeic-speaking-task-and-recording-ui: backlog
+  4-5-toeic-writing-task-and-submission-api: backlog
+  4-6-toeic-writing-practice-ui: backlog
+  4-7-provider-neutral-ai-feedback-gateway: backlog
+  4-8-speaking-feedback-worker-and-fallback: backlog
+  4-9-writing-feedback-worker-and-fallback: backlog
+  4-10-four-skills-roadmap-balance-rules: backlog
+  4-11-four-skills-progress-dashboard: backlog
+  4-12-four-skills-phase-exit-review: backlog
+  epic-4-retrospective: optional
+
+  epic-5: backlog
+  5-1-full-mock-test-assembly-and-versioning: backlog
+  5-2-full-exam-session-timer-and-finalization: backlog
+  5-3-strict-exam-ui-and-interruption-handling: backlog
+  5-4-scoring-integrity-and-weakness-analysis: backlog
+  5-5-advanced-cross-skill-error-notebook: backlog
+  5-6-adaptive-roadmap-rules-and-versioning: backlog
+  5-7-ai-explanation-service: backlog
+  5-8-ai-speaking-room: backlog
+  5-9-ai-writing-coach: backlog
+  5-10-community-content-report-and-moderation-api: backlog
+  5-11-community-sharing-and-moderation-ui: backlog
+  5-12-ai-quota-cost-and-abuse-dashboard: backlog
+  5-13-phase-5-exit-review: backlog
+  epic-5-retrospective: optional
+
+  epic-6: backlog
+  6-1-expo-foundation-and-shared-contracts: backlog
+  6-2-mobile-auth-and-recovery: backlog
+  6-3-mobile-dashboard-and-roadmap: backlog
+  6-4-mobile-vocabulary-daily-and-error-notebook: backlog
+  6-5-mobile-toeic-and-listening: backlog
+  6-6-mobile-speaking-and-writing: backlog
+  6-7-push-reminders-and-preference-policy: backlog
+  6-8-offline-sync-and-conflict-policy: backlog
+  6-9-entitlement-and-free-quota-domain: backlog
+  6-10-stripe-webhooks-and-idempotency: backlog
+  6-11-subscription-and-customer-portal-ui: backlog
+  6-12-advanced-product-and-learning-analytics: backlog
+  6-13-backup-load-slo-and-disaster-recovery: backlog
+  6-14-mobile-billing-and-release-readiness: backlog
+  epic-6-retrospective: optional

@@ -25,6 +25,7 @@
 | `EP0-ST020`  | Shared taxonomy, source/license/review/publish data foundation                     | `EP0-ST019`  |
 | `EP0-ST021`  | Google Drive inventory manifest design and credential-free local adapter           | `EP0-ST020`  |
 | `EP0-ST022`  | Structured logging, monitoring, analytics, and correlation adapters                | `EP0-ST021`  |
+| `EP0-ST023`  | Synchronize loop lifecycle state and prevent concurrent loop execution             | `EP0-ST022`  |
 
 Exit: architecture and automated gates pass; auth/content/Drive/observability
 foundations exist without real credentials, paid services, or destructive migrations.
@@ -69,8 +70,8 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST042`                | Bundled learner entry: auth UI, onboarding API/UI, and placement API/UI                  | `EP1-ST008`                |
 | `EP1-ST043`                | Bundled deterministic roadmap API, roadmap UI, and today dashboard                       | `EP1-ST042`                |
 | `EP1-ST044`                | Bundled daily quiz session, immediate feedback, progress, streak, and error review       | `EP1-ST043`                |
-| `EP1-ST045`                | Persisted owner progress summary on the learner dashboard                               | `EP1-ST044`                |
-| `EP1-ST046`                | Private Error Notebook latest-errors API and learner review view                        | `EP1-ST044`                |
+| `EP1-ST045`                | Persisted owner progress summary on the learner dashboard                                | `EP1-ST044`                |
+| `EP1-ST046`                | Private Error Notebook latest-errors API and learner review view                         | `EP1-ST044`                |
 
 `EP1-ST042` supersedes the former delivery units `EP1-ST009–013`; their requirements are
 implemented and reviewed as one vertical slice to reduce loop overhead.

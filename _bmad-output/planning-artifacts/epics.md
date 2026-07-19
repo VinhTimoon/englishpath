@@ -6,7 +6,8 @@
 - Stories: `EP0-ST014` v2 core, `EP0-ST015R` recovered maps, `EP0-ST016`
   architecture, `EP0-ST017` CI/migration/semantic safety, `EP0-ST018` browser E2E,
   `EP0-ST019` auth identity, `EP0-ST020` taxonomy/rights, `EP0-ST021` Drive
-  inventory, and `EP0-ST022` observability adapters. The blocked `EP0-ST015` map
+  inventory, `EP0-ST022` observability adapters, and `EP0-ST023` harness state
+  synchronization and concurrency safety. The blocked `EP0-ST015` map
   attempt remains historical evidence and is superseded by `EP0-ST015R`.
 - Dependencies: completed governance, health, blog SEO, and local-port baselines.
 - Coverage: foundation portions of `FR-002`, `FR-006`, `FR-010`, `FR-017`, `FR-029`;

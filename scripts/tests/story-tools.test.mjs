@@ -17,6 +17,11 @@ import {
 } from "../lib/git-utils.mjs";
 import { evaluatePathPolicy, matchesGlob } from "../lib/path-policy.mjs";
 import {
+  acquireLoopLock,
+  releaseLoopLock,
+  syncSprintStatus,
+} from "../lib/harness-state.mjs";
+import {
   runChecks,
   runPrismaValidation,
   validateRequiredScripts,
@@ -35,7 +40,11 @@ import {
   validatePhaseArtifacts,
 } from "../lib/process-utils.mjs";
 import { runWithRetries } from "../lib/retry-utils.mjs";
-import { normalizeChildProcessError } from "../codex-loop.mjs";
+import {
+  normalizeChildProcessError,
+  pickStory,
+  transitionStory,
+} from "../codex-loop.mjs";
 import {
   moveStoryToStatus,
   parseFrontmatter,
@@ -1421,4 +1430,174 @@ test("AI request classification and formatting stay structured", () => {
   } finally {
     process.chdir(previousCwd);
   }
+});
+
+test("loop lock rejects a live owner and releases only its own token", (t) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-loop-lock-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const lockFile = path.join(dir, ".codex-loop.lock");
+  const lock = acquireLoopLock({ lockFile, pid: 101, isAlive: () => true });
+  assert.throws(
+    () => acquireLoopLock({ lockFile, pid: 202, isAlive: () => true }),
+    /Another story loop owns/,
+  );
+  assert.equal(releaseLoopLock({ lockFile, token: "wrong" }), false);
+  assert.equal(lock.release(), true);
+  assert.equal(fs.existsSync(lockFile), false);
+});
+
+test("loop lock recovers malformed and stale owners", (t) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-stale-lock-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const lockFile = path.join(dir, ".codex-loop.lock");
+  fs.writeFileSync(lockFile, "not-json");
+  const malformedRecovery = acquireLoopLock({
+    lockFile,
+    pid: 303,
+    isAlive: () => false,
+    malformedGraceMs: 0,
+  });
+  malformedRecovery.release();
+  fs.mkdirSync(lockFile);
+  fs.writeFileSync(
+    path.join(lockFile, "owner.json"),
+    JSON.stringify({ pid: 404, token: "stale" }),
+  );
+  const staleRecovery = acquireLoopLock({
+    lockFile,
+    pid: 505,
+    isAlive: () => false,
+  });
+  assert.equal(staleRecovery.release(), true);
+});
+
+test("sprint sync preserves structure and maps blocked to in-progress", (t) => {
+  const dir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-sprint-sync-"),
+  );
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const statusFile = path.join(dir, "sprint-status.yaml");
+  fs.writeFileSync(
+    statusFile,
+    "# last_updated: old\nlast_updated: old\ndevelopment_status:\n  1-18-vocabulary-srs: ready-for-dev\n  epic-1-retrospective: optional\n",
+  );
+  const now = () => new Date("2026-07-19T03:00:00.000Z");
+  assert.equal(
+    syncSprintStatus({
+      storyId: "EP1-ST018",
+      status: "in-progress",
+      statusFile,
+      now,
+    }),
+    "in-progress",
+  );
+  assert.equal(
+    syncSprintStatus({
+      storyId: "EP1-ST018",
+      status: "blocked",
+      statusFile,
+      now,
+    }),
+    "in-progress",
+  );
+  const result = fs.readFileSync(statusFile, "utf8");
+  assert.match(result, /# last_updated: 2026-07-19T03:00:00.000Z/);
+  assert.match(result, /^last_updated: 2026-07-19T03:00:00.000Z$/m);
+  assert.match(result, /  1-18-vocabulary-srs: in-progress/);
+  assert.match(result, /epic-1-retrospective: optional/);
+});
+
+test("sprint sync fails for missing files and story keys", (t) => {
+  const dir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-sprint-missing-"),
+  );
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const missing = path.join(dir, "missing.yaml");
+  assert.throws(
+    () =>
+      syncSprintStatus({
+        storyId: "EP1-ST018",
+        status: "review",
+        statusFile: missing,
+      }),
+    /not found/,
+  );
+  const statusFile = path.join(dir, "sprint-status.yaml");
+  fs.writeFileSync(
+    statusFile,
+    "# last_updated: old\nlast_updated: old\ndevelopment_status:\n  1-17-vocabulary: done\n",
+  );
+  assert.throws(
+    () =>
+      syncSprintStatus({ storyId: "EP1-ST018", status: "review", statusFile }),
+    /found 0/,
+  );
+});
+
+test("fresh malformed locks are treated as initializing owners", (t) => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-fresh-lock-"));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const lockFile = path.join(dir, ".codex-loop.lock");
+  fs.mkdirSync(lockFile);
+  assert.throws(() => acquireLoopLock({ lockFile }), /initializing/);
+});
+
+test("pickStory returns without terminating when the ready queue is empty", (t) => {
+  const dir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-empty-ready-"),
+  );
+  const previousCwd = process.cwd();
+  t.after(() => {
+    process.chdir(previousCwd);
+    fs.rmSync(dir, { recursive: true, force: true });
+  });
+  process.chdir(dir);
+  assert.equal(pickStory(), null);
+});
+
+test("sprint sync requires both last_updated representations", (t) => {
+  const dir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-sprint-time-"),
+  );
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const statusFile = path.join(dir, "sprint-status.yaml");
+  fs.writeFileSync(
+    statusFile,
+    "last_updated: old\ndevelopment_status:\n  1-18-vocabulary: backlog\n",
+  );
+  assert.throws(
+    () =>
+      syncSprintStatus({ storyId: "EP1-ST018", status: "review", statusFile }),
+    /last_updated comment/,
+  );
+});
+
+test("transitionStory validates sprint state before moving and rolls back move failures", () => {
+  let moved = false;
+  assert.throws(
+    () =>
+      transitionStory("stories/ready/example.md", "in-progress", "EP1-ST018", {
+        sync: () => {
+          throw new Error("missing sprint key");
+        },
+        move: () => {
+          moved = true;
+        },
+      }),
+    /missing sprint key/,
+  );
+  assert.equal(moved, false);
+
+  const statuses = [];
+  assert.throws(
+    () =>
+      transitionStory("stories/ready/example.md", "in-progress", "EP1-ST018", {
+        sync: ({ status }) => statuses.push(status),
+        move: () => {
+          throw new Error("move failed");
+        },
+      }),
+    /move failed/,
+  );
+  assert.deepEqual(statuses, ["in-progress", "ready"]);
 });

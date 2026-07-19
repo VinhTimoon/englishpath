@@ -73,7 +73,12 @@ test("learner generates a roadmap and completes today's work", async ({
     if (path.endsWith("/quiz/session/summary/progress")) {
       return route.fulfill({
         json: {
-          data: { xp: 120, streakDays: 3, completedSessions: 4, reviewErrors: 2 },
+          data: {
+            xp: 120,
+            streakDays: 3,
+            completedSessions: 4,
+            reviewErrors: 2,
+          },
         },
       });
     }
