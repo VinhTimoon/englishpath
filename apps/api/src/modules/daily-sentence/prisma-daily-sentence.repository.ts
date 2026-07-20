@@ -16,9 +16,13 @@ export class PrismaDailySentenceRepository implements DailySentenceRepository {
       )?.timezone ?? null
     );
   }
-  async eligibleSentences(): Promise<SentenceRecord[]> {
+  async eligibleSentences(now = new Date()): Promise<SentenceRecord[]> {
     return this.prisma.governedSentence.findMany({
-      where: { reviewStatus: 'REVIEWED', publishStatus: 'PUBLISHED' },
+      where: {
+        reviewStatus: 'REVIEWED',
+        publishStatus: 'PUBLISHED',
+        publishedAt: { lte: now },
+      },
       orderBy: { id: 'asc' },
       select: { id: true, prompt: true, expectedAnswer: true },
     });

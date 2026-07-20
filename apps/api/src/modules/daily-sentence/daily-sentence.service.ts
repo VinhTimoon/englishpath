@@ -64,7 +64,10 @@ export class DailySentenceService {
   ) {}
   private async context(userId: string, now = new Date()) {
     const day = localDay(now, await this.repository.profileTimezone(userId));
-    const sentence = pick(await this.repository.eligibleSentences(), day.key);
+    const sentence = pick(
+      await this.repository.eligibleSentences(now),
+      day.key,
+    );
     return { ...day, sentence };
   }
   async today(principal: ApplicationPrincipal): Promise<DailySentenceView> {

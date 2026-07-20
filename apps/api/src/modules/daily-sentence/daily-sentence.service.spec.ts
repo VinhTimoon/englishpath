@@ -17,11 +17,13 @@ const principal = createApplicationPrincipal({
 function repository(): jest.Mocked<DailySentenceRepository> {
   return {
     profileTimezone: jest.fn().mockResolvedValue('Asia/Ho_Chi_Minh'),
-    eligibleSentences: jest
-      .fn()
-      .mockResolvedValue([
-        { id: 'ds-001', prompt: 'Practice.', expectedAnswer: 'Practice.' },
-      ]),
+    eligibleSentences: jest.fn().mockResolvedValue([
+      {
+        id: 'ds-001',
+        prompt: 'Translate this idea into English: practise for a few minutes.',
+        expectedAnswer: 'Practice for a few minutes.',
+      },
+    ]),
     completion: jest.fn().mockResolvedValue(null),
     complete: jest.fn().mockResolvedValue({
       submittedAnswer: 'Practice',
@@ -60,5 +62,18 @@ describe('DailySentenceService', () => {
     expect(
       (await new DailySentenceService(repo).today(principal)).sentence,
     ).toBeNull();
+  });
+
+  it('uses the owner and stored timezone for each request', async () => {
+    const repo = repository();
+    repo.profileTimezone.mockResolvedValue('America/Los_Angeles');
+    const result = await new DailySentenceService(repo).today(principal);
+
+    expect(repo.profileTimezone.mock.calls).toEqual([['user-1']]);
+    expect(repo.eligibleSentences.mock.calls).toEqual([[expect.any(Date)]]);
+    expect(repo.completion.mock.calls).toEqual([['user-1', expect.any(Date)]]);
+    expect(result.sentence?.prompt).not.toContain(
+      'Practice for a few minutes.',
+    );
   });
 });
