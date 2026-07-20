@@ -9,6 +9,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { OnboardingModule } from './modules/onboarding/onboarding.module';
 import { RoadmapModule } from './modules/roadmap/roadmap.module';
 import { PracticeModule } from './modules/practice/practice.module';
+import { DailySentenceModule } from './modules/daily-sentence/daily-sentence.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PracticeModule } from './modules/practice/practice.module';
     OnboardingModule,
     RoadmapModule,
     PracticeModule,
+    DailySentenceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

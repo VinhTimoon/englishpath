@@ -3,35 +3,37 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck
 /*
- * This file exports all enum related types from the schema.
- *
- * 🟢 You can import this file directly.
- */
+* This file exports all enum related types from the schema.
+*
+* 🟢 You can import this file directly.
+*/
 
 export const IdentityProvider = {
-  SUPABASE: 'SUPABASE',
-} as const;
+  SUPABASE: 'SUPABASE'
+} as const
 
-export type IdentityProvider =
-  (typeof IdentityProvider)[keyof typeof IdentityProvider];
+export type IdentityProvider = (typeof IdentityProvider)[keyof typeof IdentityProvider]
+
 
 export const UserStatus = {
   ACTIVE: 'ACTIVE',
   SUSPENDED: 'SUSPENDED',
-  RETAINED: 'RETAINED',
-} as const;
+  RETAINED: 'RETAINED'
+} as const
 
-export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus];
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
 
 export const RoleCode = {
   FREE_USER: 'FREE_USER',
   PREMIUM_USER: 'PREMIUM_USER',
   CONTENT_EDITOR: 'CONTENT_EDITOR',
   ADMIN: 'ADMIN',
-  SUPER_ADMIN: 'SUPER_ADMIN',
-} as const;
+  SUPER_ADMIN: 'SUPER_ADMIN'
+} as const
 
-export type RoleCode = (typeof RoleCode)[keyof typeof RoleCode];
+export type RoleCode = (typeof RoleCode)[keyof typeof RoleCode]
+
 
 export const LearningGoal = {
   ENGLISH_FOUNDATION: 'ENGLISH_FOUNDATION',
@@ -40,21 +42,22 @@ export const LearningGoal = {
   WORKPLACE_ENGLISH: 'WORKPLACE_ENGLISH',
   TOEIC_LISTENING_READING: 'TOEIC_LISTENING_READING',
   TOEIC_SPEAKING_WRITING: 'TOEIC_SPEAKING_WRITING',
-  TOEIC_FOUR_SKILLS: 'TOEIC_FOUR_SKILLS',
-} as const;
+  TOEIC_FOUR_SKILLS: 'TOEIC_FOUR_SKILLS'
+} as const
 
-export type LearningGoal = (typeof LearningGoal)[keyof typeof LearningGoal];
+export type LearningGoal = (typeof LearningGoal)[keyof typeof LearningGoal]
+
 
 export const ProficiencyLevel = {
   BEGINNER: 'BEGINNER',
   ELEMENTARY: 'ELEMENTARY',
   INTERMEDIATE: 'INTERMEDIATE',
   UPPER_INTERMEDIATE: 'UPPER_INTERMEDIATE',
-  ADVANCED: 'ADVANCED',
-} as const;
+  ADVANCED: 'ADVANCED'
+} as const
 
-export type ProficiencyLevel =
-  (typeof ProficiencyLevel)[keyof typeof ProficiencyLevel];
+export type ProficiencyLevel = (typeof ProficiencyLevel)[keyof typeof ProficiencyLevel]
+
 
 export const LearningSkill = {
   VOCABULARY: 'VOCABULARY',
@@ -62,26 +65,29 @@ export const LearningSkill = {
   LISTENING: 'LISTENING',
   READING: 'READING',
   SPEAKING: 'SPEAKING',
-  WRITING: 'WRITING',
-} as const;
+  WRITING: 'WRITING'
+} as const
 
-export type LearningSkill = (typeof LearningSkill)[keyof typeof LearningSkill];
+export type LearningSkill = (typeof LearningSkill)[keyof typeof LearningSkill]
+
 
 export const RoadmapStatus = {
   ACTIVE: 'ACTIVE',
-  SUPERSEDED: 'SUPERSEDED',
-} as const;
+  SUPERSEDED: 'SUPERSEDED'
+} as const
 
-export type RoadmapStatus = (typeof RoadmapStatus)[keyof typeof RoadmapStatus];
+export type RoadmapStatus = (typeof RoadmapStatus)[keyof typeof RoadmapStatus]
+
 
 export const RoadmapPhase = {
   FOUNDATION: 'FOUNDATION',
   SKILL_BUILDING: 'SKILL_BUILDING',
   PRACTICE_CORRECTION: 'PRACTICE_CORRECTION',
-  SIMULATION_REVIEW: 'SIMULATION_REVIEW',
-} as const;
+  SIMULATION_REVIEW: 'SIMULATION_REVIEW'
+} as const
 
-export type RoadmapPhase = (typeof RoadmapPhase)[keyof typeof RoadmapPhase];
+export type RoadmapPhase = (typeof RoadmapPhase)[keyof typeof RoadmapPhase]
+
 
 export const RoadmapTaskType = {
   VOCABULARY: 'VOCABULARY',
@@ -93,25 +99,24 @@ export const RoadmapTaskType = {
   DAILY_SENTENCE: 'DAILY_SENTENCE',
   TOEIC_PART: 'TOEIC_PART',
   REVIEW: 'REVIEW',
-  SIMULATION: 'SIMULATION',
-} as const;
+  SIMULATION: 'SIMULATION'
+} as const
 
-export type RoadmapTaskType =
-  (typeof RoadmapTaskType)[keyof typeof RoadmapTaskType];
+export type RoadmapTaskType = (typeof RoadmapTaskType)[keyof typeof RoadmapTaskType]
+
 
 export const RoadmapItemStatus = {
   PENDING: 'PENDING',
   COMPLETED: 'COMPLETED',
-  SKIPPED: 'SKIPPED',
-} as const;
+  SKIPPED: 'SKIPPED'
+} as const
 
-export type RoadmapItemStatus =
-  (typeof RoadmapItemStatus)[keyof typeof RoadmapItemStatus];
+export type RoadmapItemStatus = (typeof RoadmapItemStatus)[keyof typeof RoadmapItemStatus]
+
 
 export const PracticeStatus = {
   ACTIVE: 'ACTIVE',
-  SUBMITTED: 'SUBMITTED',
-} as const;
+  SUBMITTED: 'SUBMITTED'
+} as const
 
-export type PracticeStatus =
-  (typeof PracticeStatus)[keyof typeof PracticeStatus];
+export type PracticeStatus = (typeof PracticeStatus)[keyof typeof PracticeStatus]

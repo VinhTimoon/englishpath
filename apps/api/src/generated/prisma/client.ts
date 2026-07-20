@@ -9,16 +9,16 @@
  * 🟢 You can import this file directly.
  */
 
-import * as process from 'node:process';
-import * as path from 'node:path';
+import * as process from 'node:process'
+import * as path from 'node:path'
 
-import * as runtime from '@prisma/client/runtime/client';
-import * as $Enums from './enums.js';
-import * as $Class from './internal/class.js';
-import * as Prisma from './internal/prismaNamespace.js';
+import * as runtime from "@prisma/client/runtime/client"
+import * as $Enums from "./enums.js"
+import * as $Class from "./internal/class.js"
+import * as Prisma from "./internal/prismaNamespace.js"
 
-export * as $Enums from './enums.js';
-export * from './enums.js';
+export * as $Enums from './enums.js'
+export * from "./enums.js"
 /**
  * ## Prisma Client
  *
@@ -34,73 +34,77 @@ export * from './enums.js';
  *
  * Read more in our [docs](https://pris.ly/d/client).
  */
-export const PrismaClient = $Class.getPrismaClientClass();
-export type PrismaClient<
-  LogOpts extends Prisma.LogLevel = never,
-  OmitOpts extends Prisma.PrismaClientOptions['omit'] =
-    Prisma.PrismaClientOptions['omit'],
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>;
-export { Prisma };
+export const PrismaClient = $Class.getPrismaClientClass()
+export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
+export { Prisma }
 
 /**
  * Model User
  *
  */
-export type User = Prisma.UserModel;
+export type User = Prisma.UserModel
 /**
  * Model LearnerOnboarding
  *
  */
-export type LearnerOnboarding = Prisma.LearnerOnboardingModel;
+export type LearnerOnboarding = Prisma.LearnerOnboardingModel
 /**
  * Model PlacementAttempt
  *
  */
-export type PlacementAttempt = Prisma.PlacementAttemptModel;
+export type PlacementAttempt = Prisma.PlacementAttemptModel
 /**
  * Model Roadmap
  *
  */
-export type Roadmap = Prisma.RoadmapModel;
+export type Roadmap = Prisma.RoadmapModel
 /**
  * Model RoadmapItem
  *
  */
-export type RoadmapItem = Prisma.RoadmapItemModel;
+export type RoadmapItem = Prisma.RoadmapItemModel
 /**
  * Model PracticeSession
  *
  */
-export type PracticeSession = Prisma.PracticeSessionModel;
+export type PracticeSession = Prisma.PracticeSessionModel
 /**
  * Model PracticeAnswer
  *
  */
-export type PracticeAnswer = Prisma.PracticeAnswerModel;
+export type PracticeAnswer = Prisma.PracticeAnswerModel
 /**
  * Model LearnerProgress
  *
  */
-export type LearnerProgress = Prisma.LearnerProgressModel;
+export type LearnerProgress = Prisma.LearnerProgressModel
 /**
  * Model ErrorNotebookEntry
  *
  */
-export type ErrorNotebookEntry = Prisma.ErrorNotebookEntryModel;
+export type ErrorNotebookEntry = Prisma.ErrorNotebookEntryModel
 /**
  * Model UserProfile
  *
  */
-export type UserProfile = Prisma.UserProfileModel;
+export type UserProfile = Prisma.UserProfileModel
+/**
+ * Model GovernedSentence
+ *
+ */
+export type GovernedSentence = Prisma.GovernedSentenceModel
+/**
+ * Model DailySentenceCompletion
+ *
+ */
+export type DailySentenceCompletion = Prisma.DailySentenceCompletionModel
 /**
  * Model Role
  *
  */
-export type Role = Prisma.RoleModel;
+export type Role = Prisma.RoleModel
 /**
  * Model UserRole
  *
  */
-export type UserRole = Prisma.UserRoleModel;
+export type UserRole = Prisma.UserRoleModel

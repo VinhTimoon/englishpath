@@ -13,6 +13,18 @@ does not prescribe a physical Prisma schema in this story.
 
 ## Planned Conceptual Domains
 
+### EP1-ST047 Daily Sentence persistence
+
+`GovernedSentence` is owned by the daily-learning content boundary. It stores stable
+IDs, original source/license attribution, review and publication evidence, and the
+answer kept server-side. Only `REVIEWED` + `PUBLISHED` rows are eligible.
+`DailySentenceCompletion` is private to `User`, stores the learner-local UTC-midnight
+date, submitted answer, deterministic evaluation and feedback, and enforces one row
+per `(userId, localDate)`. All reads and writes are owner-scoped. The migration seeds
+20 credential-free EnglishPath-authored CC0 fixtures. Manual rollback is owner-approved
+only: drop `DailySentenceCompletion`, then `GovernedSentence`; do not run it
+automatically in production.
+
 | Domain                            | Canonical Owner                   | Key Relationships                                                            | Lifecycle                                                            | Security Boundary                                                          |
 | --------------------------------- | --------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Identity, profile, role           | Backend access module             | User links to profile, role assignments, entitlements, audit                 | invited -> active -> suspended -> deleted/retained                   | JWT maps to user; backend decides role and ownership                       |

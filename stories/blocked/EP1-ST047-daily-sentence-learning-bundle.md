@@ -1,7 +1,7 @@
 ---
 id: EP1-ST047
 title: Daily Sentence Learning Bundle
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-1-learning-core
@@ -88,3 +88,18 @@ owner-scoped completion and responsive learner UI.
 - `pnpm e2e`
 - `pnpm story:verify stories/in-progress/EP1-ST047-daily-sentence-learning-bundle.md`
 - `git diff --check`
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+```

@@ -7,721 +7,552 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from '@prisma/client/runtime/client';
-import type * as $Enums from '../enums.js';
-import type * as Prisma from '../internal/prismaNamespace.js';
+import type * as runtime from "@prisma/client/runtime/client"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model PracticeAnswer
  *
  */
-export type PracticeAnswerModel =
-  runtime.Types.Result.DefaultSelection<Prisma.$PracticeAnswerPayload>;
+export type PracticeAnswerModel = runtime.Types.Result.DefaultSelection<Prisma.$PracticeAnswerPayload>
 
 export type AggregatePracticeAnswer = {
-  _count: PracticeAnswerCountAggregateOutputType | null;
-  _min: PracticeAnswerMinAggregateOutputType | null;
-  _max: PracticeAnswerMaxAggregateOutputType | null;
-};
+  _count: PracticeAnswerCountAggregateOutputType | null
+  _min: PracticeAnswerMinAggregateOutputType | null
+  _max: PracticeAnswerMaxAggregateOutputType | null
+}
 
 export type PracticeAnswerMinAggregateOutputType = {
-  id: string | null;
-  sessionId: string | null;
-  questionId: string | null;
-  selectedOption: string | null;
-  isCorrect: boolean | null;
-  answeredAt: Date | null;
-};
+  id: string | null
+  sessionId: string | null
+  questionId: string | null
+  selectedOption: string | null
+  isCorrect: boolean | null
+  answeredAt: Date | null
+}
 
 export type PracticeAnswerMaxAggregateOutputType = {
-  id: string | null;
-  sessionId: string | null;
-  questionId: string | null;
-  selectedOption: string | null;
-  isCorrect: boolean | null;
-  answeredAt: Date | null;
-};
+  id: string | null
+  sessionId: string | null
+  questionId: string | null
+  selectedOption: string | null
+  isCorrect: boolean | null
+  answeredAt: Date | null
+}
 
 export type PracticeAnswerCountAggregateOutputType = {
-  id: number;
-  sessionId: number;
-  questionId: number;
-  selectedOption: number;
-  isCorrect: number;
-  answeredAt: number;
-  _all: number;
-};
+  id: number
+  sessionId: number
+  questionId: number
+  selectedOption: number
+  isCorrect: number
+  answeredAt: number
+  _all: number
+}
+
 
 export type PracticeAnswerMinAggregateInputType = {
-  id?: true;
-  sessionId?: true;
-  questionId?: true;
-  selectedOption?: true;
-  isCorrect?: true;
-  answeredAt?: true;
-};
+  id?: true
+  sessionId?: true
+  questionId?: true
+  selectedOption?: true
+  isCorrect?: true
+  answeredAt?: true
+}
 
 export type PracticeAnswerMaxAggregateInputType = {
-  id?: true;
-  sessionId?: true;
-  questionId?: true;
-  selectedOption?: true;
-  isCorrect?: true;
-  answeredAt?: true;
-};
+  id?: true
+  sessionId?: true
+  questionId?: true
+  selectedOption?: true
+  isCorrect?: true
+  answeredAt?: true
+}
 
 export type PracticeAnswerCountAggregateInputType = {
-  id?: true;
-  sessionId?: true;
-  questionId?: true;
-  selectedOption?: true;
-  isCorrect?: true;
-  answeredAt?: true;
-  _all?: true;
-};
+  id?: true
+  sessionId?: true
+  questionId?: true
+  selectedOption?: true
+  isCorrect?: true
+  answeredAt?: true
+  _all?: true
+}
 
-export type PracticeAnswerAggregateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Filter which PracticeAnswer to aggregate.
    */
-  where?: Prisma.PracticeAnswerWhereInput;
+  where?: Prisma.PracticeAnswerWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PracticeAnswers to fetch.
    */
-  orderBy?:
-    | Prisma.PracticeAnswerOrderByWithRelationInput
-    | Prisma.PracticeAnswerOrderByWithRelationInput[];
+  orderBy?: Prisma.PracticeAnswerOrderByWithRelationInput | Prisma.PracticeAnswerOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.PracticeAnswerWhereUniqueInput;
+  cursor?: Prisma.PracticeAnswerWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PracticeAnswers from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PracticeAnswers.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Count returned PracticeAnswers
-   **/
-  _count?: true | PracticeAnswerCountAggregateInputType;
+  **/
+  _count?: true | PracticeAnswerCountAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
-   **/
-  _min?: PracticeAnswerMinAggregateInputType;
+  **/
+  _min?: PracticeAnswerMinAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
-   **/
-  _max?: PracticeAnswerMaxAggregateInputType;
-};
+  **/
+  _max?: PracticeAnswerMaxAggregateInputType
+}
 
-export type GetPracticeAnswerAggregateType<
-  T extends PracticeAnswerAggregateArgs,
-> = {
-  [P in keyof T & keyof AggregatePracticeAnswer]: P extends '_count' | 'count'
+export type GetPracticeAnswerAggregateType<T extends PracticeAnswerAggregateArgs> = {
+      [P in keyof T & keyof AggregatePracticeAnswer]: P extends '_count' | 'count'
     ? T[P] extends true
       ? number
       : Prisma.GetScalarType<T[P], AggregatePracticeAnswer[P]>
-    : Prisma.GetScalarType<T[P], AggregatePracticeAnswer[P]>;
-};
+    : Prisma.GetScalarType<T[P], AggregatePracticeAnswer[P]>
+}
 
-export type PracticeAnswerGroupByArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  where?: Prisma.PracticeAnswerWhereInput;
-  orderBy?:
-    | Prisma.PracticeAnswerOrderByWithAggregationInput
-    | Prisma.PracticeAnswerOrderByWithAggregationInput[];
-  by:
-    | Prisma.PracticeAnswerScalarFieldEnum[]
-    | Prisma.PracticeAnswerScalarFieldEnum;
-  having?: Prisma.PracticeAnswerScalarWhereWithAggregatesInput;
-  take?: number;
-  skip?: number;
-  _count?: PracticeAnswerCountAggregateInputType | true;
-  _min?: PracticeAnswerMinAggregateInputType;
-  _max?: PracticeAnswerMaxAggregateInputType;
-};
+
+
+
+export type PracticeAnswerGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PracticeAnswerWhereInput
+  orderBy?: Prisma.PracticeAnswerOrderByWithAggregationInput | Prisma.PracticeAnswerOrderByWithAggregationInput[]
+  by: Prisma.PracticeAnswerScalarFieldEnum[] | Prisma.PracticeAnswerScalarFieldEnum
+  having?: Prisma.PracticeAnswerScalarWhereWithAggregatesInput
+  take?: number
+  skip?: number
+  _count?: PracticeAnswerCountAggregateInputType | true
+  _min?: PracticeAnswerMinAggregateInputType
+  _max?: PracticeAnswerMaxAggregateInputType
+}
 
 export type PracticeAnswerGroupByOutputType = {
-  id: string;
-  sessionId: string;
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-  answeredAt: Date;
-  _count: PracticeAnswerCountAggregateOutputType | null;
-  _min: PracticeAnswerMinAggregateOutputType | null;
-  _max: PracticeAnswerMaxAggregateOutputType | null;
-};
+  id: string
+  sessionId: string
+  questionId: string
+  selectedOption: string
+  isCorrect: boolean
+  answeredAt: Date
+  _count: PracticeAnswerCountAggregateOutputType | null
+  _min: PracticeAnswerMinAggregateOutputType | null
+  _max: PracticeAnswerMaxAggregateOutputType | null
+}
 
-export type GetPracticeAnswerGroupByPayload<
-  T extends PracticeAnswerGroupByArgs,
-> = Prisma.PrismaPromise<
+export type GetPracticeAnswerGroupByPayload<T extends PracticeAnswerGroupByArgs> = Prisma.PrismaPromise<
   Array<
-    Prisma.PickEnumerable<PracticeAnswerGroupByOutputType, T['by']> & {
-      [P in keyof T & keyof PracticeAnswerGroupByOutputType]: P extends '_count'
-        ? T[P] extends boolean
-          ? number
+    Prisma.PickEnumerable<PracticeAnswerGroupByOutputType, T['by']> &
+      {
+        [P in ((keyof T) & (keyof PracticeAnswerGroupByOutputType))]: P extends '_count'
+          ? T[P] extends boolean
+            ? number
+            : Prisma.GetScalarType<T[P], PracticeAnswerGroupByOutputType[P]>
           : Prisma.GetScalarType<T[P], PracticeAnswerGroupByOutputType[P]>
-        : Prisma.GetScalarType<T[P], PracticeAnswerGroupByOutputType[P]>;
-    }
+      }
+    >
   >
->;
+
+
 
 export type PracticeAnswerWhereInput = {
-  AND?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[];
-  OR?: Prisma.PracticeAnswerWhereInput[];
-  NOT?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[];
-  id?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  sessionId?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  questionId?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  selectedOption?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  isCorrect?: Prisma.BoolFilter<'PracticeAnswer'> | boolean;
-  answeredAt?: Prisma.DateTimeFilter<'PracticeAnswer'> | Date | string;
-  session?: Prisma.XOR<
-    Prisma.PracticeSessionScalarRelationFilter,
-    Prisma.PracticeSessionWhereInput
-  >;
-};
+  AND?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[]
+  OR?: Prisma.PracticeAnswerWhereInput[]
+  NOT?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[]
+  id?: Prisma.StringFilter<"PracticeAnswer"> | string
+  sessionId?: Prisma.StringFilter<"PracticeAnswer"> | string
+  questionId?: Prisma.StringFilter<"PracticeAnswer"> | string
+  selectedOption?: Prisma.StringFilter<"PracticeAnswer"> | string
+  isCorrect?: Prisma.BoolFilter<"PracticeAnswer"> | boolean
+  answeredAt?: Prisma.DateTimeFilter<"PracticeAnswer"> | Date | string
+  session?: Prisma.XOR<Prisma.PracticeSessionScalarRelationFilter, Prisma.PracticeSessionWhereInput>
+}
 
 export type PracticeAnswerOrderByWithRelationInput = {
-  id?: Prisma.SortOrder;
-  sessionId?: Prisma.SortOrder;
-  questionId?: Prisma.SortOrder;
-  selectedOption?: Prisma.SortOrder;
-  isCorrect?: Prisma.SortOrder;
-  answeredAt?: Prisma.SortOrder;
-  session?: Prisma.PracticeSessionOrderByWithRelationInput;
-};
+  id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
+  selectedOption?: Prisma.SortOrder
+  isCorrect?: Prisma.SortOrder
+  answeredAt?: Prisma.SortOrder
+  session?: Prisma.PracticeSessionOrderByWithRelationInput
+}
 
-export type PracticeAnswerWhereUniqueInput = Prisma.AtLeast<
-  {
-    id?: string;
-    sessionId_questionId?: Prisma.PracticeAnswerSessionIdQuestionIdCompoundUniqueInput;
-    AND?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[];
-    OR?: Prisma.PracticeAnswerWhereInput[];
-    NOT?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[];
-    sessionId?: Prisma.StringFilter<'PracticeAnswer'> | string;
-    questionId?: Prisma.StringFilter<'PracticeAnswer'> | string;
-    selectedOption?: Prisma.StringFilter<'PracticeAnswer'> | string;
-    isCorrect?: Prisma.BoolFilter<'PracticeAnswer'> | boolean;
-    answeredAt?: Prisma.DateTimeFilter<'PracticeAnswer'> | Date | string;
-    session?: Prisma.XOR<
-      Prisma.PracticeSessionScalarRelationFilter,
-      Prisma.PracticeSessionWhereInput
-    >;
-  },
-  'id' | 'sessionId_questionId'
->;
+export type PracticeAnswerWhereUniqueInput = Prisma.AtLeast<{
+  id?: string
+  sessionId_questionId?: Prisma.PracticeAnswerSessionIdQuestionIdCompoundUniqueInput
+  AND?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[]
+  OR?: Prisma.PracticeAnswerWhereInput[]
+  NOT?: Prisma.PracticeAnswerWhereInput | Prisma.PracticeAnswerWhereInput[]
+  sessionId?: Prisma.StringFilter<"PracticeAnswer"> | string
+  questionId?: Prisma.StringFilter<"PracticeAnswer"> | string
+  selectedOption?: Prisma.StringFilter<"PracticeAnswer"> | string
+  isCorrect?: Prisma.BoolFilter<"PracticeAnswer"> | boolean
+  answeredAt?: Prisma.DateTimeFilter<"PracticeAnswer"> | Date | string
+  session?: Prisma.XOR<Prisma.PracticeSessionScalarRelationFilter, Prisma.PracticeSessionWhereInput>
+}, "id" | "sessionId_questionId">
 
 export type PracticeAnswerOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder;
-  sessionId?: Prisma.SortOrder;
-  questionId?: Prisma.SortOrder;
-  selectedOption?: Prisma.SortOrder;
-  isCorrect?: Prisma.SortOrder;
-  answeredAt?: Prisma.SortOrder;
-  _count?: Prisma.PracticeAnswerCountOrderByAggregateInput;
-  _max?: Prisma.PracticeAnswerMaxOrderByAggregateInput;
-  _min?: Prisma.PracticeAnswerMinOrderByAggregateInput;
-};
+  id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
+  selectedOption?: Prisma.SortOrder
+  isCorrect?: Prisma.SortOrder
+  answeredAt?: Prisma.SortOrder
+  _count?: Prisma.PracticeAnswerCountOrderByAggregateInput
+  _max?: Prisma.PracticeAnswerMaxOrderByAggregateInput
+  _min?: Prisma.PracticeAnswerMinOrderByAggregateInput
+}
 
 export type PracticeAnswerScalarWhereWithAggregatesInput = {
-  AND?:
-    | Prisma.PracticeAnswerScalarWhereWithAggregatesInput
-    | Prisma.PracticeAnswerScalarWhereWithAggregatesInput[];
-  OR?: Prisma.PracticeAnswerScalarWhereWithAggregatesInput[];
-  NOT?:
-    | Prisma.PracticeAnswerScalarWhereWithAggregatesInput
-    | Prisma.PracticeAnswerScalarWhereWithAggregatesInput[];
-  id?: Prisma.StringWithAggregatesFilter<'PracticeAnswer'> | string;
-  sessionId?: Prisma.StringWithAggregatesFilter<'PracticeAnswer'> | string;
-  questionId?: Prisma.StringWithAggregatesFilter<'PracticeAnswer'> | string;
-  selectedOption?: Prisma.StringWithAggregatesFilter<'PracticeAnswer'> | string;
-  isCorrect?: Prisma.BoolWithAggregatesFilter<'PracticeAnswer'> | boolean;
-  answeredAt?:
-    Prisma.DateTimeWithAggregatesFilter<'PracticeAnswer'> | Date | string;
-};
+  AND?: Prisma.PracticeAnswerScalarWhereWithAggregatesInput | Prisma.PracticeAnswerScalarWhereWithAggregatesInput[]
+  OR?: Prisma.PracticeAnswerScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.PracticeAnswerScalarWhereWithAggregatesInput | Prisma.PracticeAnswerScalarWhereWithAggregatesInput[]
+  id?: Prisma.StringWithAggregatesFilter<"PracticeAnswer"> | string
+  sessionId?: Prisma.StringWithAggregatesFilter<"PracticeAnswer"> | string
+  questionId?: Prisma.StringWithAggregatesFilter<"PracticeAnswer"> | string
+  selectedOption?: Prisma.StringWithAggregatesFilter<"PracticeAnswer"> | string
+  isCorrect?: Prisma.BoolWithAggregatesFilter<"PracticeAnswer"> | boolean
+  answeredAt?: Prisma.DateTimeWithAggregatesFilter<"PracticeAnswer"> | Date | string
+}
 
 export type PracticeAnswerCreateInput = {
-  id?: string;
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-  answeredAt?: Date | string;
-  session: Prisma.PracticeSessionCreateNestedOneWithoutAnswersInput;
-};
+  id?: string
+  questionId: string
+  selectedOption: string
+  isCorrect: boolean
+  answeredAt?: Date | string
+  session: Prisma.PracticeSessionCreateNestedOneWithoutAnswersInput
+}
 
 export type PracticeAnswerUncheckedCreateInput = {
-  id?: string;
-  sessionId: string;
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-  answeredAt?: Date | string;
-};
+  id?: string
+  sessionId: string
+  questionId: string
+  selectedOption: string
+  isCorrect: boolean
+  answeredAt?: Date | string
+}
 
 export type PracticeAnswerUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  questionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string;
-  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  session?: Prisma.PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session?: Prisma.PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput
+}
 
 export type PracticeAnswerUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  questionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string;
-  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PracticeAnswerCreateManyInput = {
-  id?: string;
-  sessionId: string;
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-  answeredAt?: Date | string;
-};
+  id?: string
+  sessionId: string
+  questionId: string
+  selectedOption: string
+  isCorrect: boolean
+  answeredAt?: Date | string
+}
 
 export type PracticeAnswerUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  questionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string;
-  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PracticeAnswerUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  questionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string;
-  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PracticeAnswerListRelationFilter = {
-  every?: Prisma.PracticeAnswerWhereInput;
-  some?: Prisma.PracticeAnswerWhereInput;
-  none?: Prisma.PracticeAnswerWhereInput;
-};
+  every?: Prisma.PracticeAnswerWhereInput
+  some?: Prisma.PracticeAnswerWhereInput
+  none?: Prisma.PracticeAnswerWhereInput
+}
 
 export type PracticeAnswerOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
+  _count?: Prisma.SortOrder
+}
 
 export type PracticeAnswerSessionIdQuestionIdCompoundUniqueInput = {
-  sessionId: string;
-  questionId: string;
-};
+  sessionId: string
+  questionId: string
+}
 
 export type PracticeAnswerCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  sessionId?: Prisma.SortOrder;
-  questionId?: Prisma.SortOrder;
-  selectedOption?: Prisma.SortOrder;
-  isCorrect?: Prisma.SortOrder;
-  answeredAt?: Prisma.SortOrder;
-};
+  id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
+  selectedOption?: Prisma.SortOrder
+  isCorrect?: Prisma.SortOrder
+  answeredAt?: Prisma.SortOrder
+}
 
 export type PracticeAnswerMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  sessionId?: Prisma.SortOrder;
-  questionId?: Prisma.SortOrder;
-  selectedOption?: Prisma.SortOrder;
-  isCorrect?: Prisma.SortOrder;
-  answeredAt?: Prisma.SortOrder;
-};
+  id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
+  selectedOption?: Prisma.SortOrder
+  isCorrect?: Prisma.SortOrder
+  answeredAt?: Prisma.SortOrder
+}
 
 export type PracticeAnswerMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  sessionId?: Prisma.SortOrder;
-  questionId?: Prisma.SortOrder;
-  selectedOption?: Prisma.SortOrder;
-  isCorrect?: Prisma.SortOrder;
-  answeredAt?: Prisma.SortOrder;
-};
+  id?: Prisma.SortOrder
+  sessionId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
+  selectedOption?: Prisma.SortOrder
+  isCorrect?: Prisma.SortOrder
+  answeredAt?: Prisma.SortOrder
+}
 
 export type PracticeAnswerCreateNestedManyWithoutSessionInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PracticeAnswerCreateWithoutSessionInput,
-        Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput
-      >
-    | Prisma.PracticeAnswerCreateWithoutSessionInput[]
-    | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[];
-  connectOrCreate?:
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[];
-  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope;
-  connect?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-};
+  create?: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutSessionInput, Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput> | Prisma.PracticeAnswerCreateWithoutSessionInput[] | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[]
+  connectOrCreate?: Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[]
+  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope
+  connect?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+}
 
 export type PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PracticeAnswerCreateWithoutSessionInput,
-        Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput
-      >
-    | Prisma.PracticeAnswerCreateWithoutSessionInput[]
-    | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[];
-  connectOrCreate?:
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[];
-  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope;
-  connect?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-};
+  create?: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutSessionInput, Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput> | Prisma.PracticeAnswerCreateWithoutSessionInput[] | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[]
+  connectOrCreate?: Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[]
+  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope
+  connect?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+}
 
 export type PracticeAnswerUpdateManyWithoutSessionNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PracticeAnswerCreateWithoutSessionInput,
-        Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput
-      >
-    | Prisma.PracticeAnswerCreateWithoutSessionInput[]
-    | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[];
-  connectOrCreate?:
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[];
-  upsert?:
-    | Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput
-    | Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput[];
-  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope;
-  set?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  disconnect?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  delete?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  connect?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  update?:
-    | Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput
-    | Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput[];
-  updateMany?:
-    | Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput
-    | Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput[];
-  deleteMany?:
-    | Prisma.PracticeAnswerScalarWhereInput
-    | Prisma.PracticeAnswerScalarWhereInput[];
-};
+  create?: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutSessionInput, Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput> | Prisma.PracticeAnswerCreateWithoutSessionInput[] | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[]
+  connectOrCreate?: Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[]
+  upsert?: Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput | Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput[]
+  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope
+  set?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  disconnect?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  delete?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  connect?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  update?: Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput | Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput[]
+  updateMany?: Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput | Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput[]
+  deleteMany?: Prisma.PracticeAnswerScalarWhereInput | Prisma.PracticeAnswerScalarWhereInput[]
+}
 
 export type PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PracticeAnswerCreateWithoutSessionInput,
-        Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput
-      >
-    | Prisma.PracticeAnswerCreateWithoutSessionInput[]
-    | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[];
-  connectOrCreate?:
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput
-    | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[];
-  upsert?:
-    | Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput
-    | Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput[];
-  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope;
-  set?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  disconnect?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  delete?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  connect?:
-    | Prisma.PracticeAnswerWhereUniqueInput
-    | Prisma.PracticeAnswerWhereUniqueInput[];
-  update?:
-    | Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput
-    | Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput[];
-  updateMany?:
-    | Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput
-    | Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput[];
-  deleteMany?:
-    | Prisma.PracticeAnswerScalarWhereInput
-    | Prisma.PracticeAnswerScalarWhereInput[];
-};
+  create?: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutSessionInput, Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput> | Prisma.PracticeAnswerCreateWithoutSessionInput[] | Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput[]
+  connectOrCreate?: Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput | Prisma.PracticeAnswerCreateOrConnectWithoutSessionInput[]
+  upsert?: Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput | Prisma.PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput[]
+  createMany?: Prisma.PracticeAnswerCreateManySessionInputEnvelope
+  set?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  disconnect?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  delete?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  connect?: Prisma.PracticeAnswerWhereUniqueInput | Prisma.PracticeAnswerWhereUniqueInput[]
+  update?: Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput | Prisma.PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput[]
+  updateMany?: Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput | Prisma.PracticeAnswerUpdateManyWithWhereWithoutSessionInput[]
+  deleteMany?: Prisma.PracticeAnswerScalarWhereInput | Prisma.PracticeAnswerScalarWhereInput[]
+}
 
 export type BoolFieldUpdateOperationsInput = {
-  set?: boolean;
-};
+  set?: boolean
+}
 
 export type PracticeAnswerCreateWithoutSessionInput = {
-  id?: string;
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-  answeredAt?: Date | string;
-};
+  id?: string
+  questionId: string
+  selectedOption: string
+  isCorrect: boolean
+  answeredAt?: Date | string
+}
 
 export type PracticeAnswerUncheckedCreateWithoutSessionInput = {
-  id?: string;
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-  answeredAt?: Date | string;
-};
+  id?: string
+  questionId: string
+  selectedOption: string
+  isCorrect: boolean
+  answeredAt?: Date | string
+}
 
 export type PracticeAnswerCreateOrConnectWithoutSessionInput = {
-  where: Prisma.PracticeAnswerWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.PracticeAnswerCreateWithoutSessionInput,
-    Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput
-  >;
-};
+  where: Prisma.PracticeAnswerWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutSessionInput, Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput>
+}
 
 export type PracticeAnswerCreateManySessionInputEnvelope = {
-  data:
-    | Prisma.PracticeAnswerCreateManySessionInput
-    | Prisma.PracticeAnswerCreateManySessionInput[];
-  skipDuplicates?: boolean;
-};
+  data: Prisma.PracticeAnswerCreateManySessionInput | Prisma.PracticeAnswerCreateManySessionInput[]
+  skipDuplicates?: boolean
+}
 
 export type PracticeAnswerUpsertWithWhereUniqueWithoutSessionInput = {
-  where: Prisma.PracticeAnswerWhereUniqueInput;
-  update: Prisma.XOR<
-    Prisma.PracticeAnswerUpdateWithoutSessionInput,
-    Prisma.PracticeAnswerUncheckedUpdateWithoutSessionInput
-  >;
-  create: Prisma.XOR<
-    Prisma.PracticeAnswerCreateWithoutSessionInput,
-    Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput
-  >;
-};
+  where: Prisma.PracticeAnswerWhereUniqueInput
+  update: Prisma.XOR<Prisma.PracticeAnswerUpdateWithoutSessionInput, Prisma.PracticeAnswerUncheckedUpdateWithoutSessionInput>
+  create: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutSessionInput, Prisma.PracticeAnswerUncheckedCreateWithoutSessionInput>
+}
 
 export type PracticeAnswerUpdateWithWhereUniqueWithoutSessionInput = {
-  where: Prisma.PracticeAnswerWhereUniqueInput;
-  data: Prisma.XOR<
-    Prisma.PracticeAnswerUpdateWithoutSessionInput,
-    Prisma.PracticeAnswerUncheckedUpdateWithoutSessionInput
-  >;
-};
+  where: Prisma.PracticeAnswerWhereUniqueInput
+  data: Prisma.XOR<Prisma.PracticeAnswerUpdateWithoutSessionInput, Prisma.PracticeAnswerUncheckedUpdateWithoutSessionInput>
+}
 
 export type PracticeAnswerUpdateManyWithWhereWithoutSessionInput = {
-  where: Prisma.PracticeAnswerScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.PracticeAnswerUpdateManyMutationInput,
-    Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionInput
-  >;
-};
+  where: Prisma.PracticeAnswerScalarWhereInput
+  data: Prisma.XOR<Prisma.PracticeAnswerUpdateManyMutationInput, Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionInput>
+}
 
 export type PracticeAnswerScalarWhereInput = {
-  AND?:
-    | Prisma.PracticeAnswerScalarWhereInput
-    | Prisma.PracticeAnswerScalarWhereInput[];
-  OR?: Prisma.PracticeAnswerScalarWhereInput[];
-  NOT?:
-    | Prisma.PracticeAnswerScalarWhereInput
-    | Prisma.PracticeAnswerScalarWhereInput[];
-  id?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  sessionId?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  questionId?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  selectedOption?: Prisma.StringFilter<'PracticeAnswer'> | string;
-  isCorrect?: Prisma.BoolFilter<'PracticeAnswer'> | boolean;
-  answeredAt?: Prisma.DateTimeFilter<'PracticeAnswer'> | Date | string;
-};
+  AND?: Prisma.PracticeAnswerScalarWhereInput | Prisma.PracticeAnswerScalarWhereInput[]
+  OR?: Prisma.PracticeAnswerScalarWhereInput[]
+  NOT?: Prisma.PracticeAnswerScalarWhereInput | Prisma.PracticeAnswerScalarWhereInput[]
+  id?: Prisma.StringFilter<"PracticeAnswer"> | string
+  sessionId?: Prisma.StringFilter<"PracticeAnswer"> | string
+  questionId?: Prisma.StringFilter<"PracticeAnswer"> | string
+  selectedOption?: Prisma.StringFilter<"PracticeAnswer"> | string
+  isCorrect?: Prisma.BoolFilter<"PracticeAnswer"> | boolean
+  answeredAt?: Prisma.DateTimeFilter<"PracticeAnswer"> | Date | string
+}
 
 export type PracticeAnswerCreateManySessionInput = {
-  id?: string;
-  questionId: string;
-  selectedOption: string;
-  isCorrect: boolean;
-  answeredAt?: Date | string;
-};
+  id?: string
+  questionId: string
+  selectedOption: string
+  isCorrect: boolean
+  answeredAt?: Date | string
+}
 
 export type PracticeAnswerUpdateWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  questionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string;
-  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PracticeAnswerUncheckedUpdateWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  questionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string;
-  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PracticeAnswerUncheckedUpdateManyWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  questionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string;
-  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  selectedOption?: Prisma.StringFieldUpdateOperationsInput | string
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  answeredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
-export type PracticeAnswerSelect<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetSelect<
-  {
-    id?: boolean;
-    sessionId?: boolean;
-    questionId?: boolean;
-    selectedOption?: boolean;
-    isCorrect?: boolean;
-    answeredAt?: boolean;
-    session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>;
-  },
-  ExtArgs['result']['practiceAnswer']
->;
 
-export type PracticeAnswerSelectCreateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetSelect<
-  {
-    id?: boolean;
-    sessionId?: boolean;
-    questionId?: boolean;
-    selectedOption?: boolean;
-    isCorrect?: boolean;
-    answeredAt?: boolean;
-    session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>;
-  },
-  ExtArgs['result']['practiceAnswer']
->;
 
-export type PracticeAnswerSelectUpdateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetSelect<
-  {
-    id?: boolean;
-    sessionId?: boolean;
-    questionId?: boolean;
-    selectedOption?: boolean;
-    isCorrect?: boolean;
-    answeredAt?: boolean;
-    session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>;
-  },
-  ExtArgs['result']['practiceAnswer']
->;
+export type PracticeAnswerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  sessionId?: boolean
+  questionId?: boolean
+  selectedOption?: boolean
+  isCorrect?: boolean
+  answeredAt?: boolean
+  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["practiceAnswer"]>
+
+export type PracticeAnswerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  sessionId?: boolean
+  questionId?: boolean
+  selectedOption?: boolean
+  isCorrect?: boolean
+  answeredAt?: boolean
+  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["practiceAnswer"]>
+
+export type PracticeAnswerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  sessionId?: boolean
+  questionId?: boolean
+  selectedOption?: boolean
+  isCorrect?: boolean
+  answeredAt?: boolean
+  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["practiceAnswer"]>
 
 export type PracticeAnswerSelectScalar = {
-  id?: boolean;
-  sessionId?: boolean;
-  questionId?: boolean;
-  selectedOption?: boolean;
-  isCorrect?: boolean;
-  answeredAt?: boolean;
-};
+  id?: boolean
+  sessionId?: boolean
+  questionId?: boolean
+  selectedOption?: boolean
+  isCorrect?: boolean
+  answeredAt?: boolean
+}
 
-export type PracticeAnswerOmit<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetOmit<
-  | 'id'
-  | 'sessionId'
-  | 'questionId'
-  | 'selectedOption'
-  | 'isCorrect'
-  | 'answeredAt',
-  ExtArgs['result']['practiceAnswer']
->;
-export type PracticeAnswerInclude<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>;
-};
-export type PracticeAnswerIncludeCreateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>;
-};
-export type PracticeAnswerIncludeUpdateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>;
-};
+export type PracticeAnswerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sessionId" | "questionId" | "selectedOption" | "isCorrect" | "answeredAt", ExtArgs["result"]["practiceAnswer"]>
+export type PracticeAnswerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>
+}
+export type PracticeAnswerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>
+}
+export type PracticeAnswerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>
+}
 
-export type $PracticeAnswerPayload<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  name: 'PracticeAnswer';
+export type $PracticeAnswerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "PracticeAnswer"
   objects: {
-    session: Prisma.$PracticeSessionPayload<ExtArgs>;
-  };
-  scalars: runtime.Types.Extensions.GetPayloadResult<
-    {
-      id: string;
-      sessionId: string;
-      questionId: string;
-      selectedOption: string;
-      isCorrect: boolean;
-      answeredAt: Date;
-    },
-    ExtArgs['result']['practiceAnswer']
-  >;
-  composites: {};
-};
+    session: Prisma.$PracticeSessionPayload<ExtArgs>
+  }
+  scalars: runtime.Types.Extensions.GetPayloadResult<{
+    id: string
+    sessionId: string
+    questionId: string
+    selectedOption: string
+    isCorrect: boolean
+    answeredAt: Date
+  }, ExtArgs["result"]["practiceAnswer"]>
+  composites: {}
+}
 
-export type PracticeAnswerGetPayload<
-  S extends boolean | null | undefined | PracticeAnswerDefaultArgs,
-> = runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload, S>;
+export type PracticeAnswerGetPayload<S extends boolean | null | undefined | PracticeAnswerDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload, S>
 
-export type PracticeAnswerCountArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = Omit<
-  PracticeAnswerFindManyArgs,
-  'select' | 'include' | 'distinct' | 'omit'
-> & {
-  select?: PracticeAnswerCountAggregateInputType | true;
-};
+export type PracticeAnswerCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<PracticeAnswerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: PracticeAnswerCountAggregateInputType | true
+  }
 
-export interface PracticeAnswerDelegate<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-  GlobalOmitOptions = {},
-> {
-  [K: symbol]: {
-    types: Prisma.TypeMap<ExtArgs>['model']['PracticeAnswer'];
-    meta: { name: 'PracticeAnswer' };
-  };
+export interface PracticeAnswerDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PracticeAnswer'], meta: { name: 'PracticeAnswer' } }
   /**
    * Find zero or one PracticeAnswer that matches the filter.
    * @param {PracticeAnswerFindUniqueArgs} args - Arguments to find a PracticeAnswer
@@ -733,19 +564,7 @@ export interface PracticeAnswerDelegate<
    *   }
    * })
    */
-  findUnique<T extends PracticeAnswerFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, PracticeAnswerFindUniqueArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'findUnique',
-      GlobalOmitOptions
-    > | null,
-    null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findUnique<T extends PracticeAnswerFindUniqueArgs>(args: Prisma.SelectSubset<T, PracticeAnswerFindUniqueArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one PracticeAnswer that matches the filter or throw an error with `error.code='P2025'`
@@ -759,19 +578,7 @@ export interface PracticeAnswerDelegate<
    *   }
    * })
    */
-  findUniqueOrThrow<T extends PracticeAnswerFindUniqueOrThrowArgs>(
-    args: Prisma.SelectSubset<T, PracticeAnswerFindUniqueOrThrowArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'findUniqueOrThrow',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findUniqueOrThrow<T extends PracticeAnswerFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, PracticeAnswerFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first PracticeAnswer that matches the filter.
@@ -786,19 +593,7 @@ export interface PracticeAnswerDelegate<
    *   }
    * })
    */
-  findFirst<T extends PracticeAnswerFindFirstArgs>(
-    args?: Prisma.SelectSubset<T, PracticeAnswerFindFirstArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'findFirst',
-      GlobalOmitOptions
-    > | null,
-    null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findFirst<T extends PracticeAnswerFindFirstArgs>(args?: Prisma.SelectSubset<T, PracticeAnswerFindFirstArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first PracticeAnswer that matches the filter or
@@ -814,19 +609,7 @@ export interface PracticeAnswerDelegate<
    *   }
    * })
    */
-  findFirstOrThrow<T extends PracticeAnswerFindFirstOrThrowArgs>(
-    args?: Prisma.SelectSubset<T, PracticeAnswerFindFirstOrThrowArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'findFirstOrThrow',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findFirstOrThrow<T extends PracticeAnswerFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, PracticeAnswerFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more PracticeAnswers that matches the filter.
@@ -844,16 +627,7 @@ export interface PracticeAnswerDelegate<
    * const practiceAnswerWithIdOnly = await prisma.practiceAnswer.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends PracticeAnswerFindManyArgs>(
-    args?: Prisma.SelectSubset<T, PracticeAnswerFindManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'findMany',
-      GlobalOmitOptions
-    >
-  >;
+  findMany<T extends PracticeAnswerFindManyArgs>(args?: Prisma.SelectSubset<T, PracticeAnswerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a PracticeAnswer.
@@ -867,19 +641,7 @@ export interface PracticeAnswerDelegate<
    * })
    *
    */
-  create<T extends PracticeAnswerCreateArgs>(
-    args: Prisma.SelectSubset<T, PracticeAnswerCreateArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'create',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  create<T extends PracticeAnswerCreateArgs>(args: Prisma.SelectSubset<T, PracticeAnswerCreateArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many PracticeAnswers.
@@ -893,9 +655,7 @@ export interface PracticeAnswerDelegate<
    * })
    *
    */
-  createMany<T extends PracticeAnswerCreateManyArgs>(
-    args?: Prisma.SelectSubset<T, PracticeAnswerCreateManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
+  createMany<T extends PracticeAnswerCreateManyArgs>(args?: Prisma.SelectSubset<T, PracticeAnswerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many PracticeAnswers and returns the data saved in the database.
@@ -919,19 +679,7 @@ export interface PracticeAnswerDelegate<
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends PracticeAnswerCreateManyAndReturnArgs>(
-    args?: Prisma.SelectSubset<
-      T,
-      PracticeAnswerCreateManyAndReturnArgs<ExtArgs>
-    >,
-  ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'createManyAndReturn',
-      GlobalOmitOptions
-    >
-  >;
+  createManyAndReturn<T extends PracticeAnswerCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, PracticeAnswerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a PracticeAnswer.
@@ -945,19 +693,7 @@ export interface PracticeAnswerDelegate<
    * })
    *
    */
-  delete<T extends PracticeAnswerDeleteArgs>(
-    args: Prisma.SelectSubset<T, PracticeAnswerDeleteArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'delete',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  delete<T extends PracticeAnswerDeleteArgs>(args: Prisma.SelectSubset<T, PracticeAnswerDeleteArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one PracticeAnswer.
@@ -974,19 +710,7 @@ export interface PracticeAnswerDelegate<
    * })
    *
    */
-  update<T extends PracticeAnswerUpdateArgs>(
-    args: Prisma.SelectSubset<T, PracticeAnswerUpdateArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'update',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  update<T extends PracticeAnswerUpdateArgs>(args: Prisma.SelectSubset<T, PracticeAnswerUpdateArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more PracticeAnswers.
@@ -1000,9 +724,7 @@ export interface PracticeAnswerDelegate<
    * })
    *
    */
-  deleteMany<T extends PracticeAnswerDeleteManyArgs>(
-    args?: Prisma.SelectSubset<T, PracticeAnswerDeleteManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
+  deleteMany<T extends PracticeAnswerDeleteManyArgs>(args?: Prisma.SelectSubset<T, PracticeAnswerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more PracticeAnswers.
@@ -1021,9 +743,7 @@ export interface PracticeAnswerDelegate<
    * })
    *
    */
-  updateMany<T extends PracticeAnswerUpdateManyArgs>(
-    args: Prisma.SelectSubset<T, PracticeAnswerUpdateManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
+  updateMany<T extends PracticeAnswerUpdateManyArgs>(args: Prisma.SelectSubset<T, PracticeAnswerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more PracticeAnswers and returns the data updated in the database.
@@ -1053,19 +773,7 @@ export interface PracticeAnswerDelegate<
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends PracticeAnswerUpdateManyAndReturnArgs>(
-    args: Prisma.SelectSubset<
-      T,
-      PracticeAnswerUpdateManyAndReturnArgs<ExtArgs>
-    >,
-  ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'updateManyAndReturn',
-      GlobalOmitOptions
-    >
-  >;
+  updateManyAndReturn<T extends PracticeAnswerUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, PracticeAnswerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one PracticeAnswer.
@@ -1084,19 +792,8 @@ export interface PracticeAnswerDelegate<
    *   }
    * })
    */
-  upsert<T extends PracticeAnswerUpsertArgs>(
-    args: Prisma.SelectSubset<T, PracticeAnswerUpsertArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeAnswerClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PracticeAnswerPayload<ExtArgs>,
-      T,
-      'upsert',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  upsert<T extends PracticeAnswerUpsertArgs>(args: Prisma.SelectSubset<T, PracticeAnswerUpsertArgs<ExtArgs>>): Prisma.Prisma__PracticeAnswerClient<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
 
   /**
    * Count the number of PracticeAnswers.
@@ -1110,19 +807,16 @@ export interface PracticeAnswerDelegate<
    *     // ... the filter for the PracticeAnswers we want to count
    *   }
    * })
-   **/
+  **/
   count<T extends PracticeAnswerCountArgs>(
     args?: Prisma.Subset<T, PracticeAnswerCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<
-            T['select'],
-            PracticeAnswerCountAggregateOutputType
-          >
+        : Prisma.GetScalarType<T['select'], PracticeAnswerCountAggregateOutputType>
       : number
-  >;
+  >
 
   /**
    * Allows you to perform aggregations operations on a PracticeAnswer.
@@ -1147,10 +841,8 @@ export interface PracticeAnswerDelegate<
    *   },
    *   take: 10,
    * })
-   **/
-  aggregate<T extends PracticeAnswerAggregateArgs>(
-    args: Prisma.Subset<T, PracticeAnswerAggregateArgs>,
-  ): Prisma.PrismaPromise<GetPracticeAnswerAggregateType<T>>;
+  **/
+  aggregate<T extends PracticeAnswerAggregateArgs>(args: Prisma.Subset<T, PracticeAnswerAggregateArgs>): Prisma.PrismaPromise<GetPracticeAnswerAggregateType<T>>
 
   /**
    * Group by PracticeAnswer.
@@ -1169,76 +861,69 @@ export interface PracticeAnswerDelegate<
    *   },
    * })
    *
-   **/
+  **/
   groupBy<
     T extends PracticeAnswerGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
-    OrderByArg extends (Prisma.True extends HasSelectOrTake
+    OrderByArg extends Prisma.True extends HasSelectOrTake
       ? { orderBy: PracticeAnswerGroupByArgs['orderBy'] }
-      : { orderBy?: PracticeAnswerGroupByArgs['orderBy'] }),
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<
-      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
-    >,
+      : { orderBy?: PracticeAnswerGroupByArgs['orderBy'] },
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends (T['by'] extends never[] ? Prisma.True : Prisma.False),
-    InputErrors extends (ByEmpty extends Prisma.True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends Prisma.False
-        ? {
-            [P in HavingFields]: P extends ByFields
+    ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
+    InputErrors extends ByEmpty extends Prisma.True
+    ? `Error: "by" must not be empty.`
+    : HavingValid extends Prisma.False
+    ? {
+        [P in HavingFields]: P extends ByFields
+          ? never
+          : P extends string
+          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+          : [
+              Error,
+              'Field ',
+              P,
+              ` in "having" needs to be provided in "by"`,
+            ]
+      }[HavingFields]
+    : 'take' extends Prisma.Keys<T>
+    ? 'orderBy' extends Prisma.Keys<T>
+      ? ByValid extends Prisma.True
+        ? {}
+        : {
+            [P in OrderFields]: P extends ByFields
               ? never
-              : P extends string
-                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                : [
-                    Error,
-                    'Field ',
-                    P,
-                    ` in "having" needs to be provided in "by"`,
-                  ];
-          }[HavingFields]
-        : 'take' extends Prisma.Keys<T>
-          ? 'orderBy' extends Prisma.Keys<T>
-            ? ByValid extends Prisma.True
-              ? {}
-              : {
-                  [P in OrderFields]: P extends ByFields
-                    ? never
-                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                }[OrderFields]
-            : 'Error: If you provide "take", you also need to provide "orderBy"'
-          : 'skip' extends Prisma.Keys<T>
-            ? 'orderBy' extends Prisma.Keys<T>
-              ? ByValid extends Prisma.True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields]
-              : 'Error: If you provide "skip", you also need to provide "orderBy"'
-            : ByValid extends Prisma.True
-              ? {}
-              : {
-                  [P in OrderFields]: P extends ByFields
-                    ? never
-                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                }[OrderFields]),
-  >(
-    args: Prisma.SubsetIntersection<T, PracticeAnswerGroupByArgs, OrderByArg> &
-      InputErrors,
-  ): {} extends InputErrors
-    ? GetPracticeAnswerGroupByPayload<T>
-    : Prisma.PrismaPromise<InputErrors>;
-  /**
-   * Fields of the PracticeAnswer model
-   */
-  readonly fields: PracticeAnswerFieldRefs;
+              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+          }[OrderFields]
+      : 'Error: If you provide "take", you also need to provide "orderBy"'
+    : 'skip' extends Prisma.Keys<T>
+    ? 'orderBy' extends Prisma.Keys<T>
+      ? ByValid extends Prisma.True
+        ? {}
+        : {
+            [P in OrderFields]: P extends ByFields
+              ? never
+              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+          }[OrderFields]
+      : 'Error: If you provide "skip", you also need to provide "orderBy"'
+    : ByValid extends Prisma.True
+    ? {}
+    : {
+        [P in OrderFields]: P extends ByFields
+          ? never
+          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+      }[OrderFields]
+  >(args: Prisma.SubsetIntersection<T, PracticeAnswerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPracticeAnswerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+/**
+ * Fields of the PracticeAnswer model
+ */
+readonly fields: PracticeAnswerFieldRefs;
 }
 
 /**
@@ -1247,562 +932,458 @@ export interface PracticeAnswerDelegate<
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__PracticeAnswerClient<
-  T,
-  Null = never,
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-  GlobalOmitOptions = {},
-> extends Prisma.PrismaPromise<T> {
-  readonly [Symbol.toStringTag]: 'PrismaPromise';
-  session<T extends Prisma.PracticeSessionDefaultArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.PracticeSessionDefaultArgs<ExtArgs>>,
-  ): Prisma.Prisma__PracticeSessionClient<
-    | runtime.Types.Result.GetResult<
-        Prisma.$PracticeSessionPayload<ExtArgs>,
-        T,
-        'findUniqueOrThrow',
-        GlobalOmitOptions
-      >
-    | Null,
-    Null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+export interface Prisma__PracticeAnswerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  readonly [Symbol.toStringTag]: "PrismaPromise"
+  session<T extends Prisma.PracticeSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__PracticeSessionClient<runtime.Types.Result.GetResult<Prisma.$PracticeSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of which ever callback is executed.
    */
-  then<TResult1 = T, TResult2 = never>(
-    onfulfilled?:
-      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-    onrejected?:
-      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
-  ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+  then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
   /**
    * Attaches a callback for only the rejection of the Promise.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of the callback.
    */
-  catch<TResult = never>(
-    onrejected?:
-      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
-  ): runtime.Types.Utils.JsPromise<T | TResult>;
+  catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
    * resolved value cannot be modified from the callback.
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(
-    onfinally?: (() => void) | undefined | null,
-  ): runtime.Types.Utils.JsPromise<T>;
+  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
 }
+
+
+
 
 /**
  * Fields of the PracticeAnswer model
  */
 export interface PracticeAnswerFieldRefs {
-  readonly id: Prisma.FieldRef<'PracticeAnswer', 'String'>;
-  readonly sessionId: Prisma.FieldRef<'PracticeAnswer', 'String'>;
-  readonly questionId: Prisma.FieldRef<'PracticeAnswer', 'String'>;
-  readonly selectedOption: Prisma.FieldRef<'PracticeAnswer', 'String'>;
-  readonly isCorrect: Prisma.FieldRef<'PracticeAnswer', 'Boolean'>;
-  readonly answeredAt: Prisma.FieldRef<'PracticeAnswer', 'DateTime'>;
+  readonly id: Prisma.FieldRef<"PracticeAnswer", 'String'>
+  readonly sessionId: Prisma.FieldRef<"PracticeAnswer", 'String'>
+  readonly questionId: Prisma.FieldRef<"PracticeAnswer", 'String'>
+  readonly selectedOption: Prisma.FieldRef<"PracticeAnswer", 'String'>
+  readonly isCorrect: Prisma.FieldRef<"PracticeAnswer", 'Boolean'>
+  readonly answeredAt: Prisma.FieldRef<"PracticeAnswer", 'DateTime'>
 }
+
 
 // Custom InputTypes
 /**
  * PracticeAnswer findUnique
  */
-export type PracticeAnswerFindUniqueArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * Filter, which PracticeAnswer to fetch.
    */
-  where: Prisma.PracticeAnswerWhereUniqueInput;
-};
+  where: Prisma.PracticeAnswerWhereUniqueInput
+}
 
 /**
  * PracticeAnswer findUniqueOrThrow
  */
-export type PracticeAnswerFindUniqueOrThrowArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * Filter, which PracticeAnswer to fetch.
    */
-  where: Prisma.PracticeAnswerWhereUniqueInput;
-};
+  where: Prisma.PracticeAnswerWhereUniqueInput
+}
 
 /**
  * PracticeAnswer findFirst
  */
-export type PracticeAnswerFindFirstArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * Filter, which PracticeAnswer to fetch.
    */
-  where?: Prisma.PracticeAnswerWhereInput;
+  where?: Prisma.PracticeAnswerWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PracticeAnswers to fetch.
    */
-  orderBy?:
-    | Prisma.PracticeAnswerOrderByWithRelationInput
-    | Prisma.PracticeAnswerOrderByWithRelationInput[];
+  orderBy?: Prisma.PracticeAnswerOrderByWithRelationInput | Prisma.PracticeAnswerOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for PracticeAnswers.
    */
-  cursor?: Prisma.PracticeAnswerWhereUniqueInput;
+  cursor?: Prisma.PracticeAnswerWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PracticeAnswers from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PracticeAnswers.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of PracticeAnswers.
    */
-  distinct?:
-    | Prisma.PracticeAnswerScalarFieldEnum
-    | Prisma.PracticeAnswerScalarFieldEnum[];
-};
+  distinct?: Prisma.PracticeAnswerScalarFieldEnum | Prisma.PracticeAnswerScalarFieldEnum[]
+}
 
 /**
  * PracticeAnswer findFirstOrThrow
  */
-export type PracticeAnswerFindFirstOrThrowArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * Filter, which PracticeAnswer to fetch.
    */
-  where?: Prisma.PracticeAnswerWhereInput;
+  where?: Prisma.PracticeAnswerWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PracticeAnswers to fetch.
    */
-  orderBy?:
-    | Prisma.PracticeAnswerOrderByWithRelationInput
-    | Prisma.PracticeAnswerOrderByWithRelationInput[];
+  orderBy?: Prisma.PracticeAnswerOrderByWithRelationInput | Prisma.PracticeAnswerOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for PracticeAnswers.
    */
-  cursor?: Prisma.PracticeAnswerWhereUniqueInput;
+  cursor?: Prisma.PracticeAnswerWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PracticeAnswers from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PracticeAnswers.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of PracticeAnswers.
    */
-  distinct?:
-    | Prisma.PracticeAnswerScalarFieldEnum
-    | Prisma.PracticeAnswerScalarFieldEnum[];
-};
+  distinct?: Prisma.PracticeAnswerScalarFieldEnum | Prisma.PracticeAnswerScalarFieldEnum[]
+}
 
 /**
  * PracticeAnswer findMany
  */
-export type PracticeAnswerFindManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * Filter, which PracticeAnswers to fetch.
    */
-  where?: Prisma.PracticeAnswerWhereInput;
+  where?: Prisma.PracticeAnswerWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PracticeAnswers to fetch.
    */
-  orderBy?:
-    | Prisma.PracticeAnswerOrderByWithRelationInput
-    | Prisma.PracticeAnswerOrderByWithRelationInput[];
+  orderBy?: Prisma.PracticeAnswerOrderByWithRelationInput | Prisma.PracticeAnswerOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing PracticeAnswers.
    */
-  cursor?: Prisma.PracticeAnswerWhereUniqueInput;
+  cursor?: Prisma.PracticeAnswerWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PracticeAnswers from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PracticeAnswers.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of PracticeAnswers.
    */
-  distinct?:
-    | Prisma.PracticeAnswerScalarFieldEnum
-    | Prisma.PracticeAnswerScalarFieldEnum[];
-};
+  distinct?: Prisma.PracticeAnswerScalarFieldEnum | Prisma.PracticeAnswerScalarFieldEnum[]
+}
 
 /**
  * PracticeAnswer create
  */
-export type PracticeAnswerCreateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * The data needed to create a PracticeAnswer.
    */
-  data: Prisma.XOR<
-    Prisma.PracticeAnswerCreateInput,
-    Prisma.PracticeAnswerUncheckedCreateInput
-  >;
-};
+  data: Prisma.XOR<Prisma.PracticeAnswerCreateInput, Prisma.PracticeAnswerUncheckedCreateInput>
+}
 
 /**
  * PracticeAnswer createMany
  */
-export type PracticeAnswerCreateManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * The data used to create many PracticeAnswers.
    */
-  data:
-    | Prisma.PracticeAnswerCreateManyInput
-    | Prisma.PracticeAnswerCreateManyInput[];
-  skipDuplicates?: boolean;
-};
+  data: Prisma.PracticeAnswerCreateManyInput | Prisma.PracticeAnswerCreateManyInput[]
+  skipDuplicates?: boolean
+}
 
 /**
  * PracticeAnswer createManyAndReturn
  */
-export type PracticeAnswerCreateManyAndReturnArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelectCreateManyAndReturn<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelectCreateManyAndReturn<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * The data used to create many PracticeAnswers.
    */
-  data:
-    | Prisma.PracticeAnswerCreateManyInput
-    | Prisma.PracticeAnswerCreateManyInput[];
-  skipDuplicates?: boolean;
+  data: Prisma.PracticeAnswerCreateManyInput | Prisma.PracticeAnswerCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerIncludeCreateManyAndReturn<ExtArgs> | null;
-};
+  include?: Prisma.PracticeAnswerIncludeCreateManyAndReturn<ExtArgs> | null
+}
 
 /**
  * PracticeAnswer update
  */
-export type PracticeAnswerUpdateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * The data needed to update a PracticeAnswer.
    */
-  data: Prisma.XOR<
-    Prisma.PracticeAnswerUpdateInput,
-    Prisma.PracticeAnswerUncheckedUpdateInput
-  >;
+  data: Prisma.XOR<Prisma.PracticeAnswerUpdateInput, Prisma.PracticeAnswerUncheckedUpdateInput>
   /**
    * Choose, which PracticeAnswer to update.
    */
-  where: Prisma.PracticeAnswerWhereUniqueInput;
-};
+  where: Prisma.PracticeAnswerWhereUniqueInput
+}
 
 /**
  * PracticeAnswer updateMany
  */
-export type PracticeAnswerUpdateManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * The data used to update PracticeAnswers.
    */
-  data: Prisma.XOR<
-    Prisma.PracticeAnswerUpdateManyMutationInput,
-    Prisma.PracticeAnswerUncheckedUpdateManyInput
-  >;
+  data: Prisma.XOR<Prisma.PracticeAnswerUpdateManyMutationInput, Prisma.PracticeAnswerUncheckedUpdateManyInput>
   /**
    * Filter which PracticeAnswers to update
    */
-  where?: Prisma.PracticeAnswerWhereInput;
+  where?: Prisma.PracticeAnswerWhereInput
   /**
    * Limit how many PracticeAnswers to update.
    */
-  limit?: number;
-};
+  limit?: number
+}
 
 /**
  * PracticeAnswer updateManyAndReturn
  */
-export type PracticeAnswerUpdateManyAndReturnArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelectUpdateManyAndReturn<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelectUpdateManyAndReturn<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * The data used to update PracticeAnswers.
    */
-  data: Prisma.XOR<
-    Prisma.PracticeAnswerUpdateManyMutationInput,
-    Prisma.PracticeAnswerUncheckedUpdateManyInput
-  >;
+  data: Prisma.XOR<Prisma.PracticeAnswerUpdateManyMutationInput, Prisma.PracticeAnswerUncheckedUpdateManyInput>
   /**
    * Filter which PracticeAnswers to update
    */
-  where?: Prisma.PracticeAnswerWhereInput;
+  where?: Prisma.PracticeAnswerWhereInput
   /**
    * Limit how many PracticeAnswers to update.
    */
-  limit?: number;
+  limit?: number
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerIncludeUpdateManyAndReturn<ExtArgs> | null;
-};
+  include?: Prisma.PracticeAnswerIncludeUpdateManyAndReturn<ExtArgs> | null
+}
 
 /**
  * PracticeAnswer upsert
  */
-export type PracticeAnswerUpsertArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * The filter to search for the PracticeAnswer to update in case it exists.
    */
-  where: Prisma.PracticeAnswerWhereUniqueInput;
+  where: Prisma.PracticeAnswerWhereUniqueInput
   /**
    * In case the PracticeAnswer found by the `where` argument doesn't exist, create a new PracticeAnswer with this data.
    */
-  create: Prisma.XOR<
-    Prisma.PracticeAnswerCreateInput,
-    Prisma.PracticeAnswerUncheckedCreateInput
-  >;
+  create: Prisma.XOR<Prisma.PracticeAnswerCreateInput, Prisma.PracticeAnswerUncheckedCreateInput>
   /**
    * In case the PracticeAnswer was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<
-    Prisma.PracticeAnswerUpdateInput,
-    Prisma.PracticeAnswerUncheckedUpdateInput
-  >;
-};
+  update: Prisma.XOR<Prisma.PracticeAnswerUpdateInput, Prisma.PracticeAnswerUncheckedUpdateInput>
+}
 
 /**
  * PracticeAnswer delete
  */
-export type PracticeAnswerDeleteArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
   /**
    * Filter which PracticeAnswer to delete.
    */
-  where: Prisma.PracticeAnswerWhereUniqueInput;
-};
+  where: Prisma.PracticeAnswerWhereUniqueInput
+}
 
 /**
  * PracticeAnswer deleteMany
  */
-export type PracticeAnswerDeleteManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Filter which PracticeAnswers to delete
    */
-  where?: Prisma.PracticeAnswerWhereInput;
+  where?: Prisma.PracticeAnswerWhereInput
   /**
    * Limit how many PracticeAnswers to delete.
    */
-  limit?: number;
-};
+  limit?: number
+}
 
 /**
  * PracticeAnswer without action
  */
-export type PracticeAnswerDefaultArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PracticeAnswerDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PracticeAnswer
    */
-  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null;
+  select?: Prisma.PracticeAnswerSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PracticeAnswer
    */
-  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null;
+  omit?: Prisma.PracticeAnswerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null;
-};
+  include?: Prisma.PracticeAnswerInclude<ExtArgs> | null
+}

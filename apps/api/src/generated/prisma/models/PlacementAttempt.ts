@@ -7,881 +7,688 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from '@prisma/client/runtime/client';
-import type * as $Enums from '../enums.js';
-import type * as Prisma from '../internal/prismaNamespace.js';
+import type * as runtime from "@prisma/client/runtime/client"
+import type * as $Enums from "../enums.js"
+import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
  * Model PlacementAttempt
  *
  */
-export type PlacementAttemptModel =
-  runtime.Types.Result.DefaultSelection<Prisma.$PlacementAttemptPayload>;
+export type PlacementAttemptModel = runtime.Types.Result.DefaultSelection<Prisma.$PlacementAttemptPayload>
 
 export type AggregatePlacementAttempt = {
-  _count: PlacementAttemptCountAggregateOutputType | null;
-  _avg: PlacementAttemptAvgAggregateOutputType | null;
-  _sum: PlacementAttemptSumAggregateOutputType | null;
-  _min: PlacementAttemptMinAggregateOutputType | null;
-  _max: PlacementAttemptMaxAggregateOutputType | null;
-};
+  _count: PlacementAttemptCountAggregateOutputType | null
+  _avg: PlacementAttemptAvgAggregateOutputType | null
+  _sum: PlacementAttemptSumAggregateOutputType | null
+  _min: PlacementAttemptMinAggregateOutputType | null
+  _max: PlacementAttemptMaxAggregateOutputType | null
+}
 
 export type PlacementAttemptAvgAggregateOutputType = {
-  score: number | null;
-  total: number | null;
-};
+  score: number | null
+  total: number | null
+}
 
 export type PlacementAttemptSumAggregateOutputType = {
-  score: number | null;
-  total: number | null;
-};
+  score: number | null
+  total: number | null
+}
 
 export type PlacementAttemptMinAggregateOutputType = {
-  id: string | null;
-  userId: string | null;
-  clientSubmissionId: string | null;
-  score: number | null;
-  total: number | null;
-  level: $Enums.ProficiencyLevel | null;
-  submittedAt: Date | null;
-};
+  id: string | null
+  userId: string | null
+  clientSubmissionId: string | null
+  score: number | null
+  total: number | null
+  level: $Enums.ProficiencyLevel | null
+  submittedAt: Date | null
+}
 
 export type PlacementAttemptMaxAggregateOutputType = {
-  id: string | null;
-  userId: string | null;
-  clientSubmissionId: string | null;
-  score: number | null;
-  total: number | null;
-  level: $Enums.ProficiencyLevel | null;
-  submittedAt: Date | null;
-};
+  id: string | null
+  userId: string | null
+  clientSubmissionId: string | null
+  score: number | null
+  total: number | null
+  level: $Enums.ProficiencyLevel | null
+  submittedAt: Date | null
+}
 
 export type PlacementAttemptCountAggregateOutputType = {
-  id: number;
-  userId: number;
-  clientSubmissionId: number;
-  answers: number;
-  score: number;
-  total: number;
-  level: number;
-  skillBreakdown: number;
-  submittedAt: number;
-  _all: number;
-};
+  id: number
+  userId: number
+  clientSubmissionId: number
+  answers: number
+  score: number
+  total: number
+  level: number
+  skillBreakdown: number
+  submittedAt: number
+  _all: number
+}
+
 
 export type PlacementAttemptAvgAggregateInputType = {
-  score?: true;
-  total?: true;
-};
+  score?: true
+  total?: true
+}
 
 export type PlacementAttemptSumAggregateInputType = {
-  score?: true;
-  total?: true;
-};
+  score?: true
+  total?: true
+}
 
 export type PlacementAttemptMinAggregateInputType = {
-  id?: true;
-  userId?: true;
-  clientSubmissionId?: true;
-  score?: true;
-  total?: true;
-  level?: true;
-  submittedAt?: true;
-};
+  id?: true
+  userId?: true
+  clientSubmissionId?: true
+  score?: true
+  total?: true
+  level?: true
+  submittedAt?: true
+}
 
 export type PlacementAttemptMaxAggregateInputType = {
-  id?: true;
-  userId?: true;
-  clientSubmissionId?: true;
-  score?: true;
-  total?: true;
-  level?: true;
-  submittedAt?: true;
-};
+  id?: true
+  userId?: true
+  clientSubmissionId?: true
+  score?: true
+  total?: true
+  level?: true
+  submittedAt?: true
+}
 
 export type PlacementAttemptCountAggregateInputType = {
-  id?: true;
-  userId?: true;
-  clientSubmissionId?: true;
-  answers?: true;
-  score?: true;
-  total?: true;
-  level?: true;
-  skillBreakdown?: true;
-  submittedAt?: true;
-  _all?: true;
-};
+  id?: true
+  userId?: true
+  clientSubmissionId?: true
+  answers?: true
+  score?: true
+  total?: true
+  level?: true
+  skillBreakdown?: true
+  submittedAt?: true
+  _all?: true
+}
 
-export type PlacementAttemptAggregateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Filter which PlacementAttempt to aggregate.
    */
-  where?: Prisma.PlacementAttemptWhereInput;
+  where?: Prisma.PlacementAttemptWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PlacementAttempts to fetch.
    */
-  orderBy?:
-    | Prisma.PlacementAttemptOrderByWithRelationInput
-    | Prisma.PlacementAttemptOrderByWithRelationInput[];
+  orderBy?: Prisma.PlacementAttemptOrderByWithRelationInput | Prisma.PlacementAttemptOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.PlacementAttemptWhereUniqueInput;
+  cursor?: Prisma.PlacementAttemptWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PlacementAttempts from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PlacementAttempts.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Count returned PlacementAttempts
-   **/
-  _count?: true | PlacementAttemptCountAggregateInputType;
+  **/
+  _count?: true | PlacementAttemptCountAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to average
-   **/
-  _avg?: PlacementAttemptAvgAggregateInputType;
+  **/
+  _avg?: PlacementAttemptAvgAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to sum
-   **/
-  _sum?: PlacementAttemptSumAggregateInputType;
+  **/
+  _sum?: PlacementAttemptSumAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
-   **/
-  _min?: PlacementAttemptMinAggregateInputType;
+  **/
+  _min?: PlacementAttemptMinAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
-   **/
-  _max?: PlacementAttemptMaxAggregateInputType;
-};
+  **/
+  _max?: PlacementAttemptMaxAggregateInputType
+}
 
-export type GetPlacementAttemptAggregateType<
-  T extends PlacementAttemptAggregateArgs,
-> = {
-  [P in keyof T & keyof AggregatePlacementAttempt]: P extends '_count' | 'count'
+export type GetPlacementAttemptAggregateType<T extends PlacementAttemptAggregateArgs> = {
+      [P in keyof T & keyof AggregatePlacementAttempt]: P extends '_count' | 'count'
     ? T[P] extends true
       ? number
       : Prisma.GetScalarType<T[P], AggregatePlacementAttempt[P]>
-    : Prisma.GetScalarType<T[P], AggregatePlacementAttempt[P]>;
-};
+    : Prisma.GetScalarType<T[P], AggregatePlacementAttempt[P]>
+}
 
-export type PlacementAttemptGroupByArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  where?: Prisma.PlacementAttemptWhereInput;
-  orderBy?:
-    | Prisma.PlacementAttemptOrderByWithAggregationInput
-    | Prisma.PlacementAttemptOrderByWithAggregationInput[];
-  by:
-    | Prisma.PlacementAttemptScalarFieldEnum[]
-    | Prisma.PlacementAttemptScalarFieldEnum;
-  having?: Prisma.PlacementAttemptScalarWhereWithAggregatesInput;
-  take?: number;
-  skip?: number;
-  _count?: PlacementAttemptCountAggregateInputType | true;
-  _avg?: PlacementAttemptAvgAggregateInputType;
-  _sum?: PlacementAttemptSumAggregateInputType;
-  _min?: PlacementAttemptMinAggregateInputType;
-  _max?: PlacementAttemptMaxAggregateInputType;
-};
+
+
+
+export type PlacementAttemptGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PlacementAttemptWhereInput
+  orderBy?: Prisma.PlacementAttemptOrderByWithAggregationInput | Prisma.PlacementAttemptOrderByWithAggregationInput[]
+  by: Prisma.PlacementAttemptScalarFieldEnum[] | Prisma.PlacementAttemptScalarFieldEnum
+  having?: Prisma.PlacementAttemptScalarWhereWithAggregatesInput
+  take?: number
+  skip?: number
+  _count?: PlacementAttemptCountAggregateInputType | true
+  _avg?: PlacementAttemptAvgAggregateInputType
+  _sum?: PlacementAttemptSumAggregateInputType
+  _min?: PlacementAttemptMinAggregateInputType
+  _max?: PlacementAttemptMaxAggregateInputType
+}
 
 export type PlacementAttemptGroupByOutputType = {
-  id: string;
-  userId: string;
-  clientSubmissionId: string;
-  answers: runtime.JsonValue;
-  score: number;
-  total: number;
-  level: $Enums.ProficiencyLevel;
-  skillBreakdown: runtime.JsonValue;
-  submittedAt: Date;
-  _count: PlacementAttemptCountAggregateOutputType | null;
-  _avg: PlacementAttemptAvgAggregateOutputType | null;
-  _sum: PlacementAttemptSumAggregateOutputType | null;
-  _min: PlacementAttemptMinAggregateOutputType | null;
-  _max: PlacementAttemptMaxAggregateOutputType | null;
-};
+  id: string
+  userId: string
+  clientSubmissionId: string
+  answers: runtime.JsonValue
+  score: number
+  total: number
+  level: $Enums.ProficiencyLevel
+  skillBreakdown: runtime.JsonValue
+  submittedAt: Date
+  _count: PlacementAttemptCountAggregateOutputType | null
+  _avg: PlacementAttemptAvgAggregateOutputType | null
+  _sum: PlacementAttemptSumAggregateOutputType | null
+  _min: PlacementAttemptMinAggregateOutputType | null
+  _max: PlacementAttemptMaxAggregateOutputType | null
+}
 
-export type GetPlacementAttemptGroupByPayload<
-  T extends PlacementAttemptGroupByArgs,
-> = Prisma.PrismaPromise<
+export type GetPlacementAttemptGroupByPayload<T extends PlacementAttemptGroupByArgs> = Prisma.PrismaPromise<
   Array<
-    Prisma.PickEnumerable<PlacementAttemptGroupByOutputType, T['by']> & {
-      [
-        P in keyof T & keyof PlacementAttemptGroupByOutputType
-      ]: P extends '_count'
-        ? T[P] extends boolean
-          ? number
+    Prisma.PickEnumerable<PlacementAttemptGroupByOutputType, T['by']> &
+      {
+        [P in ((keyof T) & (keyof PlacementAttemptGroupByOutputType))]: P extends '_count'
+          ? T[P] extends boolean
+            ? number
+            : Prisma.GetScalarType<T[P], PlacementAttemptGroupByOutputType[P]>
           : Prisma.GetScalarType<T[P], PlacementAttemptGroupByOutputType[P]>
-        : Prisma.GetScalarType<T[P], PlacementAttemptGroupByOutputType[P]>;
-    }
+      }
+    >
   >
->;
+
+
 
 export type PlacementAttemptWhereInput = {
-  AND?: Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[];
-  OR?: Prisma.PlacementAttemptWhereInput[];
-  NOT?: Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[];
-  id?: Prisma.StringFilter<'PlacementAttempt'> | string;
-  userId?: Prisma.StringFilter<'PlacementAttempt'> | string;
-  clientSubmissionId?: Prisma.StringFilter<'PlacementAttempt'> | string;
-  answers?: Prisma.JsonFilter<'PlacementAttempt'>;
-  score?: Prisma.IntFilter<'PlacementAttempt'> | number;
-  total?: Prisma.IntFilter<'PlacementAttempt'> | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFilter<'PlacementAttempt'>
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonFilter<'PlacementAttempt'>;
-  submittedAt?: Prisma.DateTimeFilter<'PlacementAttempt'> | Date | string;
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
-};
+  AND?: Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[]
+  OR?: Prisma.PlacementAttemptWhereInput[]
+  NOT?: Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[]
+  id?: Prisma.StringFilter<"PlacementAttempt"> | string
+  userId?: Prisma.StringFilter<"PlacementAttempt"> | string
+  clientSubmissionId?: Prisma.StringFilter<"PlacementAttempt"> | string
+  answers?: Prisma.JsonFilter<"PlacementAttempt">
+  score?: Prisma.IntFilter<"PlacementAttempt"> | number
+  total?: Prisma.IntFilter<"PlacementAttempt"> | number
+  level?: Prisma.EnumProficiencyLevelFilter<"PlacementAttempt"> | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonFilter<"PlacementAttempt">
+  submittedAt?: Prisma.DateTimeFilter<"PlacementAttempt"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+}
 
 export type PlacementAttemptOrderByWithRelationInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  clientSubmissionId?: Prisma.SortOrder;
-  answers?: Prisma.SortOrder;
-  score?: Prisma.SortOrder;
-  total?: Prisma.SortOrder;
-  level?: Prisma.SortOrder;
-  skillBreakdown?: Prisma.SortOrder;
-  submittedAt?: Prisma.SortOrder;
-  user?: Prisma.UserOrderByWithRelationInput;
-};
+  id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  clientSubmissionId?: Prisma.SortOrder
+  answers?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  total?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  skillBreakdown?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
+}
 
-export type PlacementAttemptWhereUniqueInput = Prisma.AtLeast<
-  {
-    id?: string;
-    userId_clientSubmissionId?: Prisma.PlacementAttemptUserIdClientSubmissionIdCompoundUniqueInput;
-    AND?:
-      Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[];
-    OR?: Prisma.PlacementAttemptWhereInput[];
-    NOT?:
-      Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[];
-    userId?: Prisma.StringFilter<'PlacementAttempt'> | string;
-    clientSubmissionId?: Prisma.StringFilter<'PlacementAttempt'> | string;
-    answers?: Prisma.JsonFilter<'PlacementAttempt'>;
-    score?: Prisma.IntFilter<'PlacementAttempt'> | number;
-    total?: Prisma.IntFilter<'PlacementAttempt'> | number;
-    level?:
-      | Prisma.EnumProficiencyLevelFilter<'PlacementAttempt'>
-      | $Enums.ProficiencyLevel;
-    skillBreakdown?: Prisma.JsonFilter<'PlacementAttempt'>;
-    submittedAt?: Prisma.DateTimeFilter<'PlacementAttempt'> | Date | string;
-    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
-  },
-  'id' | 'userId_clientSubmissionId'
->;
+export type PlacementAttemptWhereUniqueInput = Prisma.AtLeast<{
+  id?: string
+  userId_clientSubmissionId?: Prisma.PlacementAttemptUserIdClientSubmissionIdCompoundUniqueInput
+  AND?: Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[]
+  OR?: Prisma.PlacementAttemptWhereInput[]
+  NOT?: Prisma.PlacementAttemptWhereInput | Prisma.PlacementAttemptWhereInput[]
+  userId?: Prisma.StringFilter<"PlacementAttempt"> | string
+  clientSubmissionId?: Prisma.StringFilter<"PlacementAttempt"> | string
+  answers?: Prisma.JsonFilter<"PlacementAttempt">
+  score?: Prisma.IntFilter<"PlacementAttempt"> | number
+  total?: Prisma.IntFilter<"PlacementAttempt"> | number
+  level?: Prisma.EnumProficiencyLevelFilter<"PlacementAttempt"> | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonFilter<"PlacementAttempt">
+  submittedAt?: Prisma.DateTimeFilter<"PlacementAttempt"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+}, "id" | "userId_clientSubmissionId">
 
 export type PlacementAttemptOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  clientSubmissionId?: Prisma.SortOrder;
-  answers?: Prisma.SortOrder;
-  score?: Prisma.SortOrder;
-  total?: Prisma.SortOrder;
-  level?: Prisma.SortOrder;
-  skillBreakdown?: Prisma.SortOrder;
-  submittedAt?: Prisma.SortOrder;
-  _count?: Prisma.PlacementAttemptCountOrderByAggregateInput;
-  _avg?: Prisma.PlacementAttemptAvgOrderByAggregateInput;
-  _max?: Prisma.PlacementAttemptMaxOrderByAggregateInput;
-  _min?: Prisma.PlacementAttemptMinOrderByAggregateInput;
-  _sum?: Prisma.PlacementAttemptSumOrderByAggregateInput;
-};
+  id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  clientSubmissionId?: Prisma.SortOrder
+  answers?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  total?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  skillBreakdown?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+  _count?: Prisma.PlacementAttemptCountOrderByAggregateInput
+  _avg?: Prisma.PlacementAttemptAvgOrderByAggregateInput
+  _max?: Prisma.PlacementAttemptMaxOrderByAggregateInput
+  _min?: Prisma.PlacementAttemptMinOrderByAggregateInput
+  _sum?: Prisma.PlacementAttemptSumOrderByAggregateInput
+}
 
 export type PlacementAttemptScalarWhereWithAggregatesInput = {
-  AND?:
-    | Prisma.PlacementAttemptScalarWhereWithAggregatesInput
-    | Prisma.PlacementAttemptScalarWhereWithAggregatesInput[];
-  OR?: Prisma.PlacementAttemptScalarWhereWithAggregatesInput[];
-  NOT?:
-    | Prisma.PlacementAttemptScalarWhereWithAggregatesInput
-    | Prisma.PlacementAttemptScalarWhereWithAggregatesInput[];
-  id?: Prisma.StringWithAggregatesFilter<'PlacementAttempt'> | string;
-  userId?: Prisma.StringWithAggregatesFilter<'PlacementAttempt'> | string;
-  clientSubmissionId?:
-    Prisma.StringWithAggregatesFilter<'PlacementAttempt'> | string;
-  answers?: Prisma.JsonWithAggregatesFilter<'PlacementAttempt'>;
-  score?: Prisma.IntWithAggregatesFilter<'PlacementAttempt'> | number;
-  total?: Prisma.IntWithAggregatesFilter<'PlacementAttempt'> | number;
-  level?:
-    | Prisma.EnumProficiencyLevelWithAggregatesFilter<'PlacementAttempt'>
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonWithAggregatesFilter<'PlacementAttempt'>;
-  submittedAt?:
-    Prisma.DateTimeWithAggregatesFilter<'PlacementAttempt'> | Date | string;
-};
+  AND?: Prisma.PlacementAttemptScalarWhereWithAggregatesInput | Prisma.PlacementAttemptScalarWhereWithAggregatesInput[]
+  OR?: Prisma.PlacementAttemptScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.PlacementAttemptScalarWhereWithAggregatesInput | Prisma.PlacementAttemptScalarWhereWithAggregatesInput[]
+  id?: Prisma.StringWithAggregatesFilter<"PlacementAttempt"> | string
+  userId?: Prisma.StringWithAggregatesFilter<"PlacementAttempt"> | string
+  clientSubmissionId?: Prisma.StringWithAggregatesFilter<"PlacementAttempt"> | string
+  answers?: Prisma.JsonWithAggregatesFilter<"PlacementAttempt">
+  score?: Prisma.IntWithAggregatesFilter<"PlacementAttempt"> | number
+  total?: Prisma.IntWithAggregatesFilter<"PlacementAttempt"> | number
+  level?: Prisma.EnumProficiencyLevelWithAggregatesFilter<"PlacementAttempt"> | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonWithAggregatesFilter<"PlacementAttempt">
+  submittedAt?: Prisma.DateTimeWithAggregatesFilter<"PlacementAttempt"> | Date | string
+}
 
 export type PlacementAttemptCreateInput = {
-  id?: string;
-  clientSubmissionId: string;
-  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score: number;
-  total: number;
-  level: $Enums.ProficiencyLevel;
-  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Date | string;
-  user: Prisma.UserCreateNestedOneWithoutPlacementAttemptsInput;
-};
+  id?: string
+  clientSubmissionId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score: number
+  total: number
+  level: $Enums.ProficiencyLevel
+  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPlacementAttemptsInput
+}
 
 export type PlacementAttemptUncheckedCreateInput = {
-  id?: string;
-  userId: string;
-  clientSubmissionId: string;
-  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score: number;
-  total: number;
-  level: $Enums.ProficiencyLevel;
-  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Date | string;
-};
+  id?: string
+  userId: string
+  clientSubmissionId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score: number
+  total: number
+  level: $Enums.ProficiencyLevel
+  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Date | string
+}
 
 export type PlacementAttemptUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score?: Prisma.IntFieldUpdateOperationsInput | number;
-  total?: Prisma.IntFieldUpdateOperationsInput | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFieldUpdateOperationsInput
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  user?: Prisma.UserUpdateOneRequiredWithoutPlacementAttemptsNestedInput;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.EnumProficiencyLevelFieldUpdateOperationsInput | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPlacementAttemptsNestedInput
+}
 
 export type PlacementAttemptUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  userId?: Prisma.StringFieldUpdateOperationsInput | string;
-  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score?: Prisma.IntFieldUpdateOperationsInput | number;
-  total?: Prisma.IntFieldUpdateOperationsInput | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFieldUpdateOperationsInput
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.EnumProficiencyLevelFieldUpdateOperationsInput | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PlacementAttemptCreateManyInput = {
-  id?: string;
-  userId: string;
-  clientSubmissionId: string;
-  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score: number;
-  total: number;
-  level: $Enums.ProficiencyLevel;
-  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Date | string;
-};
+  id?: string
+  userId: string
+  clientSubmissionId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score: number
+  total: number
+  level: $Enums.ProficiencyLevel
+  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Date | string
+}
 
 export type PlacementAttemptUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score?: Prisma.IntFieldUpdateOperationsInput | number;
-  total?: Prisma.IntFieldUpdateOperationsInput | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFieldUpdateOperationsInput
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.EnumProficiencyLevelFieldUpdateOperationsInput | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PlacementAttemptUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  userId?: Prisma.StringFieldUpdateOperationsInput | string;
-  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score?: Prisma.IntFieldUpdateOperationsInput | number;
-  total?: Prisma.IntFieldUpdateOperationsInput | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFieldUpdateOperationsInput
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.EnumProficiencyLevelFieldUpdateOperationsInput | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PlacementAttemptListRelationFilter = {
-  every?: Prisma.PlacementAttemptWhereInput;
-  some?: Prisma.PlacementAttemptWhereInput;
-  none?: Prisma.PlacementAttemptWhereInput;
-};
+  every?: Prisma.PlacementAttemptWhereInput
+  some?: Prisma.PlacementAttemptWhereInput
+  none?: Prisma.PlacementAttemptWhereInput
+}
 
 export type PlacementAttemptOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
+  _count?: Prisma.SortOrder
+}
 
 export type PlacementAttemptUserIdClientSubmissionIdCompoundUniqueInput = {
-  userId: string;
-  clientSubmissionId: string;
-};
+  userId: string
+  clientSubmissionId: string
+}
 
 export type PlacementAttemptCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  clientSubmissionId?: Prisma.SortOrder;
-  answers?: Prisma.SortOrder;
-  score?: Prisma.SortOrder;
-  total?: Prisma.SortOrder;
-  level?: Prisma.SortOrder;
-  skillBreakdown?: Prisma.SortOrder;
-  submittedAt?: Prisma.SortOrder;
-};
+  id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  clientSubmissionId?: Prisma.SortOrder
+  answers?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  total?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  skillBreakdown?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+}
 
 export type PlacementAttemptAvgOrderByAggregateInput = {
-  score?: Prisma.SortOrder;
-  total?: Prisma.SortOrder;
-};
+  score?: Prisma.SortOrder
+  total?: Prisma.SortOrder
+}
 
 export type PlacementAttemptMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  clientSubmissionId?: Prisma.SortOrder;
-  score?: Prisma.SortOrder;
-  total?: Prisma.SortOrder;
-  level?: Prisma.SortOrder;
-  submittedAt?: Prisma.SortOrder;
-};
+  id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  clientSubmissionId?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  total?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+}
 
 export type PlacementAttemptMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder;
-  userId?: Prisma.SortOrder;
-  clientSubmissionId?: Prisma.SortOrder;
-  score?: Prisma.SortOrder;
-  total?: Prisma.SortOrder;
-  level?: Prisma.SortOrder;
-  submittedAt?: Prisma.SortOrder;
-};
+  id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  clientSubmissionId?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  total?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+}
 
 export type PlacementAttemptSumOrderByAggregateInput = {
-  score?: Prisma.SortOrder;
-  total?: Prisma.SortOrder;
-};
+  score?: Prisma.SortOrder
+  total?: Prisma.SortOrder
+}
 
 export type PlacementAttemptCreateNestedManyWithoutUserInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PlacementAttemptCreateWithoutUserInput,
-        Prisma.PlacementAttemptUncheckedCreateWithoutUserInput
-      >
-    | Prisma.PlacementAttemptCreateWithoutUserInput[]
-    | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[];
-  connectOrCreate?:
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[];
-  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope;
-  connect?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-};
+  create?: Prisma.XOR<Prisma.PlacementAttemptCreateWithoutUserInput, Prisma.PlacementAttemptUncheckedCreateWithoutUserInput> | Prisma.PlacementAttemptCreateWithoutUserInput[] | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PlacementAttemptCreateOrConnectWithoutUserInput | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope
+  connect?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+}
 
 export type PlacementAttemptUncheckedCreateNestedManyWithoutUserInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PlacementAttemptCreateWithoutUserInput,
-        Prisma.PlacementAttemptUncheckedCreateWithoutUserInput
-      >
-    | Prisma.PlacementAttemptCreateWithoutUserInput[]
-    | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[];
-  connectOrCreate?:
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[];
-  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope;
-  connect?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-};
+  create?: Prisma.XOR<Prisma.PlacementAttemptCreateWithoutUserInput, Prisma.PlacementAttemptUncheckedCreateWithoutUserInput> | Prisma.PlacementAttemptCreateWithoutUserInput[] | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PlacementAttemptCreateOrConnectWithoutUserInput | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope
+  connect?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+}
 
 export type PlacementAttemptUpdateManyWithoutUserNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PlacementAttemptCreateWithoutUserInput,
-        Prisma.PlacementAttemptUncheckedCreateWithoutUserInput
-      >
-    | Prisma.PlacementAttemptCreateWithoutUserInput[]
-    | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[];
-  connectOrCreate?:
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[];
-  upsert?:
-    | Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput
-    | Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput[];
-  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope;
-  set?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  disconnect?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  delete?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  connect?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  update?:
-    | Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput
-    | Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput[];
-  updateMany?:
-    | Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput
-    | Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput[];
-  deleteMany?:
-    | Prisma.PlacementAttemptScalarWhereInput
-    | Prisma.PlacementAttemptScalarWhereInput[];
-};
+  create?: Prisma.XOR<Prisma.PlacementAttemptCreateWithoutUserInput, Prisma.PlacementAttemptUncheckedCreateWithoutUserInput> | Prisma.PlacementAttemptCreateWithoutUserInput[] | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PlacementAttemptCreateOrConnectWithoutUserInput | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput | Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope
+  set?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  disconnect?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  delete?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  connect?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  update?: Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput | Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput | Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.PlacementAttemptScalarWhereInput | Prisma.PlacementAttemptScalarWhereInput[]
+}
 
 export type PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PlacementAttemptCreateWithoutUserInput,
-        Prisma.PlacementAttemptUncheckedCreateWithoutUserInput
-      >
-    | Prisma.PlacementAttemptCreateWithoutUserInput[]
-    | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[];
-  connectOrCreate?:
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput
-    | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[];
-  upsert?:
-    | Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput
-    | Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput[];
-  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope;
-  set?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  disconnect?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  delete?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  connect?:
-    | Prisma.PlacementAttemptWhereUniqueInput
-    | Prisma.PlacementAttemptWhereUniqueInput[];
-  update?:
-    | Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput
-    | Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput[];
-  updateMany?:
-    | Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput
-    | Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput[];
-  deleteMany?:
-    | Prisma.PlacementAttemptScalarWhereInput
-    | Prisma.PlacementAttemptScalarWhereInput[];
-};
+  create?: Prisma.XOR<Prisma.PlacementAttemptCreateWithoutUserInput, Prisma.PlacementAttemptUncheckedCreateWithoutUserInput> | Prisma.PlacementAttemptCreateWithoutUserInput[] | Prisma.PlacementAttemptUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PlacementAttemptCreateOrConnectWithoutUserInput | Prisma.PlacementAttemptCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput | Prisma.PlacementAttemptUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.PlacementAttemptCreateManyUserInputEnvelope
+  set?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  disconnect?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  delete?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  connect?: Prisma.PlacementAttemptWhereUniqueInput | Prisma.PlacementAttemptWhereUniqueInput[]
+  update?: Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput | Prisma.PlacementAttemptUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput | Prisma.PlacementAttemptUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.PlacementAttemptScalarWhereInput | Prisma.PlacementAttemptScalarWhereInput[]
+}
 
 export type PlacementAttemptCreateWithoutUserInput = {
-  id?: string;
-  clientSubmissionId: string;
-  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score: number;
-  total: number;
-  level: $Enums.ProficiencyLevel;
-  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Date | string;
-};
+  id?: string
+  clientSubmissionId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score: number
+  total: number
+  level: $Enums.ProficiencyLevel
+  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Date | string
+}
 
 export type PlacementAttemptUncheckedCreateWithoutUserInput = {
-  id?: string;
-  clientSubmissionId: string;
-  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score: number;
-  total: number;
-  level: $Enums.ProficiencyLevel;
-  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Date | string;
-};
+  id?: string
+  clientSubmissionId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score: number
+  total: number
+  level: $Enums.ProficiencyLevel
+  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Date | string
+}
 
 export type PlacementAttemptCreateOrConnectWithoutUserInput = {
-  where: Prisma.PlacementAttemptWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.PlacementAttemptCreateWithoutUserInput,
-    Prisma.PlacementAttemptUncheckedCreateWithoutUserInput
-  >;
-};
+  where: Prisma.PlacementAttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.PlacementAttemptCreateWithoutUserInput, Prisma.PlacementAttemptUncheckedCreateWithoutUserInput>
+}
 
 export type PlacementAttemptCreateManyUserInputEnvelope = {
-  data:
-    | Prisma.PlacementAttemptCreateManyUserInput
-    | Prisma.PlacementAttemptCreateManyUserInput[];
-  skipDuplicates?: boolean;
-};
+  data: Prisma.PlacementAttemptCreateManyUserInput | Prisma.PlacementAttemptCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
 
 export type PlacementAttemptUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.PlacementAttemptWhereUniqueInput;
-  update: Prisma.XOR<
-    Prisma.PlacementAttemptUpdateWithoutUserInput,
-    Prisma.PlacementAttemptUncheckedUpdateWithoutUserInput
-  >;
-  create: Prisma.XOR<
-    Prisma.PlacementAttemptCreateWithoutUserInput,
-    Prisma.PlacementAttemptUncheckedCreateWithoutUserInput
-  >;
-};
+  where: Prisma.PlacementAttemptWhereUniqueInput
+  update: Prisma.XOR<Prisma.PlacementAttemptUpdateWithoutUserInput, Prisma.PlacementAttemptUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.PlacementAttemptCreateWithoutUserInput, Prisma.PlacementAttemptUncheckedCreateWithoutUserInput>
+}
 
 export type PlacementAttemptUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.PlacementAttemptWhereUniqueInput;
-  data: Prisma.XOR<
-    Prisma.PlacementAttemptUpdateWithoutUserInput,
-    Prisma.PlacementAttemptUncheckedUpdateWithoutUserInput
-  >;
-};
+  where: Prisma.PlacementAttemptWhereUniqueInput
+  data: Prisma.XOR<Prisma.PlacementAttemptUpdateWithoutUserInput, Prisma.PlacementAttemptUncheckedUpdateWithoutUserInput>
+}
 
 export type PlacementAttemptUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.PlacementAttemptScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.PlacementAttemptUpdateManyMutationInput,
-    Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserInput
-  >;
-};
+  where: Prisma.PlacementAttemptScalarWhereInput
+  data: Prisma.XOR<Prisma.PlacementAttemptUpdateManyMutationInput, Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserInput>
+}
 
 export type PlacementAttemptScalarWhereInput = {
-  AND?:
-    | Prisma.PlacementAttemptScalarWhereInput
-    | Prisma.PlacementAttemptScalarWhereInput[];
-  OR?: Prisma.PlacementAttemptScalarWhereInput[];
-  NOT?:
-    | Prisma.PlacementAttemptScalarWhereInput
-    | Prisma.PlacementAttemptScalarWhereInput[];
-  id?: Prisma.StringFilter<'PlacementAttempt'> | string;
-  userId?: Prisma.StringFilter<'PlacementAttempt'> | string;
-  clientSubmissionId?: Prisma.StringFilter<'PlacementAttempt'> | string;
-  answers?: Prisma.JsonFilter<'PlacementAttempt'>;
-  score?: Prisma.IntFilter<'PlacementAttempt'> | number;
-  total?: Prisma.IntFilter<'PlacementAttempt'> | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFilter<'PlacementAttempt'>
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonFilter<'PlacementAttempt'>;
-  submittedAt?: Prisma.DateTimeFilter<'PlacementAttempt'> | Date | string;
-};
+  AND?: Prisma.PlacementAttemptScalarWhereInput | Prisma.PlacementAttemptScalarWhereInput[]
+  OR?: Prisma.PlacementAttemptScalarWhereInput[]
+  NOT?: Prisma.PlacementAttemptScalarWhereInput | Prisma.PlacementAttemptScalarWhereInput[]
+  id?: Prisma.StringFilter<"PlacementAttempt"> | string
+  userId?: Prisma.StringFilter<"PlacementAttempt"> | string
+  clientSubmissionId?: Prisma.StringFilter<"PlacementAttempt"> | string
+  answers?: Prisma.JsonFilter<"PlacementAttempt">
+  score?: Prisma.IntFilter<"PlacementAttempt"> | number
+  total?: Prisma.IntFilter<"PlacementAttempt"> | number
+  level?: Prisma.EnumProficiencyLevelFilter<"PlacementAttempt"> | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonFilter<"PlacementAttempt">
+  submittedAt?: Prisma.DateTimeFilter<"PlacementAttempt"> | Date | string
+}
 
 export type PlacementAttemptCreateManyUserInput = {
-  id?: string;
-  clientSubmissionId: string;
-  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score: number;
-  total: number;
-  level: $Enums.ProficiencyLevel;
-  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Date | string;
-};
+  id?: string
+  clientSubmissionId: string
+  answers: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score: number
+  total: number
+  level: $Enums.ProficiencyLevel
+  skillBreakdown: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Date | string
+}
 
 export type PlacementAttemptUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score?: Prisma.IntFieldUpdateOperationsInput | number;
-  total?: Prisma.IntFieldUpdateOperationsInput | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFieldUpdateOperationsInput
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.EnumProficiencyLevelFieldUpdateOperationsInput | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PlacementAttemptUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score?: Prisma.IntFieldUpdateOperationsInput | number;
-  total?: Prisma.IntFieldUpdateOperationsInput | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFieldUpdateOperationsInput
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.EnumProficiencyLevelFieldUpdateOperationsInput | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
 export type PlacementAttemptUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  score?: Prisma.IntFieldUpdateOperationsInput | number;
-  total?: Prisma.IntFieldUpdateOperationsInput | number;
-  level?:
-    | Prisma.EnumProficiencyLevelFieldUpdateOperationsInput
-    | $Enums.ProficiencyLevel;
-  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue;
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  clientSubmissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answers?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  total?: Prisma.IntFieldUpdateOperationsInput | number
+  level?: Prisma.EnumProficiencyLevelFieldUpdateOperationsInput | $Enums.ProficiencyLevel
+  skillBreakdown?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
 
-export type PlacementAttemptSelect<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetSelect<
-  {
-    id?: boolean;
-    userId?: boolean;
-    clientSubmissionId?: boolean;
-    answers?: boolean;
-    score?: boolean;
-    total?: boolean;
-    level?: boolean;
-    skillBreakdown?: boolean;
-    submittedAt?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-  },
-  ExtArgs['result']['placementAttempt']
->;
 
-export type PlacementAttemptSelectCreateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetSelect<
-  {
-    id?: boolean;
-    userId?: boolean;
-    clientSubmissionId?: boolean;
-    answers?: boolean;
-    score?: boolean;
-    total?: boolean;
-    level?: boolean;
-    skillBreakdown?: boolean;
-    submittedAt?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-  },
-  ExtArgs['result']['placementAttempt']
->;
 
-export type PlacementAttemptSelectUpdateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetSelect<
-  {
-    id?: boolean;
-    userId?: boolean;
-    clientSubmissionId?: boolean;
-    answers?: boolean;
-    score?: boolean;
-    total?: boolean;
-    level?: boolean;
-    skillBreakdown?: boolean;
-    submittedAt?: boolean;
-    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-  },
-  ExtArgs['result']['placementAttempt']
->;
+export type PlacementAttemptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  userId?: boolean
+  clientSubmissionId?: boolean
+  answers?: boolean
+  score?: boolean
+  total?: boolean
+  level?: boolean
+  skillBreakdown?: boolean
+  submittedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["placementAttempt"]>
+
+export type PlacementAttemptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  userId?: boolean
+  clientSubmissionId?: boolean
+  answers?: boolean
+  score?: boolean
+  total?: boolean
+  level?: boolean
+  skillBreakdown?: boolean
+  submittedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["placementAttempt"]>
+
+export type PlacementAttemptSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  userId?: boolean
+  clientSubmissionId?: boolean
+  answers?: boolean
+  score?: boolean
+  total?: boolean
+  level?: boolean
+  skillBreakdown?: boolean
+  submittedAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["placementAttempt"]>
 
 export type PlacementAttemptSelectScalar = {
-  id?: boolean;
-  userId?: boolean;
-  clientSubmissionId?: boolean;
-  answers?: boolean;
-  score?: boolean;
-  total?: boolean;
-  level?: boolean;
-  skillBreakdown?: boolean;
-  submittedAt?: boolean;
-};
+  id?: boolean
+  userId?: boolean
+  clientSubmissionId?: boolean
+  answers?: boolean
+  score?: boolean
+  total?: boolean
+  level?: boolean
+  skillBreakdown?: boolean
+  submittedAt?: boolean
+}
 
-export type PlacementAttemptOmit<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = runtime.Types.Extensions.GetOmit<
-  | 'id'
-  | 'userId'
-  | 'clientSubmissionId'
-  | 'answers'
-  | 'score'
-  | 'total'
-  | 'level'
-  | 'skillBreakdown'
-  | 'submittedAt',
-  ExtArgs['result']['placementAttempt']
->;
-export type PlacementAttemptInclude<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-};
-export type PlacementAttemptIncludeCreateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-};
-export type PlacementAttemptIncludeUpdateManyAndReturn<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-};
+export type PlacementAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "clientSubmissionId" | "answers" | "score" | "total" | "level" | "skillBreakdown" | "submittedAt", ExtArgs["result"]["placementAttempt"]>
+export type PlacementAttemptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type PlacementAttemptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type PlacementAttemptIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
-export type $PlacementAttemptPayload<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  name: 'PlacementAttempt';
+export type $PlacementAttemptPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "PlacementAttempt"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>;
-  };
-  scalars: runtime.Types.Extensions.GetPayloadResult<
-    {
-      id: string;
-      userId: string;
-      clientSubmissionId: string;
-      answers: runtime.JsonValue;
-      score: number;
-      total: number;
-      level: $Enums.ProficiencyLevel;
-      skillBreakdown: runtime.JsonValue;
-      submittedAt: Date;
-    },
-    ExtArgs['result']['placementAttempt']
-  >;
-  composites: {};
-};
+    user: Prisma.$UserPayload<ExtArgs>
+  }
+  scalars: runtime.Types.Extensions.GetPayloadResult<{
+    id: string
+    userId: string
+    clientSubmissionId: string
+    answers: runtime.JsonValue
+    score: number
+    total: number
+    level: $Enums.ProficiencyLevel
+    skillBreakdown: runtime.JsonValue
+    submittedAt: Date
+  }, ExtArgs["result"]["placementAttempt"]>
+  composites: {}
+}
 
-export type PlacementAttemptGetPayload<
-  S extends boolean | null | undefined | PlacementAttemptDefaultArgs,
-> = runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload, S>;
+export type PlacementAttemptGetPayload<S extends boolean | null | undefined | PlacementAttemptDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload, S>
 
-export type PlacementAttemptCountArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = Omit<
-  PlacementAttemptFindManyArgs,
-  'select' | 'include' | 'distinct' | 'omit'
-> & {
-  select?: PlacementAttemptCountAggregateInputType | true;
-};
+export type PlacementAttemptCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<PlacementAttemptFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: PlacementAttemptCountAggregateInputType | true
+  }
 
-export interface PlacementAttemptDelegate<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-  GlobalOmitOptions = {},
-> {
-  [K: symbol]: {
-    types: Prisma.TypeMap<ExtArgs>['model']['PlacementAttempt'];
-    meta: { name: 'PlacementAttempt' };
-  };
+export interface PlacementAttemptDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlacementAttempt'], meta: { name: 'PlacementAttempt' } }
   /**
    * Find zero or one PlacementAttempt that matches the filter.
    * @param {PlacementAttemptFindUniqueArgs} args - Arguments to find a PlacementAttempt
@@ -893,19 +700,7 @@ export interface PlacementAttemptDelegate<
    *   }
    * })
    */
-  findUnique<T extends PlacementAttemptFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, PlacementAttemptFindUniqueArgs<ExtArgs>>,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'findUnique',
-      GlobalOmitOptions
-    > | null,
-    null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findUnique<T extends PlacementAttemptFindUniqueArgs>(args: Prisma.SelectSubset<T, PlacementAttemptFindUniqueArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one PlacementAttempt that matches the filter or throw an error with `error.code='P2025'`
@@ -919,22 +714,7 @@ export interface PlacementAttemptDelegate<
    *   }
    * })
    */
-  findUniqueOrThrow<T extends PlacementAttemptFindUniqueOrThrowArgs>(
-    args: Prisma.SelectSubset<
-      T,
-      PlacementAttemptFindUniqueOrThrowArgs<ExtArgs>
-    >,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'findUniqueOrThrow',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findUniqueOrThrow<T extends PlacementAttemptFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, PlacementAttemptFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first PlacementAttempt that matches the filter.
@@ -949,19 +729,7 @@ export interface PlacementAttemptDelegate<
    *   }
    * })
    */
-  findFirst<T extends PlacementAttemptFindFirstArgs>(
-    args?: Prisma.SelectSubset<T, PlacementAttemptFindFirstArgs<ExtArgs>>,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'findFirst',
-      GlobalOmitOptions
-    > | null,
-    null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findFirst<T extends PlacementAttemptFindFirstArgs>(args?: Prisma.SelectSubset<T, PlacementAttemptFindFirstArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first PlacementAttempt that matches the filter or
@@ -977,22 +745,7 @@ export interface PlacementAttemptDelegate<
    *   }
    * })
    */
-  findFirstOrThrow<T extends PlacementAttemptFindFirstOrThrowArgs>(
-    args?: Prisma.SelectSubset<
-      T,
-      PlacementAttemptFindFirstOrThrowArgs<ExtArgs>
-    >,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'findFirstOrThrow',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  findFirstOrThrow<T extends PlacementAttemptFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, PlacementAttemptFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more PlacementAttempts that matches the filter.
@@ -1010,16 +763,7 @@ export interface PlacementAttemptDelegate<
    * const placementAttemptWithIdOnly = await prisma.placementAttempt.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends PlacementAttemptFindManyArgs>(
-    args?: Prisma.SelectSubset<T, PlacementAttemptFindManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'findMany',
-      GlobalOmitOptions
-    >
-  >;
+  findMany<T extends PlacementAttemptFindManyArgs>(args?: Prisma.SelectSubset<T, PlacementAttemptFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a PlacementAttempt.
@@ -1033,19 +777,7 @@ export interface PlacementAttemptDelegate<
    * })
    *
    */
-  create<T extends PlacementAttemptCreateArgs>(
-    args: Prisma.SelectSubset<T, PlacementAttemptCreateArgs<ExtArgs>>,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'create',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  create<T extends PlacementAttemptCreateArgs>(args: Prisma.SelectSubset<T, PlacementAttemptCreateArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many PlacementAttempts.
@@ -1059,9 +791,7 @@ export interface PlacementAttemptDelegate<
    * })
    *
    */
-  createMany<T extends PlacementAttemptCreateManyArgs>(
-    args?: Prisma.SelectSubset<T, PlacementAttemptCreateManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
+  createMany<T extends PlacementAttemptCreateManyArgs>(args?: Prisma.SelectSubset<T, PlacementAttemptCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many PlacementAttempts and returns the data saved in the database.
@@ -1085,19 +815,7 @@ export interface PlacementAttemptDelegate<
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends PlacementAttemptCreateManyAndReturnArgs>(
-    args?: Prisma.SelectSubset<
-      T,
-      PlacementAttemptCreateManyAndReturnArgs<ExtArgs>
-    >,
-  ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'createManyAndReturn',
-      GlobalOmitOptions
-    >
-  >;
+  createManyAndReturn<T extends PlacementAttemptCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, PlacementAttemptCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a PlacementAttempt.
@@ -1111,19 +829,7 @@ export interface PlacementAttemptDelegate<
    * })
    *
    */
-  delete<T extends PlacementAttemptDeleteArgs>(
-    args: Prisma.SelectSubset<T, PlacementAttemptDeleteArgs<ExtArgs>>,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'delete',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  delete<T extends PlacementAttemptDeleteArgs>(args: Prisma.SelectSubset<T, PlacementAttemptDeleteArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one PlacementAttempt.
@@ -1140,19 +846,7 @@ export interface PlacementAttemptDelegate<
    * })
    *
    */
-  update<T extends PlacementAttemptUpdateArgs>(
-    args: Prisma.SelectSubset<T, PlacementAttemptUpdateArgs<ExtArgs>>,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'update',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  update<T extends PlacementAttemptUpdateArgs>(args: Prisma.SelectSubset<T, PlacementAttemptUpdateArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more PlacementAttempts.
@@ -1166,9 +860,7 @@ export interface PlacementAttemptDelegate<
    * })
    *
    */
-  deleteMany<T extends PlacementAttemptDeleteManyArgs>(
-    args?: Prisma.SelectSubset<T, PlacementAttemptDeleteManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
+  deleteMany<T extends PlacementAttemptDeleteManyArgs>(args?: Prisma.SelectSubset<T, PlacementAttemptDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more PlacementAttempts.
@@ -1187,9 +879,7 @@ export interface PlacementAttemptDelegate<
    * })
    *
    */
-  updateMany<T extends PlacementAttemptUpdateManyArgs>(
-    args: Prisma.SelectSubset<T, PlacementAttemptUpdateManyArgs<ExtArgs>>,
-  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
+  updateMany<T extends PlacementAttemptUpdateManyArgs>(args: Prisma.SelectSubset<T, PlacementAttemptUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more PlacementAttempts and returns the data updated in the database.
@@ -1219,19 +909,7 @@ export interface PlacementAttemptDelegate<
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends PlacementAttemptUpdateManyAndReturnArgs>(
-    args: Prisma.SelectSubset<
-      T,
-      PlacementAttemptUpdateManyAndReturnArgs<ExtArgs>
-    >,
-  ): Prisma.PrismaPromise<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'updateManyAndReturn',
-      GlobalOmitOptions
-    >
-  >;
+  updateManyAndReturn<T extends PlacementAttemptUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, PlacementAttemptUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one PlacementAttempt.
@@ -1250,19 +928,8 @@ export interface PlacementAttemptDelegate<
    *   }
    * })
    */
-  upsert<T extends PlacementAttemptUpsertArgs>(
-    args: Prisma.SelectSubset<T, PlacementAttemptUpsertArgs<ExtArgs>>,
-  ): Prisma.Prisma__PlacementAttemptClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$PlacementAttemptPayload<ExtArgs>,
-      T,
-      'upsert',
-      GlobalOmitOptions
-    >,
-    never,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+  upsert<T extends PlacementAttemptUpsertArgs>(args: Prisma.SelectSubset<T, PlacementAttemptUpsertArgs<ExtArgs>>): Prisma.Prisma__PlacementAttemptClient<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
 
   /**
    * Count the number of PlacementAttempts.
@@ -1276,19 +943,16 @@ export interface PlacementAttemptDelegate<
    *     // ... the filter for the PlacementAttempts we want to count
    *   }
    * })
-   **/
+  **/
   count<T extends PlacementAttemptCountArgs>(
     args?: Prisma.Subset<T, PlacementAttemptCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<
-            T['select'],
-            PlacementAttemptCountAggregateOutputType
-          >
+        : Prisma.GetScalarType<T['select'], PlacementAttemptCountAggregateOutputType>
       : number
-  >;
+  >
 
   /**
    * Allows you to perform aggregations operations on a PlacementAttempt.
@@ -1313,10 +977,8 @@ export interface PlacementAttemptDelegate<
    *   },
    *   take: 10,
    * })
-   **/
-  aggregate<T extends PlacementAttemptAggregateArgs>(
-    args: Prisma.Subset<T, PlacementAttemptAggregateArgs>,
-  ): Prisma.PrismaPromise<GetPlacementAttemptAggregateType<T>>;
+  **/
+  aggregate<T extends PlacementAttemptAggregateArgs>(args: Prisma.Subset<T, PlacementAttemptAggregateArgs>): Prisma.PrismaPromise<GetPlacementAttemptAggregateType<T>>
 
   /**
    * Group by PlacementAttempt.
@@ -1335,80 +997,69 @@ export interface PlacementAttemptDelegate<
    *   },
    * })
    *
-   **/
+  **/
   groupBy<
     T extends PlacementAttemptGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
-    OrderByArg extends (Prisma.True extends HasSelectOrTake
+    OrderByArg extends Prisma.True extends HasSelectOrTake
       ? { orderBy: PlacementAttemptGroupByArgs['orderBy'] }
-      : { orderBy?: PlacementAttemptGroupByArgs['orderBy'] }),
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<
-      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
-    >,
+      : { orderBy?: PlacementAttemptGroupByArgs['orderBy'] },
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends (T['by'] extends never[] ? Prisma.True : Prisma.False),
-    InputErrors extends (ByEmpty extends Prisma.True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends Prisma.False
-        ? {
-            [P in HavingFields]: P extends ByFields
+    ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
+    InputErrors extends ByEmpty extends Prisma.True
+    ? `Error: "by" must not be empty.`
+    : HavingValid extends Prisma.False
+    ? {
+        [P in HavingFields]: P extends ByFields
+          ? never
+          : P extends string
+          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+          : [
+              Error,
+              'Field ',
+              P,
+              ` in "having" needs to be provided in "by"`,
+            ]
+      }[HavingFields]
+    : 'take' extends Prisma.Keys<T>
+    ? 'orderBy' extends Prisma.Keys<T>
+      ? ByValid extends Prisma.True
+        ? {}
+        : {
+            [P in OrderFields]: P extends ByFields
               ? never
-              : P extends string
-                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                : [
-                    Error,
-                    'Field ',
-                    P,
-                    ` in "having" needs to be provided in "by"`,
-                  ];
-          }[HavingFields]
-        : 'take' extends Prisma.Keys<T>
-          ? 'orderBy' extends Prisma.Keys<T>
-            ? ByValid extends Prisma.True
-              ? {}
-              : {
-                  [P in OrderFields]: P extends ByFields
-                    ? never
-                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                }[OrderFields]
-            : 'Error: If you provide "take", you also need to provide "orderBy"'
-          : 'skip' extends Prisma.Keys<T>
-            ? 'orderBy' extends Prisma.Keys<T>
-              ? ByValid extends Prisma.True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields]
-              : 'Error: If you provide "skip", you also need to provide "orderBy"'
-            : ByValid extends Prisma.True
-              ? {}
-              : {
-                  [P in OrderFields]: P extends ByFields
-                    ? never
-                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                }[OrderFields]),
-  >(
-    args: Prisma.SubsetIntersection<
-      T,
-      PlacementAttemptGroupByArgs,
-      OrderByArg
-    > &
-      InputErrors,
-  ): {} extends InputErrors
-    ? GetPlacementAttemptGroupByPayload<T>
-    : Prisma.PrismaPromise<InputErrors>;
-  /**
-   * Fields of the PlacementAttempt model
-   */
-  readonly fields: PlacementAttemptFieldRefs;
+              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+          }[OrderFields]
+      : 'Error: If you provide "take", you also need to provide "orderBy"'
+    : 'skip' extends Prisma.Keys<T>
+    ? 'orderBy' extends Prisma.Keys<T>
+      ? ByValid extends Prisma.True
+        ? {}
+        : {
+            [P in OrderFields]: P extends ByFields
+              ? never
+              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+          }[OrderFields]
+      : 'Error: If you provide "skip", you also need to provide "orderBy"'
+    : ByValid extends Prisma.True
+    ? {}
+    : {
+        [P in OrderFields]: P extends ByFields
+          ? never
+          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+      }[OrderFields]
+  >(args: Prisma.SubsetIntersection<T, PlacementAttemptGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlacementAttemptGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+/**
+ * Fields of the PlacementAttempt model
+ */
+readonly fields: PlacementAttemptFieldRefs;
 }
 
 /**
@@ -1417,565 +1068,461 @@ export interface PlacementAttemptDelegate<
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__PlacementAttemptClient<
-  T,
-  Null = never,
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-  GlobalOmitOptions = {},
-> extends Prisma.PrismaPromise<T> {
-  readonly [Symbol.toStringTag]: 'PrismaPromise';
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>,
-  ): Prisma.Prisma__UserClient<
-    | runtime.Types.Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'findUniqueOrThrow',
-        GlobalOmitOptions
-      >
-    | Null,
-    Null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
+export interface Prisma__PlacementAttemptClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of which ever callback is executed.
    */
-  then<TResult1 = T, TResult2 = never>(
-    onfulfilled?:
-      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-    onrejected?:
-      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
-  ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
+  then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
   /**
    * Attaches a callback for only the rejection of the Promise.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of the callback.
    */
-  catch<TResult = never>(
-    onrejected?:
-      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
-  ): runtime.Types.Utils.JsPromise<T | TResult>;
+  catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
    * resolved value cannot be modified from the callback.
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(
-    onfinally?: (() => void) | undefined | null,
-  ): runtime.Types.Utils.JsPromise<T>;
+  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
 }
+
+
+
 
 /**
  * Fields of the PlacementAttempt model
  */
 export interface PlacementAttemptFieldRefs {
-  readonly id: Prisma.FieldRef<'PlacementAttempt', 'String'>;
-  readonly userId: Prisma.FieldRef<'PlacementAttempt', 'String'>;
-  readonly clientSubmissionId: Prisma.FieldRef<'PlacementAttempt', 'String'>;
-  readonly answers: Prisma.FieldRef<'PlacementAttempt', 'Json'>;
-  readonly score: Prisma.FieldRef<'PlacementAttempt', 'Int'>;
-  readonly total: Prisma.FieldRef<'PlacementAttempt', 'Int'>;
-  readonly level: Prisma.FieldRef<'PlacementAttempt', 'ProficiencyLevel'>;
-  readonly skillBreakdown: Prisma.FieldRef<'PlacementAttempt', 'Json'>;
-  readonly submittedAt: Prisma.FieldRef<'PlacementAttempt', 'DateTime'>;
+  readonly id: Prisma.FieldRef<"PlacementAttempt", 'String'>
+  readonly userId: Prisma.FieldRef<"PlacementAttempt", 'String'>
+  readonly clientSubmissionId: Prisma.FieldRef<"PlacementAttempt", 'String'>
+  readonly answers: Prisma.FieldRef<"PlacementAttempt", 'Json'>
+  readonly score: Prisma.FieldRef<"PlacementAttempt", 'Int'>
+  readonly total: Prisma.FieldRef<"PlacementAttempt", 'Int'>
+  readonly level: Prisma.FieldRef<"PlacementAttempt", 'ProficiencyLevel'>
+  readonly skillBreakdown: Prisma.FieldRef<"PlacementAttempt", 'Json'>
+  readonly submittedAt: Prisma.FieldRef<"PlacementAttempt", 'DateTime'>
 }
+
 
 // Custom InputTypes
 /**
  * PlacementAttempt findUnique
  */
-export type PlacementAttemptFindUniqueArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * Filter, which PlacementAttempt to fetch.
    */
-  where: Prisma.PlacementAttemptWhereUniqueInput;
-};
+  where: Prisma.PlacementAttemptWhereUniqueInput
+}
 
 /**
  * PlacementAttempt findUniqueOrThrow
  */
-export type PlacementAttemptFindUniqueOrThrowArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * Filter, which PlacementAttempt to fetch.
    */
-  where: Prisma.PlacementAttemptWhereUniqueInput;
-};
+  where: Prisma.PlacementAttemptWhereUniqueInput
+}
 
 /**
  * PlacementAttempt findFirst
  */
-export type PlacementAttemptFindFirstArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * Filter, which PlacementAttempt to fetch.
    */
-  where?: Prisma.PlacementAttemptWhereInput;
+  where?: Prisma.PlacementAttemptWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PlacementAttempts to fetch.
    */
-  orderBy?:
-    | Prisma.PlacementAttemptOrderByWithRelationInput
-    | Prisma.PlacementAttemptOrderByWithRelationInput[];
+  orderBy?: Prisma.PlacementAttemptOrderByWithRelationInput | Prisma.PlacementAttemptOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for PlacementAttempts.
    */
-  cursor?: Prisma.PlacementAttemptWhereUniqueInput;
+  cursor?: Prisma.PlacementAttemptWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PlacementAttempts from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PlacementAttempts.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of PlacementAttempts.
    */
-  distinct?:
-    | Prisma.PlacementAttemptScalarFieldEnum
-    | Prisma.PlacementAttemptScalarFieldEnum[];
-};
+  distinct?: Prisma.PlacementAttemptScalarFieldEnum | Prisma.PlacementAttemptScalarFieldEnum[]
+}
 
 /**
  * PlacementAttempt findFirstOrThrow
  */
-export type PlacementAttemptFindFirstOrThrowArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * Filter, which PlacementAttempt to fetch.
    */
-  where?: Prisma.PlacementAttemptWhereInput;
+  where?: Prisma.PlacementAttemptWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PlacementAttempts to fetch.
    */
-  orderBy?:
-    | Prisma.PlacementAttemptOrderByWithRelationInput
-    | Prisma.PlacementAttemptOrderByWithRelationInput[];
+  orderBy?: Prisma.PlacementAttemptOrderByWithRelationInput | Prisma.PlacementAttemptOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for PlacementAttempts.
    */
-  cursor?: Prisma.PlacementAttemptWhereUniqueInput;
+  cursor?: Prisma.PlacementAttemptWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PlacementAttempts from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PlacementAttempts.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of PlacementAttempts.
    */
-  distinct?:
-    | Prisma.PlacementAttemptScalarFieldEnum
-    | Prisma.PlacementAttemptScalarFieldEnum[];
-};
+  distinct?: Prisma.PlacementAttemptScalarFieldEnum | Prisma.PlacementAttemptScalarFieldEnum[]
+}
 
 /**
  * PlacementAttempt findMany
  */
-export type PlacementAttemptFindManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * Filter, which PlacementAttempts to fetch.
    */
-  where?: Prisma.PlacementAttemptWhereInput;
+  where?: Prisma.PlacementAttemptWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of PlacementAttempts to fetch.
    */
-  orderBy?:
-    | Prisma.PlacementAttemptOrderByWithRelationInput
-    | Prisma.PlacementAttemptOrderByWithRelationInput[];
+  orderBy?: Prisma.PlacementAttemptOrderByWithRelationInput | Prisma.PlacementAttemptOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing PlacementAttempts.
    */
-  cursor?: Prisma.PlacementAttemptWhereUniqueInput;
+  cursor?: Prisma.PlacementAttemptWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` PlacementAttempts from the position of the cursor.
    */
-  take?: number;
+  take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` PlacementAttempts.
    */
-  skip?: number;
+  skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of PlacementAttempts.
    */
-  distinct?:
-    | Prisma.PlacementAttemptScalarFieldEnum
-    | Prisma.PlacementAttemptScalarFieldEnum[];
-};
+  distinct?: Prisma.PlacementAttemptScalarFieldEnum | Prisma.PlacementAttemptScalarFieldEnum[]
+}
 
 /**
  * PlacementAttempt create
  */
-export type PlacementAttemptCreateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * The data needed to create a PlacementAttempt.
    */
-  data: Prisma.XOR<
-    Prisma.PlacementAttemptCreateInput,
-    Prisma.PlacementAttemptUncheckedCreateInput
-  >;
-};
+  data: Prisma.XOR<Prisma.PlacementAttemptCreateInput, Prisma.PlacementAttemptUncheckedCreateInput>
+}
 
 /**
  * PlacementAttempt createMany
  */
-export type PlacementAttemptCreateManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * The data used to create many PlacementAttempts.
    */
-  data:
-    | Prisma.PlacementAttemptCreateManyInput
-    | Prisma.PlacementAttemptCreateManyInput[];
-  skipDuplicates?: boolean;
-};
+  data: Prisma.PlacementAttemptCreateManyInput | Prisma.PlacementAttemptCreateManyInput[]
+  skipDuplicates?: boolean
+}
 
 /**
  * PlacementAttempt createManyAndReturn
  */
-export type PlacementAttemptCreateManyAndReturnArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelectCreateManyAndReturn<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelectCreateManyAndReturn<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * The data used to create many PlacementAttempts.
    */
-  data:
-    | Prisma.PlacementAttemptCreateManyInput
-    | Prisma.PlacementAttemptCreateManyInput[];
-  skipDuplicates?: boolean;
+  data: Prisma.PlacementAttemptCreateManyInput | Prisma.PlacementAttemptCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptIncludeCreateManyAndReturn<ExtArgs> | null;
-};
+  include?: Prisma.PlacementAttemptIncludeCreateManyAndReturn<ExtArgs> | null
+}
 
 /**
  * PlacementAttempt update
  */
-export type PlacementAttemptUpdateArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * The data needed to update a PlacementAttempt.
    */
-  data: Prisma.XOR<
-    Prisma.PlacementAttemptUpdateInput,
-    Prisma.PlacementAttemptUncheckedUpdateInput
-  >;
+  data: Prisma.XOR<Prisma.PlacementAttemptUpdateInput, Prisma.PlacementAttemptUncheckedUpdateInput>
   /**
    * Choose, which PlacementAttempt to update.
    */
-  where: Prisma.PlacementAttemptWhereUniqueInput;
-};
+  where: Prisma.PlacementAttemptWhereUniqueInput
+}
 
 /**
  * PlacementAttempt updateMany
  */
-export type PlacementAttemptUpdateManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * The data used to update PlacementAttempts.
    */
-  data: Prisma.XOR<
-    Prisma.PlacementAttemptUpdateManyMutationInput,
-    Prisma.PlacementAttemptUncheckedUpdateManyInput
-  >;
+  data: Prisma.XOR<Prisma.PlacementAttemptUpdateManyMutationInput, Prisma.PlacementAttemptUncheckedUpdateManyInput>
   /**
    * Filter which PlacementAttempts to update
    */
-  where?: Prisma.PlacementAttemptWhereInput;
+  where?: Prisma.PlacementAttemptWhereInput
   /**
    * Limit how many PlacementAttempts to update.
    */
-  limit?: number;
-};
+  limit?: number
+}
 
 /**
  * PlacementAttempt updateManyAndReturn
  */
-export type PlacementAttemptUpdateManyAndReturnArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelectUpdateManyAndReturn<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelectUpdateManyAndReturn<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * The data used to update PlacementAttempts.
    */
-  data: Prisma.XOR<
-    Prisma.PlacementAttemptUpdateManyMutationInput,
-    Prisma.PlacementAttemptUncheckedUpdateManyInput
-  >;
+  data: Prisma.XOR<Prisma.PlacementAttemptUpdateManyMutationInput, Prisma.PlacementAttemptUncheckedUpdateManyInput>
   /**
    * Filter which PlacementAttempts to update
    */
-  where?: Prisma.PlacementAttemptWhereInput;
+  where?: Prisma.PlacementAttemptWhereInput
   /**
    * Limit how many PlacementAttempts to update.
    */
-  limit?: number;
+  limit?: number
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptIncludeUpdateManyAndReturn<ExtArgs> | null;
-};
+  include?: Prisma.PlacementAttemptIncludeUpdateManyAndReturn<ExtArgs> | null
+}
 
 /**
  * PlacementAttempt upsert
  */
-export type PlacementAttemptUpsertArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * The filter to search for the PlacementAttempt to update in case it exists.
    */
-  where: Prisma.PlacementAttemptWhereUniqueInput;
+  where: Prisma.PlacementAttemptWhereUniqueInput
   /**
    * In case the PlacementAttempt found by the `where` argument doesn't exist, create a new PlacementAttempt with this data.
    */
-  create: Prisma.XOR<
-    Prisma.PlacementAttemptCreateInput,
-    Prisma.PlacementAttemptUncheckedCreateInput
-  >;
+  create: Prisma.XOR<Prisma.PlacementAttemptCreateInput, Prisma.PlacementAttemptUncheckedCreateInput>
   /**
    * In case the PlacementAttempt was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<
-    Prisma.PlacementAttemptUpdateInput,
-    Prisma.PlacementAttemptUncheckedUpdateInput
-  >;
-};
+  update: Prisma.XOR<Prisma.PlacementAttemptUpdateInput, Prisma.PlacementAttemptUncheckedUpdateInput>
+}
 
 /**
  * PlacementAttempt delete
  */
-export type PlacementAttemptDeleteArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
   /**
    * Filter which PlacementAttempt to delete.
    */
-  where: Prisma.PlacementAttemptWhereUniqueInput;
-};
+  where: Prisma.PlacementAttemptWhereUniqueInput
+}
 
 /**
  * PlacementAttempt deleteMany
  */
-export type PlacementAttemptDeleteManyArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Filter which PlacementAttempts to delete
    */
-  where?: Prisma.PlacementAttemptWhereInput;
+  where?: Prisma.PlacementAttemptWhereInput
   /**
    * Limit how many PlacementAttempts to delete.
    */
-  limit?: number;
-};
+  limit?: number
+}
 
 /**
  * PlacementAttempt without action
  */
-export type PlacementAttemptDefaultArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
+export type PlacementAttemptDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
-};
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
+}

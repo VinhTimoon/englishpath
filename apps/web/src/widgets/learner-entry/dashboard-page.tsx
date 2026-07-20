@@ -87,6 +87,9 @@ export function DashboardPage() {
           <Link className={styles.action} href="/daily-practice">
             Bắt đầu Daily Practice
           </Link>
+          <Link className={styles.action} href="/daily-sentence">
+            Học Daily Sentence
+          </Link>
           <Link className={styles.secondary} href="/error-notebook">
             Xem Error Notebook
           </Link>

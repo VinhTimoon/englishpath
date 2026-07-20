@@ -14,44 +14,40 @@
  * model files in the `model` directory!
  */
 
-import * as runtime from '@prisma/client/runtime/index-browser';
+import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models.js';
-export type * from './prismaNamespace.js';
+export type * from '../models.js'
+export type * from './prismaNamespace.js'
 
-export const Decimal = runtime.Decimal;
+export const Decimal = runtime.Decimal
+
 
 export const NullTypes = {
-  DbNull: runtime.NullTypes.DbNull as new (
-    secret: never,
-  ) => typeof runtime.DbNull,
-  JsonNull: runtime.NullTypes.JsonNull as new (
-    secret: never,
-  ) => typeof runtime.JsonNull,
-  AnyNull: runtime.NullTypes.AnyNull as new (
-    secret: never,
-  ) => typeof runtime.AnyNull,
-};
+  DbNull: runtime.NullTypes.DbNull as (new (secret: never) => typeof runtime.DbNull),
+  JsonNull: runtime.NullTypes.JsonNull as (new (secret: never) => typeof runtime.JsonNull),
+  AnyNull: runtime.NullTypes.AnyNull as (new (secret: never) => typeof runtime.AnyNull),
+}
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const DbNull = runtime.DbNull;
+export const DbNull = runtime.DbNull
 
 /**
  * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const JsonNull = runtime.JsonNull;
+export const JsonNull = runtime.JsonNull
 
 /**
  * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const AnyNull = runtime.AnyNull;
+export const AnyNull = runtime.AnyNull
+
 
 export const ModelName = {
   User: 'User',
@@ -64,11 +60,13 @@ export const ModelName = {
   LearnerProgress: 'LearnerProgress',
   ErrorNotebookEntry: 'ErrorNotebookEntry',
   UserProfile: 'UserProfile',
+  GovernedSentence: 'GovernedSentence',
+  DailySentenceCompletion: 'DailySentenceCompletion',
   Role: 'Role',
-  UserRole: 'UserRole',
-} as const;
+  UserRole: 'UserRole'
+} as const
 
-export type ModelName = (typeof ModelName)[keyof typeof ModelName];
+export type ModelName = (typeof ModelName)[keyof typeof ModelName]
 
 /*
  * Enums
@@ -78,11 +76,11 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
-  Serializable: 'Serializable',
-} as const);
+  Serializable: 'Serializable'
+} as const)
 
-export type TransactionIsolationLevel =
-  (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
+export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
 
 export const UserScalarFieldEnum = {
   id: 'id',
@@ -92,11 +90,11 @@ export const UserScalarFieldEnum = {
   externalSubject: 'externalSubject',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
+  updatedAt: 'updatedAt'
+} as const
 
-export type UserScalarFieldEnum =
-  (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
 
 export const LearnerOnboardingScalarFieldEnum = {
   userId: 'userId',
@@ -107,11 +105,11 @@ export const LearnerOnboardingScalarFieldEnum = {
   targetDays: 'targetDays',
   prioritySkills: 'prioritySkills',
   completedAt: 'completedAt',
-  updatedAt: 'updatedAt',
-} as const;
+  updatedAt: 'updatedAt'
+} as const
 
-export type LearnerOnboardingScalarFieldEnum =
-  (typeof LearnerOnboardingScalarFieldEnum)[keyof typeof LearnerOnboardingScalarFieldEnum];
+export type LearnerOnboardingScalarFieldEnum = (typeof LearnerOnboardingScalarFieldEnum)[keyof typeof LearnerOnboardingScalarFieldEnum]
+
 
 export const PlacementAttemptScalarFieldEnum = {
   id: 'id',
@@ -122,11 +120,11 @@ export const PlacementAttemptScalarFieldEnum = {
   total: 'total',
   level: 'level',
   skillBreakdown: 'skillBreakdown',
-  submittedAt: 'submittedAt',
-} as const;
+  submittedAt: 'submittedAt'
+} as const
 
-export type PlacementAttemptScalarFieldEnum =
-  (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum];
+export type PlacementAttemptScalarFieldEnum = (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum]
+
 
 export const RoadmapScalarFieldEnum = {
   id: 'id',
@@ -139,11 +137,11 @@ export const RoadmapScalarFieldEnum = {
   status: 'status',
   previousRoadmapId: 'previousRoadmapId',
   generatedAt: 'generatedAt',
-  supersededAt: 'supersededAt',
-} as const;
+  supersededAt: 'supersededAt'
+} as const
 
-export type RoadmapScalarFieldEnum =
-  (typeof RoadmapScalarFieldEnum)[keyof typeof RoadmapScalarFieldEnum];
+export type RoadmapScalarFieldEnum = (typeof RoadmapScalarFieldEnum)[keyof typeof RoadmapScalarFieldEnum]
+
 
 export const RoadmapItemScalarFieldEnum = {
   id: 'id',
@@ -156,11 +154,11 @@ export const RoadmapItemScalarFieldEnum = {
   title: 'title',
   minutes: 'minutes',
   status: 'status',
-  completedAt: 'completedAt',
-} as const;
+  completedAt: 'completedAt'
+} as const
 
-export type RoadmapItemScalarFieldEnum =
-  (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum];
+export type RoadmapItemScalarFieldEnum = (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum]
+
 
 export const PracticeSessionScalarFieldEnum = {
   id: 'id',
@@ -173,11 +171,11 @@ export const PracticeSessionScalarFieldEnum = {
   total: 'total',
   xpAwarded: 'xpAwarded',
   startedAt: 'startedAt',
-  submittedAt: 'submittedAt',
-} as const;
+  submittedAt: 'submittedAt'
+} as const
 
-export type PracticeSessionScalarFieldEnum =
-  (typeof PracticeSessionScalarFieldEnum)[keyof typeof PracticeSessionScalarFieldEnum];
+export type PracticeSessionScalarFieldEnum = (typeof PracticeSessionScalarFieldEnum)[keyof typeof PracticeSessionScalarFieldEnum]
+
 
 export const PracticeAnswerScalarFieldEnum = {
   id: 'id',
@@ -185,22 +183,22 @@ export const PracticeAnswerScalarFieldEnum = {
   questionId: 'questionId',
   selectedOption: 'selectedOption',
   isCorrect: 'isCorrect',
-  answeredAt: 'answeredAt',
-} as const;
+  answeredAt: 'answeredAt'
+} as const
 
-export type PracticeAnswerScalarFieldEnum =
-  (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum];
+export type PracticeAnswerScalarFieldEnum = (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum]
+
 
 export const LearnerProgressScalarFieldEnum = {
   userId: 'userId',
   xp: 'xp',
   streakDays: 'streakDays',
   lastPracticeOn: 'lastPracticeOn',
-  updatedAt: 'updatedAt',
-} as const;
+  updatedAt: 'updatedAt'
+} as const
 
-export type LearnerProgressScalarFieldEnum =
-  (typeof LearnerProgressScalarFieldEnum)[keyof typeof LearnerProgressScalarFieldEnum];
+export type LearnerProgressScalarFieldEnum = (typeof LearnerProgressScalarFieldEnum)[keyof typeof LearnerProgressScalarFieldEnum]
+
 
 export const ErrorNotebookEntryScalarFieldEnum = {
   id: 'id',
@@ -211,11 +209,11 @@ export const ErrorNotebookEntryScalarFieldEnum = {
   selectedOption: 'selectedOption',
   correctOption: 'correctOption',
   explanation: 'explanation',
-  createdAt: 'createdAt',
-} as const;
+  createdAt: 'createdAt'
+} as const
 
-export type ErrorNotebookEntryScalarFieldEnum =
-  (typeof ErrorNotebookEntryScalarFieldEnum)[keyof typeof ErrorNotebookEntryScalarFieldEnum];
+export type ErrorNotebookEntryScalarFieldEnum = (typeof ErrorNotebookEntryScalarFieldEnum)[keyof typeof ErrorNotebookEntryScalarFieldEnum]
+
 
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',
@@ -224,67 +222,100 @@ export const UserProfileScalarFieldEnum = {
   locale: 'locale',
   timezone: 'timezone',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
+  updatedAt: 'updatedAt'
+} as const
 
-export type UserProfileScalarFieldEnum =
-  (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum];
+export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
+
+
+export const GovernedSentenceScalarFieldEnum = {
+  id: 'id',
+  prompt: 'prompt',
+  expectedAnswer: 'expectedAnswer',
+  source: 'source',
+  license: 'license',
+  reviewStatus: 'reviewStatus',
+  reviewedAt: 'reviewedAt',
+  publishStatus: 'publishStatus',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GovernedSentenceScalarFieldEnum = (typeof GovernedSentenceScalarFieldEnum)[keyof typeof GovernedSentenceScalarFieldEnum]
+
+
+export const DailySentenceCompletionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sentenceId: 'sentenceId',
+  localDate: 'localDate',
+  submittedAnswer: 'submittedAnswer',
+  isCorrect: 'isCorrect',
+  feedback: 'feedback',
+  completedAt: 'completedAt'
+} as const
+
+export type DailySentenceCompletionScalarFieldEnum = (typeof DailySentenceCompletionScalarFieldEnum)[keyof typeof DailySentenceCompletionScalarFieldEnum]
+
 
 export const RoleScalarFieldEnum = {
   id: 'id',
   code: 'code',
   description: 'description',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
+  updatedAt: 'updatedAt'
+} as const
 
-export type RoleScalarFieldEnum =
-  (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum];
+export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
 
 export const UserRoleScalarFieldEnum = {
   userId: 'userId',
   roleId: 'roleId',
   assignedAt: 'assignedAt',
   assignedByUserId: 'assignedByUserId',
-  assignmentReason: 'assignmentReason',
-} as const;
+  assignmentReason: 'assignmentReason'
+} as const
 
-export type UserRoleScalarFieldEnum =
-  (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum];
+export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
+
 
 export const SortOrder = {
   asc: 'asc',
-  desc: 'desc',
-} as const;
+  desc: 'desc'
+} as const
 
-export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
 
 export const JsonNullValueInput = {
-  JsonNull: JsonNull,
-} as const;
+  JsonNull: JsonNull
+} as const
 
-export type JsonNullValueInput =
-  (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput];
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
 
 export const QueryMode = {
   default: 'default',
-  insensitive: 'insensitive',
-} as const;
+  insensitive: 'insensitive'
+} as const
 
-export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
 
 export const NullsOrder = {
   first: 'first',
-  last: 'last',
-} as const;
+  last: 'last'
+} as const
 
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
 
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
-  AnyNull: AnyNull,
-} as const;
+  AnyNull: AnyNull
+} as const
 
-export type JsonNullValueFilter =
-  (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]

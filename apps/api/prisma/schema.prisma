@@ -26,6 +26,7 @@ model User {
   practiceSessions        PracticeSession[]
   learnerProgress         LearnerProgress?
   errorNotebookEntries    ErrorNotebookEntry[]
+  dailySentenceCompletions DailySentenceCompletion[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -168,6 +169,40 @@ model UserProfile {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model GovernedSentence {
+  id              String   @id
+  prompt          String
+  expectedAnswer  String
+  source          String
+  license         String
+  reviewStatus    String
+  reviewedAt      DateTime
+  publishStatus   String
+  publishedAt     DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  completions     DailySentenceCompletion[]
+
+  @@index([reviewStatus, publishStatus, publishedAt])
+}
+
+model DailySentenceCompletion {
+  id             String   @id @default(cuid())
+  userId         String
+  sentenceId     String
+  localDate      DateTime
+  submittedAnswer String
+  isCorrect      Boolean
+  feedback       String
+  completedAt    DateTime @default(now())
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sentence       GovernedSentence @relation(fields: [sentenceId], references: [id], onDelete: Restrict)
+
+  @@unique([userId, localDate])
+  @@index([userId, localDate])
+  @@index([sentenceId])
 }
 
 model Role {

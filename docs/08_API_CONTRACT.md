@@ -229,6 +229,19 @@ unknown or non-owned items return 404 without revealing ownership.
 
 ## Daily Practice Endpoints
 
+## Daily Sentence Endpoints
+
+- `GET /api/v1/daily-sentences/today` and `POST /api/v1/daily-sentences/:sentenceId/submit`
+  require the authenticated application principal. The server resolves the stored
+  profile timezone with `Asia/Ho_Chi_Minh` fallback, selects a stable reviewed and
+  published sentence for the local date, and never returns `expectedAnswer`.
+- Submit accepts `{ "answer": string }` (1–500 characters). It returns the same
+  owner-scoped persisted feedback on replay; the unique `(userId, localDate)` constraint
+  makes concurrent submissions idempotent. A mismatched sentence ID is rejected.
+- Incomplete data is `{localDate, sentence:{id,prompt}, completed:false}`; completed
+  data adds `{feedback:{isCorrect,message,completedAt}, completed:true}`. Empty eligible
+  content returns `sentence:null` without leaking governed content metadata.
+
 - `POST /api/v1/quiz/session` starts or replays one owner session from a client session
   ID and returns five cards without keys or explanations.
 - `POST /api/v1/quiz/session/:id/answer` persists one answer and returns immediate
