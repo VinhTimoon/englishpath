@@ -2,7 +2,7 @@
   "plan": {
     "model": "gpt-5.6-sol",
     "reasoning": "high",
-    "timeout_ms": 180000,
+    "timeout_ms": 240000,
     "sandbox": "read-only"
   },
   "build": {

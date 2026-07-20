@@ -36,6 +36,9 @@ Task:
 - Read the story.
 - Read BMAD and routing context.
 - Create a short implementation plan.
+- Use the supplied story and context directly; do not perform a broad codebase audit.
+- Return the plan promptly after inspecting only the minimum files needed to resolve a
+  concrete uncertainty.
 - Do not modify source code.
 - Do not implement anything.
 - Run non-interactively.
