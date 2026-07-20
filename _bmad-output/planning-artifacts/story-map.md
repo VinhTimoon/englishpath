@@ -72,7 +72,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST044`                | Bundled daily quiz session, immediate feedback, progress, streak, and error review       | `EP1-ST043`                |
 | `EP1-ST045`                | Persisted owner progress summary on the learner dashboard                                | `EP1-ST044`                |
 | `EP1-ST046`                | Private Error Notebook latest-errors API and learner review view                         | `EP1-ST044`                |
-| `EP1-ST047`                | Bundled vocabulary SRS and governed Daily Sentence learner loop                          | `EP1-ST017`, `EP1-ST044`   |
+| `EP1-ST047`                | Bundled governed Daily Sentence API, completion, content, and learner UI                  | `EP1-ST044`                |
 
 `EP1-ST042` supersedes the former delivery units `EP1-ST009–013`; their requirements are
 implemented and reviewed as one vertical slice to reduce loop overhead.
@@ -83,9 +83,8 @@ are delivered and reviewed together as one product increment.
 `EP1-ST044` consolidates the first usable delivery of `EP1-ST020–027`; advanced SRS and
 the dedicated review/progress surfaces remain follow-up scope.
 
-`EP1-ST047` consolidates the remaining delivery units `EP1-ST018-019` and
-`EP1-ST022-023`; it also delivers the reviewed Daily Sentence portion of `EP1-ST036`
-without claiming the separate 100-quiz launch baseline.
+`EP1-ST047` consolidates `EP1-ST022-023` and delivers the reviewed Daily Sentence
+portion of `EP1-ST036` without claiming vocabulary SRS or the 100-quiz launch baseline.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
