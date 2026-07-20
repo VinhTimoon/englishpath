@@ -28,7 +28,7 @@ forbidden_paths:
   - pnpm-lock.yaml
   - main
 requires_human_approval: false
-max_fix_rounds: 2
+max_fix_rounds: 1
 ---
 
 # Story: Daily Sentence Learning Bundle
