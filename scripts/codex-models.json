@@ -1,26 +1,26 @@
 {
   "plan": {
     "model": "gpt-5.6-sol",
-    "reasoning": "high",
-    "timeout_ms": 240000,
+    "reasoning": "medium",
+    "timeout_ms": 480000,
     "sandbox": "read-only"
   },
   "build": {
     "model": "gpt-5.6-luna",
     "reasoning": "medium",
-    "timeout_ms": 240000,
+    "timeout_ms": 1200000,
     "sandbox": "danger-full-access"
   },
   "review": {
     "model": "gpt-5.6-terra",
     "reasoning": "medium",
-    "timeout_ms": 240000,
+    "timeout_ms": 600000,
     "sandbox": "read-only"
   },
   "debug": {
     "model": "gpt-5.6-sol",
-    "reasoning": "high",
-    "timeout_ms": 180000,
+    "reasoning": "medium",
+    "timeout_ms": 480000,
     "sandbox": "danger-full-access"
   }
 }
