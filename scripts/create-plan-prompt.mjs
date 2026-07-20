@@ -11,6 +11,12 @@ const read = (file) =>
   fs.existsSync(file) ? fs.readFileSync(file, "utf8") : "";
 
 const story = read(storyFile);
+const storyId = story.match(/^id:\s*([^\s]+)\s*$/m)?.[1];
+
+if (!storyId) {
+  console.error(`Story id not found in ${storyFile}`);
+  process.exit(1);
+}
 
 const contextFiles = [
   "AGENTS.md",
@@ -51,6 +57,7 @@ The plan must include:
 Final response rules:
 - Return only the complete implementation plan.
 - Use the exact numbered ## headings listed above, in the same order and exactly once.
+- Under \`## 1. Story ID\`, write exactly \`${storyId}\` and nothing else.
 - Do not ask the user to continue.
 - Do not add a preface, summary, status line, or file-write claim.
 `;

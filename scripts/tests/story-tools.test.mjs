@@ -737,6 +737,24 @@ A
   });
 });
 
+test("planning prompt requires the exact story ID without a title suffix", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-plan-prompt-"));
+  const storyFile = path.join(tempDir, "story.md");
+  fs.writeFileSync(storyFile, "---\nid: EP1-ST047\n---\n# Story\n");
+
+  const result = spawnSync(
+    process.execPath,
+    ["scripts/create-plan-prompt.mjs", storyFile],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(
+    result.stdout,
+    /Under `## 1\. Story ID`, write exactly `EP1-ST047` and nothing else\./,
+  );
+});
+
 test("plan handoff rejects prefaces and unexpected headings", () => {
   const validPlan = `## 1. Story ID\nEP0-ST011\n\n## 2. Scope Summary\nA\n\n## 3. Allowed Paths\nA\n\n## 4. Forbidden Paths\nA\n\n## 5. Files Likely to Change\nA\n\n## 6. Implementation Steps\nA\n\n## 7. Verification Steps\nA\n\n## 8. Risks\nA\n`;
 
