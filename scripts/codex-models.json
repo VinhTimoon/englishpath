@@ -6,7 +6,7 @@
     "sandbox": "read-only"
   },
   "build": {
-    "model": "gpt-5.4",
+    "model": "gpt-5.6-luna",
     "reasoning": "medium",
     "timeout_ms": 240000,
     "sandbox": "danger-full-access"
@@ -24,3 +24,4 @@
     "sandbox": "danger-full-access"
   }
 }
+
