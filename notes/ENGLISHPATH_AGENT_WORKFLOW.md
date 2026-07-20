@@ -33,7 +33,7 @@ Agent phải dùng đúng model theo từng pha:
 | Pha | Model | Reasoning | Vai trò |
 |---|---|---:|---|
 | Planning / story split / architecture | `gpt-5.6-sol` | `high` | Phân tích yêu cầu, chia story, kiểm tra kiến trúc |
-| Implementation / coding | `gpt-5.4` | `medium` | Viết code theo story nhỏ |
+| Implementation / coding | `gpt-5.6-luna` | `medium` | Viết code theo story nhỏ |
 | Review / testing / QA | `gpt-5.6-terra` | `medium` | Review diff, viết test, kiểm tra edge case |
 | Debug khó / security / database / auth | `gpt-5.6-sol` | `high` | Dùng khi lỗi phức tạp hoặc story nhạy cảm |
 
@@ -206,7 +206,7 @@ Loop chuẩn gồm các pha:
 4. Chuyển story sang `stories/in-progress` và đồng bộ frontmatter status
 5. Story doctor kiểm tra frontmatter, scope, lifecycle
 6. Planning phase bằng `gpt-5.6-sol` high
-7. Build phase bằng `gpt-5.4` medium
+7. Build phase bằng `gpt-5.6-luna` medium
 8. Run checks
 9. Review/test phase bằng `gpt-5.6-terra` medium
 10. Run checks lần 2
