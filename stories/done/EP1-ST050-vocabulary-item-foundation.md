@@ -1,7 +1,7 @@
 ---
 id: EP1-ST050
 title: Governed Vocabulary Item Foundation
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-1-learning-core
