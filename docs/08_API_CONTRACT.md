@@ -186,6 +186,20 @@ as proof that an actor is human or has review/publish permission.
 - Repository exceptions and malformed snapshots map to HTTP 500 with
   `INTERNAL_ERROR`, the public message `An unexpected error occurred.`, empty details,
   and no raw adapter error, stack trace, source metadata, or partial `data`/`page`.
+
+## Vocabulary Item Endpoint
+
+- `GET /api/v1/vocabulary/items` is public and read-only. It requires a public
+  `taxonomyNodeId`, and accepts `page` (default 1) and `size` (default 20, maximum
+  50).
+- It returns a deterministic `word`, then ID ordering and exposes only `id`,
+  `taxonomyNodeId`, `word`, `meaning`, optional `example`, and optional
+  `pronunciation`. Source, license, review, and publication evidence never leave the
+  backend.
+- Only reviewed, published rows with `publishedAt` no later than the request are
+  eligible. A missing, private, or unknown taxonomy node returns `RESOURCE_NOT_FOUND`.
+- The standard vocabulary correlation/idempotency metadata and sanitized error envelope
+  apply to this endpoint.
 ## Authenticated Profile
 
 - `GET /api/v1/profile` returns the authenticated application's minimal profile.

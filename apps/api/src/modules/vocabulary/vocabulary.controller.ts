@@ -17,6 +17,7 @@ import {
 } from '@nestjs/swagger';
 import {
   VocabularyMindmapQueryDto,
+  VocabularyItemsQueryDto,
   VocabularyTopicsQueryDto,
 } from './dto/vocabulary-query.dto';
 import {
@@ -50,6 +51,34 @@ export class VocabularyController {
     @Headers('x-correlation-id') correlationHeader?: string,
   ) {
     const result = await this.service.listTopics(query);
+    return {
+      ...result,
+      meta: {
+        correlationId: vocabularyCorrelationId(correlationHeader),
+        idempotencyStatus: 'not_applicable',
+      },
+    };
+  }
+
+  @Get('items')
+  @UsePipes(queryValidation)
+  @ApiOperation({
+    summary: 'List published vocabulary items for a taxonomy node',
+  })
+  @ApiOkResponse({
+    description:
+      'Paginated public vocabulary items without governance metadata',
+  })
+  @ApiBadRequestResponse({ description: 'Invalid taxonomy node or pagination' })
+  @ApiNotFoundResponse({ description: 'Requested taxonomy node is not public' })
+  @ApiInternalServerErrorResponse({
+    description: 'Sanitized persistence or internal failure',
+  })
+  async listItems(
+    @Query() query: VocabularyItemsQueryDto,
+    @Headers('x-correlation-id') correlationHeader?: string,
+  ) {
+    const result = await this.service.listItems(query);
     return {
       ...result,
       meta: {

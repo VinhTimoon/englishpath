@@ -25,6 +25,19 @@ per `(userId, localDate)`. All reads and writes are owner-scoped. The migration 
 only: drop `DailySentenceCompletion`, then `GovernedSentence`; do not run it
 automatically in production.
 
+### EP1-ST050 Governed Vocabulary Item foundation
+
+`GovernedVocabularyItem` is the canonical persistence record for a reviewed word or
+phrase. It has a stable ID, one current fixture-taxonomy node ID, learner-facing word,
+meaning, optional example/pronunciation, and private source/license/review/publication
+evidence. Public delivery is default-denied: only `REVIEWED` + `PUBLISHED` rows whose
+`publishedAt` is reached may be projected, and no governance evidence is returned.
+This additive migration deliberately has no foreign key to the current in-memory
+taxonomy fixture; a later taxonomy-CMS story must introduce that relationship without
+rekeying learner mastery. The seed consists of five EnglishPath-authored CC0 fixtures.
+Manual rollback is owner-approved only: drop `GovernedVocabularyItem` and its indexes;
+automation must never execute it against Supabase.
+
 | Domain                            | Canonical Owner                   | Key Relationships                                                            | Lifecycle                                                            | Security Boundary                                                          |
 | --------------------------------- | --------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Identity, profile, role           | Backend access module             | User links to profile, role assignments, entitlements, audit                 | invited -> active -> suspended -> deleted/retained                   | JWT maps to user; backend decides role and ownership                       |

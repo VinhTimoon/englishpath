@@ -65,7 +65,34 @@ export interface VocabularyRepository {
   loadSnapshot(): Promise<VocabularySnapshot>;
 }
 
+export type PublishedVocabularyItem = Readonly<{
+  id: string;
+  taxonomyNodeId: string;
+  word: string;
+  meaning: string;
+  example: string | null;
+  pronunciation: string | null;
+}>;
+
+export interface VocabularyItemRepository {
+  listPublished(
+    input: Readonly<{
+      taxonomyNodeId: string;
+      now: Date;
+      skip: number;
+      take: number;
+    }>,
+  ): Promise<readonly PublishedVocabularyItem[]>;
+  countPublished(
+    input: Readonly<{
+      taxonomyNodeId: string;
+      now: Date;
+    }>,
+  ): Promise<number>;
+}
+
 export const VOCABULARY_REPOSITORY = Symbol('VOCABULARY_REPOSITORY');
+export const VOCABULARY_ITEM_REPOSITORY = Symbol('VOCABULARY_ITEM_REPOSITORY');
 
 export function deepFreezeVocabulary<T>(value: T): T {
   if (!value || typeof value !== 'object' || Object.isFrozen(value)) {

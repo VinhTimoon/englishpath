@@ -4,17 +4,24 @@ import { VOCABULARY_ERROR_CODES, VocabularyError } from './vocabulary.error';
 import {
   deepFreezeVocabulary,
   VOCABULARY_REPOSITORY,
+  VOCABULARY_ITEM_REPOSITORY,
   VOCABULARY_LEVELS,
   type MindmapNode,
   type TopicSummary,
   type VocabularyFilter,
   type VocabularyRepository,
   type VocabularyTaxonomyNode,
+  type VocabularyItemRepository,
 } from './vocabulary.models';
 
 type TopicQuery = VocabularyFilter & Readonly<{ page: number; size: number }>;
 type MindmapQuery = VocabularyFilter &
   Readonly<{ rootId?: string; depth: number }>;
+type ItemsQuery = Readonly<{
+  taxonomyNodeId: string;
+  page: number;
+  size: number;
+}>;
 
 function compareNodes(
   left: VocabularyTaxonomyNode,
@@ -172,7 +179,42 @@ export class VocabularyService {
   constructor(
     @Inject(VOCABULARY_REPOSITORY)
     private readonly repository: VocabularyRepository,
+    @Inject(VOCABULARY_ITEM_REPOSITORY)
+    private readonly itemRepository: VocabularyItemRepository = {} as VocabularyItemRepository,
   ) {}
+
+  async listItems(query: ItemsQuery) {
+    const snapshot = await this.repository.loadSnapshot();
+    const nodes = validateSnapshot(snapshot);
+    const byId = validateGraph(nodes);
+    const available = new Set(publicNodes(nodes, byId).map((node) => node.id));
+    if (!available.has(query.taxonomyNodeId)) {
+      throw new VocabularyError(VOCABULARY_ERROR_CODES.ROOT_NOT_FOUND);
+    }
+    const now = new Date();
+    const skip = (query.page - 1) * query.size;
+    const [items, totalItems] = await Promise.all([
+      this.itemRepository.listPublished({
+        taxonomyNodeId: query.taxonomyNodeId,
+        now,
+        skip,
+        take: query.size,
+      }),
+      this.itemRepository.countPublished({
+        taxonomyNodeId: query.taxonomyNodeId,
+        now,
+      }),
+    ]);
+    return deepFreezeVocabulary({
+      data: items.map((item) => ({ ...item })),
+      page: {
+        number: query.page,
+        size: query.size,
+        totalItems,
+        totalPages: Math.ceil(totalItems / query.size),
+      },
+    });
+  }
 
   async listTopics(query: TopicQuery) {
     const snapshot = await this.repository.loadSnapshot();

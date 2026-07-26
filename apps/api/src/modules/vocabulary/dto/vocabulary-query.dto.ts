@@ -67,3 +67,23 @@ export class VocabularyMindmapQueryDto extends VocabularyFilterQueryDto {
   @Max(3)
   depth = 3;
 }
+
+export class VocabularyItemsQueryDto {
+  @IsString()
+  @MaxLength(96)
+  @Matches(identifier)
+  taxonomyNodeId!: string;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page = 1;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(50)
+  size = 20;
+}

@@ -150,6 +150,14 @@ Report commands that were skipped or unavailable; never claim they passed.
   variants, semantic nesting, keyboard controls, mobile overflow, and axe findings.
   They never require the API process, credentials, or private governance fixtures.
 
+## Governed Vocabulary Item Tests
+
+- Repository tests mock `PrismaService` and assert review/publication/time filters,
+  deterministic `word` then ID ordering, and an explicit public projection that omits
+  source, license, and governance state.
+- API E2E tests override Prisma and prove that unpublished content is not returned,
+  pagination remains stable, and a non-public taxonomy node is sanitized as not found.
+
 ## Authentication Tests
 
 Auth tests generate local asymmetric keys and never use live Supabase, credentials,

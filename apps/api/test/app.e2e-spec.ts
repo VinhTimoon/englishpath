@@ -14,6 +14,8 @@ import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
 import {
   VOCABULARY_REPOSITORY,
+  VOCABULARY_ITEM_REPOSITORY,
+  type VocabularyItemRepository,
   type VocabularyRepository,
 } from './../src/modules/vocabulary/vocabulary.models';
 import { PrismaService } from './../src/prisma/prisma.service';
@@ -87,6 +89,7 @@ describe('API (e2e)', () => {
       resolver: { resolve(identity: unknown): Promise<unknown> };
       profiles: Record<string, jest.Mock>;
     },
+    itemRepository?: VocabularyItemRepository,
   ): Promise<INestApplication<App>> {
     let builder = Test.createTestingModule({
       imports: [AppModule, AuthorizationTestModule],
@@ -97,6 +100,11 @@ describe('API (e2e)', () => {
       builder = builder
         .overrideProvider(VOCABULARY_REPOSITORY)
         .useValue(repository);
+    }
+    if (itemRepository) {
+      builder = builder
+        .overrideProvider(VOCABULARY_ITEM_REPOSITORY)
+        .useValue(itemRepository);
     }
     if (auth) {
       builder = builder
@@ -416,6 +424,61 @@ describe('API (e2e)', () => {
     expect(body.meta.correlationId).toMatch(/^corr-/);
     expect(body.meta.idempotencyStatus).toBe('not_applicable');
     expect(prisma.$queryRaw).not.toHaveBeenCalled();
+  });
+
+  it('returns only deterministic published vocabulary item projections', async () => {
+    await app.close();
+    const listPublished = jest.fn();
+    const itemRepository: VocabularyItemRepository = {
+      listPublished: listPublished.mockResolvedValue([
+        {
+          id: 'vocab-work-001',
+          taxonomyNodeId: 'workplace-meetings',
+          word: 'agenda',
+          meaning: 'chương trình họp',
+          example: null,
+          pronunciation: null,
+        },
+      ]),
+      countPublished: jest.fn().mockResolvedValue(1),
+    };
+    app = await createApp(undefined, undefined, itemRepository);
+
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/vocabulary/items?taxonomyNodeId=workplace-meetings')
+      .expect(200);
+    const body = response.body as ApiEnvelope & {
+      data: Array<Record<string, unknown>>;
+    };
+    expect(body.data.map(({ word }) => word)).toEqual(['agenda']);
+    expect(body.page).toMatchObject({ totalItems: 1, totalPages: 1 });
+    expect(JSON.stringify(body)).not.toMatch(
+      /source|license|reviewStatus|publishStatus/i,
+    );
+    expect(listPublished).toHaveBeenCalledWith(
+      expect.objectContaining({
+        taxonomyNodeId: 'workplace-meetings',
+        skip: 0,
+        take: 20,
+      }),
+    );
+  });
+
+  it('does not query items for a non-public taxonomy node', async () => {
+    await app.close();
+    const listPublished = jest.fn();
+    const itemRepository: VocabularyItemRepository = {
+      listPublished,
+      countPublished: jest.fn(),
+    };
+    app = await createApp(undefined, undefined, itemRepository);
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/vocabulary/items?taxonomyNodeId=not-public')
+      .expect(404);
+    expect((response.body as ApiEnvelope).error?.code).toBe(
+      'RESOURCE_NOT_FOUND',
+    );
+    expect(listPublished).not.toHaveBeenCalled();
   });
 
   it('combines vocabulary track and skill filters', async () => {

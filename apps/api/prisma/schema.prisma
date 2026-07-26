@@ -188,6 +188,26 @@ model GovernedSentence {
   @@index([reviewStatus, publishStatus, publishedAt])
 }
 
+model GovernedVocabularyItem {
+  id             String   @id
+  taxonomyNodeId String
+  word           String
+  meaning        String
+  example        String?
+  pronunciation  String?
+  source         String
+  license        String
+  reviewStatus   String
+  reviewedAt     DateTime
+  publishStatus  String
+  publishedAt    DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([taxonomyNodeId, reviewStatus, publishStatus, publishedAt])
+  @@index([word])
+}
+
 model DailySentenceCompletion {
   id             String   @id @default(cuid())
   userId         String
