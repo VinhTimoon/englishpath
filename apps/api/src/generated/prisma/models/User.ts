@@ -215,6 +215,8 @@ export type UserWhereInput = {
   learnerProgress?: Prisma.XOR<Prisma.LearnerProgressNullableScalarRelationFilter, Prisma.LearnerProgressWhereInput> | null
   errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter
   dailySentenceCompletions?: Prisma.DailySentenceCompletionListRelationFilter
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateListRelationFilter
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -236,6 +238,8 @@ export type UserOrderByWithRelationInput = {
   learnerProgress?: Prisma.LearnerProgressOrderByWithRelationInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryOrderByRelationAggregateInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionOrderByRelationAggregateInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateOrderByRelationAggregateInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -261,6 +265,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   learnerProgress?: Prisma.XOR<Prisma.LearnerProgressNullableScalarRelationFilter, Prisma.LearnerProgressWhereInput> | null
   errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter
   dailySentenceCompletions?: Prisma.DailySentenceCompletionListRelationFilter
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateListRelationFilter
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter
 }, "id" | "email" | "authProvider_externalSubject">
 
 export type UserOrderByWithAggregationInput = {
@@ -310,6 +316,8 @@ export type UserCreateInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -331,6 +339,8 @@ export type UserUncheckedCreateInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -352,6 +362,8 @@ export type UserUpdateInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -373,6 +385,8 @@ export type UserUncheckedUpdateInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -588,6 +602,34 @@ export type UserUpdateOneRequiredWithoutDailySentenceCompletionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDailySentenceCompletionsInput, Prisma.UserUpdateWithoutDailySentenceCompletionsInput>, Prisma.UserUncheckedUpdateWithoutDailySentenceCompletionsInput>
 }
 
+export type UserCreateNestedOneWithoutVocabularyMasteryStatesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyMasteryStatesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutVocabularyMasteryStatesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyMasteryStatesInput
+  upsert?: Prisma.UserUpsertWithoutVocabularyMasteryStatesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVocabularyMasteryStatesInput, Prisma.UserUpdateWithoutVocabularyMasteryStatesInput>, Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput>
+}
+
+export type UserCreateNestedOneWithoutVocabularyReviewSubmissionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutVocabularyReviewSubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput
+  upsert?: Prisma.UserUpsertWithoutVocabularyReviewSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVocabularyReviewSubmissionsInput, Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput>
+}
+
 export type UserCreateNestedOneWithoutRoleAssignmentsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsInput
@@ -636,6 +678,8 @@ export type UserCreateWithoutOnboardingInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOnboardingInput = {
@@ -656,6 +700,8 @@ export type UserUncheckedCreateWithoutOnboardingInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOnboardingInput = {
@@ -692,6 +738,8 @@ export type UserUpdateWithoutOnboardingInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOnboardingInput = {
@@ -712,6 +760,8 @@ export type UserUncheckedUpdateWithoutOnboardingInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPlacementAttemptsInput = {
@@ -732,6 +782,8 @@ export type UserCreateWithoutPlacementAttemptsInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
@@ -752,6 +804,8 @@ export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPlacementAttemptsInput = {
@@ -788,6 +842,8 @@ export type UserUpdateWithoutPlacementAttemptsInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
@@ -808,6 +864,8 @@ export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRoadmapsInput = {
@@ -828,6 +886,8 @@ export type UserCreateWithoutRoadmapsInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRoadmapsInput = {
@@ -848,6 +908,8 @@ export type UserUncheckedCreateWithoutRoadmapsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRoadmapsInput = {
@@ -884,6 +946,8 @@ export type UserUpdateWithoutRoadmapsInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoadmapsInput = {
@@ -904,6 +968,8 @@ export type UserUncheckedUpdateWithoutRoadmapsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPracticeSessionsInput = {
@@ -924,6 +990,8 @@ export type UserCreateWithoutPracticeSessionsInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPracticeSessionsInput = {
@@ -944,6 +1012,8 @@ export type UserUncheckedCreateWithoutPracticeSessionsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPracticeSessionsInput = {
@@ -980,6 +1050,8 @@ export type UserUpdateWithoutPracticeSessionsInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
@@ -1000,6 +1072,8 @@ export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutLearnerProgressInput = {
@@ -1020,6 +1094,8 @@ export type UserCreateWithoutLearnerProgressInput = {
   practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLearnerProgressInput = {
@@ -1040,6 +1116,8 @@ export type UserUncheckedCreateWithoutLearnerProgressInput = {
   practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLearnerProgressInput = {
@@ -1076,6 +1154,8 @@ export type UserUpdateWithoutLearnerProgressInput = {
   practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLearnerProgressInput = {
@@ -1096,6 +1176,8 @@ export type UserUncheckedUpdateWithoutLearnerProgressInput = {
   practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutErrorNotebookEntriesInput = {
@@ -1116,6 +1198,8 @@ export type UserCreateWithoutErrorNotebookEntriesInput = {
   practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutErrorNotebookEntriesInput = {
@@ -1136,6 +1220,8 @@ export type UserUncheckedCreateWithoutErrorNotebookEntriesInput = {
   practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutErrorNotebookEntriesInput = {
@@ -1172,6 +1258,8 @@ export type UserUpdateWithoutErrorNotebookEntriesInput = {
   practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutErrorNotebookEntriesInput = {
@@ -1192,6 +1280,8 @@ export type UserUncheckedUpdateWithoutErrorNotebookEntriesInput = {
   practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProfileInput = {
@@ -1212,6 +1302,8 @@ export type UserCreateWithoutProfileInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -1232,6 +1324,8 @@ export type UserUncheckedCreateWithoutProfileInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -1268,6 +1362,8 @@ export type UserUpdateWithoutProfileInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -1288,6 +1384,8 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDailySentenceCompletionsInput = {
@@ -1308,6 +1406,8 @@ export type UserCreateWithoutDailySentenceCompletionsInput = {
   practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDailySentenceCompletionsInput = {
@@ -1328,6 +1428,8 @@ export type UserUncheckedCreateWithoutDailySentenceCompletionsInput = {
   practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDailySentenceCompletionsInput = {
@@ -1364,6 +1466,8 @@ export type UserUpdateWithoutDailySentenceCompletionsInput = {
   practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDailySentenceCompletionsInput = {
@@ -1384,6 +1488,216 @@ export type UserUncheckedUpdateWithoutDailySentenceCompletionsInput = {
   practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutVocabularyMasteryStatesInput = {
+  id?: string
+  email: string
+  legacyName?: string | null
+  authProvider?: $Enums.IdentityProvider
+  externalSubject?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutVocabularyMasteryStatesInput = {
+  id?: string
+  email: string
+  legacyName?: string | null
+  authProvider?: $Enums.IdentityProvider
+  externalSubject?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutVocabularyMasteryStatesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
+}
+
+export type UserUpsertWithoutVocabularyMasteryStatesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutVocabularyMasteryStatesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput>
+}
+
+export type UserUpdateWithoutVocabularyMasteryStatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
+  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutVocabularyMasteryStatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
+  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutVocabularyReviewSubmissionsInput = {
+  id?: string
+  email: string
+  legacyName?: string | null
+  authProvider?: $Enums.IdentityProvider
+  externalSubject?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput = {
+  id?: string
+  email: string
+  legacyName?: string | null
+  authProvider?: $Enums.IdentityProvider
+  externalSubject?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
+}
+
+export type UserUpsertWithoutVocabularyReviewSubmissionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutVocabularyReviewSubmissionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput>
+}
+
+export type UserUpdateWithoutVocabularyReviewSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
+  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
+  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRoleAssignmentsInput = {
@@ -1404,6 +1718,8 @@ export type UserCreateWithoutRoleAssignmentsInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
@@ -1424,6 +1740,8 @@ export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRoleAssignmentsInput = {
@@ -1449,6 +1767,8 @@ export type UserCreateWithoutRoleAssignmentsAuthoredInput = {
   learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
@@ -1469,6 +1789,8 @@ export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput = {
@@ -1505,6 +1827,8 @@ export type UserUpdateWithoutRoleAssignmentsInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
@@ -1525,6 +1849,8 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutRoleAssignmentsAuthoredInput = {
@@ -1556,6 +1882,8 @@ export type UserUpdateWithoutRoleAssignmentsAuthoredInput = {
   learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
@@ -1576,6 +1904,8 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
   learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
   errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
   dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1591,6 +1921,8 @@ export type UserCountOutputType = {
   practiceSessions: number
   errorNotebookEntries: number
   dailySentenceCompletions: number
+  vocabularyMasteryStates: number
+  vocabularyReviewSubmissions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1601,6 +1933,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   practiceSessions?: boolean | UserCountOutputTypeCountPracticeSessionsArgs
   errorNotebookEntries?: boolean | UserCountOutputTypeCountErrorNotebookEntriesArgs
   dailySentenceCompletions?: boolean | UserCountOutputTypeCountDailySentenceCompletionsArgs
+  vocabularyMasteryStates?: boolean | UserCountOutputTypeCountVocabularyMasteryStatesArgs
+  vocabularyReviewSubmissions?: boolean | UserCountOutputTypeCountVocabularyReviewSubmissionsArgs
 }
 
 /**
@@ -1662,6 +1996,20 @@ export type UserCountOutputTypeCountDailySentenceCompletionsArgs<ExtArgs extends
   where?: Prisma.DailySentenceCompletionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountVocabularyMasteryStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VocabularyMasteryStateWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountVocabularyReviewSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VocabularyReviewSubmissionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1682,6 +2030,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>
   errorNotebookEntries?: boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>
   dailySentenceCompletions?: boolean | Prisma.User$dailySentenceCompletionsArgs<ExtArgs>
+  vocabularyMasteryStates?: boolean | Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>
+  vocabularyReviewSubmissions?: boolean | Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1730,6 +2080,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>
   errorNotebookEntries?: boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>
   dailySentenceCompletions?: boolean | Prisma.User$dailySentenceCompletionsArgs<ExtArgs>
+  vocabularyMasteryStates?: boolean | Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>
+  vocabularyReviewSubmissions?: boolean | Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1748,6 +2100,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     learnerProgress: Prisma.$LearnerProgressPayload<ExtArgs> | null
     errorNotebookEntries: Prisma.$ErrorNotebookEntryPayload<ExtArgs>[]
     dailySentenceCompletions: Prisma.$DailySentenceCompletionPayload<ExtArgs>[]
+    vocabularyMasteryStates: Prisma.$VocabularyMasteryStatePayload<ExtArgs>[]
+    vocabularyReviewSubmissions: Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2162,6 +2516,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   learnerProgress<T extends Prisma.User$learnerProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$learnerProgressArgs<ExtArgs>>): Prisma.Prisma__LearnerProgressClient<runtime.Types.Result.GetResult<Prisma.$LearnerProgressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   errorNotebookEntries<T extends Prisma.User$errorNotebookEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$errorNotebookEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ErrorNotebookEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dailySentenceCompletions<T extends Prisma.User$dailySentenceCompletionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$dailySentenceCompletionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DailySentenceCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vocabularyMasteryStates<T extends Prisma.User$vocabularyMasteryStatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyMasteryStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vocabularyReviewSubmissions<T extends Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2814,6 +3170,54 @@ export type User$dailySentenceCompletionsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.DailySentenceCompletionScalarFieldEnum | Prisma.DailySentenceCompletionScalarFieldEnum[]
+}
+
+/**
+ * User.vocabularyMasteryStates
+ */
+export type User$vocabularyMasteryStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VocabularyMasteryState
+   */
+  select?: Prisma.VocabularyMasteryStateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VocabularyMasteryState
+   */
+  omit?: Prisma.VocabularyMasteryStateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VocabularyMasteryStateInclude<ExtArgs> | null
+  where?: Prisma.VocabularyMasteryStateWhereInput
+  orderBy?: Prisma.VocabularyMasteryStateOrderByWithRelationInput | Prisma.VocabularyMasteryStateOrderByWithRelationInput[]
+  cursor?: Prisma.VocabularyMasteryStateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VocabularyMasteryStateScalarFieldEnum | Prisma.VocabularyMasteryStateScalarFieldEnum[]
+}
+
+/**
+ * User.vocabularyReviewSubmissions
+ */
+export type User$vocabularyReviewSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VocabularyReviewSubmission
+   */
+  select?: Prisma.VocabularyReviewSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VocabularyReviewSubmission
+   */
+  omit?: Prisma.VocabularyReviewSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VocabularyReviewSubmissionInclude<ExtArgs> | null
+  where?: Prisma.VocabularyReviewSubmissionWhereInput
+  orderBy?: Prisma.VocabularyReviewSubmissionOrderByWithRelationInput | Prisma.VocabularyReviewSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.VocabularyReviewSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VocabularyReviewSubmissionScalarFieldEnum | Prisma.VocabularyReviewSubmissionScalarFieldEnum[]
 }
 
 /**

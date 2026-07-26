@@ -104,6 +104,16 @@ export type GovernedVocabularyItem = Prisma.GovernedVocabularyItemModel
  */
 export type DailySentenceCompletion = Prisma.DailySentenceCompletionModel
 /**
+ * Model VocabularyMasteryState
+ * 
+ */
+export type VocabularyMasteryState = Prisma.VocabularyMasteryStateModel
+/**
+ * Model VocabularyReviewSubmission
+ * 
+ */
+export type VocabularyReviewSubmission = Prisma.VocabularyReviewSubmissionModel
+/**
  * Model Role
  * 
  */

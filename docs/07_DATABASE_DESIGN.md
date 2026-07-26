@@ -36,6 +36,19 @@ This additive migration deliberately has no foreign key to the current in-memory
 taxonomy fixture; a later taxonomy-CMS story must introduce that relationship without
 rekeying learner mastery. The seed consists of five EnglishPath-authored CC0 fixtures.
 Manual rollback is owner-approved only: drop `GovernedVocabularyItem` and its indexes;
+
+### EP1-ST018 Vocabulary SRS and mastery
+
+`VocabularyMasteryState` stores one owner-scoped scheduling row per
+`(userId, vocabularyId)`. Its due-query index is `(userId, nextReviewAt,
+vocabularyId)` so queue ordering is deterministic. `VocabularyReviewSubmission`
+stores the bounded recall quality and server-produced result for one
+`(userId, vocabularyId, clientSubmissionId)`; the unique constraint makes retries
+replayable and protects the transition from duplicate awards.
+
+The `20260727123000_vocabulary_srs` migration is additive. Manual rollback is
+owner-approved only: remove the submission foreign keys/index/table, then the
+mastery foreign keys/index/table, preserving all existing vocabulary and user rows.
 automation must never execute it against Supabase.
 
 | Domain                            | Canonical Owner                   | Key Relationships                                                            | Lifecycle                                                            | Security Boundary                                                          |

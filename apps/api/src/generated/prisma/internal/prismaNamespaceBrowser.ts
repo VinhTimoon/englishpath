@@ -63,6 +63,8 @@ export const ModelName = {
   GovernedSentence: 'GovernedSentence',
   GovernedVocabularyItem: 'GovernedVocabularyItem',
   DailySentenceCompletion: 'DailySentenceCompletion',
+  VocabularyMasteryState: 'VocabularyMasteryState',
+  VocabularyReviewSubmission: 'VocabularyReviewSubmission',
   Role: 'Role',
   UserRole: 'UserRole'
 } as const
@@ -278,6 +280,35 @@ export const DailySentenceCompletionScalarFieldEnum = {
 } as const
 
 export type DailySentenceCompletionScalarFieldEnum = (typeof DailySentenceCompletionScalarFieldEnum)[keyof typeof DailySentenceCompletionScalarFieldEnum]
+
+
+export const VocabularyMasteryStateScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  vocabularyId: 'vocabularyId',
+  mastery: 'mastery',
+  repetitions: 'repetitions',
+  intervalDays: 'intervalDays',
+  nextReviewAt: 'nextReviewAt',
+  lastReviewedAt: 'lastReviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VocabularyMasteryStateScalarFieldEnum = (typeof VocabularyMasteryStateScalarFieldEnum)[keyof typeof VocabularyMasteryStateScalarFieldEnum]
+
+
+export const VocabularyReviewSubmissionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  vocabularyId: 'vocabularyId',
+  clientSubmissionId: 'clientSubmissionId',
+  quality: 'quality',
+  result: 'result',
+  createdAt: 'createdAt'
+} as const
+
+export type VocabularyReviewSubmissionScalarFieldEnum = (typeof VocabularyReviewSubmissionScalarFieldEnum)[keyof typeof VocabularyReviewSubmissionScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {

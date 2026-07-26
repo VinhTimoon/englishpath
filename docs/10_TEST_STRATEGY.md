@@ -158,6 +158,15 @@ Report commands that were skipped or unavailable; never claim they passed.
 - API E2E tests override Prisma and prove that unpublished content is not returned,
   pagination remains stable, and a non-public taxonomy node is sanitized as not found.
 
+## Vocabulary SRS Tests
+
+- Service tests verify owner-derived user IDs, bounded quality behavior, server-owned
+  mastery/scheduling, missing optional media, unknown/unpublished item rejection,
+  duplicate replay, and conflicting replay.
+- Repository/API E2E tests verify authenticated due queues, empty queues,
+  `(nextReviewAt, vocabularyId)` ordering, ownership isolation, validation, and
+  concurrent idempotency through mocked Prisma and identity boundaries.
+
 ## Authentication Tests
 
 Auth tests generate local asymmetric keys and never use live Supabase, credentials,

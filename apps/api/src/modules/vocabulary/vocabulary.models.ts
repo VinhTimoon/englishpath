@@ -93,6 +93,7 @@ export interface VocabularyItemRepository {
 
 export const VOCABULARY_REPOSITORY = Symbol('VOCABULARY_REPOSITORY');
 export const VOCABULARY_ITEM_REPOSITORY = Symbol('VOCABULARY_ITEM_REPOSITORY');
+export const VOCABULARY_SRS_REPOSITORY = Symbol('VOCABULARY_SRS_REPOSITORY');
 
 export function deepFreezeVocabulary<T>(value: T): T {
   if (!value || typeof value !== 'object' || Object.isFrozen(value)) {

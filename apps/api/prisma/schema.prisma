@@ -27,6 +27,8 @@ model User {
   learnerProgress         LearnerProgress?
   errorNotebookEntries    ErrorNotebookEntry[]
   dailySentenceCompletions DailySentenceCompletion[]
+  vocabularyMasteryStates VocabularyMasteryState[]
+  vocabularyReviewSubmissions VocabularyReviewSubmission[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -203,6 +205,8 @@ model GovernedVocabularyItem {
   publishedAt    DateTime
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  masteryStates  VocabularyMasteryState[]
+  reviewSubmissions VocabularyReviewSubmission[]
 
   @@index([taxonomyNodeId, reviewStatus, publishStatus, publishedAt])
   @@index([word])
@@ -223,6 +227,39 @@ model DailySentenceCompletion {
   @@unique([userId, localDate])
   @@index([userId, localDate])
   @@index([sentenceId])
+}
+
+model VocabularyMasteryState {
+  id             String                 @id @default(cuid())
+  userId         String
+  vocabularyId   String
+  mastery        Int                    @default(0)
+  repetitions    Int                    @default(0)
+  intervalDays   Int                    @default(0)
+  nextReviewAt   DateTime               @default(now())
+  lastReviewedAt DateTime?
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  user           User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabulary     GovernedVocabularyItem @relation(fields: [vocabularyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, vocabularyId])
+  @@index([userId, nextReviewAt, vocabularyId])
+}
+
+model VocabularyReviewSubmission {
+  id                 String                 @id @default(cuid())
+  userId             String
+  vocabularyId       String
+  clientSubmissionId String
+  quality            Int
+  result             Json
+  createdAt          DateTime               @default(now())
+  user               User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vocabulary         GovernedVocabularyItem @relation(fields: [vocabularyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, vocabularyId, clientSubmissionId])
+  @@index([userId, createdAt])
 }
 
 model Role {

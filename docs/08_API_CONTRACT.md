@@ -200,6 +200,19 @@ as proof that an actor is human or has review/publish permission.
   eligible. A missing, private, or unknown taxonomy node returns `RESOURCE_NOT_FOUND`.
 - The standard vocabulary correlation/idempotency metadata and sanitized error envelope
   apply to this endpoint.
+
+## Vocabulary SRS Endpoints
+
+- `GET /api/v1/vocabulary/reviews/due?limit=` requires authenticated application
+  identity. `limit` is allowlisted from 1 through 50, defaults to 20, and returns
+  the caller's due published items ordered by `(nextReviewAt, vocabularyId)`.
+- `POST /api/v1/vocabulary/reviews/:vocabularyId` accepts only `{quality,
+  clientSubmissionId}`, where quality is 0 through 3. Mastery, repetitions,
+  interval, and next-review time are calculated and persisted by the server.
+- A repeated owner/item/submission identifier with the same quality returns the
+  original result with `idempotencyStatus: replayed`; a different quality returns
+  `IDEMPOTENCY_CONFLICT`. Learner state is never included in public taxonomy or
+  item responses, and absent example/pronunciation values are returned as null.
 ## Authenticated Profile
 
 - `GET /api/v1/profile` returns the authenticated application's minimal profile.

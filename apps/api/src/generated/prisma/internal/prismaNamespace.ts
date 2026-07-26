@@ -396,6 +396,8 @@ export const ModelName = {
   GovernedSentence: 'GovernedSentence',
   GovernedVocabularyItem: 'GovernedVocabularyItem',
   DailySentenceCompletion: 'DailySentenceCompletion',
+  VocabularyMasteryState: 'VocabularyMasteryState',
+  VocabularyReviewSubmission: 'VocabularyReviewSubmission',
   Role: 'Role',
   UserRole: 'UserRole'
 } as const
@@ -413,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "learnerOnboarding" | "placementAttempt" | "roadmap" | "roadmapItem" | "practiceSession" | "practiceAnswer" | "learnerProgress" | "errorNotebookEntry" | "userProfile" | "governedSentence" | "governedVocabularyItem" | "dailySentenceCompletion" | "role" | "userRole"
+    modelProps: "user" | "learnerOnboarding" | "placementAttempt" | "roadmap" | "roadmapItem" | "practiceSession" | "practiceAnswer" | "learnerProgress" | "errorNotebookEntry" | "userProfile" | "governedSentence" | "governedVocabularyItem" | "dailySentenceCompletion" | "vocabularyMasteryState" | "vocabularyReviewSubmission" | "role" | "userRole"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1379,6 +1381,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    VocabularyMasteryState: {
+      payload: Prisma.$VocabularyMasteryStatePayload<ExtArgs>
+      fields: Prisma.VocabularyMasteryStateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VocabularyMasteryStateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VocabularyMasteryStateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>
+        }
+        findFirst: {
+          args: Prisma.VocabularyMasteryStateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VocabularyMasteryStateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>
+        }
+        findMany: {
+          args: Prisma.VocabularyMasteryStateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>[]
+        }
+        create: {
+          args: Prisma.VocabularyMasteryStateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>
+        }
+        createMany: {
+          args: Prisma.VocabularyMasteryStateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VocabularyMasteryStateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>[]
+        }
+        delete: {
+          args: Prisma.VocabularyMasteryStateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>
+        }
+        update: {
+          args: Prisma.VocabularyMasteryStateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>
+        }
+        deleteMany: {
+          args: Prisma.VocabularyMasteryStateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VocabularyMasteryStateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VocabularyMasteryStateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>[]
+        }
+        upsert: {
+          args: Prisma.VocabularyMasteryStateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyMasteryStatePayload>
+        }
+        aggregate: {
+          args: Prisma.VocabularyMasteryStateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVocabularyMasteryState>
+        }
+        groupBy: {
+          args: Prisma.VocabularyMasteryStateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VocabularyMasteryStateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VocabularyMasteryStateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VocabularyMasteryStateCountAggregateOutputType> | number
+        }
+      }
+    }
+    VocabularyReviewSubmission: {
+      payload: Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>
+      fields: Prisma.VocabularyReviewSubmissionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VocabularyReviewSubmissionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VocabularyReviewSubmissionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>
+        }
+        findFirst: {
+          args: Prisma.VocabularyReviewSubmissionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VocabularyReviewSubmissionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>
+        }
+        findMany: {
+          args: Prisma.VocabularyReviewSubmissionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>[]
+        }
+        create: {
+          args: Prisma.VocabularyReviewSubmissionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>
+        }
+        createMany: {
+          args: Prisma.VocabularyReviewSubmissionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VocabularyReviewSubmissionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>[]
+        }
+        delete: {
+          args: Prisma.VocabularyReviewSubmissionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>
+        }
+        update: {
+          args: Prisma.VocabularyReviewSubmissionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>
+        }
+        deleteMany: {
+          args: Prisma.VocabularyReviewSubmissionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VocabularyReviewSubmissionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VocabularyReviewSubmissionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>[]
+        }
+        upsert: {
+          args: Prisma.VocabularyReviewSubmissionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VocabularyReviewSubmissionPayload>
+        }
+        aggregate: {
+          args: Prisma.VocabularyReviewSubmissionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVocabularyReviewSubmission>
+        }
+        groupBy: {
+          args: Prisma.VocabularyReviewSubmissionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VocabularyReviewSubmissionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VocabularyReviewSubmissionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VocabularyReviewSubmissionCountAggregateOutputType> | number
+        }
+      }
+    }
     Role: {
       payload: Prisma.$RolePayload<ExtArgs>
       fields: Prisma.RoleFieldRefs
@@ -1761,6 +1911,35 @@ export const DailySentenceCompletionScalarFieldEnum = {
 } as const
 
 export type DailySentenceCompletionScalarFieldEnum = (typeof DailySentenceCompletionScalarFieldEnum)[keyof typeof DailySentenceCompletionScalarFieldEnum]
+
+
+export const VocabularyMasteryStateScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  vocabularyId: 'vocabularyId',
+  mastery: 'mastery',
+  repetitions: 'repetitions',
+  intervalDays: 'intervalDays',
+  nextReviewAt: 'nextReviewAt',
+  lastReviewedAt: 'lastReviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VocabularyMasteryStateScalarFieldEnum = (typeof VocabularyMasteryStateScalarFieldEnum)[keyof typeof VocabularyMasteryStateScalarFieldEnum]
+
+
+export const VocabularyReviewSubmissionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  vocabularyId: 'vocabularyId',
+  clientSubmissionId: 'clientSubmissionId',
+  quality: 'quality',
+  result: 'result',
+  createdAt: 'createdAt'
+} as const
+
+export type VocabularyReviewSubmissionScalarFieldEnum = (typeof VocabularyReviewSubmissionScalarFieldEnum)[keyof typeof VocabularyReviewSubmissionScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {
@@ -2184,6 +2363,8 @@ export type GlobalOmitConfig = {
   governedSentence?: Prisma.GovernedSentenceOmit
   governedVocabularyItem?: Prisma.GovernedVocabularyItemOmit
   dailySentenceCompletion?: Prisma.DailySentenceCompletionOmit
+  vocabularyMasteryState?: Prisma.VocabularyMasteryStateOmit
+  vocabularyReviewSubmission?: Prisma.VocabularyReviewSubmissionOmit
   role?: Prisma.RoleOmit
   userRole?: Prisma.UserRoleOmit
 }

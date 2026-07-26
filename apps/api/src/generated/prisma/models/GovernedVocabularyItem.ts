@@ -253,6 +253,8 @@ export type GovernedVocabularyItemWhereInput = {
   publishedAt?: Prisma.DateTimeFilter<"GovernedVocabularyItem"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"GovernedVocabularyItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GovernedVocabularyItem"> | Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateListRelationFilter
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter
 }
 
 export type GovernedVocabularyItemOrderByWithRelationInput = {
@@ -270,6 +272,8 @@ export type GovernedVocabularyItemOrderByWithRelationInput = {
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  masteryStates?: Prisma.VocabularyMasteryStateOrderByRelationAggregateInput
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionOrderByRelationAggregateInput
 }
 
 export type GovernedVocabularyItemWhereUniqueInput = Prisma.AtLeast<{
@@ -290,6 +294,8 @@ export type GovernedVocabularyItemWhereUniqueInput = Prisma.AtLeast<{
   publishedAt?: Prisma.DateTimeFilter<"GovernedVocabularyItem"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"GovernedVocabularyItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GovernedVocabularyItem"> | Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateListRelationFilter
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter
 }, "id">
 
 export type GovernedVocabularyItemOrderByWithAggregationInput = {
@@ -347,6 +353,8 @@ export type GovernedVocabularyItemCreateInput = {
   publishedAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutVocabularyInput
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutVocabularyInput
 }
 
 export type GovernedVocabularyItemUncheckedCreateInput = {
@@ -364,6 +372,8 @@ export type GovernedVocabularyItemUncheckedCreateInput = {
   publishedAt: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutVocabularyInput
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutVocabularyInput
 }
 
 export type GovernedVocabularyItemUpdateInput = {
@@ -381,6 +391,8 @@ export type GovernedVocabularyItemUpdateInput = {
   publishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutVocabularyNestedInput
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutVocabularyNestedInput
 }
 
 export type GovernedVocabularyItemUncheckedUpdateInput = {
@@ -398,6 +410,8 @@ export type GovernedVocabularyItemUncheckedUpdateInput = {
   publishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutVocabularyNestedInput
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutVocabularyNestedInput
 }
 
 export type GovernedVocabularyItemCreateManyInput = {
@@ -502,6 +516,253 @@ export type GovernedVocabularyItemMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type GovernedVocabularyItemScalarRelationFilter = {
+  is?: Prisma.GovernedVocabularyItemWhereInput
+  isNot?: Prisma.GovernedVocabularyItemWhereInput
+}
+
+export type GovernedVocabularyItemCreateNestedOneWithoutMasteryStatesInput = {
+  create?: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutMasteryStatesInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutMasteryStatesInput>
+  connectOrCreate?: Prisma.GovernedVocabularyItemCreateOrConnectWithoutMasteryStatesInput
+  connect?: Prisma.GovernedVocabularyItemWhereUniqueInput
+}
+
+export type GovernedVocabularyItemUpdateOneRequiredWithoutMasteryStatesNestedInput = {
+  create?: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutMasteryStatesInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutMasteryStatesInput>
+  connectOrCreate?: Prisma.GovernedVocabularyItemCreateOrConnectWithoutMasteryStatesInput
+  upsert?: Prisma.GovernedVocabularyItemUpsertWithoutMasteryStatesInput
+  connect?: Prisma.GovernedVocabularyItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GovernedVocabularyItemUpdateToOneWithWhereWithoutMasteryStatesInput, Prisma.GovernedVocabularyItemUpdateWithoutMasteryStatesInput>, Prisma.GovernedVocabularyItemUncheckedUpdateWithoutMasteryStatesInput>
+}
+
+export type GovernedVocabularyItemCreateNestedOneWithoutReviewSubmissionsInput = {
+  create?: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutReviewSubmissionsInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutReviewSubmissionsInput>
+  connectOrCreate?: Prisma.GovernedVocabularyItemCreateOrConnectWithoutReviewSubmissionsInput
+  connect?: Prisma.GovernedVocabularyItemWhereUniqueInput
+}
+
+export type GovernedVocabularyItemUpdateOneRequiredWithoutReviewSubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutReviewSubmissionsInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutReviewSubmissionsInput>
+  connectOrCreate?: Prisma.GovernedVocabularyItemCreateOrConnectWithoutReviewSubmissionsInput
+  upsert?: Prisma.GovernedVocabularyItemUpsertWithoutReviewSubmissionsInput
+  connect?: Prisma.GovernedVocabularyItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GovernedVocabularyItemUpdateToOneWithWhereWithoutReviewSubmissionsInput, Prisma.GovernedVocabularyItemUpdateWithoutReviewSubmissionsInput>, Prisma.GovernedVocabularyItemUncheckedUpdateWithoutReviewSubmissionsInput>
+}
+
+export type GovernedVocabularyItemCreateWithoutMasteryStatesInput = {
+  id: string
+  taxonomyNodeId: string
+  word: string
+  meaning: string
+  example?: string | null
+  pronunciation?: string | null
+  source: string
+  license: string
+  reviewStatus: string
+  reviewedAt: Date | string
+  publishStatus: string
+  publishedAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutVocabularyInput
+}
+
+export type GovernedVocabularyItemUncheckedCreateWithoutMasteryStatesInput = {
+  id: string
+  taxonomyNodeId: string
+  word: string
+  meaning: string
+  example?: string | null
+  pronunciation?: string | null
+  source: string
+  license: string
+  reviewStatus: string
+  reviewedAt: Date | string
+  publishStatus: string
+  publishedAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutVocabularyInput
+}
+
+export type GovernedVocabularyItemCreateOrConnectWithoutMasteryStatesInput = {
+  where: Prisma.GovernedVocabularyItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutMasteryStatesInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutMasteryStatesInput>
+}
+
+export type GovernedVocabularyItemUpsertWithoutMasteryStatesInput = {
+  update: Prisma.XOR<Prisma.GovernedVocabularyItemUpdateWithoutMasteryStatesInput, Prisma.GovernedVocabularyItemUncheckedUpdateWithoutMasteryStatesInput>
+  create: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutMasteryStatesInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutMasteryStatesInput>
+  where?: Prisma.GovernedVocabularyItemWhereInput
+}
+
+export type GovernedVocabularyItemUpdateToOneWithWhereWithoutMasteryStatesInput = {
+  where?: Prisma.GovernedVocabularyItemWhereInput
+  data: Prisma.XOR<Prisma.GovernedVocabularyItemUpdateWithoutMasteryStatesInput, Prisma.GovernedVocabularyItemUncheckedUpdateWithoutMasteryStatesInput>
+}
+
+export type GovernedVocabularyItemUpdateWithoutMasteryStatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  taxonomyNodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  word?: Prisma.StringFieldUpdateOperationsInput | string
+  meaning?: Prisma.StringFieldUpdateOperationsInput | string
+  example?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronunciation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.StringFieldUpdateOperationsInput | string
+  license?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  publishStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutVocabularyNestedInput
+}
+
+export type GovernedVocabularyItemUncheckedUpdateWithoutMasteryStatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  taxonomyNodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  word?: Prisma.StringFieldUpdateOperationsInput | string
+  meaning?: Prisma.StringFieldUpdateOperationsInput | string
+  example?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronunciation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.StringFieldUpdateOperationsInput | string
+  license?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  publishStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutVocabularyNestedInput
+}
+
+export type GovernedVocabularyItemCreateWithoutReviewSubmissionsInput = {
+  id: string
+  taxonomyNodeId: string
+  word: string
+  meaning: string
+  example?: string | null
+  pronunciation?: string | null
+  source: string
+  license: string
+  reviewStatus: string
+  reviewedAt: Date | string
+  publishStatus: string
+  publishedAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutVocabularyInput
+}
+
+export type GovernedVocabularyItemUncheckedCreateWithoutReviewSubmissionsInput = {
+  id: string
+  taxonomyNodeId: string
+  word: string
+  meaning: string
+  example?: string | null
+  pronunciation?: string | null
+  source: string
+  license: string
+  reviewStatus: string
+  reviewedAt: Date | string
+  publishStatus: string
+  publishedAt: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutVocabularyInput
+}
+
+export type GovernedVocabularyItemCreateOrConnectWithoutReviewSubmissionsInput = {
+  where: Prisma.GovernedVocabularyItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutReviewSubmissionsInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutReviewSubmissionsInput>
+}
+
+export type GovernedVocabularyItemUpsertWithoutReviewSubmissionsInput = {
+  update: Prisma.XOR<Prisma.GovernedVocabularyItemUpdateWithoutReviewSubmissionsInput, Prisma.GovernedVocabularyItemUncheckedUpdateWithoutReviewSubmissionsInput>
+  create: Prisma.XOR<Prisma.GovernedVocabularyItemCreateWithoutReviewSubmissionsInput, Prisma.GovernedVocabularyItemUncheckedCreateWithoutReviewSubmissionsInput>
+  where?: Prisma.GovernedVocabularyItemWhereInput
+}
+
+export type GovernedVocabularyItemUpdateToOneWithWhereWithoutReviewSubmissionsInput = {
+  where?: Prisma.GovernedVocabularyItemWhereInput
+  data: Prisma.XOR<Prisma.GovernedVocabularyItemUpdateWithoutReviewSubmissionsInput, Prisma.GovernedVocabularyItemUncheckedUpdateWithoutReviewSubmissionsInput>
+}
+
+export type GovernedVocabularyItemUpdateWithoutReviewSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  taxonomyNodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  word?: Prisma.StringFieldUpdateOperationsInput | string
+  meaning?: Prisma.StringFieldUpdateOperationsInput | string
+  example?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronunciation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.StringFieldUpdateOperationsInput | string
+  license?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  publishStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutVocabularyNestedInput
+}
+
+export type GovernedVocabularyItemUncheckedUpdateWithoutReviewSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  taxonomyNodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  word?: Prisma.StringFieldUpdateOperationsInput | string
+  meaning?: Prisma.StringFieldUpdateOperationsInput | string
+  example?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronunciation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  source?: Prisma.StringFieldUpdateOperationsInput | string
+  license?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  publishStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  masteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutVocabularyNestedInput
+}
+
+
+/**
+ * Count Type GovernedVocabularyItemCountOutputType
+ */
+
+export type GovernedVocabularyItemCountOutputType = {
+  masteryStates: number
+  reviewSubmissions: number
+}
+
+export type GovernedVocabularyItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  masteryStates?: boolean | GovernedVocabularyItemCountOutputTypeCountMasteryStatesArgs
+  reviewSubmissions?: boolean | GovernedVocabularyItemCountOutputTypeCountReviewSubmissionsArgs
+}
+
+/**
+ * GovernedVocabularyItemCountOutputType without action
+ */
+export type GovernedVocabularyItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GovernedVocabularyItemCountOutputType
+   */
+  select?: Prisma.GovernedVocabularyItemCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * GovernedVocabularyItemCountOutputType without action
+ */
+export type GovernedVocabularyItemCountOutputTypeCountMasteryStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VocabularyMasteryStateWhereInput
+}
+
+/**
+ * GovernedVocabularyItemCountOutputType without action
+ */
+export type GovernedVocabularyItemCountOutputTypeCountReviewSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VocabularyReviewSubmissionWhereInput
+}
 
 
 export type GovernedVocabularyItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -519,6 +780,9 @@ export type GovernedVocabularyItemSelect<ExtArgs extends runtime.Types.Extension
   publishedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  masteryStates?: boolean | Prisma.GovernedVocabularyItem$masteryStatesArgs<ExtArgs>
+  reviewSubmissions?: boolean | Prisma.GovernedVocabularyItem$reviewSubmissionsArgs<ExtArgs>
+  _count?: boolean | Prisma.GovernedVocabularyItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["governedVocabularyItem"]>
 
 export type GovernedVocabularyItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -573,10 +837,20 @@ export type GovernedVocabularyItemSelectScalar = {
 }
 
 export type GovernedVocabularyItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "taxonomyNodeId" | "word" | "meaning" | "example" | "pronunciation" | "source" | "license" | "reviewStatus" | "reviewedAt" | "publishStatus" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["governedVocabularyItem"]>
+export type GovernedVocabularyItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  masteryStates?: boolean | Prisma.GovernedVocabularyItem$masteryStatesArgs<ExtArgs>
+  reviewSubmissions?: boolean | Prisma.GovernedVocabularyItem$reviewSubmissionsArgs<ExtArgs>
+  _count?: boolean | Prisma.GovernedVocabularyItemCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type GovernedVocabularyItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type GovernedVocabularyItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $GovernedVocabularyItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "GovernedVocabularyItem"
-  objects: {}
+  objects: {
+    masteryStates: Prisma.$VocabularyMasteryStatePayload<ExtArgs>[]
+    reviewSubmissions: Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     taxonomyNodeId: string
@@ -986,6 +1260,8 @@ readonly fields: GovernedVocabularyItemFieldRefs;
  */
 export interface Prisma__GovernedVocabularyItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  masteryStates<T extends Prisma.GovernedVocabularyItem$masteryStatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GovernedVocabularyItem$masteryStatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyMasteryStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewSubmissions<T extends Prisma.GovernedVocabularyItem$reviewSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GovernedVocabularyItem$reviewSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1046,6 +1322,10 @@ export type GovernedVocabularyItemFindUniqueArgs<ExtArgs extends runtime.Types.E
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
+  /**
    * Filter, which GovernedVocabularyItem to fetch.
    */
   where: Prisma.GovernedVocabularyItemWhereUniqueInput
@@ -1064,6 +1344,10 @@ export type GovernedVocabularyItemFindUniqueOrThrowArgs<ExtArgs extends runtime.
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
+  /**
    * Filter, which GovernedVocabularyItem to fetch.
    */
   where: Prisma.GovernedVocabularyItemWhereUniqueInput
@@ -1081,6 +1365,10 @@ export type GovernedVocabularyItemFindFirstArgs<ExtArgs extends runtime.Types.Ex
    * Omit specific fields from the GovernedVocabularyItem
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
   /**
    * Filter, which GovernedVocabularyItem to fetch.
    */
@@ -1130,6 +1418,10 @@ export type GovernedVocabularyItemFindFirstOrThrowArgs<ExtArgs extends runtime.T
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
+  /**
    * Filter, which GovernedVocabularyItem to fetch.
    */
   where?: Prisma.GovernedVocabularyItemWhereInput
@@ -1177,6 +1469,10 @@ export type GovernedVocabularyItemFindManyArgs<ExtArgs extends runtime.Types.Ext
    * Omit specific fields from the GovernedVocabularyItem
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
   /**
    * Filter, which GovernedVocabularyItems to fetch.
    */
@@ -1226,6 +1522,10 @@ export type GovernedVocabularyItemCreateArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
+  /**
    * The data needed to create a GovernedVocabularyItem.
    */
   data: Prisma.XOR<Prisma.GovernedVocabularyItemCreateInput, Prisma.GovernedVocabularyItemUncheckedCreateInput>
@@ -1273,6 +1573,10 @@ export type GovernedVocabularyItemUpdateArgs<ExtArgs extends runtime.Types.Exten
    * Omit specific fields from the GovernedVocabularyItem
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
   /**
    * The data needed to update a GovernedVocabularyItem.
    */
@@ -1340,6 +1644,10 @@ export type GovernedVocabularyItemUpsertArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
+  /**
    * The filter to search for the GovernedVocabularyItem to update in case it exists.
    */
   where: Prisma.GovernedVocabularyItemWhereUniqueInput
@@ -1366,6 +1674,10 @@ export type GovernedVocabularyItemDeleteArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
+  /**
    * Filter which GovernedVocabularyItem to delete.
    */
   where: Prisma.GovernedVocabularyItemWhereUniqueInput
@@ -1386,6 +1698,54 @@ export type GovernedVocabularyItemDeleteManyArgs<ExtArgs extends runtime.Types.E
 }
 
 /**
+ * GovernedVocabularyItem.masteryStates
+ */
+export type GovernedVocabularyItem$masteryStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VocabularyMasteryState
+   */
+  select?: Prisma.VocabularyMasteryStateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VocabularyMasteryState
+   */
+  omit?: Prisma.VocabularyMasteryStateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VocabularyMasteryStateInclude<ExtArgs> | null
+  where?: Prisma.VocabularyMasteryStateWhereInput
+  orderBy?: Prisma.VocabularyMasteryStateOrderByWithRelationInput | Prisma.VocabularyMasteryStateOrderByWithRelationInput[]
+  cursor?: Prisma.VocabularyMasteryStateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VocabularyMasteryStateScalarFieldEnum | Prisma.VocabularyMasteryStateScalarFieldEnum[]
+}
+
+/**
+ * GovernedVocabularyItem.reviewSubmissions
+ */
+export type GovernedVocabularyItem$reviewSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VocabularyReviewSubmission
+   */
+  select?: Prisma.VocabularyReviewSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VocabularyReviewSubmission
+   */
+  omit?: Prisma.VocabularyReviewSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VocabularyReviewSubmissionInclude<ExtArgs> | null
+  where?: Prisma.VocabularyReviewSubmissionWhereInput
+  orderBy?: Prisma.VocabularyReviewSubmissionOrderByWithRelationInput | Prisma.VocabularyReviewSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.VocabularyReviewSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VocabularyReviewSubmissionScalarFieldEnum | Prisma.VocabularyReviewSubmissionScalarFieldEnum[]
+}
+
+/**
  * GovernedVocabularyItem without action
  */
 export type GovernedVocabularyItemDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1397,4 +1757,8 @@ export type GovernedVocabularyItemDefaultArgs<ExtArgs extends runtime.Types.Exte
    * Omit specific fields from the GovernedVocabularyItem
    */
   omit?: Prisma.GovernedVocabularyItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GovernedVocabularyItemInclude<ExtArgs> | null
 }
