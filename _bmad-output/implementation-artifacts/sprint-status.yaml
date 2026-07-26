@@ -59,7 +59,7 @@ development_status:
   1-17-vocabulary-taxonomy-mindmap-api: done
   1-40-vocabulary-api-contract-and-adapter-hardening: done
   1-18-vocabulary-srs-and-mastery-api: ready-for-dev
-  1-50-vocabulary-item-foundation: done
+  1-50-vocabulary-item-foundation: review
   1-41-public-vocabulary-taxonomy-explorer-ui: done
   1-19-vocabulary-mindmap-item-and-review-ui: backlog
   # EP1-ST044 delivered the first usable subset; advanced work remains in 18/19/22/23.
