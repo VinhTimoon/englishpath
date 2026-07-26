@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-07-20T11:17:53.383Z
+# last_updated: 2026-07-26T00:00:00+07:00
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-07-20T11:17:53.383Z
+last_updated: 2026-07-26T00:00:00+07:00
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -87,7 +87,9 @@ development_status:
   1-44-bundled-daily-practice-progress-and-error-review: done
   1-45-persisted-owner-progress-summary: done
   1-46-private-error-notebook-view: done
-  1-47-daily-sentence-learning-bundle: review
+  1-47-daily-sentence-learning-bundle: done
+  1-48-format-gate-and-daily-sentence-closure: done
+  1-49-daily-sentence-assignment-integrity: done
   epic-1-retrospective: optional
 
   epic-2: backlog

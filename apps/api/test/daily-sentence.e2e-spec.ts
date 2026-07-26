@@ -41,6 +41,11 @@ describe('Daily Sentence API (e2e)', () => {
     ]),
     completion: jest.fn().mockResolvedValue(null),
     complete: jest.fn().mockResolvedValue({
+      sentence: {
+        id: 'ds-001',
+        prompt: 'Translate this idea: practise every morning.',
+        expectedAnswer: 'I practise every morning.',
+      },
       submittedAnswer: 'I practise every morning',
       isCorrect: true,
       feedback: 'Correct',
@@ -87,11 +92,29 @@ describe('Daily Sentence API (e2e)', () => {
       .mockReset()
       .mockResolvedValueOnce(null)
       .mockResolvedValueOnce({
+        sentence: {
+          id: 'ds-001',
+          prompt:
+            'Translate this idea into English: practise for a few minutes.',
+          expectedAnswer: 'I practise every morning.',
+        },
         submittedAnswer: 'I practise every morning',
         isCorrect: true,
         feedback: 'Saved',
         completedAt: new Date('2026-07-20T00:00:00Z'),
       });
+
+    repository.complete.mockResolvedValueOnce({
+      sentence: {
+        id: 'ds-001',
+        prompt: 'Translate this idea into English: practise for a few minutes.',
+        expectedAnswer: 'I practise every morning.',
+      },
+      submittedAnswer: 'I practise every morning',
+      isCorrect: true,
+      feedback: 'Saved',
+      completedAt: new Date('2026-07-20T00:00:00Z'),
+    });
 
     await request(app.getHttpServer())
       .post('/api/v1/daily-sentences/ds-001/submit')

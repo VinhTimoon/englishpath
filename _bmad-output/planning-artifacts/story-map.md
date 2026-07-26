@@ -72,7 +72,9 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST044`                | Bundled daily quiz session, immediate feedback, progress, streak, and error review       | `EP1-ST043`                |
 | `EP1-ST045`                | Persisted owner progress summary on the learner dashboard                                | `EP1-ST044`                |
 | `EP1-ST046`                | Private Error Notebook latest-errors API and learner review view                         | `EP1-ST044`                |
-| `EP1-ST047`                | Bundled governed Daily Sentence API, completion, content, and learner UI                  | `EP1-ST044`                |
+| `EP1-ST047`                | Bundled governed Daily Sentence API, completion, content, and learner UI                 | `EP1-ST044`                |
+| `EP1-ST048`                | Recover formatting gate and close the verified Daily Sentence bundle                     | `EP1-ST047`                |
+| `EP1-ST049`                | Preserve the completed Daily Sentence assignment across mutable content publication      | `EP1-ST047`                |
 
 `EP1-ST042` supersedes the former delivery units `EP1-ST009–013`; their requirements are
 implemented and reviewed as one vertical slice to reduce loop overhead.

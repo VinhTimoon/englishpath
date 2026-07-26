@@ -26,6 +26,11 @@ function repository(): jest.Mocked<DailySentenceRepository> {
     ]),
     completion: jest.fn().mockResolvedValue(null),
     complete: jest.fn().mockResolvedValue({
+      sentence: {
+        id: 'ds-001',
+        prompt: 'Translate this idea into English: practise for a few minutes.',
+        expectedAnswer: 'Practice for a few minutes.',
+      },
       submittedAnswer: 'Practice',
       isCorrect: true,
       feedback: 'Correct',
@@ -47,6 +52,11 @@ describe('DailySentenceService', () => {
     const service = new DailySentenceService(repo);
     await service.submit(principal, 'ds-001', 'Practice');
     repo.completion.mockResolvedValue({
+      sentence: {
+        id: 'ds-001',
+        prompt: 'Translate this idea into English: practise for a few minutes.',
+        expectedAnswer: 'Practice for a few minutes.',
+      },
       submittedAnswer: 'Practice',
       isCorrect: true,
       feedback: 'Saved',
@@ -55,6 +65,64 @@ describe('DailySentenceService', () => {
     const replay = await service.submit(principal, 'ds-001', 'Different');
     expect(replay.feedback?.message).toBe('Saved');
     expect(repo.complete.mock.calls).toHaveLength(1);
+  });
+  it('keeps the persisted assignment when eligible content changes', async () => {
+    const repo = repository();
+    repo.completion.mockResolvedValue({
+      sentence: {
+        id: 'ds-001',
+        prompt: 'Persisted prompt.',
+        expectedAnswer: 'Persisted answer.',
+      },
+      submittedAnswer: 'Persisted answer.',
+      isCorrect: true,
+      feedback: 'Saved',
+      completedAt: new Date('2026-01-01'),
+    });
+    repo.eligibleSentences.mockResolvedValue([
+      {
+        id: 'ds-002',
+        prompt: 'Newly published prompt.',
+        expectedAnswer: 'New answer.',
+      },
+    ]);
+
+    const result = await new DailySentenceService(repo).today(principal);
+
+    expect(result.sentence).toEqual({
+      id: 'ds-001',
+      prompt: 'Persisted prompt.',
+    });
+    expect(repo.eligibleSentences.mock.calls).toHaveLength(0);
+  });
+  it('replays the persisted assignment even when today selects a different sentence', async () => {
+    const repo = repository();
+    repo.completion.mockResolvedValue({
+      sentence: {
+        id: 'ds-001',
+        prompt: 'Persisted prompt.',
+        expectedAnswer: 'Persisted answer.',
+      },
+      submittedAnswer: 'Persisted answer.',
+      isCorrect: true,
+      feedback: 'Saved',
+      completedAt: new Date('2026-01-01'),
+    });
+    repo.eligibleSentences.mockResolvedValue([
+      { id: 'ds-002', prompt: 'New prompt.', expectedAnswer: 'New answer.' },
+    ]);
+
+    const replay = await new DailySentenceService(repo).submit(
+      principal,
+      'ds-001',
+      'Different answer',
+    );
+
+    expect(replay.sentence).toEqual({
+      id: 'ds-001',
+      prompt: 'Persisted prompt.',
+    });
+    expect(repo.eligibleSentences.mock.calls).toHaveLength(0);
   });
   it('returns an empty state when no eligible content exists', async () => {
     const repo = repository();
@@ -69,7 +137,7 @@ describe('DailySentenceService', () => {
     repo.profileTimezone.mockResolvedValue('America/Los_Angeles');
     const result = await new DailySentenceService(repo).today(principal);
 
-    expect(repo.profileTimezone.mock.calls).toEqual([['user-1']]);
+    expect(repo.profileTimezone.mock.calls).toEqual([['user-1'], ['user-1']]);
     expect(repo.eligibleSentences.mock.calls).toEqual([[expect.any(Date)]]);
     expect(repo.completion.mock.calls).toEqual([['user-1', expect.any(Date)]]);
     expect(result.sentence?.prompt).not.toContain(

@@ -7,7 +7,10 @@ test("learner can navigate, submit by keyboard, and revisit feedback", async ({
   await page.addInitScript(() => {
     window.localStorage.setItem(
       "englishpath.session",
-      JSON.stringify({ email: "learner@example.com", accessToken: "englishpath.local.learner" }),
+      JSON.stringify({
+        email: "learner@example.com",
+        accessToken: "englishpath.local.learner",
+      }),
     );
   });
 
@@ -16,7 +19,15 @@ test("learner can navigate, submit by keyboard, and revisit feedback", async ({
     const path = new URL(route.request().url()).pathname;
     if (path.endsWith("/placement/result")) {
       return route.fulfill({
-        json: { data: { score: 7, total: 10, level: "INTERMEDIATE", skillBreakdown: {} }, meta: {} },
+        json: {
+          data: {
+            score: 7,
+            total: 10,
+            level: "INTERMEDIATE",
+            skillBreakdown: {},
+          },
+          meta: {},
+        },
       });
     }
     if (path.endsWith("/daily-sentences/today")) {
@@ -25,13 +36,23 @@ test("learner can navigate, submit by keyboard, and revisit feedback", async ({
           data: completed
             ? {
                 localDate: "2026-07-20",
-                sentence: { id: "ds-001", prompt: "I set aside ten minutes to read every morning." },
+                sentence: {
+                  id: "ds-001",
+                  prompt: "I set aside ten minutes to read every morning.",
+                },
                 completed: true,
-                feedback: { isCorrect: true, message: "Correct", completedAt: "2026-07-20T00:00:00.000Z" },
+                feedback: {
+                  isCorrect: true,
+                  message: "Correct",
+                  completedAt: "2026-07-20T00:00:00.000Z",
+                },
               }
             : {
                 localDate: "2026-07-20",
-                sentence: { id: "ds-001", prompt: "I set aside ten minutes to read every morning." },
+                sentence: {
+                  id: "ds-001",
+                  prompt: "I set aside ten minutes to read every morning.",
+                },
                 completed: false,
               },
           meta: {},
@@ -46,9 +67,16 @@ test("learner can navigate, submit by keyboard, and revisit feedback", async ({
         json: {
           data: {
             localDate: "2026-07-20",
-            sentence: { id: "ds-001", prompt: "I set aside ten minutes to read every morning." },
+            sentence: {
+              id: "ds-001",
+              prompt: "I set aside ten minutes to read every morning.",
+            },
             completed: true,
-            feedback: { isCorrect: true, message: "Correct", completedAt: "2026-07-20T00:00:00.000Z" },
+            feedback: {
+              isCorrect: true,
+              message: "Correct",
+              completedAt: "2026-07-20T00:00:00.000Z",
+            },
           },
           meta: {},
         },
@@ -60,12 +88,22 @@ test("learner can navigate, submit by keyboard, and revisit feedback", async ({
   await page.goto("/dashboard");
   await page.locator('a[href="/daily-sentence"]').click();
   await expect(page).toHaveURL(/\/daily-sentence$/);
-  await expect(page.getByText("I set aside ten minutes to read every morning.")).toBeVisible();
-  await page.getByLabel("Viết lại câu tiếng Anh").fill("I set aside ten minutes to read every morning");
+  await expect(
+    page.getByText("I set aside ten minutes to read every morning."),
+  ).toBeVisible();
+  await page
+    .getByLabel("Viết lại câu tiếng Anh")
+    .fill("I set aside ten minutes to read every morning");
   await page.getByLabel("Viết lại câu tiếng Anh").press("Enter");
   await expect(page.getByText("Correct")).toBeVisible();
 
   await page.reload();
   await expect(page.getByText("Correct")).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBeFalsy();
+  expect(
+    await page.evaluate(
+      () =>
+        document.documentElement.scrollWidth >
+        document.documentElement.clientWidth,
+    ),
+  ).toBeFalsy();
 });

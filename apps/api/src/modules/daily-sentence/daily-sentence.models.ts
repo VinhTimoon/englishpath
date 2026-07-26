@@ -5,6 +5,7 @@ export type SentenceRecord = {
   expectedAnswer: string;
 };
 export type CompletionRecord = {
+  sentence: SentenceRecord;
   submittedAnswer: string;
   isCorrect: boolean;
   feedback: string;

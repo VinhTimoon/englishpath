@@ -34,6 +34,7 @@ export class PrismaDailySentenceRepository implements DailySentenceRepository {
     return this.prisma.dailySentenceCompletion.findUnique({
       where: { userId_localDate: { userId, localDate } },
       select: {
+        sentence: { select: { id: true, prompt: true, expectedAnswer: true } },
         submittedAnswer: true,
         isCorrect: true,
         feedback: true,
@@ -60,6 +61,9 @@ export class PrismaDailySentenceRepository implements DailySentenceRepository {
           feedback,
         },
         select: {
+          sentence: {
+            select: { id: true, prompt: true, expectedAnswer: true },
+          },
           submittedAnswer: true,
           isCorrect: true,
           feedback: true,

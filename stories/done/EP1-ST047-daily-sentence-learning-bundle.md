@@ -1,7 +1,7 @@
 ---
 id: EP1-ST047
 title: Daily Sentence Learning Bundle
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-1-learning-core

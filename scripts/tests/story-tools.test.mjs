@@ -738,7 +738,9 @@ A
 });
 
 test("planning prompt requires the exact story ID without a title suffix", () => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "englishpath-plan-prompt-"));
+  const tempDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), "englishpath-plan-prompt-"),
+  );
   const storyFile = path.join(tempDir, "story.md");
   fs.writeFileSync(storyFile, "---\nid: EP1-ST047\n---\n# Story\n");
 

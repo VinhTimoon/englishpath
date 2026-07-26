@@ -71,52 +71,61 @@ export class DailySentenceService {
     return { ...day, sentence };
   }
   async today(principal: ApplicationPrincipal): Promise<DailySentenceView> {
+    const day = localDay(
+      new Date(),
+      await this.repository.profileTimezone(principal.applicationUserId),
+    );
+    const completion = await this.repository.completion(
+      principal.applicationUserId,
+      day.date,
+    );
+    if (completion)
+      return {
+        localDate: day.key,
+        sentence: {
+          id: completion.sentence.id,
+          prompt: completion.sentence.prompt,
+        },
+        completed: true,
+        feedback: {
+          isCorrect: completion.isCorrect,
+          message: completion.feedback,
+          completedAt: completion.completedAt.toISOString(),
+        },
+      };
     const context = await this.context(principal.applicationUserId);
     if (!context.sentence)
       return { localDate: context.key, sentence: null, completed: false };
-    const completion = await this.repository.completion(
-      principal.applicationUserId,
-      context.date,
-    );
-    return completion
-      ? {
-          localDate: context.key,
-          sentence: {
-            id: context.sentence.id,
-            prompt: context.sentence.prompt,
-          },
-          completed: true,
-          feedback: {
-            isCorrect: completion.isCorrect,
-            message: completion.feedback,
-            completedAt: completion.completedAt.toISOString(),
-          },
-        }
-      : {
-          localDate: context.key,
-          sentence: {
-            id: context.sentence.id,
-            prompt: context.sentence.prompt,
-          },
-          completed: false,
-        };
+    return {
+      localDate: context.key,
+      sentence: {
+        id: context.sentence.id,
+        prompt: context.sentence.prompt,
+      },
+      completed: false,
+    };
   }
   async submit(
     principal: ApplicationPrincipal,
     sentenceId: string,
     answer: string,
   ): Promise<DailySentenceView> {
-    const context = await this.context(principal.applicationUserId);
-    if (!context.sentence) throw new NotFoundException();
-    if (context.sentence.id !== sentenceId) throw new BadRequestException();
+    const now = new Date();
+    const day = localDay(
+      now,
+      await this.repository.profileTimezone(principal.applicationUserId),
+    );
     const existing = await this.repository.completion(
       principal.applicationUserId,
-      context.date,
+      day.date,
     );
     if (existing)
       return {
-        localDate: context.key,
-        sentence: { id: context.sentence.id, prompt: context.sentence.prompt },
+        localDate: day.key,
+        sentence: {
+          id: existing.sentence.id,
+          prompt: existing.sentence.prompt,
+        },
         completed: true,
         feedback: {
           isCorrect: existing.isCorrect,
@@ -124,22 +133,30 @@ export class DailySentenceService {
           completedAt: existing.completedAt.toISOString(),
         },
       };
-    const isCorrect =
-      normalize(answer) === normalize(context.sentence.expectedAnswer);
+    const sentence = pick(
+      await this.repository.eligibleSentences(now),
+      day.key,
+    );
+    if (!sentence) throw new NotFoundException();
+    if (sentence.id !== sentenceId) throw new BadRequestException();
+    const isCorrect = normalize(answer) === normalize(sentence.expectedAnswer);
     const feedback = isCorrect
       ? 'Correct — your sentence matches today’s answer.'
       : 'Not quite yet. Compare your sentence with the prompt and try the phrase again tomorrow.';
     const completion = await this.repository.complete(
       principal.applicationUserId,
       sentenceId,
-      context.date,
+      day.date,
       answer.trim(),
       isCorrect,
       feedback,
     );
     return {
-      localDate: context.key,
-      sentence: { id: context.sentence.id, prompt: context.sentence.prompt },
+      localDate: day.key,
+      sentence: {
+        id: completion.sentence.id,
+        prompt: completion.sentence.prompt,
+      },
       completed: true,
       feedback: {
         isCorrect: completion.isCorrect,
