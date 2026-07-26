@@ -1,7 +1,7 @@
 ---
 id: EP1-ST018
 title: Vocabulary SRS And Mastery API
-status: review
+status: done
 type: backend
 priority: high
 phase: phase-1-learning-core
