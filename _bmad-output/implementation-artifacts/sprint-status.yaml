@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-07-30T16:33:05.548Z
+# last_updated: 2026-07-30T16:45:47.495Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-07-30T16:33:05.548Z
+last_updated: 2026-07-30T16:45:47.495Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -58,15 +58,18 @@ development_status:
   1-16-dashboard-and-today-roadmap-ui: done
   1-17-vocabulary-taxonomy-mindmap-api: done
   1-40-vocabulary-api-contract-and-adapter-hardening: done
+  # EP1-ST050 supplied the canonical vocabulary-item prerequisite for this completed API.
   1-18-vocabulary-srs-and-mastery-api: done
   1-50-vocabulary-item-foundation: done
   1-41-public-vocabulary-taxonomy-explorer-ui: done
-  1-19-vocabulary-mindmap-item-and-review-ui: backlog
+  # EP1-ST050 -> EP1-ST018 -> EP1-ST019; this is the only next dependency-ready implementation story.
+  1-19-vocabulary-mindmap-item-and-review-ui: ready-for-dev
   # EP1-ST044 delivered the first usable daily-practice subset; EP1-ST018 is complete
   # and EP1-ST019 remains the next dependency-ready vocabulary UI increment.
   1-20-daily-practice-and-quiz-session-api: done
   1-21-daily-practice-and-quiz-card-ui: done
-  # Fully superseded by EP1-ST047; EP1-ST048/049 closed verification and integrity.
+  # EP1-ST022 and EP1-ST023 are fully superseded by EP1-ST047; EP1-ST048/049
+  # provide closure evidence and close the assignment-integrity gap.
   1-22-daily-sentence-api-and-completion-model: done
   1-23-daily-sentence-ui-and-dashboard-integration: done
   1-24-error-notebook-domain-capture-and-scheduler: done
@@ -81,6 +84,7 @@ development_status:
   1-33-reviewed-vocabulary-batch-3: backlog
   1-34-reviewed-vocabulary-batch-4: backlog
   1-35-reviewed-vocabulary-batch-5: backlog
+  # Remains backlog: reviewed quiz and remaining launch-content baseline are unimplemented.
   1-36-reviewed-quiz-and-daily-sentence-seed-baseline: backlog
   1-37-expand-indexable-blog-baseline: backlog
   1-38-analytics-monitoring-and-launch-dashboards: backlog
@@ -93,7 +97,7 @@ development_status:
   1-47-daily-sentence-learning-bundle: done
   1-48-format-gate-and-daily-sentence-closure: done
   1-49-daily-sentence-assignment-integrity: done
-  1-51-phase-1-rebaseline-and-loop-routing: ready-for-dev
+  1-51-phase-1-rebaseline-and-loop-routing: review
   epic-1-retrospective: optional
 
   epic-2: backlog

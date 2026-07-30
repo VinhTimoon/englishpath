@@ -1,7 +1,7 @@
 {
   "plan": {
     "model": "gpt-5.6-sol",
-    "reasoning": "medium",
+    "reasoning": "high",
     "timeout_ms": 480000,
     "sandbox": "read-only"
   },
@@ -19,7 +19,7 @@
   },
   "debug": {
     "model": "gpt-5.6-sol",
-    "reasoning": "medium",
+    "reasoning": "high",
     "timeout_ms": 480000,
     "sandbox": "danger-full-access"
   }

@@ -102,6 +102,13 @@ unimplemented reviewed quiz and remaining launch-content baseline.
 single next dependency-ready implementation story after `EP1-ST051` completes the
 governance and loop-routing rebaseline.
 
+The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
+and `EP1-ST023` are represented as done only through the explicit supersession chain
+`EP1-ST047` -> `EP1-ST048` -> `EP1-ST049`, not as independently implemented stories.
+`EP1-ST036` remains backlog for its reviewed quiz and remaining launch-content baseline.
+The next implementation route is exactly `EP1-ST050` -> completed `EP1-ST018` -> ready
+`EP1-ST019`; no other unimplemented Phase 1 story is newly dependency-ready.
+
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
 pass critical browser and security gates.

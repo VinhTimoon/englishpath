@@ -1,7 +1,7 @@
 ---
 id: EP1-ST051
 title: Phase 1 Rebaseline And Loop Routing
-status: ready
+status: review
 type: governance
 priority: critical
 phase: phase-1-learning-core
@@ -128,3 +128,5 @@ story without changing product code or production state.
   dependencies, environment configuration, or `main`.
 - Running the story loop, promoting production, or creating more than one next ready
   implementation story.
+
+
