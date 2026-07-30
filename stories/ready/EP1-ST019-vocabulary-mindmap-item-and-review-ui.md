@@ -18,6 +18,10 @@ allowed_paths:
   - docs/09_UI_DESIGN_SYSTEM.md
   - docs/10_TEST_STRATEGY.md
   - stories/ready/EP1-ST019-vocabulary-mindmap-item-and-review-ui.md
+  - stories/in-progress/EP1-ST019-vocabulary-mindmap-item-and-review-ui.md
+  - stories/review/EP1-ST019-vocabulary-mindmap-item-and-review-ui.md
+  - stories/done/EP1-ST019-vocabulary-mindmap-item-and-review-ui.md
+  - stories/blocked/EP1-ST019-vocabulary-mindmap-item-and-review-ui.md
   - _bmad-output/planning-artifacts/story-map.md
   - _bmad-output/implementation-artifacts/sprint-status.yaml
 forbidden_paths:
