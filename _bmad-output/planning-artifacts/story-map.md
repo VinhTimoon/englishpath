@@ -52,7 +52,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST050`                | Governed vocabulary item foundation                                                      | `EP1-ST017`                |
 | `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST050`                |
 | `EP1-ST041`                | Public vocabulary taxonomy explorer UI                                                   | `EP1-ST040`                |
-| `EP1-ST019`                | Vocabulary mindmap, item, and review UI                                                  | `EP1-ST018`                |
+| `EP1-ST019`                | Vocabulary mindmap, item, and review UI (blocked review evidence)                       | `EP1-ST018`                |`r`n| `EP1-ST052`                | Vocabulary learner UI review remediation                                                 | `EP1-ST018`; evidence: `EP1-ST019` |
 | `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                |
 | `EP1-ST021`                | Daily practice/quiz-card UI                                                              | `EP1-ST020`                |
 | `EP1-ST022`                | Daily sentence API and completion model                                                  | `EP1-ST020`                |
