@@ -43,6 +43,37 @@ function exitWithError(error) {
   process.exit(error.blocked ? BLOCKED_EXIT_CODE : (error.status ?? 1));
 }
 
+function handleCommandFailure(error, { phase, timeoutMs, codexArgs, responseFile }) {
+  const artifactOutput = fs.existsSync(responseFile)
+    ? fs.readFileSync(responseFile, "utf8").trim()
+    : "";
+
+  if (error.timedOut) {
+    return createPhaseContractError({
+      phase,
+      reason: formatPhaseTimeoutMessage(
+        phase,
+        timeoutMs,
+        "codex",
+        codexArgs,
+      ),
+      evidence:
+        "The phase exceeded its configured timeout and did not produce a complete terminal result.",
+      output: [error.output, artifactOutput].filter(Boolean).join("\n\n"),
+      timeoutMs,
+      command: "codex",
+      args: codexArgs,
+    });
+  }
+
+  if (artifactOutput) {
+    error.output = [error.output, artifactOutput]
+      .filter(Boolean)
+      .join("\n\n");
+  }
+  return error;
+}
+
 function main() {
   if (!phase || !promptFile) {
     console.error(
@@ -77,7 +108,7 @@ function main() {
   console.log(`Model: ${primaryRoute.model}`);
   console.log(`Reasoning: ${primaryRoute.reasoning}`);
   if (phase === "plan") {
-    console.log(`Capacity fallback: ${selected.model} (${selected.reasoning}) — temporary operational fallback configured in ${configPath}`);
+    console.log(`Capacity fallback: ${selected.model} (${selected.reasoning}) - temporary operational fallback configured in ${configPath}`);
   }
   console.log(`Timeout: ${selected.timeout_ms}ms`);
   console.log(`Final response artifact: ${artifacts.responseFile}`);
@@ -113,38 +144,27 @@ function main() {
           printCommand: true, timeoutMs: selected.timeout_ms,
         });
       } catch (fallbackError) {
-        fallbackError.output = ["Primary plan attempt failed with explicit capacity-unavailable error.", fallbackError.output].filter(Boolean).join("\n\n");
-        throw fallbackError;
+        const handledFallbackError = handleCommandFailure(fallbackError, {
+          phase,
+          timeoutMs: selected.timeout_ms,
+          codexArgs,
+          responseFile: artifacts.responseFile,
+        });
+        handledFallbackError.output = [
+          "Primary plan attempt failed with explicit capacity-unavailable error.",
+          handledFallbackError.output,
+        ]
+          .filter(Boolean)
+          .join("\n\n");
+        throw handledFallbackError;
       }
     } else {
-    const artifactOutput = fs.existsSync(artifacts.responseFile)
-      ? fs.readFileSync(artifacts.responseFile, "utf8").trim()
-      : "";
-
-    if (error.timedOut) {
-      throw createPhaseContractError({
+      throw handleCommandFailure(error, {
         phase,
-        reason: formatPhaseTimeoutMessage(
-          phase,
-          selected.timeout_ms,
-          "codex",
-          codexArgs,
-        ),
-        evidence:
-          "The phase exceeded its configured timeout and did not produce a complete terminal result.",
-        output: [error.output, artifactOutput].filter(Boolean).join("\n\n"),
         timeoutMs: selected.timeout_ms,
-        command: "codex",
-        args: codexArgs,
+        codexArgs,
+        responseFile: artifacts.responseFile,
       });
-    }
-
-    if (artifactOutput) {
-      error.output = [error.output, artifactOutput]
-        .filter(Boolean)
-        .join("\n\n");
-    }
-    throw error;
     }
   }
 

@@ -1,7 +1,7 @@
 ---
 id: EP1-ST053
 title: Planning Capacity Fallback
-status: ready
+status: blocked
 type: tooling
 priority: high
 phase: phase-1-learning-core
@@ -62,3 +62,20 @@ The `plan` route in `scripts/codex-models.json` is deliberately changed to `gpt-
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST053-planning-capacity-fallback.md --ready-only`
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST054-vocabulary-learner-ui-recovery.md --ready-only`
 - `git diff --check`
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+- Exit code: 1
+- Attempts: 2
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Debug phase did not produce a terminal fix or blocked result.
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+
+Command failed with exit code 1: "node" "scripts/run-checks.mjs"
+```
