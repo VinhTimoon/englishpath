@@ -29,9 +29,16 @@ function isExplicitCapacityUnavailable(error) {
 
 function buildCodexArgs({ sandbox, route, responseFile }) {
   return [
-    "exec", "--sandbox", sandbox, "-c", `model=${route.model}`, "-c",
-    `model_reasoning_effort=${route.reasoning}`, "--output-last-message",
-    responseFile, "-",
+    "exec",
+    "--sandbox",
+    sandbox,
+    "-c",
+    `model=${route.model}`,
+    "-c",
+    `model_reasoning_effort=${route.reasoning}`,
+    "--output-last-message",
+    responseFile,
+    "-",
   ];
 }
 
@@ -43,7 +50,10 @@ function exitWithError(error) {
   process.exit(error.blocked ? BLOCKED_EXIT_CODE : (error.status ?? 1));
 }
 
-function handleCommandFailure(error, { phase, timeoutMs, codexArgs, responseFile }) {
+function handleCommandFailure(
+  error,
+  { phase, timeoutMs, codexArgs, responseFile },
+) {
   const artifactOutput = fs.existsSync(responseFile)
     ? fs.readFileSync(responseFile, "utf8").trim()
     : "";
@@ -51,12 +61,7 @@ function handleCommandFailure(error, { phase, timeoutMs, codexArgs, responseFile
   if (error.timedOut) {
     return createPhaseContractError({
       phase,
-      reason: formatPhaseTimeoutMessage(
-        phase,
-        timeoutMs,
-        "codex",
-        codexArgs,
-      ),
+      reason: formatPhaseTimeoutMessage(phase, timeoutMs, "codex", codexArgs),
       evidence:
         "The phase exceeded its configured timeout and did not produce a complete terminal result.",
       output: [error.output, artifactOutput].filter(Boolean).join("\n\n"),
@@ -67,9 +72,7 @@ function handleCommandFailure(error, { phase, timeoutMs, codexArgs, responseFile
   }
 
   if (artifactOutput) {
-    error.output = [error.output, artifactOutput]
-      .filter(Boolean)
-      .join("\n\n");
+    error.output = [error.output, artifactOutput].filter(Boolean).join("\n\n");
   }
   return error;
 }
@@ -108,7 +111,9 @@ function main() {
   console.log(`Model: ${primaryRoute.model}`);
   console.log(`Reasoning: ${primaryRoute.reasoning}`);
   if (phase === "plan") {
-    console.log(`Capacity fallback: ${selected.model} (${selected.reasoning}) - temporary operational fallback configured in ${configPath}`);
+    console.log(
+      `Capacity fallback: ${selected.model} (${selected.reasoning}) - temporary operational fallback configured in ${configPath}`,
+    );
   }
   console.log(`Timeout: ${selected.timeout_ms}ms`);
   console.log(`Final response artifact: ${artifacts.responseFile}`);
@@ -122,7 +127,11 @@ function main() {
 
   removePhaseArtifacts(phase);
   let startedAt = Date.now();
-  let codexArgs = buildCodexArgs({ sandbox, route: primaryRoute, responseFile: artifacts.responseFile });
+  let codexArgs = buildCodexArgs({
+    sandbox,
+    route: primaryRoute,
+    responseFile: artifacts.responseFile,
+  });
   let commandResult;
   try {
     commandResult = runCommand("codex", codexArgs, {
@@ -133,15 +142,28 @@ function main() {
       timeoutMs: selected.timeout_ms,
     });
   } catch (error) {
-    if (phase === "plan" && isExplicitCapacityUnavailable(error)) {
-      console.warn(`Primary planning model ${primaryRoute.model} is at capacity; retrying once with configured fallback ${selected.model}.`);
+    if (
+      phase === "plan" &&
+      !error.timedOut &&
+      isExplicitCapacityUnavailable(error)
+    ) {
+      console.warn(
+        `Primary planning model ${primaryRoute.model} is at capacity; retrying once with configured fallback ${selected.model}.`,
+      );
       removePhaseArtifacts(phase);
       startedAt = Date.now();
-      codexArgs = buildCodexArgs({ sandbox, route: selected, responseFile: artifacts.responseFile });
+      codexArgs = buildCodexArgs({
+        sandbox,
+        route: selected,
+        responseFile: artifacts.responseFile,
+      });
       try {
         commandResult = runCommand("codex", codexArgs, {
-          input: prompt, stdio: ["pipe", "pipe", "pipe"], forwardOutput: true,
-          printCommand: true, timeoutMs: selected.timeout_ms,
+          input: prompt,
+          stdio: ["pipe", "pipe", "pipe"],
+          forwardOutput: true,
+          printCommand: true,
+          timeoutMs: selected.timeout_ms,
         });
       } catch (fallbackError) {
         const handledFallbackError = handleCommandFailure(fallbackError, {
