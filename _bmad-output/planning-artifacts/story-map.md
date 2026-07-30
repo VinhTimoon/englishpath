@@ -52,7 +52,8 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST050`                | Governed vocabulary item foundation                                                      | `EP1-ST017`                |
 | `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST050`                |
 | `EP1-ST041`                | Public vocabulary taxonomy explorer UI                                                   | `EP1-ST040`                |
-| `EP1-ST019`                | Vocabulary mindmap, item, and review UI (blocked review evidence)                       | `EP1-ST018`                |`r`n| `EP1-ST052`                | Vocabulary learner UI review remediation                                                 | `EP1-ST018`; evidence: `EP1-ST019` |
+| `EP1-ST019`                | Vocabulary mindmap, item, and review UI (blocked review evidence)                       | `EP1-ST018`                |
+| `EP1-ST052`                | Vocabulary learner UI review remediation                                                 | `EP1-ST018`; evidence: `EP1-ST019` |
 | `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                |
 | `EP1-ST021`                | Daily practice/quiz-card UI                                                              | `EP1-ST020`                |
 | `EP1-ST022`                | Daily sentence API and completion model                                                  | `EP1-ST020`                |
@@ -98,16 +99,17 @@ specified advanced Daily Sentence requirement remains; `EP1-ST036` still owns on
 unimplemented reviewed quiz and remaining launch-content baseline.
 
 `EP1-ST050` supplies the canonical vocabulary-item prerequisite discovered by
-`EP1-ST018`; the completed SRS/mastery API therefore unblocks `EP1-ST019`, which is the
-single next dependency-ready implementation story after `EP1-ST051` completes the
-governance and loop-routing rebaseline.
+`EP1-ST018`. `EP1-ST019` is blocked review evidence and must not resume directly.
+`EP1-ST052` depends on completed `EP1-ST018` and is the sole next dependency-ready
+recovery story.
 
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
 `EP1-ST047` -> `EP1-ST048` -> `EP1-ST049`, not as independently implemented stories.
 `EP1-ST036` remains backlog for its reviewed quiz and remaining launch-content baseline.
-The next implementation route is exactly `EP1-ST050` -> completed `EP1-ST018` -> ready
-`EP1-ST019`; no other unimplemented Phase 1 story is newly dependency-ready.
+The next implementation route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked
+evidence `EP1-ST019` -> ready recovery `EP1-ST052`; no other unimplemented Phase 1 story
+is newly dependency-ready.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability

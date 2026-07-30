@@ -62,10 +62,10 @@ development_status:
   1-18-vocabulary-srs-and-mastery-api: done
   1-50-vocabulary-item-foundation: done
   1-41-public-vocabulary-taxonomy-explorer-ui: done
-  # EP1-ST050 -> EP1-ST018 -> EP1-ST019; this is the only next dependency-ready implementation story.
-  1-19-vocabulary-mindmap-item-and-review-ui: ready-for-dev
-  # EP1-ST044 delivered the first usable daily-practice subset; EP1-ST018 is complete
-  # and EP1-ST019 remains the next dependency-ready vocabulary UI increment.
+  # Blocked review evidence; do not resume directly. EP1-ST052 owns its bounded P1 remediation.
+  1-19-vocabulary-mindmap-item-and-review-ui: blocked
+  # EP1-ST052 is the sole next dependency-ready recovery item after completed EP1-ST018.
+  1-52-vocabulary-learner-ui-review-remediation: ready-for-dev
   1-20-daily-practice-and-quiz-session-api: done
   1-21-daily-practice-and-quiz-card-ui: done
   # EP1-ST022 and EP1-ST023 are fully superseded by EP1-ST047; EP1-ST048/049
