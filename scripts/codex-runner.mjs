@@ -15,6 +15,26 @@ import {
 const phase = process.argv[2];
 const promptFile = process.argv[3];
 
+const PLAN_PRIMARY_ROUTE = Object.freeze({
+  model: "gpt-5.6-sol",
+  reasoning: "high",
+});
+
+function isExplicitCapacityUnavailable(error) {
+  const output = [error.output, error.message].filter(Boolean).join("\n");
+  return /\b(?:capacity(?:[_\s-]+is)?[_\s-]+unavailable|at[_\s-]+capacity)\b/iu.test(
+    output,
+  );
+}
+
+function buildCodexArgs({ sandbox, route, responseFile }) {
+  return [
+    "exec", "--sandbox", sandbox, "-c", `model=${route.model}`, "-c",
+    `model_reasoning_effort=${route.reasoning}`, "--output-last-message",
+    responseFile, "-",
+  ];
+}
+
 function exitWithError(error) {
   const output = error.output || error.message;
   if (output) {
@@ -53,8 +73,12 @@ function main() {
   const artifacts = PHASE_ARTIFACTS[phase];
 
   console.log(`Running Codex phase: ${phase}`);
-  console.log(`Model: ${selected.model}`);
-  console.log(`Reasoning: ${selected.reasoning}`);
+  const primaryRoute = phase === "plan" ? PLAN_PRIMARY_ROUTE : selected;
+  console.log(`Model: ${primaryRoute.model}`);
+  console.log(`Reasoning: ${primaryRoute.reasoning}`);
+  if (phase === "plan") {
+    console.log(`Capacity fallback: ${selected.model} (${selected.reasoning}) — temporary operational fallback configured in ${configPath}`);
+  }
   console.log(`Timeout: ${selected.timeout_ms}ms`);
   console.log(`Final response artifact: ${artifacts.responseFile}`);
 
@@ -66,21 +90,8 @@ function main() {
   console.log(`Sandbox: ${sandbox}`);
 
   removePhaseArtifacts(phase);
-  const startedAt = Date.now();
-
-  const codexArgs = [
-    "exec",
-    "--sandbox",
-    sandbox,
-    "-c",
-    `model=${selected.model}`,
-    "-c",
-    `model_reasoning_effort=${selected.reasoning}`,
-    "--output-last-message",
-    artifacts.responseFile,
-    "-",
-  ];
-
+  let startedAt = Date.now();
+  let codexArgs = buildCodexArgs({ sandbox, route: primaryRoute, responseFile: artifacts.responseFile });
   let commandResult;
   try {
     commandResult = runCommand("codex", codexArgs, {
@@ -91,6 +102,21 @@ function main() {
       timeoutMs: selected.timeout_ms,
     });
   } catch (error) {
+    if (phase === "plan" && isExplicitCapacityUnavailable(error)) {
+      console.warn(`Primary planning model ${primaryRoute.model} is at capacity; retrying once with configured fallback ${selected.model}.`);
+      removePhaseArtifacts(phase);
+      startedAt = Date.now();
+      codexArgs = buildCodexArgs({ sandbox, route: selected, responseFile: artifacts.responseFile });
+      try {
+        commandResult = runCommand("codex", codexArgs, {
+          input: prompt, stdio: ["pipe", "pipe", "pipe"], forwardOutput: true,
+          printCommand: true, timeoutMs: selected.timeout_ms,
+        });
+      } catch (fallbackError) {
+        fallbackError.output = ["Primary plan attempt failed with explicit capacity-unavailable error.", fallbackError.output].filter(Boolean).join("\n\n");
+        throw fallbackError;
+      }
+    } else {
     const artifactOutput = fs.existsSync(artifacts.responseFile)
       ? fs.readFileSync(artifacts.responseFile, "utf8").trim()
       : "";
@@ -119,6 +145,7 @@ function main() {
         .join("\n\n");
     }
     throw error;
+    }
   }
 
   if (phase === "plan") {

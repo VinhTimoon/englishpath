@@ -1,7 +1,7 @@
 {
   "plan": {
-    "model": "gpt-5.6-sol",
-    "reasoning": "high",
+    "model": "gpt-5.6-terra",
+    "reasoning": "medium",
     "timeout_ms": 480000,
     "sandbox": "read-only"
   },

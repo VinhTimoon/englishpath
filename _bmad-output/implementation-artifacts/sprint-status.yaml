@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-07-30T17:00:00.000Z
+# last_updated: 2026-07-31T00:00:00.000Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-07-30T17:00:00.000Z
+last_updated: 2026-07-31T00:00:00.000Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -64,8 +64,12 @@ development_status:
   1-41-public-vocabulary-taxonomy-explorer-ui: done
   # Blocked review evidence; do not resume directly. EP1-ST052 owns its bounded P1 remediation.
   1-19-vocabulary-mindmap-item-and-review-ui: blocked
-  # EP1-ST052 is the sole next dependency-ready recovery item after completed EP1-ST018.
-  1-52-vocabulary-learner-ui-review-remediation: ready-for-dev
+  # Blocked before planning by explicit gpt-5.6-sol capacity unavailability; do not resume directly.
+  1-52-vocabulary-learner-ui-review-remediation: blocked
+  # Temporary planning-capacity fallback governance gate; it must precede the only UI recovery story.
+  1-53-planning-capacity-fallback: ready-for-dev
+  # Sole successor for the four P1 findings owned by blocked EP1-ST052.
+  1-54-vocabulary-learner-ui-recovery: ready-for-dev
   1-20-daily-practice-and-quiz-session-api: done
   1-21-daily-practice-and-quiz-card-ui: done
   # EP1-ST022 and EP1-ST023 are fully superseded by EP1-ST047; EP1-ST048/049

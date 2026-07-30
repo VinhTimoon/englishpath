@@ -1,16 +1,18 @@
 ---
-id: EP1-ST052
-title: Vocabulary Learner UI Review Remediation
+id: EP1-ST054
+title: Vocabulary Learner UI Recovery
 status: ready
 type: frontend
 priority: high
 phase: phase-1-learning-core
 depends_on:
   - EP1-ST018
+  - EP1-ST053
 blocked_evidence:
   - EP1-ST019
   - blocked/ep1-st019-review-findings
   - .codex-review.result.md
+  - EP1-ST052
 allowed_paths:
   - apps/web/src/app/vocabulary/**
   - apps/web/src/entities/vocabulary/**
@@ -23,11 +25,11 @@ allowed_paths:
   - docs/05_FRONTEND_ARCHITECTURE.md
   - docs/09_UI_DESIGN_SYSTEM.md
   - docs/10_TEST_STRATEGY.md
-  - stories/ready/EP1-ST052-vocabulary-learner-ui-review-remediation.md
-  - stories/in-progress/EP1-ST052-vocabulary-learner-ui-review-remediation.md
-  - stories/review/EP1-ST052-vocabulary-learner-ui-review-remediation.md
-  - stories/done/EP1-ST052-vocabulary-learner-ui-review-remediation.md
-  - stories/blocked/EP1-ST052-vocabulary-learner-ui-review-remediation.md
+  - stories/ready/EP1-ST054-vocabulary-learner-ui-recovery.md
+  - stories/in-progress/EP1-ST054-vocabulary-learner-ui-recovery.md
+  - stories/review/EP1-ST054-vocabulary-learner-ui-recovery.md
+  - stories/done/EP1-ST054-vocabulary-learner-ui-recovery.md
+  - stories/blocked/EP1-ST054-vocabulary-learner-ui-recovery.md
   - stories/blocked/EP1-ST019-vocabulary-mindmap-item-and-review-ui.md
   - _bmad-output/planning-artifacts/story-map.md
   - _bmad-output/implementation-artifacts/sprint-status.yaml
@@ -50,7 +52,7 @@ requires_human_approval: false
 max_fix_rounds: 2
 ---
 
-# Story: Vocabulary Learner UI Review Remediation
+# Story: Vocabulary Learner UI Recovery
 
 ## Goal
 
@@ -90,6 +92,6 @@ Recover blocked `EP1-ST019`, close its four bounded P1 findings, and add targete
 - `pnpm test`
 - `pnpm build`
 - `pnpm e2e`
-- `node scripts/story-doctor.mjs stories/ready/EP1-ST052-vocabulary-learner-ui-review-remediation.md --ready-only`
-- `pnpm story:verify stories/ready/EP1-ST052-vocabulary-learner-ui-review-remediation.md`
+- `node scripts/story-doctor.mjs stories/ready/EP1-ST054-vocabulary-learner-ui-recovery.md --ready-only`
+- `pnpm story:verify stories/ready/EP1-ST054-vocabulary-learner-ui-recovery.md`
 - `git diff --check`
