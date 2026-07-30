@@ -12,6 +12,7 @@
 | `EP1-ST002`                | Public blog SEO baseline implemented                          |
 | `EP1-ST004`                | Local ports baseline implemented                              |
 | `EP1-ST001`, `EP1-ST003`   | Blocked historical landing work, superseded by `EP1-ST005`    |
+| `EP1-ST022`, `EP1-ST023`   | Fully superseded by `EP1-ST047` through `EP1-ST049`           |
 
 ## Phase 0 Foundation
 
@@ -48,7 +49,8 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST016`                | Dashboard and roadmap UI focused on today's work                                         | `EP1-ST015`                |
 | `EP1-ST017`                | Vocabulary taxonomy/mindmap API                                                          | `EP0-ST020`                |
 | `EP1-ST040`                | Vocabulary API contract and adapter hardening                                            | `EP1-ST017`                |
-| `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST017`                |
+| `EP1-ST050`                | Governed vocabulary item foundation                                                      | `EP1-ST017`                |
+| `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST050`                |
 | `EP1-ST041`                | Public vocabulary taxonomy explorer UI                                                   | `EP1-ST040`                |
 | `EP1-ST019`                | Vocabulary mindmap, item, and review UI                                                  | `EP1-ST018`                |
 | `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                |
@@ -75,6 +77,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST047`                | Bundled governed Daily Sentence API, completion, content, and learner UI                 | `EP1-ST044`                |
 | `EP1-ST048`                | Recover formatting gate and close the verified Daily Sentence bundle                     | `EP1-ST047`                |
 | `EP1-ST049`                | Preserve the completed Daily Sentence assignment across mutable content publication      | `EP1-ST047`                |
+| `EP1-ST051`                | Reconcile Phase 1 planning and loop routing, then prepare the next implementation story  | `EP1-ST049`, `EP1-ST050`   |
 
 `EP1-ST042` supersedes the former delivery units `EP1-ST009–013`; their requirements are
 implemented and reviewed as one vertical slice to reduce loop overhead.
@@ -82,11 +85,22 @@ implemented and reviewed as one vertical slice to reduce loop overhead.
 `EP1-ST043` supersedes `EP1-ST014–016`; roadmap rules, persistence, APIs, and learner UI
 are delivered and reviewed together as one product increment.
 
-`EP1-ST044` consolidates the first usable delivery of `EP1-ST020–027`; advanced SRS and
-the dedicated review/progress surfaces remain follow-up scope.
+`EP1-ST044` consolidates the first usable delivery of `EP1-ST020–027`; completed
+`EP1-ST018`, `EP1-ST045`, and `EP1-ST046` supply the follow-up SRS, persisted progress
+summary, and private Error Notebook review increments. `EP1-ST019` remains the
+dedicated vocabulary item/review UI increment.
 
-`EP1-ST047` consolidates `EP1-ST022-023` and delivers the reviewed Daily Sentence
-portion of `EP1-ST036` without claiming vocabulary SRS or the 100-quiz launch baseline.
+`EP1-ST047` fully supersedes the former delivery units `EP1-ST022` and `EP1-ST023`.
+`EP1-ST048` supplies the verification/format closure and `EP1-ST049` closes the only
+identified assignment-integrity gap. Together they deliver the specified Daily Sentence
+API, completion, governed content, learner UI, and dashboard integration. No separately
+specified advanced Daily Sentence requirement remains; `EP1-ST036` still owns only the
+unimplemented reviewed quiz and remaining launch-content baseline.
+
+`EP1-ST050` supplies the canonical vocabulary-item prerequisite discovered by
+`EP1-ST018`; the completed SRS/mastery API therefore unblocks `EP1-ST019`, which is the
+single next dependency-ready implementation story after `EP1-ST051` completes the
+governance and loop-routing rebaseline.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability

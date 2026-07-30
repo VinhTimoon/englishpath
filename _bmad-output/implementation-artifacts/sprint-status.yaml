@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-07-26T17:36:15.058Z
+# last_updated: 2026-07-30T16:33:05.548Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-07-26T17:36:15.058Z
+last_updated: 2026-07-30T16:33:05.548Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -62,11 +62,13 @@ development_status:
   1-50-vocabulary-item-foundation: done
   1-41-public-vocabulary-taxonomy-explorer-ui: done
   1-19-vocabulary-mindmap-item-and-review-ui: backlog
-  # EP1-ST044 delivered the first usable subset; advanced work remains in 18/19/22/23.
+  # EP1-ST044 delivered the first usable daily-practice subset; EP1-ST018 is complete
+  # and EP1-ST019 remains the next dependency-ready vocabulary UI increment.
   1-20-daily-practice-and-quiz-session-api: done
   1-21-daily-practice-and-quiz-card-ui: done
-  1-22-daily-sentence-api-and-completion-model: backlog
-  1-23-daily-sentence-ui-and-dashboard-integration: backlog
+  # Fully superseded by EP1-ST047; EP1-ST048/049 closed verification and integrity.
+  1-22-daily-sentence-api-and-completion-model: done
+  1-23-daily-sentence-ui-and-dashboard-integration: done
   1-24-error-notebook-domain-capture-and-scheduler: done
   1-25-error-notebook-review-ui: done
   1-26-progress-xp-streak-and-accuracy-aggregation: done
@@ -91,6 +93,7 @@ development_status:
   1-47-daily-sentence-learning-bundle: done
   1-48-format-gate-and-daily-sentence-closure: done
   1-49-daily-sentence-assignment-integrity: done
+  1-51-phase-1-rebaseline-and-loop-routing: ready-for-dev
   epic-1-retrospective: optional
 
   epic-2: backlog
