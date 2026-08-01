@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-07-30T17:20:51.205Z
+# last_updated: 2026-08-01T06:35:46.496Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-07-30T17:20:51.205Z
+last_updated: 2026-08-01T06:35:46.496Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -67,7 +67,7 @@ development_status:
   # Blocked before planning by explicit gpt-5.6-sol capacity unavailability; do not resume directly.
   1-52-vocabulary-learner-ui-review-remediation: blocked
   # Temporary planning-capacity fallback governance gate; it must precede the only UI recovery story.
-  1-53-planning-capacity-fallback: in-progress
+  1-53-planning-capacity-fallback: review
   # Sole successor for the four P1 findings owned by blocked EP1-ST052.
   1-54-vocabulary-learner-ui-recovery: ready-for-dev
   1-20-daily-practice-and-quiz-session-api: done
