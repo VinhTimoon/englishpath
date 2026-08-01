@@ -28,6 +28,11 @@ import {
   validateRequiredWorkspaceScripts,
 } from "../run-checks.mjs";
 import {
+  PLAN_PRIMARY_ROUTE,
+  isExplicitCapacityUnavailable,
+  shouldUsePlanFallback,
+} from "../lib/plan-fallback.mjs";
+import {
   BLOCKED_EXIT_CODE,
   CommandError,
   PHASE_ARTIFACTS,
@@ -182,6 +187,55 @@ allowed_paths:
     "scripts/**",
     "stories/**",
   ]);
+});
+
+test("plan fallback keeps the normal planner route", () => {
+  assert.deepEqual(PLAN_PRIMARY_ROUTE, {
+    model: "gpt-5.6-sol",
+    reasoning: "high",
+  });
+});
+
+test("plan fallback is restricted to explicit non-auth capacity failures", () => {
+  assert.equal(
+    shouldUsePlanFallback({
+      phase: "plan",
+      error: { output: "provider capacity is unavailable" },
+    }),
+    true,
+  );
+  assert.equal(
+    isExplicitCapacityUnavailable({ output: "request failed: at capacity" }),
+    true,
+  );
+  assert.equal(
+    shouldUsePlanFallback({
+      phase: "plan",
+      error: { output: "authentication failed; provider is at capacity" },
+    }),
+    false,
+  );
+});
+
+test("plan fallback never retries timeout, blocked, or generic failures", () => {
+  const errors = [
+    { timedOut: true, output: "at capacity" },
+    { blocked: true, output: "at capacity" },
+    { status: 42, output: "at capacity" },
+    { retriable: false, output: "at capacity" },
+    { output: "network connection failed" },
+  ];
+
+  for (const error of errors) {
+    assert.equal(shouldUsePlanFallback({ phase: "plan", error }), false);
+  }
+  assert.equal(
+    shouldUsePlanFallback({
+      phase: "build",
+      error: { output: "provider capacity is unavailable" },
+    }),
+    false,
+  );
 });
 
 test("EnglishPath project skills contain valid metadata and instruction bodies", () => {

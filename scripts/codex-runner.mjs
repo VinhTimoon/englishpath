@@ -11,21 +11,13 @@ import {
   runCommand,
   validatePhaseArtifacts,
 } from "./lib/process-utils.mjs";
+import {
+  PLAN_PRIMARY_ROUTE,
+  shouldUsePlanFallback,
+} from "./lib/plan-fallback.mjs";
 
 const phase = process.argv[2];
 const promptFile = process.argv[3];
-
-const PLAN_PRIMARY_ROUTE = Object.freeze({
-  model: "gpt-5.6-sol",
-  reasoning: "high",
-});
-
-function isExplicitCapacityUnavailable(error) {
-  const output = [error.output, error.message].filter(Boolean).join("\n");
-  return /\b(?:capacity(?:[_\s-]+is)?[_\s-]+unavailable|at[_\s-]+capacity)\b/iu.test(
-    output,
-  );
-}
 
 function buildCodexArgs({ sandbox, route, responseFile }) {
   return [
@@ -142,11 +134,7 @@ function main() {
       timeoutMs: selected.timeout_ms,
     });
   } catch (error) {
-    if (
-      phase === "plan" &&
-      !error.timedOut &&
-      isExplicitCapacityUnavailable(error)
-    ) {
+    if (shouldUsePlanFallback({ phase, error })) {
       console.warn(
         `Primary planning model ${primaryRoute.model} is at capacity; retrying once with configured fallback ${selected.model}.`,
       );

@@ -360,7 +360,8 @@ build:
 - final response phải có `Status: completed` hoặc `Status: blocked`
 
 review:
-- final response phải có `Status: pass`, `Status: fixed`, hoặc `Status: blocked`
+- final response phải có `Status: pass` hoặc `Status: blocked`; review là read-only
+  và không tự sửa code
 - automation không được nạp checkpoint review skill body vào prompt review
 
 debug:

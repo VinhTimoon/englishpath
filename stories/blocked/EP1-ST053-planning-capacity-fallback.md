@@ -9,6 +9,9 @@ allowed_paths:
   - scripts/codex-models.json
   - scripts/codex-runner.mjs
   - scripts/codex-loop.mjs
+  - scripts/lib/plan-fallback.mjs
+  - scripts/tests/story-tools.test.mjs
+  - notes/ENGLISHPATH_AGENT_WORKFLOW.md
   - stories/ready/EP1-ST053-planning-capacity-fallback.md
   - stories/in-progress/EP1-ST053-planning-capacity-fallback.md
   - stories/review/EP1-ST053-planning-capacity-fallback.md
@@ -62,6 +65,20 @@ The `plan` route in `scripts/codex-models.json` is deliberately changed to `gpt-
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST053-planning-capacity-fallback.md --ready-only`
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST054-vocabulary-learner-ui-recovery.md --ready-only`
 - `git diff --check`
+
+## Resolution Notes
+
+- Extracted planner fallback eligibility into `scripts/lib/plan-fallback.mjs`.
+- Added regression coverage for normal routing, explicit capacity failures,
+  authentication failures, timeouts, blocked results, generic failures, and
+  non-plan phases.
+- Synchronized the non-interactive workflow contract so review accepts only
+  `pass` or `blocked`; fixes remain the debug phase responsibility.
+- Story-specific checks pass, including format, traceability, tooling tests
+  (59/59), Prisma validation, lint, typecheck, unit tests, API e2E, build,
+  story doctor, and diff validation.
+- The project-wide browser E2E gate remains blocked by an unrelated Vite server
+  from `E:\Code_Ky8\harness\code\KNOWLEDGE-OOP` already occupying port 5173.
 
 
 ## Blocked Report
