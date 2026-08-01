@@ -1,7 +1,7 @@
 ---
 id: EP1-ST053
 title: Planning Capacity Fallback
-status: review
+status: done
 type: tooling
 priority: high
 phase: phase-1-learning-core
@@ -97,4 +97,5 @@ Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "debug" ".cod
 
 Command failed with exit code 1: "node" "scripts/run-checks.mjs"
 ```
+
 
