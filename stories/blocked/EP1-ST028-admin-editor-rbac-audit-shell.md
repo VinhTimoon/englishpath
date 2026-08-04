@@ -1,7 +1,7 @@
 ---
 id: EP1-ST028
 title: Admin Editor RBAC Privileged Audit And Guarded Shell
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-1-learning-core
@@ -170,3 +170,11 @@ decision is backend-owned, auditable, and safe to extend with the CMS story.
   operations, audit/data protection, and potentially Prisma persistence.
 - Do not merge or promote until all security, ownership, redaction, migration, browser,
   and full quality gates have terminal evidence.
+
+## Blocked Report
+
+- Failed step: loop preflight before branch creation.
+- Root cause: local `dev` is clean but ahead of `origin/dev` by commits `f4678c3` and
+  `9d9d22b`; the harness requires exact upstream synchronization.
+- No feature implementation was started for this story.
+- AI request: `notes/ai-req/2026-08-04-EP1-ST028-dev-upstream-sync.md`.

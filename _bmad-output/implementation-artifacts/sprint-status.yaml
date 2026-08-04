@@ -80,8 +80,8 @@ development_status:
   1-25-error-notebook-review-ui: done
   1-26-progress-xp-streak-and-accuracy-aggregation: done
   1-27-progress-dashboard-aggregation-ui: done
-  # Next independent Phase 1 story; high-risk authorization/audit full review required.
-  1-28-admin-editor-rbac-audit-and-admin-shell: ready-for-dev
+  # Blocked before branch creation until owner synchronizes dev with origin/dev; see notes/ai-req/2026-08-04-EP1-ST028-dev-upstream-sync.md.
+  1-28-admin-editor-rbac-audit-and-admin-shell: in-progress
   1-29-cms-taxonomy-vocabulary-content-api: backlog
   1-30-cms-import-and-admin-content-ui: backlog
   1-31-reviewed-vocabulary-batch-1: backlog

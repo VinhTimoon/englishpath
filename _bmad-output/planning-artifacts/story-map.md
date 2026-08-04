@@ -117,10 +117,11 @@ The next route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked eviden
 `EP1-ST053` -> blocked implementation recovery `EP1-ST054`; no additional recovery
 story is permitted before the build-runner decision is resolved.
 
-`EP1-ST028` is the only independent Phase 1 story prepared in the ready queue while
-`EP1-ST054` awaits the build-runner decision. It owns the guarded admin/editor shell
-and privileged audit foundation; `EP1-ST029` remains backlog until this dependency
-passes.
+`EP1-ST028` was prepared as the only independent Phase 1 successor, but is blocked
+before branch creation until owner-controlled upstream synchronization documented in
+`notes/ai-req/2026-08-04-EP1-ST028-dev-upstream-sync.md` is complete. It owns the
+guarded admin/editor shell and privileged audit foundation; `EP1-ST029` remains
+backlog until this dependency passes.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
