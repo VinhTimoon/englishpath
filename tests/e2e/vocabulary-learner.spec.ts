@@ -78,11 +78,19 @@ test.describe("learner vocabulary mindmap and item flow", () => {
       .getByRole("button", { name: /Server returned topic/ })
       .press("Enter");
     await expect(page).toHaveURL(/node=server-node/);
-    await expect(page.getByRole("heading", { name: "steady" })).toBeVisible();
+    await expect(
+      page
+        .locator('section[aria-labelledby="items-heading"]')
+        .getByRole("heading", { name: "steady" }),
+    ).toBeVisible();
     await expect(page).toHaveURL(/from=roadmap/);
     await page.getByRole("button", { name: /Trang tiếp/ }).click();
     await expect(page).toHaveURL(/page=2/);
-    await expect(page.getByRole("heading", { name: "reliable" })).toBeVisible();
+    await expect(
+      page
+        .locator('section[aria-labelledby="items-heading"]')
+        .getByRole("heading", { name: "reliable" }),
+    ).toBeVisible();
     await page.getByRole("button", { name: "Xem chi tiết" }).click();
     await expect(page.getByText("đáng tin cậy")).toBeVisible();
     await page.getByRole("button", { name: /Quay lại danh sách/ }).click();
@@ -113,5 +121,84 @@ test.describe("learner vocabulary mindmap and item flow", () => {
     await expect(
       page.getByRole("button", { name: /Server returned topic/ }),
     ).toBeVisible();
+  });
+
+  test("submits due reviews without skipping the next server item", async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.session",
+        JSON.stringify({ email: "learner@example.com", accessToken: "local" }),
+      );
+    });
+    await page.route("**/api/v1/vocabulary/reviews/due**", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          data: [
+            {
+              vocabularyId: "due-one",
+              word: "steady",
+              meaning: "đều đặn",
+              example: null,
+              pronunciation: null,
+              mastery: 20,
+              repetitions: 1,
+              intervalDays: 1,
+              nextReviewAt: "2026-08-04T00:00:00.000Z",
+            },
+            {
+              vocabularyId: "due-two",
+              word: "reliable",
+              meaning: "đáng tin cậy",
+              example: null,
+              pronunciation: null,
+              mastery: 10,
+              repetitions: 1,
+              intervalDays: 1,
+              nextReviewAt: "2026-08-04T00:00:00.000Z",
+            },
+          ],
+          meta,
+        }),
+      }),
+    );
+    await page.route("**/api/v1/vocabulary/reviews/*", (route) => {
+      if (route.request().method() === "GET") return route.fallback();
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          data: {
+            id: "due-one",
+            word: "steady",
+            meaning: "đều đặn",
+            example: null,
+            pronunciation: null,
+            mastery: 45,
+            repetitions: 2,
+            intervalDays: 3,
+            nextReviewAt: "2026-08-07T00:00:00.000Z",
+          },
+          meta: { correlationId: "e2e-review", idempotencyStatus: "created" },
+        }),
+      });
+    });
+    await page.goto("/vocabulary/learn?node=server-node");
+    await page.getByRole("button", { name: "Bắt đầu ôn tập" }).click();
+    await expect(
+      page
+        .locator('section[aria-labelledby="review-heading"]')
+        .getByRole("heading"),
+    ).toHaveText("steady");
+    await page.getByRole("button", { name: "Nhớ" }).click();
+    await expect(page.getByText(/Mức độ ghi nhớ hiện tại: 45/)).toBeVisible();
+    await expect(
+      page
+        .locator('section[aria-labelledby="review-heading"]')
+        .getByRole("heading"),
+    ).toHaveText("reliable");
   });
 });
