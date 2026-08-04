@@ -188,7 +188,7 @@ test.describe("public vocabulary taxonomy explorer", () => {
     const previous = process.env.NEXT_PUBLIC_API_BASE_URL;
     try {
       delete process.env.NEXT_PUBLIC_API_BASE_URL;
-    expect(getPublicApiBase()).toBe("http://localhost:3005/api/v1");
+      expect(getPublicApiBase()).toBe("http://localhost:3005/api/v1");
       for (const invalid of [
         "https://user:secret@example.com/api/v1",
         "https://example.com/api/v1/",

@@ -2,7 +2,10 @@ import { expect, test } from "@playwright/test";
 
 const apiOrigin = "http://localhost:3005/api/v1";
 
-const meta = { correlationId: "e2e-vocabulary", idempotencyStatus: "not_applicable" };
+const meta = {
+  correlationId: "e2e-vocabulary",
+  idempotencyStatus: "not_applicable",
+};
 
 function mindmapResponse() {
   return {
@@ -45,19 +48,35 @@ function itemsResponse(page: number) {
 test.describe("learner vocabulary mindmap and item flow", () => {
   test.beforeEach(async ({ page }) => {
     await page.route(`${apiOrigin}/vocabulary/mindmap**`, (route) =>
-      route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(mindmapResponse()) }),
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(mindmapResponse()),
+      }),
     );
     await page.route(`${apiOrigin}/vocabulary/items**`, (route) => {
-      const pageNumber = Number(new URL(route.request().url()).searchParams.get("page") ?? "1");
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(itemsResponse(pageNumber)) });
+      const pageNumber = Number(
+        new URL(route.request().url()).searchParams.get("page") ?? "1",
+      );
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(itemsResponse(pageNumber)),
+      });
     });
   });
 
-  test("selects a dynamic node, paginates, opens detail, and preserves context", async ({ page }) => {
+  test("selects a dynamic node, paginates, opens detail, and preserves context", async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto("/vocabulary/learn?from=roadmap");
-    await expect(page.getByRole("button", { name: /Server returned topic/ })).toBeVisible();
-    await page.getByRole("button", { name: /Server returned topic/ }).press("Enter");
+    await expect(
+      page.getByRole("button", { name: /Server returned topic/ }),
+    ).toBeVisible();
+    await page
+      .getByRole("button", { name: /Server returned topic/ })
+      .press("Enter");
     await expect(page).toHaveURL(/node=server-node/);
     await expect(page.getByRole("heading", { name: "steady" })).toBeVisible();
     await expect(page).toHaveURL(/from=roadmap/);
@@ -68,7 +87,9 @@ test.describe("learner vocabulary mindmap and item flow", () => {
     await expect(page.getByText("đáng tin cậy")).toBeVisible();
     await page.getByRole("button", { name: /Quay lại danh sách/ }).click();
     await expect(page.getByRole("heading", { name: "reliable" })).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360);
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(360);
   });
 
   test("recovers from a mindmap request failure", async ({ page }) => {
@@ -76,12 +97,21 @@ test.describe("learner vocabulary mindmap and item flow", () => {
     await page.unroute(`${apiOrigin}/vocabulary/mindmap**`);
     await page.route(`${apiOrigin}/vocabulary/mindmap**`, (route) => {
       attempts += 1;
-      if (attempts === 1) return route.fulfill({ status: 503, body: "temporary" });
-      return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(mindmapResponse()) });
+      if (attempts === 1)
+        return route.fulfill({ status: 503, body: "temporary" });
+      return route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(mindmapResponse()),
+      });
     });
     await page.goto("/vocabulary/learn");
-    await expect(page.getByRole("alert").filter({ hasText: "Chưa thể mở bản đồ" })).toBeVisible();
+    await expect(
+      page.getByRole("alert").filter({ hasText: "Chưa thể mở bản đồ" }),
+    ).toBeVisible();
     await page.getByRole("button", { name: "Thử tải lại" }).click();
-    await expect(page.getByRole("button", { name: /Server returned topic/ })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /Server returned topic/ }),
+    ).toBeVisible();
   });
 });

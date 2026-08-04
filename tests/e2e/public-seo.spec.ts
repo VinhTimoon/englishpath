@@ -5,11 +5,18 @@ import {
   getSiteOrigin,
 } from "../../apps/web/src/shared/seo/site-origin";
 
-const origin = "http://127.0.0.1:4173";
+const origin = "http://localhost:4173";
 const articlePaths = [
   "/blog/7-cum-tieng-anh-giao-tiep-tu-nhien",
   "/blog/lo-trinh-10-phut-hoc-tieng-anh",
   "/blog/say-tell-speak-talk-khac-nhau",
+  "/blog/cach-dung-do-va-make",
+  "/blog/cach-nho-giup-do-lich-su-bang-tieng-anh",
+  "/blog/luyen-nghe-tieng-anh-bang-hoi-thoai-ngan",
+  "/blog/nho-tu-vung-theo-cau-chuyen",
+  "/blog/present-perfect-have-has",
+  "/blog/dat-muc-tieu-toeic-trong-30-ngay",
+  "/blog/checklist-tu-sua-doan-viet-tieng-anh",
 ] as const;
 
 test.describe("public technical SEO", () => {

@@ -1,3 +1,5 @@
+import { additionalArticles } from "./additional-articles";
+
 export type ArticleSection = {
   heading: string;
   paragraphs: string[];
@@ -22,7 +24,7 @@ export type Article = {
   relatedSlugs: string[];
 };
 
-export const articles: readonly Article[] = [
+const coreArticles: readonly Article[] = [
   {
     title: "7 cụm tiếng Anh giúp cuộc trò chuyện tự nhiên hơn",
     slug: "7-cum-tieng-anh-giao-tiep-tu-nhien",
@@ -209,6 +211,8 @@ export const articles: readonly Article[] = [
     ],
   },
 ];
+
+export const articles: readonly Article[] = [...coreArticles, ...additionalArticles];
 
 export const publishedArticles: readonly Article[] = articles;
 
