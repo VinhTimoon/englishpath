@@ -3,7 +3,7 @@
 Date: 2026-08-04
 Story: EP1-ST060
 Category: external environment / browser verification
-Status: awaiting owner decision
+Status: resolved in repository harness
 
 ## Decision Needed
 
@@ -23,8 +23,7 @@ Choose one safe way to make the EnglishPath Playwright gate target EnglishPath:
 
 ## Impact And Continuation
 
-The blog implementation has build and scoped-review evidence, but browser coverage
-cannot be called pass while it targets another application. After the owner chooses
-an option, rerun only the final checks/review/verification for the blog recovery from
-a clean synchronized `dev`; do not merge `99d024e` without real EnglishPath browser
-evidence.
+The repository harness now defaults Playwright to isolated `127.0.0.1:4173` and starts
+EnglishPath explicitly with `next start --port 4173`; it no longer reuses port 5173.
+`EP1-ST061` is the only recovery route for final browser evidence. Do not merge
+`99d024e` without real EnglishPath browser evidence.

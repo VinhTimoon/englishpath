@@ -1,7 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const isCi = Boolean(process.env.CI);
-const baseUrl = "http://localhost:5173";
+const configuredPort = process.env.ENGLISHPATH_E2E_PORT;
+const e2ePort =
+  configuredPort && /^\d{2,5}$/u.test(configuredPort) ? configuredPort : "4173";
+const baseUrl = `http://127.0.0.1:${e2ePort}`;
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -34,7 +37,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm --filter web start",
+    command: `pnpm --filter web exec next start --port ${e2ePort}`,
     url: baseUrl,
     reuseExistingServer: !isCi,
     stdout: "pipe",

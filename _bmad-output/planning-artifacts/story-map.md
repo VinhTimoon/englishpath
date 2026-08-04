@@ -76,6 +76,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST058`                | Indexable blog baseline recovery after branch collision                                  | `EP1-ST006`; blocked evidence: `EP1-ST037` |
 | `EP1-ST059`                | Indexable blog baseline clean retry after generated-artifact cleanup                     | `EP1-ST006`; blocked evidence: `EP1-ST058` |
 | `EP1-ST060`                | Indexable blog scoped review retry                                                      | `EP1-ST006`; blocked evidence: `EP1-ST059` |
+| `EP1-ST061`                | Indexable blog browser gate recovery on isolated port                                   | `EP1-ST006`; blocked evidence: `EP1-ST060` |
 | `EP1-ST038`                | Analytics/monitoring integration and launch dashboards                                   | `EP0-ST022`, `EP1-ST027`           |
 | `EP1-ST039`                | Browser E2E, accessibility, performance, security, content-rights, and staging readiness | `EP1-ST030` to `EP1-ST038`         |
 | `EP1-ST042`                | Bundled learner entry: auth UI, onboarding API/UI, and placement API/UI                  | `EP1-ST008`                        |
