@@ -107,8 +107,10 @@ development_status:
   1-60-indexable-blog-scoped-review-retry: blocked
   # Isolated E2E-port recovery still has incomplete browser evidence and learner-flow review blockers; do not resume until owner review selects a scoped successor.
   1-61-indexable-blog-browser-gate-recovery: blocked
-  # Recovery successor for the blocked vocabulary mindmap-selection slice.
-  1-62-vocabulary-mindmap-selection-recovery: ready-for-dev
+  # Formatting-gate recovery for the blocked vocabulary mindmap-selection slice.
+  1-62-vocabulary-mindmap-selection-recovery: blocked
+  # Recovery successor after the bounded format-gate block in EP1-ST062.
+  1-63-vocabulary-mindmap-selection-gate-recovery: ready-for-dev
   1-38-analytics-monitoring-and-launch-dashboards: backlog
   1-39-phase-1-staging-readiness-and-exit-review: backlog
   1-42-bundled-learner-entry-vertical-slice: done
