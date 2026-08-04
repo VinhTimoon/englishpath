@@ -99,3 +99,22 @@ be resumed, cherry-picked, or merged.
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST057-vocabulary-mindmap-selection.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST057-vocabulary-mindmap-selection.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs build .codex-build-task.md`
+- Exit code: `42` after bounded debug handling
+- Attempts: `1`
+- Summary: Codex execution stopped at the external 240-second model window before
+  writing a fresh build terminal artifact. The implementation WIP is not mergeable.
+
+### Evidence
+
+- Full loop elapsed: `241.2s`.
+- Local build configuration: `1200000ms`; build reasoning mitigation: `low`.
+- The direct subprocess test independently survived `245006ms`.
+- WIP commit `5876f56` remains only on `story/ep1-st057`; it is not merged.
+- AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+
+This story must not be resumed until the Codex execution cap is resolved or an owner
+approves a different execution path.

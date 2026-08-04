@@ -3,7 +3,7 @@
 Date: 2026-08-04
 Story: EP1-ST028
 Category: external coordination / repository release state
-Status: awaiting owner action
+Status: resolved by authorized normal push
 
 ## Decision Needed
 
@@ -37,6 +37,13 @@ governance commits:
    push or history rewrite is required.
 3. Owner rejects the commits; then provide a safe replacement instruction before
    altering local history. The orchestrator will not reset, rebase, or force-push.
+
+## Resolution Evidence
+
+- Authorized normal push completed: `346dacb..f13b995` followed by subsequent
+  reviewed metadata pushes.
+- Verified `dev...origin/dev` and clean worktree before the next loop.
+- No force push, reset, rebase, or `main` operation was performed.
 
 ## Continue After Approval
 

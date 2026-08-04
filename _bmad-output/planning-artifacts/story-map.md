@@ -111,9 +111,9 @@ plan fallback. `EP1-ST054` remains immutable blocked implementation evidence for
 four P1 findings inherited from `EP1-ST052`; its WIP commit `8efb8c8` is not mergeable.
 A direct subprocess test survived `245006ms`, so the generic shell runner did not
 reproduce the reported 240-second cap. `EP1-ST055` is blocked implementation evidence
-and must not resume `EP1-ST054`. `EP1-ST056` is a blocked recovery split for the
-mindmap and paginated item flow. `EP1-ST057` is the only ready implementation story
-and narrows the next attempt to initial mindmap selection.
+and must not resume `EP1-ST054`. `EP1-ST056` and `EP1-ST057` are blocked recovery
+evidence for the learner vocabulary flow; no vocabulary story is ready while the
+Codex execution-cap decision remains unresolved.
 
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
@@ -122,14 +122,14 @@ and `EP1-ST023` are represented as done only through the explicit supersession c
 The next route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked evidence
 `EP1-ST019` -> blocked capacity incident `EP1-ST052` -> completed governance
 `EP1-ST053` -> blocked implementation recovery `EP1-ST054` -> blocked recovery
-`EP1-ST055` -> blocked recovery `EP1-ST056` -> `EP1-ST057`. `EP1-ST054` through
-`EP1-ST056` are historical evidence and must not be resumed.
+`EP1-ST055` -> blocked recovery `EP1-ST056` -> blocked recovery `EP1-ST057`.
+`EP1-ST054` through `EP1-ST057` are historical evidence and must not be resumed.
 
-`EP1-ST028` was prepared as the only independent Phase 1 successor, but is blocked
-before branch creation until owner-controlled upstream synchronization documented in
-`notes/ai-req/2026-08-04-EP1-ST028-dev-upstream-sync.md` is complete. It owns the
-guarded admin/editor shell and privileged audit foundation; `EP1-ST029` remains
-backlog until this dependency passes.
+`EP1-ST028` was blocked before branch creation until owner-controlled upstream
+synchronization documented in `notes/ai-req/2026-08-04-EP1-ST028-dev-upstream-sync.md`
+completed. The normal push and clean `dev...origin/dev` state are now evidenced, so
+it is the only ready Phase 1 story and owns the guarded admin/editor shell and
+privileged audit foundation; `EP1-ST029` remains backlog until this dependency passes.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
