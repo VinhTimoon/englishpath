@@ -82,3 +82,20 @@ historical evidence and must not be resumed or merged.
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST058-indexable-blog-baseline-recovery.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST058-indexable-blog-baseline-recovery.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs build .codex-build-task.md`
+- Exit code: `42` after the first fallback resume
+- Attempts: `1`
+- Summary: Resume fallback succeeded and returned a terminal result, but the resumed
+  agent encountered a stale `.next/types` reference to the previously blocked
+  vocabulary route before the pre-build cleanup fix landed.
+
+### Evidence
+
+- Full loop elapsed: `422.9s`.
+- Build result: `Status: blocked`; blog implementation was generated on WIP commit
+  `81fd10d` on `story/ep1-st058`, not merged.
+- Harness fix now removes `apps/web/.next` before build and before quality gates.
+- `EP1-ST059` is the only successor and this story must not be resumed.

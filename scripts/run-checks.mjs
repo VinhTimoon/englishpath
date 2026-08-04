@@ -2,6 +2,7 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { removeGeneratedWebArtifacts } from "./lib/process-utils.mjs";
 
 function readPackageJson(packageJsonPath) {
   if (!fs.existsSync(packageJsonPath)) return null;
@@ -19,11 +20,7 @@ function run(command) {
 }
 
 export function cleanGeneratedWebArtifacts() {
-  const nextDirectory = path.resolve("apps/web/.next");
-  if (fs.existsSync(nextDirectory)) {
-    fs.rmSync(nextDirectory, { recursive: true, force: true });
-    console.log(`Removed generated web artifacts: ${nextDirectory}`);
-  }
+  removeGeneratedWebArtifacts();
 }
 
 export function runPrismaValidation(options = {}) {

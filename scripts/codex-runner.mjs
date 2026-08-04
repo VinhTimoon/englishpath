@@ -6,6 +6,7 @@ import {
   createPhaseContractError,
   formatPhaseTimeoutMessage,
   materializePlanArtifact,
+  removeGeneratedWebArtifacts,
   removePhaseArtifacts,
   resolvePhaseSandbox,
   runCommand,
@@ -159,6 +160,9 @@ function main() {
   console.log(`Sandbox: ${sandbox}`);
 
   removePhaseArtifacts(phase);
+  if (phase === "build") {
+    removeGeneratedWebArtifacts();
+  }
   let startedAt = Date.now();
   let codexArgs = buildCodexArgs({
     sandbox,

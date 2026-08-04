@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import path from "node:path";
 import { spawnSync } from "node:child_process";
 
 export class CommandError extends Error {
@@ -147,6 +148,16 @@ export function removePhaseArtifacts(phase) {
       fs.rmSync(file, { force: true });
     }
   }
+}
+
+export function removeGeneratedWebArtifacts(cwd = process.cwd()) {
+  const nextDirectory = path.resolve(cwd, "apps/web/.next");
+  if (!fs.existsSync(nextDirectory)) {
+    return;
+  }
+
+  fs.rmSync(nextDirectory, { recursive: true, force: true });
+  console.log(`Removed generated web artifacts: ${nextDirectory}`);
 }
 
 function extractStoryId(prompt) {

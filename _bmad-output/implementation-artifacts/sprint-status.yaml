@@ -99,7 +99,9 @@ development_status:
   1-36-reviewed-quiz-and-daily-sentence-seed-baseline: backlog
   # Historical branch-collision block; do not resume. EP1-ST058 is the recovery story.
   1-37-expand-indexable-blog-baseline: blocked
-  1-58-indexable-blog-baseline-recovery: ready-for-dev
+  # Blocked by stale generated web artifacts; do not resume. EP1-ST059 is the clean retry.
+  1-58-indexable-blog-baseline-recovery: blocked
+  1-59-indexable-blog-baseline-clean-retry: ready-for-dev
   1-38-analytics-monitoring-and-launch-dashboards: backlog
   1-39-phase-1-staging-readiness-and-exit-review: backlog
   1-42-bundled-learner-entry-vertical-slice: done
