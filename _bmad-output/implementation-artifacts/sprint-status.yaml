@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-04T05:00:00.000Z
+# last_updated: 2026-08-04T06:08:06.602Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-04T05:00:00.000Z
+last_updated: 2026-08-04T06:08:06.602Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -97,7 +97,7 @@ development_status:
   1-35-reviewed-vocabulary-batch-5: backlog
   # Remains backlog: reviewed quiz and remaining launch-content baseline are unimplemented.
   1-36-reviewed-quiz-and-daily-sentence-seed-baseline: backlog
-  1-37-expand-indexable-blog-baseline: ready-for-dev
+  1-37-expand-indexable-blog-baseline: in-progress
   1-38-analytics-monitoring-and-launch-dashboards: backlog
   1-39-phase-1-staging-readiness-and-exit-review: backlog
   1-42-bundled-learner-entry-vertical-slice: done

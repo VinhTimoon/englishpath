@@ -1,7 +1,7 @@
 ---
 id: EP1-ST037
 title: Expand Indexable Blog Baseline
-status: ready
+status: blocked
 type: content
 priority: medium
 phase: phase-1-learning-core
@@ -87,3 +87,17 @@ indexable articles so guest learners have credible practice guidance before sign
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST037-indexable-blog-baseline.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST037-indexable-blog-baseline.md`
 - `git diff --check`
+
+
+## Blocked Report
+
+- Failed step: "git" "checkout" "-b" "story/ep1-st037"
+- Exit code: 128
+- Attempts: 3
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Command failed with exit code 128: "git" "checkout" "-b" "story/ep1-st037"
+```
