@@ -10,8 +10,8 @@ pnpm dev
 
 The local services use:
 
-- Web: [http://localhost:5173](http://localhost:5173)
-- API: [http://localhost:3000](http://localhost:3000)
+- Web: [http://localhost:4173](http://localhost:4173)
+- API: [http://localhost:3005](http://localhost:3005)
 
 Copy the app-specific `.env.example` files when local overrides are needed.
 

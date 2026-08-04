@@ -119,7 +119,7 @@ async function interceptVocabulary(
 ) {
   const requests: string[] = [];
   await page.route(
-    "http://localhost:3000/api/v1/vocabulary/**",
+    "http://localhost:3005/api/v1/vocabulary/**",
     async (route) => {
       requests.push(route.request().url());
       if (options.delay)
@@ -188,7 +188,7 @@ test.describe("public vocabulary taxonomy explorer", () => {
     const previous = process.env.NEXT_PUBLIC_API_BASE_URL;
     try {
       delete process.env.NEXT_PUBLIC_API_BASE_URL;
-      expect(getPublicApiBase()).toBe("http://localhost:3000/api/v1");
+    expect(getPublicApiBase()).toBe("http://localhost:3005/api/v1");
       for (const invalid of [
         "https://user:secret@example.com/api/v1",
         "https://example.com/api/v1/",

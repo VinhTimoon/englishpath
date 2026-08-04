@@ -1,4 +1,4 @@
-export const LOCAL_SITE_ORIGIN = "http://localhost:5173";
+export const LOCAL_SITE_ORIGIN = "http://localhost:4173";
 
 export function getSiteOrigin() {
   const rawOrigin = process.env.NEXT_PUBLIC_SITE_URL;

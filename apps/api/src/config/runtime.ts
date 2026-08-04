@@ -1,5 +1,5 @@
-const DEFAULT_API_PORT = 3000;
-const DEFAULT_WEB_ORIGIN = 'http://localhost:5173';
+const DEFAULT_API_PORT = 3005;
+const DEFAULT_WEB_ORIGIN = 'http://localhost:4173';
 
 type RuntimeEnvironment = {
   PORT?: string;

@@ -3,8 +3,8 @@ import { resolveApiRuntimeConfig } from './runtime';
 describe('resolveApiRuntimeConfig', () => {
   it('uses the local API and frontend defaults', () => {
     expect(resolveApiRuntimeConfig({})).toEqual({
-      port: 3000,
-      webOrigin: 'http://localhost:5173',
+      port: 3005,
+      webOrigin: 'http://localhost:4173',
     });
   });
 

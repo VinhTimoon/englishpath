@@ -1,6 +1,6 @@
 import type { ZodType } from "zod";
 
-const LOCAL_API_BASE = "http://localhost:3000/api/v1";
+const LOCAL_API_BASE = "http://localhost:3005/api/v1";
 const REQUEST_TIMEOUT_MS = 8_000;
 
 export class PublicApiError extends Error {

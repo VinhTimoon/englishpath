@@ -43,7 +43,7 @@ export function AuthPage() {
       router.push("/onboarding");
     } catch {
       setMessage(
-        "API local chưa sẵn sàng. Hãy kiểm tra BE port 3000 và PostgreSQL.",
+        "API local chưa sẵn sàng. Hãy kiểm tra BE port 3005 và PostgreSQL.",
       );
       setBusy(false);
     }

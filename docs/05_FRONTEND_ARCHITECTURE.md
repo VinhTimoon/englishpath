@@ -65,7 +65,7 @@ only assembles the widgets and page metadata.
 ## Public SEO Boundary
 
 - `shared/seo` owns the canonical origin and site-wide metadata constants. The local
-  origin is `http://localhost:5173`; deployment configuration must be a bare HTTP(S)
+  origin is `http://localhost:4173`; deployment configuration must be a bare HTTP(S)
   origin without whitespace, credentials, path, query, hash, or trailing slash.
 - App Router route modules own route-specific canonical, Open Graph, and Twitter
   metadata. SEO data renders on the server and must not require hydration.

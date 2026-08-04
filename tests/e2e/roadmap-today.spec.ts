@@ -60,7 +60,7 @@ test("learner generates a roadmap and completes today's work", async ({
     totalItems: items.length,
   });
 
-  await page.route("http://localhost:3000/api/v1/**", async (route) => {
+  await page.route("http://localhost:3005/api/v1/**", async (route) => {
     expect(route.request().headers().authorization).toBe(
       "Bearer englishpath.local.learner",
     );

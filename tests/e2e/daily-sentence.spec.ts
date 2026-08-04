@@ -15,7 +15,7 @@ test("learner can navigate, submit by keyboard, and revisit feedback", async ({
   });
 
   let completed = false;
-  await page.route("http://localhost:3000/api/v1/**", async (route) => {
+  await page.route("http://localhost:3005/api/v1/**", async (route) => {
     const path = new URL(route.request().url()).pathname;
     if (path.endsWith("/placement/result")) {
       return route.fulfill({

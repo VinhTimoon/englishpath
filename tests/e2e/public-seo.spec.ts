@@ -5,7 +5,7 @@ import {
   getSiteOrigin,
 } from "../../apps/web/src/shared/seo/site-origin";
 
-const origin = "http://localhost:5173";
+const origin = "http://127.0.0.1:4173";
 const articlePaths = [
   "/blog/7-cum-tieng-anh-giao-tiep-tu-nhien",
   "/blog/lo-trinh-10-phut-hoc-tieng-anh",

@@ -38,12 +38,12 @@ repeatable on a clean machine, and independent of developer secrets.
 
 ### Browser E2E Tests
 
-- Run Playwright against `http://localhost:5173` with Chromium only.
+- Run Playwright against `http://localhost:4173` with Chromium only.
 - Install the browser binary with `pnpm e2e:install`.
 - Run the suite with `pnpm e2e`. `pnpm story:checks` runs it automatically after
   a successful root `pnpm build`.
 - The harness owns `pnpm --filter web start` in CI and other clean environments.
-  Local runs may reuse an already-running server on port `5173`.
+  Local runs may reuse an already-running server on port `4173`.
 - Keep execution bounded: finite Playwright timeouts, one worker, zero retries,
   and no arbitrary sleeps.
 - Retain screenshot and trace evidence on failure only. If repository checks fail, CI
@@ -145,7 +145,7 @@ Report commands that were skipped or unavailable; never claim they passed.
   both must produce only a correlated, sanitized `INTERNAL_ERROR` envelope without
   partial data or private adapter details. Tests also remove known database/Supabase
   credentials and spy on `fetch` while exercising both routes.
-- Public vocabulary browser tests intercept every port-3000 taxonomy request and cover
+- Public vocabulary browser tests intercept every port-3005 taxonomy request and cover
   delayed loading, strict success parsing, URL-owned filters, retryable failures, empty
   variants, semantic nesting, keyboard controls, mobile overflow, and axe findings.
   They never require the API process, credentials, or private governance fixtures.

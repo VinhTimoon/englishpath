@@ -24,7 +24,7 @@ test("learner completes five daily cards and sees progress", async ({
     ),
   );
   let answered = 0;
-  await page.route("http://localhost:3000/api/v1/**", async (route) => {
+  await page.route("http://localhost:3005/api/v1/**", async (route) => {
     expect(route.request().headers().authorization).toBe(
       "Bearer englishpath.local.learner",
     );

@@ -104,7 +104,7 @@ Load the full v2 specification only for rebaseline or unresolved business ambigu
 - Retrieval: PostgreSQL full-text and pgvector-compatible design before specialist
   vector/graph services.
 - External services use local/mock adapters for credential-free tests.
-- Local ports remain frontend `5173` and backend `3000`.
+- Local ports remain frontend `4173` and backend `3005`.
 
 ## Quality Gate
 

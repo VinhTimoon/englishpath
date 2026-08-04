@@ -102,3 +102,80 @@ export const mindmapEnvelopeSchema = z
 export type Topic = z.infer<typeof topicSchema>;
 export type TopicsEnvelope = z.infer<typeof topicsEnvelopeSchema>;
 export type MindmapEnvelope = z.infer<typeof mindmapEnvelopeSchema>;
+
+export const vocabularyItemSchema = z
+  .object({
+    id: tokenSchema,
+    taxonomyNodeId: tokenSchema,
+    word: z.string().min(1).max(160),
+    meaning: z.string().min(1).max(500),
+    example: z.string().max(500).nullable(),
+    pronunciation: z.string().max(160).nullable(),
+  })
+  .strict();
+
+export const vocabularyItemsEnvelopeSchema = z
+  .object({
+    data: z.array(vocabularyItemSchema),
+    page: z
+      .object({
+        number: z.number().int().positive(),
+        size: z.number().int().min(1).max(50),
+        totalItems: z.number().int().nonnegative(),
+        totalPages: z.number().int().nonnegative(),
+      })
+      .strict(),
+    meta: metadataSchema,
+  })
+  .strict();
+
+export const dueReviewSchema = z
+  .object({
+    vocabularyId: tokenSchema,
+    word: z.string().min(1).max(160),
+    meaning: z.string().min(1).max(500),
+    example: z.string().max(500).nullable(),
+    pronunciation: z.string().max(160).nullable(),
+    mastery: z.number().int().min(0).max(100),
+    repetitions: z.number().int().nonnegative(),
+    intervalDays: z.number().int().nonnegative(),
+    nextReviewAt: z.string().datetime(),
+  })
+  .strict();
+
+export const dueReviewsEnvelopeSchema = z
+  .object({
+    data: z.array(dueReviewSchema),
+    meta: metadataSchema,
+  })
+  .strict();
+
+export const reviewOutcomeSchema = z
+  .object({
+    id: tokenSchema,
+    word: z.string().min(1).max(160),
+    meaning: z.string().min(1).max(500),
+    example: z.string().max(500).nullable(),
+    pronunciation: z.string().max(160).nullable(),
+    mastery: z.number().int().min(0).max(100),
+    repetitions: z.number().int().nonnegative(),
+    intervalDays: z.number().int().nonnegative(),
+    nextReviewAt: z.string().datetime(),
+  })
+  .strict();
+
+export const reviewEnvelopeSchema = z
+  .object({
+    data: reviewOutcomeSchema,
+    meta: metadataSchema.extend({
+      idempotencyStatus: z.enum(["created", "replayed"]),
+    }),
+  })
+  .strict();
+
+export type VocabularyItem = z.infer<typeof vocabularyItemSchema>;
+export type VocabularyItemsEnvelope = z.infer<
+  typeof vocabularyItemsEnvelopeSchema
+>;
+export type DueReview = z.infer<typeof dueReviewSchema>;
+export type ReviewOutcome = z.infer<typeof reviewOutcomeSchema>;

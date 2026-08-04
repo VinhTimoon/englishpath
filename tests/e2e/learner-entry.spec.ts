@@ -17,7 +17,7 @@ test("learner completes auth, onboarding, placement, and reaches dashboard", asy
   await page.setViewportSize({ width: 360, height: 780 });
   let placementSubmitted = false;
   const submissionIds: string[] = [];
-  await page.route("http://localhost:3000/api/v1/**", async (route) => {
+  await page.route("http://localhost:3005/api/v1/**", async (route) => {
     const path = new URL(route.request().url()).pathname;
     const authorization = route.request().headers().authorization;
     expect(authorization).toBe("Bearer englishpath.local.learner");

@@ -12,7 +12,7 @@ test("learner reviews private errors on mobile", async ({ page }) => {
     ),
   );
   await page.route(
-    "http://localhost:3000/api/v1/quiz/session/summary/errors",
+    "http://localhost:3005/api/v1/quiz/session/summary/errors",
     async (route) => {
       expect(route.request().headers().authorization).toBe(
         "Bearer englishpath.local.learner",

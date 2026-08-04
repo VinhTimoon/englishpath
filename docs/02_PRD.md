@@ -61,7 +61,7 @@ rebaseline.
 | NFR-013 | Security includes backend JWT verification, RBAC/ownership, validation, rate limits, secret protection, signed/private media, redacted logs, and audit.                 | Unauthorized and malformed requests fail safely with evidence.               |
 | NFR-014 | The platform retains an explicit path to roughly 300-500 concurrent users using indexes, caching, queues, and non-blocking heavy work where justified.                  | Load-sensitive stories document capacity assumptions and tests.              |
 | NFR-015 | Automation may merge passed story branches only into `dev`; `dev` to `main`, production credentials, paid services, and destructive migrations remain owner-controlled. | Automation never promotes or activates protected production decisions.       |
-| NFR-016 | Local development defaults remain frontend `5173` and backend `3000`.                                                                                                   | Approved local commands and examples resolve to those ports.                 |
+| NFR-016 | Local development defaults remain frontend `4173` and backend `3005`.                                                                                                   | Approved local commands and examples resolve to those ports.                 |
 | NFR-017 | Business-rule fixes for score, roadmap, rights, and exam sessions include happy, validation, boundary, and failure-path regression tests.                               | A rule cannot change only to satisfy an existing test.                       |
 
 ## Transition Note

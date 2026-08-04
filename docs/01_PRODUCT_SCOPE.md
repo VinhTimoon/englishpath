@@ -29,7 +29,7 @@ English-learning content.
 | Area                                                            | Status               | Evidence                                                                      |
 | --------------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------- |
 | Story governance and local loop                                 | Implemented baseline | Completed Phase 0 stories, with superseded work recorded in lifecycle folders |
-| Health API and local ports                                      | Implemented baseline | `GET /api/v1/health`, web `5173`, API `3000`                                  |
+| Health API and local ports                                      | Implemented baseline | `GET /api/v1/health`, web `4173`, API `3005`                                  |
 | Public blog SEO foundation                                      | Implemented baseline | `EP1-ST002`                                                                   |
 | Product v2 core planning                                        | In progress          | `EP0-ST014`                                                                   |
 | Epic/story map v2 alignment                                     | Immediate follow-up  | `EP0-ST015`                                                                   |
