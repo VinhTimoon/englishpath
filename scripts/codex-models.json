@@ -1,7 +1,7 @@
 {
   "plan": {
-    "model": "gpt-5.6-terra",
-    "reasoning": "medium",
+    "model": "gpt-5.6-luna",
+    "reasoning": "high",
     "timeout_ms": 480000,
     "sandbox": "read-only"
   },
@@ -12,13 +12,13 @@
     "sandbox": "danger-full-access"
   },
   "review": {
-    "model": "gpt-5.6-terra",
+    "model": "gpt-5.6-luna",
     "reasoning": "medium",
     "timeout_ms": 600000,
     "sandbox": "read-only"
   },
   "debug": {
-    "model": "gpt-5.6-sol",
+    "model": "gpt-5.6-luna",
     "reasoning": "high",
     "timeout_ms": 480000,
     "sandbox": "danger-full-access"
