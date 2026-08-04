@@ -83,3 +83,21 @@ branches remain historical evidence and must not be resumed or merged.
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST059-indexable-blog-baseline-clean-retry.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST059-indexable-blog-baseline-clean-retry.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs review .codex-review-task.md`
+- Exit code: `42`
+- Attempts: `1`
+- Summary: Implementation build completed through resume, but the review agent
+  blocked on unrelated pre-existing vocabulary P1 findings outside this blog story.
+  The review prompt lacked an explicit out-of-scope exclusion; that harness defect is
+  now corrected. This story must not be resumed.
+
+### Evidence
+
+- Build artifact: `Status: completed`.
+- Review artifact: `Status: blocked`; all reported P1s concerned vocabulary learner
+  flow, not the blog diff.
+- WIP commit `36e2af6` remains only on `story/ep1-st059` and is not merged.
+- `EP1-ST060` is the only successor after the scoped-review prompt fix.

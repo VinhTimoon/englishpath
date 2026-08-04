@@ -101,7 +101,9 @@ development_status:
   1-37-expand-indexable-blog-baseline: blocked
   # Blocked by stale generated web artifacts; do not resume. EP1-ST059 is the clean retry.
   1-58-indexable-blog-baseline-recovery: blocked
-  1-59-indexable-blog-baseline-clean-retry: ready-for-dev
+  # Blocked by review scope leakage; do not resume. EP1-ST060 is the scoped-review retry.
+  1-59-indexable-blog-baseline-clean-retry: blocked
+  1-60-indexable-blog-scoped-review-retry: ready-for-dev
   1-38-analytics-monitoring-and-launch-dashboards: backlog
   1-39-phase-1-staging-readiness-and-exit-review: backlog
   1-42-bundled-learner-entry-vertical-slice: done
