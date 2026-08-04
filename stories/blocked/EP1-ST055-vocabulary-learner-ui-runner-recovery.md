@@ -1,7 +1,7 @@
 ---
 id: EP1-ST055
 title: Vocabulary Learner UI Recovery After Runner Cap
-status: ready
+status: blocked
 type: frontend
 priority: highest
 phase: phase-1-learning-core

@@ -1,7 +1,7 @@
 ---
 id: EP1-ST056
 title: Vocabulary Mindmap and Paginated Item Flow
-status: ready
+status: blocked
 type: frontend
 priority: high
 phase: phase-1-learning-core

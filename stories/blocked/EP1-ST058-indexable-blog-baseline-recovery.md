@@ -1,7 +1,7 @@
 ---
 id: EP1-ST058
 title: Indexable Blog Baseline Recovery
-status: ready
+status: blocked
 type: content
 priority: medium
 phase: phase-1-learning-core

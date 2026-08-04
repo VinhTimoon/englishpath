@@ -1,7 +1,7 @@
 ---
 id: EP1-ST057
 title: Vocabulary Mindmap Selection Slice
-status: ready
+status: blocked
 type: frontend
 priority: high
 phase: phase-1-learning-core

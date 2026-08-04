@@ -1,7 +1,7 @@
 ---
 id: EP1-ST059
 title: Indexable Blog Baseline Clean Retry
-status: ready
+status: blocked
 type: content
 priority: medium
 phase: phase-1-learning-core

@@ -1,7 +1,7 @@
 ---
 id: EP1-ST060
 title: Indexable Blog Scoped Review Retry
-status: ready
+status: blocked
 type: content
 priority: medium
 phase: phase-1-learning-core
