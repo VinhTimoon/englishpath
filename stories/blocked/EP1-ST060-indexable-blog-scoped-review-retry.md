@@ -84,3 +84,22 @@ historical evidence and must not be resumed or merged.
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST060-indexable-blog-scoped-review-retry.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST060-indexable-blog-scoped-review-retry.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `pnpm e2e` within the checks gate
+- Exit code: `1`
+- Attempts: `1`
+- Summary: The final browser gate was not trustworthy because port `5173` was
+  occupied by an unrelated Anh Decor Vite server. The loop stopped without merge.
+
+### Evidence
+
+- Process owner: PID `8364`, unrelated Vite command under `E:\Code_Ky7\EXE101\Project\anh-decor`.
+- `Invoke-WebRequest http://localhost:5173/blog` returned title `Anh Decor`, proving
+  the gate targeted the wrong application.
+- Codex review classified the blocker as external environment/port conflict.
+- WIP commit `99d024e` remains only on `story/ep1-st060` and is not merged.
+- AI request: `notes/ai-req/2026-08-04-EP1-ST060-e2e-port-conflict.md`.
+
+No external process was stopped or modified.

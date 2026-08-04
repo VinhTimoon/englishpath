@@ -103,7 +103,8 @@ development_status:
   1-58-indexable-blog-baseline-recovery: blocked
   # Blocked by review scope leakage; do not resume. EP1-ST060 is the scoped-review retry.
   1-59-indexable-blog-baseline-clean-retry: blocked
-  1-60-indexable-blog-scoped-review-retry: ready-for-dev
+  # Browser gate targets unrelated Anh Decor process on port 5173; owner decision required.
+  1-60-indexable-blog-scoped-review-retry: blocked
   1-38-analytics-monitoring-and-launch-dashboards: backlog
   1-39-phase-1-staging-readiness-and-exit-review: backlog
   1-42-bundled-learner-entry-vertical-slice: done
