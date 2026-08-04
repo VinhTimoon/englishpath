@@ -103,17 +103,19 @@ unimplemented reviewed quiz and remaining launch-content baseline.
 `EP1-ST050` supplies the canonical vocabulary-item prerequisite discovered by
 `EP1-ST018`. `EP1-ST019` is blocked review evidence and must not resume directly.
 `EP1-ST052` is blocked before planning because `gpt-5.6-sol` reported capacity
-unavailability. `EP1-ST053` is the ready governance gate that restores a bounded plan
-fallback. `EP1-ST054` is the single ready implementation successor and owns all four
-P1 findings inherited from `EP1-ST052`.
+unavailability. `EP1-ST053` is the completed governance gate that restores a bounded
+plan fallback. `EP1-ST054` is the single implementation successor and owns all four
+P1 findings inherited from `EP1-ST052`; it is currently blocked by the build-runner
+timeout documented in `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
 
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
 `EP1-ST047` -> `EP1-ST048` -> `EP1-ST049`, not as independently implemented stories.
 `EP1-ST036` remains backlog for its reviewed quiz and remaining launch-content baseline.
 The next route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked evidence
-`EP1-ST019` -> blocked capacity incident `EP1-ST052` -> ready governance `EP1-ST053` ->
-ready implementation recovery `EP1-ST054`; no additional recovery story is permitted.
+`EP1-ST019` -> blocked capacity incident `EP1-ST052` -> completed governance
+`EP1-ST053` -> blocked implementation recovery `EP1-ST054`; no additional recovery
+story is permitted before the build-runner decision is resolved.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability

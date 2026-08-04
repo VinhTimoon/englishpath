@@ -68,8 +68,8 @@ development_status:
   1-52-vocabulary-learner-ui-review-remediation: blocked
   # Temporary planning-capacity fallback governance gate; it must precede the only UI recovery story.
   1-53-planning-capacity-fallback: done
-  # Sole successor for the four P1 findings owned by blocked EP1-ST052.
-  1-54-vocabulary-learner-ui-recovery: ready-for-dev
+  # Sole successor for the four P1 findings owned by blocked EP1-ST052; blocked by the build-runner timeout in notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md.
+  1-54-vocabulary-learner-ui-recovery: in-progress
   1-20-daily-practice-and-quiz-session-api: done
   1-21-daily-practice-and-quiz-card-ui: done
   # EP1-ST022 and EP1-ST023 are fully superseded by EP1-ST047; EP1-ST048/049

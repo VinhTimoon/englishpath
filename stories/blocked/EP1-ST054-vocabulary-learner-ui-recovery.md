@@ -1,10 +1,12 @@
 ---
 id: EP1-ST054
 title: Vocabulary Learner UI Recovery
-status: ready
+status: blocked
 type: frontend
 priority: high
 phase: phase-1-learning-core
+risk: medium
+delivery_mode: review-required
 depends_on:
   - EP1-ST018
   - EP1-ST053
@@ -95,3 +97,13 @@ Recover blocked `EP1-ST019`, close its four bounded P1 findings, and add targete
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST054-vocabulary-learner-ui-recovery.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST054-vocabulary-learner-ui-recovery.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs build .codex-build-task.md`
+- Debug result: `Status: blocked`
+- Root cause: The Codex build subprocess returned no terminal result before the
+  external 240-second execution cap; the bounded debug phase could not safely repair
+  an infrastructure timeout.
+- Preserved implementation evidence: commit `8efb8c8` on `story/ep1-st054`.
+- AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
