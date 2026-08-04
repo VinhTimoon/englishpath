@@ -57,6 +57,22 @@ max_fix_rounds: 2
 Historical recovery attempt after blocked `EP1-ST057`; do not resume, cherry-pick,
 or merge its implementation WIP. `EP1-ST063` is the successor.
 
+## Acceptance Criteria
+
+- The successor must independently prove mindmap loading, operational states,
+  keyboard selection, dynamic URL state, responsive behavior, and targeted tests.
+- Public vocabulary routes and API contracts remain unchanged.
+
+## Verification
+
+- `pnpm format:check`
+- `pnpm lint`
+- `pnpm typecheck`
+- `pnpm test`
+- `pnpm build`
+- `pnpm e2e`
+- `git diff --check`
+
 ## Blocked Report
 
 - Build passed, but the repository checks stopped at `pnpm format:check`.
