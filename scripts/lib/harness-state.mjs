@@ -150,11 +150,11 @@ export function syncSprintStatus({
   const mappedStatus =
     status === "ready"
       ? "ready-for-dev"
-      : status === "blocked"
-        ? "in-progress"
-        : status;
+      : status;
   if (
-    !["ready-for-dev", "in-progress", "review", "done"].includes(mappedStatus)
+    !["ready-for-dev", "in-progress", "review", "blocked", "done"].includes(
+      mappedStatus,
+    )
   )
     throw new Error(`Unsupported sprint status: ${status}`);
   let content = fs.readFileSync(statusFile, "utf8");

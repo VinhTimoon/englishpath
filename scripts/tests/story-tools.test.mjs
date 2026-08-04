@@ -1545,7 +1545,7 @@ test("loop lock recovers malformed and stale owners", (t) => {
   assert.equal(staleRecovery.release(), true);
 });
 
-test("sprint sync preserves structure and maps blocked to in-progress", (t) => {
+test("sprint sync preserves structure and records blocked lifecycle state", (t) => {
   const dir = fs.mkdtempSync(
     path.join(os.tmpdir(), "englishpath-sprint-sync-"),
   );
@@ -1572,12 +1572,12 @@ test("sprint sync preserves structure and maps blocked to in-progress", (t) => {
       statusFile,
       now,
     }),
-    "in-progress",
+    "blocked",
   );
   const result = fs.readFileSync(statusFile, "utf8");
   assert.match(result, /# last_updated: 2026-07-19T03:00:00.000Z/);
   assert.match(result, /^last_updated: 2026-07-19T03:00:00.000Z$/m);
-  assert.match(result, /  1-18-vocabulary-srs: in-progress/);
+  assert.match(result, /  1-18-vocabulary-srs: blocked/);
   assert.match(result, /epic-1-retrospective: optional/);
 });
 
