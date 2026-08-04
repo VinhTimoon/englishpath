@@ -110,3 +110,24 @@ must not be resumed, cherry-picked, or merged.
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST056-vocabulary-mindmap-paginated-item-flow.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST056-vocabulary-mindmap-paginated-item-flow.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs debug .codex-debug-task.md`
+- Exit code: `42`
+- Attempts: `1`
+- Summary: The smaller build still returned no fresh terminal artifact within the
+  external Codex execution window; the debug phase returned a valid blocked result.
+
+### Evidence
+
+- Full loop elapsed: `690.5s`.
+- Build configuration was `1200000ms`; the Codex build process remained live beyond
+  the generic shell 240-second test window before the loop failed.
+- Implementation WIP exists only on the blocked story branch and was not merged.
+- Existing AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+
+### Recovery Split
+
+`EP1-ST057` is the only ready successor and narrows the work to the initial mindmap
+selection slice. This blocked story must not be resumed.
