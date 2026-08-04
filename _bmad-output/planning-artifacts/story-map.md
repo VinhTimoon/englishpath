@@ -56,6 +56,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST052`                | Vocabulary learner UI review remediation (blocked by planning-model capacity)            | `EP1-ST018`; evidence: `EP1-ST019` |
 | `EP1-ST053`                | Planning capacity fallback governance                                                    | Capacity evidence: `EP1-ST052`     |
 | `EP1-ST054`                | Vocabulary learner UI recovery (four inherited P1 findings)                              | `EP1-ST018`, `EP1-ST053`           |
+| `EP1-ST055`                | Vocabulary learner UI recovery after runner-cap incident                                 | `EP1-ST018`, `EP1-ST053`; successor to blocked `EP1-ST054` |
 | `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                        |
 | `EP1-ST021`                | Daily practice/quiz-card UI                                                              | `EP1-ST020`                        |
 | `EP1-ST022`                | Daily sentence API and completion model                                                  | `EP1-ST020`                        |
@@ -104,9 +105,11 @@ unimplemented reviewed quiz and remaining launch-content baseline.
 `EP1-ST018`. `EP1-ST019` is blocked review evidence and must not resume directly.
 `EP1-ST052` is blocked before planning because `gpt-5.6-sol` reported capacity
 unavailability. `EP1-ST053` is the completed governance gate that restores a bounded
-plan fallback. `EP1-ST054` is the single implementation successor and owns all four
-P1 findings inherited from `EP1-ST052`; it is currently blocked by the build-runner
-timeout documented in `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+plan fallback. `EP1-ST054` remains immutable blocked implementation evidence for all
+four P1 findings inherited from `EP1-ST052`; its WIP commit `8efb8c8` is not mergeable.
+A direct subprocess test survived `245006ms`, so the generic shell runner did not
+reproduce the reported 240-second cap. `EP1-ST055` is the sole new implementation
+successor after that runner decision and must not resume `EP1-ST054`.
 
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
@@ -114,8 +117,8 @@ and `EP1-ST023` are represented as done only through the explicit supersession c
 `EP1-ST036` remains backlog for its reviewed quiz and remaining launch-content baseline.
 The next route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked evidence
 `EP1-ST019` -> blocked capacity incident `EP1-ST052` -> completed governance
-`EP1-ST053` -> blocked implementation recovery `EP1-ST054`; no additional recovery
-story is permitted before the build-runner decision is resolved.
+`EP1-ST053` -> blocked implementation recovery `EP1-ST054` -> `EP1-ST055`.
+`EP1-ST054` is historical evidence and must not be resumed.
 
 `EP1-ST028` was prepared as the only independent Phase 1 successor, but is blocked
 before branch creation until owner-controlled upstream synchronization documented in
