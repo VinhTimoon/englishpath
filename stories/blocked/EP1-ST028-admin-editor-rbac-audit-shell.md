@@ -1,7 +1,7 @@
 ---
 id: EP1-ST028
 title: Admin Editor RBAC Privileged Audit And Guarded Shell
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-1-learning-core
@@ -184,3 +184,19 @@ decision is backend-owned, auditable, and safe to extend with the CMS story.
 - Normal `git push origin dev` completed successfully on 2026-08-04.
 - Verified state: `dev...origin/dev`, clean worktree.
 - No force push, reset, rebase, or `main` operation was used.
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs build .codex-build-task.md`
+- Exit code: `42` after bounded debug handling
+- Attempts: `1`
+- Summary: The high-risk build generated a partial RBAC/audit/Prisma WIP but did not
+  produce a fresh terminal artifact before the external Codex execution cap. No WIP
+  is mergeable without full security gates and owner-approved review evidence.
+
+### Evidence
+
+- Full loop elapsed: `237.1s`.
+- Local build timeout remained `1200000ms`; build reasoning was `low`.
+- WIP commit `7a5c909` remains only on `story/ep1-st028` and is not merged.
+- New AI request: `notes/ai-req/2026-08-04-EP1-ST028-build-runner-timeout.md`.

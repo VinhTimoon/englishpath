@@ -125,11 +125,11 @@ The next route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked eviden
 `EP1-ST055` -> blocked recovery `EP1-ST056` -> blocked recovery `EP1-ST057`.
 `EP1-ST054` through `EP1-ST057` are historical evidence and must not be resumed.
 
-`EP1-ST028` was blocked before branch creation until owner-controlled upstream
-synchronization documented in `notes/ai-req/2026-08-04-EP1-ST028-dev-upstream-sync.md`
-completed. The normal push and clean `dev...origin/dev` state are now evidenced, so
-it is the only ready Phase 1 story and owns the guarded admin/editor shell and
-privileged audit foundation; `EP1-ST029` remains backlog until this dependency passes.
+`EP1-ST028` was unblocked after the normal push and clean `dev...origin/dev` state
+were evidenced, but its high-risk build hit the same external Codex execution cap.
+It is now blocked with `notes/ai-req/2026-08-04-EP1-ST028-build-runner-timeout.md`;
+its WIP commit `7a5c909` is not mergeable. `EP1-ST029` remains backlog until this
+dependency passes.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
