@@ -18,6 +18,14 @@ function run(command) {
   execSync(command, { stdio: "inherit" });
 }
 
+export function cleanGeneratedWebArtifacts() {
+  const nextDirectory = path.resolve("apps/web/.next");
+  if (fs.existsSync(nextDirectory)) {
+    fs.rmSync(nextDirectory, { recursive: true, force: true });
+    console.log(`Removed generated web artifacts: ${nextDirectory}`);
+  }
+}
+
 export function runPrismaValidation(options = {}) {
   const execute = options.execute ?? execSync;
   const env = {
@@ -117,6 +125,8 @@ export function runChecks(items = checks, options = {}) {
   }
 
   let failed = false;
+
+  cleanGeneratedWebArtifacts();
 
   for (const item of items) {
     try {

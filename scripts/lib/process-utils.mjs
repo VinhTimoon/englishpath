@@ -13,6 +13,8 @@ export class CommandError extends Error {
     this.output = details.output;
     this.timeoutMs = details.timeoutMs;
     this.timedOut = details.timedOut ?? false;
+    this.code = details.code;
+    this.signal = details.signal;
     this.phase = details.phase;
     this.blocked = details.blocked ?? false;
     this.retriable = details.retriable ?? true;
@@ -450,6 +452,8 @@ export function runCommand(command, args = [], options = {}) {
       output,
       timeoutMs,
       timedOut: result.error.code === "ETIMEDOUT",
+      code: result.error.code,
+      signal: result.signal,
     });
   }
 
@@ -464,6 +468,8 @@ export function runCommand(command, args = [], options = {}) {
         stderr,
         output,
         timeoutMs,
+        code: result.error?.code,
+        signal: result.signal,
       },
     );
   }

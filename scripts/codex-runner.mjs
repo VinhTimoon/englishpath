@@ -34,6 +34,47 @@ function buildCodexArgs({ sandbox, route, responseFile }) {
   ];
 }
 
+function buildResumeArgs({ route, responseFile }) {
+  return [
+    "exec",
+    "resume",
+    "--last",
+    "--dangerously-bypass-approvals-and-sandbox",
+    "-c",
+    `model=${route.model}`,
+    "-c",
+    `model_reasoning_effort=${route.reasoning}`,
+    "--output-last-message",
+    responseFile,
+    "-",
+  ];
+}
+
+function shouldResumeBuild(error, responseFile) {
+  if (fs.existsSync(responseFile) || error.blocked || error.retriable === false) {
+    return false;
+  }
+
+  const failureText = [error.message, error.output, error.stderr]
+    .filter(Boolean)
+    .join(" ");
+  if (
+    /capacity|at capacity|unauthorized|authentication|login required|invalid model|unknown model|rate limit|malformed|sandbox policy/i.test(
+      failureText,
+    )
+  ) {
+    return false;
+  }
+
+  // A missing terminal artifact is the signal this fallback is designed to recover.
+  // Explicit auth/capacity/config failures were excluded above.
+  return true;
+}
+
+function buildResumePrompt(phase) {
+  return `Continue the interrupted ${phase} phase in the current worktree. The approved story plan and prior session context are already available. Do not repeat broad discovery. Finish only the scoped implementation and return a fresh terminal result with Status: completed or blocked, changed files, verification, and remaining risks.`;
+}
+
 function exitWithError(error) {
   const output = error.output || error.message;
   if (output) {
@@ -134,7 +175,32 @@ function main() {
       timeoutMs: selected.timeout_ms,
     });
   } catch (error) {
-    if (shouldUsePlanFallback({ phase, error })) {
+    if (phase === "build" && shouldResumeBuild(error, artifacts.responseFile)) {
+      const resumeArgs = buildResumeArgs({
+        route: selected,
+        responseFile: artifacts.responseFile,
+      });
+      console.warn(
+        `Build phase ended without a terminal artifact; resuming the same Codex session once with timeout ${selected.timeout_ms * 2}ms.`,
+      );
+      removePhaseArtifacts(phase);
+      try {
+        commandResult = runCommand("codex", resumeArgs, {
+          input: buildResumePrompt(phase),
+          stdio: ["pipe", "pipe", "pipe"],
+          forwardOutput: true,
+          printCommand: true,
+          timeoutMs: selected.timeout_ms * 2,
+        });
+      } catch (resumeError) {
+        throw handleCommandFailure(resumeError, {
+          phase,
+          timeoutMs: selected.timeout_ms * 2,
+          codexArgs: resumeArgs,
+          responseFile: artifacts.responseFile,
+        });
+      }
+    } else if (shouldUsePlanFallback({ phase, error })) {
       console.warn(
         `Primary planning model ${primaryRoute.model} is at capacity; retrying once with configured fallback ${selected.model}.`,
       );
