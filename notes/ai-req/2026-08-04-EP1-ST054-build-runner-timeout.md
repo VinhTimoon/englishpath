@@ -62,3 +62,15 @@ until build, checks, review, and story verification return terminal pass evidenc
 - Blocked commit: `8efb8c8` on `story/ep1-st054`.
 - `dev` remained unchanged by the blocked implementation and stayed on the approved
   model-routing commit `346dacb`.
+
+## Follow-up Evidence From EP1-ST055
+
+- A direct repository subprocess survived `245006ms`, so the generic PowerShell
+  runner did not enforce a 240-second cap.
+- The fresh `EP1-ST055` loop ran for `744.2s`; the configured local build timeout was
+  still `1200000ms`, but the Codex build produced no fresh terminal artifact and its
+  debug result repeated the 240-second explanation.
+- The current evidence locates the cap in the Codex model/CLI execution layer rather
+  than the local shell or `scripts/codex-runner.mjs` timeout value.
+- WIP commit `9416553` is not merged. `EP1-ST056` is the smaller recovery split and
+  the only ready successor; neither `EP1-ST055` nor `EP1-ST054` may be resumed.

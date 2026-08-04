@@ -70,8 +70,10 @@ development_status:
   1-53-planning-capacity-fallback: done
   # Historical implementation attempt; do not resume. Its WIP commit 8efb8c8 is not mergeable.
   1-54-vocabulary-learner-ui-recovery: blocked
-  # Sole new implementation successor after the runner decision; preserves EP1-ST054 as history.
-  1-55-vocabulary-learner-ui-runner-recovery: ready-for-dev
+  # Blocked after the external model execution limit; do not resume. EP1-ST056 is the split successor.
+  1-55-vocabulary-learner-ui-runner-recovery: blocked
+  # Smaller recovery split: mindmap and paginated item flow only.
+  1-56-vocabulary-mindmap-paginated-item-flow: ready-for-dev
   1-20-daily-practice-and-quiz-session-api: done
   1-21-daily-practice-and-quiz-card-ui: done
   # EP1-ST022 and EP1-ST023 are fully superseded by EP1-ST047; EP1-ST048/049

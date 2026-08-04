@@ -126,3 +126,29 @@ the implementation attempt.
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST055-vocabulary-learner-ui-runner-recovery.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST055-vocabulary-learner-ui-runner-recovery.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs debug .codex-debug-task.md`
+- Exit code: `42`
+- Attempts: `1`
+- Summary: The Codex build produced implementation changes but no fresh terminal
+  artifact before the external model execution limit; the bounded debug phase
+  returned a valid blocked result. No implementation commit from this branch is
+  mergeable.
+
+### Evidence
+
+- Full loop elapsed: `744.2s`.
+- Build configuration: `scripts/codex-models.json`, `1200000ms`.
+- Direct subprocess evidence: `245006ms` survived in the same repository shell.
+- WIP implementation commit `9416553` remains only on `story/ep1-st055` and is not
+  merged into `dev`.
+- Original WIP commit `8efb8c8` remains historical and is not merged.
+- Existing AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+
+### Recovery Split
+
+`EP1-ST056` is the only ready successor and narrows the next implementation to the
+mindmap and paginated item flow so it can finish within the observed external model
+execution window. This blocked story must not be resumed.
