@@ -97,7 +97,9 @@ development_status:
   1-35-reviewed-vocabulary-batch-5: backlog
   # Remains backlog: reviewed quiz and remaining launch-content baseline are unimplemented.
   1-36-reviewed-quiz-and-daily-sentence-seed-baseline: backlog
-  1-37-expand-indexable-blog-baseline: in-progress
+  # Historical branch-collision block; do not resume. EP1-ST058 is the recovery story.
+  1-37-expand-indexable-blog-baseline: blocked
+  1-58-indexable-blog-baseline-recovery: ready-for-dev
   1-38-analytics-monitoring-and-launch-dashboards: backlog
   1-39-phase-1-staging-readiness-and-exit-review: backlog
   1-42-bundled-learner-entry-vertical-slice: done

@@ -73,6 +73,7 @@ foundations exist without real credentials, paid services, or destructive migrat
 | `EP1-ST031` to `EP1-ST035` | Five reviewed vocabulary batches of 100 items                                            | `EP1-ST029`                        |
 | `EP1-ST036`                | Reviewed quiz and daily-sentence seed baseline                                           | `EP1-ST029`                        |
 | `EP1-ST037`                | Expand useful/indexable blog baseline to ten posts                                       | `EP1-ST006`                        |
+| `EP1-ST058`                | Indexable blog baseline recovery after branch collision                                  | `EP1-ST006`; blocked evidence: `EP1-ST037` |
 | `EP1-ST038`                | Analytics/monitoring integration and launch dashboards                                   | `EP0-ST022`, `EP1-ST027`           |
 | `EP1-ST039`                | Browser E2E, accessibility, performance, security, content-rights, and staging readiness | `EP1-ST030` to `EP1-ST038`         |
 | `EP1-ST042`                | Bundled learner entry: auth UI, onboarding API/UI, and placement API/UI                  | `EP1-ST008`                        |

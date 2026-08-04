@@ -61,6 +61,13 @@ export function checkoutNewBranch(branchName, options = {}) {
   runGit(["checkout", "-b", branchName], { ...options, printCommand: true, stdio: "inherit" });
 }
 
+export function branchExists(branchName, options = {}) {
+  return runGit(
+    ["show-ref", "--verify", "--quiet", `refs/heads/${branchName}`],
+    { ...options, allowFailure: true },
+  ).status === 0;
+}
+
 export function stageAll(options = {}) {
   runGit(["add", "."], { ...options, printCommand: true, stdio: "inherit" });
 }

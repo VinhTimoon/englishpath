@@ -6,6 +6,7 @@ import {
 } from "./lib/ai-request-utils.mjs";
 import {
   checkoutNewBranch,
+  branchExists,
   commit,
   ensureLoopBaseState,
   mergeStoryBranchIntoDev,
@@ -188,6 +189,12 @@ async function main() {
   console.log(`Picked story: ${storyFile}`);
   console.log(`Story id: ${storyId}`);
   console.log(`Branch: ${branch}`);
+
+  if (branchExists(branch)) {
+    throw new Error(
+      `Story branch "${branch}" already exists. Preserve it as historical evidence and use a new recovery story ID.`,
+    );
+  }
 
   try {
     checkoutNewBranch(branch);
