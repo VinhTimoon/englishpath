@@ -105,8 +105,8 @@ development_status:
   1-59-indexable-blog-baseline-clean-retry: blocked
   # Browser gate targets unrelated Anh Decor process on port 5173; owner decision required.
   1-60-indexable-blog-scoped-review-retry: blocked
-  # Isolated E2E-port recovery for the public blog.
-  1-61-indexable-blog-browser-gate-recovery: ready-for-dev
+  # Isolated E2E-port recovery still has incomplete browser evidence and learner-flow review blockers; do not resume until owner review selects a scoped successor.
+  1-61-indexable-blog-browser-gate-recovery: blocked
   1-38-analytics-monitoring-and-launch-dashboards: backlog
   1-39-phase-1-staging-readiness-and-exit-review: backlog
   1-42-bundled-learner-entry-vertical-slice: done

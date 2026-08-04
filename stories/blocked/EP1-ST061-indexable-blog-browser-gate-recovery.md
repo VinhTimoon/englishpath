@@ -1,7 +1,7 @@
 ---
 id: EP1-ST061
 title: Indexable Blog Browser Gate Recovery
-status: ready
+status: blocked
 type: qa
 priority: high
 phase: phase-1-learning-core
@@ -84,3 +84,13 @@ do not resume or merge its WIP branch.
 - `node scripts/story-doctor.mjs stories/ready/EP1-ST061-indexable-blog-browser-gate-recovery.md --ready-only`
 - `pnpm story:verify stories/ready/EP1-ST061-indexable-blog-browser-gate-recovery.md`
 - `git diff --check`
+
+## Blocked Report
+
+- Failed step: `node scripts/codex-runner.mjs build .codex-build-task.md`
+- Exit code: 42; the loop stopped after one valid blocked result.
+- Build, lint, typecheck, tests, and production build passed; E2E reported 37
+  passing tests but reruns timed out because of lingering local server/socket state.
+- Review also found learner vocabulary queue/pagination/mindmap defects and missing
+  learner-flow browser coverage. Those files are outside this story's allowed paths;
+  no unrelated WIP was merged.

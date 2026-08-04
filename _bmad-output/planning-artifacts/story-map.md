@@ -131,8 +131,10 @@ The next route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked eviden
 
 `EP1-ST060` reached the final browser gate, but the gate was blocked because external
 process PID `8364` served Anh Decor on port `5173`; see
-`notes/ai-req/2026-08-04-EP1-ST060-e2e-port-conflict.md`. No further Phase 1 story is
-started in this run.
+`notes/ai-req/2026-08-04-EP1-ST060-e2e-port-conflict.md`. `EP1-ST061` applied the
+isolated-port configuration, but remains blocked because the final E2E reruns timed
+out on lingering local server/socket state and review found learner-flow defects
+outside its allowed paths. Its implementation WIP remains unmerged for owner review.
 
 `EP1-ST028` was unblocked after the normal push and clean `dev...origin/dev` state
 were evidenced, but its high-risk build hit the same external Codex execution cap.
