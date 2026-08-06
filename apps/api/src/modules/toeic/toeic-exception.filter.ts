@@ -7,6 +7,7 @@ import {
 import { randomUUID } from 'node:crypto';
 import type { Request, Response } from 'express';
 import { isAccessError, ACCESS_ERROR_CODES } from '../access';
+import { AuditService } from '../audit/audit.service';
 import { createCorrelationContext } from '../observability';
 import { TOEIC_ERROR_CODES, ToeicQuestionError } from './toeic-question.error';
 
@@ -17,7 +18,9 @@ export function toeicCorrelationId(value: unknown) {
 
 @Catch()
 export class ToeicExceptionFilter implements ExceptionFilter {
-  catch(exception: unknown, host: ArgumentsHost) {
+  constructor(private readonly audit: AuditService) {}
+
+  async catch(exception: unknown, host: ArgumentsHost) {
     const context = host.switchToHttp();
     const request = context.getRequest<Request>();
     const response = context.getResponse<Response>();
@@ -43,12 +46,38 @@ export class ToeicExceptionFilter implements ExceptionFilter {
           : 'AUTH_INVALID_TOKEN';
       message = forbidden ? 'Access is forbidden.' : 'Authentication failed.';
     } else if (exception instanceof ToeicQuestionError) {
-      if (exception.code === TOEIC_ERROR_CODES.NOT_FOUND) {
-        status = 404;
-        code = 'RESOURCE_NOT_FOUND';
-        message = 'TOEIC question was not found.';
-      } else {
-        message = 'TOEIC questions are temporarily unavailable.';
+      switch (exception.code) {
+        case TOEIC_ERROR_CODES.NOT_FOUND:
+          status = 404;
+          code = 'RESOURCE_NOT_FOUND';
+          message = 'TOEIC question was not found.';
+          break;
+        case TOEIC_ERROR_CODES.FORBIDDEN:
+          status = 403;
+          code = 'RESOURCE_FORBIDDEN';
+          message = 'Access is forbidden.';
+          break;
+        case TOEIC_ERROR_CODES.CONFLICT:
+          status = 409;
+          code = 'IDEMPOTENCY_CONFLICT';
+          message =
+            'The TOEIC content request conflicts with existing content.';
+          break;
+        case TOEIC_ERROR_CODES.INVALID_CONTENT:
+        case TOEIC_ERROR_CODES.INVALID_LINEAGE:
+        case TOEIC_ERROR_CODES.STALE_REVIEW:
+        case TOEIC_ERROR_CODES.NOT_PUBLISHABLE:
+          status = 422;
+          code = 'VALIDATION_FAILED';
+          message = 'The TOEIC content cannot enter this lifecycle state.';
+          break;
+        case TOEIC_ERROR_CODES.MISSING_IDEMPOTENCY_KEY:
+          status = 400;
+          code = 'VALIDATION_FAILED';
+          message = 'An Idempotency-Key header is required.';
+          break;
+        default:
+          message = 'TOEIC questions are temporarily unavailable.';
       }
     }
 
@@ -60,6 +89,45 @@ export class ToeicExceptionFilter implements ExceptionFilter {
       status = 400;
       code = 'VALIDATION_FAILED';
       message = 'Request validation failed.';
+    }
+
+    const adminRequest = request.path.includes('/api/v1/toeic/admin/');
+    if (
+      adminRequest &&
+      (exception instanceof BadRequestException || isAccessError(exception))
+    ) {
+      const principal = (
+        request as Request & {
+          principal?: { applicationUserId?: string };
+        }
+      ).principal;
+      const action = request.path.includes('/question-versions/import')
+        ? 'toeic.question.import'
+        : request.path.includes('/question-versions/') &&
+            request.path.endsWith('/review')
+          ? 'toeic.question.review'
+          : request.path.includes('/question-versions/') &&
+              request.path.endsWith('/publish')
+            ? 'toeic.question.publish'
+            : 'toeic.question.admin';
+      try {
+        await this.audit.append({
+          ...(principal?.applicationUserId
+            ? { actorUserId: principal.applicationUserId }
+            : {}),
+          action,
+          target: 'admin',
+          policyResult: 'DENY',
+          correlationId,
+          attributes: { outcome: 'denied' },
+        });
+      } catch {
+        // Do not report a normal denial when its required audit decision could
+        // not be persisted. Return a sanitized failure instead.
+        status = 500;
+        code = 'INTERNAL_ERROR';
+        message = 'An unexpected error occurred.';
+      }
     }
 
     response.status(status).json({

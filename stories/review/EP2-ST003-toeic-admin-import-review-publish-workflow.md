@@ -1,7 +1,7 @@
 ---
 id: EP2-ST003
 title: TOEIC Admin Import Review and Publish Workflow
-status: in-progress
+status: review
 type: backend
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -131,3 +131,31 @@ the story cannot use the fast path.
 `EP2-ST002` is done and provides the protected learner projection. Keep EP2-ST004
 and later stories in backlog until this governance workflow passes or an explicit
 owner decision records why its dependency is deferred.
+
+## Harness Evidence
+
+- Planning completed through `pnpm story:plan`; the approved plan is recorded in
+  `.codex-plan.md`.
+- The first build harness attempt returned `blocked` because its generated result
+  did not contain the required complete API/browser verification evidence and
+  identified missing governance safeguards. The implementation was repaired on
+  this story branch; no WIP result was merged.
+- Review harness initially found P1 gaps in exact routes, idempotency, duplicate
+  source handling, audit attribution, source completeness, and test coverage.
+  Those findings were repaired and the final `pnpm story:review` result is
+  `Status: pass` with no P0/P1 findings.
+
+## Verification Evidence
+
+- `pnpm --filter api exec jest --runInBand src/modules/toeic` — 5 suites, 25 tests
+  passed.
+- `pnpm --filter api test:e2e -- --runInBand` — 9 suites, 54 tests passed.
+- `pnpm test` — 44 suites, 327 tests passed.
+- `pnpm lint` — passed.
+- `pnpm typecheck` — passed.
+- `pnpm build` — API and web builds passed.
+- `pnpm format:check` — passed.
+- `pnpm planning:traceability` — passed.
+- `git diff --check` — passed.
+- `pnpm e2e` — 46 browser tests passed on the configured web port `4173`.
+- Story doctor and story verification both passed on the in-progress story.

@@ -200,6 +200,15 @@ generated locally only; no shared database migration is part of routine automati
 
 ## TOEIC question delivery boundary
 
+The EP2-ST003 governance boundary adds a transport-only admin surface to the
+TOEIC module. Its service owns role separation, immutable import, exact-version
+review binding, license/validity publication gates, safe projections, and audit
+decisions; its repository owns Prisma persistence. The learner projection remains
+answer- and provenance-free. Governance transitions are `DRAFT -> REVIEWED` or
+`DRAFT -> REVIEWED` (or `REJECTED` for a non-publishable decision), and only an
+approved `REVIEWED` version can transition to `PUBLISHED`; published versions are
+never overwritten.
+
 `ToeicController` is authenticated HTTP transport only. `ToeicQuestionService`
 owns eligibility orchestration and the safe learner projection; the Prisma
 repository owns fail-closed governance predicates, current-version selection,

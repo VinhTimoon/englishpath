@@ -247,3 +247,16 @@ allowlisting, pagination and filters, server-side eligibility/current-version
 selection, unauthorized access, empty and failure results, exact safe response
 shape, and recursive negative assertions for answer and governance-field
 leakage. Time is controlled at the service/repository boundary.
+
+## TOEIC governance workflow evidence
+
+EP2-ST003 tests use mocked Prisma, identity, and audit boundaries. Coverage proves
+strict import/review/publish DTOs, actor- and request-derived import identity, exact
+replay and conflict behavior, immutable version lineage, reviewer/publisher role
+separation, self-review rejection, compare-and-set lifecycle transitions, server-
+owned source-policy resolution, source URL and payload-checksum binding,
+complete-content approval gates, approved-license
+and free-practice publication gates, malformed-ID handling, repository/audit
+fail-closed behavior, audit redaction, sanitized errors, and recursive negative
+assertions for answer keys, source URLs, rights owners, and review evidence.
+No test uses credentials, a shared database, a provider, or network access.

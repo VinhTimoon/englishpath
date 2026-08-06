@@ -127,6 +127,32 @@ planned v2 envelope.
 
 ## TOEIC Question Bank (implemented EP2-ST002)
 
+### TOEIC Admin Governance (EP2-ST003)
+
+Protected routes under `/api/v1/toeic` are
+`POST /admin/question-versions/import`,
+`POST /admin/question-versions/:id/review`, and
+`POST /admin/question-versions/:id/publish`.
+Import/review require a backend-resolved `CONTENT_EDITOR`, `ADMIN`, or
+`SUPER_ADMIN`; publish requires `ADMIN` or `SUPER_ADMIN`. Client role claims and
+authorization booleans are ignored. Import creates an immutable `DRAFT` version
+and requires an `Idempotency-Key` bound to the authenticated principal and route;
+the same exact request replays while a changed request conflicts. Review binds the authenticated
+reviewer to the exact checksum/source version; publish requires approved review,
+approved license, complete evidence, and current validity. Responses are safe
+operator projections and never include the answer, source URL, rights evidence,
+or reviewer evidence. Every decision appends a redacted audit event and uses the
+standard correlation/error envelope.
+
+License, ownership, usage scope, and access tier are resolved by a server-owned
+source allowlist. The current beta allowlist contains only `englishpath-original`
+with EnglishPath CC0-1.0 provenance, `PRACTICE` scope, and `FREE` access. Import
+claims must match that policy; they cannot create or broaden publication rights.
+The accepted source URL is fixed by the policy and the submitted checksum must
+equal the server-computed SHA-256 fingerprint of the canonical governed payload.
+Import identity is derived only from the authenticated actor, import route, and
+`Idempotency-Key`.
+
 Authenticated learner endpoints are available at `/api/v1/toeic/questions` and
 `/api/v1/toeic/questions/:id`. The collection accepts `page` (default 1), `size`
 (default 20, maximum 100), `part`, `questionType`, `difficulty`, `topic`, and
