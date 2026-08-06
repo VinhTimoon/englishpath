@@ -1,7 +1,7 @@
 ---
 id: EP1-ST061
 title: Indexable Blog Browser Gate Recovery
-status: blocked
+status: review
 type: qa
 priority: high
 phase: phase-1-learning-core
@@ -94,3 +94,26 @@ do not resume or merge its WIP branch.
 - Review also found learner vocabulary queue/pagination/mindmap defects and missing
   learner-flow browser coverage. Those files are outside this story's allowed paths;
   no unrelated WIP was merged.
+
+## Resolution Evidence
+
+The repository-local blocker is resolved by the verified dev implementation. The
+isolated Playwright server now uses port `4173`, the public learning library exposes
+ten original articles, and the blog route explicitly renders its scoped not-found
+page for unknown slugs. The final browser evidence includes metadata, JSON-LD,
+sitemap, no-JavaScript rendering, responsive/axe checks, keyboard navigation, and
+the article not-found journey.
+
+Verified on `dev`:
+
+- `pnpm format:check`
+- `pnpm lint`
+- `pnpm typecheck`
+- `pnpm test`
+- `pnpm build`
+- `pnpm e2e tests/e2e/public-seo.spec.ts`
+- `git diff --check`
+
+The 240-second external Codex cap remains an owner decision for `EP1-ST028`; it is
+not a blocker for this blog story. This story is ready for human review and must not
+be marked `done` without that approval.

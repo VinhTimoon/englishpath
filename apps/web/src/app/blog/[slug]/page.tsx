@@ -10,8 +10,6 @@ import { SITE_NAME } from "@/shared/seo/site-metadata";
 
 type ArticlePageProps = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return publishedArticles.map(({ slug }) => ({ slug }));
 }

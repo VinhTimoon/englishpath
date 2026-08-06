@@ -183,6 +183,23 @@ test.describe("public technical SEO", () => {
     }
   });
 
+  test("supports keyboard navigation and a stable article not-found journey", async ({
+    page,
+  }) => {
+    await page.goto("/blog");
+    const firstArticleLink = page.locator('main a[href^="/blog/"]').first();
+    await firstArticleLink.focus();
+    await expect(firstArticleLink).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/blog\//);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+
+    const response = await page.goto("/blog/not-an-article");
+    expect(response?.status()).toBe(404);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+    await expect(page.locator('a[href="/blog"]')).toBeVisible();
+  });
+
   test("keeps every public route responsive and free of blocking axe findings", async ({
     page,
   }) => {
