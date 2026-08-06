@@ -1,7 +1,7 @@
 ---
 id: EP1-ST051
 title: Phase 1 Rebaseline And Loop Routing
-status: review
+status: done
 type: governance
 priority: critical
 phase: phase-1-learning-core
