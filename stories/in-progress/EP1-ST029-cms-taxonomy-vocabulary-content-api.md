@@ -30,6 +30,9 @@ allowed_paths:
   - stories/in-progress/EP1-ST029-cms-taxonomy-vocabulary-content-api.md
   - stories/review/EP1-ST029-cms-taxonomy-vocabulary-content-api.md
   - stories/done/EP1-ST029-cms-taxonomy-vocabulary-content-api.md
+  - stories/blocked/EP1-ST029-cms-taxonomy-vocabulary-content-api.md
+  - _bmad-output/planning-artifacts/story-map.md
+  - _bmad-output/implementation-artifacts/sprint-status.yaml
 forbidden_paths:
   - apps/api/.env
   - apps/web/.env
