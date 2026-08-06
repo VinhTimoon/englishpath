@@ -414,6 +414,7 @@ predicate as session selection; the web client never invents taxonomy values.
 Listening accepts the server-catalogued difficulty. Reading accepts the
 server-catalogued difficulty and topic. The selected filter shape is persisted in
 the corresponding session table and is part of replay/conflict comparison.
+
 # TOEIC timed tests (EP2-ST007)
 
 Authenticated routes are `POST /api/v1/toeic/tests/sessions`, session GET,
@@ -421,4 +422,7 @@ answer POST, submit POST, and result GET. The only start inputs are
 `clientSessionId` and `mode` (`MINI` or `HALF`). Policy v1 is server-owned:
 MINI is 20 questions/1200 seconds and HALF is 50/2700 seconds. Active
 projections never include answer keys or correctness. Late access finalizes as
-expired; repeated start and submit are replay-safe.
+expired; repeated start and submit are replay-safe. The selected version IDs are
+an immutable server snapshot for session display. Answer writes re-check current
+governance and option membership, and insertion re-reads the session after a
+concurrent write so progress is authoritative.

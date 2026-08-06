@@ -288,8 +288,14 @@ reading topic identity, and full-shape replay conflicts in repository/service/AP
 Browser coverage checks server-derived controls at 360px, no-skip answer
 acknowledgement, ordered progress, final submission, safe response assertions, and
 catalogue retry handling.
-# EP2-ST007 evidence
 
-Timed-test unit and API tests must freeze the server clock and assert policy
-quotas, strict DTOs, owner isolation, replay/conflict behavior, deadline
-expiry, exactly-once finalization, and recursive forbidden-field absence.
+## EP2-ST007 evidence
+
+Timed-test policy, service, repository-boundary, and API E2E tests freeze the
+server clock and assert the exact MINI/HALF quotas and durations, strict DTOs,
+owner isolation, canonical-version selection, immutable snapshot reads,
+insufficient catalogue failure, replay/conflict behavior, unique-answer race
+recovery, authoritative post-write progress, deadline expiry, exactly-once
+finalization, and recursive forbidden-field absence. Tests use injected
+repositories, Prisma boundary fixtures, and identity overrides; no credentials,
+provider, network, or shared database is required.

@@ -255,8 +255,10 @@ are not persisted in client-readable records before answer submission.
 EP2-ST007 adds `ToeicTimedTestSession` and `ToeicTimedTestAnswer` additively.
 Sessions snapshot ordered version IDs, mode, policy version, server start and
 deadline, and final state; answers are unique by session/question and cascade
-with the owner session. The migration is local/generated evidence only; manual
-rollback is documented in its SQL and is never automated.
+with the owner session. Snapshot reads use those stored IDs rather than a moving
+eligibility query. The migration is local/generated evidence only; manual
+rollback is documented in its SQL and is never automated. Answer writes
+re-check live governance before grading.
 
 EP2-ST004 adds owner-scoped `ToeicPracticeSession` and private
 `ToeicPracticeAnswer` rows. Sessions snapshot governed version IDs, enforce

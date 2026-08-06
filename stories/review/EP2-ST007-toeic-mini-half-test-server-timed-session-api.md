@@ -1,7 +1,7 @@
 ---
 id: EP2-ST007
 title: TOEIC mini and half test assembly with server-timed session API
-status: in-progress
+status: review
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -202,18 +202,3 @@ treated as a timed-test authority. Keep EP2-ST008 and later stories in backlog
 until this story is done; do not create competing ready stories while this
 dependency chain is active.
 
-
-
-## Blocked Report
-
-- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
-- Exit code: 42
-- Attempts: 1
-- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
-
-### Evidence
-
-```text
-Child process returned blocked exit code 42.
-Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
-```

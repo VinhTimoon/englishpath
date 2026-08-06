@@ -144,8 +144,12 @@ supply-chain review and owner approval.
 Supabase-required `exp`, `iat`, and `sub` claims are enforced. The optional `nbf` claim
 is validated whenever present, matching Supabase's published JWT claims contract without
 rejecting valid access tokens that omit it.
+
 # TOEIC timed-test security
 
 Timed-test ownership comes only from the authenticated principal. The server
 owns the clock and policy; learner projections exclude correct answers,
 correctness, governance, rights, source, and provenance fields.
+The server persists the governed version IDs at start and grades only that
+snapshot for display; every answer also passes the current governance predicate
+before the private grading projection is used.

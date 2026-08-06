@@ -19,7 +19,10 @@ import { TOEIC_PRACTICE_CATALOGUE_REPOSITORY } from './toeic-practice-catalogue.
 import { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.service';
 import { ToeicTimedTestService } from './toeic-timed-test.service';
 import { PrismaToeicTimedTestRepository } from './toeic-timed-test.repository';
-import { TOEIC_TIMED_TEST_REPOSITORY } from './toeic-timed-test.models';
+import {
+  TOEIC_TIMED_TEST_CLOCK,
+  TOEIC_TIMED_TEST_REPOSITORY,
+} from './toeic-timed-test.models';
 
 @Module({
   imports: [AuthModule, AuditModule],
@@ -34,6 +37,10 @@ import { TOEIC_TIMED_TEST_REPOSITORY } from './toeic-timed-test.models';
     {
       provide: TOEIC_TIMED_TEST_REPOSITORY,
       useExisting: PrismaToeicTimedTestRepository,
+    },
+    {
+      provide: TOEIC_TIMED_TEST_CLOCK,
+      useFactory: () => () => new Date(),
     },
     PrismaToeicPracticeCatalogueRepository,
     {
