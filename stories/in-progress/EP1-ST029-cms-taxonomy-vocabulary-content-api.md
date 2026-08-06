@@ -1,7 +1,7 @@
 ---
 id: EP1-ST029
 title: Persisted CMS Taxonomy And Governed Content Lifecycle API
-status: ready
+status: in-progress
 type: backend
 priority: critical
 phase: phase-1-learning-core
