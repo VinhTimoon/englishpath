@@ -201,4 +201,3 @@ patterns. EP2-ST006 provides the learner practice catalogue but must not be
 treated as a timed-test authority. Keep EP2-ST008 and later stories in backlog
 until this story is done; do not create competing ready stories while this
 dependency chain is active.
-
