@@ -109,8 +109,10 @@ development_status:
   1-61-indexable-blog-browser-gate-recovery: done
   # Vocabulary mindmap-selection recovery passed scoped evidence and owner approval.
   1-62-vocabulary-mindmap-selection-recovery: done
-  1-38-analytics-monitoring-and-launch-dashboards: backlog
-  1-39-phase-1-staging-readiness-and-exit-review: backlog
+  # Blocked by owner-controlled provider/credential/privacy decisions; see AI request.
+  1-38-analytics-monitoring-and-launch-dashboards: blocked
+  # Depends on ST038 and owner-controlled staging/release evidence; see same AI request.
+  1-39-phase-1-staging-readiness-and-exit-review: blocked
   1-42-bundled-learner-entry-vertical-slice: done
   1-43-bundled-roadmap-and-today-dashboard: done
   1-44-bundled-daily-practice-progress-and-error-review: done
