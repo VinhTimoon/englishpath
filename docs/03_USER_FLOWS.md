@@ -182,3 +182,10 @@
 - Failure/alternate: Provider failure, unsafe output, exhausted quota, or report blocks
   unsafe publication while preserving free baseline access.
 - Success: Advanced features remain controlled, auditable, and advisory.
+# Timed TOEIC test interruption flow
+
+`/toeic/test` offers server-shaped MINI/HALF sessions. The browser stores only a
+client id and active session id; refresh resumes through the owner-bound session
+GET. The server clock is authoritative: the visible countdown is presentation
+only, and zero reconciles through result retrieval. Active, answer failure,
+conflict/expiry, submitted, and retryable error states remain actionable.

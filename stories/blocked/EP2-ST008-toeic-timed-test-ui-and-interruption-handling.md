@@ -1,7 +1,7 @@
 ---
 id: EP2-ST008
 title: TOEIC timed mini and half test UI with interruption handling
-status: ready
+status: blocked
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -199,3 +199,19 @@ Before moving to review, record the actual planning/build/review outcomes, exact
 test counts, browser viewport evidence, and any deferred risk in this story. A
 timeout, missing command, or flaky browser run must be recorded as not verified,
 never treated as pass.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
