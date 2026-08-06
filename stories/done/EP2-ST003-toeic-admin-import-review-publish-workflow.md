@@ -1,7 +1,7 @@
 ---
 id: EP2-ST003
 title: TOEIC Admin Import Review and Publish Workflow
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-2-toeic-listening-reading
