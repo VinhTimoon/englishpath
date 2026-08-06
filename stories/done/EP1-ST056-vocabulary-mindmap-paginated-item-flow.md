@@ -1,7 +1,7 @@
 ---
 id: EP1-ST056
 title: Vocabulary Mindmap and Paginated Item Flow
-status: blocked
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -131,3 +131,4 @@ must not be resumed, cherry-picked, or merged.
 
 `EP1-ST057` is the only ready successor and narrows the work to the initial mindmap
 selection slice. This blocked story must not be resumed.
+

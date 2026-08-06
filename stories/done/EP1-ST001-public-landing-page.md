@@ -1,7 +1,7 @@
 ---
 id: EP1-ST001
 title: Public Landing Page
-status: blocked
+status: done
 type: frontend
 priority: critical
 phase: phase-1-mvp
@@ -92,3 +92,4 @@ page that communicates the free daily-learning value and guides visitors to begi
 Superseded by `EP1-ST005`, which recovers the preserved landing work against product
 v2 and adds the required goal-oriented guest trial. Keep this story as historical
 review evidence; do not resume it directly.
+

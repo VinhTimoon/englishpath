@@ -1,7 +1,7 @@
 ---
 id: EP1-ST003
 title: Landing Review Remediation
-status: blocked
+status: done
 type: frontend
 priority: critical
 phase: phase-1-mvp
@@ -94,3 +94,4 @@ the original story's fix-round limit.
 Superseded by `EP1-ST005`, which will recover commit `7dc086b`, close the two remaining
 contrast findings, align the landing with product v2, and complete browser QA. Keep
 this story as historical review evidence; do not resume it directly.
+

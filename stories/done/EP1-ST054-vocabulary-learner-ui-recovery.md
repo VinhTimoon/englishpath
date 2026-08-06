@@ -1,7 +1,7 @@
 ---
 id: EP1-ST054
 title: Vocabulary Learner UI Recovery
-status: blocked
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -107,3 +107,4 @@ Recover blocked `EP1-ST019`, close its four bounded P1 findings, and add targete
   an infrastructure timeout.
 - Preserved implementation evidence: commit `8efb8c8` on `story/ep1-st054`.
 - AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+

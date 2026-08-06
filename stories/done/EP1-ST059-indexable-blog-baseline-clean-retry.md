@@ -1,7 +1,7 @@
 ---
 id: EP1-ST059
 title: Indexable Blog Baseline Clean Retry
-status: blocked
+status: done
 type: content
 priority: medium
 phase: phase-1-learning-core
@@ -101,3 +101,4 @@ branches remain historical evidence and must not be resumed or merged.
   flow, not the blog diff.
 - WIP commit `36e2af6` remains only on `story/ep1-st059` and is not merged.
 - `EP1-ST060` is the only successor after the scoped-review prompt fix.
+

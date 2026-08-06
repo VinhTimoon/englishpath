@@ -1,7 +1,7 @@
 ---
 id: EP0-ST011
 title: Plan Artifact Runner Handoff
-status: blocked
+status: done
 type: tooling
 priority: critical
 phase: phase-0-foundation
@@ -76,3 +76,4 @@ that response as `.codex-plan.md` before existing contract validation.
 - Wrong-story plans can still pass when the expected story ID appears outside the
   `## 1. Story ID` section. Validation must parse that section and require its value
   to equal the expected ID rather than searching the entire plan text.
+

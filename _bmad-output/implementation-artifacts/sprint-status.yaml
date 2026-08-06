@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-06T07:14:23.789Z
+# last_updated: 2026-08-06T07:22:11.174Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-06T07:14:23.789Z
+last_updated: 2026-08-06T07:22:11.174Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -62,20 +62,20 @@ development_status:
   1-18-vocabulary-srs-and-mastery-api: done
   1-50-vocabulary-item-foundation: done
   1-41-public-vocabulary-taxonomy-explorer-ui: done
-  # Blocked review evidence; do not resume directly. EP1-ST052 owns its bounded P1 remediation.
-  1-19-vocabulary-mindmap-item-and-review-ui: blocked
-  # Blocked before planning by explicit gpt-5.6-sol capacity unavailability; do not resume directly.
-  1-52-vocabulary-learner-ui-review-remediation: blocked
+  # Closed through verified learner vocabulary recovery EP1-ST062; historical WIP not resumed.
+  1-19-vocabulary-mindmap-item-and-review-ui: done
+  # Closed through verified learner vocabulary recovery EP1-ST062.
+  1-52-vocabulary-learner-ui-review-remediation: done
   # Temporary planning-capacity fallback governance gate; it must precede the only UI recovery story.
   1-53-planning-capacity-fallback: done
-  # Historical implementation attempt; do not resume. Its WIP commit 8efb8c8 is not mergeable.
-  1-54-vocabulary-learner-ui-recovery: blocked
-  # Blocked after the external model execution limit; do not resume. EP1-ST056 is the split successor.
-  1-55-vocabulary-learner-ui-runner-recovery: blocked
-  # Blocked after the external model execution limit; do not resume. EP1-ST057 is the split successor.
-  1-56-vocabulary-mindmap-paginated-item-flow: blocked
-  # Blocked at the Codex CLI 240-second execution cap; no resume until owner/harness decision.
-  1-57-vocabulary-mindmap-selection: blocked
+  # Historical WIP commit 8efb8c8 was not resumed; requirements closed through EP1-ST062.
+  1-54-vocabulary-learner-ui-recovery: done
+  # Historical runner block closed through the verified EP1-ST062 recovery.
+  1-55-vocabulary-learner-ui-runner-recovery: done
+  # Historical pagination block closed through the verified EP1-ST062 recovery.
+  1-56-vocabulary-mindmap-paginated-item-flow: done
+  # Historical mindmap block closed through the verified EP1-ST062 recovery.
+  1-57-vocabulary-mindmap-selection: done
   1-20-daily-practice-and-quiz-session-api: done
   1-21-daily-practice-and-quiz-card-ui: done
   # EP1-ST022 and EP1-ST023 are fully superseded by EP1-ST047; EP1-ST048/049
@@ -97,14 +97,14 @@ development_status:
   1-35-reviewed-vocabulary-batch-5: backlog
   # Remains backlog: reviewed quiz and remaining launch-content baseline are unimplemented.
   1-36-reviewed-quiz-and-daily-sentence-seed-baseline: backlog
-  # Historical branch-collision block; do not resume. EP1-ST058 is the recovery story.
-  1-37-expand-indexable-blog-baseline: blocked
-  # Blocked by stale generated web artifacts; do not resume. EP1-ST059 is the clean retry.
-  1-58-indexable-blog-baseline-recovery: blocked
-  # Blocked by review scope leakage; do not resume. EP1-ST060 is the scoped-review retry.
-  1-59-indexable-blog-baseline-clean-retry: blocked
-  # Browser gate targets unrelated Anh Decor process on port 5173; owner decision required.
-  1-60-indexable-blog-scoped-review-retry: blocked
+  # Historical branch-collision block closed through the verified EP1-ST061 recovery.
+  1-37-expand-indexable-blog-baseline: done
+  # Historical generated-artifact block closed through the verified EP1-ST061 recovery.
+  1-58-indexable-blog-baseline-recovery: done
+  # Historical review-scope block closed through the verified EP1-ST061 recovery.
+  1-59-indexable-blog-baseline-clean-retry: done
+  # Historical browser-port block resolved by the isolated 4173 harness and EP1-ST061.
+  1-60-indexable-blog-scoped-review-retry: done
   # Isolated E2E-port recovery passed scoped browser evidence and owner approval.
   1-61-indexable-blog-browser-gate-recovery: done
   # Vocabulary mindmap-selection recovery passed scoped evidence and owner approval.

@@ -2,17 +2,17 @@
 
 ## Status And Supersession
 
-| Story/history              | Status                                                        |
-| -------------------------- | ------------------------------------------------------------- |
-| `EP0-ST001` to `EP0-ST012` | Foundation history; `EP0-ST011` was superseded by `EP0-ST012` |
-| `EP0-ST013`                | Completed v1 planning baseline, superseded by v2 `EP0-ST014`  |
-| `EP0-ST014`                | Product v2 core rebaseline completed                          |
-| `EP0-ST015`                | Blocked roadmap-map attempt, superseded by `EP0-ST015R`       |
-| `EP0-ST015R`               | Product v2 roadmap-map recovery gate                          |
-| `EP1-ST002`                | Public blog SEO baseline implemented                          |
-| `EP1-ST004`                | Local ports baseline implemented                              |
-| `EP1-ST001`, `EP1-ST003`   | Blocked historical landing work, superseded by `EP1-ST005`    |
-| `EP1-ST022`, `EP1-ST023`   | Fully superseded by `EP1-ST047` through `EP1-ST049`           |
+| Story/history              | Status                                                       |
+| -------------------------- | ------------------------------------------------------------ |
+| `EP0-ST001` to `EP0-ST012` | Foundation history; `EP0-ST011` closed via `EP0-ST012`       |
+| `EP0-ST013`                | Completed v1 planning baseline, superseded by v2 `EP0-ST014` |
+| `EP0-ST014`                | Product v2 core rebaseline completed                         |
+| `EP0-ST015`                | Roadmap-map attempt closed via `EP0-ST015R`                  |
+| `EP0-ST015R`               | Product v2 roadmap-map recovery gate                         |
+| `EP1-ST002`                | Public blog SEO baseline implemented                         |
+| `EP1-ST004`                | Local ports baseline implemented                             |
+| `EP1-ST001`, `EP1-ST003`   | Landing work closed via `EP1-ST005`                          |
+| `EP1-ST022`, `EP1-ST023`   | Fully superseded by `EP1-ST047` through `EP1-ST049`          |
 
 ## Phase 0 Foundation
 
@@ -33,62 +33,62 @@ foundations exist without real credentials, paid services, or destructive migrat
 
 ## Phase 1 Learning Core
 
-| Story                      | Increment                                                                                | Depends on                                                 |
-| -------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `EP1-ST005`                | Recover landing, add goal-oriented guest trial, close contrast/mobile findings           | `EP0-ST022`                                                |
-| `EP1-ST006`                | Public IA, sitemap/robots/metadata/internal links and SEO tests                          | `EP1-ST005`                                                |
-| `EP1-ST007`                | User/Profile/Role application schema and ownership repositories                          | `EP0-ST019`                                                |
-| `EP1-ST008`                | Supabase JWT guards, auth/profile APIs, ownership and RBAC tests                         | `EP1-ST007`                                                |
-| `EP1-ST009`                | Register/login/logout/recovery web flows                                                 | `EP1-ST008`                                                |
-| `EP1-ST010`                | Onboarding API and persistence                                                           | `EP1-ST008`                                                |
-| `EP1-ST011`                | Onboarding UI and operational states                                                     | `EP1-ST010`                                                |
-| `EP1-ST012`                | Basic placement question/result API                                                      | `EP1-ST010`                                                |
-| `EP1-ST013`                | Placement UI and conservative fallback                                                   | `EP1-ST012`                                                |
-| `EP1-ST014`                | General/TOEIC track roadmap templates and 30/60/90/120-day rule engine                   | `EP1-ST012`, `EP0-ST020`                                   |
-| `EP1-ST015`                | Roadmap API, versioning, and recalculation rules                                         | `EP1-ST014`                                                |
-| `EP1-ST016`                | Dashboard and roadmap UI focused on today's work                                         | `EP1-ST015`                                                |
-| `EP1-ST017`                | Vocabulary taxonomy/mindmap API                                                          | `EP0-ST020`                                                |
-| `EP1-ST040`                | Vocabulary API contract and adapter hardening                                            | `EP1-ST017`                                                |
-| `EP1-ST050`                | Governed vocabulary item foundation                                                      | `EP1-ST017`                                                |
-| `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST050`                                                |
-| `EP1-ST041`                | Public vocabulary taxonomy explorer UI                                                   | `EP1-ST040`                                                |
-| `EP1-ST019`                | Vocabulary mindmap, item, and review UI (blocked review evidence)                        | `EP1-ST018`                                                |
-| `EP1-ST052`                | Vocabulary learner UI review remediation (blocked by planning-model capacity)            | `EP1-ST018`; evidence: `EP1-ST019`                         |
-| `EP1-ST053`                | Planning capacity fallback governance                                                    | Capacity evidence: `EP1-ST052`                             |
-| `EP1-ST054`                | Vocabulary learner UI recovery (four inherited P1 findings)                              | `EP1-ST018`, `EP1-ST053`                                   |
-| `EP1-ST055`                | Vocabulary learner UI recovery after runner-cap incident                                 | `EP1-ST018`, `EP1-ST053`; successor to blocked `EP1-ST054` |
-| `EP1-ST056`                | Vocabulary mindmap and paginated item flow (recovery split)                              | `EP1-ST018`, `EP1-ST053`; blocked evidence: `EP1-ST055`    |
-| `EP1-ST057`                | Vocabulary mindmap selection slice (recovery split)                                      | `EP1-ST018`, `EP1-ST053`; blocked evidence: `EP1-ST056`    |
-| `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                                                |
-| `EP1-ST021`                | Daily practice/quiz-card UI                                                              | `EP1-ST020`                                                |
-| `EP1-ST022`                | Daily sentence API and completion model                                                  | `EP1-ST020`                                                |
-| `EP1-ST023`                | Daily sentence UI and dashboard integration                                              | `EP1-ST022`                                                |
-| `EP1-ST024`                | Basic Error Notebook domain, capture API, and scheduler                                  | `EP1-ST018`, `EP1-ST020`                                   |
-| `EP1-ST025`                | Error Notebook review UI                                                                 | `EP1-ST024`                                                |
-| `EP1-ST026`                | Progress, XP, streak, accuracy, and completion aggregation                               | `EP1-ST020`, `EP1-ST024`                                   |
-| `EP1-ST027`                | Progress/dashboard aggregation UI                                                        | `EP1-ST026`                                                |
-| `EP1-ST028`                | Admin/editor RBAC, privileged audit, and guarded `/admin` shell                          | `EP1-ST008`                                                |
-| `EP1-ST029`                | CMS taxonomy/vocabulary/content APIs and lifecycle rules                                 | `EP1-ST028`, `EP0-ST020`                                   |
-| `EP1-ST030`                | CMS import and admin content UI                                                          | `EP1-ST029`                                                |
-| `EP1-ST031` to `EP1-ST035` | Five reviewed vocabulary batches of 100 items                                            | `EP1-ST029`                                                |
-| `EP1-ST036`                | Reviewed quiz and daily-sentence seed baseline                                           | `EP1-ST029`                                                |
-| `EP1-ST037`                | Expand useful/indexable blog baseline to ten posts                                       | `EP1-ST006`                                                |
-| `EP1-ST058`                | Indexable blog baseline recovery after branch collision                                  | `EP1-ST006`; blocked evidence: `EP1-ST037`                 |
-| `EP1-ST059`                | Indexable blog baseline clean retry after generated-artifact cleanup                     | `EP1-ST006`; blocked evidence: `EP1-ST058`                 |
-| `EP1-ST060`                | Indexable blog scoped review retry                                                       | `EP1-ST006`; blocked evidence: `EP1-ST059`                 |
-| `EP1-ST061`                | Indexable blog browser gate recovery on isolated port                                    | `EP1-ST006`; blocked evidence: `EP1-ST060`                 |
-| `EP1-ST062`                | Vocabulary mindmap selection recovery                                                    | `EP1-ST018`, `EP1-ST053`; blocked evidence: `EP1-ST057`    |
-| `EP1-ST038`                | Analytics/monitoring integration and launch dashboards                                   | `EP0-ST022`, `EP1-ST027`                                   |
-| `EP1-ST039`                | Browser E2E, accessibility, performance, security, content-rights, and staging readiness | `EP1-ST030` to `EP1-ST038`                                 |
-| `EP1-ST042`                | Bundled learner entry: auth UI, onboarding API/UI, and placement API/UI                  | `EP1-ST008`                                                |
-| `EP1-ST043`                | Bundled deterministic roadmap API, roadmap UI, and today dashboard                       | `EP1-ST042`                                                |
-| `EP1-ST044`                | Bundled daily quiz session, immediate feedback, progress, streak, and error review       | `EP1-ST043`                                                |
-| `EP1-ST045`                | Persisted owner progress summary on the learner dashboard                                | `EP1-ST044`                                                |
-| `EP1-ST046`                | Private Error Notebook latest-errors API and learner review view                         | `EP1-ST044`                                                |
-| `EP1-ST047`                | Bundled governed Daily Sentence API, completion, content, and learner UI                 | `EP1-ST044`                                                |
-| `EP1-ST048`                | Recover formatting gate and close the verified Daily Sentence bundle                     | `EP1-ST047`                                                |
-| `EP1-ST049`                | Preserve the completed Daily Sentence assignment across mutable content publication      | `EP1-ST047`                                                |
-| `EP1-ST051`                | Reconcile Phase 1 planning and loop routing, then prepare the next implementation story  | `EP1-ST049`, `EP1-ST050`                                   |
+| Story                      | Increment                                                                                | Depends on                                         |
+| -------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| `EP1-ST005`                | Recover landing, add goal-oriented guest trial, close contrast/mobile findings           | `EP0-ST022`                                        |
+| `EP1-ST006`                | Public IA, sitemap/robots/metadata/internal links and SEO tests                          | `EP1-ST005`                                        |
+| `EP1-ST007`                | User/Profile/Role application schema and ownership repositories                          | `EP0-ST019`                                        |
+| `EP1-ST008`                | Supabase JWT guards, auth/profile APIs, ownership and RBAC tests                         | `EP1-ST007`                                        |
+| `EP1-ST009`                | Register/login/logout/recovery web flows                                                 | `EP1-ST008`                                        |
+| `EP1-ST010`                | Onboarding API and persistence                                                           | `EP1-ST008`                                        |
+| `EP1-ST011`                | Onboarding UI and operational states                                                     | `EP1-ST010`                                        |
+| `EP1-ST012`                | Basic placement question/result API                                                      | `EP1-ST010`                                        |
+| `EP1-ST013`                | Placement UI and conservative fallback                                                   | `EP1-ST012`                                        |
+| `EP1-ST014`                | General/TOEIC track roadmap templates and 30/60/90/120-day rule engine                   | `EP1-ST012`, `EP0-ST020`                           |
+| `EP1-ST015`                | Roadmap API, versioning, and recalculation rules                                         | `EP1-ST014`                                        |
+| `EP1-ST016`                | Dashboard and roadmap UI focused on today's work                                         | `EP1-ST015`                                        |
+| `EP1-ST017`                | Vocabulary taxonomy/mindmap API                                                          | `EP0-ST020`                                        |
+| `EP1-ST040`                | Vocabulary API contract and adapter hardening                                            | `EP1-ST017`                                        |
+| `EP1-ST050`                | Governed vocabulary item foundation                                                      | `EP1-ST017`                                        |
+| `EP1-ST018`                | Vocabulary SRS/mastery API                                                               | `EP1-ST050`                                        |
+| `EP1-ST041`                | Public vocabulary taxonomy explorer UI                                                   | `EP1-ST040`                                        |
+| `EP1-ST019`                | Vocabulary mindmap, item, and review UI (closed via verified recovery)                   | `EP1-ST018`                                        |
+| `EP1-ST052`                | Vocabulary learner UI review remediation (closed via verified recovery)                  | `EP1-ST018`; closed by `EP1-ST062`                 |
+| `EP1-ST053`                | Planning capacity fallback governance                                                    | Capacity evidence: `EP1-ST052`                     |
+| `EP1-ST054`                | Vocabulary learner UI recovery (four inherited P1 findings)                              | `EP1-ST018`, `EP1-ST053`                           |
+| `EP1-ST055`                | Vocabulary learner UI recovery after runner-cap incident                                 | `EP1-ST018`, `EP1-ST053`; closed by `EP1-ST062`    |
+| `EP1-ST056`                | Vocabulary mindmap and paginated item flow (recovery split)                              | `EP1-ST018`, `EP1-ST053`; closed by `EP1-ST062`    |
+| `EP1-ST057`                | Vocabulary mindmap selection slice (recovery split)                                      | `EP1-ST018`, `EP1-ST053`; closed by `EP1-ST062`    |
+| `EP1-ST020`                | Daily practice and quiz-card session API                                                 | `EP1-ST018`                                        |
+| `EP1-ST021`                | Daily practice/quiz-card UI                                                              | `EP1-ST020`                                        |
+| `EP1-ST022`                | Daily sentence API and completion model                                                  | `EP1-ST020`                                        |
+| `EP1-ST023`                | Daily sentence UI and dashboard integration                                              | `EP1-ST022`                                        |
+| `EP1-ST024`                | Basic Error Notebook domain, capture API, and scheduler                                  | `EP1-ST018`, `EP1-ST020`                           |
+| `EP1-ST025`                | Error Notebook review UI                                                                 | `EP1-ST024`                                        |
+| `EP1-ST026`                | Progress, XP, streak, accuracy, and completion aggregation                               | `EP1-ST020`, `EP1-ST024`                           |
+| `EP1-ST027`                | Progress/dashboard aggregation UI                                                        | `EP1-ST026`                                        |
+| `EP1-ST028`                | Admin/editor RBAC, privileged audit, and guarded `/admin` shell                          | `EP1-ST008`                                        |
+| `EP1-ST029`                | CMS taxonomy/vocabulary/content APIs and lifecycle rules                                 | `EP1-ST028`, `EP0-ST020`                           |
+| `EP1-ST030`                | CMS import and admin content UI                                                          | `EP1-ST029`                                        |
+| `EP1-ST031` to `EP1-ST035` | Five reviewed vocabulary batches of 100 items                                            | `EP1-ST029`                                        |
+| `EP1-ST036`                | Reviewed quiz and daily-sentence seed baseline                                           | `EP1-ST029`                                        |
+| `EP1-ST037`                | Expand useful/indexable blog baseline to ten posts                                       | `EP1-ST006`                                        |
+| `EP1-ST058`                | Indexable blog baseline recovery after branch collision                                  | `EP1-ST006`; closed via `EP1-ST061`                |
+| `EP1-ST059`                | Indexable blog baseline clean retry after generated-artifact cleanup                     | `EP1-ST006`; closed via `EP1-ST061`                |
+| `EP1-ST060`                | Indexable blog scoped review retry                                                       | `EP1-ST006`; closed via `EP1-ST061`                |
+| `EP1-ST061`                | Indexable blog browser gate recovery on isolated port                                    | `EP1-ST006`; closed after `EP1-ST060`              |
+| `EP1-ST062`                | Vocabulary mindmap selection recovery                                                    | `EP1-ST018`, `EP1-ST053`; closed after `EP1-ST057` |
+| `EP1-ST038`                | Analytics/monitoring integration and launch dashboards                                   | `EP0-ST022`, `EP1-ST027`                           |
+| `EP1-ST039`                | Browser E2E, accessibility, performance, security, content-rights, and staging readiness | `EP1-ST030` to `EP1-ST038`                         |
+| `EP1-ST042`                | Bundled learner entry: auth UI, onboarding API/UI, and placement API/UI                  | `EP1-ST008`                                        |
+| `EP1-ST043`                | Bundled deterministic roadmap API, roadmap UI, and today dashboard                       | `EP1-ST042`                                        |
+| `EP1-ST044`                | Bundled daily quiz session, immediate feedback, progress, streak, and error review       | `EP1-ST043`                                        |
+| `EP1-ST045`                | Persisted owner progress summary on the learner dashboard                                | `EP1-ST044`                                        |
+| `EP1-ST046`                | Private Error Notebook latest-errors API and learner review view                         | `EP1-ST044`                                        |
+| `EP1-ST047`                | Bundled governed Daily Sentence API, completion, content, and learner UI                 | `EP1-ST044`                                        |
+| `EP1-ST048`                | Recover formatting gate and close the verified Daily Sentence bundle                     | `EP1-ST047`                                        |
+| `EP1-ST049`                | Preserve the completed Daily Sentence assignment across mutable content publication      | `EP1-ST047`                                        |
+| `EP1-ST051`                | Reconcile Phase 1 planning and loop routing, then prepare the next implementation story  | `EP1-ST049`, `EP1-ST050`                           |
 
 `EP1-ST042` supersedes the former delivery units `EP1-ST009–013`; their requirements are
 implemented and reviewed as one vertical slice to reduce loop overhead.
@@ -109,27 +109,18 @@ specified advanced Daily Sentence requirement remains; `EP1-ST036` still owns on
 unimplemented reviewed quiz and remaining launch-content baseline.
 
 `EP1-ST050` supplies the canonical vocabulary-item prerequisite discovered by
-`EP1-ST018`. `EP1-ST019` is blocked review evidence and must not resume directly.
-`EP1-ST052` is blocked before planning because `gpt-5.6-sol` reported capacity
-unavailability. `EP1-ST053` is the completed governance gate that restores a bounded
-plan fallback. `EP1-ST054` remains immutable blocked implementation evidence for all
-four P1 findings inherited from `EP1-ST052`; its WIP commit `8efb8c8` is not mergeable.
-A direct subprocess test survived `245006ms`, so the generic shell runner did not
-reproduce the reported 240-second cap. `EP1-ST055` is blocked implementation evidence
-and must not resume `EP1-ST054`. `EP1-ST056` and `EP1-ST057` remain blocked recovery
-evidence for the learner vocabulary flow; their historical WIP is not resumed. The
-repository-local mindmap selection recovery is now evidenced by completed `EP1-ST062`.
-The external Codex execution-cap decision remains isolated to high-risk `EP1-ST028`.
+`EP1-ST018`. `EP1-ST019`, `EP1-ST052`, and the recovery chain `EP1-ST054` through
+`EP1-ST057` are closed by the verified implementation and browser evidence in
+completed `EP1-ST062`; none of their historical WIP commits were resumed. The
+external Codex execution-cap decision remains isolated to high-risk `EP1-ST028`.
 
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
 `EP1-ST047` -> `EP1-ST048` -> `EP1-ST049`, not as independently implemented stories.
 `EP1-ST036` remains backlog for its reviewed quiz and remaining launch-content baseline.
-The next route is exactly `EP1-ST050` -> completed `EP1-ST018` -> blocked evidence
-`EP1-ST019` -> blocked capacity incident `EP1-ST052` -> completed governance
-`EP1-ST053` -> blocked implementation recovery `EP1-ST054` -> blocked recovery
-`EP1-ST055` -> blocked recovery `EP1-ST056` -> blocked recovery `EP1-ST057`.
-`EP1-ST054` through `EP1-ST057` are historical evidence and must not be resumed.
+The vocabulary route is now `EP1-ST050` -> completed `EP1-ST018` -> completed
+`EP1-ST019`/`EP1-ST052`/`EP1-ST062`; `EP1-ST054` through `EP1-ST057` remain Git
+history only and were closed through the verified successor without resuming WIP.
 
 `EP1-ST060` reached the final browser gate, but the gate was blocked because external
 process PID `8364` served Anh Decor on port `5173`; see

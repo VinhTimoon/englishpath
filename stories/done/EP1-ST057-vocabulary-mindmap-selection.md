@@ -1,7 +1,7 @@
 ---
 id: EP1-ST057
 title: Vocabulary Mindmap Selection Slice
-status: blocked
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -118,3 +118,4 @@ be resumed, cherry-picked, or merged.
 
 This story must not be resumed until the Codex execution cap is resolved or an owner
 approves a different execution path.
+

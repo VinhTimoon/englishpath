@@ -1,7 +1,7 @@
 ---
 id: EP1-ST037
 title: Expand Indexable Blog Baseline
-status: blocked
+status: done
 type: content
 priority: medium
 phase: phase-1-learning-core
@@ -101,3 +101,4 @@ indexable articles so guest learners have credible practice guidance before sign
 ```text
 Command failed with exit code 128: "git" "checkout" "-b" "story/ep1-st037"
 ```
+

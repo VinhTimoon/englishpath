@@ -1,7 +1,7 @@
 ---
 id: EP0-ST015
 title: Product V2 Roadmap Maps
-status: blocked
+status: done
 type: planning
 priority: critical
 phase: phase-0-foundation
@@ -50,3 +50,4 @@ record superseded historical planning, and create the next bounded ready queue.
   phase exit, so epic and story dependencies were not mutually executable.
 - Recovery is assigned to `EP0-ST015R`; this blocked story must not be resumed or
   merged directly.
+

@@ -1,7 +1,7 @@
 ---
 id: EP1-ST052
 title: Vocabulary Learner UI Review Remediation
-status: blocked
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core

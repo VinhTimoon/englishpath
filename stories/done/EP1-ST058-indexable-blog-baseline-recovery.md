@@ -1,7 +1,7 @@
 ---
 id: EP1-ST058
 title: Indexable Blog Baseline Recovery
-status: blocked
+status: done
 type: content
 priority: medium
 phase: phase-1-learning-core
@@ -99,3 +99,4 @@ historical evidence and must not be resumed or merged.
   `81fd10d` on `story/ep1-st058`, not merged.
 - Harness fix now removes `apps/web/.next` before build and before quality gates.
 - `EP1-ST059` is the only successor and this story must not be resumed.
+

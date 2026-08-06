@@ -1,7 +1,7 @@
 ---
 id: EP1-ST019
 title: Vocabulary Mindmap, Item, And Review UI
-status: blocked
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -113,3 +113,4 @@ vocabulary item, and completing due review against the existing vocabulary APIs.
 - Retained review evidence: locked/ep1-st019-review-findings and .codex-review.result.md.
 - P1: review queue skips after invalidation; pagination stays on page one; /vocabulary/learn lacks initial mindmap loading; targeted frontend/browser operational-state tests are missing.
 - EP1-ST052 is the sole recovery story; preserve the public explorer and API contracts.
+

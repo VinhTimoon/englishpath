@@ -1,7 +1,7 @@
 ---
 id: EP1-ST055
 title: Vocabulary Learner UI Recovery After Runner Cap
-status: blocked
+status: done
 type: frontend
 priority: highest
 phase: phase-1-learning-core
@@ -152,3 +152,4 @@ the implementation attempt.
 `EP1-ST056` is the only ready successor and narrows the next implementation to the
 mindmap and paginated item flow so it can finish within the observed external model
 execution window. This blocked story must not be resumed.
+

@@ -1,7 +1,7 @@
 ---
 id: EP1-ST060
 title: Indexable Blog Scoped Review Retry
-status: blocked
+status: done
 type: content
 priority: medium
 phase: phase-1-learning-core
@@ -103,3 +103,4 @@ historical evidence and must not be resumed or merged.
 - AI request: `notes/ai-req/2026-08-04-EP1-ST060-e2e-port-conflict.md`.
 
 No external process was stopped or modified.
+
