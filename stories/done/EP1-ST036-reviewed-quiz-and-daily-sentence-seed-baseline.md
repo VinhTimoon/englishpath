@@ -1,7 +1,7 @@
 ---
 id: EP1-ST036
 title: Review Quiz and Daily Sentence Seed Baseline
-status: review
+status: done
 type: content
 priority: high
 phase: phase-1-learning-core
