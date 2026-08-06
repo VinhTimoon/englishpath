@@ -25,6 +25,8 @@ allowed_paths:
   - stories/blocked/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
   - stories/review/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
   - stories/done/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
+  - stories/blocked/EP1-ST039-phase-1-staging-readiness-and-exit-review.md
+  - notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md
   - _bmad-output/planning-artifacts/story-map.md
   - _bmad-output/implementation-artifacts/sprint-status.yaml
 forbidden_paths:
