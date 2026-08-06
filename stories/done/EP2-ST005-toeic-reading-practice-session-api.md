@@ -1,7 +1,7 @@
 ---
 id: EP2-ST005
 title: TOEIC Parts 5-7 Reading Practice Session API
-status: review
+status: done
 type: backend
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -206,4 +206,3 @@ stories while this dependency chain is active.
   API E2E (11 suites, 70 tests); repository-wide `pnpm check`; `pnpm
 format:check`; planning traceability; story doctor/verification; `git diff
 --check`; and browser E2E (46 tests passed).
-

@@ -167,7 +167,7 @@ environment without any promotion to `main`.
 | `EP2-ST002` | Question bank repository/API and answer protection (`done`)                 | `EP2-ST001`                |
 | `EP2-ST003` | Admin import/review/publish workflow (`done`)                               | `EP2-ST002`                |
 | `EP2-ST004` | Parts 1-4 listening practice session API (`done`)                           | `EP2-ST002`                |
-| `EP2-ST005` | Parts 5-7 reading practice session API (`review`)                           | `EP2-ST002`, `EP2-ST003`   |
+| `EP2-ST005` | Parts 5-7 reading practice session API (`done`)                             | `EP2-ST002`, `EP2-ST003`   |
 | `EP2-ST006` | Part/topic/difficulty practice UI                                           | `EP2-ST004`, `EP2-ST005`   |
 | `EP2-ST007` | Mini/half test assembly and server-timed session API                        | `EP2-ST004`, `EP2-ST005`   |
 | `EP2-ST008` | Timed mini/half test UI and interruption handling                           | `EP2-ST007`                |
