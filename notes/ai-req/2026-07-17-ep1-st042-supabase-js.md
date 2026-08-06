@@ -21,5 +21,8 @@ login, and recovery behavior.
 
 ## Status
 
-Awaiting owner approval. Do not install until approved. The local auth adapter keeps the
-vertical slice testable without credentials while this request is pending.
+Approved by owner on 2026-08-06. The exact dependency `@supabase/supabase-js@2.110.7`
+is authorized for `apps/web`; the lockfile must retain the exact version and browser
+configuration may contain only the public Supabase URL and publishable key. The local
+auth adapter remains the credential-free test path, and no service-role key or backend
+authorization boundary may move into the browser.
