@@ -1,7 +1,7 @@
 ---
 id: EP1-ST062
 title: Vocabulary Mindmap Selection Recovery
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
@@ -26,6 +26,7 @@ allowed_paths:
   - docs/10_TEST_STRATEGY.md
   - stories/blocked/EP1-ST062-vocabulary-mindmap-selection-recovery.md
   - stories/review/EP1-ST062-vocabulary-mindmap-selection-recovery.md
+  - stories/done/EP1-ST062-vocabulary-mindmap-selection-recovery.md
   - stories/blocked/EP1-ST057-vocabulary-mindmap-selection.md
   - _bmad-output/planning-artifacts/story-map.md
   - _bmad-output/implementation-artifacts/sprint-status.yaml
@@ -101,4 +102,5 @@ Verified on `dev`:
 - `pnpm e2e tests/e2e/vocabulary-learner.spec.ts`
 - `git diff --check`
 
-This story is in `review`; it must not be marked `done` without human approval.
+Owner completion direction was received on 2026-08-06 after the verified gates above;
+the story is approved and may be marked `done`.

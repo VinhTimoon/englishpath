@@ -1,7 +1,7 @@
 ---
 id: EP1-ST061
 title: Indexable Blog Browser Gate Recovery
-status: review
+status: done
 type: qa
 priority: high
 phase: phase-1-learning-core
@@ -115,5 +115,6 @@ Verified on `dev`:
 - `git diff --check`
 
 The 240-second external Codex cap remains an owner decision for `EP1-ST028`; it is
-not a blocker for this blog story. This story is ready for human review and must not
-be marked `done` without that approval.
+not a blocker for this blog story. Owner completion direction was received on
+2026-08-06 after the verified gates above; the story is approved and may be marked
+`done`.
