@@ -76,6 +76,11 @@ export class ToeicExceptionFilter implements ExceptionFilter {
           code = 'VALIDATION_FAILED';
           message = 'An Idempotency-Key header is required.';
           break;
+        case TOEIC_ERROR_CODES.INCOMPLETE:
+          status = 422;
+          code = 'INCOMPLETE_SESSION';
+          message = 'All selected questions must be answered.';
+          break;
         default:
           message = 'TOEIC questions are temporarily unavailable.';
       }

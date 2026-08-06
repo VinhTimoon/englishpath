@@ -1,7 +1,7 @@
 ---
 id: EP2-ST004
 title: TOEIC Parts 1-4 Listening Practice Session API
-status: in-progress
+status: review
 type: backend
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -11,7 +11,7 @@ allowed_paths:
   - apps/api/src/modules/toeic/**
   - apps/api/src/app.module.ts
   - apps/api/prisma/schema.prisma
-  - apps/api/prisma/migrations/20260806130000_toeic_listening_practice/**
+  - apps/api/prisma/migrations/20260806220000_toeic_listening_practice/**
   - apps/api/test/**
   - docs/06_BACKEND_ARCHITECTURE.md
   - docs/07_DATABASE_DESIGN.md
@@ -142,8 +142,8 @@ answer rows private to the backend result path.
 - `pnpm format:check`
 - `pnpm planning:traceability`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/ready/EP2-ST004-toeic-listening-practice-session-api.md`
-- `pnpm story:verify stories/ready/EP2-ST004-toeic-listening-practice-session-api.md`
+- `node scripts/story-doctor.mjs stories/review/EP2-ST004-toeic-listening-practice-session-api.md`
+- `pnpm story:verify stories/review/EP2-ST004-toeic-listening-practice-session-api.md`
 - `pnpm e2e`
 
 ## Risk and Review
@@ -158,3 +158,12 @@ quality gates are mandatory. Do not use the fast path or merge on partial tests.
 supplies the import/review/publish workflow and source policy. Keep EP2-ST005 and
 later stories in backlog until this story is done; do not create competing ready
 stories while this dependency chain is active.
+
+## Harness Evidence
+
+- Planning harness: completed after aligning the additive migration timestamp after
+  the TOEIC governance migration.
+- Build harness: completed; implementation was hardened in-scope for explicit
+  projections, canonical-version selection, and active-session answer locking.
+- Review harness: pass with no P0/P1 findings.
+

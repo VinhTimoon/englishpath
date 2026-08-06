@@ -215,3 +215,15 @@ repository owns fail-closed governance predicates, current-version selection,
 ordering, and pagination. The repository uses an explicit safe-field select, so
 `correctAnswer` and provenance, rights, review, and publication evidence cannot
 cross the learner HTTP boundary.
+
+EP2-ST004 adds the authenticated listening-practice session boundary. The service
+selects only Parts 1-4 content that has passed the governance predicates, snapshots
+version IDs into an owner-scoped session, accepts each question once, and submits
+with a compare-and-set transition. The controller exposes safe session/question
+projections; the repository is the only layer that selects `correctAnswer` for
+server-side grading. No answer key, correctness flag, XP, streak, or Error Notebook
+entry is returned before this story's final session projection, and ownership is
+always part of session lookups. The shared TOEIC eligibility policy supplies the
+governance predicate to both question delivery and practice selection; practice
+answer insertion locks the active session row before writing, so an answer cannot
+be inserted after a concurrent submission wins.

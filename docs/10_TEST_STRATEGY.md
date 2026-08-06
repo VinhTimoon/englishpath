@@ -260,3 +260,13 @@ and free-practice publication gates, malformed-ID handling, repository/audit
 fail-closed behavior, audit redaction, sanitized errors, and recursive negative
 assertions for answer keys, source URLs, rights owners, and review evidence.
 No test uses credentials, a shared database, a provider, or network access.
+
+## TOEIC listening practice evidence
+
+EP2-ST004 service, repository, and API E2E tests cover governed Parts 1-4
+selection, insufficient-content failure, owner binding, client-session replay and
+conflict, immutable answer retries, incomplete submission, compare-and-set submit,
+safe projections, strict DTO rejection, authentication, and absence of answer keys
+or correctness fields from pre-submit responses, plus active-session locking before
+answer insertion and newest-version selection per canonical question. Tests mock Prisma and identity
+boundaries and do not require a shared database or provider.

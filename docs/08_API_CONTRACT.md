@@ -174,6 +174,31 @@ expired, wrong-issuer, or wrong-audience identity evidence maps to
 map to `RESOURCE_FORBIDDEN` unless an endpoint contract intentionally uses a safer
 not-found response. Tokens, raw claims, and provider errors never enter the envelope.
 
+### TOEIC Listening Practice (implemented EP2-ST004)
+
+Authenticated learners use the following owner-scoped routes:
+
+- `POST /api/v1/toeic/practice/listening/sessions` accepts a client session ID,
+  optional `listeningPart` limited to `PART_1` through `PART_4`, and a bounded
+  `questionCount` (1-50). The server selects only reviewed, published, approved,
+  unexpired, free `PRACTICE` versions and returns safe question options. Repeating
+  the same client session ID with the same shape replays the session; a changed
+  shape returns `IDEMPOTENCY_CONFLICT`.
+- `POST /api/v1/toeic/practice/listening/sessions/:sessionId/answers` accepts one
+  option for one selected version. The unique owner/session/question constraint makes
+  retries safe; a different retry conflicts. The response contains acknowledgement
+  and progress only, never `correctAnswer` or `isCorrect`.
+- `POST /api/v1/toeic/practice/listening/sessions/:sessionId/submit` requires every
+  selected question to have an answer and atomically transitions the owner session
+  from `ACTIVE` to `SUBMITTED`. A repeat returns the persisted final score.
+- `GET /api/v1/toeic/practice/listening/sessions/:sessionId/result` returns the
+  caller's active progress or submitted score. Unknown or non-owned sessions use the
+  sanitized not-found envelope.
+
+The story intentionally does not award XP/streak or write Error Notebook entries;
+those behaviors belong to later Phase 2 stories. All routes use the standard
+correlation and sanitized error envelope.
+
 ## Idempotency Rules
 
 - Client sends `Idempotency-Key` for retry-prone writes.

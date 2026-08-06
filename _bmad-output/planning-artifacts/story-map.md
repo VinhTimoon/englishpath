@@ -166,7 +166,7 @@ environment without any promotion to `main`.
 | `EP2-ST001` | TOEIC L&R question/content/license schema (`done`)                          | `EP1-ST039`                |
 | `EP2-ST002` | Question bank repository/API and answer protection (`done`)                 | `EP2-ST001`                |
 | `EP2-ST003` | Admin import/review/publish workflow (`done`)                               | `EP2-ST002`                |
-| `EP2-ST004` | Parts 1-4 listening practice session API (`in-progress`)                      | `EP2-ST002`                |
+| `EP2-ST004` | Parts 1-4 listening practice session API (`review`)                         | `EP2-ST002`                |
 | `EP2-ST005` | Parts 5-7 reading practice session API                                      | `EP2-ST002`                |
 | `EP2-ST006` | Part/topic/difficulty practice UI                                           | `EP2-ST004`, `EP2-ST005`   |
 | `EP2-ST007` | Mini/half test assembly and server-timed session API                        | `EP2-ST004`, `EP2-ST005`   |

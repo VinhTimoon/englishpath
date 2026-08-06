@@ -247,6 +247,15 @@ are not persisted in client-readable records before answer submission.
 
 ## Physical TOEIC Question Governance Boundary
 
+EP2-ST004 adds owner-scoped `ToeicPracticeSession` and private
+`ToeicPracticeAnswer` rows. Sessions snapshot governed version IDs, enforce
+unique `(userId, clientSessionId)`, and transition `ACTIVE` to `SUBMITTED`.
+Answers enforce `(sessionId, questionId)` uniqueness; answer keys are selected
+only in the backend grading projection. Answer insertion is performed in a
+transaction that locks the active session row before creating the answer, while
+submission uses a separate active-state compare-and-set. Migration
+`20260806220000_toeic_listening_practice` is additive.
+
 `ToeicQuestion` owns the stable canonical identity. `ToeicQuestionVersion` is an
 immutable content record keyed by `(questionId, version)` and a separate
 `importIdentity`; lineage is restrictive, while deleting a canonical question

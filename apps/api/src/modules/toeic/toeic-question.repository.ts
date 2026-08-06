@@ -7,19 +7,14 @@ import {
   type ToeicQuestionListInput,
   type ToeicQuestionRepository,
 } from './toeic-question.models';
+import { toeicEligibleWhere } from './toeic-eligibility.policy';
 
 @Injectable()
 export class PrismaToeicQuestionRepository implements ToeicQuestionRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   private eligibleWhere(now: Date): Prisma.ToeicQuestionVersionWhereInput {
-    return {
-      reviewStatus: 'REVIEWED',
-      publicationState: 'PUBLISHED',
-      licenseStatus: 'APPROVED',
-      publishedAt: { lte: now },
-      OR: [{ validUntil: null }, { validUntil: { gt: now } }],
-    };
+    return toeicEligibleWhere(now);
   }
 
   async list(input: ToeicQuestionListInput) {

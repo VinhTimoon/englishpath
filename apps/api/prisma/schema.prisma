@@ -30,6 +30,7 @@ model User {
   vocabularyMasteryStates     VocabularyMasteryState[]
   vocabularyReviewSubmissions VocabularyReviewSubmission[]
   privilegedAuditEvents       PrivilegedAuditEvent[]
+  toeicPracticeSessions       ToeicPracticeSession[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -428,6 +429,36 @@ model ToeicQuestionVersion {
   @@index([stimulusGroup])
 }
 
+model ToeicPracticeSession {
+  id              String                   @id @default(cuid())
+  userId          String
+  clientSessionId String
+  listeningPart   ToeicPart?
+  questionIds     String[]
+  status          ToeicPracticeStatus      @default(ACTIVE)
+  total           Int
+  score           Int?
+  startedAt       DateTime                 @default(now())
+  submittedAt     DateTime?
+  user            User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers         ToeicPracticeAnswer[]
+  @@unique([userId, clientSessionId])
+  @@index([userId, status])
+  @@index([id])
+}
+
+model ToeicPracticeAnswer {
+  id             String              @id @default(cuid())
+  sessionId      String
+  questionId     String
+  selectedOption String
+  isCorrect      Boolean
+  answeredAt     DateTime            @default(now())
+  session        ToeicPracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  @@unique([sessionId, questionId])
+  @@index([sessionId])
+}
+
 enum IdentityProvider {
   SUPABASE
 }
@@ -509,6 +540,11 @@ enum ToeicAccessTier {
   FREE
   PREMIUM
   INTERNAL
+}
+
+enum ToeicPracticeStatus {
+  ACTIVE
+  SUBMITTED
 }
 
 enum LearningGoal {
