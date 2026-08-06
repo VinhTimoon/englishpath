@@ -21,6 +21,8 @@ type EligibilityOptions = Readonly<{
   readingPractice?: boolean;
   difficulty?: ToeicDifficulty;
   topic?: string;
+  usageScope?: 'PRACTICE' | 'MOCK_TEST';
+  accessTier?: 'FREE' | 'PREMIUM' | 'INTERNAL';
 }>;
 
 export function toeicEligibleWhere(
@@ -46,10 +48,10 @@ export function toeicEligibleWhere(
     reviewStatus: 'REVIEWED',
     publicationState: 'PUBLISHED',
     licenseStatus: 'APPROVED',
-    ...(options.practiceEligible
+    ...(options.practiceEligible || options.usageScope
       ? {
-          allowedUsageScopes: { has: 'PRACTICE' },
-          accessTier: 'FREE',
+          allowedUsageScopes: { has: options.usageScope ?? 'PRACTICE' },
+          accessTier: options.accessTier ?? 'FREE',
         }
       : {}),
     publishedAt: { lte: now },

@@ -68,3 +68,8 @@
   migrations, provider selection, budget decisions, and `dev` to `main` promotion
   remain human-owner controlled.
 - Reason: These decisions exceed normal story automation authority.
+# ADR EP2-ST007
+
+Use separate timed-test tables and policy v1. Expired active sessions are
+finalized server-side and late answer writes are rejected. Database uniqueness
+and active-state compare-and-set provide retry and concurrency protection.

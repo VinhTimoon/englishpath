@@ -200,6 +200,11 @@ generated locally only; no shared database migration is part of routine automati
 
 ## TOEIC question delivery boundary
 
+EP2-ST007 adds an isolated server-timed mock-test boundary at
+`/api/v1/toeic/tests`. The service owns the immutable v1 MINI/HALF policy,
+server deadline, answer secrecy, expiry, and compare-and-set finalization;
+the repository owns timed-test persistence and private grading projections.
+
 The EP2-ST003 governance boundary adds a transport-only admin surface to the
 TOEIC module. Its service owns role separation, immutable import, exact-version
 review binding, license/validity publication gates, safe projections, and audit

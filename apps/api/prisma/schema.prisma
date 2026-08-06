@@ -32,6 +32,7 @@ model User {
   privilegedAuditEvents       PrivilegedAuditEvent[]
   toeicPracticeSessions       ToeicPracticeSession[]
   toeicReadingPracticeSessions ToeicReadingPracticeSession[]
+  toeicTimedTestSessions       ToeicTimedTestSession[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -492,6 +493,38 @@ model ToeicReadingPracticeAnswer {
   @@index([sessionId])
 }
 
+model ToeicTimedTestSession {
+  id              String                 @id @default(cuid())
+  userId          String
+  clientSessionId String
+  mode            ToeicTimedTestMode
+  policyVersion   String
+  questionIds     String[]
+  startedAt       DateTime
+  deadlineAt      DateTime
+  status          ToeicTimedTestStatus    @default(ACTIVE)
+  total           Int
+  score           Int?
+  finalizedAt     DateTime?
+  user            User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers         ToeicTimedTestAnswer[]
+  @@unique([userId, clientSessionId])
+  @@index([userId, status])
+  @@index([deadlineAt, status])
+}
+
+model ToeicTimedTestAnswer {
+  id             String                @id @default(cuid())
+  sessionId      String
+  questionId     String
+  selectedOption String
+  isCorrect      Boolean
+  answeredAt     DateTime              @default(now())
+  session        ToeicTimedTestSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  @@unique([sessionId, questionId])
+  @@index([sessionId])
+}
+
 enum IdentityProvider {
   SUPABASE
 }
@@ -573,6 +606,17 @@ enum ToeicAccessTier {
   FREE
   PREMIUM
   INTERNAL
+}
+
+enum ToeicTimedTestMode {
+  MINI
+  HALF
+}
+
+enum ToeicTimedTestStatus {
+  ACTIVE
+  SUBMITTED
+  EXPIRED
 }
 
 enum ToeicPracticeStatus {

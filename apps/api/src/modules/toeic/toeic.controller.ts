@@ -51,6 +51,11 @@ import {
   AnswerToeicReadingPracticeDto,
   StartToeicReadingPracticeDto,
 } from './dto/toeic-reading-practice.dto';
+import { ToeicTimedTestService } from './toeic-timed-test.service';
+import {
+  AnswerToeicTimedTestDto,
+  StartToeicTimedTestDto,
+} from './dto/toeic-timed-test.dto';
 
 const strictValidation = new ValidationPipe({
   transform: true,
@@ -75,7 +80,85 @@ export class ToeicController {
     private readonly listening: ToeicListeningPracticeService,
     private readonly reading: ToeicReadingPracticeService,
     private readonly catalogue: ToeicPracticeCatalogueService,
+    private readonly timed: ToeicTimedTestService,
   ) {}
+
+  @Post('tests/sessions')
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(strictValidation)
+  startTimed(
+    @Body() input: StartToeicTimedTestDto,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.timed.start(request.principal!, input).then((data) => ({
+      data,
+      meta: {
+        correlationId,
+        idempotencyStatus: data.replayed ? 'replayed' : 'created',
+      },
+    }));
+  }
+
+  @Get('tests/sessions/:sessionId')
+  getTimed(
+    @Param('sessionId') id: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.timed.get(request.principal!, id).then((data) => ({
+      data,
+      meta: { correlationId, idempotencyStatus: 'not_applicable' },
+    }));
+  }
+
+  @Post('tests/sessions/:sessionId/answers')
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(strictValidation)
+  answerTimed(
+    @Param('sessionId') id: string,
+    @Body() input: AnswerToeicTimedTestDto,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.timed.answer(request.principal!, id, input).then((data) => ({
+      data,
+      meta: {
+        correlationId,
+        idempotencyStatus: data.replayed ? 'replayed' : 'created',
+      },
+    }));
+  }
+
+  @Post('tests/sessions/:sessionId/submit')
+  @HttpCode(HttpStatus.OK)
+  submitTimed(
+    @Param('sessionId') id: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.timed.submit(request.principal!, id).then((data) => ({
+      data,
+      meta: { correlationId, idempotencyStatus: 'not_applicable' },
+    }));
+  }
+
+  @Get('tests/sessions/:sessionId/result')
+  resultTimed(
+    @Param('sessionId') id: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.timed.result(request.principal!, id).then((data) => ({
+      data,
+      meta: { correlationId, idempotencyStatus: 'not_applicable' },
+    }));
+  }
 
   @Get('practice/catalogue')
   @ApiOperation({

@@ -17,6 +17,9 @@ import { ToeicReadingPracticeService } from './toeic-reading-practice.service';
 import { PrismaToeicPracticeCatalogueRepository } from './toeic-practice-catalogue.repository';
 import { TOEIC_PRACTICE_CATALOGUE_REPOSITORY } from './toeic-practice-catalogue.models';
 import { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.service';
+import { ToeicTimedTestService } from './toeic-timed-test.service';
+import { PrismaToeicTimedTestRepository } from './toeic-timed-test.repository';
+import { TOEIC_TIMED_TEST_REPOSITORY } from './toeic-timed-test.models';
 
 @Module({
   imports: [AuthModule, AuditModule],
@@ -26,6 +29,12 @@ import { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.servic
     ToeicListeningPracticeService,
     ToeicReadingPracticeService,
     ToeicPracticeCatalogueService,
+    ToeicTimedTestService,
+    PrismaToeicTimedTestRepository,
+    {
+      provide: TOEIC_TIMED_TEST_REPOSITORY,
+      useExisting: PrismaToeicTimedTestRepository,
+    },
     PrismaToeicPracticeCatalogueRepository,
     {
       provide: TOEIC_PRACTICE_CATALOGUE_REPOSITORY,
