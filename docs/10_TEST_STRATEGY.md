@@ -192,6 +192,8 @@ The batch-3 invariant extends that comparison across both prior migrations and
 keeps the same exact-count, taxonomy, provenance, and publication checks.
 The batch-4 invariant extends the same cross-migration duplicate protection through
 the fourth reviewed content batch.
+The batch-5 invariant closes the five-batch uniqueness chain and protects against
+duplicate learner cards across every reviewed vocabulary migration.
 
 ## Learner Entry Tests
 

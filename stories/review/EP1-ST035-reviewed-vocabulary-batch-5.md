@@ -1,7 +1,7 @@
 ---
 id: EP1-ST035
 title: Publish Reviewed Vocabulary Batch 5
-status: in-progress
+status: review
 type: content
 priority: high
 phase: phase-1-learning-core
@@ -78,6 +78,14 @@ Phase 1 vocabulary baseline is broad enough for a useful beta catalogue.
 - `pnpm build`
 - `pnpm e2e -- tests/e2e/vocabulary-explorer.spec.ts tests/e2e/vocabulary-learner.spec.ts`
 - `git diff --check`
+
+## Completion Evidence
+
+- Story doctor and story verification passed for the lifecycle artifact.
+- The batch invariant test passed: exactly 100 stable IDs, unique headwords with no overlap against the foundation and batches 1-4, existing taxonomy nodes, governed provenance, and `REVIEWED`/`PUBLISHED` state.
+- API E2E passed: 7 suites, 48 tests.
+- Full gates passed: formatting, planning traceability, tool tests (59/59), Prisma validation, lint, typecheck, unit tests (36 suites/295 tests), API and web builds, browser E2E (46/46), and diff check.
+- Manual review confirmed additive SQL only; no schema, credentials, provider configuration, public projection, ownership, pagination, or SRS contract changes.
 
 ## Dev Notes
 
