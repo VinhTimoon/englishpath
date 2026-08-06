@@ -1,7 +1,7 @@
 ---
 id: EP2-ST006
 title: TOEIC Part, topic, and difficulty practice UI
-status: review
+status: done
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -235,3 +235,4 @@ must be recorded as not verified, never treated as pass.
 - Review harness: final EP2-ST006 review passed with no P0/P1 findings. The
   earlier malformed review context evaluated EP2-ST005 and was not treated as
   approval evidence. No owner-deferred risk remains.
+
