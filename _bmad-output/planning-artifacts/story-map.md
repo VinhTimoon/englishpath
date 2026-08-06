@@ -105,8 +105,8 @@ dedicated vocabulary item/review UI increment.
 `EP1-ST048` supplies the verification/format closure and `EP1-ST049` closes the only
 identified assignment-integrity gap. Together they deliver the specified Daily Sentence
 API, completion, governed content, learner UI, and dashboard integration. No separately
-specified advanced Daily Sentence requirement remains; `EP1-ST036` still owns only the
-unimplemented reviewed quiz and remaining launch-content baseline.
+specified advanced Daily Sentence requirement remains; `EP1-ST036` now closes the
+reviewed quiz and remaining launch-content baseline.
 
 `EP1-ST050` supplies the canonical vocabulary-item prerequisite discovered by
 `EP1-ST018`. `EP1-ST019`, `EP1-ST052`, and the recovery chain `EP1-ST054` through
@@ -140,9 +140,8 @@ evidence. `EP1-ST029` is now done and is the completed dependency root for the
 remaining CMS slice; `EP1-ST030` can start only after its own story artifact is
 created from this merged baseline.
 
-`EP1-ST029` has its executable story and merged implementation. `EP1-ST030`
-through `EP1-ST039` remain queued behind their documented dependencies; ST038 and
-ST039 are owner-deferred with an explicit AI request; no
+`EP1-ST029` through `EP1-ST036` have executable stories and merged implementations.
+`EP1-ST038` and `EP1-ST039` are owner-deferred with an explicit AI request; no
 competing ready stories are being created.
 
 `EP1-ST030` is now done after its CMS authoring implementation passed the
@@ -153,9 +152,11 @@ its third reviewed batch passed the same full data and learner gates. `EP1-ST034
 is done after its fourth batch passed the same gates. `EP1-ST035` is done after the
 fifth reviewed vocabulary batch passed the same full data and learner gates.
 
-Exit: guest trial and the authenticated daily loop work end to end; roadmap,
-mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
-pass critical browser and security gates.
+Exit evidence: guest trial and the authenticated daily loop work end to end; roadmap,
+mindmap/SRS, Error Notebook, progress, CMS, and reviewed launch content pass critical
+browser and security gates. Local/no-op observability passes repository checks;
+real provider dashboards and staging release evidence remain owner-deferred through
+ST038/ST039.
 
 ## Phase 2 TOEIC Listening And Reading
 
