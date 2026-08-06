@@ -7,6 +7,7 @@ import {
   getAdminOverview,
 } from "@/features/admin/api/get-admin-overview";
 import type { AdminOverview } from "@/features/admin/model/admin-overview";
+import { CmsWorkspace } from "./cms-workspace";
 import styles from "./admin-shell.module.css";
 
 type AdminState =
@@ -143,11 +144,12 @@ function SuccessOverview({ data }: { data: AdminOverview }) {
         <div className={styles.panel} role="status">
           <h2>Editor shell ready</h2>
           <p className={styles.muted}>
-            Operational counts are reserved for the admin role. CMS and
-            publication actions are intentionally not available in this slice.
+            Operational counts are reserved for the admin role. CMS actions use
+            the dedicated governed workspace below.
           </p>
         </div>
       )}
+      <CmsWorkspace role={data.role} />
     </div>
   );
 }

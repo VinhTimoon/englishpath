@@ -142,9 +142,9 @@ created from this merged baseline.
 through `EP1-ST039` remain queued behind their documented dependencies; no
 competing ready stories are being created.
 
-`EP1-ST030` is now the single ready dependency-ready story for the CMS authoring
-surface. Later content batches and exit review remain queued behind its documented
-dependency chain.
+`EP1-ST030` is now in review after its CMS authoring implementation passed the
+documented full gates. Later content batches and exit review remain queued behind
+their documented dependency chain.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
