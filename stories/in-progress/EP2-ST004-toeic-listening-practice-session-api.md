@@ -1,7 +1,7 @@
 ---
 id: EP2-ST004
 title: TOEIC Parts 1-4 Listening Practice Session API
-status: ready
+status: in-progress
 type: backend
 priority: high
 phase: phase-2-toeic-listening-reading
