@@ -170,7 +170,7 @@ environment without any promotion to `main`.
 | `EP2-ST005` | Parts 5-7 reading practice session API (`done`)                             | `EP2-ST002`, `EP2-ST003`   |
 | `EP2-ST006` | Part/topic/difficulty practice UI (`done`)                                  | `EP2-ST004`, `EP2-ST005`   |
 | `EP2-ST007` | Mini/half test assembly and server-timed session API (`done`)               | `EP2-ST004`, `EP2-ST005`   |
-| `EP2-ST008` | Timed mini/half test UI and interruption handling (`review`)                 | `EP2-ST007`                |
+| `EP2-ST008` | Timed mini/half test UI and interruption handling (`done`)                   | `EP2-ST007`                |
 | `EP2-ST009` | Scoring, Part/skill weakness, and time analysis                             | `EP2-ST007`                |
 | `EP2-ST010` | TOEIC Error Notebook and remediation integration                            | `EP2-ST009`, `EP1-ST024`   |
 | `EP2-ST011` | TOEIC vocabulary/grammar remediation packs                                  | `EP2-ST010`                |

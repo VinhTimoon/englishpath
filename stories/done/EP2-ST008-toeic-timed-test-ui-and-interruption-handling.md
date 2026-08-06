@@ -1,7 +1,7 @@
 ---
 id: EP2-ST008
 title: TOEIC timed mini and half test UI with interruption handling
-status: review
+status: done
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -230,4 +230,5 @@ never treated as pass.
   That API source and test are outside this story's allowed implementation scope;
   neither was changed here. This remains an out-of-scope risk for the project-wide
   gate and is not evidence of a timed-test UI defect.
+
 
