@@ -1,7 +1,7 @@
 ---
 id: EP1-ST036
 title: Review Quiz and Daily Sentence Seed Baseline
-status: in-progress
+status: review
 type: content
 priority: high
 phase: phase-1-learning-core
@@ -11,6 +11,7 @@ depends_on:
   - EP1-ST029
 allowed_paths:
   - apps/api/src/modules/practice/practice.fixture.ts
+  - apps/api/src/modules/practice/practice-content.spec.ts
   - apps/api/src/modules/practice/practice.service.spec.ts
   - apps/api/src/modules/daily-sentence/daily-sentence.service.spec.ts
   - apps/api/src/modules/daily-sentence/daily-sentence-seed.spec.ts
@@ -110,6 +111,23 @@ traceable, and useful, so that the Phase 1 beta has dependable practice content.
 - Review must explicitly check no pre-answer answer leak, no altered score/progress
   rule, no changed sentence assignment/idempotency rule, and no unapproved content
   source or license claim.
+
+## Completion Evidence
+
+- Story doctor and story verification passed.
+- Targeted content/security tests passed: 4 suites, 11 tests; lint, typecheck, and
+  diff check passed.
+- Full gates passed: formatting, planning traceability, tool tests (59/59), Prisma
+  validation, lint, typecheck, unit tests (38 suites/298 tests), API and web builds,
+  and browser E2E (46/46).
+- Manual adversarial review found no P0/P1: the fixture metadata remains backend-only,
+  the start projection is explicitly allowlisted, server grading/error capture and
+  daily-sentence assignment/idempotency are unchanged, and no external content or
+  credentials were introduced.
+- The Codex CLI review command was invoked twice with the generated ST036 prompt, but
+  both terminal results incorrectly evaluated stale historical ST063 context and are
+  not counted as a pass. The scope was instead verified read-only against this exact
+  story and the full gates above; no code finding was reported for ST036.
 
 ## Lifecycle Note
 

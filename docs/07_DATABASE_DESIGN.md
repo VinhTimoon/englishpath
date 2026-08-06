@@ -25,6 +25,17 @@ per `(userId, localDate)`. All reads and writes are owner-scoped. The migration 
 only: drop `DailySentenceCompletion`, then `GovernedSentence`; do not run it
 automatically in production.
 
+### EP1-ST036 Reviewed quiz and Daily Sentence seed baseline
+
+The Phase 1 quiz remains a credential-free, backend-owned five-card fixture because
+the current practice persistence stores session/question IDs and learner outcomes,
+not a separate question-bank table. Each card carries deterministic original-source,
+license, review, and publication metadata internally; the start projection selects
+only ID, prompt, and options. The five correct options and explanations stay in the
+backend grading path. The existing `20260720120000_daily_sentence` migration provides
+20 stable EnglishPath-original `CC0-1.0` rows, all `REVIEWED` and `PUBLISHED`; the
+content invariant test checks the seed without applying SQL to shared infrastructure.
+
 ### EP1-ST050 Governed Vocabulary Item foundation
 
 `GovernedVocabularyItem` is the canonical persistence record for a reviewed word or

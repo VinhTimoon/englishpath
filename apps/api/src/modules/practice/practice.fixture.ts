@@ -4,7 +4,24 @@ export type PracticeQuestion = Readonly<{
   options: readonly Readonly<{ id: string; label: string }>[];
   correctOption: string;
   explanation: string;
+  source: string;
+  license: 'CC0-1.0';
+  reviewStatus: 'REVIEWED';
+  publishStatus: 'PUBLISHED';
+  reviewedAt: string;
+  publishedAt: string;
 }>;
+
+const REVIEWED_AT = '2026-08-06T00:00:00.000Z';
+
+const provenance = (item: number) => ({
+  source: `EnglishPath original quiz fixture ${String(item).padStart(3, '0')}`,
+  license: 'CC0-1.0' as const,
+  reviewStatus: 'REVIEWED' as const,
+  publishStatus: 'PUBLISHED' as const,
+  reviewedAt: REVIEWED_AT,
+  publishedAt: REVIEWED_AT,
+});
 
 export const PRACTICE_QUESTIONS: readonly PracticeQuestion[] = [
   {
@@ -17,6 +34,7 @@ export const PRACTICE_QUESTIONS: readonly PracticeQuestion[] = [
     ],
     correctOption: 'a',
     explanation: 'Agenda là danh sách nội dung cần thảo luận trong cuộc họp.',
+    ...provenance(1),
   },
   {
     id: 'p2',
@@ -28,6 +46,7 @@ export const PRACTICE_QUESTIONS: readonly PracticeQuestion[] = [
     ],
     correctOption: 'b',
     explanation: 'Chủ ngữ số ít ở hiện tại đơn dùng “studies”.',
+    ...provenance(2),
   },
   {
     id: 'p3',
@@ -39,6 +58,7 @@ export const PRACTICE_QUESTIONS: readonly PracticeQuestion[] = [
     ],
     correctOption: 'c',
     explanation: '“By 9 AM” nghĩa là không muộn hơn 9 giờ.',
+    ...provenance(3),
   },
   {
     id: 'p4',
@@ -50,6 +70,7 @@ export const PRACTICE_QUESTIONS: readonly PracticeQuestion[] = [
     ],
     correctOption: 'a',
     explanation: '“Make a decision” là collocation thông dụng.',
+    ...provenance(4),
   },
   {
     id: 'p5',
@@ -61,5 +82,6 @@ export const PRACTICE_QUESTIONS: readonly PracticeQuestion[] = [
     ],
     correctOption: 'b',
     explanation: 'Sau “could you” dùng động từ nguyên mẫu.',
+    ...provenance(5),
   },
 ];

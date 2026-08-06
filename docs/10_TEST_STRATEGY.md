@@ -220,6 +220,11 @@ duplicate learner cards across every reviewed vocabulary migration.
 
 ## Daily Practice Tests
 
+- The reviewed content baseline asserts five stable quiz cards with valid options,
+  governed provenance, and no answer-key or governance metadata in the start
+  projection. A migration fixture test independently asserts twenty stable,
+  EnglishPath-original, reviewed and published Daily Sentence seeds.
+
 - Service tests prove five-card answer-key redaction and backend grading inputs.
 - The 360px browser journey completes five cards, covers correct/incorrect feedback,
   final score, XP, streak/error review, bearer propagation, and overflow without network

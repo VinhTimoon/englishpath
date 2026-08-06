@@ -96,7 +96,7 @@ development_status:
   1-34-reviewed-vocabulary-batch-4: done
   1-35-reviewed-vocabulary-batch-5: done
   # Remains backlog: reviewed quiz and remaining launch-content baseline are unimplemented.
-  1-36-reviewed-quiz-and-daily-sentence-seed-baseline: in-progress
+  1-36-reviewed-quiz-and-daily-sentence-seed-baseline: review
   # Historical branch-collision block closed through the verified EP1-ST061 recovery.
   1-37-expand-indexable-blog-baseline: done
   # Historical generated-artifact block closed through the verified EP1-ST061 recovery.
