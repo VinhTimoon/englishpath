@@ -95,6 +95,22 @@ planned v2 envelope.
 
 ## Error Envelope
 
+## TOEIC Question Bank (implemented EP2-ST002)
+
+Authenticated learner endpoints are available at `/api/v1/toeic/questions` and
+`/api/v1/toeic/questions/:id`. The collection accepts `page` (default 1), `size`
+(default 20, maximum 100), `part`, `questionType`, `difficulty`, `topic`, and
+`stimulusGroup`; unknown fields and invalid values are rejected. Results are
+ordered by canonical question ID and current version, and use the standard list
+or resource envelope above.
+
+Only versions with `REVIEWED`, `PUBLISHED`, `APPROVED`, a reached `publishedAt`,
+and no expired `validUntil` are eligible. The server selects one current version
+per canonical question. Responses contain only learner fields: identity, TOEIC
+classification, topic/stimulus metadata, prompt, options, media reference, and
+explanation. Answers, source/provenance, rights/license, review, reviewer, and
+publication internals are never selected or serialized.
+
 ```json
 {
   "error": {

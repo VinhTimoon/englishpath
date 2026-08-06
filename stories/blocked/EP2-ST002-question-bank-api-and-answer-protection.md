@@ -1,7 +1,7 @@
 ---
 id: EP2-ST002
 title: TOEIC Question Bank API and Answer Protection
-status: ready
+status: blocked
 type: backend
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -122,3 +122,19 @@ that no answer or governance field crosses the HTTP boundary.
 stories in backlog until this API contract and its redaction evidence pass. If the
 approved contract requires a schema or rights decision outside this scope, stop and
 create an AI request instead of weakening answer protection.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```

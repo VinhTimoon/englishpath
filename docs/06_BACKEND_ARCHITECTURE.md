@@ -197,3 +197,12 @@ the existing redacted audit service.
 `AuditService` redacts and bounds attributes before `AuditRepository` persists a
 `PrivilegedAuditEvent` through `PrismaService`. The additive migration is validated and
 generated locally only; no shared database migration is part of routine automation.
+
+## TOEIC question delivery boundary
+
+`ToeicController` is authenticated HTTP transport only. `ToeicQuestionService`
+owns eligibility orchestration and the safe learner projection; the Prisma
+repository owns fail-closed governance predicates, current-version selection,
+ordering, and pagination. The repository uses an explicit safe-field select, so
+`correctAnswer` and provenance, rights, review, and publication evidence cannot
+cross the learner HTTP boundary.

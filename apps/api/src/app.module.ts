@@ -12,6 +12,7 @@ import { PracticeModule } from './modules/practice/practice.module';
 import { DailySentenceModule } from './modules/daily-sentence/daily-sentence.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { CmsModule } from './modules/cms/cms.module';
+import { ToeicModule } from './modules/toeic/toeic.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { CmsModule } from './modules/cms/cms.module';
     DailySentenceModule,
     AdminModule,
     CmsModule,
+    ToeicModule,
   ],
   controllers: [AppController],
   providers: [AppService],

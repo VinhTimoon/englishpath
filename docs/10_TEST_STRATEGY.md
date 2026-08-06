@@ -238,3 +238,12 @@ no executable destructive SQL.
 - The 360px browser journey completes five cards, covers correct/incorrect feedback,
   final score, XP, streak/error review, bearer propagation, and overflow without network
   or credentials.
+
+## TOEIC question-bank evidence
+
+EP2-ST002 tests should mock `PrismaService` and `AuthenticationGuard` without
+Supabase credentials or network access. Focused coverage includes strict DTO
+allowlisting, pagination and filters, server-side eligibility/current-version
+selection, unauthorized access, empty and failure results, exact safe response
+shape, and recursive negative assertions for answer and governance-field
+leakage. Time is controlled at the service/repository boundary.
