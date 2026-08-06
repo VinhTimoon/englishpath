@@ -3,7 +3,14 @@
 Date: 2026-08-06
 Story: EP1-ST038
 Category: external provider / production configuration
-Status: awaiting owner decision
+Status: resolved; owner-approved option 3, activation deferred
+
+## Owner Decision
+
+The owner selected Option 3 on 2026-08-06: defer PostHog and Sentry activation for
+now and continue using the existing local/no-op observability adapters. This is an
+explicit owner-deferred beta decision; it does not authorize provider credentials,
+provider configuration, production deployment, or paid services.
 
 ## Decision Needed
 
@@ -61,3 +68,11 @@ approved adapter configuration and dashboards on a dedicated story branch. Add t
 for redaction, retry/buffering, retention, alert routing, and failure behavior before
 any staging or production promotion. If option 3 is chosen, record the owner-deferred
 exit decision and leave the real-provider acceptance criteria explicitly deferred.
+
+## Resolution Evidence
+
+- Owner instruction received: “We defer activation of PostHog and Sentry for now. The
+  application will continue using the existing local/no-op observability adapters.”
+- No external provider was contacted or configured.
+- ST038 and dependent ST039 may close as owner-deferred beta evidence after local/no-op
+  tests, learner browser gates, lifecycle verification, and clean `dev` evidence pass.

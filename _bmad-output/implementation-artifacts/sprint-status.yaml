@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-06T10:28:11.000Z
+# last_updated: 2026-08-06T10:38:39.000Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-06T10:28:11.000Z
+last_updated: 2026-08-06T10:38:39.000Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -41,7 +41,7 @@ development_status:
   0-23-harness-state-synchronization-and-loop-lock: done
   epic-0-retrospective: optional
 
-  epic-1: in-progress
+  epic-1: done
   1-5-landing-guest-trial-and-responsive-remediation: done
   1-6-public-ia-seo-and-internal-links: done
   1-7-identity-schema-and-ownership-repositories: done
@@ -108,10 +108,10 @@ development_status:
   1-61-indexable-blog-browser-gate-recovery: done
   # Vocabulary mindmap-selection recovery passed scoped evidence and owner approval.
   1-62-vocabulary-mindmap-selection-recovery: done
-  # Blocked by owner-controlled provider/credential/privacy decisions; see AI request.
-  1-38-analytics-monitoring-and-launch-dashboards: blocked
-  # Depends on ST038 and owner-controlled staging/release evidence; see same AI request.
-  1-39-phase-1-staging-readiness-and-exit-review: blocked
+  # Owner-approved Option 3: local/no-op observability; real providers deferred.
+  1-38-analytics-monitoring-and-launch-dashboards: done
+  # Owner-deferred beta exit verified on the local equivalent environment.
+  1-39-phase-1-staging-readiness-and-exit-review: done
   1-42-bundled-learner-entry-vertical-slice: done
   1-43-bundled-roadmap-and-today-dashboard: done
   1-44-bundled-daily-practice-progress-and-error-review: done

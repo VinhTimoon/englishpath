@@ -1,7 +1,7 @@
 ---
 id: EP1-ST038
 title: Analytics Monitoring Integration and Launch Dashboards
-status: blocked
+status: done
 type: infrastructure
 priority: high
 phase: phase-1-learning-core
@@ -26,8 +26,10 @@ allowed_paths:
   - stories/review/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
   - stories/done/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
   - stories/blocked/EP1-ST039-phase-1-staging-readiness-and-exit-review.md
+  - stories/done/EP1-ST039-phase-1-staging-readiness-and-exit-review.md
   - notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md
   - _bmad-output/planning-artifacts/story-map.md
+  - _bmad-output/planning-artifacts/epic-map.md
   - _bmad-output/implementation-artifacts/sprint-status.yaml
 forbidden_paths:
   - production credentials
@@ -40,6 +42,7 @@ forbidden_paths:
   - main
 max_fix_rounds: 2
 requires_human_approval: true
+owner_deferred: true
 ---
 
 # Story: Analytics Monitoring Integration and Launch Dashboards
@@ -58,20 +61,37 @@ for Phase 1 launch without activating an external provider without owner authori
   recorded before activation.
 - Local/no-op adapters remain usable without credentials and all safety tests pass.
 
-## Blocked Report
+## Historical Blocked Report
 
-Implementation is paused because real provider accounts/configuration and production
-credentials require owner approval. The exact decision, options, recommendation,
-technical evidence, and continuation steps are recorded in:
+Implementation was paused because real provider accounts/configuration and production
+credentials required owner approval. The owner selected Option 3 in:
 
 `notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md`
 
-Do not resume this story until that request is approved or the owner explicitly
-accepts the owner-deferred beta exit.
+The real PostHog/Sentry activation remains explicitly deferred. The existing
+local/no-op adapters are the approved Phase 1 beta path.
+
+## Owner-Deferred Completion Evidence
+
+- Owner decision confirmed Option 3 on 2026-08-06.
+- No provider credentials, provider configuration, network calls, or paid services
+  were introduced.
+- Existing local/no-op adapters remain bounded and redacting; their tests and the
+  repository-wide learner/security gates pass.
+- Verification passed: observability 2 suites/33 tests, unit 38 suites/298 tests,
+  API E2E 7 suites/48 tests, browser E2E 46/46, tool tests 59/59, formatting,
+  traceability, Prisma validation, lint, typecheck, build, and diff check.
+- Real provider dashboards, alert delivery, retention configuration, and production
+  activation remain deferred and are not claimed as complete.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/blocked/EP1-ST038-analytics-monitoring-and-launch-dashboards.md`
-- `pnpm story:verify stories/blocked/EP1-ST038-analytics-monitoring-and-launch-dashboards.md`
-- After approval: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`, `pnpm e2e`
-- After approval: provider redaction, retention, retry, dashboard, and alert checks
+- `node scripts/story-doctor.mjs stories/done/EP1-ST038-analytics-monitoring-and-launch-dashboards.md`
+- `pnpm story:verify stories/done/EP1-ST038-analytics-monitoring-and-launch-dashboards.md`
+- `pnpm --filter api test -- observability --runInBand`
+- `pnpm lint`
+- `pnpm typecheck`
+- `pnpm test`
+- `pnpm build`
+- `pnpm e2e`
+- `git diff --check`
