@@ -195,6 +195,15 @@ the fourth reviewed content batch.
 The batch-5 invariant closes the five-batch uniqueness chain and protects against
 duplicate learner cards across every reviewed vocabulary migration.
 
+## TOEIC Question Governance Schema Tests
+
+`toeic-question-schema.spec.ts` is a credential-free static invariant suite. It
+proves that Parts 1–7 and the closed question, license, review, publication,
+usage, and access domains are representable; answer keys, source locations,
+rights metadata, and review evidence remain server-owned; stable version and
+import identities plus lifecycle indexes exist; and the named migration contains
+no executable destructive SQL.
+
 ## Learner Entry Tests
 
 - Service tests cover owner-scoped onboarding persistence, answer-key redaction,

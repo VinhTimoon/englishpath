@@ -374,6 +374,60 @@ model PrivilegedAuditEvent {
   @@index([correlationId])
 }
 
+model ToeicQuestion {
+  id        String                @id
+  versions ToeicQuestionVersion[]
+  createdAt DateTime              @default(now())
+  updatedAt DateTime              @updatedAt
+}
+
+model ToeicQuestionVersion {
+  id                  String                   @id
+  questionId          String
+  version             Int
+  previousVersionId   String?
+  importIdentity      String
+  part                ToeicPart
+  questionType        ToeicQuestionType
+  difficulty          ToeicDifficulty
+  topic               String?
+  stimulusGroup       String?
+  prompt              String
+  options             Json
+  mediaReference      String?
+  explanation         String?
+  correctAnswer       String
+  sourceIdentity      String
+  sourceUrl           String?
+  checksum            String
+  sourceVersion       String
+  provenance          String
+  rightsOwner         String
+  licenseStatus       ToeicLicenseStatus
+  allowedUsageScopes  ToeicUsageScope[]
+  accessTier          ToeicAccessTier
+  reviewStatus        ToeicReviewStatus       @default(DRAFT)
+  reviewDecision      ToeicReviewDecision?
+  reviewEvidence      String?
+  reviewerIdentity    String?
+  reviewedAt          DateTime?
+  publicationState    ToeicPublicationState   @default(UNPUBLISHED)
+  publishedAt         DateTime?
+  validUntil          DateTime?
+  createdAt           DateTime                @default(now())
+  question            ToeicQuestion           @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  previousVersion     ToeicQuestionVersion?   @relation("ToeicVersionLineage", fields: [previousVersionId], references: [id], onDelete: Restrict)
+  nextVersions        ToeicQuestionVersion[]  @relation("ToeicVersionLineage")
+
+  @@unique([questionId, version])
+  @@unique([sourceIdentity, checksum, sourceVersion])
+  @@unique([importIdentity])
+  @@index([questionId, version])
+  @@index([part, questionType, difficulty])
+  @@index([reviewStatus, publicationState, publishedAt, validUntil])
+  @@index([stimulusGroup])
+}
+
 enum IdentityProvider {
   SUPABASE
 }
@@ -395,6 +449,66 @@ enum RoleCode {
 enum AuditPolicyResult {
   ALLOW
   DENY
+}
+
+enum ToeicPart {
+  PART_1
+  PART_2
+  PART_3
+  PART_4
+  PART_5
+  PART_6
+  PART_7
+}
+enum ToeicQuestionType {
+  PHOTO_DESCRIPTION
+  QUESTION_RESPONSE
+  CONVERSATION
+  TALK
+  INCOMPLETE_SENTENCE
+  TEXT_COMPLETION
+  READING_COMPREHENSION
+}
+enum ToeicDifficulty {
+  BEGINNER
+  ELEMENTARY
+  INTERMEDIATE
+  UPPER_INTERMEDIATE
+  ADVANCED
+}
+enum ToeicLicenseStatus {
+  UNKNOWN
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+enum ToeicReviewStatus {
+  DRAFT
+  IN_REVIEW
+  REVIEWED
+  REJECTED
+}
+enum ToeicReviewDecision {
+  APPROVE
+  REJECT
+  REQUEST_CHANGES
+}
+enum ToeicPublicationState {
+  UNPUBLISHED
+  PUBLISHED
+  RETIRED
+}
+enum ToeicUsageScope {
+  PRACTICE
+  MOCK_TEST
+  EXAM
+  REVIEW
+}
+enum ToeicAccessTier {
+  FREE
+  PREMIUM
+  INTERNAL
 }
 
 enum LearningGoal {

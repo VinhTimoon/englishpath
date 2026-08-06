@@ -1,7 +1,7 @@
 ---
 id: EP2-ST001
 title: TOEIC L&R Question, Content, and License Schema
-status: ready
+status: blocked
 type: database
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -117,3 +117,19 @@ the only Phase 2 implementation story made ready; all later Phase 2 stories rema
 backlog until their declared dependencies pass. If schema requirements would need a
 destructive migration or an unapproved license/provider decision, stop and create a
 structured AI request rather than widening this story.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
