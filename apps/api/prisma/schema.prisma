@@ -213,6 +213,77 @@ model GovernedVocabularyItem {
   @@index([word])
 }
 
+model CmsTaxonomyNode {
+  id               String              @id
+  parentId         String?
+  level            String
+  topic            String
+  subtopic         String?
+  collocations     String[]
+  relatedSkills    String[]
+  tracks           String[]
+  toeicParts       Int[]
+  createdByActorId String
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  parent           CmsTaxonomyNode?    @relation("CmsTaxonomyTree", fields: [parentId], references: [id], onDelete: Restrict)
+  children         CmsTaxonomyNode[]   @relation("CmsTaxonomyTree")
+  contentVersions  CmsContentVersion[]
+
+  @@index([parentId, level, topic])
+}
+
+model CmsContent {
+  id        String              @id
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+  versions  CmsContentVersion[]
+}
+
+model CmsContentVersion {
+  id                  String              @id
+  contentId           String
+  previousVersionId   String?
+  clientRequestId     String
+  contentType         String
+  title               String
+  body                String
+  createdByActorId    String
+  provenance          String
+  usageScope          String
+  accessTier          String
+  taxonomyNodeId      String
+  sourceId            String
+  sourceUrl           String?
+  checksum            String
+  sourceVersion       String
+  rightsOwner         String
+  licenseStatus       String
+  allowedUsageScopes  String[]
+  allowedAccessTiers  String[]
+  validUntil          DateTime?
+  reviewStatus        String              @default("draft")
+  publishStatus       String              @default("draft")
+  reviewDecision      String?
+  reviewerId          String?
+  reviewedAt          DateTime?
+  reviewContentId     String?
+  reviewVersionId     String?
+  reviewChecksum      String?
+  reviewSourceVersion String?
+  publishedAt         DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  content             CmsContent          @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  previousVersion     CmsContentVersion?  @relation("CmsVersionLineage", fields: [previousVersionId], references: [id], onDelete: SetNull)
+  nextVersions        CmsContentVersion[] @relation("CmsVersionLineage")
+  taxonomyNode        CmsTaxonomyNode     @relation(fields: [taxonomyNodeId], references: [id], onDelete: Restrict)
+
+  @@unique([contentId, clientRequestId])
+  @@index([taxonomyNodeId, reviewStatus, publishStatus])
+  @@index([contentId, createdAt])
+}
+
 model DailySentenceCompletion {
   id              String           @id @default(cuid())
   userId          String

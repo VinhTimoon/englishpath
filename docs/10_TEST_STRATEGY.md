@@ -174,6 +174,15 @@ PostgreSQL, or network access. Coverage includes signature, issuer, audience, ex
 identity status, ownership, DTO allowlisting, and response redaction. Jest runs with
 Node VM modules because the approved `jose` v6 package is ESM-only.
 
+## CMS Governance Tests
+
+- Service tests cover privileged-role enforcement, denied audit decisions, draft
+  idempotency replay, source/rights redaction, separate human review and publish
+  authority, self-review rejection, and publication gating.
+- Prisma validation/generation and API build checks cover the additive CMS schema;
+  API verification must additionally exercise malformed DTOs, taxonomy parent
+  validation, lifecycle conflicts, and the no-private-fields projection.
+
 ## Learner Entry Tests
 
 - Service tests cover owner-scoped onboarding persistence, answer-key redaction,

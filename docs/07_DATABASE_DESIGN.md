@@ -132,6 +132,13 @@ the exact content ID, version ID, checksum, and source version.
 Unknown, blocked, expired, or incompatible rights are default-denied. A changed source
 never inherits approval automatically.
 
+EP1-ST029 materializes these invariants with the additive `CmsTaxonomyNode`,
+`CmsContent`, and `CmsContentVersion` tables. `(contentId, clientRequestId)` is
+unique for safe draft creation retries; versions retain explicit source checksum and
+version identity, lineage, rights compatibility, review evidence, and publication
+state. The migration does not alter learner vocabulary tables and has no automatic
+rollback or destructive operation.
+
 ## Physical Identity Baseline
 
 The Phase 1 identity schema preserves the original `User` table and adds provider

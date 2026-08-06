@@ -186,6 +186,14 @@ The `CONTENT_EDITOR`, `ADMIN`, and `SUPER_ADMIN` decisions are derived exclusive
 from the persisted application principal. The module deliberately does not expose CMS
 mutation, publication, role assignment, learner progress, or audit-row reads.
 
+`CmsModule` implements the Phase 1 persisted governance boundary at
+`/api/v1/cms`. Its controller is transport-only; `CmsService` owns role/action
+authorization, lifecycle policy reconstruction, idempotency, safe projections, and
+audit decisions; `CmsRepository` owns Prisma reads and additive writes. Taxonomy and
+content mutation require a privileged application role. Review is available to
+content editors, publication only to admins, and every mutation/denial is appended to
+the existing redacted audit service.
+
 `AuditService` redacts and bounds attributes before `AuditRepository` persists a
 `PrivilegedAuditEvent` through `PrismaService`. The additive migration is validated and
 generated locally only; no shared database migration is part of routine automation.

@@ -168,6 +168,21 @@ does not expose an API. Future controllers may request authorization from the ac
 layer, but must not accept a client boolean or client-created authorization decision
 as proof that an actor is human or has review/publish permission.
 
+EP1-ST029 provides the first guarded CMS contract:
+
+- `GET/POST /api/v1/cms/taxonomy/nodes` lists or creates bounded taxonomy nodes.
+- `GET /api/v1/cms/content-versions/:id` returns a safe authoring projection.
+- `POST /api/v1/cms/content-versions` creates an immutable draft and replays the
+  original response for the same `(contentId, clientRequestId)`.
+- `POST /api/v1/cms/content-versions/:id/review` binds evidence to the authenticated
+  reviewer and exact content/version/checksum/source version.
+- `POST /api/v1/cms/content-versions/:id/publish` requires a separate admin action,
+  approved review, and currently compatible rights.
+
+These routes never return source URLs, rights owners, raw rights documents, or private
+review evidence. Unknown DTO fields are rejected and all responses carry a validated
+correlation ID and idempotency status.
+
 ## Vocabulary Taxonomy Endpoints
 
 - `GET /api/v1/vocabulary/topics` accepts optional `level`, `track`, `skill`, and

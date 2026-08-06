@@ -53,6 +53,13 @@
 - Taxonomy and content-policy failures are sanitized before HTTP mapping; private
   source locations and reviewer-only evidence are not returned to clients.
 
+EP1-ST029 enforces this boundary in the persisted CMS API: content editors may create
+and review, admins may publish, and learner roles cannot access authoring routes.
+Review and publish reconstruct policy-issued decisions from persisted exact evidence;
+publication is rejected for draft/rejected review, incompatible rights, expired rights,
+self-publish, or a repeated published transition. Audit attributes contain only safe
+capability/outcome scalars.
+
 ## Assessment Integrity
 
 - TOEIC, placement, and other scored flows use server-authoritative timers.
