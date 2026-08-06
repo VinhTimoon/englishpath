@@ -1,7 +1,7 @@
 ---
 id: EP2-ST004
 title: TOEIC Parts 1-4 Listening Practice Session API
-status: review
+status: done
 type: backend
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -166,4 +166,5 @@ stories while this dependency chain is active.
 - Build harness: completed; implementation was hardened in-scope for explicit
   projections, canonical-version selection, and active-session answer locking.
 - Review harness: pass with no P0/P1 findings.
+
 
