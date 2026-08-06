@@ -89,7 +89,7 @@ development_status:
   # Supervised implementation passed full gates; historical WIP 7a5c909 was not resumed.
   1-28-admin-editor-rbac-audit-and-admin-shell: done
   1-29-cms-taxonomy-vocabulary-content-api: done
-  1-30-cms-import-and-admin-content-ui: ready-for-dev
+  1-30-cms-import-and-admin-content-ui: in-progress
   1-31-reviewed-vocabulary-batch-1: backlog
   1-32-reviewed-vocabulary-batch-2: backlog
   1-33-reviewed-vocabulary-batch-3: backlog
