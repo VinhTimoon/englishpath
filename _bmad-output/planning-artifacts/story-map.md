@@ -142,7 +142,7 @@ created from this merged baseline.
 through `EP1-ST039` remain queued behind their documented dependencies; no
 competing ready stories are being created.
 
-`EP1-ST030` is now in review after its CMS authoring implementation passed the
+`EP1-ST030` is now done after its CMS authoring implementation passed the
 documented full gates. Later content batches and exit review remain queued behind
 their documented dependency chain.
 

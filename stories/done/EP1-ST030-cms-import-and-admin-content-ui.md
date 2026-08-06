@@ -1,7 +1,7 @@
 ---
 id: EP1-ST030
 title: Governed CMS Taxonomy And Content Authoring UI
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-1-learning-core
