@@ -31,6 +31,7 @@ model User {
   vocabularyReviewSubmissions VocabularyReviewSubmission[]
   privilegedAuditEvents       PrivilegedAuditEvent[]
   toeicPracticeSessions       ToeicPracticeSession[]
+  toeicReadingPracticeSessions ToeicReadingPracticeSession[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -455,6 +456,35 @@ model ToeicPracticeAnswer {
   isCorrect      Boolean
   answeredAt     DateTime            @default(now())
   session        ToeicPracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  @@unique([sessionId, questionId])
+  @@index([sessionId])
+}
+
+model ToeicReadingPracticeSession {
+  id              String              @id @default(cuid())
+  userId          String
+  clientSessionId String
+  readingPart     ToeicPart?
+  questionIds     String[]
+  status          ToeicPracticeStatus @default(ACTIVE)
+  total           Int
+  score           Int?
+  startedAt       DateTime            @default(now())
+  submittedAt     DateTime?
+  user            User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers         ToeicReadingPracticeAnswer[]
+  @@unique([userId, clientSessionId])
+  @@index([userId, status])
+}
+
+model ToeicReadingPracticeAnswer {
+  id             String                       @id @default(cuid())
+  sessionId      String
+  questionId     String
+  selectedOption String
+  isCorrect      Boolean
+  answeredAt     DateTime                     @default(now())
+  session        ToeicReadingPracticeSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   @@unique([sessionId, questionId])
   @@index([sessionId])
 }

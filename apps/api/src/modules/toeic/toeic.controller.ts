@@ -45,6 +45,11 @@ import {
   AnswerToeicListeningPracticeDto,
   StartToeicListeningPracticeDto,
 } from './dto/toeic-listening-practice.dto';
+import { ToeicReadingPracticeService } from './toeic-reading-practice.service';
+import {
+  AnswerToeicReadingPracticeDto,
+  StartToeicReadingPracticeDto,
+} from './dto/toeic-reading-practice.dto';
 
 const strictValidation = new ValidationPipe({
   transform: true,
@@ -67,7 +72,113 @@ export class ToeicController {
     private readonly service: ToeicQuestionService,
     private readonly adminService: ToeicAdminService,
     private readonly listening: ToeicListeningPracticeService,
+    private readonly reading: ToeicReadingPracticeService,
   ) {}
+
+  @Post('practice/reading/sessions')
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(strictValidation)
+  @ApiOperation({
+    summary: 'Start or replay an authenticated TOEIC reading practice session',
+  })
+  @ApiOkResponse({
+    description: 'Safe reading questions and session projection.',
+  })
+  @ApiBadRequestResponse({ description: 'Invalid reading practice request.' })
+  @ApiConflictResponse({
+    description: 'The client session key conflicts with an existing session.',
+  })
+  @ApiNotFoundResponse({
+    description: 'There is not enough eligible reading content.',
+  })
+  startReading(
+    @Body() input: StartToeicReadingPracticeDto,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.reading.start(request.principal!, input).then((data) => ({
+      data,
+      meta: {
+        correlationId,
+        idempotencyStatus: data.replayed ? 'replayed' : 'created',
+      },
+    }));
+  }
+
+  @Post('practice/reading/sessions/:sessionId/answers')
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(strictValidation)
+  @ApiOperation({
+    summary: 'Record one immutable answer in a reading practice session',
+  })
+  @ApiOkResponse({
+    description: 'Safe answer acknowledgement without correctness.',
+  })
+  @ApiNotFoundResponse({
+    description: 'The session or question is unavailable.',
+  })
+  @ApiConflictResponse({
+    description: 'The answer conflicts with a prior submission.',
+  })
+  answerReading(
+    @Param('sessionId') sessionId: string,
+    @Body() input: AnswerToeicReadingPracticeDto,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.reading
+      .answer(request.principal!, sessionId, input)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId,
+          idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
+  }
+
+  @Post('practice/reading/sessions/:sessionId/submit')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Submit a completed reading practice session' })
+  @ApiOkResponse({ description: 'Final reading score projection.' })
+  @ApiNotFoundResponse({ description: 'The session is unavailable.' })
+  @ApiConflictResponse({
+    description: 'The session was submitted concurrently.',
+  })
+  @ApiUnprocessableEntityResponse({ description: 'The session is incomplete.' })
+  submitReading(
+    @Param('sessionId') sessionId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.reading.submit(request.principal!, sessionId).then((data) => ({
+      data,
+      meta: { correlationId, idempotencyStatus: 'not_applicable' },
+    }));
+  }
+
+  @Get('practice/reading/sessions/:sessionId/result')
+  @ApiOperation({
+    summary: 'Read the authenticated learner reading practice result',
+  })
+  @ApiOkResponse({
+    description: 'Safe active or submitted reading projection.',
+  })
+  @ApiNotFoundResponse({ description: 'The session is unavailable.' })
+  readingResult(
+    @Param('sessionId') sessionId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.reading.result(request.principal!, sessionId).then((data) => ({
+      data,
+      meta: { correlationId, idempotencyStatus: 'not_applicable' },
+    }));
+  }
 
   @Post('practice/listening/sessions')
   @HttpCode(HttpStatus.OK)

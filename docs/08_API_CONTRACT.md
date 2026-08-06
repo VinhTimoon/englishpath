@@ -199,6 +199,30 @@ The story intentionally does not award XP/streak or write Error Notebook entries
 those behaviors belong to later Phase 2 stories. All routes use the standard
 correlation and sanitized error envelope.
 
+### TOEIC Reading Practice (implemented EP2-ST005)
+
+Authenticated Parts 5-7 learners use the following owner-scoped routes:
+
+- `POST /api/v1/toeic/practice/reading/sessions` accepts an actor-bound client
+  session ID, optional `readingPart` limited to `PART_5` through `PART_7`, and a
+  bounded question count. The server selects only reviewed, published, approved,
+  unexpired, free `PRACTICE` versions and keeps the newest eligible version per
+  canonical question.
+- `POST /api/v1/toeic/practice/reading/sessions/:sessionId/answers` validates the
+  selected version and option on the backend. Exact retries replay; changed
+  retries conflict. Pre-submit responses contain progress only and never expose
+  `correctAnswer` or `isCorrect`.
+- `POST /api/v1/toeic/practice/reading/sessions/:sessionId/submit` requires one
+  answer for every selected version and atomically transitions `ACTIVE` to
+  `SUBMITTED` with the server-computed aggregate score.
+- `GET /api/v1/toeic/practice/reading/sessions/:sessionId/result` returns active
+  progress or a submitted safe result for the authenticated owner only.
+
+Reading sessions have separate persistence from listening sessions, use the shared
+TOEIC eligibility policy, and do not award XP/streak or write Error Notebook or
+remediation records in this story. All routes use the standard correlation and
+sanitized error envelope.
+
 ## Idempotency Rules
 
 - Client sends `Idempotency-Key` for retry-prone writes.

@@ -270,3 +270,13 @@ safe projections, strict DTO rejection, authentication, and absence of answer ke
 or correctness fields from pre-submit responses, plus active-session locking before
 answer insertion and newest-version selection per canonical question. Tests mock Prisma and identity
 boundaries and do not require a shared database or provider.
+
+## TOEIC reading practice evidence
+
+EP2-ST005 coverage mirrors the listening safety boundary for Parts 5-7: governed
+selection and canonical-version deduplication, strict DTOs, owner/client replay
+and race recovery, immutable answer retries, active-session locking before answer
+insertion, complete submission, active/final results, sanitized repository errors,
+and recursive negative assertions for answer keys, correctness, source, license,
+review, and publication metadata. Tests use mocked Prisma and identity boundaries
+without credentials, network access, or a shared database.

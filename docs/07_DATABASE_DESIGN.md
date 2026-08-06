@@ -190,6 +190,11 @@ rollback or destructive operation.
 
 ## Physical Identity Baseline
 
+EP2-ST005 adds additive `ToeicReadingPracticeSession` and
+`ToeicReadingPracticeAnswer` tables. They are isolated from listening rows, cascade
+with the application user/session, and enforce unique owner/client and session/question
+keys for retry safety.
+
 The Phase 1 identity schema preserves the original `User` table and adds provider
 identity, explicit status, one-to-one `UserProfile`, canonical `Role`, and unique
 `UserRole` assignment records. The application user ID remains independent from the

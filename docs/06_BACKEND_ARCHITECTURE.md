@@ -227,3 +227,10 @@ always part of session lookups. The shared TOEIC eligibility policy supplies the
 governance predicate to both question delivery and practice selection; practice
 answer insertion locks the active session row before writing, so an answer cannot
 be inserted after a concurrent submission wins.
+EP2-ST005 adds a separate authenticated reading-practice boundary for Parts 5-7.
+Reading sessions snapshot exact version IDs, use owner/client idempotency, and keep
+safe question projections separate from private grading projections. The shared
+eligibility policy supplies the reviewed/published/licensed/free-practice predicate
+for both listening and reading. ACTIVE sessions accept answers only while an
+active-session lock is held, and atomically transition to SUBMITTED only when every
+selected version has an answer.

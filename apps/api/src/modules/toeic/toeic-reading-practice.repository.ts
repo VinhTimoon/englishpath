@@ -5,15 +5,16 @@ import type {
   ToeicPart,
   ToeicQuestionType,
 } from '../../generated/prisma/enums';
-import type {
-  ToeicListeningPracticeRepository,
-  ToeicListeningQuestion,
-  ToeicPracticeAnswerCreate,
-  ToeicPracticeSessionCreate,
-  ToeicPracticeSessionRecord,
-  ToeicPrivateQuestion,
-} from './toeic-listening-practice.models';
 import { toeicEligibleWhere } from './toeic-eligibility.policy';
+import type {
+  ReadingAnswerCreate,
+  ReadingPrivateQuestion,
+  ReadingQuestion,
+  ReadingGradingSession,
+  ReadingSession,
+  ReadingSessionCreate,
+  ToeicReadingPracticeRepository,
+} from './toeic-reading-practice.models';
 
 type DbAnswer = {
   id: string;
@@ -28,7 +29,7 @@ type DbSession = {
   id: string;
   userId: string;
   clientSessionId: string;
-  listeningPart: ToeicPart | null;
+  readingPart: ToeicPart | null;
   questionIds: string[];
   status: 'ACTIVE' | 'SUBMITTED';
   total: number;
@@ -46,7 +47,10 @@ type DbQuestion = {
   part: ToeicPart;
   questionType: ToeicQuestionType;
   difficulty: ToeicDifficulty;
+  topic: string | null;
+  stimulusGroup: string | null;
   mediaReference: string | null;
+  explanation: string | null;
 };
 
 type DbPrivateQuestion = {
@@ -55,29 +59,29 @@ type DbPrivateQuestion = {
   correctAnswer: string;
 };
 
-type PracticeDb = {
+type ReadingTransaction = {
+  toeicReadingPracticeSession: {
+    updateMany(args: Record<string, unknown>): Promise<{ count: number }>;
+  };
+  toeicReadingPracticeAnswer: {
+    create(args: Record<string, unknown>): Promise<unknown>;
+  };
+};
+
+type ReadingDb = {
   $transaction<T>(
-    callback: (transaction: PracticeTransaction) => Promise<T>,
+    callback: (transaction: ReadingTransaction) => Promise<T>,
   ): Promise<T>;
   toeicQuestionVersion: {
     findMany(args: Record<string, unknown>): Promise<unknown>;
   };
-  toeicPracticeSession: {
+  toeicReadingPracticeSession: {
     findFirst(args: Record<string, unknown>): Promise<unknown>;
     findUnique(args: Record<string, unknown>): Promise<unknown>;
     create(args: Record<string, unknown>): Promise<unknown>;
     updateMany(args: Record<string, unknown>): Promise<{ count: number }>;
   };
-  toeicPracticeAnswer: {
-    create(args: Record<string, unknown>): Promise<unknown>;
-  };
-};
-
-type PracticeTransaction = {
-  toeicPracticeSession: {
-    updateMany(args: Record<string, unknown>): Promise<{ count: number }>;
-  };
-  toeicPracticeAnswer: {
+  toeicReadingPracticeAnswer: {
     create(args: Record<string, unknown>): Promise<unknown>;
   };
 };
@@ -86,7 +90,7 @@ const SESSION_SELECT = {
   id: true,
   userId: true,
   clientSessionId: true,
-  listeningPart: true,
+  readingPart: true,
   questionIds: true,
   status: true,
   total: true,
@@ -99,11 +103,25 @@ const SESSION_SELECT = {
       sessionId: true,
       questionId: true,
       selectedOption: true,
+      answeredAt: true,
+    },
+  },
+} as const;
+
+const GRADING_SESSION_SELECT = {
+  ...SESSION_SELECT,
+  answers: {
+    select: {
+      id: true,
+      sessionId: true,
+      questionId: true,
+      selectedOption: true,
       isCorrect: true,
       answeredAt: true,
     },
   },
 } as const;
+
 const SAFE_QUESTION_SELECT = {
   id: true,
   questionId: true,
@@ -112,29 +130,58 @@ const SAFE_QUESTION_SELECT = {
   part: true,
   questionType: true,
   difficulty: true,
+  topic: true,
+  stimulusGroup: true,
   mediaReference: true,
+  explanation: true,
 } as const;
+
 const PRIVATE_QUESTION_SELECT = {
   id: true,
   options: true,
   correctAnswer: true,
 } as const;
 
-function eligibleWhere(now: Date, listeningPart?: ToeicPart) {
+function practiceWhere(now: Date, readingPart?: ToeicPart) {
   return toeicEligibleWhere(now, {
-    listeningPart,
+    readingPart,
     practiceEligible: true,
-    listeningPractice: true,
+    readingPractice: true,
   });
 }
 
-function asSession(value: unknown): ToeicPracticeSessionRecord {
+function asSession(value: unknown): ReadingSession {
   const record = value as DbSession;
   return {
     id: record.id,
     userId: record.userId,
     clientSessionId: record.clientSessionId,
-    listeningPart: record.listeningPart,
+    readingPart: record.readingPart,
+    questionIds: [...record.questionIds],
+    status: record.status,
+    total: record.total,
+    score: record.score,
+    startedAt: record.startedAt,
+    submittedAt: record.submittedAt,
+    answers: record.answers.map(
+      ({ id, sessionId, questionId, selectedOption, answeredAt }) => ({
+        id,
+        sessionId,
+        questionId,
+        selectedOption,
+        answeredAt,
+      }),
+    ),
+  };
+}
+
+function asGradingSession(value: unknown): ReadingGradingSession {
+  const record = value as DbSession;
+  return {
+    id: record.id,
+    userId: record.userId,
+    clientSessionId: record.clientSessionId,
+    readingPart: record.readingPart,
     questionIds: [...record.questionIds],
     status: record.status,
     total: record.total,
@@ -145,7 +192,7 @@ function asSession(value: unknown): ToeicPracticeSessionRecord {
   };
 }
 
-function asQuestion(value: unknown): ToeicListeningQuestion {
+function asQuestion(value: unknown): ReadingQuestion {
   const question = value as DbQuestion;
   return {
     id: question.id,
@@ -155,25 +202,28 @@ function asQuestion(value: unknown): ToeicListeningQuestion {
     part: question.part,
     questionType: question.questionType,
     difficulty: question.difficulty,
+    topic: question.topic,
+    stimulusGroup: question.stimulusGroup,
     mediaReference: question.mediaReference,
+    explanation: question.explanation,
   };
 }
 
 @Injectable()
-export class PrismaToeicListeningPracticeRepository implements ToeicListeningPracticeRepository {
-  private readonly db: PracticeDb;
+export class PrismaToeicReadingPracticeRepository implements ToeicReadingPracticeRepository {
+  private readonly db: ReadingDb;
 
   constructor(prisma: PrismaService) {
-    this.db = prisma as unknown as PracticeDb;
+    this.db = prisma as unknown as ReadingDb;
   }
 
-  async eligibleQuestions(now: Date, listeningPart?: ToeicPart) {
+  async eligibleQuestions(now: Date, readingPart?: ToeicPart) {
     const rows = await this.db.toeicQuestionVersion.findMany({
-      where: eligibleWhere(now, listeningPart),
+      where: practiceWhere(now, readingPart),
       orderBy: [{ questionId: 'asc' }, { version: 'desc' }],
       select: SAFE_QUESTION_SELECT,
     });
-    const current = new Map<string, ToeicListeningQuestion>();
+    const current = new Map<string, ReadingQuestion>();
     for (const row of rows as readonly unknown[]) {
       const question = asQuestion(row);
       if (!current.has(question.questionId)) {
@@ -186,7 +236,26 @@ export class PrismaToeicListeningPracticeRepository implements ToeicListeningPra
   async safeQuestionsByIds(ids: readonly string[], now: Date) {
     if (ids.length === 0) return [];
     const rows = await this.db.toeicQuestionVersion.findMany({
-      where: { ...eligibleWhere(now), id: { in: [...ids] } },
+      where: { ...practiceWhere(now), id: { in: [...ids] } },
+      orderBy: { id: 'asc' },
+      select: SAFE_QUESTION_SELECT,
+    });
+    const byId = new Map(
+      (rows as readonly unknown[]).map((row) => {
+        const question = asQuestion(row);
+        return [question.id, question] as const;
+      }),
+    );
+    return ids.flatMap((id) => {
+      const question = byId.get(id);
+      return question ? [question] : [];
+    });
+  }
+
+  async snapshotQuestionsByIds(ids: readonly string[], now: Date) {
+    if (ids.length === 0) return [];
+    const rows = await this.db.toeicQuestionVersion.findMany({
+      where: { ...practiceWhere(now), id: { in: [...ids] } },
       orderBy: { id: 'asc' },
       select: SAFE_QUESTION_SELECT,
     });
@@ -205,38 +274,49 @@ export class PrismaToeicListeningPracticeRepository implements ToeicListeningPra
   async privateQuestionsByIds(ids: readonly string[], now: Date) {
     if (ids.length === 0) return [];
     const rows = await this.db.toeicQuestionVersion.findMany({
-      where: { ...eligibleWhere(now), id: { in: [...ids] } },
+      where: { ...practiceWhere(now), id: { in: [...ids] } },
       select: PRIVATE_QUESTION_SELECT,
     });
-    return (rows as readonly DbPrivateQuestion[]).map((row) => ({
-      id: row.id,
-      options: row.options,
-      correctAnswer: row.correctAnswer,
-    })) satisfies readonly ToeicPrivateQuestion[];
+    return (rows as readonly DbPrivateQuestion[]).map(
+      (row) =>
+        ({
+          id: row.id,
+          options: row.options,
+          correctAnswer: row.correctAnswer,
+        }) satisfies ReadingPrivateQuestion,
+    );
   }
 
   async findSession(id: string, userId: string) {
-    const row = await this.db.toeicPracticeSession.findFirst({
+    const row = await this.db.toeicReadingPracticeSession.findFirst({
       where: { id, userId },
       select: SESSION_SELECT,
     });
     return row ? asSession(row) : null;
   }
 
+  async findGradingSession(id: string, userId: string) {
+    const row = await this.db.toeicReadingPracticeSession.findFirst({
+      where: { id, userId },
+      select: GRADING_SESSION_SELECT,
+    });
+    return row ? asGradingSession(row) : null;
+  }
+
   async findByClient(userId: string, clientSessionId: string) {
-    const row = await this.db.toeicPracticeSession.findUnique({
+    const row = await this.db.toeicReadingPracticeSession.findUnique({
       where: { userId_clientSessionId: { userId, clientSessionId } },
       select: SESSION_SELECT,
     });
     return row ? asSession(row) : null;
   }
 
-  async createSession(input: ToeicPracticeSessionCreate) {
-    const row = await this.db.toeicPracticeSession.create({
+  async createSession(input: ReadingSessionCreate) {
+    const row = await this.db.toeicReadingPracticeSession.create({
       data: {
         userId: input.userId,
         clientSessionId: input.clientSessionId,
-        listeningPart: input.listeningPart,
+        readingPart: input.readingPart,
         questionIds: [...input.questionIds],
         total: input.total,
       },
@@ -245,14 +325,14 @@ export class PrismaToeicListeningPracticeRepository implements ToeicListeningPra
     return asSession(row);
   }
 
-  async createAnswer(input: ToeicPracticeAnswerCreate) {
+  async createAnswer(input: ReadingAnswerCreate) {
     return this.db.$transaction(async (transaction) => {
-      const locked = await transaction.toeicPracticeSession.updateMany({
+      const locked = await transaction.toeicReadingPracticeSession.updateMany({
         where: { id: input.sessionId, status: 'ACTIVE' },
         data: { score: null, submittedAt: null },
       });
       if (locked.count !== 1) return false;
-      await transaction.toeicPracticeAnswer.create({
+      await transaction.toeicReadingPracticeAnswer.create({
         data: { ...input },
       });
       return true;
@@ -265,7 +345,7 @@ export class PrismaToeicListeningPracticeRepository implements ToeicListeningPra
     score: number,
     submittedAt: Date,
   ) {
-    const result = await this.db.toeicPracticeSession.updateMany({
+    const result = await this.db.toeicReadingPracticeSession.updateMany({
       where: { id, userId, status: 'ACTIVE' },
       data: { status: 'SUBMITTED', score, submittedAt },
     });

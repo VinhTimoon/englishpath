@@ -1,7 +1,7 @@
 ---
 id: EP2-ST005
 title: TOEIC Parts 5-7 Reading Practice Session API
-status: ready
+status: review
 type: backend
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -149,7 +149,7 @@ answer table remains backend-private and is never directly serialized.
 ## Expected Routes and Safe Shapes
 
 - `POST /api/v1/toeic/practice/reading/sessions` → `{ session, questions,
-  replayed }`; questions contain version identity, canonical identity, part,
+replayed }`; questions contain version identity, canonical identity, part,
   question type, difficulty, topic/stimulus grouping, prompt, options, media
   reference, and explanation only when already part of the approved learner-safe
   projection.
@@ -175,8 +175,8 @@ controller conventions. No route returns answer rows or governance metadata.
 - `pnpm format:check`
 - `pnpm planning:traceability`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/ready/EP2-ST005-toeic-reading-practice-session-api.md`
-- `pnpm story:verify stories/ready/EP2-ST005-toeic-reading-practice-session-api.md`
+- `node scripts/story-doctor.mjs stories/in-progress/EP2-ST005-toeic-reading-practice-session-api.md`
+- `pnpm story:verify stories/in-progress/EP2-ST005-toeic-reading-practice-session-api.md`
 - `pnpm e2e`
 
 ## Risk and Review
@@ -194,3 +194,16 @@ the listening-session projection, lifecycle, and active-answer locking patterns;
 reuse those patterns without changing listening behavior. Keep EP2-ST006 and
 later stories in backlog until this story is done; do not create competing ready
 stories while this dependency chain is active.
+
+## Harness Evidence
+
+- Planning harness completed with the approved scope and verification plan.
+- The first build harness response was blocked by generated-code/type errors;
+  the implementation was repaired within the story scope and the final quality
+  gates below passed.
+- Review harness passed with no P0 or P1 findings.
+- Final verification: Prisma validate; TOEIC unit tests (9 suites, 57 tests);
+  API E2E (11 suites, 70 tests); repository-wide `pnpm check`; `pnpm
+format:check`; planning traceability; story doctor/verification; `git diff
+--check`; and browser E2E (46 tests passed).
+
