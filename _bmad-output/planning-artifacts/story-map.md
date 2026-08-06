@@ -143,8 +143,8 @@ through `EP1-ST039` remain queued behind their documented dependencies; no
 competing ready stories are being created.
 
 `EP1-ST030` is now done after its CMS authoring implementation passed the
-documented full gates. Later content batches and exit review remain queued behind
-their documented dependency chain.
+documented full gates. `EP1-ST031` is the single next ready content story; later
+batches and exit review remain queued behind their documented dependency chain.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
