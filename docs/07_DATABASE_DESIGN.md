@@ -37,6 +37,15 @@ taxonomy fixture; a later taxonomy-CMS story must introduce that relationship wi
 rekeying learner mastery. The seed consists of five EnglishPath-authored CC0 fixtures.
 Manual rollback is owner-approved only: drop `GovernedVocabularyItem` and its indexes;
 
+### EP1-ST031 Reviewed vocabulary batch 1
+
+Migration `20260806160000_reviewed_vocabulary_batch_1` adds exactly 100 stable,
+EnglishPath-authored `CC0-1.0` rows across existing approved vocabulary taxonomy
+nodes. All rows are fixed as `REVIEWED` and `PUBLISHED` with a deterministic review
+timestamp so the learner catalogue and pagination remain reproducible. The migration
+is additive; rollback is owner-approved only and must target the batch IDs rather than
+dropping the shared vocabulary table.
+
 ### EP1-ST018 Vocabulary SRS and mastery
 
 `VocabularyMasteryState` stores one owner-scoped scheduling row per

@@ -183,6 +183,10 @@ Node VM modules because the approved `jose` v6 package is ESM-only.
   API verification must additionally exercise malformed DTOs, taxonomy parent
   validation, lifecycle conflicts, and the no-private-fields projection.
 
+The reviewed vocabulary batch test asserts the exact 100 stable IDs, approved
+taxonomy coverage, original CC0 provenance, and published state markers without
+connecting to shared PostgreSQL or executing rollback SQL.
+
 ## Learner Entry Tests
 
 - Service tests cover owner-scoped onboarding persistence, answer-key redaction,

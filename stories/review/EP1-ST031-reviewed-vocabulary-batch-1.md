@@ -1,7 +1,7 @@
 ---
 id: EP1-ST031
 title: Publish Reviewed Vocabulary Batch 1
-status: in-progress
+status: review
 type: content
 priority: high
 phase: phase-1-learning-core
@@ -117,3 +117,28 @@ historical blocked story.
 - The migration must carry a concise rollback comment stating that removal is
   owner-approved only and identifying the batch IDs; normal verification must not
   execute rollback SQL.
+
+## Completion Evidence
+
+- Story doctor and story verification passed on the in-progress lifecycle file.
+- Targeted batch invariant and vocabulary service tests passed: 2 suites, 31 tests;
+  after the final data correction the batch invariant passed with 100 unique IDs,
+  100 unique headwords, four approved taxonomy nodes, CC0 provenance, and published
+  markers.
+- API E2E passed: 7 suites, 48 tests.
+- `pnpm format:check` passed.
+- `pnpm planning:traceability` passed.
+- `pnpm tool:test` passed: 59/59.
+- `pnpm prisma:validate` passed.
+- `pnpm lint` passed.
+- `pnpm typecheck` passed.
+- `pnpm test` passed: 32 suites, 291 tests.
+- `pnpm build` passed for API and web.
+- `pnpm e2e` passed: 46/46 browser tests, including learner vocabulary,
+  pagination, due-review ordering, admin, auth, and public-route regressions.
+- `git diff --check` passed.
+- Manual adversarial review verified additive-only migration scope, no duplicate
+  headwords against the five existing fixtures, deterministic ordering inputs,
+  published-state filtering, public projection redaction, and no changes to
+  learner progress or authorization paths. No external provider or credential was
+  used; rollback SQL was not executed.
