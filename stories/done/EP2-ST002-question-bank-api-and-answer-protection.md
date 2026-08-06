@@ -1,7 +1,7 @@
 ---
 id: EP2-ST002
 title: TOEIC Question Bank API and Answer Protection
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-2-toeic-listening-reading
