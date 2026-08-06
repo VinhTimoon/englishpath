@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-06T11:31:55.863Z
+# last_updated: 2026-08-06T11:34:04.981Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-06T11:31:55.863Z
+last_updated: 2026-08-06T11:34:04.981Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -125,7 +125,7 @@ development_status:
 
   epic-2: in-progress
   2-1-toeic-question-content-and-license-schema: done
-  2-2-question-bank-api-and-answer-protection: backlog
+  2-2-question-bank-api-and-answer-protection: ready-for-dev
   2-3-admin-import-review-and-publish-workflow: backlog
   2-4-parts-1-to-4-listening-practice-api: backlog
   2-5-parts-5-to-7-reading-practice-api: backlog
