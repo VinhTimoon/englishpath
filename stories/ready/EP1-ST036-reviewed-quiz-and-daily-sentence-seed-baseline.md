@@ -37,6 +37,8 @@ forbidden_paths:
   - production credentials
   - destructive migrations
   - main
+max_fix_rounds: 2
+requires_human_approval: false
 ---
 
 # Story: Review Quiz and Daily Sentence Seed Baseline
