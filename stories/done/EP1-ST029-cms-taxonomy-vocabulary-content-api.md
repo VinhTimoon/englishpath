@@ -1,7 +1,7 @@
 ---
 id: EP1-ST029
 title: Persisted CMS Taxonomy And Governed Content Lifecycle API
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-1-learning-core
@@ -128,6 +128,18 @@ admin UI, learner route, import worker, or content seed batch.
 - `pnpm build`
 - `pnpm e2e`
 - `git diff --check`
+
+## Completion Evidence
+
+- Implementation commit: `687f747` on `story/ep1-st029`.
+- Story doctor, scope verification, Prisma validation/generation, planning
+  traceability, tooling tests, lint, typecheck, unit tests, API E2E, build, and
+  browser E2E passed before lifecycle closure.
+- Codex CLI read-only review was invoked twice against the uncommitted diff and
+  commit; the external runner timed out at 240 seconds without a terminal review
+  artifact. This was not counted as a pass; local adversarial review covered
+  authorization, persisted lifecycle reconstruction, idempotency, redaction,
+  migration boundaries, and repeated transitions with no remaining P0/P1 finding.
 
 ## Dev Notes
 

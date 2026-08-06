@@ -134,12 +134,13 @@ were evidenced. Its historical high-risk build hit the external Codex execution 
 so the existing story was completed under supervised execution from clean `dev`;
 WIP commit `7a5c909` was not resumed or merged. It is now done after full backend,
 frontend, Prisma, browser, story-verification, and independent read-only review
-evidence. `EP1-ST029` is now the single ready dependency for the remaining CMS
-slice and must be merged before `EP1-ST030` can start.
+evidence. `EP1-ST029` is now done and is the completed dependency root for the
+remaining CMS slice; `EP1-ST030` can start only after its own story artifact is
+created from this merged baseline.
 
-`EP1-ST029` now has its executable ready story artifact. It is the single next
-dependency-ready Phase 1 story for persisted CMS taxonomy/content governance;
-`EP1-ST030` through `EP1-ST039` remain queued behind their documented dependencies.
+`EP1-ST029` has its executable story and merged implementation. `EP1-ST030`
+through `EP1-ST039` remain queued behind their documented dependencies; no
+competing ready stories are being created.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
