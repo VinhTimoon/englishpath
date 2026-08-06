@@ -1,7 +1,7 @@
 ---
 id: EP1-ST035
 title: Publish Reviewed Vocabulary Batch 5
-status: review
+status: done
 type: content
 priority: high
 phase: phase-1-learning-core

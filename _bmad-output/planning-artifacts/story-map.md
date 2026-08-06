@@ -147,9 +147,8 @@ documented full gates. `EP1-ST031` is done after its reviewed content batch pass
 the full data and learner gates. `EP1-ST032` is done after its second reviewed
 content batch passed the same full data and learner gates. `EP1-ST033` is done after
 its third reviewed batch passed the same full data and learner gates. `EP1-ST034`
-is done after its fourth batch passed the same gates. `EP1-ST035` is in review after
-the fifth reviewed vocabulary batch passed the same full data and learner gates;
-exit review remains queued behind its documented dependency chain.
+is done after its fourth batch passed the same gates. `EP1-ST035` is done after the
+fifth reviewed vocabulary batch passed the same full data and learner gates.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
