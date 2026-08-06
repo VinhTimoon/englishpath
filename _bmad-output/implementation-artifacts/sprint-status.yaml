@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-06T17:42:22.158Z
+# last_updated: 2026-08-06T17:44:55.453Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-06T17:42:22.158Z
+last_updated: 2026-08-06T17:44:55.453Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -132,7 +132,7 @@ development_status:
   2-6-part-topic-and-difficulty-practice-ui: done
   2-7-mini-half-test-and-server-timed-session-api: done
   2-8-timed-test-ui-and-interruption-handling: done
-  2-9-scoring-weakness-and-time-analysis: ready-for-dev
+  2-9-scoring-weakness-and-time-analysis: in-progress
   2-10-toeic-error-notebook-and-remediation: backlog
   2-11-toeic-vocabulary-and-grammar-packs: backlog
   2-12-toeic-lr-phase-exit-review: backlog

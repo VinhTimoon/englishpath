@@ -1,7 +1,7 @@
 ---
 id: EP2-ST009
 title: TOEIC scoring, Part and skill weakness, and time analysis
-status: ready
+status: in-progress
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -193,3 +193,4 @@ Before moving to review, record actual planning/build/review outcomes, exact
 backend/browser/unit counts, response disclosure checks, mobile evidence, and
 any pre-existing out-of-scope gate failure. A timeout, missing command, or flaky
 run must be recorded as not verified, never treated as pass.
+
