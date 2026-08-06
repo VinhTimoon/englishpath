@@ -1,7 +1,7 @@
 ---
 id: EP1-ST028
 title: Admin Editor RBAC Privileged Audit And Guarded Shell
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-1-learning-core
@@ -200,3 +200,24 @@ decision is backend-owned, auditable, and safe to extend with the CMS story.
 - Local build timeout remained `1200000ms`; build reasoning was `low`.
 - WIP commit `7a5c909` remains only on `story/ep1-st028` and is not merged.
 - New AI request: `notes/ai-req/2026-08-04-EP1-ST028-build-runner-timeout.md`.
+
+## Supervised Execution
+
+- The external Codex build cap is not configurable from this repository. Per the
+  owner's direct request to resolve blocked stories without creating another story
+  or using the loop, this existing story is being implemented manually from a clean
+  `dev` baseline on `story/ep1-st028-supervised`.
+- The historical WIP commit `7a5c909` is reference-only and will not be resumed or
+  merged. This execution must still satisfy the same full-review and security gates.
+
+## Supervised Verification Evidence
+
+- `pnpm format:check`, `pnpm planning:traceability`, `pnpm tool:test`, and
+  `pnpm prisma:validate` passed.
+- `pnpm lint`, `pnpm typecheck`, `pnpm test` passed: 30 suites / 287 tests.
+- `pnpm --filter api test:e2e -- --runInBand` passed: 6 suites / 47 tests.
+- `pnpm build` and `pnpm e2e` passed: 44 browser tests, including admin denial,
+  role-scoped success, metadata validation, axe, focus, and 360px overflow checks.
+- Story doctor, story verification, `git diff --check`, and independent read-only
+  review passed with no remaining P0/P1 findings. No migration was applied to a
+  shared or production database.

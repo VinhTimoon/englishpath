@@ -77,6 +77,10 @@
   target, policy result, timestamp, and correlation ID.
 - Logs and audits redact secrets, tokens, raw payment payloads, private answers,
   and unnecessary personal data.
+- Phase 1 `GET /api/v1/admin/overview` resolves `CONTENT_EDITOR`, `ADMIN`, and
+  `SUPER_ADMIN` only from the active persisted application principal. Each allowed or
+  denied decision is appended as one redacted `PrivilegedAuditEvent`; the browser sees
+  only a role-scoped operational projection and never audit rows or provider data.
 - Monitoring and analytics adapters receive only the minimum event data required.
 - Observability attributes are flat, scalar, and bounded. Sensitive keys are matched
   case-insensitively after separator normalization and removed before adapter delivery,
@@ -115,6 +119,7 @@
 - Suspended and retained identities fail closed for profile and role operations.
 - Duplicate and unexpected persistence failures return stable typed messages without
   email, provider subject, profile data, SQL, or provider details.
+
 ## Supabase Token Verification
 
 The API allowlists `ES256` and `RS256`, verifies signature, issuer, audience, temporal

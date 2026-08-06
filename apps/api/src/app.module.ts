@@ -10,6 +10,7 @@ import { OnboardingModule } from './modules/onboarding/onboarding.module';
 import { RoadmapModule } from './modules/roadmap/roadmap.module';
 import { PracticeModule } from './modules/practice/practice.module';
 import { DailySentenceModule } from './modules/daily-sentence/daily-sentence.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { DailySentenceModule } from './modules/daily-sentence/daily-sentence.mod
     RoadmapModule,
     PracticeModule,
     DailySentenceModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

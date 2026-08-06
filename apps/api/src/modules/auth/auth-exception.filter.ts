@@ -33,14 +33,19 @@ export class AuthExceptionFilter implements ExceptionFilter {
       const forbidden = [
         ACCESS_ERROR_CODES.FORBIDDEN_ROLE,
         ACCESS_ERROR_CODES.FORBIDDEN_OWNERSHIP,
+        ACCESS_ERROR_CODES.APPLICATION_IDENTITY_UNRESOLVED,
       ].includes(exception.code as never);
       status = forbidden ? 403 : 401;
-      code = forbidden ? 'FORBIDDEN' : 'UNAUTHENTICATED';
+      code = forbidden
+        ? 'RESOURCE_FORBIDDEN'
+        : exception.code === ACCESS_ERROR_CODES.MISSING_BEARER_CREDENTIAL
+          ? 'AUTH_REQUIRED'
+          : 'AUTH_INVALID_TOKEN';
       message = forbidden ? 'Access is forbidden.' : 'Authentication failed.';
     } else if (exception instanceof IdentityError) {
       if (exception.code === IDENTITY_ERROR_CODES.FORBIDDEN_OWNERSHIP) {
         status = 403;
-        code = 'FORBIDDEN';
+        code = 'RESOURCE_FORBIDDEN';
         message = 'Access is forbidden.';
       } else if (exception.code === IDENTITY_ERROR_CODES.INVALID_PROFILE) {
         status = 400;
@@ -51,7 +56,9 @@ export class AuthExceptionFilter implements ExceptionFilter {
 
     let correlationId: string;
     try {
-      correlationId = authCorrelationId(request.headers['x-correlation-id']);
+      correlationId =
+        (request as Request & { correlationId?: string }).correlationId ??
+        authCorrelationId(request.headers['x-correlation-id']);
     } catch {
       correlationId = authCorrelationId(undefined);
       status = 400;

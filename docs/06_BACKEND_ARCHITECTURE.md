@@ -167,6 +167,7 @@ The service validates the complete `domain -> topic -> subtopic` graph before an
 projection, then filters out content that is not an issued, approved, published,
 license-compatible public learning version. Learner mastery, review schedules, imports,
 and content mutation remain outside this module.
+
 ## Supabase Authentication Boundary
 
 `AuthModule` verifies Supabase access tokens with `jose` and remote JWKS configuration,
@@ -174,3 +175,17 @@ then resolves the verified provider subject through application repositories. JW
 are identity evidence only: application roles, ownership, and entitlements always come
 from backend persistence. Missing configuration and missing/inactive identities fail
 closed without preventing public modules from starting locally.
+
+## Phase 1 Admin And Audit Modules
+
+`AdminModule` exposes only the read-only `GET /api/v1/admin/overview` contract and
+imports the existing `AuthModule` plus the append-only `AuditModule`. Its controller
+maps the authenticated principal and correlation ID; `AdminService` owns the
+role-capability policy; `AdminRepository` owns the bounded operational count query.
+The `CONTENT_EDITOR`, `ADMIN`, and `SUPER_ADMIN` decisions are derived exclusively
+from the persisted application principal. The module deliberately does not expose CMS
+mutation, publication, role assignment, learner progress, or audit-row reads.
+
+`AuditService` redacts and bounds attributes before `AuditRepository` persists a
+`PrivilegedAuditEvent` through `PrismaService`. The additive migration is validated and
+generated locally only; no shared database migration is part of routine automation.

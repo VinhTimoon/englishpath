@@ -9,26 +9,27 @@ datasource db {
 }
 
 model User {
-  id                      String               @id @default(cuid())
-  email                   String               @unique
-  legacyName              String?              @map("name")
-  authProvider            IdentityProvider     @default(SUPABASE)
-  externalSubject         String?
-  status                  UserStatus           @default(ACTIVE)
-  createdAt               DateTime             @default(now())
-  updatedAt               DateTime             @updatedAt
-  profile                 UserProfile?
-  roleAssignments         UserRole[]           @relation("AssignedUserRoles")
-  roleAssignmentsAuthored UserRole[]           @relation("RoleAssignmentActor")
-  onboarding              LearnerOnboarding?
-  placementAttempts       PlacementAttempt[]
-  roadmaps                Roadmap[]
-  practiceSessions        PracticeSession[]
-  learnerProgress         LearnerProgress?
-  errorNotebookEntries    ErrorNotebookEntry[]
-  dailySentenceCompletions DailySentenceCompletion[]
-  vocabularyMasteryStates VocabularyMasteryState[]
+  id                          String                       @id @default(cuid())
+  email                       String                       @unique
+  legacyName                  String?                      @map("name")
+  authProvider                IdentityProvider             @default(SUPABASE)
+  externalSubject             String?
+  status                      UserStatus                   @default(ACTIVE)
+  createdAt                   DateTime                     @default(now())
+  updatedAt                   DateTime                     @updatedAt
+  profile                     UserProfile?
+  roleAssignments             UserRole[]                   @relation("AssignedUserRoles")
+  roleAssignmentsAuthored     UserRole[]                   @relation("RoleAssignmentActor")
+  onboarding                  LearnerOnboarding?
+  placementAttempts           PlacementAttempt[]
+  roadmaps                    Roadmap[]
+  practiceSessions            PracticeSession[]
+  learnerProgress             LearnerProgress?
+  errorNotebookEntries        ErrorNotebookEntry[]
+  dailySentenceCompletions    DailySentenceCompletion[]
+  vocabularyMasteryStates     VocabularyMasteryState[]
   vocabularyReviewSubmissions VocabularyReviewSubmission[]
+  privilegedAuditEvents       PrivilegedAuditEvent[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -174,38 +175,38 @@ model UserProfile {
 }
 
 model GovernedSentence {
-  id              String   @id
-  prompt          String
-  expectedAnswer  String
-  source          String
-  license         String
-  reviewStatus    String
-  reviewedAt      DateTime
-  publishStatus   String
-  publishedAt     DateTime
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  completions     DailySentenceCompletion[]
-
-  @@index([reviewStatus, publishStatus, publishedAt])
-}
-
-model GovernedVocabularyItem {
-  id             String   @id
-  taxonomyNodeId String
-  word           String
-  meaning        String
-  example        String?
-  pronunciation  String?
+  id             String                    @id
+  prompt         String
+  expectedAnswer String
   source         String
   license        String
   reviewStatus   String
   reviewedAt     DateTime
   publishStatus  String
   publishedAt    DateTime
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  masteryStates  VocabularyMasteryState[]
+  createdAt      DateTime                  @default(now())
+  updatedAt      DateTime                  @updatedAt
+  completions    DailySentenceCompletion[]
+
+  @@index([reviewStatus, publishStatus, publishedAt])
+}
+
+model GovernedVocabularyItem {
+  id                String                       @id
+  taxonomyNodeId    String
+  word              String
+  meaning           String
+  example           String?
+  pronunciation     String?
+  source            String
+  license           String
+  reviewStatus      String
+  reviewedAt        DateTime
+  publishStatus     String
+  publishedAt       DateTime
+  createdAt         DateTime                     @default(now())
+  updatedAt         DateTime                     @updatedAt
+  masteryStates     VocabularyMasteryState[]
   reviewSubmissions VocabularyReviewSubmission[]
 
   @@index([taxonomyNodeId, reviewStatus, publishStatus, publishedAt])
@@ -213,16 +214,16 @@ model GovernedVocabularyItem {
 }
 
 model DailySentenceCompletion {
-  id             String   @id @default(cuid())
-  userId         String
-  sentenceId     String
-  localDate      DateTime
+  id              String           @id @default(cuid())
+  userId          String
+  sentenceId      String
+  localDate       DateTime
   submittedAnswer String
-  isCorrect      Boolean
-  feedback       String
-  completedAt    DateTime @default(now())
-  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sentence       GovernedSentence @relation(fields: [sentenceId], references: [id], onDelete: Restrict)
+  isCorrect       Boolean
+  feedback        String
+  completedAt     DateTime         @default(now())
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sentence        GovernedSentence @relation(fields: [sentenceId], references: [id], onDelete: Restrict)
 
   @@unique([userId, localDate])
   @@index([userId, localDate])
@@ -286,6 +287,22 @@ model UserRole {
   @@index([assignedByUserId])
 }
 
+model PrivilegedAuditEvent {
+  id            String            @id @default(cuid())
+  actorUserId   String?
+  action        String
+  target        String
+  policyResult  AuditPolicyResult
+  correlationId String
+  attributes    Json
+  occurredAt    DateTime          @default(now())
+  actor         User?             @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([actorUserId, occurredAt])
+  @@index([action, occurredAt])
+  @@index([correlationId])
+}
+
 enum IdentityProvider {
   SUPABASE
 }
@@ -302,6 +319,11 @@ enum RoleCode {
   CONTENT_EDITOR
   ADMIN
   SUPER_ADMIN
+}
+
+enum AuditPolicyResult {
+  ALLOW
+  DENY
 }
 
 enum LearningGoal {

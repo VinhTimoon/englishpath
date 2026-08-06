@@ -130,10 +130,12 @@ has since passed the full public-blog browser evidence, including the keyboard a
 not-found journeys. It is now completed after owner approval.
 
 `EP1-ST028` was unblocked after the normal push and clean `dev...origin/dev` state
-were evidenced, but its high-risk build hit the same external Codex execution cap.
-It is now blocked with `notes/ai-req/2026-08-04-EP1-ST028-build-runner-timeout.md`;
-its WIP commit `7a5c909` is not mergeable. `EP1-ST029` remains backlog until this
-dependency passes.
+were evidenced. Its historical high-risk build hit the external Codex execution cap,
+so the existing story was completed under supervised execution from clean `dev`;
+WIP commit `7a5c909` was not resumed or merged. The supervised implementation is in
+review after full backend, frontend, Prisma, browser, story-verification, and
+independent read-only review evidence. `EP1-ST029` remains backlog until this
+dependency is merged.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability

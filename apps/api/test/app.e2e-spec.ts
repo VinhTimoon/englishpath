@@ -80,6 +80,9 @@ describe('API (e2e)', () => {
   let app: INestApplication<App>;
   const prisma = {
     $queryRaw: jest.fn(),
+    user: { count: jest.fn() },
+    userRole: { count: jest.fn() },
+    privilegedAuditEvent: { create: jest.fn() },
   };
 
   async function createApp(
@@ -124,6 +127,9 @@ describe('API (e2e)', () => {
 
   beforeEach(async () => {
     prisma.$queryRaw.mockResolvedValue([{ result: 1 }]);
+    prisma.user.count.mockResolvedValue(4);
+    prisma.userRole.count.mockResolvedValue(3);
+    prisma.privilegedAuditEvent.create.mockResolvedValue({ id: 'audit-001' });
     app = await createApp();
   });
 
@@ -156,6 +162,71 @@ describe('API (e2e)', () => {
     const body = response.body as OpenApiResponse;
     expect(body.paths).toHaveProperty('/api/v1/profile');
     expect(body.components.securitySchemes).toHaveProperty('bearer');
+    expect(body.paths).toHaveProperty('/api/v1/admin/overview');
+  });
+
+  it('enforces backend-resolved admin roles and appends redacted policy decisions', async () => {
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'external-admin-001',
+      issuer: 'issuer',
+      audience: 'audience',
+    });
+    const openAs = async (roles: readonly string[]) => {
+      await app.close();
+      app = await createApp(undefined, {
+        verifier: { verify: jest.fn().mockResolvedValue(external) },
+        resolver: {
+          resolve: jest.fn().mockResolvedValue(
+            createApplicationPrincipal({
+              applicationUserId: 'application-user-001',
+              externalIdentity: external,
+              roles,
+              ownerships: [],
+              entitlements: [],
+            }),
+          ),
+        },
+        profiles: { findOwned: jest.fn(), upsertOwned: jest.fn() },
+      });
+    };
+
+    await openAs(['FREE_USER']);
+    const denied = await request(app.getHttpServer())
+      .get('/api/v1/admin/overview')
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('X-Correlation-Id', 'admin-denied-001')
+      .expect(403);
+    expect(denied.body).toMatchObject({
+      error: { code: 'RESOURCE_FORBIDDEN', message: 'Access is forbidden.' },
+      meta: { correlationId: 'admin-denied-001' },
+    });
+
+    await openAs(['CONTENT_EDITOR']);
+    const editor = await request(app.getHttpServer())
+      .get('/api/v1/admin/overview')
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('X-Correlation-Id', 'admin-editor-001')
+      .expect(200);
+    expect((editor.body as ApiEnvelope).data).toEqual({
+      role: 'CONTENT_EDITOR',
+      capabilities: ['editor_shell'],
+    });
+
+    await openAs(['ADMIN']);
+    const admin = await request(app.getHttpServer())
+      .get('/api/v1/admin/overview')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+    expect((admin.body as ApiEnvelope).data).toEqual({
+      role: 'ADMIN',
+      capabilities: ['editor_shell', 'operational_summary'],
+      operationalSummary: { activeUsers: 4, activeRoleAssignments: 3 },
+    });
+    expect(JSON.stringify(admin.body)).not.toMatch(
+      /secret|token|claim|payload|private|progress/i,
+    );
+    expect(prisma.privilegedAuditEvent.create).toHaveBeenCalled();
   });
 
   it('protects and updates only the authenticated profile', async () => {
@@ -233,11 +304,11 @@ describe('API (e2e)', () => {
     const response = await request(app.getHttpServer())
       .get('/api/v1/profile')
       .set('Authorization', 'Bearer secret-token-value')
-      .expect(401);
+      .expect(403);
     const body = response.body as ApiEnvelope;
     expect(body.error).toEqual({
-      code: 'UNAUTHENTICATED',
-      message: 'Authentication failed.',
+      code: 'RESOURCE_FORBIDDEN',
+      message: 'Access is forbidden.',
       details: [],
     });
     expect(JSON.stringify(response.body)).not.toMatch(
@@ -343,7 +414,7 @@ describe('API (e2e)', () => {
       .set('X-Correlation-Id', 'role-denied-001')
       .expect(403);
     expect(roleDenied.body).toMatchObject({
-      error: { code: 'FORBIDDEN', message: 'Access is forbidden.' },
+      error: { code: 'RESOURCE_FORBIDDEN', message: 'Access is forbidden.' },
       meta: { correlationId: 'role-denied-001' },
     });
 

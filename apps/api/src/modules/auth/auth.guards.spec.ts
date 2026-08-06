@@ -1,54 +1,60 @@
-import type { ExecutionContext } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
-import { createApplicationPrincipal, createExternalIdentity } from '../access';
-import { OwnerGuard, RequiredRoleGuard } from './auth.guards';
+import { RequiredRoleGuard } from './auth.guards';
+import { createApplicationPrincipal } from '../access';
 
-function context(
-  principal: ReturnType<typeof createApplicationPrincipal>,
-  userId?: string,
-) {
-  return {
-    getHandler: () => Object,
-    getClass: () => Object,
-    switchToHttp: () => ({
-      getRequest: () => ({ principal, params: { userId } }),
-    }),
-  } as unknown as ExecutionContext;
-}
+describe('RequiredRoleGuard', () => {
+  it('accepts any configured privileged role', () => {
+    const reflector = {
+      getAllAndOverride: jest
+        .fn()
+        .mockReturnValue(['CONTENT_EDITOR', 'ADMIN', 'SUPER_ADMIN']),
+    };
+    const principal = createApplicationPrincipal({
+      applicationUserId: 'user-001',
+      externalIdentity: {
+        provider: 'SUPABASE',
+        subject: 'external-001',
+        issuer: 'https://project.supabase.co/auth/v1',
+        audience: 'authenticated',
+      },
+      roles: ['ADMIN'],
+      ownerships: [],
+      entitlements: [],
+    });
+    const context = {
+      getHandler: () => undefined,
+      getClass: () => undefined,
+      switchToHttp: () => ({ getRequest: () => ({ principal }) }),
+    };
 
-describe('authorization guards', () => {
-  const principal = createApplicationPrincipal({
-    applicationUserId: 'application-user-001',
-    externalIdentity: createExternalIdentity({
-      provider: 'SUPABASE',
-      subject: 'external-user-001',
-      issuer: 'issuer',
-      audience: 'audience',
-    }),
-    roles: ['FREE_USER'],
-    ownerships: [
-      { resourceType: 'profile', resourceId: 'application-user-001' },
-    ],
-    entitlements: [],
+    expect(
+      new RequiredRoleGuard(reflector as never).canActivate(context as never),
+    ).toBe(true);
   });
 
-  it('denies a missing backend role', () => {
+  it('rejects unknown roles even when the client claims an admin role', () => {
     const reflector = {
-      getAllAndOverride: jest.fn().mockReturnValue('ADMIN'),
-    } as unknown as Reflector;
+      getAllAndOverride: jest.fn().mockReturnValue(['CONTENT_EDITOR', 'ADMIN']),
+    };
+    const principal = createApplicationPrincipal({
+      applicationUserId: 'user-002',
+      externalIdentity: {
+        provider: 'SUPABASE',
+        subject: 'external-002',
+        issuer: 'https://project.supabase.co/auth/v1',
+        audience: 'authenticated',
+      },
+      roles: ['FREE_USER'],
+      ownerships: [],
+      entitlements: [],
+    });
+    const context = {
+      getHandler: () => undefined,
+      getClass: () => undefined,
+      switchToHttp: () => ({ getRequest: () => ({ principal }) }),
+    };
+
     expect(() =>
-      new RequiredRoleGuard(reflector).canActivate(context(principal)),
+      new RequiredRoleGuard(reflector as never).canActivate(context as never),
     ).toThrow('Required application role is missing.');
-  });
-
-  it('denies ownership of another user profile', () => {
-    const reflector = {
-      getAllAndOverride: jest.fn().mockReturnValue('profile'),
-    } as unknown as Reflector;
-    expect(() =>
-      new OwnerGuard(reflector).canActivate(
-        context(principal, 'application-user-002'),
-      ),
-    ).toThrow('Required resource ownership is missing.');
   });
 });

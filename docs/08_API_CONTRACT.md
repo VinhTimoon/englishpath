@@ -207,12 +207,13 @@ as proof that an actor is human or has review/publish permission.
   identity. `limit` is allowlisted from 1 through 50, defaults to 20, and returns
   the caller's due published items ordered by `(nextReviewAt, vocabularyId)`.
 - `POST /api/v1/vocabulary/reviews/:vocabularyId` accepts only `{quality,
-  clientSubmissionId}`, where quality is 0 through 3. Mastery, repetitions,
+clientSubmissionId}`, where quality is 0 through 3. Mastery, repetitions,
   interval, and next-review time are calculated and persisted by the server.
 - A repeated owner/item/submission identifier with the same quality returns the
   original result with `idempotencyStatus: replayed`; a different quality returns
   `IDEMPOTENCY_CONFLICT`. Learner state is never included in public taxonomy or
   item responses, and absent example/pronunciation values are returned as null.
+
 ## Authenticated Profile
 
 - `GET /api/v1/profile` returns the authenticated application's minimal profile.
@@ -220,6 +221,23 @@ as proof that an actor is human or has review/publish permission.
   `timezone`; role and user identifiers are rejected as mass assignment.
 - Both routes require a Supabase bearer token plus an active backend identity and return
   the standard sanitized error envelope with a correlation ID.
+
+## Protected Admin Overview
+
+- `GET /api/v1/admin/overview` requires a backend-resolved active identity. The
+  `CONTENT_EDITOR` role receives only the editor-shell capability; `ADMIN` and
+  `SUPER_ADMIN` additionally receive bounded operational counts. A client-provided
+  role or JWT role claim is never sufficient.
+- The response contains only `role`, capability names, and (for admin roles) active
+  user/role-assignment counts. It never returns learner progress, secrets, raw claims,
+  provider payloads, private source locations, or audit rows.
+- Every allowed or denied privileged decision appends one redacted audit event with the
+  actor, fixed action/target, policy result, server correlation ID, and bounded scalar
+  attributes. Audit persistence is backend-only and append-oriented.
+- Missing/invalid authentication returns the standard `401` sanitized envelope;
+  authenticated principals without an allowed application role return sanitized `403`.
+  Both success and error responses include `meta.correlationId` and
+  `idempotencyStatus: not_applicable`.
 
 ## Learner Entry Endpoints
 

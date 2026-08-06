@@ -1,0 +1,229 @@
+.page {
+  min-height: 100vh;
+  padding: 1rem;
+  background: var(--canvas);
+}
+
+.shell {
+  width: min(80rem, 100%);
+  min-height: calc(100vh - 2rem);
+  margin-inline: auto;
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  background: var(--surface);
+}
+
+.header {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand span {
+  color: var(--brand);
+}
+
+.backLink,
+.secondary,
+.primary {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.65rem;
+  padding: 0.65rem 1rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.backLink,
+.secondary {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--brand-strong);
+}
+
+.primary {
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+.backLink:hover,
+.secondary:hover {
+  background: var(--surface-muted);
+}
+
+.primary:hover {
+  background: var(--brand-strong);
+}
+
+.backLink:focus-visible,
+.secondary:focus-visible,
+.primary:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.content {
+  width: min(54rem, calc(100% - 2rem));
+  margin-inline: auto;
+  padding: clamp(3rem, 8vw, 7rem) 0;
+}
+
+.eyebrow,
+.label {
+  margin: 0;
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.content h1 {
+  max-width: 12ch;
+  margin: 0.75rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.intro {
+  max-width: 42rem;
+  margin: 1.5rem 0 0;
+  color: var(--ink-muted);
+  font-size: 1.08rem;
+}
+
+.panel,
+.metric {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow: 0 1rem 2.5rem var(--ink-shadow-subtle);
+}
+
+.panel {
+  margin-top: 2.5rem;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+}
+
+.panel h2 {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.panel p {
+  color: var(--ink-muted);
+}
+
+.panel .primary,
+.panel .secondary {
+  margin-top: 0.75rem;
+}
+
+.panelHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.badge {
+  flex: none;
+  border-radius: 100px;
+  padding: 0.4rem 0.7rem;
+  background: var(--surface-muted);
+  color: var(--brand-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.muted {
+  margin-bottom: 0;
+}
+
+.skeleton {
+  display: block;
+  width: min(100%, 20rem);
+  height: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 100px;
+  background: var(--surface-muted);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.metric {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.metric span {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.metric strong {
+  color: var(--brand-strong);
+  font-family: var(--font-display);
+  font-size: 2.7rem;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 0;
+  }
+
+  .shell {
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .header {
+    padding-inline: 1rem;
+  }
+
+  .content {
+    width: min(100% - 2rem, 54rem);
+  }
+
+  .backLink {
+    font-size: 0.84rem;
+  }
+
+  .panelHeading,
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .panelHeading {
+    flex-direction: column;
+  }
+}

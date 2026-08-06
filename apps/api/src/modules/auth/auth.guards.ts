@@ -6,6 +6,8 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import {
+  AccessError,
+  ACCESS_ERROR_CODES,
   requireApplicationRole,
   requireOwnership,
   resolveApplicationPrincipalOrThrow,
@@ -45,13 +47,21 @@ export class AuthenticationGuard implements CanActivate {
 export class RequiredRoleGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {}
   canActivate(context: ExecutionContext) {
-    const role = this.reflector.getAllAndOverride<string>(REQUIRED_ROLE, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    const role = this.reflector.getAllAndOverride<string | readonly string[]>(
+      REQUIRED_ROLE,
+      [context.getHandler(), context.getClass()],
+    );
     if (!role) return true;
     const request = context.switchToHttp().getRequest<AuthenticatedRequest>();
-    requireApplicationRole(request.principal!, role);
+    if (typeof role !== 'string') {
+      if (
+        !role.some((candidate) => request.principal!.roles.includes(candidate))
+      ) {
+        throw new AccessError(ACCESS_ERROR_CODES.FORBIDDEN_ROLE);
+      }
+    } else {
+      requireApplicationRole(request.principal!, role);
+    }
     return true;
   }
 }

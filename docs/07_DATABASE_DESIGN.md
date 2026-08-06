@@ -51,6 +51,22 @@ owner-approved only: remove the submission foreign keys/index/table, then the
 mastery foreign keys/index/table, preserving all existing vocabulary and user rows.
 automation must never execute it against Supabase.
 
+### EP1-ST028 Privileged audit boundary
+
+`PrivilegedAuditEvent` is an additive, append-oriented record for backend-owned
+administrative policy decisions. It stores the application actor (nullable so audit
+history survives retained-user cleanup), fixed action and target identifiers, the
+`ALLOW`/`DENY` policy result, a bounded correlation ID, redacted scalar attributes,
+and the server timestamp. It never stores tokens, passwords, raw JWT claims, private
+answers, provider payloads, source locations, or learner progress. The admin module
+is the only current writer and exposes no audit rows to the browser.
+
+Migration `20260806140000_privileged_audit_event` is additive and must be validated
+and generated locally without applying it to shared infrastructure. Manual rollback
+is owner-approved only: remove the foreign key, indexes, `PrivilegedAuditEvent`
+table, and `AuditPolicyResult` enum in that order. Existing `User` rows and learner
+data remain untouched.
+
 | Domain                            | Canonical Owner                   | Key Relationships                                                            | Lifecycle                                                            | Security Boundary                                                          |
 | --------------------------------- | --------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Identity, profile, role           | Backend access module             | User links to profile, role assignments, entitlements, audit                 | invited -> active -> suspended -> deleted/retained                   | JWT maps to user; backend decides role and ownership                       |

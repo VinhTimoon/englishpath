@@ -86,8 +86,8 @@ development_status:
   1-25-error-notebook-review-ui: done
   1-26-progress-xp-streak-and-accuracy-aggregation: done
   1-27-progress-dashboard-aggregation-ui: done
-  # Blocked by the external Codex execution cap; WIP 7a5c909 is not mergeable.
-  1-28-admin-editor-rbac-audit-and-admin-shell: blocked
+  # Supervised implementation passed full gates; historical WIP 7a5c909 was not resumed.
+  1-28-admin-editor-rbac-audit-and-admin-shell: review
   1-29-cms-taxonomy-vocabulary-content-api: backlog
   1-30-cms-import-and-admin-content-ui: backlog
   1-31-reviewed-vocabulary-batch-1: backlog
