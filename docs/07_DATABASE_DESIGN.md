@@ -46,6 +46,14 @@ timestamp so the learner catalogue and pagination remain reproducible. The migra
 is additive; rollback is owner-approved only and must target the batch IDs rather than
 dropping the shared vocabulary table.
 
+### EP1-ST032 Reviewed vocabulary batch 2
+
+Migration `20260806170000_reviewed_vocabulary_batch_2` adds the second exactly-100
+row batch through one deterministic `VALUES` projection. It uses existing travel,
+technology, and workplace taxonomy nodes and derives the same EnglishPath-original
+CC0 provenance, review state, publication state, and fixed timestamp for every row.
+Rollback remains owner-approved only and must target `vocab-b2-*` rows.
+
 ### EP1-ST018 Vocabulary SRS and mastery
 
 `VocabularyMasteryState` stores one owner-scoped scheduling row per

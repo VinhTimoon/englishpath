@@ -103,3 +103,25 @@ historical blocked story.
   batch-1 migration rather than only checking uniqueness inside batch 2.
 - Rollback is owner-approved only and must target batch-2 IDs; verification must
   never execute rollback SQL.
+
+## Completion Evidence
+
+- Story doctor and story verification passed on the in-progress lifecycle file.
+- Targeted batch invariant tests passed: batch 1 and batch 2 fixtures each satisfy
+  their exact 100-row contracts; batch 2 has unique IDs/headwords and no headword
+  overlap with the foundation or batch 1.
+- API E2E passed: 7 suites, 48 tests.
+- `pnpm format:check` passed.
+- `pnpm planning:traceability` passed.
+- `pnpm tool:test` passed: 59/59.
+- `pnpm prisma:validate` passed.
+- `pnpm lint` passed.
+- `pnpm typecheck` passed.
+- `pnpm test` passed: 33 suites, 292 tests.
+- `pnpm build` passed for API and web.
+- `pnpm e2e` passed: 46/46 browser tests, including vocabulary exploration,
+  learner pagination/due review, auth, admin, and public-route regressions.
+- `git diff --check` passed.
+- Manual adversarial review verified additive-only SQL, deterministic metadata
+  projection, taxonomy coverage, duplicate-headword protection across migrations,
+  public governance redaction, and no learner-progress or authorization changes.

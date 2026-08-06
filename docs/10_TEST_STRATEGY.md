@@ -186,6 +186,8 @@ Node VM modules because the approved `jose` v6 package is ESM-only.
 The reviewed vocabulary batch test asserts the exact 100 stable IDs, approved
 taxonomy coverage, original CC0 provenance, and published state markers without
 connecting to shared PostgreSQL or executing rollback SQL.
+The batch-2 invariant additionally compares headwords with the foundation fixtures
+and batch 1 to prevent duplicate learner cards across migrations.
 
 ## Learner Entry Tests
 
