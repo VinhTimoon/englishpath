@@ -120,6 +120,7 @@ traceable, and useful, so that the Phase 1 beta has dependable practice content.
 - Full gates passed: formatting, planning traceability, tool tests (59/59), Prisma
   validation, lint, typecheck, unit tests (38 suites/298 tests), API and web builds,
   and browser E2E (46/46).
+- API E2E passed independently on `dev`: 7 suites, 48 tests.
 - Manual adversarial review found no P0/P1: the fixture metadata remains backend-only,
   the start projection is explicitly allowlisted, server grading/error capture and
   daily-sentence assignment/idempotency are unchanged, and no external content or
