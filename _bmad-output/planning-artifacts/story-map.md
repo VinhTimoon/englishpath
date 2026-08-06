@@ -117,7 +117,9 @@ external Codex execution-cap decision remains isolated to high-risk `EP1-ST028`.
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
 `EP1-ST047` -> `EP1-ST048` -> `EP1-ST049`, not as independently implemented stories.
-`EP1-ST036` remains backlog for its reviewed quiz and remaining launch-content baseline.
+`EP1-ST036` is the single ready story for the reviewed quiz and daily-sentence seed
+baseline; it preserves the existing five-card session and twenty governed sentence
+seeds while adding explicit content invariants.
 The vocabulary route is now `EP1-ST050` -> completed `EP1-ST018` -> completed
 `EP1-ST019`/`EP1-ST052`/`EP1-ST062`; `EP1-ST054` through `EP1-ST057` remain Git
 history only and were closed through the verified successor without resuming WIP.
