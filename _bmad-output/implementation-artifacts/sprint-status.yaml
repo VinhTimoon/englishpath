@@ -127,7 +127,7 @@ development_status:
   2-1-toeic-question-content-and-license-schema: done
   2-2-question-bank-api-and-answer-protection: done
   2-3-admin-import-review-and-publish-workflow: done
-  2-4-parts-1-to-4-listening-practice-api: backlog
+  2-4-parts-1-to-4-listening-practice-api: ready
   2-5-parts-5-to-7-reading-practice-api: backlog
   2-6-part-topic-and-difficulty-practice-ui: backlog
   2-7-mini-half-test-and-server-timed-session-api: backlog
