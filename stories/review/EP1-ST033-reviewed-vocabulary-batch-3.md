@@ -1,7 +1,7 @@
 ---
 id: EP1-ST033
 title: Publish Reviewed Vocabulary Batch 3
-status: in-progress
+status: review
 type: content
 priority: high
 phase: phase-1-learning-core
@@ -86,3 +86,22 @@ and compatible with deterministic pagination and SRS.
 - Follow the batch-2 `VALUES → SELECT` migration pattern and compare headwords
   against both prior migration files plus the five foundation terms.
 - Rollback is owner-approved only and must target `vocab-b3-*` rows.
+
+## Completion Evidence
+
+- Story doctor and story verification passed.
+- Batch invariants passed for all three vocabulary migrations: exact 100-row
+  contracts, stable IDs, unique headwords, approved taxonomy coverage, original
+  provenance, and no cross-batch overlap.
+- API E2E passed: 7 suites, 48 tests.
+- `pnpm format:check`, `pnpm planning:traceability`, and `pnpm tool:test` passed
+  with 59/59 tool tests.
+- Prisma validation, lint, and typecheck passed.
+- `pnpm test` passed: 34 suites, 293 tests.
+- `pnpm build` passed for API and web.
+- `pnpm e2e` passed: 46/46 browser tests, including vocabulary learner,
+  pagination, due review, auth, admin, and public regressions.
+- `git diff --check` passed.
+- Manual review verified additive SQL, no duplicate headwords across prior batches,
+  fixed publication metadata, public redaction, and unchanged learner ownership/SRS
+  behavior. No shared database reset, rollback, credential, or provider action ran.

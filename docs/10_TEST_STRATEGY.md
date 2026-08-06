@@ -188,6 +188,8 @@ taxonomy coverage, original CC0 provenance, and published state markers without
 connecting to shared PostgreSQL or executing rollback SQL.
 The batch-2 invariant additionally compares headwords with the foundation fixtures
 and batch 1 to prevent duplicate learner cards across migrations.
+The batch-3 invariant extends that comparison across both prior migrations and
+keeps the same exact-count, taxonomy, provenance, and publication checks.
 
 ## Learner Entry Tests
 
