@@ -1,7 +1,7 @@
 ---
 id: EP2-ST003
 title: TOEIC Admin Import Review and Publish Workflow
-status: ready
+status: in-progress
 type: backend
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -117,8 +117,8 @@ schema/migration changes.
 - `pnpm format:check`
 - `pnpm planning:traceability`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/ready/EP2-ST003-toeic-admin-import-review-publish-workflow.md`
-- `pnpm story:verify stories/ready/EP2-ST003-toeic-admin-import-review-publish-workflow.md`
+- `node scripts/story-doctor.mjs stories/in-progress/EP2-ST003-toeic-admin-import-review-publish-workflow.md`
+- `pnpm story:verify stories/in-progress/EP2-ST003-toeic-admin-import-review-publish-workflow.md`
 
 ## Risk and Review
 
