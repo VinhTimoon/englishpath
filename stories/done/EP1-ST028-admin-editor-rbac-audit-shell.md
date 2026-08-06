@@ -1,7 +1,7 @@
 ---
 id: EP1-ST028
 title: Admin Editor RBAC Privileged Audit And Guarded Shell
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-1-learning-core
