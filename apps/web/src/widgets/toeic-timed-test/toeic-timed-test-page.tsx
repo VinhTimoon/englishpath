@@ -1,25 +1,459 @@
 "use client";
+
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { formatRemaining, type TimedMode, type TimedSession } from "@/entities/toeic-timed-test/model/contracts";
-import { answerTimedTest, getTimedTest, resultTimedTest, startTimedTest, submitTimedTest } from "@/features/toeic-timed-test/api/timed-test-api";
-import { clearActiveSessionId, readActiveSessionId, readClientSessionId, writeActiveSessionId } from "@/features/toeic-timed-test/model/client-session";
+import { useCallback, useEffect, useState } from "react";
+import {
+  formatRemaining,
+  TIMED_TEST_SHAPE,
+  type TimedMode,
+  type TimedSession,
+} from "@/entities/toeic-timed-test/model/contracts";
+import {
+  answerTimedTest,
+  getTimedTest,
+  resultTimedTest,
+  startTimedTest,
+  submitTimedTest,
+} from "@/features/toeic-timed-test/api/timed-test-api";
+import {
+  clearActiveSessionId,
+  readActiveSessionId,
+  readClientSessionId,
+  writeActiveSessionId,
+} from "@/features/toeic-timed-test/model/client-session";
+import { learnerApiStatus } from "@/shared/api/learner-api-client";
 import styles from "./toeic-timed-test-page.module.css";
 
+function requestMessage(error: unknown, action: string): string {
+  const status = learnerApiStatus(error);
+  if (status === 401 || status === 403) {
+    return "Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại rồi thử lại.";
+  }
+  if (status === 409) {
+    return "Bài thi đã thay đổi trạng thái. Hãy tải lại để tiếp tục an toàn.";
+  }
+  if (status === 404) {
+    return "Bộ câu hỏi chưa đủ để mở bài này. Hãy thử lại sau.";
+  }
+  if (status === 422) {
+    return "Bài thi chưa đủ điều kiện để hoàn tất. Hãy kiểm tra các câu còn thiếu.";
+  }
+  return `${action} Hãy kiểm tra kết nối và thử lại.`;
+}
+
 export function ToeicTimedTestPage() {
-  const [mode, setMode] = useState<TimedMode>("MINI"); const [session, setSession] = useState<TimedSession | null>(null); const [selected, setSelected] = useState(""); const [busy, setBusy] = useState(false); const [error, setError] = useState(""); const [remaining, setRemaining] = useState(0);
-  const current = session?.status === "ACTIVE" ? session.questions[session.answered] : undefined;
-  const reconcile = async (id: string) => { try { const value = await resultTimedTest(id); setSession(value); setRemaining(value.remainingSeconds); if (value.status !== "ACTIVE") clearActiveSessionId(); } catch { setError("Chưa tải được trạng thái bài thi. Hãy thử lại."); } };
-  useEffect(() => { const id = readActiveSessionId(); if (!id) return; void getTimedTest(id).then((value) => { setSession(value); setRemaining(value.remainingSeconds); }).catch(() => clearActiveSessionId()); }, []);
-  useEffect(() => { // eslint-disable-next-line react-hooks/set-state-in-effect
-    setRemaining(session?.remainingSeconds ?? 0); if (!session || session.status !== "ACTIVE") return; const timer = window.setInterval(() => setRemaining((value) => { if (value <= 1) { window.clearInterval(timer); void reconcile(session.sessionId); return 0; } return value - 1; }), 1000); return () => window.clearInterval(timer); }, [session]);
-  async function start() { if (busy) return; setBusy(true); setError(""); try { const value = await startTimedTest(readClientSessionId(), mode); setSession(value); setRemaining(value.remainingSeconds); writeActiveSessionId(value.sessionId); } catch { setError("Chưa mở được bài thi. Hãy kiểm tra kết nối và thử lại."); } finally { setBusy(false); } }
-  async function answer() { if (!session || !current || !selected || busy || remaining <= 0) return; setBusy(true); setError(""); try { const ack = await answerTimedTest(session.sessionId, current.id, selected); setSession({ ...session, answered: ack.answered }); setSelected(""); } catch { setError("Chưa ghi nhận được câu trả lời. Bạn vẫn ở câu này; hãy thử lại."); } finally { setBusy(false); } }
-  async function submit() { if (!session || busy) return; setBusy(true); setError(""); try { const value = await submitTimedTest(session.sessionId); setSession(value); setRemaining(value.remainingSeconds); if (value.status !== "ACTIVE") clearActiveSessionId(); } catch { setError("Chưa tải được kết quả. Hãy thử lại; tiến độ vẫn được giữ."); } finally { setBusy(false); } }
-  return <main className={styles.page}><div className={styles.shell}><Link href="/toeic/practice" className={styles.back}>Về TOEIC Practice</Link><p className={styles.kicker}>TOEIC timed test</p><h1>Thi thử theo nhịp của bạn</h1><p className={styles.lede}>Thời lượng và số câu do máy chủ quyết định. Bạn có thể quay lại sau khi làm gián đoạn.</p>{error && <p className={styles.error} aria-live="polite">{error}</p>}
-    {!session && <section className={styles.panel} aria-labelledby="setup"><h2 id="setup">Chọn bài thi</h2><div className={styles.modes}>{(["MINI", "HALF"] as TimedMode[]).map((value) => <button key={value} type="button" className={mode === value ? styles.active : styles.secondary} onClick={() => setMode(value)} aria-pressed={mode === value}><strong>{value}</strong><span>{value === "MINI" ? "20 câu · 20 phút" : "50 câu · 45 phút"}</span></button>)}</div><button className={styles.primary} type="button" disabled={busy} onClick={() => void start()}>{busy ? "Đang mở bài…" : "Bắt đầu bài thi"}</button></section>}
-    {session?.status === "ACTIVE" && current && <><section className={styles.panel}><div className={styles.progress}>Câu {session.answered + 1} / {session.total}<span aria-label={`Còn ${formatRemaining(remaining)}`}>Còn {formatRemaining(remaining)}</span></div><p className={styles.progressText}>{session.answered} câu đã được máy chủ ghi nhận.</p><h2>{current.prompt}</h2></section><section className={styles.options} aria-label="Các lựa chọn">{current.options.map((option) => <button key={option.id} type="button" className={selected === option.id ? styles.optionSelected : styles.option} aria-pressed={selected === option.id} disabled={busy || remaining <= 0} onClick={() => setSelected(option.id)}><b>{option.id}</b><span>{option.text}</span></button>)}<button className={styles.primary} type="button" disabled={!selected || busy || remaining <= 0} onClick={() => void answer()}>{busy ? "Đang ghi nhận…" : session.answered + 1 === session.total ? "Ghi nhận câu cuối" : "Ghi nhận và tiếp tục"}</button></section></>}
-    {session?.status === "ACTIVE" && !current && <section className={styles.panel}><h2>Sẵn sàng nộp bài</h2><p>Máy chủ đã ghi nhận đủ câu trả lời.</p><button className={styles.primary} disabled={busy} onClick={() => void submit()}>{busy ? "Đang nộp…" : "Nộp bài"}</button></section>}
-    {session && session.status !== "ACTIVE" && <section className={styles.panel} aria-live="polite"><p className={styles.kicker}>{session.status === "EXPIRED" ? "Hết giờ" : "Đã hoàn thành"}</p><h2>Kết quả an toàn</h2><p>{session.mode} · {session.answered}/{session.total} câu đã ghi nhận{typeof session.score === "number" ? ` · Điểm: ${session.score}` : ""}</p><button className={styles.secondary} onClick={() => { setSession(null); setError(""); }}>Làm bài mới</button></section>}
-  </div></main>;
+  const [mode, setMode] = useState<TimedMode>("MINI");
+  const [session, setSession] = useState<TimedSession | null>(null);
+  const [selected, setSelected] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [remaining, setRemaining] = useState(0);
+  const [booting, setBooting] = useState(true);
+  const [bootError, setBootError] = useState("");
+  const [error, setError] = useState("");
+  const [empty, setEmpty] = useState(false);
+  const [retryNumber, setRetryNumber] = useState(0);
+
+  const reconcile = useCallback(async (sessionId: string) => {
+    setBusy(true);
+    try {
+      const value = await resultTimedTest(sessionId);
+      setSession(value);
+      setRemaining(value.remainingSeconds);
+      setError("");
+      if (value.status !== "ACTIVE") clearActiveSessionId();
+    } catch (reconcileError) {
+      setError(
+        requestMessage(
+          reconcileError,
+          "Chưa xác nhận được trạng thái bài thi.",
+        ),
+      );
+    } finally {
+      setBusy(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const activeSessionId = readActiveSessionId();
+
+    if (!activeSessionId) {
+      const readyTask = window.setTimeout(() => {
+        if (!cancelled) setBooting(false);
+      }, 0);
+      return () => {
+        cancelled = true;
+        window.clearTimeout(readyTask);
+      };
+    }
+
+    void getTimedTest(activeSessionId)
+      .then((value) => {
+        if (cancelled) return;
+        setSession(value);
+        setMode(value.mode);
+        setRemaining(value.remainingSeconds);
+        if (value.status !== "ACTIVE") clearActiveSessionId();
+      })
+      .catch((resumeError) => {
+        if (cancelled) return;
+        clearActiveSessionId();
+        setBootError(
+          requestMessage(resumeError, "Chưa khôi phục được bài thi."),
+        );
+      })
+      .finally(() => {
+        if (!cancelled) setBooting(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [retryNumber]);
+
+  const sessionId = session?.sessionId;
+  const sessionStatus = session?.status;
+  const serverRemaining = session?.remainingSeconds;
+
+  useEffect(() => {
+    // The server value is the authority; this interval only renders a local countdown.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setRemaining(serverRemaining ?? 0);
+    if (!sessionId || sessionStatus !== "ACTIVE") return;
+
+    let reconciliationRequested = false;
+    const timer = window.setInterval(() => {
+      setRemaining((value) => {
+        if (value <= 1) {
+          if (!reconciliationRequested) {
+            reconciliationRequested = true;
+            void reconcile(sessionId);
+          }
+          return 0;
+        }
+        return value - 1;
+      });
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, [reconcile, serverRemaining, sessionId, sessionStatus]);
+
+  async function start() {
+    if (busy) return;
+    setBusy(true);
+    setError("");
+    setEmpty(false);
+    try {
+      const value = await startTimedTest(readClientSessionId(), mode);
+      setSession(value);
+      setRemaining(value.remainingSeconds);
+      setSelected("");
+      writeActiveSessionId(value.sessionId);
+    } catch (startError) {
+      setEmpty(learnerApiStatus(startError) === 404);
+      setError(requestMessage(startError, "Chưa mở được bài thi."));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function answer() {
+    const current =
+      session?.status === "ACTIVE"
+        ? session.questions[session.answered]
+        : undefined;
+    if (!session || !current || !selected || busy || remaining <= 0) return;
+    setBusy(true);
+    setError("");
+    try {
+      const acknowledgement = await answerTimedTest(
+        session.sessionId,
+        current.id,
+        selected,
+      );
+      setSession((previous) =>
+        previous
+          ? { ...previous, answered: acknowledgement.answered }
+          : previous,
+      );
+      setSelected("");
+    } catch (answerError) {
+      setError(requestMessage(answerError, "Chưa ghi nhận được câu trả lời."));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function submit() {
+    if (!session || session.answered < session.total || busy) return;
+    setBusy(true);
+    setError("");
+    try {
+      const value = await submitTimedTest(session.sessionId);
+      setSession(value);
+      setRemaining(value.remainingSeconds);
+      if (value.status !== "ACTIVE") clearActiveSessionId();
+    } catch (submitError) {
+      setError(requestMessage(submitError, "Chưa tải được kết quả."));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function startNewTest() {
+    clearActiveSessionId();
+    setSession(null);
+    setSelected("");
+    setRemaining(0);
+    setError("");
+    setBootError("");
+    setEmpty(false);
+  }
+
+  function retryResume() {
+    setBooting(true);
+    setBootError("");
+    setRetryNumber((value) => value + 1);
+  }
+
+  const current =
+    session?.status === "ACTIVE"
+      ? session.questions[session.answered]
+      : undefined;
+  const showSetup = !booting && !session;
+  const remainingLabel = formatRemaining(remaining);
+
+  return (
+    <main className={styles.page} aria-busy={booting || busy}>
+      <div className={styles.shell}>
+        <header className={styles.header}>
+          <Link href="/toeic/practice" className={styles.back}>
+            Về TOEIC Practice
+          </Link>
+          <p className={styles.kicker}>TOEIC timed test</p>
+          <h1>Thi thử theo nhịp của bạn</h1>
+          <p className={styles.lede}>
+            Số câu, thứ tự và thời gian do máy chủ quyết định. Bạn có thể quay
+            lại sau khi làm gián đoạn.
+          </p>
+        </header>
+
+        {error ? (
+          <p className={styles.error} aria-live="assertive">
+            {error}
+          </p>
+        ) : null}
+
+        {booting ? (
+          <section className={styles.state} aria-live="polite">
+            <span className={styles.spinner} aria-hidden="true" />
+            <p>Đang khôi phục bài thi…</p>
+          </section>
+        ) : null}
+
+        {!booting && bootError ? (
+          <section
+            className={styles.stateError}
+            aria-labelledby="resume-error-title"
+          >
+            <h2 id="resume-error-title">Chưa khôi phục được bài thi</h2>
+            <p>{bootError}</p>
+            <div className={styles.actions}>
+              <button
+                type="button"
+                className={styles.primary}
+                onClick={retryResume}
+              >
+                Thử khôi phục lại
+              </button>
+              <button
+                type="button"
+                className={styles.secondary}
+                onClick={startNewTest}
+              >
+                Bắt đầu bài mới
+              </button>
+            </div>
+          </section>
+        ) : null}
+
+        {showSetup && !bootError ? (
+          <section className={styles.panel} aria-labelledby="setup-title">
+            <p className={styles.eyebrow}>Bước 1 · Chọn hình thức</p>
+            <h2 id="setup-title">Chọn bài thi</h2>
+            <p className={styles.muted}>
+              Đây là bài thi được máy chủ phân bổ sẵn. Bạn không thể bỏ qua câu
+              hoặc tự thay đổi thời lượng.
+            </p>
+            <div
+              className={styles.modes}
+              role="group"
+              aria-label="Hình thức bài thi"
+            >
+              {(Object.keys(TIMED_TEST_SHAPE) as TimedMode[]).map((value) => {
+                const shape = TIMED_TEST_SHAPE[value];
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    className={mode === value ? styles.modeActive : styles.mode}
+                    aria-pressed={mode === value}
+                    onClick={() => setMode(value)}
+                  >
+                    <strong>{value}</strong>
+                    <span>
+                      {shape.total} câu · {shape.minutes} phút
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            {empty ? (
+              <p className={styles.emptyState} aria-live="polite">
+                Chưa có đủ nội dung đã được duyệt cho bài này. Bạn có thể thử
+                lại hoặc quay về phần luyện tập.
+              </p>
+            ) : null}
+            <button
+              type="button"
+              className={styles.primary}
+              disabled={busy}
+              onClick={() => void start()}
+            >
+              {busy ? "Đang mở bài…" : "Bắt đầu bài thi"}
+            </button>
+          </section>
+        ) : null}
+
+        {session?.status === "ACTIVE" && current ? (
+          <>
+            <section className={styles.panel} aria-labelledby="question-title">
+              <div className={styles.progressRow}>
+                <span>
+                  Câu {session.answered + 1} / {session.total}
+                </span>
+                <span aria-label={`Còn ${remainingLabel}`}>
+                  Còn {remainingLabel}
+                </span>
+              </div>
+              <progress
+                className={styles.progress}
+                value={session.answered}
+                max={session.total}
+                aria-label={`Đã ghi nhận ${session.answered} trên ${session.total} câu`}
+              />
+              <p className={styles.progressText} aria-live="polite">
+                Máy chủ đã ghi nhận {session.answered} câu.
+              </p>
+              <h2 id="question-title">{current.prompt}</h2>
+            </section>
+            <section className={styles.options} aria-labelledby="options-title">
+              <h3 id="options-title">Chọn một đáp án</h3>
+              <div className={styles.optionList}>
+                {current.options.map((option) => (
+                  <button
+                    key={option.id}
+                    type="button"
+                    className={
+                      selected === option.id
+                        ? styles.optionSelected
+                        : styles.option
+                    }
+                    aria-pressed={selected === option.id}
+                    disabled={busy || remaining <= 0}
+                    onClick={() => setSelected(option.id)}
+                  >
+                    <b aria-hidden="true">{option.id}</b>
+                    <span>{option.text}</span>
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                className={styles.primary}
+                disabled={!selected || busy || remaining <= 0}
+                onClick={() => void answer()}
+              >
+                {busy ? "Đang ghi nhận…" : "Ghi nhận và tiếp tục"}
+              </button>
+              {remaining <= 0 ? (
+                <button
+                  type="button"
+                  className={styles.secondary}
+                  disabled={busy}
+                  onClick={() => void reconcile(session.sessionId)}
+                >
+                  Xác nhận trạng thái bài thi
+                </button>
+              ) : null}
+            </section>
+          </>
+        ) : null}
+
+        {session?.status === "ACTIVE" && !current ? (
+          <section className={styles.panel} aria-labelledby="submit-title">
+            <p className={styles.eyebrow}>Đã ghi nhận đủ câu</p>
+            <h2 id="submit-title">Sẵn sàng nộp bài</h2>
+            <p className={styles.muted}>
+              Máy chủ đã nhận đủ {session.total} câu trả lời.
+            </p>
+            <button
+              type="button"
+              className={styles.primary}
+              disabled={busy}
+              onClick={() => void submit()}
+            >
+              {busy ? "Đang nộp…" : "Nộp bài"}
+            </button>
+          </section>
+        ) : null}
+
+        {session && session.status !== "ACTIVE" ? (
+          <section
+            className={styles.panel}
+            aria-labelledby="result-title"
+            aria-live="polite"
+          >
+            <p className={styles.eyebrow}>
+              {session.status === "EXPIRED" ? "Hết giờ" : "Đã hoàn thành"}
+            </p>
+            <h2 id="result-title">
+              {session.status === "EXPIRED"
+                ? "Bài thi đã hết giờ"
+                : "Kết quả bài thi"}
+            </h2>
+            <dl className={styles.resultList}>
+              <div>
+                <dt>Hình thức</dt>
+                <dd>{session.mode}</dd>
+              </div>
+              <div>
+                <dt>Số câu</dt>
+                <dd>
+                  {session.answered} / {session.total}
+                </dd>
+              </div>
+              {typeof session.score === "number" ? (
+                <div>
+                  <dt>Điểm</dt>
+                  <dd>{session.score}</dd>
+                </div>
+              ) : null}
+            </dl>
+            <p className={styles.muted}>
+              Đáp án đúng và phân tích chi tiết sẽ chỉ xuất hiện trong các bước
+              học được phép sau này.
+            </p>
+            <button
+              type="button"
+              className={styles.secondary}
+              onClick={startNewTest}
+            >
+              Làm bài mới
+            </button>
+          </section>
+        ) : null}
+      </div>
+    </main>
+  );
 }

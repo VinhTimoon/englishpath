@@ -426,3 +426,10 @@ expired; repeated start and submit are replay-safe. The selected version IDs are
 an immutable server snapshot for session display. Answer writes re-check current
 governance and option membership, and insertion re-reads the session after a
 concurrent write so progress is authoritative.
+
+The web client consumes the envelope as `unknown` and accepts an active session
+only when the server projection contains the governed MINI/HALF total and the
+complete ordered question snapshot. Final projections contain no questions and
+may contain only the approved aggregate score. The client sends no answer,
+grading, source, license, review, publication, or provider fields to the learner
+state or browser storage.

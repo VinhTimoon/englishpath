@@ -94,3 +94,13 @@ addition to color.
 - Do not communicate status by color alone.
 - Preserve zoom to 200%, reduced motion, screen-reader labels, and logical tab order.
 - Icons that carry meaning require accessible names; decorative icons are hidden.
+
+## Timed TOEIC test
+
+The timed-test shell uses the approved canvas, surface, green brand, amber focus,
+ink, muted text, border, and semantic danger tokens. The question flow is
+mobile-first from 360px, uses visible focus and 44px controls, and exposes text
+progress alongside the native progress indicator. Server time is displayed as
+`MM:SS`; it is not a client authorization mechanism. Status feedback uses live
+regions without a page-wide `role="alert"`, preventing collisions with the Next
+route announcer. Reduced motion disables the loading animation.

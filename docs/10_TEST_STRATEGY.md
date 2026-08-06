@@ -299,3 +299,13 @@ recovery, authoritative post-write progress, deadline expiry, exactly-once
 finalization, and recursive forbidden-field absence. Tests use injected
 repositories, Prisma boundary fixtures, and identity overrides; no credentials,
 provider, network, or shared database is required.
+
+## EP2-ST008 evidence
+
+`tests/e2e/toeic-timed-test.spec.ts` covers the authenticated mocked learner
+journey at 360px: exact MINI start inputs, server-shaped ordered questions,
+answer acknowledgement before advancing, safe-field absence, stored-session
+resume, retry after a failed answer, and server expiry reconciliation. The
+entity parser rejects malformed totals, incomplete active snapshots, duplicate
+options, forbidden nested fields, and active score leakage. Full project gates
+remain required before merge.

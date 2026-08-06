@@ -121,3 +121,14 @@ reordering, or skipping of the question snapshot.
 
 Follow `docs/10_TEST_STRATEGY.md`. Test domain behavior at feature/entity boundaries,
 and reserve browser e2e for critical learner journeys.
+
+## Timed TOEIC test UI
+
+`/toeic/test` is a thin route that composes the `toeic-timed-test` widget. The
+feature API maps only the approved EP2-ST007 routes, while the entity parser
+projects safe session and question fields from `unknown` responses. The widget
+uses the server's acknowledged answer count and `remainingSeconds`; local
+storage contains only the client session ID and active session ID. A local
+interval is presentation-only and expiry always reconciles through the result
+endpoint. Setup, resume, active, retryable error, insufficient-content,
+expired, submitted, and final states are explicit and keyboard accessible.
