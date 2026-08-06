@@ -146,8 +146,9 @@ competing ready stories are being created.
 documented full gates. `EP1-ST031` is done after its reviewed content batch passed
 the full data and learner gates. `EP1-ST032` is done after its second reviewed
 content batch passed the same full data and learner gates. `EP1-ST033` is done after
-its third reviewed batch passed the same full data and learner gates; later batches
-and exit review remain queued behind their documented dependency chain.
+its third reviewed batch passed the same full data and learner gates. `EP1-ST034`
+is the single next ready content story; later batches and exit review remain queued
+behind their documented dependency chain.
 
 Exit: guest trial and the authenticated daily loop work end to end; roadmap,
 mindmap/SRS, Error Notebook, progress, CMS, reviewed launch content, and observability
