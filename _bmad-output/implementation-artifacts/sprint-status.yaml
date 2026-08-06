@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-06T15:55:26.230Z
+# last_updated: 2026-08-06T15:55:55.598Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-06T15:55:26.230Z
+last_updated: 2026-08-06T15:55:55.598Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -130,7 +130,7 @@ development_status:
   2-4-parts-1-to-4-listening-practice-api: done
   2-5-parts-5-to-7-reading-practice-api: done
   2-6-part-topic-and-difficulty-practice-ui: done
-  2-7-mini-half-test-and-server-timed-session-api: blocked
+  2-7-mini-half-test-and-server-timed-session-api: in-progress
   2-8-timed-test-ui-and-interruption-handling: backlog
   2-9-scoring-weakness-and-time-analysis: backlog
   2-10-toeic-error-notebook-and-remediation: backlog
