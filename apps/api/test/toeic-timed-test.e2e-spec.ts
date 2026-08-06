@@ -122,6 +122,7 @@ describe('TOEIC timed-test API', () => {
     eligibleQuestions: jest.fn(),
     safeQuestionsByIds: jest.fn(),
     privateQuestionsByIds: jest.fn(),
+    finalizedQuestionsByIds: jest.fn(),
     findByClient: jest.fn(),
     find: jest.fn(),
     create: jest.fn(),
@@ -136,6 +137,9 @@ describe('TOEIC timed-test API', () => {
       Promise.resolve(questions.filter((item) => ids.includes(item.id))),
     );
     repository.privateQuestionsByIds.mockImplementation((ids) =>
+      Promise.resolve(questions.filter((item) => ids.includes(item.id))),
+    );
+    repository.finalizedQuestionsByIds.mockImplementation((ids) =>
       Promise.resolve(questions.filter((item) => ids.includes(item.id))),
     );
     repository.findByClient.mockResolvedValue(null);
@@ -400,6 +404,123 @@ describe('TOEIC timed-test API', () => {
     expect(JSON.stringify(response.body)).not.toMatch(
       /correctAnswer|isCorrect|selectedOption|sourceUrl|rightsOwner|reviewStatus|publicationState/,
     );
+  });
+
+  it('returns deterministic aggregate analysis only for finalized sessions', async () => {
+    const final = makeSession({
+      status: 'SUBMITTED',
+      score: 2,
+      finalizedAt: new Date('2026-08-06T00:02:05.000Z'),
+      answers: [
+        {
+          questionId: questions[0].id,
+          selectedOption: 'A',
+          isCorrect: true,
+          answeredAt: new Date('2026-08-06T00:00:00.000Z'),
+        },
+        {
+          questionId: questions[1].id,
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: new Date('2026-08-06T00:01:00.000Z'),
+        },
+        {
+          questionId: questions[10].id,
+          selectedOption: 'A',
+          isCorrect: true,
+          answeredAt: new Date('2026-08-06T00:01:40.000Z'),
+        },
+      ],
+    });
+    repository.find.mockResolvedValue(final);
+
+    const first = await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+    const second = await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+
+    expect((first.body as ApiBody).data).toEqual((second.body as ApiBody).data);
+    expect((first.body as ApiBody).data.analysis).toMatchObject({
+      score: { correct: 2, total: 20, answered: 3 },
+      accuracy: 67,
+      time: {
+        limitSeconds: 1200,
+        usedSeconds: 125,
+        remainingSeconds: 1075,
+      },
+    });
+    expect(JSON.stringify(first.body)).not.toMatch(
+      /questionId|selectedOption|isCorrect|correctAnswer|userId|source|license|review|publication|provider/,
+    );
+
+    repository.find.mockResolvedValue(makeSession());
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(409);
+
+    repository.find.mockResolvedValue(null);
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/not-owned/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(404);
+  });
+
+  it('returns HALF analysis totals from the finalized server snapshot', async () => {
+    const half = halfCatalogue();
+    const final = makeSession({
+      mode: 'HALF',
+      status: 'EXPIRED',
+      total: 50,
+      questionIds: half.map((item) => item.id),
+      deadlineAt: new Date('2026-08-06T00:45:00.000Z'),
+      finalizedAt: new Date('2026-08-06T00:45:00.000Z'),
+    });
+    repository.find.mockResolvedValue(final);
+    repository.finalizedQuestionsByIds.mockResolvedValue(half);
+
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+
+    expect((response.body as ApiBody).data.analysis).toMatchObject({
+      score: { correct: 0, total: 50, answered: 0 },
+      skills: [
+        expect.objectContaining({ skill: 'LISTENING', total: 25 }),
+        expect.objectContaining({ skill: 'READING', total: 25 }),
+      ],
+      time: { limitSeconds: 2700, usedSeconds: 2700, remainingSeconds: 0 },
+    });
+  });
+
+  it('sanitizes malformed analysis snapshots and repository failures', async () => {
+    const final = makeSession({
+      status: 'SUBMITTED',
+      finalizedAt: new Date('2026-08-06T00:02:05.000Z'),
+    });
+    repository.find.mockResolvedValue(final);
+    repository.finalizedQuestionsByIds.mockResolvedValue([
+      ...questions,
+      questions[0],
+    ]);
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(422);
+
+    repository.finalizedQuestionsByIds.mockRejectedValue(new Error('database'));
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(500)
+      .expect(({ body }) => {
+        expect(JSON.stringify(body)).not.toContain('database');
+      });
   });
 
   it('rejects an incomplete submit before the deadline', async () => {

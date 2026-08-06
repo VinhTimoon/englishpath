@@ -29,6 +29,33 @@ export type TimedAnswerAcknowledgement = {
   answered: number;
   total: number;
 };
+export type TimedAnalysisAggregate = {
+  total: number;
+  answered: number;
+  correct: number;
+  accuracy: number;
+};
+
+export type TimedAnalysis = {
+  score: Omit<TimedAnalysisAggregate, "accuracy">;
+  accuracy: number;
+  skills: Array<TimedAnalysisAggregate & { skill: "LISTENING" | "READING" }>;
+  parts: Array<
+    TimedAnalysisAggregate & { part: `PART_${1 | 2 | 3 | 4 | 5 | 6 | 7}` }
+  >;
+  weaknesses: Array<{
+    scope: "part" | "skill";
+    name: string;
+    accuracy: number;
+    answered: number;
+  }>;
+  time: {
+    limitSeconds: number;
+    usedSeconds: number;
+    remainingSeconds: number;
+    averageSecondsPerAnswered: number;
+  };
+};
 
 export const TIMED_TEST_SHAPE: Record<
   TimedMode,
@@ -184,6 +211,239 @@ export function parseTimedAnswer(value: unknown): TimedAnswerAcknowledgement {
     questionId: data.questionId,
     answered: data.answered,
     total: data.total,
+  };
+}
+
+const analysisForbiddenKeys = new Set([
+  "correctAnswer",
+  "isCorrect",
+  "selectedOption",
+  "answers",
+  "questionId",
+  "sessionId",
+  "userId",
+  "source",
+  "license",
+  "review",
+  "publication",
+  "provider",
+]);
+
+function hasAnalysisForbiddenKey(value: unknown): boolean {
+  if (Array.isArray(value)) return value.some(hasAnalysisForbiddenKey);
+  const object = record(value);
+  if (!object) return false;
+  return Object.entries(object).some(
+    ([key, child]) =>
+      analysisForbiddenKeys.has(key) || hasAnalysisForbiddenKey(child),
+  );
+}
+
+function hasOnlyKeys(
+  value: Record<string, unknown> | null,
+  allowed: readonly string[],
+): boolean {
+  return !!value && Object.keys(value).every((key) => allowed.includes(key));
+}
+
+function boundedPercentage(value: unknown): value is number {
+  return integer(value) && value >= 0 && value <= 100;
+}
+
+function parseAnalysisAggregate(value: unknown): TimedAnalysisAggregate | null {
+  const aggregate = record(value);
+  if (
+    !aggregate ||
+    !integer(aggregate.total) ||
+    aggregate.total < 1 ||
+    !integer(aggregate.answered) ||
+    aggregate.answered < 0 ||
+    aggregate.answered > aggregate.total ||
+    !integer(aggregate.correct) ||
+    aggregate.correct < 0 ||
+    aggregate.correct > aggregate.answered ||
+    !boundedPercentage(aggregate.accuracy)
+  ) {
+    return null;
+  }
+  return {
+    total: aggregate.total,
+    answered: aggregate.answered,
+    correct: aggregate.correct,
+    accuracy: aggregate.accuracy,
+  };
+}
+
+function parseAnalysisScore(value: unknown): TimedAnalysis["score"] | null {
+  const score = record(value);
+  if (
+    !score ||
+    !integer(score.total) ||
+    score.total < 1 ||
+    !integer(score.answered) ||
+    score.answered < 0 ||
+    score.answered > score.total ||
+    !integer(score.correct) ||
+    score.correct < 0 ||
+    score.correct > score.answered
+  ) {
+    return null;
+  }
+  return {
+    total: score.total,
+    answered: score.answered,
+    correct: score.correct,
+  };
+}
+
+export function parseTimedAnalysis(value: unknown): TimedAnalysis | null {
+  const root = record(value);
+  const data = record(root?.data);
+  const analysis = record(data?.analysis);
+  if (root && data && analysis === null) return null;
+  const score = parseAnalysisScore(analysis?.score);
+  const time = record(analysis?.time);
+  const rawSkills = analysis?.skills;
+  const rawParts = analysis?.parts;
+  const rawWeaknesses = analysis?.weaknesses;
+  const skills = Array.isArray(rawSkills)
+    ? rawSkills.map((value) => {
+        const item = record(value);
+        const aggregate = parseAnalysisAggregate(value);
+        return item &&
+          aggregate &&
+          (item.skill === "LISTENING" || item.skill === "READING")
+          ? { ...aggregate, skill: item.skill }
+          : null;
+      })
+    : [];
+  const parts = Array.isArray(rawParts)
+    ? rawParts.map((value) => {
+        const item = record(value);
+        const aggregate = parseAnalysisAggregate(value);
+        return item &&
+          aggregate &&
+          typeof item.part === "string" &&
+          /^PART_[1-7]$/u.test(item.part)
+          ? {
+              ...aggregate,
+              part: item.part as TimedAnalysis["parts"][number]["part"],
+            }
+          : null;
+      })
+    : [];
+  const weaknesses = Array.isArray(rawWeaknesses)
+    ? rawWeaknesses.map((value) => {
+        const item = record(value);
+        return item &&
+          (item.scope === "part" || item.scope === "skill") &&
+          nonEmptyString(item.name) &&
+          boundedPercentage(item.accuracy) &&
+          integer(item.answered) &&
+          item.answered > 0
+          ? {
+              scope: item.scope,
+              name: item.name.trim(),
+              accuracy: item.accuracy,
+              answered: item.answered,
+            }
+          : null;
+      })
+    : [];
+
+  if (
+    !analysis ||
+    !hasOnlyKeys(root, ["data", "meta"]) ||
+    !hasOnlyKeys(data, ["analysis"]) ||
+    (record(root?.meta) !== null &&
+      !hasOnlyKeys(record(root?.meta), [
+        "correlationId",
+        "idempotencyStatus",
+      ])) ||
+    !hasOnlyKeys(analysis, [
+      "score",
+      "accuracy",
+      "skills",
+      "parts",
+      "weaknesses",
+      "time",
+    ]) ||
+    !hasOnlyKeys(score, ["correct", "total", "answered"]) ||
+    (Array.isArray(rawSkills) &&
+      rawSkills.some(
+        (item) =>
+          !hasOnlyKeys(record(item), [
+            "skill",
+            "total",
+            "answered",
+            "correct",
+            "accuracy",
+          ]),
+      )) ||
+    (Array.isArray(rawParts) &&
+      rawParts.some(
+        (item) =>
+          !hasOnlyKeys(record(item), [
+            "part",
+            "total",
+            "answered",
+            "correct",
+            "accuracy",
+          ]),
+      )) ||
+    (Array.isArray(rawWeaknesses) &&
+      rawWeaknesses.some(
+        (item) =>
+          !hasOnlyKeys(record(item), ["scope", "name", "accuracy", "answered"]),
+      )) ||
+    !hasOnlyKeys(time, [
+      "limitSeconds",
+      "usedSeconds",
+      "remainingSeconds",
+      "averageSecondsPerAnswered",
+    ]) ||
+    hasAnalysisForbiddenKey(value) ||
+    !score ||
+    !boundedPercentage(analysis.accuracy) ||
+    skills.length !== 2 ||
+    skills.some((item) => item === null) ||
+    new Set(
+      skills
+        .filter((item): item is NonNullable<typeof item> => item !== null)
+        .map((item) => item.skill),
+    ).size !== 2 ||
+    parts.length === 0 ||
+    parts.some((item) => item === null) ||
+    weaknesses.some((item) => item === null) ||
+    !time ||
+    !integer(time.limitSeconds) ||
+    time.limitSeconds < 1 ||
+    !integer(time.usedSeconds) ||
+    time.usedSeconds < 0 ||
+    time.usedSeconds > time.limitSeconds ||
+    !integer(time.remainingSeconds) ||
+    time.remainingSeconds < 0 ||
+    time.remainingSeconds > time.limitSeconds ||
+    time.remainingSeconds !== time.limitSeconds - time.usedSeconds ||
+    typeof time.averageSecondsPerAnswered !== "number" ||
+    !Number.isFinite(time.averageSecondsPerAnswered) ||
+    time.averageSecondsPerAnswered < 0
+  ) {
+    throw new Error("INVALID_RESPONSE");
+  }
+
+  return {
+    score,
+    accuracy: analysis.accuracy,
+    skills: skills as TimedAnalysis["skills"],
+    parts: parts as TimedAnalysis["parts"],
+    weaknesses: weaknesses as TimedAnalysis["weaknesses"],
+    time: {
+      limitSeconds: time.limitSeconds,
+      usedSeconds: time.usedSeconds,
+      remainingSeconds: time.remainingSeconds,
+      averageSecondsPerAnswered: time.averageSecondsPerAnswered,
+    },
   };
 }
 

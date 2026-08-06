@@ -77,3 +77,13 @@ and active-state compare-and-set provide retry and concurrency protection.
 The selected version IDs are immutable for the session; a unique-answer race
 re-reads the winner so identical retries remain idempotent.
 Answer writes still re-check current governance before grading.
+
+### Decision: timed-test analysis projection (EP2-ST009)
+
+Use a read-only `/analysis` projection over the existing timed-test session rather
+than adding analysis tables or changing the Prisma schema. The server calculates
+raw score, bounded percentages, Part/skill aggregates, deterministic weakest
+areas, and clamped time use from the immutable question and answer snapshot.
+Analysis is available only for finalized sessions; the browser supplies no
+analysis inputs and receives no per-question correctness or governance fields.
+Error Notebook and remediation links remain deferred to EP2-ST010.

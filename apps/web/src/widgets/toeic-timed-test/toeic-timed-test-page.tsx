@@ -10,11 +10,13 @@ import {
 } from "@/entities/toeic-timed-test/model/contracts";
 import {
   answerTimedTest,
+  analysisTimedTest,
   getTimedTest,
   resultTimedTest,
   startTimedTest,
   submitTimedTest,
 } from "@/features/toeic-timed-test/api/timed-test-api";
+import type { TimedAnalysis } from "@/entities/toeic-timed-test/model/contracts";
 import {
   clearActiveSessionId,
   readActiveSessionId,
@@ -52,6 +54,10 @@ export function ToeicTimedTestPage() {
   const [error, setError] = useState("");
   const [empty, setEmpty] = useState(false);
   const [retryNumber, setRetryNumber] = useState(0);
+  const [analysis, setAnalysis] = useState<TimedAnalysis | null>(null);
+  const [analysisLoading, setAnalysisLoading] = useState(false);
+  const [analysisError, setAnalysisError] = useState(false);
+  const [analysisRetry, setAnalysisRetry] = useState(0);
 
   const reconcile = useCallback(async (sessionId: string) => {
     setBusy(true);
@@ -116,6 +122,31 @@ export function ToeicTimedTestPage() {
   const sessionId = session?.sessionId;
   const sessionStatus = session?.status;
   const serverRemaining = session?.remainingSeconds;
+
+  useEffect(() => {
+    if (!sessionId || sessionStatus === "ACTIVE") return;
+    let cancelled = false;
+    void Promise.resolve()
+      .then(() => {
+        if (cancelled) return null;
+        setAnalysis(null);
+        setAnalysisLoading(true);
+        setAnalysisError(false);
+        return analysisTimedTest(sessionId);
+      })
+      .then((value) => {
+        if (value && !cancelled) setAnalysis(value);
+      })
+      .catch(() => {
+        if (!cancelled) setAnalysisError(true);
+      })
+      .finally(() => {
+        if (!cancelled) setAnalysisLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [analysisRetry, sessionId, sessionStatus]);
 
   useEffect(() => {
     // The server value is the authority; this interval only renders a local countdown.
@@ -443,9 +474,73 @@ export function ToeicTimedTestPage() {
               ) : null}
             </dl>
             <p className={styles.muted}>
-              Đáp án đúng và phân tích chi tiết sẽ chỉ xuất hiện trong các bước
-              học được phép sau này.
+              Đây là phân tích tổng hợp từ kết quả máy chủ; không phải điểm quy
+              đổi TOEIC chính thức.
             </p>
+            <section
+              className={styles.analysis}
+              aria-live="polite"
+              aria-labelledby="analysis-title"
+            >
+              <h3 id="analysis-title">Phân tích kết quả</h3>
+              {analysisLoading ? (
+                <p>Đang tải phân tích…</p>
+              ) : analysisError ? (
+                <p>
+                  Chưa tải được phân tích. Kết quả bài thi vẫn được giữ nguyên.{" "}
+                  <button
+                    type="button"
+                    className={styles.secondary}
+                    onClick={() => setAnalysisRetry((value) => value + 1)}
+                  >
+                    Thử lại
+                  </button>
+                </p>
+              ) : analysis ? (
+                <>
+                  <p>
+                    Kỹ năng:{" "}
+                    {analysis.skills
+                      .map(
+                        (skill) =>
+                          `${skill.skill} ${skill.correct}/${skill.total} (${skill.accuracy}%)`,
+                      )
+                      .join(" - ")}
+                  </p>
+                  <p>
+                    Các phần:{" "}
+                    {analysis.parts
+                      .map(
+                        (part) =>
+                          `${part.part.replace("PART_", "Part ")} ${part.correct}/${part.total} (${part.accuracy}%)`,
+                      )
+                      .join(" - ")}
+                  </p>
+                  <p>
+                    <strong>
+                      {analysis.score.correct}/{analysis.score.answered}
+                    </strong>{" "}
+                    câu đúng · Độ chính xác {analysis.accuracy}%
+                  </p>
+                  <p>
+                    Thời gian: {analysis.time.usedSeconds}/
+                    {analysis.time.limitSeconds} giây · Trung bình{" "}
+                    {analysis.time.averageSecondsPerAnswered} giây/câu đã trả
+                    lời
+                  </p>
+                  <p>
+                    Phần cần chú ý:{" "}
+                    {analysis.weaknesses.length
+                      ? analysis.weaknesses
+                          .map((item) => `${item.name} (${item.accuracy}%)`)
+                          .join(", ")
+                      : "Chưa đủ câu trả lời để xác định."}
+                  </p>
+                </>
+              ) : (
+                <p>Chưa có dữ liệu phân tích.</p>
+              )}
+            </section>
             <button
               type="button"
               className={styles.secondary}

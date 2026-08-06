@@ -17,6 +17,7 @@ import {
   timedTestPolicy,
   type TimedTestMode,
 } from './toeic-timed-test.policy';
+import { buildTimedTestAnalysis } from './toeic-timed-test.analysis';
 
 type Option = Readonly<{ id: string; text: string }>;
 
@@ -308,6 +309,23 @@ export class ToeicTimedTestService {
         session: safeSession(session, this.clock, questions),
         questions,
       };
+    } catch (error) {
+      if (error instanceof ToeicQuestionError) throw error;
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.REPOSITORY_FAILURE);
+    }
+  }
+
+  async analysis(principal: ApplicationPrincipal, sessionId: string) {
+    try {
+      const session = await this.resolveSession(principal, sessionId);
+      if (session.status === 'ACTIVE')
+        throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
+      const questions = await this.repository.finalizedQuestionsByIds(
+        session.questionIds,
+      );
+      if (questions.length !== session.questionIds.length)
+        throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
+      return { analysis: buildTimedTestAnalysis(session, questions) };
     } catch (error) {
       if (error instanceof ToeicQuestionError) throw error;
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.REPOSITORY_FAILURE);

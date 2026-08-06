@@ -46,6 +46,47 @@ function activeResponse(
   };
 }
 
+function analysisResponse() {
+  return {
+    data: {
+      analysis: {
+        score: { correct: 17, total: 20, answered: 20 },
+        accuracy: 85,
+        skills: [
+          {
+            skill: "LISTENING",
+            total: 10,
+            answered: 10,
+            correct: 9,
+            accuracy: 90,
+          },
+          {
+            skill: "READING",
+            total: 10,
+            answered: 10,
+            correct: 8,
+            accuracy: 80,
+          },
+        ],
+        parts: [
+          { part: "PART_1", total: 1, answered: 1, correct: 1, accuracy: 100 },
+          { part: "PART_2", total: 2, answered: 2, correct: 1, accuracy: 50 },
+        ],
+        weaknesses: [
+          { scope: "part", name: "Part 2", accuracy: 50, answered: 2 },
+        ],
+        time: {
+          limitSeconds: 1200,
+          usedSeconds: 900,
+          remainingSeconds: 300,
+          averageSecondsPerAnswered: 45,
+        },
+      },
+    },
+    meta,
+  };
+}
+
 async function installSession(page: Page) {
   await page.addInitScript(() => {
     window.localStorage.setItem(
@@ -409,12 +450,138 @@ test.describe("TOEIC timed test learner journey", () => {
           }),
         }),
     );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/submitted-session/analysis`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(analysisResponse()),
+        }),
+    );
     await page.goto("/toeic/test");
     await expect(
       page.getByRole("heading", { name: "Kết quả bài thi" }),
     ).toBeVisible({ timeout: 5000 });
-    await expect(page.getByText("17")).toBeVisible();
+    await expect(page.getByText("17", { exact: true })).toBeVisible();
+    await expect(page.getByText(/85%/)).toBeVisible();
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+    await page.reload();
+    await expect(page.getByText(/85%/)).toBeVisible();
+  });
+
+  test("keeps the final result visible while analysis retries after an error", async ({
+    page,
+  }) => {
+    await installSession(page);
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.toeic.test.active",
+        "analysis-retry-session",
+      );
+    });
+    let attempts = 0;
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/analysis-retry-session`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              session: {
+                sessionId: "analysis-retry-session",
+                mode: "MINI",
+                status: "SUBMITTED",
+                total: 20,
+                answered: 20,
+                remainingSeconds: 300,
+                score: 17,
+              },
+              questions: [],
+            },
+            meta,
+          }),
+        }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/analysis-retry-session/analysis`,
+      async (route) => {
+        attempts += 1;
+        if (attempts === 1) {
+          await route.fulfill({ status: 503, body: "temporary" });
+          return;
+        }
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(analysisResponse()),
+        });
+      },
+    );
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.goto("/toeic/test");
+    await expect(page.getByRole("heading", { level: 2 })).toBeVisible();
+    const analysisSection = page.locator('[class*="analysis"]').first();
+    await expect(analysisSection).toContainText("phân tích");
+    await analysisSection.getByRole("button").focus();
+    await analysisSection.getByRole("button").press("Enter");
+    await expect(page.getByText(/85%/)).toBeVisible();
+    expect(attempts).toBe(2);
+    await expect(page.getByRole("heading", { level: 2 })).toBeVisible();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(360);
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  });
+
+  test("renders an unavailable analysis state without hiding the final result", async ({
+    page,
+  }) => {
+    await installSession(page);
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.toeic.test.active",
+        "analysis-empty-session",
+      );
+    });
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/analysis-empty-session`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              session: {
+                sessionId: "analysis-empty-session",
+                mode: "MINI",
+                status: "SUBMITTED",
+                total: 20,
+                answered: 0,
+                remainingSeconds: 0,
+                score: 0,
+              },
+              questions: [],
+            },
+            meta,
+          }),
+        }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/analysis-empty-session/analysis`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ data: { analysis: null }, meta }),
+        }),
+    );
+    await page.goto("/toeic/test");
+    await expect(page.getByRole("heading", { level: 2 })).toBeVisible();
+    const analysisSection = page.locator('[class*="analysis"]').first();
+    await expect(analysisSection).toBeVisible();
+    await expect(analysisSection.locator("p")).toHaveCount(1);
   });
 
   test("keeps an answer retryable and reconciles server expiry", async ({

@@ -12,6 +12,7 @@ import type {
   ToeicTimedTestRepository,
 } from './toeic-timed-test.models';
 import { ToeicTimedTestService } from './toeic-timed-test.service';
+import { buildTimedTestAnalysis } from './toeic-timed-test.analysis';
 
 const principal = createApplicationPrincipal({
   applicationUserId: 'timed-learner',
@@ -131,6 +132,9 @@ function repository(
       catalogue().filter((item) => ids.includes(item.id)),
     ),
     privateQuestionsByIds: jest.fn((ids: readonly string[]) =>
+      catalogue().filter((item) => ids.includes(item.id)),
+    ),
+    finalizedQuestionsByIds: jest.fn((ids: readonly string[]) =>
       catalogue().filter((item) => ids.includes(item.id)),
     ),
     findByClient: jest.fn().mockResolvedValue(null),
@@ -409,6 +413,287 @@ describe('ToeicTimedTestService', () => {
     expect(result.session.status).toBe('EXPIRED');
     expect(result.session.score).toBe(1);
     expect(JSON.stringify(result)).not.toContain('isCorrect');
+  });
+
+  it('builds deterministic aggregate analysis without per-question disclosure', () => {
+    const final = session({
+      status: 'SUBMITTED',
+      score: 2,
+      finalizedAt: new Date(baseTime.getTime() + 125 * 1000),
+      answers: [
+        {
+          questionId: 'version-1',
+          selectedOption: 'A',
+          isCorrect: true,
+          answeredAt: baseTime,
+        },
+        {
+          questionId: 'version-2',
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: new Date(baseTime.getTime() + 60 * 1000),
+        },
+        {
+          questionId: 'version-11',
+          selectedOption: 'A',
+          isCorrect: true,
+          answeredAt: new Date(baseTime.getTime() + 100 * 1000),
+        },
+      ],
+    });
+    const analysis = buildTimedTestAnalysis(final, catalogue());
+
+    expect(analysis.score).toEqual({ correct: 2, total: 20, answered: 3 });
+    expect(analysis.accuracy).toBe(67);
+    expect(analysis.skills).toEqual([
+      expect.objectContaining({ skill: 'LISTENING', total: 10, answered: 2 }),
+      expect.objectContaining({ skill: 'READING', total: 10, answered: 1 }),
+    ]);
+    expect(analysis.parts[0]).toMatchObject({
+      part: ToeicPart.PART_1,
+      total: 1,
+      correct: 1,
+      accuracy: 100,
+    });
+    expect(analysis.weaknesses[0]).toMatchObject({
+      name: 'Part 2',
+      accuracy: 0,
+      answered: 1,
+    });
+    expect(analysis.time).toEqual({
+      limitSeconds: 1200,
+      usedSeconds: 125,
+      remainingSeconds: 1075,
+      averageSecondsPerAnswered: 41.7,
+    });
+    expect(JSON.stringify(analysis)).not.toMatch(
+      /questionId|selectedOption|isCorrect|correctAnswer|userId/,
+    );
+
+    const tie = buildTimedTestAnalysis(
+      session({
+        status: 'SUBMITTED',
+        finalizedAt: new Date(baseTime.getTime() + 1_000),
+        answers: [
+          ...['version-2', 'version-4', 'version-11'].map((questionId) => ({
+            questionId,
+            selectedOption: 'B',
+            isCorrect: false,
+            answeredAt: baseTime,
+          })),
+        ],
+      }),
+      catalogue(),
+    );
+    expect(tie.weaknesses.map((item) => item.name)).toEqual([
+      'Part 2',
+      'Part 3',
+      'Part 5',
+    ]);
+
+    const boundary = buildTimedTestAnalysis(
+      session({
+        status: 'SUBMITTED',
+        finalizedAt: new Date(baseTime.getTime() + 1_000),
+        answers: [
+          {
+            questionId: 'version-1',
+            selectedOption: 'A',
+            isCorrect: true,
+            answeredAt: baseTime,
+          },
+          {
+            questionId: 'version-2',
+            selectedOption: 'B',
+            isCorrect: false,
+            answeredAt: baseTime,
+          },
+          {
+            questionId: 'version-3',
+            selectedOption: 'B',
+            isCorrect: false,
+            answeredAt: baseTime,
+          },
+        ],
+      }),
+      catalogue(),
+    );
+    expect(boundary.accuracy).toBe(33);
+    expect(boundary.time.averageSecondsPerAnswered).toBe(0.3);
+  });
+
+  it('fails closed for active, duplicate, or cross-snapshot analysis data', () => {
+    expect(() => buildTimedTestAnalysis(session(), catalogue())).toThrow(
+      TOEIC_ERROR_CODES.INVALID_CONTENT,
+    );
+    const final = session({
+      status: 'EXPIRED',
+      finalizedAt: new Date(baseTime.getTime() + 1200 * 1000),
+      answers: [],
+    });
+    expect(() =>
+      buildTimedTestAnalysis(final, [...catalogue(), catalogue()[0]]),
+    ).toThrow(TOEIC_ERROR_CODES.INVALID_CONTENT);
+    expect(() =>
+      buildTimedTestAnalysis(final, [
+        { ...catalogue()[0], part: ToeicPart.PART_2 },
+        ...catalogue().slice(1),
+      ]),
+    ).toThrow(TOEIC_ERROR_CODES.INVALID_CONTENT);
+  });
+
+  it('does not allow analysis to bypass owner or active-session boundaries', async () => {
+    const activeRepo = repository();
+    await expect(
+      new ToeicTimedTestService(activeRepo, () => baseTime).analysis(
+        principal,
+        'timed-session-1',
+      ),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.CONFLICT });
+
+    const missingRepo = repository({ find: jest.fn().mockResolvedValue(null) });
+    await expect(
+      new ToeicTimedTestService(missingRepo, () => baseTime).analysis(
+        principal,
+        'other-owner-session',
+      ),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.NOT_FOUND });
+  });
+
+  it('keeps HALF totals server-owned and maps every Part to its skill', () => {
+    const questions = halfCatalogue();
+    const final = session({
+      mode: 'HALF',
+      status: 'SUBMITTED',
+      total: 50,
+      questionIds: questions.map((item) => item.id),
+      deadlineAt: new Date(baseTime.getTime() + 45 * 60 * 1000),
+      finalizedAt: new Date(baseTime.getTime() + 45 * 60 * 1000),
+      answers: questions.map((item) => ({
+        questionId: item.id,
+        selectedOption: 'A',
+        isCorrect: true,
+        answeredAt: baseTime,
+      })),
+    });
+
+    const analysis = buildTimedTestAnalysis(final, questions);
+
+    expect(analysis.score).toEqual({ correct: 50, total: 50, answered: 50 });
+    expect(analysis.skills).toEqual([
+      expect.objectContaining({ skill: 'LISTENING', total: 25, correct: 25 }),
+      expect.objectContaining({ skill: 'READING', total: 25, correct: 25 }),
+    ]);
+    expect(analysis.parts.map((item) => item.total)).toEqual([
+      2, 6, 10, 7, 8, 4, 13,
+    ]);
+    expect(analysis.time.limitSeconds).toBe(2700);
+  });
+
+  it('returns zero-answer expiry safely and clamps server time to the policy', () => {
+    const final = session({
+      status: 'EXPIRED',
+      finalizedAt: new Date(baseTime.getTime() + 2 * 60 * 60 * 1000),
+      answers: [],
+    });
+
+    const analysis = buildTimedTestAnalysis(final, catalogue());
+
+    expect(analysis.score).toEqual({ correct: 0, total: 20, answered: 0 });
+    expect(analysis.accuracy).toBe(0);
+    expect(analysis.weaknesses).toEqual([]);
+    expect(analysis.time).toEqual({
+      limitSeconds: 1200,
+      usedSeconds: 1200,
+      remainingSeconds: 0,
+      averageSecondsPerAnswered: 0,
+    });
+  });
+
+  it('uses persisted policy version and rejects malformed finalized snapshots', () => {
+    const final = session({
+      status: 'SUBMITTED',
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+    });
+
+    expect(() =>
+      buildTimedTestAnalysis(
+        { ...final, policyVersion: 'future-v2' },
+        catalogue(),
+      ),
+    ).toThrow(TOEIC_ERROR_CODES.INVALID_CONTENT);
+    expect(() =>
+      buildTimedTestAnalysis(
+        {
+          ...final,
+          finalizedAt: new Date(baseTime.getTime() - 1_000),
+        },
+        catalogue(),
+      ),
+    ).toThrow(TOEIC_ERROR_CODES.INVALID_CONTENT);
+  });
+
+  it('sanitizes analysis repository failures and malformed snapshots', async () => {
+    const final = session({
+      status: 'SUBMITTED',
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+    });
+    const repositoryFailure = repository({
+      find: jest.fn().mockResolvedValue(final),
+      finalizedQuestionsByIds: jest
+        .fn()
+        .mockRejectedValue(new Error('db down')),
+    });
+    await expect(
+      new ToeicTimedTestService(repositoryFailure, () => baseTime).analysis(
+        principal,
+        final.id,
+      ),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.REPOSITORY_FAILURE });
+
+    const malformed = repository({
+      find: jest.fn().mockResolvedValue(final),
+      finalizedQuestionsByIds: jest
+        .fn()
+        .mockResolvedValue([...catalogue(), catalogue()[0]]),
+    });
+    await expect(
+      new ToeicTimedTestService(malformed, () => baseTime).analysis(
+        principal,
+        final.id,
+      ),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.INVALID_CONTENT });
+  });
+
+  it('reconciles an expired active session before reading analysis', async () => {
+    const final = session({
+      status: 'EXPIRED',
+      finalizedAt: new Date(baseTime.getTime() + 1200 * 1000),
+      answers: [],
+    });
+    const repo = repository({
+      find: jest
+        .fn()
+        .mockResolvedValue(
+          session({ deadlineAt: new Date(baseTime.getTime() - 1_000) }),
+        ),
+      finalize: jest.fn().mockResolvedValue({
+        state: 'finalized',
+        session: final,
+      }),
+    });
+
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+    ).analysis(principal, final.id);
+
+    expect(result.analysis.score.answered).toBe(0);
+    expect(repo.finalize.mock.calls).toContainEqual([
+      final.id,
+      principal.applicationUserId,
+      baseTime,
+    ]);
   });
 
   it('maps malformed mode to the sanitized TOEIC error', async () => {

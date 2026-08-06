@@ -228,6 +228,15 @@ export class PrismaToeicTimedTestRepository implements ToeicTimedTestRepository 
     return (rows as readonly unknown[]).map(asPrivateQuestion);
   }
 
+  async finalizedQuestionsByIds(ids: readonly string[]) {
+    if (ids.length === 0) return [];
+    const rows = await this.db.toeicQuestionVersion.findMany({
+      where: { id: { in: [...ids] } },
+      select: PRIVATE_QUESTION_SELECT,
+    });
+    return (rows as readonly unknown[]).map(asPrivateQuestion);
+  }
+
   async findByClient(userId: string, clientSessionId: string) {
     const row = await this.db.toeicTimedTestSession.findUnique({
       where: { userId_clientSessionId: { userId, clientSessionId } },

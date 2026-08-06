@@ -433,3 +433,17 @@ complete ordered question snapshot. Final projections contain no questions and
 may contain only the approved aggregate score. The client sends no answer,
 grading, source, license, review, publication, or provider fields to the learner
 state or browser storage.
+
+### Timed-test analysis (EP2-ST009)
+
+`GET /api/v1/toeic/tests/sessions/:sessionId/analysis` is authenticated and
+owner-scoped. It succeeds only for a finalized `SUBMITTED` or `EXPIRED` session
+and returns `data.analysis` with `score { correct, total, answered }`, bounded
+`accuracy`, aggregate `parts`, aggregate `skills`, deterministic `weaknesses`,
+and server-clock `time { limitSeconds, usedSeconds, remainingSeconds,
+averageSecondsPerAnswered }`. Percentages are rounded to the nearest integer;
+average seconds are rounded to one decimal; used time is floored and clamped to
+the persisted policy limit. No question IDs, answer rows, selected options,
+correctness flags, answer keys, user IDs, or governance metadata are returned.
+Repeated reads are side-effect free and retain the standard correlation/error
+envelope.

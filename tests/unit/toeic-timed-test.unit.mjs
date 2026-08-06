@@ -160,6 +160,101 @@ const checks = [
     },
   ],
   [
+    "analysis parser keeps aggregate fields safe and strict",
+    () => {
+      const payload = {
+        data: {
+          analysis: {
+            score: { correct: 2, total: 20, answered: 3 },
+            accuracy: 67,
+            skills: [
+              {
+                skill: "LISTENING",
+                total: 10,
+                answered: 2,
+                correct: 1,
+                accuracy: 50,
+              },
+              {
+                skill: "READING",
+                total: 10,
+                answered: 1,
+                correct: 1,
+                accuracy: 100,
+              },
+            ],
+            parts: [
+              {
+                part: "PART_1",
+                total: 1,
+                answered: 1,
+                correct: 1,
+                accuracy: 100,
+              },
+            ],
+            weaknesses: [
+              { scope: "part", name: "Part 2", accuracy: 0, answered: 1 },
+            ],
+            time: {
+              limitSeconds: 1200,
+              usedSeconds: 125,
+              remainingSeconds: 1075,
+              averageSecondsPerAnswered: 41.7,
+            },
+          },
+        },
+      };
+      const analysis = contracts.parseTimedAnalysis(payload);
+      assert.equal(analysis.score.correct, 2);
+      assert.equal(analysis.time.remainingSeconds, 1075);
+      assert.throws(
+        () =>
+          contracts.parseTimedAnalysis({
+            ...payload,
+            data: {
+              ...payload.data,
+              analysis: {
+                ...payload.data.analysis,
+                parts: [
+                  { ...payload.data.analysis.parts[0], questionId: "private" },
+                ],
+              },
+            },
+          }),
+        /INVALID_RESPONSE/,
+      );
+      assert.equal(
+        contracts.parseTimedAnalysis({ data: { analysis: null } }),
+        null,
+      );
+      assert.throws(
+        () =>
+          contracts.parseTimedAnalysis({
+            ...payload,
+            data: {
+              ...payload.data,
+              analysis: { ...payload.data.analysis, unexpected: true },
+            },
+          }),
+        /INVALID_RESPONSE/,
+      );
+      assert.throws(
+        () =>
+          contracts.parseTimedAnalysis({
+            ...payload,
+            data: {
+              ...payload.data,
+              analysis: {
+                ...payload.data.analysis,
+                answers: [{ questionId: "private" }],
+              },
+            },
+          }),
+        /INVALID_RESPONSE/,
+      );
+    },
+  ],
+  [
     "persistence removes malformed state and round trips opaque IDs",
     () => {
       const store = new MemoryStorage();

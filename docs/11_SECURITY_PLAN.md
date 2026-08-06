@@ -153,3 +153,10 @@ correctness, governance, rights, source, and provenance fields.
 The server persists the governed version IDs at start and grades only that
 snapshot for display; every answer also passes the current governance predicate
 before the private grading projection is used.
+
+The EP2-ST009 analysis endpoint is aggregate-only and available only after server
+finalization. Private correctness is consumed inside the timed-test service and
+is not serialized into the learner projection. Explicit owner-bound lookup,
+snapshot completeness checks, recursive forbidden-field assertions, and
+side-effect-free repeated reads protect score integrity and prevent answer-key,
+user, or governance metadata disclosure.

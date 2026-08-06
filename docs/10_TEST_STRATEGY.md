@@ -309,3 +309,20 @@ resume, retry after a failed answer, and server expiry reconciliation. The
 entity parser rejects malformed totals, incomplete active snapshots, duplicate
 options, forbidden nested fields, and active score leakage. Full project gates
 remain required before merge.
+
+EP2-ST009 adds deterministic analysis-policy tests for score/accuracy rounding,
+Part-to-skill mapping, stable weakness ordering, zero-answer and time-clamping
+boundaries, persisted policy/quota validation, plus API tests for finalization,
+owner isolation, repeat reads, malformed snapshots, sanitized repository
+failures, and recursive disclosure. Browser coverage verifies conditional
+analysis fetching, final-result preservation on analysis failure, retry,
+unavailable state, Part/skill rendering, refresh repeat, 360px layout, keyboard
+access, and accessibility. The analysis endpoint never accepts client-authored
+score or timing values.
+
+EP2-ST009 verification evidence (2026-08-06): TOEIC backend unit tests passed
+13 suites/86 tests, timed-test API E2E passed 15 tests, the deterministic
+frontend unit runner passed 6 checks, the focused timed-test browser journey
+passed 12 tests, and the full browser suite passed 64 tests. Project lint,
+typecheck, test (52 suites/388 tests), build, Prisma validate, formatting, and
+planning traceability also passed.

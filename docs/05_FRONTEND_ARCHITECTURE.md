@@ -132,3 +132,10 @@ storage contains only the client session ID and active session ID. A local
 interval is presentation-only and expiry always reconciles through the result
 endpoint. Setup, resume, active, retryable error, insufficient-content,
 expired, submitted, and final states are explicit and keyboard accessible.
+
+The timed-test final-result widget conditionally requests the aggregate analysis
+only after a `SUBMITTED` or `EXPIRED` server result. Its contract parser
+allowlists score, accuracy, Part/skill aggregates, weaknesses, and time fields,
+rejecting recursive private-field leakage. Analysis loading, unavailable, error,
+retry, and success states are separate from the base final-result state so an
+analysis failure cannot erase a valid learner result.

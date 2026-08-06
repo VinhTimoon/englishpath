@@ -104,3 +104,10 @@ progress alongside the native progress indicator. Server time is displayed as
 `MM:SS`; it is not a client authorization mechanism. Status feedback uses live
 regions without a page-wide `role="alert"`, preventing collisions with the Next
 route announcer. Reduced motion disables the loading animation.
+
+Timed-test analysis uses the existing result panel tokens and stays readable at
+360px without horizontal scrolling. The learner sees aggregate score, accuracy,
+Part/skill summaries, weakest areas, and server-derived time use only after
+finalization. Analysis errors preserve the result card and expose a keyboard
+operable retry; no official TOEIC conversion or per-question correctness is
+shown in this surface.

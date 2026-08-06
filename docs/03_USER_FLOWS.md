@@ -189,3 +189,12 @@ client id and active session id; refresh resumes through the owner-bound session
 GET. The server clock is authoritative: the visible countdown is presentation
 only, and zero reconciles through result retrieval. Active, answer failure,
 conflict/expiry, submitted, and retryable error states remain actionable.
+
+### Timed-test analysis (EP2-ST009)
+
+After the server finalizes a MINI or HALF session, the learner may read an
+owner-scoped aggregate analysis. It shows raw correct/answered score, bounded
+accuracy, Part 1-7 and Listening/Reading summaries, deterministic weakest areas,
+and server-derived time use. Active sessions, cross-owner IDs, and malformed
+snapshots do not disclose analysis. Analysis retrieval is read-only; a failed
+analysis request leaves the valid final result visible and offers retry.

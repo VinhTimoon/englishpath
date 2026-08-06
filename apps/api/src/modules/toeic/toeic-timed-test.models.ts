@@ -82,6 +82,9 @@ export interface ToeicTimedTestRepository {
     ids: readonly string[],
     now: Date,
   ): Promise<readonly TimedPrivateQuestion[]>;
+  finalizedQuestionsByIds(
+    ids: readonly string[],
+  ): Promise<readonly TimedPrivateQuestion[]>;
   findByClient(
     userId: string,
     clientSessionId: string,

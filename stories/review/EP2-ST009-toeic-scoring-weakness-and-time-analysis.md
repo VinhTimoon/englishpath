@@ -1,7 +1,7 @@
 ---
 id: EP2-ST009
 title: TOEIC scoring, Part and skill weakness, and time analysis
-status: in-progress
+status: review
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -193,4 +193,35 @@ Before moving to review, record actual planning/build/review outcomes, exact
 backend/browser/unit counts, response disclosure checks, mobile evidence, and
 any pre-existing out-of-scope gate failure. A timeout, missing command, or flaky
 run must be recorded as not verified, never treated as pass.
+
+## Implementation and verification evidence
+
+- Planning harness: completed with Codex CLI v0.146.0 using the configured
+  `gpt-5.6-sol` planning route and `.codex-plan.md`.
+- Build harness: the first bounded build returned `blocked` after producing the
+  core implementation because its required tests and documentation were still
+  absent. The same story was completed within scope; no WIP commit was merged.
+- Review harness: the first three read-only reviews returned blocked findings;
+  the implementation was amended in place for sanitized malformed snapshots,
+  persisted policy validation, quota validation, disclosure parsing, coverage,
+  and this evidence section. A final review is required before lifecycle merge.
+- Backend verification: Prisma validate passed; the TOEIC unit suite passed
+  with 13 suites and 85 tests; the timed-test API E2E suite passed with 15
+  tests. Repository explicit-select, HALF, zero-answer, rounding, tie-break,
+  expiry-reconciliation, owner-isolation, malformed-snapshot, and sanitized
+  repository-failure checks are included.
+- Frontend/unit/browser verification: the deterministic timed-test unit runner
+  passed 6 checks; the focused timed-test browser journey passed 12 tests,
+  including 360px width, keyboard retry, unavailable analysis, refresh/repeat,
+  disclosure, and axe checks. The full browser suite passed 64 tests.
+- Disclosure evidence: backend E2E recursively checks the response for answer
+  keys, correctness flags, selected options, question/session/user IDs, raw
+  answers, and governance/provider metadata; the frontend parser rejects the
+  same forbidden keys and unknown aggregate fields.
+- No schema, migration, generated output, environment, credential, package,
+  production, or `main` changes were made.
+- Final outer-loop gates passed on 2026-08-06: `pnpm lint`, `pnpm typecheck`,
+  `pnpm test` (52 suites/388 tests), `pnpm build`, `pnpm format:check`,
+  `pnpm planning:traceability`, Prisma validate, story doctor, `pnpm e2e`
+  (64/64), and `git diff --check`. No out-of-scope gate failure is known.
 

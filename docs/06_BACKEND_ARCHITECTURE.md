@@ -249,3 +249,10 @@ catalogue is generated from the shared governance predicate, returned through an
 explicit safe projection, and limited to values present in currently eligible
 content. Listening and reading persist filters in separate session tables; replay
 compares the complete selected shape before returning an immutable snapshot.
+
+EP2-ST009 adds analysis as a read-only projection inside the timed-test TOEIC
+service. The repository reads the owner-bound finalized session and immutable
+question snapshot with explicit private selects; the service maps Parts 1-4 to
+LISTENING and Parts 5-7 to READING, then returns only aggregates. Controllers
+remain transport-only and never receive client score, elapsed-time, Part, or
+weakness inputs.

@@ -160,6 +160,98 @@ export class ToeicController {
     }));
   }
 
+  @Get('tests/sessions/:sessionId/analysis')
+  @ApiOperation({
+    summary: 'Read aggregate analysis for a finalized timed test',
+  })
+  @ApiOkResponse({
+    description:
+      'Aggregate score, Part/skill summaries, weaknesses, and server-clock time only.',
+    schema: {
+      type: 'object',
+      properties: {
+        data: {
+          type: 'object',
+          properties: {
+            analysis: {
+              type: 'object',
+              properties: {
+                score: {
+                  type: 'object',
+                  properties: {
+                    correct: { type: 'integer', minimum: 0 },
+                    total: { type: 'integer', minimum: 1 },
+                    answered: { type: 'integer', minimum: 0 },
+                  },
+                },
+                accuracy: { type: 'number', minimum: 0, maximum: 100 },
+                skills: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      skill: { type: 'string', enum: ['LISTENING', 'READING'] },
+                      total: { type: 'integer', minimum: 1 },
+                      answered: { type: 'integer', minimum: 0 },
+                      correct: { type: 'integer', minimum: 0 },
+                      accuracy: { type: 'number', minimum: 0, maximum: 100 },
+                    },
+                  },
+                },
+                parts: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      part: { type: 'string', pattern: '^PART_[1-7]$' },
+                      total: { type: 'integer', minimum: 1 },
+                      answered: { type: 'integer', minimum: 0 },
+                      correct: { type: 'integer', minimum: 0 },
+                      accuracy: { type: 'number', minimum: 0, maximum: 100 },
+                    },
+                  },
+                },
+                weaknesses: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    properties: {
+                      scope: { type: 'string', enum: ['part', 'skill'] },
+                      name: { type: 'string' },
+                      accuracy: { type: 'number', minimum: 0, maximum: 100 },
+                      answered: { type: 'integer', minimum: 1 },
+                    },
+                  },
+                },
+                time: {
+                  type: 'object',
+                  properties: {
+                    limitSeconds: { type: 'integer', minimum: 1 },
+                    usedSeconds: { type: 'integer', minimum: 0 },
+                    remainingSeconds: { type: 'integer', minimum: 0 },
+                    averageSecondsPerAnswered: { type: 'number', minimum: 0 },
+                  },
+                },
+              },
+            },
+          },
+        },
+        meta: { type: 'object' },
+      },
+    },
+  })
+  analysisTimed(
+    @Param('sessionId') id: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.timed.analysis(request.principal!, id).then((data) => ({
+      data,
+      meta: { correlationId, idempotencyStatus: 'not_applicable' },
+    }));
+  }
+
   @Get('practice/catalogue')
   @ApiOperation({
     summary: 'Read the authenticated learner TOEIC practice catalogue',

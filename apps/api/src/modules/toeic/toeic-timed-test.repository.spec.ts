@@ -35,6 +35,8 @@ describe('TOEIC timed-test repository boundary', () => {
     expect(repositorySource).toContain('const PRIVATE_QUESTION_SELECT');
     expect(repositorySource).toContain('correctAnswer: true');
     expect(repositorySource).toContain('where: { id: { in: [...ids] } }');
+    expect(repositorySource).toContain('async finalizedQuestionsByIds');
+    expect(repositorySource).toContain('select: PRIVATE_QUESTION_SELECT');
   });
 
   it('uses owner/session uniqueness, deadline locking, and compare-and-set finalization', () => {
