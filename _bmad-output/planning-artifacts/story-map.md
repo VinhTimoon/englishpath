@@ -116,9 +116,11 @@ plan fallback. `EP1-ST054` remains immutable blocked implementation evidence for
 four P1 findings inherited from `EP1-ST052`; its WIP commit `8efb8c8` is not mergeable.
 A direct subprocess test survived `245006ms`, so the generic shell runner did not
 reproduce the reported 240-second cap. `EP1-ST055` is blocked implementation evidence
-and must not resume `EP1-ST054`. `EP1-ST056` and `EP1-ST057` are blocked recovery
-evidence for the learner vocabulary flow; no vocabulary story is ready while the
-Codex execution-cap decision remains unresolved.
+and must not resume `EP1-ST054`. `EP1-ST056` and `EP1-ST057` remain blocked recovery
+evidence for the learner vocabulary flow; their historical WIP is not resumed. The
+repository-local mindmap selection recovery is now evidenced by `EP1-ST062`, which
+is in `stories/review`. The external Codex execution-cap decision remains isolated
+to high-risk `EP1-ST028`.
 
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
