@@ -40,7 +40,9 @@ export function readActiveSessionId(): string | null {
   if (!store) return null;
   try {
     const value = store.getItem(ACTIVE_KEY);
-    return valid(value) ? value : null;
+    if (valid(value)) return value;
+    if (value !== null) store.removeItem(ACTIVE_KEY);
+    return null;
   } catch {
     return null;
   }

@@ -97,7 +97,9 @@ export function ToeicTimedTestPage() {
       })
       .catch((resumeError) => {
         if (cancelled) return;
-        clearActiveSessionId();
+        // Keep a valid session ID for transient failures so the learner can retry
+        // the owner-bound GET. A confirmed missing session may be retired safely.
+        if (learnerApiStatus(resumeError) === 404) clearActiveSessionId();
         setBootError(
           requestMessage(resumeError, "Chưa khôi phục được bài thi."),
         );

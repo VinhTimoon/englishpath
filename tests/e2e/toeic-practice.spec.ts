@@ -284,7 +284,7 @@ test.describe("TOEIC practice learner journey", () => {
     await page.locator("button").nth(2).click();
     await page.getByRole("button", { name: /Standing/ }).click();
     await page.locator("button").last().click();
-    await expect(page.getByRole("alert")).toBeVisible();
+    await expect(page.locator('p[role="alert"]')).toBeVisible();
     await page.locator("button").last().click();
     await expect(
       page.getByRole("heading", { name: "Where is the meeting?" }),

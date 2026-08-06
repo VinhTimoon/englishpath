@@ -1,7 +1,7 @@
 ---
 id: EP2-ST008
 title: TOEIC timed mini and half test UI with interruption handling
-status: in-progress
+status: review
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -14,6 +14,7 @@ allowed_paths:
   - apps/web/src/entities/toeic-timed-test/**
   - apps/web/src/shared/api/**
   - tests/e2e/**
+  - tests/unit/**
   - docs/03_USER_FLOWS.md
   - docs/05_FRONTEND_ARCHITECTURE.md
   - docs/08_API_CONTRACT.md
@@ -167,6 +168,7 @@ render the server outcome.
 - `pnpm --filter api exec prisma validate --schema prisma/schema.prisma`
 - `pnpm --filter api exec jest --runInBand src/modules/toeic`
 - `pnpm --filter api test:e2e -- --runInBand`
+- `node tests/unit/toeic-timed-test.unit.mjs`
 - `pnpm lint`
 - `pnpm typecheck`
 - `pnpm test`
@@ -202,17 +204,30 @@ never treated as pass.
 
 
 
-## Blocked Report
+## Implementation evidence (2026-08-06)
 
-- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
-- Exit code: 42
-- Attempts: 1
-- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
-
-### Evidence
-
-```text
-Child process returned blocked exit code 42.
-Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
-```
+- The first bounded build attempt is preserved in commit `bda4d1a` with status
+  `blocked` because it stopped after the core UI and did not provide the required
+  coverage. The same story branch was reactivated; no recovery story was created.
+- The completed implementation started at `d619202`; the bounded retry and
+  coverage fixes are being finalized on this same story branch.
+- Passed: web typecheck, web lint, web production build, the focused Playwright
+  suite (10 tests, including the 360px viewport overflow assertion), 5 deterministic
+  contract/persistence unit checks, the timed-test API E2E suite (12 tests),
+  story verification, story doctor, formatting, planning traceability, and
+  `git diff --check`.
+- Final read-only review passed with no P0/P1 findings. The reviewer noted only
+  optional duplicate-pending-request coverage as P2; existing mojibake in the
+  repository is outside this story's diff and scope.
+- Final browser gate: full Playwright suite passed, 62/62 tests.
+- Final project gates: `pnpm lint`, `pnpm typecheck`, and `pnpm build` passed.
+  `pnpm test` ran 52 suites / 380 tests; 51 suites and 379 tests passed, with
+  one pre-existing EP2-ST007 repository source-string assertion failing because
+  its expected indentation does not match the committed formatted source. The
+  failing API source and test are forbidden by this story and were not changed.
+- An existing EP2-ST007 repository-boundary source assertion fails in the API unit
+  suite because its expected indentation no longer matches the committed source.
+  That API source and test are outside this story's allowed implementation scope;
+  neither was changed here. This remains an out-of-scope risk for the project-wide
+  gate and is not evidence of a timed-test UI defect.
 
