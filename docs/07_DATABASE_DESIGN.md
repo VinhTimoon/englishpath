@@ -190,29 +190,6 @@ rollback or destructive operation.
 
 ## Physical Identity Baseline
 
-## Physical TOEIC Question Governance Boundary
-
-`ToeicQuestion` owns the stable canonical identity. `ToeicQuestionVersion` is an
-immutable content record keyed by `(questionId, version)` and a separate
-`importIdentity`; lineage is restrictive, while deleting a canonical question
-cascades only to its versions. Parts 1–7, question type, difficulty, license,
-review, publication, usage, and access tier are closed Prisma enums.
-
-Prompt/options and optional media are content fields. `correctAnswer`, source
-identity/URL/checksum/version, provenance, rights owner, license state, review
-decision/evidence/reviewer identity, and publication evidence are private
-server-owned fields and must never be included in a learner projection. Later
-publication rules require reviewed content, `PUBLISHED` state, reached
-`publishedAt`, compatible license, and an unset or future `validUntil`.
-
-Deterministic indexes cover canonical version lookup, part/type/difficulty,
-stimulus grouping, and reviewed/published/expiry eligibility. Migration
-`20260806210000_toeic_question_governance` is additive local/generated evidence
-only; automation must not apply it to shared Supabase infrastructure. Owner-
-approved rollback, if ever required, removes version foreign keys/indexes/table,
-then the canonical table and new enums, preserving all existing learner, CMS,
-vocabulary, progress, and identity data.
-
 The Phase 1 identity schema preserves the original `User` table and adds provider
 identity, explicit status, one-to-one `UserProfile`, canonical `Role`, and unique
 `UserRole` assignment records. The application user ID remains independent from the
@@ -267,3 +244,26 @@ question answers, learner XP/streak progress, and private Error Notebook entries
 and answer uniqueness make retries safe; only an `ACTIVE` session transaction can award
 XP and update streak. Question definitions and answer keys remain backend fixtures and
 are not persisted in client-readable records before answer submission.
+
+## Physical TOEIC Question Governance Boundary
+
+`ToeicQuestion` owns the stable canonical identity. `ToeicQuestionVersion` is an
+immutable content record keyed by `(questionId, version)` and a separate
+`importIdentity`; lineage is restrictive, while deleting a canonical question
+cascades only to its versions. Parts 1–7, question type, difficulty, license,
+review, publication, usage, and access tier are closed Prisma enums.
+
+Prompt/options and optional media are content fields. `correctAnswer`, source
+identity/URL/checksum/version, provenance, rights owner, license state, review
+decision/evidence/reviewer identity, and publication evidence are private
+server-owned fields and must never be included in a learner projection. Later
+publication rules require reviewed content, `PUBLISHED` state, reached
+`publishedAt`, compatible license, and an unset or future `validUntil`.
+
+Deterministic indexes cover canonical version lookup, part/type/difficulty,
+stimulus grouping, and reviewed/published/expiry eligibility. Migration
+`20260806210000_toeic_question_governance` is additive local/generated evidence
+only; automation must not apply it to shared Supabase infrastructure. Owner-
+approved rollback, if ever required, removes version foreign keys/indexes/table,
+then the canonical table and new enums, preserving all existing learner, CMS,
+vocabulary, progress, and identity data.

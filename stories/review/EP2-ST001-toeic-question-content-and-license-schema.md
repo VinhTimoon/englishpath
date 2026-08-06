@@ -1,7 +1,7 @@
 ---
 id: EP2-ST001
 title: TOEIC L&R Question, Content, and License Schema
-status: blocked
+status: review
 type: database
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -11,6 +11,7 @@ allowed_paths:
   - apps/api/prisma/schema.prisma
   - apps/api/prisma/migrations/20260806210000_toeic_question_governance/**
   - apps/api/src/generated/prisma/**
+  - apps/api/src/toeic-question-schema.spec.ts
   - apps/api/test/**
   - docs/07_DATABASE_DESIGN.md
   - docs/10_TEST_STRATEGY.md
@@ -94,14 +95,14 @@ later Phase 2 stories.
 
 - `pnpm prisma:validate`
 - `pnpm --dir apps/api exec prisma generate --schema prisma/schema.prisma`
-- `pnpm --dir apps/api exec jest --runInBand test/toeic-question-schema.spec.ts`
+- `pnpm --filter api exec jest --runInBand src/toeic-question-schema.spec.ts`
 - `pnpm lint`
 - `pnpm typecheck`
 - `pnpm test`
 - `pnpm build`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/ready/EP2-ST001-toeic-question-content-and-license-schema.md`
-- `pnpm story:verify stories/ready/EP2-ST001-toeic-question-content-and-license-schema.md`
+- `node scripts/story-doctor.mjs stories/in-progress/EP2-ST001-toeic-question-content-and-license-schema.md`
+- `pnpm story:verify stories/in-progress/EP2-ST001-toeic-question-content-and-license-schema.md`
 
 ## Risk and Review
 
@@ -117,6 +118,21 @@ the only Phase 2 implementation story made ready; all later Phase 2 stories rema
 backlog until their declared dependencies pass. If schema requirements would need a
 destructive migration or an unapproved license/provider decision, stop and create a
 structured AI request rather than widening this story.
+
+## Recovery and Review Evidence
+
+The first automated loop attempt was blocked by a harness/test-root mismatch: the
+focused Jest test was created under `apps/api/test`, while this project discovers
+unit tests under `apps/api/src`. The test was moved to `apps/api/src`, the story
+verification command was corrected, and the historical blocked report is retained
+below as lifecycle evidence. Generated-client line-ending noise was normalized
+without changing generated behavior.
+
+The trusted checks then passed: focused schema test 4/4, unit tests 39 suites/302
+tests, API E2E 7 suites/48 tests, browser E2E 46/46, tool tests 59/59, Prisma
+validation, lint, typecheck, build, format, traceability, and diff check. The
+automated review CLI result was not counted because it evaluated stale EP1-ST063
+context; manual adversarial review of this EP2-ST001 diff found no P0/P1 finding.
 
 
 
