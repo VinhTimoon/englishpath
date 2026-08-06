@@ -1,7 +1,7 @@
 ---
 id: EP2-ST001
 title: TOEIC L&R Question, Content, and License Schema
-status: review
+status: done
 type: database
 priority: critical
 phase: phase-2-toeic-listening-reading
