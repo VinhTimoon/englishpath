@@ -1,7 +1,7 @@
 ---
 id: EP1-ST034
 title: Publish Reviewed Vocabulary Batch 4
-status: in-progress
+status: review
 type: content
 priority: high
 phase: phase-1-learning-core
@@ -84,3 +84,21 @@ beta catalogue supports broader everyday, workplace, and technology practice.
 - Follow the deterministic batch migration and cross-batch invariant patterns from
   `EP1-ST031` through `EP1-ST033`.
 - Rollback is owner-approved only and must target `vocab-b4-*` rows.
+
+## Completion Evidence
+
+- Story doctor and story verification passed.
+- Batch invariant passed with exactly 100 stable IDs, unique headwords, approved
+  taxonomy coverage, original provenance, and no overlap with batches 1–3 or the
+  foundation fixtures.
+- API E2E passed: 7 suites, 48 tests.
+- Format, planning traceability, tool tests 59/59, Prisma validation, lint, and
+  typecheck passed.
+- `pnpm test` passed: 35 suites, 294 tests.
+- `pnpm build` passed for API and web.
+- `pnpm e2e` passed: 46/46 browser tests, including learner vocabulary,
+  pagination, due review, auth, admin, and public regressions.
+- `git diff --check` passed.
+- Manual review verified additive SQL, cross-batch uniqueness, deterministic
+  governance markers, redaction, and unchanged ownership/SRS behavior. No reset,
+  rollback, credential, or provider action ran.

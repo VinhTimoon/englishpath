@@ -190,6 +190,8 @@ The batch-2 invariant additionally compares headwords with the foundation fixtur
 and batch 1 to prevent duplicate learner cards across migrations.
 The batch-3 invariant extends that comparison across both prior migrations and
 keeps the same exact-count, taxonomy, provenance, and publication checks.
+The batch-4 invariant extends the same cross-migration duplicate protection through
+the fourth reviewed content batch.
 
 ## Learner Entry Tests
 

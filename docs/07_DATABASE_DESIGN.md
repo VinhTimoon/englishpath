@@ -61,6 +61,13 @@ across existing travel, technology, and workplace nodes. It derives deterministi
 EnglishPath-original CC0 provenance and published governance markers; rollback is
 owner-approved only and targets `vocab-b3-*` rows.
 
+### EP1-ST034 Reviewed vocabulary batch 4
+
+Migration `20260806190000_reviewed_vocabulary_batch_4` adds 100 new stable rows
+across existing travel, technology, and workplace nodes with deterministic original
+CC0 provenance and publication markers. Rollback is owner-approved only and targets
+`vocab-b4-*` rows.
+
 ### EP1-ST018 Vocabulary SRS and mastery
 
 `VocabularyMasteryState` stores one owner-scoped scheduling row per
