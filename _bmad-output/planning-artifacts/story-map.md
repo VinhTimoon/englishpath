@@ -118,9 +118,8 @@ A direct subprocess test survived `245006ms`, so the generic shell runner did no
 reproduce the reported 240-second cap. `EP1-ST055` is blocked implementation evidence
 and must not resume `EP1-ST054`. `EP1-ST056` and `EP1-ST057` remain blocked recovery
 evidence for the learner vocabulary flow; their historical WIP is not resumed. The
-repository-local mindmap selection recovery is now evidenced by `EP1-ST062`, which
-is in `stories/review`. The external Codex execution-cap decision remains isolated
-to high-risk `EP1-ST028`.
+repository-local mindmap selection recovery is now evidenced by completed `EP1-ST062`.
+The external Codex execution-cap decision remains isolated to high-risk `EP1-ST028`.
 
 The Phase 1 rebaseline preserves the old Daily Sentence IDs for traceability: `EP1-ST022`
 and `EP1-ST023` are represented as done only through the explicit supersession chain
@@ -137,8 +136,7 @@ process PID `8364` served Anh Decor on port `5173`; see
 `notes/ai-req/2026-08-04-EP1-ST060-e2e-port-conflict.md`. That request is now resolved
 in the repository harness. `EP1-ST061` applied the isolated-port configuration and
 has since passed the full public-blog browser evidence, including the keyboard and
-not-found journeys. It is in `stories/review` pending human approval; it must not be
-marked done automatically.
+not-found journeys. It is now completed after owner approval.
 
 `EP1-ST028` was unblocked after the normal push and clean `dev...origin/dev` state
 were evidenced, but its high-risk build hit the same external Codex execution cap.
