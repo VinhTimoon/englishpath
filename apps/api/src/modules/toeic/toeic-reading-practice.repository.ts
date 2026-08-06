@@ -30,6 +30,8 @@ type DbSession = {
   userId: string;
   clientSessionId: string;
   readingPart: ToeicPart | null;
+  difficulty: ToeicDifficulty | null;
+  topic: string | null;
   questionIds: string[];
   status: 'ACTIVE' | 'SUBMITTED';
   total: number;
@@ -91,6 +93,8 @@ const SESSION_SELECT = {
   userId: true,
   clientSessionId: true,
   readingPart: true,
+  difficulty: true,
+  topic: true,
   questionIds: true,
   status: true,
   total: true,
@@ -142,11 +146,18 @@ const PRIVATE_QUESTION_SELECT = {
   correctAnswer: true,
 } as const;
 
-function practiceWhere(now: Date, readingPart?: ToeicPart) {
+function practiceWhere(
+  now: Date,
+  readingPart?: ToeicPart,
+  difficulty?: ToeicDifficulty,
+  topic?: string,
+) {
   return toeicEligibleWhere(now, {
     readingPart,
     practiceEligible: true,
     readingPractice: true,
+    difficulty,
+    topic,
   });
 }
 
@@ -157,6 +168,8 @@ function asSession(value: unknown): ReadingSession {
     userId: record.userId,
     clientSessionId: record.clientSessionId,
     readingPart: record.readingPart,
+    difficulty: record.difficulty,
+    topic: record.topic,
     questionIds: [...record.questionIds],
     status: record.status,
     total: record.total,
@@ -217,9 +230,14 @@ export class PrismaToeicReadingPracticeRepository implements ToeicReadingPractic
     this.db = prisma as unknown as ReadingDb;
   }
 
-  async eligibleQuestions(now: Date, readingPart?: ToeicPart) {
+  async eligibleQuestions(
+    now: Date,
+    readingPart?: ToeicPart,
+    difficulty?: ToeicDifficulty,
+    topic?: string,
+  ) {
     const rows = await this.db.toeicQuestionVersion.findMany({
-      where: practiceWhere(now, readingPart),
+      where: practiceWhere(now, readingPart, difficulty, topic),
       orderBy: [{ questionId: 'asc' }, { version: 'desc' }],
       select: SAFE_QUESTION_SELECT,
     });
@@ -317,6 +335,8 @@ export class PrismaToeicReadingPracticeRepository implements ToeicReadingPractic
         userId: input.userId,
         clientSessionId: input.clientSessionId,
         readingPart: input.readingPart,
+        difficulty: input.difficulty ?? null,
+        topic: input.topic ?? null,
         questionIds: [...input.questionIds],
         total: input.total,
       },

@@ -139,6 +139,28 @@ describe('ToeicReadingPracticeService', () => {
     ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.CONFLICT });
   });
 
+  it('passes the server catalogue filters into selection and persists the snapshot', async () => {
+    const repo = repository();
+    await new ToeicReadingPracticeService(repo).start(principal, {
+      clientSessionId: 'reading-filter-client',
+      readingPart: ToeicPart.PART_5,
+      difficulty: ToeicDifficulty.ELEMENTARY,
+      topic: 'scheduling',
+      questionCount: 1,
+    });
+
+    expect(repo.eligibleQuestions.mock.calls[0]).toEqual([
+      expect.any(Date),
+      ToeicPart.PART_5,
+      ToeicDifficulty.ELEMENTARY,
+      'scheduling',
+    ]);
+    expect(repo.createSession.mock.calls[0]?.[0]).toMatchObject({
+      difficulty: ToeicDifficulty.ELEMENTARY,
+      topic: 'scheduling',
+    });
+  });
+
   it('recovers a unique-key start race and replays the immutable snapshot', async () => {
     const repo = repository({
       createSession: jest.fn().mockRejectedValue({ code: 'P2002' }),

@@ -52,6 +52,7 @@ export type ToeicPracticeSessionRecord = Readonly<{
   userId: string;
   clientSessionId: string;
   listeningPart: ToeicPart | null;
+  difficulty?: ToeicDifficulty | null;
   questionIds: readonly string[];
   status: ToeicPracticeStatus;
   total: number;
@@ -65,6 +66,7 @@ export type ToeicPracticeSessionCreate = Readonly<{
   userId: string;
   clientSessionId: string;
   listeningPart: ToeicPart | null;
+  difficulty?: ToeicDifficulty | null;
   questionIds: readonly string[];
   total: number;
 }>;
@@ -80,6 +82,7 @@ export interface ToeicListeningPracticeRepository {
   eligibleQuestions(
     now: Date,
     listeningPart?: ToeicPart,
+    difficulty?: ToeicDifficulty,
   ): Promise<readonly ToeicListeningQuestion[]>;
   safeQuestionsByIds(
     ids: readonly string[],

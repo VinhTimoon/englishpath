@@ -234,3 +234,8 @@ eligibility policy supplies the reviewed/published/licensed/free-practice predic
 for both listening and reading. ACTIVE sessions accept answers only while an
 active-session lock is held, and atomically transition to SUBMITTED only when every
 selected version has an answer.
+EP2-ST006 adds the authenticated practice catalogue and filter snapshots. The
+catalogue is generated from the shared governance predicate, returned through an
+explicit safe projection, and limited to values present in currently eligible
+content. Listening and reading persist filters in separate session tables; replay
+compares the complete selected shape before returning an immutable snapshot.

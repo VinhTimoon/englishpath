@@ -29,6 +29,7 @@ type DbSession = {
   userId: string;
   clientSessionId: string;
   listeningPart: ToeicPart | null;
+  difficulty: ToeicDifficulty | null;
   questionIds: string[];
   status: 'ACTIVE' | 'SUBMITTED';
   total: number;
@@ -87,6 +88,7 @@ const SESSION_SELECT = {
   userId: true,
   clientSessionId: true,
   listeningPart: true,
+  difficulty: true,
   questionIds: true,
   status: true,
   total: true,
@@ -120,11 +122,16 @@ const PRIVATE_QUESTION_SELECT = {
   correctAnswer: true,
 } as const;
 
-function eligibleWhere(now: Date, listeningPart?: ToeicPart) {
+function eligibleWhere(
+  now: Date,
+  listeningPart?: ToeicPart,
+  difficulty?: ToeicDifficulty,
+) {
   return toeicEligibleWhere(now, {
     listeningPart,
     practiceEligible: true,
     listeningPractice: true,
+    difficulty,
   });
 }
 
@@ -135,6 +142,7 @@ function asSession(value: unknown): ToeicPracticeSessionRecord {
     userId: record.userId,
     clientSessionId: record.clientSessionId,
     listeningPart: record.listeningPart,
+    difficulty: record.difficulty,
     questionIds: [...record.questionIds],
     status: record.status,
     total: record.total,
@@ -167,9 +175,13 @@ export class PrismaToeicListeningPracticeRepository implements ToeicListeningPra
     this.db = prisma as unknown as PracticeDb;
   }
 
-  async eligibleQuestions(now: Date, listeningPart?: ToeicPart) {
+  async eligibleQuestions(
+    now: Date,
+    listeningPart?: ToeicPart,
+    difficulty?: ToeicDifficulty,
+  ) {
     const rows = await this.db.toeicQuestionVersion.findMany({
-      where: eligibleWhere(now, listeningPart),
+      where: eligibleWhere(now, listeningPart, difficulty),
       orderBy: [{ questionId: 'asc' }, { version: 'desc' }],
       select: SAFE_QUESTION_SELECT,
     });
@@ -237,6 +249,7 @@ export class PrismaToeicListeningPracticeRepository implements ToeicListeningPra
         userId: input.userId,
         clientSessionId: input.clientSessionId,
         listeningPart: input.listeningPart,
+        difficulty: input.difficulty ?? null,
         questionIds: [...input.questionIds],
         total: input.total,
       },

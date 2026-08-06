@@ -30,6 +30,11 @@ border:        #D9DED4
 Use semantic CSS variables. Do not insert arbitrary hex values inside components.
 Text/background pairs must meet WCAG AA contrast.
 
+TOEIC practice uses these tokens for its setup, progress, answer, and final
+states. Filter controls are rendered only from the authenticated server catalogue;
+empty and unavailable-content states remain actionable without presenting invented
+parts, topics, or difficulty labels.
+
 ## Typography
 
 - Display: a characterful serif such as `Newsreader` for major public headings.

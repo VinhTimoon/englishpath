@@ -1,5 +1,5 @@
 import type { Prisma } from '../../generated/prisma/client';
-import { ToeicPart } from '../../generated/prisma/enums';
+import { ToeicDifficulty, ToeicPart } from '../../generated/prisma/enums';
 
 export const TOEIC_LISTENING_PARTS = [
   ToeicPart.PART_1,
@@ -19,6 +19,8 @@ type EligibilityOptions = Readonly<{
   practiceEligible?: boolean;
   listeningPractice?: boolean;
   readingPractice?: boolean;
+  difficulty?: ToeicDifficulty;
+  topic?: string;
 }>;
 
 export function toeicEligibleWhere(
@@ -39,6 +41,8 @@ export function toeicEligibleWhere(
                 },
               }
             : {}),
+    ...(options.difficulty ? { difficulty: options.difficulty } : {}),
+    ...(options.topic ? { topic: options.topic } : {}),
     reviewStatus: 'REVIEWED',
     publicationState: 'PUBLISHED',
     licenseStatus: 'APPROVED',

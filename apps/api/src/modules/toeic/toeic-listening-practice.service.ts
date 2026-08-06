@@ -83,6 +83,7 @@ function safeSession(session: ToeicPracticeSessionRecord) {
     startedAt: session.startedAt,
     submittedAt: session.submittedAt,
     listeningPart: session.listeningPart,
+    ...(session.difficulty ? { difficulty: session.difficulty } : {}),
     ...(session.status === 'SUBMITTED' ? { score: session.score } : {}),
   };
 }
@@ -102,6 +103,8 @@ export class ToeicListeningPracticeService {
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
     }
 
+    const difficulty = input.difficulty ?? null;
+
     try {
       const existing = await this.repository.findByClient(
         principal.applicationUserId,
@@ -110,7 +113,8 @@ export class ToeicListeningPracticeService {
       if (existing) {
         if (
           existing.total !== input.questionCount ||
-          existing.listeningPart !== (input.listeningPart ?? null)
+          existing.listeningPart !== (input.listeningPart ?? null) ||
+          (existing.difficulty ?? null) !== difficulty
         ) {
           throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
         }
@@ -124,6 +128,7 @@ export class ToeicListeningPracticeService {
       const candidates = await this.repository.eligibleQuestions(
         new Date(),
         input.listeningPart,
+        input.difficulty,
       );
       if (candidates.length < input.questionCount) {
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
@@ -135,6 +140,7 @@ export class ToeicListeningPracticeService {
         userId: principal.applicationUserId,
         clientSessionId: input.clientSessionId,
         listeningPart: input.listeningPart ?? null,
+        difficulty,
         questionIds: selected.map((question) => question.id),
         total: selected.length,
       });
@@ -153,7 +159,8 @@ export class ToeicListeningPracticeService {
         if (
           replay &&
           replay.total === input.questionCount &&
-          replay.listeningPart === (input.listeningPart ?? null)
+          replay.listeningPart === (input.listeningPart ?? null) &&
+          (replay.difficulty ?? null) === difficulty
         ) {
           return {
             session: safeSession(replay),

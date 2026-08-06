@@ -18,6 +18,10 @@ import {
   type ReadingSession,
   type ToeicReadingPracticeRepository,
 } from '../src/modules/toeic/toeic-reading-practice.models';
+import {
+  TOEIC_PRACTICE_CATALOGUE_REPOSITORY,
+  type ToeicPracticeCatalogueRepository,
+} from '../src/modules/toeic/toeic-practice-catalogue.models';
 import { PrismaService } from '../src/prisma/prisma.service';
 import {
   ToeicDifficulty,
@@ -114,6 +118,9 @@ describe('TOEIC reading practice API (e2e)', () => {
     createAnswer: jest.fn(),
     submitSession: jest.fn(),
   };
+  const catalogueRepository: jest.Mocked<ToeicPracticeCatalogueRepository> = {
+    catalogue: jest.fn(),
+  };
 
   beforeEach(async () => {
     resolvedPrincipal = principal;
@@ -133,6 +140,17 @@ describe('TOEIC reading practice API (e2e)', () => {
     ]);
     repository.createAnswer.mockResolvedValue(true);
     repository.submitSession.mockResolvedValue(true);
+    catalogueRepository.catalogue.mockResolvedValue({
+      listening: {
+        parts: [ToeicPart.PART_1],
+        difficulties: [ToeicDifficulty.BEGINNER],
+      },
+      reading: {
+        parts: [ToeicPart.PART_5],
+        difficulties: [ToeicDifficulty.ELEMENTARY],
+        topics: ['scheduling'],
+      },
+    });
 
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
@@ -141,6 +159,8 @@ describe('TOEIC reading practice API (e2e)', () => {
       .useValue({})
       .overrideProvider(TOEIC_READING_PRACTICE_REPOSITORY)
       .useValue(repository)
+      .overrideProvider(TOEIC_PRACTICE_CATALOGUE_REPOSITORY)
+      .useValue(catalogueRepository)
       .overrideProvider(EXTERNAL_IDENTITY_VERIFIER)
       .useValue({ verify: jest.fn().mockResolvedValue(identity) })
       .overrideProvider(APPLICATION_PRINCIPAL_RESOLVER)
@@ -158,6 +178,26 @@ describe('TOEIC reading practice API (e2e)', () => {
   afterEach(async () => {
     await app.close();
     jest.clearAllMocks();
+  });
+
+  it('returns only the server-owned practice catalogue', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/toeic/practice/catalogue')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+
+    const responseBody = response.body as { data: unknown };
+    expect(responseBody.data).toEqual({
+      listening: { parts: ['PART_1'], difficulties: ['BEGINNER'] },
+      reading: {
+        parts: ['PART_5'],
+        difficulties: ['ELEMENTARY'],
+        topics: ['scheduling'],
+      },
+    });
+    expect(JSON.stringify(response.body)).not.toMatch(
+      /correctAnswer|isCorrect|sourceUrl|rightsOwner|reviewEvidence/,
+    );
   });
 
   it('requires authentication and returns a safe Parts 5-7 session', async () => {

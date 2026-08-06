@@ -122,6 +122,25 @@ describe('ToeicListeningPracticeService', () => {
     ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.CONFLICT });
   });
 
+  it('passes the server catalogue difficulty into listening selection', async () => {
+    const repo = repository();
+    await new ToeicListeningPracticeService(repo).start(principal, {
+      clientSessionId: 'client-filter-1',
+      listeningPart: ToeicPart.PART_1,
+      difficulty: ToeicDifficulty.ELEMENTARY,
+      questionCount: 1,
+    });
+
+    expect(repo.eligibleQuestions.mock.calls[0]).toEqual([
+      expect.any(Date),
+      ToeicPart.PART_1,
+      ToeicDifficulty.ELEMENTARY,
+    ]);
+    expect(repo.createSession.mock.calls[0]?.[0]).toMatchObject({
+      difficulty: ToeicDifficulty.ELEMENTARY,
+    });
+  });
+
   it('does not start when the eligible catalogue cannot satisfy the requested count', async () => {
     const repo = repository({
       eligibleQuestions: jest.fn().mockResolvedValue([]),

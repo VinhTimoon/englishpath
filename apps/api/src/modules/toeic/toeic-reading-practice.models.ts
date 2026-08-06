@@ -60,6 +60,8 @@ export type ReadingSession = Readonly<{
   userId: string;
   clientSessionId: string;
   readingPart: ToeicPart | null;
+  difficulty?: ToeicDifficulty | null;
+  topic?: string | null;
   questionIds: readonly string[];
   status: 'ACTIVE' | 'SUBMITTED';
   total: number;
@@ -78,6 +80,8 @@ export type ReadingSessionCreate = Readonly<{
   userId: string;
   clientSessionId: string;
   readingPart: ToeicPart | null;
+  difficulty?: ToeicDifficulty | null;
+  topic?: string | null;
   questionIds: readonly string[];
   total: number;
 }>;
@@ -93,6 +97,8 @@ export interface ToeicReadingPracticeRepository {
   eligibleQuestions(
     now: Date,
     readingPart?: ToeicPart,
+    difficulty?: ToeicDifficulty,
+    topic?: string,
   ): Promise<readonly ReadingQuestion[]>;
   safeQuestionsByIds(
     ids: readonly string[],

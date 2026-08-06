@@ -435,6 +435,7 @@ model ToeicPracticeSession {
   userId          String
   clientSessionId String
   listeningPart   ToeicPart?
+  difficulty      ToeicDifficulty?
   questionIds     String[]
   status          ToeicPracticeStatus      @default(ACTIVE)
   total           Int
@@ -465,6 +466,8 @@ model ToeicReadingPracticeSession {
   userId          String
   clientSessionId String
   readingPart     ToeicPart?
+  difficulty      ToeicDifficulty?
+  topic           String?
   questionIds     String[]
   status          ToeicPracticeStatus @default(ACTIVE)
   total           Int

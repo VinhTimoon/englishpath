@@ -46,6 +46,7 @@ import {
   StartToeicListeningPracticeDto,
 } from './dto/toeic-listening-practice.dto';
 import { ToeicReadingPracticeService } from './toeic-reading-practice.service';
+import { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.service';
 import {
   AnswerToeicReadingPracticeDto,
   StartToeicReadingPracticeDto,
@@ -73,7 +74,21 @@ export class ToeicController {
     private readonly adminService: ToeicAdminService,
     private readonly listening: ToeicListeningPracticeService,
     private readonly reading: ToeicReadingPracticeService,
+    private readonly catalogue: ToeicPracticeCatalogueService,
   ) {}
+
+  @Get('practice/catalogue')
+  @ApiOperation({
+    summary: 'Read the authenticated learner TOEIC practice catalogue',
+  })
+  @ApiOkResponse({ description: 'Governed practice filter options.' })
+  catalogueOptions(@Headers('x-correlation-id') correlation?: string) {
+    const correlationId = authCorrelationId(correlation);
+    return this.catalogue.getCatalogue().then((data) => ({
+      data,
+      meta: { correlationId, idempotencyStatus: 'not_applicable' },
+    }));
+  }
 
   @Post('practice/reading/sessions')
   @HttpCode(HttpStatus.OK)

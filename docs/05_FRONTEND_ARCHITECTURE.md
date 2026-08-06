@@ -111,6 +111,12 @@ the `/vocabulary` route remains a metadata and server-content boundary.
 - Optimize images with Next.js and avoid layout shift.
 - Lazy-load expensive client-only experiences; do not defer primary learning content.
 
+The TOEIC practice route loads a server-owned catalogue before rendering filters,
+keeps the active question index tied to the acknowledged server count, and sends
+start/answer/submit requests through `shared/api`. It exposes explicit loading,
+empty, error, active, pending, and final states without browser-side filtering,
+reordering, or skipping of the question snapshot.
+
 ## Testing
 
 Follow `docs/10_TEST_STRATEGY.md`. Test domain behavior at feature/entity boundaries,

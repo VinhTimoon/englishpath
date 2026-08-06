@@ -14,6 +14,9 @@ import { ToeicListeningPracticeService } from './toeic-listening-practice.servic
 import { PrismaToeicReadingPracticeRepository } from './toeic-reading-practice.repository';
 import { TOEIC_READING_PRACTICE_REPOSITORY } from './toeic-reading-practice.models';
 import { ToeicReadingPracticeService } from './toeic-reading-practice.service';
+import { PrismaToeicPracticeCatalogueRepository } from './toeic-practice-catalogue.repository';
+import { TOEIC_PRACTICE_CATALOGUE_REPOSITORY } from './toeic-practice-catalogue.models';
+import { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.service';
 
 @Module({
   imports: [AuthModule, AuditModule],
@@ -22,6 +25,12 @@ import { ToeicReadingPracticeService } from './toeic-reading-practice.service';
     ToeicQuestionService,
     ToeicListeningPracticeService,
     ToeicReadingPracticeService,
+    ToeicPracticeCatalogueService,
+    PrismaToeicPracticeCatalogueRepository,
+    {
+      provide: TOEIC_PRACTICE_CATALOGUE_REPOSITORY,
+      useExisting: PrismaToeicPracticeCatalogueRepository,
+    },
     PrismaToeicReadingPracticeRepository,
     {
       provide: TOEIC_READING_PRACTICE_REPOSITORY,

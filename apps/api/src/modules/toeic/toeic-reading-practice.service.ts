@@ -82,6 +82,8 @@ function safeSession(session: ReadingSession) {
     startedAt: session.startedAt,
     submittedAt: session.submittedAt,
     readingPart: session.readingPart,
+    ...(session.difficulty ? { difficulty: session.difficulty } : {}),
+    ...(session.topic ? { topic: session.topic } : {}),
     ...(session.status === 'SUBMITTED' ? { score: session.score } : {}),
   };
 }
@@ -101,6 +103,9 @@ export class ToeicReadingPracticeService {
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
     }
 
+    const difficulty = input.difficulty ?? null;
+    const topic = input.topic || null;
+
     try {
       const existing = await this.repository.findByClient(
         principal.applicationUserId,
@@ -109,7 +114,9 @@ export class ToeicReadingPracticeService {
       if (existing) {
         if (
           existing.total !== input.questionCount ||
-          existing.readingPart !== (input.readingPart ?? null)
+          existing.readingPart !== (input.readingPart ?? null) ||
+          (existing.difficulty ?? null) !== difficulty ||
+          (existing.topic ?? null) !== topic
         ) {
           throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
         }
@@ -123,6 +130,8 @@ export class ToeicReadingPracticeService {
       const candidates = await this.repository.eligibleQuestions(
         new Date(),
         input.readingPart,
+        input.difficulty,
+        topic ?? undefined,
       );
       if (candidates.length < input.questionCount) {
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
@@ -133,6 +142,8 @@ export class ToeicReadingPracticeService {
         userId: principal.applicationUserId,
         clientSessionId: input.clientSessionId,
         readingPart: input.readingPart ?? null,
+        difficulty,
+        topic,
         questionIds: selected.map((question) => question.id),
         total: selected.length,
       });
@@ -152,7 +163,9 @@ export class ToeicReadingPracticeService {
           if (
             replay &&
             replay.total === input.questionCount &&
-            replay.readingPart === (input.readingPart ?? null)
+            replay.readingPart === (input.readingPart ?? null) &&
+            (replay.difficulty ?? null) === difficulty &&
+            (replay.topic ?? null) === topic
           ) {
             return {
               session: safeSession(replay),

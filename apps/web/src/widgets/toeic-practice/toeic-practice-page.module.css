@@ -1,0 +1,54 @@
+.page {
+  min-height: 100vh;
+  padding: 1.25rem 1rem 4rem;
+  background: var(--canvas);
+}
+.shell { width: min(100%, 58rem); margin: 0 auto; }
+.header { padding: 1rem 0 2rem; }
+.back { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--brand-strong); font-size: .875rem; font-weight: 800; text-decoration: none; }
+.back:hover { text-decoration: underline; text-underline-offset: .25rem; }
+.kicker, .eyebrow { margin: 0; color: var(--brand); font-size: .72rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.header h1, .panel h2 { margin: .5rem 0 0; font-family: var(--font-display); font-weight: 700; letter-spacing: -.025em; }
+.header h1 { max-width: 38rem; font-size: clamp(2.3rem, 8vw, 4.5rem); line-height: .98; }
+.lede { max-width: 38rem; margin: 1rem 0 0; color: var(--ink-muted); font-size: 1rem; line-height: 1.7; }
+.panel, .options { border: 1px solid var(--border); background: var(--surface); box-shadow: 0 1rem 3rem var(--ink-shadow-subtle); }
+.panel { padding: 1.25rem; }
+.options { display: grid; gap: .75rem; margin-top: 1rem; padding: 1rem; }
+.sectionHeading, .progressRow, .actions { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.sectionHeading h2, .panel h2 { font-size: clamp(1.75rem, 5vw, 2.75rem); line-height: 1.05; }
+.countBadge { padding: .45rem .7rem; border: 1px solid var(--border); border-radius: 999px; color: var(--brand-strong); font-size: .75rem; font-weight: 900; white-space: nowrap; }
+.modeSwitch { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; margin-top: 1.5rem; padding: .25rem; border: 1px solid var(--border); background: var(--surface-muted); }
+.modeSwitch button, .primary, .secondary, .option, .selected { min-height: 2.75rem; cursor: pointer; border: 1px solid transparent; font: inherit; font-weight: 800; }
+.modeSwitch button { color: var(--ink-muted); background: transparent; }
+.modeSwitch .active { border-color: var(--brand); color: var(--on-brand); background: var(--brand); }
+.switchButton:hover, .secondary:hover, .option:hover, .selected:hover { border-color: var(--brand); }
+.filters { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.filters label { display: grid; gap: .45rem; color: var(--ink-muted); font-size: .8rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.filters select { min-height: 2.9rem; width: 100%; padding: .6rem .75rem; border: 1px solid var(--border); border-radius: .25rem; color: var(--ink); background: var(--surface); font: inherit; font-size: .95rem; text-transform: none; }
+.summary { margin: 1.25rem 0; color: var(--ink-muted); font-size: .9rem; }
+.summary strong { color: var(--ink); }
+.primary, .secondary { display: inline-flex; align-items: center; justify-content: center; padding: .7rem 1rem; text-decoration: none; }
+.primary { border-color: var(--brand); color: var(--on-brand); background: var(--brand); }
+.primary:hover { background: var(--brand-strong); }
+.secondary { border-color: var(--border); color: var(--ink); background: var(--surface); }
+.primary:disabled, .secondary:disabled, .option:disabled, .selected:disabled { cursor: wait; opacity: .6; }
+.state, .stateError, .emptyState { display: grid; gap: .5rem; margin-top: 1.5rem; padding: 1rem; border: 1px solid var(--border); color: var(--ink-muted); background: var(--surface-muted); }
+.stateError { color: var(--ink); }
+.stateError .secondary { justify-self: start; margin-top: .5rem; }
+.emptyState h3 { margin: 0; color: var(--ink); font-size: 1rem; }
+.emptyState p, .stateError span { margin: 0; }
+.spinner { display: inline-block; width: 1rem; height: 1rem; border: 2px solid var(--border); border-top-color: var(--brand); border-radius: 50%; animation: spin .8s linear infinite; }
+.error { margin: 1rem 0; color: var(--amber-ink); font-size: .9rem; font-weight: 700; }
+.progressRow { color: var(--ink-muted); font-size: .8rem; font-weight: 900; }
+.progressTrack { height: .35rem; margin: .75rem 0 1.5rem; overflow: hidden; background: var(--surface-muted); }
+.progressTrack span { display: block; height: 100%; background: var(--brand); transition: width 180ms ease-out; }
+.panel audio { width: 100%; margin-top: 1rem; }
+.option, .selected { display: grid; grid-template-columns: 2.75rem 1fr; align-items: center; gap: .75rem; padding: .7rem; border-color: var(--border); color: var(--ink); background: var(--surface); text-align: left; }
+.selected { border-color: var(--brand); background: var(--on-brand-soft); }
+.optionKey { display: grid; min-height: 2.25rem; place-items: center; border: 1px solid var(--border); color: var(--brand-strong); font-weight: 900; }
+.score { margin: 1rem 0; color: var(--brand-strong); font-size: clamp(3rem, 14vw, 6rem); font-weight: 900; letter-spacing: -.08em; line-height: .9; }
+.score span { color: var(--ink-muted); font-size: .38em; letter-spacing: -.02em; }
+.actions { justify-content: flex-start; flex-wrap: wrap; margin-top: 1.5rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (min-width: 40rem) { .page { padding: 2rem 1.5rem 5rem; } .panel { padding: 2rem; } .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } .filters label:last-child:nth-child(3) { grid-column: 1 / -1; } .options { padding: 1.5rem; } }
+@media (prefers-reduced-motion: reduce) { .spinner, .progressTrack span { animation: none; transition: none; } }

@@ -1,7 +1,7 @@
 ---
 id: EP2-ST006
 title: TOEIC Part, topic, and difficulty practice UI
-status: ready
+status: review
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -181,8 +181,8 @@ publish, AI, real media providers, Phase 3 behavior, or a second taxonomy.
 - `pnpm build`
 - `pnpm format:check`
 - `pnpm planning:traceability`
-- `node scripts/story-doctor.mjs stories/ready/EP2-ST006-toeic-part-topic-difficulty-practice-ui.md`
-- `pnpm story:verify stories/ready/EP2-ST006-toeic-part-topic-difficulty-practice-ui.md`
+- `node scripts/story-doctor.mjs stories/in-progress/EP2-ST006-toeic-part-topic-difficulty-practice-ui.md`
+- `pnpm story:verify stories/in-progress/EP2-ST006-toeic-part-topic-difficulty-practice-ui.md`
 - `pnpm e2e`
 - `git diff --check`
 
@@ -216,3 +216,22 @@ Before moving to review, record the planning/build/review harness outcomes in
 this story, the exact checks and test counts that actually ran, the browser
 viewport/evidence used, and any owner-deferred risk. A timeout or missing command
 must be recorded as not verified, never treated as pass.
+
+## Completion evidence
+
+- Planning harness: completed with the configured plan fallback (`gpt-5.6-luna`)
+  after the primary planning model was capacity-unavailable; plan artifact was
+  produced before implementation.
+- Build harness: returned blocked after a partial UI attempt; the implementation
+  was completed and verified manually within the story's allowed paths. No WIP
+  commit was merged.
+- Prisma: `pnpm prisma:validate` passed.
+- API: 49 unit suites / 362 tests passed; API E2E 11 suites / 71 tests passed.
+- Project gate: `pnpm check` passed (lint, typecheck, test, build).
+- Formatting and diff: `pnpm format:check` and `git diff --check` passed.
+- Browser: targeted TOEIC journey 6/6 passed and full `pnpm e2e` 52/52 passed
+  on web port 4173 with the API boundary mocked at port 3005; mobile coverage
+  includes the 360px journey.
+- Review harness: final EP2-ST006 review passed with no P0/P1 findings. The
+  earlier malformed review context evaluated EP2-ST005 and was not treated as
+  approval evidence. No owner-deferred risk remains.

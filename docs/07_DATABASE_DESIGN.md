@@ -261,6 +261,12 @@ transaction that locks the active session row before creating the answer, while
 submission uses a separate active-state compare-and-set. Migration
 `20260806220000_toeic_listening_practice` is additive.
 
+Migration `20260806233000_toeic_practice_filters` adds nullable filter snapshots
+to both practice session tables. Listening records its selected difficulty;
+reading records difficulty and the server-catalogued topic. These snapshots are
+used for idempotent replay/conflict detection and do not expose answer keys or
+content governance fields.
+
 `ToeicQuestion` owns the stable canonical identity. `ToeicQuestionVersion` is an
 immutable content record keyed by `(questionId, version)` and a separate
 `importIdentity`; lineage is restrictive, while deleting a canonical question

@@ -404,3 +404,13 @@ unknown or non-owned items return 404 without revealing ownership.
   sessions, and review-error totals with zero defaults.
 - `GET /api/v1/quiz/session/summary/errors` returns at most 20 newest private review
   entries for the authenticated learner.
+
+## TOEIC Practice Catalogue
+
+`GET /api/v1/toeic/practice/catalogue` returns the authenticated learner's
+available listening and reading parts, difficulties, and reading topics. Values
+come from the same reviewed, published, licensed, free-practice eligibility
+predicate as session selection; the web client never invents taxonomy values.
+Listening accepts the server-catalogued difficulty. Reading accepts the
+server-catalogued difficulty and topic. The selected filter shape is persisted in
+the corresponding session table and is part of replay/conflict comparison.

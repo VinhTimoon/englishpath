@@ -280,3 +280,11 @@ insertion, complete submission, active/final results, sanitized repository error
 and recursive negative assertions for answer keys, correctness, source, license,
 review, and publication metadata. Tests use mocked Prisma and identity boundaries
 without credentials, network access, or a shared database.
+
+## TOEIC practice filter and UI evidence
+
+EP2-ST006 covers governed catalogue derivation, filter propagation, preserved
+reading topic identity, and full-shape replay conflicts in repository/service/API tests.
+Browser coverage checks server-derived controls at 360px, no-skip answer
+acknowledgement, ordered progress, final submission, safe response assertions, and
+catalogue retry handling.
