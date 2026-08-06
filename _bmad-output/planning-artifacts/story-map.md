@@ -164,7 +164,7 @@ environment without any promotion to `main`.
 | Story       | Increment                                                                   | Depends on                 |
 | ----------- | --------------------------------------------------------------------------- | -------------------------- |
 | `EP2-ST001` | TOEIC L&R question/content/license schema (`done`)                          | `EP1-ST039`                |
-| `EP2-ST002` | Question bank repository/API and answer protection (`ready-for-dev`)        | `EP2-ST001`                |
+| `EP2-ST002` | Question bank repository/API and answer protection (`review`)               | `EP2-ST001`                |
 | `EP2-ST003` | Admin import/review/publish workflow                                        | `EP2-ST002`                |
 | `EP2-ST004` | Parts 1-4 listening practice session API                                    | `EP2-ST002`                |
 | `EP2-ST005` | Parts 5-7 reading practice session API                                      | `EP2-ST002`                |

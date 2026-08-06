@@ -1,66 +1,60 @@
 import { Injectable } from '@nestjs/common';
+import type { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
-import type {
-  ToeicQuestionRepository,
-  SafeToeicQuestion,
+import {
+  TOEIC_QUESTION_SAFE_SELECT,
+  type SafeToeicQuestion,
+  type ToeicQuestionListInput,
+  type ToeicQuestionRepository,
 } from './toeic-question.models';
 
 @Injectable()
 export class PrismaToeicQuestionRepository implements ToeicQuestionRepository {
   constructor(private readonly prisma: PrismaService) {}
-  private where(input: any, now: Date) {
+
+  private eligibleWhere(now: Date): Prisma.ToeicQuestionVersionWhereInput {
     return {
-      AND: [
-        {
-          reviewStatus: 'REVIEWED' as const,
-          publicationState: 'PUBLISHED' as const,
-          licenseStatus: 'APPROVED' as const,
-          publishedAt: { lte: now },
-        },
-        { OR: [{ validUntil: null }, { validUntil: { gt: now } }] },
-      ],
-      ...(input.part && { part: input.part }),
-      ...(input.questionType && { questionType: input.questionType }),
-      ...(input.difficulty && { difficulty: input.difficulty }),
-      ...(input.topic && { topic: input.topic }),
-      ...(input.stimulusGroup && { stimulusGroup: input.stimulusGroup }),
+      reviewStatus: 'REVIEWED',
+      publicationState: 'PUBLISHED',
+      licenseStatus: 'APPROVED',
+      publishedAt: { lte: now },
+      OR: [{ validUntil: null }, { validUntil: { gt: now } }],
     };
   }
-  private select = {
-    id: true,
-    questionId: true,
-    version: true,
-    part: true,
-    questionType: true,
-    difficulty: true,
-    topic: true,
-    stimulusGroup: true,
-    prompt: true,
-    options: true,
-    mediaReference: true,
-    explanation: true,
-  } as const;
-  async list(input: any) {
+
+  async list(input: ToeicQuestionListInput) {
     const rows = await this.prisma.toeicQuestionVersion.findMany({
-      where: this.where(input, input.now),
+      where: this.eligibleWhere(input.now),
       orderBy: [{ questionId: 'asc' }, { version: 'desc' }],
-      select: this.select,
+      select: TOEIC_QUESTION_SAFE_SELECT,
     });
+
     const current = new Map<string, SafeToeicQuestion>();
-    for (const row of rows)
-      if (!current.has(row.questionId))
-        current.set(row.questionId, row as SafeToeicQuestion);
-    const all = [...current.values()];
+    for (const row of rows) {
+      if (!current.has(row.questionId)) current.set(row.questionId, row);
+    }
+
+    const filtered = [...current.values()].filter((row) => {
+      return (
+        (!input.part || row.part === input.part) &&
+        (!input.questionType || row.questionType === input.questionType) &&
+        (!input.difficulty || row.difficulty === input.difficulty) &&
+        (!input.topic || row.topic === input.topic) &&
+        (!input.stimulusGroup || row.stimulusGroup === input.stimulusGroup)
+      );
+    });
+
     return {
-      items: all.slice(input.skip, input.skip + input.take),
-      totalItems: all.length,
+      items: filtered.slice(input.skip, input.skip + input.take),
+      totalItems: filtered.length,
     };
   }
-  async find(id: string, now: Date) {
-    return (await this.prisma.toeicQuestionVersion.findFirst({
-      where: { id, ...this.where({}, now) },
+
+  find(questionId: string, now: Date) {
+    return this.prisma.toeicQuestionVersion.findFirst({
+      where: { ...this.eligibleWhere(now), questionId },
       orderBy: { version: 'desc' },
-      select: this.select,
-    })) as SafeToeicQuestion | null;
+      select: TOEIC_QUESTION_SAFE_SELECT,
+    });
   }
 }

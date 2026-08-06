@@ -4,6 +4,7 @@ import { PrismaToeicQuestionRepository } from './toeic-question.repository';
 import { ToeicController } from './toeic.controller';
 import { TOEIC_QUESTION_REPOSITORY } from './toeic-question.models';
 import { ToeicQuestionService } from './toeic-question.service';
+
 @Module({
   imports: [AuthModule],
   controllers: [ToeicController],

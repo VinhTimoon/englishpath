@@ -1,52 +1,50 @@
-import {
-  Inject,
-  Injectable,
-  NotFoundException,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   TOEIC_QUESTION_REPOSITORY,
   type ToeicQuestionRepository,
 } from './toeic-question.models';
+import { TOEIC_ERROR_CODES, ToeicQuestionError } from './toeic-question.error';
 import type { ToeicQuestionQueryDto } from './dto/toeic-question-query.dto';
+
 @Injectable()
 export class ToeicQuestionService {
   constructor(
     @Inject(TOEIC_QUESTION_REPOSITORY)
-    private readonly repo: ToeicQuestionRepository,
+    private readonly repository: ToeicQuestionRepository,
   ) {}
+
   async list(query: ToeicQuestionQueryDto) {
-    const now = new Date();
     try {
-      const r = await this.repo.list({
+      const result = await this.repository.list({
         ...query,
         skip: (query.page - 1) * query.size,
         take: query.size,
-        now,
+        now: new Date(),
       });
       return {
-        data: r.items,
+        data: result.items,
         page: {
           number: query.page,
           size: query.size,
-          totalItems: r.totalItems,
-          totalPages: Math.ceil(r.totalItems / query.size),
+          totalItems: result.totalItems,
+          totalPages: Math.ceil(result.totalItems / query.size),
         },
       };
     } catch {
-      throw new InternalServerErrorException(
-        'TOEIC questions are unavailable.',
-      );
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.REPOSITORY_FAILURE);
     }
   }
-  async get(id: string) {
+
+  async get(questionId: string) {
     try {
-      const item = await this.repo.find(id, new Date());
-      if (!item) throw new NotFoundException('TOEIC question was not found.');
+      const item = await this.repository.find(questionId, new Date());
+      if (!item) {
+        throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
+      }
       return { data: item };
-    } catch (e) {
-      if (e instanceof NotFoundException) throw e;
-      throw new InternalServerErrorException('TOEIC question is unavailable.');
+    } catch (error) {
+      if (error instanceof ToeicQuestionError) throw error;
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.REPOSITORY_FAILURE);
     }
   }
 }

@@ -1,7 +1,7 @@
 ---
 id: EP2-ST002
 title: TOEIC Question Bank API and Answer Protection
-status: blocked
+status: review
 type: backend
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -106,8 +106,8 @@ content; those belong to later stories.
 - `pnpm format:check`
 - `pnpm planning:traceability`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/ready/EP2-ST002-question-bank-api-and-answer-protection.md`
-- `pnpm story:verify stories/ready/EP2-ST002-question-bank-api-and-answer-protection.md`
+- `node scripts/story-doctor.mjs stories/in-progress/EP2-ST002-question-bank-api-and-answer-protection.md`
+- `pnpm story:verify stories/in-progress/EP2-ST002-question-bank-api-and-answer-protection.md`
 
 ## Risk and Review
 
@@ -138,3 +138,27 @@ create an AI request instead of weakening answer protection.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## Recovery and Review Evidence
+
+The original loop block is preserved above as history. The blocked attempt is not
+being resumed as a successful implementation: its unsafe `any` contracts, missing
+tests, and incomplete error handling were replaced on this branch while keeping the
+same story ID and scope.
+
+Focused and full verification completed on 2026-08-06:
+
+- TOEIC unit suites: 3 suites, 7 tests passed.
+- API E2E: 8 suites, 51 tests passed.
+- Root unit tests: 42 suites, 309 tests passed.
+- Browser regression: 46 tests passed on the configured web port 4173.
+- `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm format:check`,
+  `pnpm planning:traceability`, `git diff --check`, story doctor, and story
+  verification passed.
+
+The configured review harness returned an invalid stale review for EP1-ST063 rather
+than this EP2-ST002 story, so it is not counted as approval. A manual adversarial
+review of the cumulative diff from `dev` verified the required high-risk boundaries:
+the routes are bearer-guarded, repository selection is explicitly learner-safe,
+eligibility is server-owned and fail-closed, current versions are deterministic, and
+errors contain no answer or governance details. No forbidden path changed.
