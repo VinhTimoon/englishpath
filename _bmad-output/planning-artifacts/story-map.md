@@ -173,7 +173,7 @@ environment without any promotion to `main`.
 | `EP2-ST008` | Timed mini/half test UI and interruption handling (`done`)                                | `EP2-ST007`                |
 | `EP2-ST009` | Scoring, Part/skill weakness, and time analysis (`done`)                                  | `EP2-ST007`, `EP2-ST008`   |
 | `EP2-ST010` | TOEIC Error Notebook and remediation integration (`done`; owner-approved Option 1) | `EP2-ST009`, `EP1-ST024`   |
-| `EP2-ST011` | TOEIC vocabulary/grammar remediation packs                                                | `EP2-ST010`                |
+| `EP2-ST011` | TOEIC vocabulary/grammar remediation packs (`ready`)                                      | `EP2-ST010`                |
 | `EP2-ST012` | TOEIC L&R security, browser, accessibility, and content-license exit review               | `EP2-ST003` to `EP2-ST011` |
 
 Exit: approved Parts 1-7 and timed mini/half tests finalize safely, protect answers,
