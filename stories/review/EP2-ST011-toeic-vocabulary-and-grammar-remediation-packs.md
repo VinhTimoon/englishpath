@@ -1,7 +1,7 @@
 ---
 id: EP2-ST011
 title: TOEIC vocabulary and grammar remediation packs
-status: in-progress
+status: review
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -189,12 +189,12 @@ is evidence of not verified, never a pass.
 - The first build-loop attempt returned exit code 42 and moved this same story
   to `blocked`; it was reactivated in place and was not replaced or resumed as
   a different story.
-- Post-fix backend unit/API E2E coverage passed: 20 suites, 134 unit tests,
+- Post-fix backend unit/API E2E coverage passed: 20 suites, 135 unit tests,
   and 19 API E2E tests. The added cases cover HALF listening weaknesses,
   deterministic ordering, duplicate removal, the six-pack cap, grammar
   allowlist rejection, malformed catalogue isolation, and repeated reads.
 - Frontend contract/unit checks passed: 6 deterministic checks. Full project
-  checks passed: 53 suites, 404 tests; lint; typecheck; build; Prisma
+  checks passed: 53 suites, 405 tests; lint; typecheck; build; Prisma
   validation; format check; planning traceability; story doctor; story
   verification; and `git diff --check`.
 - Browser verification passed: 71 Playwright tests, including the remediation
@@ -219,3 +219,4 @@ is evidence of not verified, never a pass.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+

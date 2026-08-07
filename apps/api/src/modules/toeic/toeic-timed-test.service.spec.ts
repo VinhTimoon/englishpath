@@ -789,6 +789,56 @@ describe('ToeicTimedTestService', () => {
     ]);
   });
 
+  it('maps HALF reading weaknesses to governed vocabulary, grammar, and practice packs', async () => {
+    const half = halfCatalogue();
+    const wrong = half.find((item) => item.part === ToeicPart.PART_5)!;
+    const final = session({
+      mode: 'HALF',
+      total: 50,
+      questionIds: half.map((item) => item.id),
+      status: 'SUBMITTED',
+      score: 49,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: [
+        {
+          questionId: wrong.id,
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(final),
+      finalizedQuestionsByIds: jest.fn().mockResolvedValue(half),
+    });
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      jest.fn().mockResolvedValue(1),
+      {
+        listTopics: jest.fn().mockResolvedValue({ data: [{ id: 'topic' }] }),
+      } as unknown as VocabularyService,
+      {
+        getCatalogue: jest.fn().mockResolvedValue({
+          listening: { parts: [], difficulties: [] },
+          reading: {
+            parts: [ToeicPart.PART_5],
+            difficulties: [],
+            topics: [],
+          },
+        }),
+      } as unknown as ToeicPracticeCatalogueService,
+    ).analysis(principal, final.id);
+
+    expect(result.analysis.score.total).toBe(50);
+    expect(result.remediation.packs.map((pack) => pack.kind)).toEqual([
+      'VOCABULARY',
+      'GRAMMAR',
+      'PRACTICE',
+    ]);
+  });
+
   it('fails isolation-safe and stable when remediation content is unavailable', async () => {
     const final = session({
       status: 'SUBMITTED',

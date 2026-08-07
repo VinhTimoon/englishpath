@@ -131,7 +131,8 @@
   border-color: var(--brand);
 }
 button:focus-visible,
-.back:focus-visible {
+.back:focus-visible,
+.secondary:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
