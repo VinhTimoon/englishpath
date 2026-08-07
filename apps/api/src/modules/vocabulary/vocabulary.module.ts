@@ -34,5 +34,6 @@ import { AuthModule } from '../auth/auth.module';
       useExisting: PrismaVocabularyItemRepository,
     },
   ],
+  exports: [VocabularyService],
 })
 export class VocabularyModule {}

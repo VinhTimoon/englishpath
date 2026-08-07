@@ -568,6 +568,13 @@ export function ToeicTimedTestPage() {
                     nguyên; bạn có thể mở lại sau.
                   </p>
                 )}
+                {analysis.remediation.packs.length > 0 ? (
+                  <ul className={styles.packList} aria-label="Gói ôn tập đề xuất">
+                    {analysis.remediation.packs.map((pack) => (
+                      <li key={`${pack.kind}-${pack.href}`}><Link href={pack.href} className={styles.secondary}><strong>{pack.title}</strong><span>{pack.description}</span></Link></li>
+                    ))}
+                  </ul>
+                ) : <p>Chưa có gói nội dung phù hợp cho điểm yếu này.</p>}
               </section>
             ) : null}
             <button

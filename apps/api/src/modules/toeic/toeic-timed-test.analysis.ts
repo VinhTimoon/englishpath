@@ -23,6 +23,14 @@ export type TimedTestAnalysis = Readonly<{
   }>;
 }>;
 
+export type RemediationPack = Readonly<{
+  kind: 'VOCABULARY' | 'GRAMMAR' | 'PRACTICE';
+  title: string;
+  description: string;
+  href: string;
+  relatedLabel?: string;
+}>;
+
 export type TimedAnalysisAggregate = Readonly<{
   skill?: 'LISTENING' | 'READING';
   total: number;

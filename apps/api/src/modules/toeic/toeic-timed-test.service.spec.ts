@@ -635,6 +635,7 @@ describe('ToeicTimedTestService', () => {
       status: 'ready',
       count: 1,
       href: '/error-notebook?source=TOEIC_TIMED_TEST',
+      packs: [],
     });
     expect(JSON.stringify(result)).not.toMatch(
       /correctAnswer|isCorrect|selectedOption|questionId|userId/,
@@ -662,6 +663,7 @@ describe('ToeicTimedTestService', () => {
       status: 'unavailable',
       count: 0,
       href: null,
+      packs: [],
     });
   });
 

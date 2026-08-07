@@ -59,6 +59,7 @@ export type TimedAnalysis = {
     status: "ready" | "empty" | "unavailable";
     count: number;
     href: "/error-notebook?source=TOEIC_TIMED_TEST" | null;
+    packs: Array<{ kind: "VOCABULARY" | "GRAMMAR" | "PRACTICE"; title: string; description: string; href: string; relatedLabel?: string }>;
   };
 };
 
@@ -304,11 +305,16 @@ function parseAnalysisScore(value: unknown): TimedAnalysis["score"] | null {
 function parseRemediation(value: unknown): TimedAnalysis["remediation"] {
   const remediation = record(value);
   if (!remediation) {
-    return { status: "unavailable", count: 0, href: null };
+    return { status: "unavailable", count: 0, href: null, packs: [] };
   }
   const status = remediation.status;
   const count = remediation.count;
   const href = remediation.href;
+  const packs = Array.isArray(remediation.packs) ? remediation.packs.map((value) => {
+    const pack = record(value);
+    if (!pack || !["VOCABULARY", "GRAMMAR", "PRACTICE"].includes(String(pack.kind)) || !nonEmptyString(pack.title) || !nonEmptyString(pack.description) || typeof pack.href !== "string" || !pack.href.startsWith("/")) return null;
+    return { kind: pack.kind as "VOCABULARY" | "GRAMMAR" | "PRACTICE", title: pack.title.trim(), description: pack.description.trim(), href: pack.href, ...(nonEmptyString(pack.relatedLabel) ? { relatedLabel: pack.relatedLabel.trim() } : {}) };
+  }) : [];
   if (
     (status !== "ready" && status !== "empty" && status !== "unavailable") ||
     !integer(count) ||
@@ -323,6 +329,7 @@ function parseRemediation(value: unknown): TimedAnalysis["remediation"] {
     status,
     count,
     href,
+    packs: packs as TimedAnalysis["remediation"]["packs"],
   };
 }
 

@@ -216,6 +216,7 @@ const checks = [
         status: "ready",
         count: 2,
         href: "/error-notebook?source=TOEIC_TIMED_TEST",
+        packs: [],
       });
       assert.throws(
         () =>

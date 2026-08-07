@@ -1,7 +1,7 @@
 ---
 id: EP2-ST011
 title: TOEIC vocabulary and grammar remediation packs
-status: ready
+status: blocked
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -182,3 +182,19 @@ Record the actual planning/build/review outcomes, exact test counts, pack
 eligibility and disclosure evidence, browser/mobile/accessibility evidence, and
 any unverified external deployment or provider work. A timeout or missing check
 is evidence of not verified, never a pass.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
