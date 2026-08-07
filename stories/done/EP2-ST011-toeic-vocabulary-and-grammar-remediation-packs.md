@@ -1,7 +1,7 @@
 ---
 id: EP2-ST011
 title: TOEIC vocabulary and grammar remediation packs
-status: review
+status: done
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -219,4 +219,5 @@ is evidence of not verified, never a pass.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
 
