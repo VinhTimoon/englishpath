@@ -1,7 +1,7 @@
 ---
 id: EP2-ST010
 title: TOEIC Error Notebook and remediation integration
-status: review
+status: done
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -113,4 +113,5 @@ still forbidden.
 - `pnpm story:verify stories/in-progress/EP2-ST010-toeic-error-notebook-and-remediation.md`
 - `pnpm e2e`
 - `git diff --check`
+
 
