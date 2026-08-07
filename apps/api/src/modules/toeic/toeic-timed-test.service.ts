@@ -25,8 +25,31 @@ import { buildTimedTestAnalysis } from './toeic-timed-test.analysis';
 import type { RemediationPack } from './toeic-timed-test.analysis';
 import { VocabularyService } from '../vocabulary/vocabulary.service';
 import { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.service';
+import type { ToeicPart } from '../../generated/prisma/enums';
 
 type Option = Readonly<{ id: string; text: string }>;
+
+const MAX_REMEDIATION_PACKS = 6;
+const GRAMMAR_GUIDES: Readonly<
+  Partial<Record<'PART_5' | 'PART_6', { slug: string; title: string }>>
+> = {
+  PART_5: {
+    slug: 'present-perfect-have-has',
+    title: 'Ngữ pháp TOEIC Part 5',
+  },
+  PART_6: {
+    slug: 'cach-dung-do-va-make',
+    title: 'Ngữ pháp trong ngữ cảnh Part 6',
+  },
+};
+
+function partNumber(part: ToeicPart): number {
+  return Number(part.slice('PART_'.length));
+}
+
+function partSkill(part: ToeicPart): 'listening' | 'reading' {
+  return partNumber(part) <= 4 ? 'listening' : 'reading';
+}
 
 function isUniqueConstraint(error: unknown) {
   return (
@@ -356,7 +379,14 @@ export class ToeicTimedTestService {
         questions,
       );
       const analysis = buildTimedTestAnalysis(session, questions);
-      const packs = await this.buildPacks(analysis);
+      let packs: readonly RemediationPack[] = [];
+      try {
+        packs = await this.buildPacks(analysis);
+      } catch {
+        // Remediation is an additive projection; content failures must never
+        // hide a valid finalized score or analysis.
+        packs = [];
+      }
       return {
         analysis,
         remediation: { ...remediation, packs },
@@ -370,68 +400,112 @@ export class ToeicTimedTestService {
   private async buildPacks(
     analysis: ReturnType<typeof buildTimedTestAnalysis>,
   ): Promise<readonly RemediationPack[]> {
-    try {
-      const packs: RemediationPack[] = [];
-      const weakParts = analysis.weaknesses
+    const weakPartNames = new Set(
+      analysis.weaknesses
         .filter(
-          (item) => item.scope === 'part' && /^Part [1-7]$/.test(item.name),
+          (item) => item.scope === 'part' && /^Part [1-7]$/u.test(item.name),
         )
-        .map((item) => Number(item.name.slice(5)));
-      for (const part of weakParts) {
-        if (this.vocabulary) {
+        .map((item) => `PART_${item.name.slice('Part '.length)}` as ToeicPart),
+    );
+    const weakSkills = new Set(
+      analysis.weaknesses
+        .filter((item) => item.scope === 'skill')
+        .map((item) => item.name),
+    );
+    const candidateParts = analysis.parts
+      .filter(
+        (part) =>
+          part.answered > 0 &&
+          (weakPartNames.has(part.part) ||
+            weakSkills.has(partSkill(part.part).toUpperCase())),
+      )
+      .sort(
+        (left, right) =>
+          left.accuracy - right.accuracy ||
+          partNumber(left.part) - partNumber(right.part),
+      )
+      .map((part) => part.part);
+
+    if (candidateParts.length === 0) return [];
+
+    let catalogue: Awaited<
+      ReturnType<ToeicPracticeCatalogueService['getCatalogue']>
+    > | null = null;
+    if (this.catalogue) {
+      try {
+        catalogue = await this.catalogue.getCatalogue();
+      } catch {
+        catalogue = null;
+      }
+    }
+
+    const packs: RemediationPack[] = [];
+    const seen = new Set<string>();
+    const add = (pack: RemediationPack) => {
+      if (packs.length < MAX_REMEDIATION_PACKS && !seen.has(pack.href)) {
+        seen.add(pack.href);
+        packs.push(pack);
+      }
+    };
+
+    for (const part of candidateParts) {
+      const number = partNumber(part);
+      const skill = partSkill(part);
+      if (this.vocabulary) {
+        try {
           const topics = await this.vocabulary.listTopics({
             page: 1,
             size: 1,
-            toeicPart: part,
-            track: 'toeic',
+            level: 'toeic-core',
+            track: 'toeic-listening-reading',
+            skill,
+            toeicPart: number,
           });
-          if (topics.data.length > 0)
-            packs.push({
+          if (topics.data.length > 0) {
+            add({
               kind: 'VOCABULARY',
-              title: `Từ vựng TOEIC Part ${part}`,
+              title: `Từ vựng TOEIC Part ${number}`,
               description:
-                'Ôn các từ vựng đã được duyệt cho phần bạn cần củng cố.',
-              href: `/vocabulary?toeicPart=${part}`,
-              relatedLabel: `Part ${part}`,
+                'Ôn các chủ đề từ vựng đã được duyệt cho phần bạn cần củng cố.',
+              href: `/vocabulary?level=toeic-core&track=toeic-listening-reading&skill=${skill}&toeicPart=${number}`,
+              relatedLabel: `Part ${number}`,
             });
-        }
-        if (part >= 5 && part <= 7) {
-          const grammar =
-            part === 5
-              ? 'subject-verb-agreement'
-              : part === 6
-                ? 'verb-tenses'
-                : 'reading-strategies';
-          packs.push({
-            kind: 'GRAMMAR',
-            title: 'Ôn ngữ pháp liên quan',
-            description: 'Đọc hướng dẫn ngữ pháp đã được biên tập và duyệt.',
-            href: `/blog/${grammar}`,
-            relatedLabel: `Part ${part}`,
-          });
-        }
-        if (this.catalogue) {
-          const catalogue = await this.catalogue.getCatalogue();
-          const available =
-            part <= 4 ? catalogue.listening.parts : catalogue.reading.parts;
-          if (available.includes(`PART_${part}` as never))
-            packs.push({
-              kind: 'PRACTICE',
-              title: `Luyện tập TOEIC Part ${part}`,
-              description:
-                'Làm thêm câu hỏi trong catalogue luyện tập hiện có.',
-              href: `/toeic/practice?${part <= 4 ? 'listeningPart' : 'readingPart'}=PART_${part}`,
-              relatedLabel: `Part ${part}`,
-            });
+          }
+        } catch {
+          // A content lookup failure must not hide the finalized analysis.
         }
       }
-      const seen = new Set<string>();
-      return packs
-        .filter((pack) => !seen.has(pack.href) && seen.add(pack.href))
-        .slice(0, 6);
-    } catch {
-      return [];
+
+      const guide =
+        part === 'PART_5'
+          ? GRAMMAR_GUIDES.PART_5
+          : part === 'PART_6'
+            ? GRAMMAR_GUIDES.PART_6
+            : undefined;
+      if (guide) {
+        add({
+          kind: 'GRAMMAR',
+          title: guide.title,
+          description: 'Đọc hướng dẫn ngữ pháp đã được biên tập và duyệt.',
+          href: `/blog/${guide.slug}`,
+          relatedLabel: `Part ${number}`,
+        });
+      }
+
+      const available =
+        number <= 4 ? catalogue?.listening.parts : catalogue?.reading.parts;
+      if (available?.includes(part)) {
+        add({
+          kind: 'PRACTICE',
+          title: `Luyện tập TOEIC Part ${number}`,
+          description:
+            'Mở bài luyện tập với bộ lọc Part đã được catalogue xác nhận.',
+          href: `/toeic/practice?mode=${number <= 4 ? 'listening' : 'reading'}&part=${part}`,
+          relatedLabel: `Part ${number}`,
+        });
+      }
     }
+    return packs;
   }
 
   private async resolveSession(

@@ -336,3 +336,12 @@ fields in timed-test responses. Browser coverage exercises notebook loading,
 empty/error/success states, TOEIC remediation navigation, keyboard access, and a
 360px no-overflow viewport. Local Prisma validation and mocked repository tests
 are evidence only; the additive migration is not applied to shared Supabase.
+
+## EP2-ST011 remediation-pack evidence
+
+Coverage must also prove bounded deterministic pack ordering, duplicate removal,
+published vocabulary eligibility, reviewed grammar-link allowlisting,
+catalogue-confirmed practice deep links, empty-content behavior, failure
+isolation, strict response parsing, and absence of answer/session/user fields.
+Browser evidence covers pack links, deep-link setup, unavailable/empty states,
+keyboard focus, 360px layout, and axe checks.

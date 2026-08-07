@@ -206,6 +206,15 @@ const checks = [
             status: "ready",
             count: 2,
             href: "/error-notebook?source=TOEIC_TIMED_TEST",
+            packs: [
+              {
+                kind: "VOCABULARY",
+                title: "Từ vựng TOEIC Part 2",
+                description: "Ôn chủ đề đã được duyệt.",
+                href: "/vocabulary?toeicPart=2",
+                relatedLabel: "Part 2",
+              },
+            ],
           },
         },
       };
@@ -216,8 +225,37 @@ const checks = [
         status: "ready",
         count: 2,
         href: "/error-notebook?source=TOEIC_TIMED_TEST",
-        packs: [],
+        packs: [
+          {
+            kind: "VOCABULARY",
+            title: "Từ vựng TOEIC Part 2",
+            description: "Ôn chủ đề đã được duyệt.",
+            href: "/vocabulary?toeicPart=2",
+            relatedLabel: "Part 2",
+          },
+        ],
       });
+      assert.throws(
+        () =>
+          contracts.parseTimedAnalysis({
+            ...payload,
+            data: {
+              ...payload.data,
+              remediation: {
+                ...payload.data.remediation,
+                packs: [
+                  {
+                    kind: "VOCABULARY",
+                    title: "Unsafe",
+                    description: "Unsafe",
+                    href: "https://unsafe.example",
+                  },
+                ],
+              },
+            },
+          }),
+        /INVALID_RESPONSE/,
+      );
       assert.throws(
         () =>
           contracts.parseTimedAnalysis({

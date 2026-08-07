@@ -182,6 +182,7 @@
 - Failure/alternate: Provider failure, unsafe output, exhausted quota, or report blocks
   unsafe publication while preserving free baseline access.
 - Success: Advanced features remain controlled, auditable, and advisory.
+
 # Timed TOEIC test interruption flow
 
 `/toeic/test` offers server-shaped MINI/HALF sessions. The browser stores only a
@@ -207,3 +208,12 @@ reconciles on repeated result/analysis reads. The result shows a Vietnamese
 remediation link when entries are ready, an explicit no-errors state when none
 exist, and an unavailable state when capture cannot be confirmed. The notebook
 remains owner-scoped, bounded, paginated, and retains the daily-practice flow.
+
+### TOEIC remediation packs (EP2-ST011)
+
+When finalized analysis identifies a server-derived weak Part, the result may
+also show at most six internal remediation packs. Vocabulary packs point to
+published TOEIC taxonomy filters, grammar packs point to the fixed set of
+reviewed grammar guides, and practice packs open a catalogue-confirmed Part
+deep link. Missing source content produces an explicit empty pack list and
+never replaces a valid score or analysis.

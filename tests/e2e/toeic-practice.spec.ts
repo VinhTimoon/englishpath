@@ -123,6 +123,27 @@ test.describe("TOEIC practice learner journey", () => {
     ).toBeLessThanOrEqual(360);
   });
 
+  test("opens a server-approved remediation deep link", async ({ page }) => {
+    let body: Record<string, unknown> | null = null;
+    await page.route(
+      `${apiOrigin}/toeic/practice/reading/sessions`,
+      async (route) => {
+        body = route.request().postDataJSON() as Record<string, unknown>;
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(readingStartResponse()),
+        });
+      },
+    );
+    await page.goto("/toeic/practice?mode=reading&part=PART_5");
+    await expect(
+      page.getByRole("heading", { name: "The office opens at ___." }),
+    ).toBeVisible();
+    expect(body).toMatchObject({ readingPart: "PART_5" });
+    expect(body).not.toHaveProperty("listeningPart");
+  });
+
   test("replays an active session after refresh using the stored setup", async ({
     page,
   }) => {

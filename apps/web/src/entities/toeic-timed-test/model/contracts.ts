@@ -59,7 +59,13 @@ export type TimedAnalysis = {
     status: "ready" | "empty" | "unavailable";
     count: number;
     href: "/error-notebook?source=TOEIC_TIMED_TEST" | null;
-    packs: Array<{ kind: "VOCABULARY" | "GRAMMAR" | "PRACTICE"; title: string; description: string; href: string; relatedLabel?: string }>;
+    packs: Array<{
+      kind: "VOCABULARY" | "GRAMMAR" | "PRACTICE";
+      title: string;
+      description: string;
+      href: string;
+      relatedLabel?: string;
+    }>;
   };
 };
 
@@ -310,18 +316,68 @@ function parseRemediation(value: unknown): TimedAnalysis["remediation"] {
   const status = remediation.status;
   const count = remediation.count;
   const href = remediation.href;
-  const packs = Array.isArray(remediation.packs) ? remediation.packs.map((value) => {
-    const pack = record(value);
-    if (!pack || !["VOCABULARY", "GRAMMAR", "PRACTICE"].includes(String(pack.kind)) || !nonEmptyString(pack.title) || !nonEmptyString(pack.description) || typeof pack.href !== "string" || !pack.href.startsWith("/")) return null;
-    return { kind: pack.kind as "VOCABULARY" | "GRAMMAR" | "PRACTICE", title: pack.title.trim(), description: pack.description.trim(), href: pack.href, ...(nonEmptyString(pack.relatedLabel) ? { relatedLabel: pack.relatedLabel.trim() } : {}) };
-  }) : [];
+  const rawPacks = remediation.packs;
+  const packs =
+    rawPacks === undefined
+      ? []
+      : Array.isArray(rawPacks)
+        ? rawPacks.map((value) => {
+            const pack = record(value);
+            if (
+              !pack ||
+              !hasOnlyKeys(pack, [
+                "kind",
+                "title",
+                "description",
+                "href",
+                "relatedLabel",
+              ]) ||
+              !["VOCABULARY", "GRAMMAR", "PRACTICE"].includes(
+                String(pack.kind),
+              ) ||
+              !nonEmptyString(pack.title) ||
+              !nonEmptyString(pack.description) ||
+              typeof pack.href !== "string" ||
+              (pack.relatedLabel !== undefined &&
+                !nonEmptyString(pack.relatedLabel))
+            ) {
+              return null;
+            }
+            const hrefAllowed =
+              pack.kind === "VOCABULARY"
+                ? /^\/vocabulary(?:\?|$)/u.test(pack.href)
+                : pack.kind === "GRAMMAR"
+                  ? /^\/blog\/[a-z0-9-]+$/u.test(pack.href)
+                  : /^\/toeic\/practice\?(?:mode=(?:listening|reading)&part=PART_[1-7])$/u.test(
+                      pack.href,
+                    );
+            if (!hrefAllowed) return null;
+            return {
+              kind: pack.kind as "VOCABULARY" | "GRAMMAR" | "PRACTICE",
+              title: pack.title.trim(),
+              description: pack.description.trim(),
+              href: pack.href,
+              ...(nonEmptyString(pack.relatedLabel)
+                ? { relatedLabel: pack.relatedLabel.trim() }
+                : {}),
+            };
+          })
+        : null;
   if (
     (status !== "ready" && status !== "empty" && status !== "unavailable") ||
     !integer(count) ||
     count < 0 ||
     (href !== null && href !== "/error-notebook?source=TOEIC_TIMED_TEST") ||
     (status === "ready" && (count < 1 || href === null)) ||
-    (status !== "ready" && (count !== 0 || href !== null))
+    (status !== "ready" && (count !== 0 || href !== null)) ||
+    !packs ||
+    packs.length > 6 ||
+    packs.some((pack) => pack === null) ||
+    new Set(
+      packs
+        .filter((pack): pack is NonNullable<typeof pack> => pack !== null)
+        .map((pack) => pack.href),
+    ).size !== packs.length
   ) {
     throw new Error("INVALID_RESPONSE");
   }
@@ -434,6 +490,12 @@ export function parseTimedAnalysis(value: unknown): TimedAnalysis | null {
         (item) =>
           !hasOnlyKeys(record(item), ["scope", "name", "accuracy", "answered"]),
       )) ||
+    !hasOnlyKeys(record(data?.remediation), [
+      "status",
+      "count",
+      "href",
+      "packs",
+    ]) ||
     !hasOnlyKeys(time, [
       "limitSeconds",
       "usedSeconds",

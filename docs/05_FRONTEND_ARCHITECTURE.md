@@ -145,3 +145,9 @@ The Error Notebook widget accepts both the legacy array response and the bounded
 loading skeleton, empty state, retryable error, source labels, remediation links,
 and keyboard-accessible previous/next pagination. It never derives taxonomy or
 answer correctness on the client.
+
+EP2-ST011 extends the finalized TOEIC remediation panel with a strict, bounded
+pack parser. Only internal `/vocabulary`, `/blog/`, and `/toeic/practice`
+links from the server are rendered. Pack loading, unavailable, empty, and
+success states preserve the valid result card and remain keyboard accessible at
+360px.

@@ -460,3 +460,12 @@ or `{ status: "unavailable", count: 0, href: null }`. The link is a safe
 `/error-notebook?source=TOEIC_TIMED_TEST` route and contains no question ID,
 selected option, correctness flag, answer key, or provider metadata. Capture is
 server-derived, owner-scoped, and retry-safe.
+
+EP2-ST011 may add `packs` to `data.remediation`. Each pack contains only
+`kind` (`VOCABULARY`, `GRAMMAR`, or `PRACTICE`), a learner-safe `title`,
+`description`, an internal `href`, and an optional `relatedLabel`. The server
+emits at most six unique packs in deterministic order. Vocabulary eligibility
+uses the published TOEIC taxonomy predicate, practice links require a current
+catalogue Part, and grammar links are limited to the reviewed internal guide
+allowlist. Missing content returns `packs: []`; pack objects contain no answer,
+question, session, user, correctness, timing, governance, or provider fields.

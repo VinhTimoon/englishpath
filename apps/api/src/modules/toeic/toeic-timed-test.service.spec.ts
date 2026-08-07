@@ -13,6 +13,8 @@ import type {
 } from './toeic-timed-test.models';
 import { ToeicTimedTestService } from './toeic-timed-test.service';
 import { buildTimedTestAnalysis } from './toeic-timed-test.analysis';
+import type { VocabularyService } from '../vocabulary/vocabulary.service';
+import type { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.service';
 
 const principal = createApplicationPrincipal({
   applicationUserId: 'timed-learner',
@@ -665,6 +667,301 @@ describe('ToeicTimedTestService', () => {
       href: null,
       packs: [],
     });
+  });
+
+  it('builds bounded server-owned vocabulary, grammar, and practice packs', async () => {
+    const final = session({
+      status: 'SUBMITTED',
+      score: 0,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: [
+        {
+          questionId: 'version-11',
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    let listTopicsInput: unknown;
+    const listTopics = jest.fn((input: unknown) => {
+      listTopicsInput = input;
+      return Promise.resolve({ data: [{ id: 'workplace' }] });
+    });
+    const vocabulary = { listTopics } as unknown as VocabularyService;
+    const catalogueService = {
+      getCatalogue: jest.fn().mockResolvedValue({
+        listening: { parts: [], difficulties: [] },
+        reading: { parts: [ToeicPart.PART_5], difficulties: [], topics: [] },
+      }),
+    } as unknown as ToeicPracticeCatalogueService;
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(final),
+    });
+
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      jest.fn().mockResolvedValue(1),
+      vocabulary,
+      catalogueService,
+    ).analysis(principal, final.id);
+
+    expect(listTopicsInput).toEqual({
+      page: 1,
+      size: 1,
+      level: 'toeic-core',
+      track: 'toeic-listening-reading',
+      skill: 'reading',
+      toeicPart: 5,
+    });
+    expect(result.remediation.packs).toEqual([
+      expect.objectContaining({
+        kind: 'VOCABULARY',
+        href: '/vocabulary?level=toeic-core&track=toeic-listening-reading&skill=reading&toeicPart=5',
+      }),
+      expect.objectContaining({
+        kind: 'GRAMMAR',
+        href: '/blog/present-perfect-have-has',
+      }),
+      expect.objectContaining({
+        kind: 'PRACTICE',
+        href: '/toeic/practice?mode=reading&part=PART_5',
+      }),
+    ]);
+    expect(result.remediation.packs.length).toBeLessThanOrEqual(6);
+    expect(JSON.stringify(result.remediation.packs)).not.toMatch(
+      /questionId|selectedOption|isCorrect|correctAnswer|userId/,
+    );
+  });
+
+  it('maps HALF listening weaknesses and emits practice only for catalogue content', async () => {
+    const half = halfCatalogue();
+    const wrong = half.find((item) => item.part === ToeicPart.PART_2)!;
+    const final = session({
+      mode: 'HALF',
+      total: 50,
+      questionIds: half.map((item) => item.id),
+      status: 'EXPIRED',
+      score: 49,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: [
+        {
+          questionId: wrong.id,
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    const vocabulary = {
+      listTopics: jest.fn().mockResolvedValue({ data: [] }),
+    } as unknown as VocabularyService;
+    const catalogueService = {
+      getCatalogue: jest.fn().mockResolvedValue({
+        listening: {
+          parts: [ToeicPart.PART_2],
+          difficulties: [],
+        },
+        reading: { parts: [], difficulties: [], topics: [] },
+      }),
+    } as unknown as ToeicPracticeCatalogueService;
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(final),
+      finalizedQuestionsByIds: jest.fn().mockResolvedValue(half),
+    });
+
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      jest.fn().mockResolvedValue(1),
+      vocabulary,
+      catalogueService,
+    ).analysis(principal, final.id);
+
+    expect(result.analysis.score.total).toBe(50);
+    expect(result.analysis.weaknesses[0]).toMatchObject({ name: 'Part 2' });
+    expect(result.remediation.packs).toEqual([
+      expect.objectContaining({
+        kind: 'PRACTICE',
+        href: '/toeic/practice?mode=listening&part=PART_2',
+      }),
+    ]);
+  });
+
+  it('fails isolation-safe and stable when remediation content is unavailable', async () => {
+    const final = session({
+      status: 'SUBMITTED',
+      score: 0,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: [
+        {
+          questionId: 'version-16',
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    const vocabulary = {
+      listTopics: jest
+        .fn()
+        .mockRejectedValue(new Error('taxonomy unavailable')),
+    } as unknown as VocabularyService;
+    const catalogueService = {
+      getCatalogue: jest
+        .fn()
+        .mockRejectedValue(new Error('catalogue unavailable')),
+    } as unknown as ToeicPracticeCatalogueService;
+    const capture = jest.fn().mockResolvedValue(1);
+    const repo = repository({ find: jest.fn().mockResolvedValue(final) });
+    const service = new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      capture,
+      vocabulary,
+      catalogueService,
+    );
+
+    const first = await service.analysis(principal, final.id);
+    const second = await service.analysis(principal, final.id);
+    expect(first.analysis.score).toEqual({
+      correct: 0,
+      total: 20,
+      answered: 1,
+    });
+    expect(first.remediation.packs).toEqual([]);
+    expect(second.remediation.packs).toEqual(first.remediation.packs);
+    expect(capture).toHaveBeenCalledTimes(2);
+  });
+
+  it('keeps deterministic ordering, removes duplicate hrefs, and caps packs at six', async () => {
+    const final = session({
+      status: 'SUBMITTED',
+      score: 0,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: catalogue().map((item) => ({
+        questionId: item.id,
+        selectedOption: 'B',
+        isCorrect: false,
+        answeredAt: baseTime,
+      })),
+    });
+    const vocabulary = {
+      listTopics: jest.fn().mockResolvedValue({ data: [{ id: 'topic' }] }),
+    } as unknown as VocabularyService;
+    const catalogueService = {
+      getCatalogue: jest.fn().mockResolvedValue({
+        listening: {
+          parts: [
+            ToeicPart.PART_1,
+            ToeicPart.PART_2,
+            ToeicPart.PART_3,
+            ToeicPart.PART_4,
+          ],
+          difficulties: [],
+        },
+        reading: { parts: [], difficulties: [], topics: [] },
+      }),
+    } as unknown as ToeicPracticeCatalogueService;
+    const repo = repository({ find: jest.fn().mockResolvedValue(final) });
+
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      jest.fn().mockResolvedValue(20),
+      vocabulary,
+      catalogueService,
+    ).analysis(principal, final.id);
+
+    expect(result.remediation.packs).toHaveLength(6);
+    expect(result.remediation.packs.map((pack) => pack.href)).toEqual([
+      '/vocabulary?level=toeic-core&track=toeic-listening-reading&skill=listening&toeicPart=1',
+      '/toeic/practice?mode=listening&part=PART_1',
+      '/vocabulary?level=toeic-core&track=toeic-listening-reading&skill=listening&toeicPart=2',
+      '/toeic/practice?mode=listening&part=PART_2',
+      '/vocabulary?level=toeic-core&track=toeic-listening-reading&skill=listening&toeicPart=3',
+      '/toeic/practice?mode=listening&part=PART_3',
+    ]);
+    expect(
+      new Set(result.remediation.packs.map((pack) => pack.href)).size,
+    ).toBe(result.remediation.packs.length);
+  });
+
+  it('does not emit grammar packs for non-grammar Parts', async () => {
+    const final = session({
+      status: 'SUBMITTED',
+      score: 0,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: [
+        {
+          questionId: 'version-16',
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    const repo = repository({ find: jest.fn().mockResolvedValue(final) });
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      jest.fn().mockResolvedValue(0),
+      {
+        listTopics: jest.fn().mockResolvedValue({ data: [] }),
+      } as unknown as VocabularyService,
+      {
+        getCatalogue: jest.fn().mockResolvedValue({
+          listening: { parts: [], difficulties: [] },
+          reading: { parts: [ToeicPart.PART_7], difficulties: [], topics: [] },
+        }),
+      } as unknown as ToeicPracticeCatalogueService,
+    ).analysis(principal, final.id);
+
+    expect(result.remediation.packs).toEqual([
+      expect.objectContaining({
+        kind: 'PRACTICE',
+        href: '/toeic/practice?mode=reading&part=PART_7',
+      }),
+    ]);
+    expect(
+      result.remediation.packs.some((pack) => pack.kind === 'GRAMMAR'),
+    ).toBe(false);
+  });
+
+  it('preserves finalized analysis when a remediation catalogue is malformed', async () => {
+    const final = session({
+      status: 'EXPIRED',
+      score: 4,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: [
+        {
+          questionId: 'version-11',
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    const repo = repository({ find: jest.fn().mockResolvedValue(final) });
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      jest.fn().mockResolvedValue(1),
+      {
+        listTopics: jest.fn().mockResolvedValue({ data: [{ id: 'topic' }] }),
+      } as unknown as VocabularyService,
+      {
+        getCatalogue: jest.fn().mockResolvedValue({}),
+      } as unknown as ToeicPracticeCatalogueService,
+    ).analysis(principal, final.id);
+
+    expect(result.analysis.score).toEqual({
+      correct: 0,
+      total: 20,
+      answered: 1,
+    });
+    expect(result.remediation.packs).toEqual([]);
   });
 
   it('fails closed for active, duplicate, or cross-snapshot analysis data', () => {

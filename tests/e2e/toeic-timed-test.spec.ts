@@ -51,6 +51,15 @@ function analysisResponse(
     status: "ready",
     count: 3,
     href: "/error-notebook?source=TOEIC_TIMED_TEST",
+    packs: [
+      {
+        kind: "VOCABULARY",
+        title: "Từ vựng TOEIC Part 2",
+        description: "Ôn chủ đề đã được duyệt.",
+        href: "/vocabulary?toeicPart=2",
+        relatedLabel: "Part 2",
+      },
+    ],
   },
 ) {
   return {
@@ -477,6 +486,9 @@ test.describe("TOEIC timed test learner journey", () => {
       "href",
       "/error-notebook?source=TOEIC_TIMED_TEST",
     );
+    await expect(
+      page.getByRole("link", { name: /Từ vựng TOEIC Part 2/ }),
+    ).toHaveAttribute("href", "/vocabulary?toeicPart=2");
     await remediation.focus();
     await expect(remediation).toBeFocused();
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
@@ -543,6 +555,64 @@ test.describe("TOEIC timed test learner journey", () => {
     await expect(page.getByText(/85%/)).toBeVisible();
     expect(attempts).toBe(2);
     await expect(page.getByRole("heading", { level: 2 })).toBeVisible();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(360);
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  });
+
+  test("honors reduced motion while showing the retryable analysis state", async ({
+    page,
+  }) => {
+    await installSession(page);
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.toeic.test.active",
+        "analysis-reduced-motion-session",
+      );
+    });
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/analysis-reduced-motion-session`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              session: {
+                sessionId: "analysis-reduced-motion-session",
+                mode: "MINI",
+                status: "SUBMITTED",
+                total: 20,
+                answered: 20,
+                remainingSeconds: 0,
+                score: 17,
+              },
+              questions: [],
+            },
+            meta,
+          }),
+        }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/analysis-reduced-motion-session/analysis`,
+      (route) => route.fulfill({ status: 503, body: "temporary" }),
+    );
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.goto("/toeic/test");
+    const retry = page
+      .locator('[class*="analysis"]')
+      .first()
+      .getByRole("button");
+    await expect(retry).toBeVisible();
+    await retry.focus();
+    await expect(retry).toBeFocused();
+    expect(
+      await page.evaluate(
+        () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+      ),
+    ).toBe(true);
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(360);

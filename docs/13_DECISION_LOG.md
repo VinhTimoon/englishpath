@@ -100,3 +100,12 @@ incorrect answers, and protected by a separate `(toeicTimedTestSessionId,
 questionId)` uniqueness constraint plus database-level source/reference
 invariants. The migration is local/generated evidence only; it is not applied
 automatically to shared Supabase or production.
+
+### Decision: TOEIC remediation pack projection (EP2-ST011)
+
+Keep remediation packs as a bounded read-time projection over finalized analysis
+rather than adding tables or schema fields. Vocabulary uses the existing
+published TOEIC taxonomy service, practice uses the existing catalogue, and
+grammar uses a small reviewed internal guide allowlist until a governed grammar
+content model exists. Pack lookup is failure-isolated and never overrides a
+valid finalized result or creates client-authored weakness data.

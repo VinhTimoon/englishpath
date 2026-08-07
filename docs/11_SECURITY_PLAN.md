@@ -170,3 +170,10 @@ Notebook pages are authenticated, owner-scoped, bounded, and source-filtered;
 remediation projections contain no answer keys, correctness flags, provider, or
 governance fields. Capture failure leaves the final result available and exposes
 only an unavailable/retryable state.
+
+EP2-ST011 remediation packs are derived only after finalized owner-scoped
+analysis. Vocabulary and practice destinations are selected from server-side
+published/catalogue predicates; grammar destinations are fixed reviewed
+internal paths. The frontend rejects external or malformed pack URLs and
+private recursive fields. Pack lookup failure returns an empty or unavailable
+pack state without changing the authoritative score or exposing answer data.

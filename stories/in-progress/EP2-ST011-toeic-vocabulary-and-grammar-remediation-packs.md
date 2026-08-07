@@ -1,7 +1,7 @@
 ---
 id: EP2-ST011
 title: TOEIC vocabulary and grammar remediation packs
-status: blocked
+status: in-progress
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -13,6 +13,7 @@ allowed_paths:
   - apps/api/test/**
   - apps/web/src/app/toeic/test/**
   - apps/web/src/widgets/toeic-timed-test/**
+  - apps/web/src/widgets/toeic-practice/**
   - apps/web/src/widgets/practice/**
   - apps/web/src/features/toeic-timed-test/**
   - apps/web/src/entities/toeic-timed-test/**
@@ -183,7 +184,27 @@ eligibility and disclosure evidence, browser/mobile/accessibility evidence, and
 any unverified external deployment or provider work. A timeout or missing check
 is evidence of not verified, never a pass.
 
+## Implementation and verification evidence
 
+- The first build-loop attempt returned exit code 42 and moved this same story
+  to `blocked`; it was reactivated in place and was not replaced or resumed as
+  a different story.
+- Post-fix backend unit/API E2E coverage passed: 20 suites, 134 unit tests,
+  and 19 API E2E tests. The added cases cover HALF listening weaknesses,
+  deterministic ordering, duplicate removal, the six-pack cap, grammar
+  allowlist rejection, malformed catalogue isolation, and repeated reads.
+- Frontend contract/unit checks passed: 6 deterministic checks. Full project
+  checks passed: 53 suites, 404 tests; lint; typecheck; build; Prisma
+  validation; format check; planning traceability; story doctor; story
+  verification; and `git diff --check`.
+- Browser verification passed: 71 Playwright tests, including the remediation
+  links, retryable analysis, unavailable/empty states, keyboard focus, axe,
+  reduced-motion, and 360px overflow checks.
+- Review remains unverified. `pnpm story:review` invoked the configured Codex
+  CLI, but the CLI exited before producing `.codex-review.result.md` because
+  the local session returned `401 token_revoked`. The story must remain
+  `in-progress` until a valid review artifact is produced; no merge or `done`
+  transition is claimed.
 
 ## Blocked Report
 

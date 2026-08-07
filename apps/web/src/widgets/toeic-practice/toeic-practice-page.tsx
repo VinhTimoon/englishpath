@@ -58,8 +58,10 @@ export function ToeicPracticePage() {
   const [finalError, setFinalError] = useState(false);
 
   const options = catalogue?.[mode];
-  const readingTopics = mode === "reading" && catalogue ? catalogue.reading.topics : [];
-  const current = session?.status === "ACTIVE" ? questions[session.answered] : undefined;
+  const readingTopics =
+    mode === "reading" && catalogue ? catalogue.reading.topics : [];
+  const current =
+    session?.status === "ACTIVE" ? questions[session.answered] : undefined;
   const isEmpty = Boolean(options && options.parts.length === 0);
   const filterSummary = useMemo(
     () =>
@@ -128,22 +130,35 @@ export function ToeicPracticePage() {
       );
       setCatalogue(result);
       const stored = readPracticeSetup();
+      const queryParams = new URLSearchParams(window.location.search);
+      const queryMode = queryParams.get("mode");
+      const queryPart = queryParams.get("part");
+      const requestedMode =
+        queryMode === "listening" || queryMode === "reading" ? queryMode : null;
+      const queryOptions = requestedMode ? result[requestedMode] : null;
+      const queryPartAvailable = Boolean(
+        queryOptions && queryPart && queryOptions.parts.includes(queryPart),
+      );
       const storedOptions = stored ? result[stored.mode] : null;
       const storedPart = storedOptions?.parts.includes(stored?.part ?? "")
-        ? stored?.part ?? ""
+        ? (stored?.part ?? "")
         : "";
-      const firstMode = storedPart
-        ? stored?.mode ?? "listening"
-        : result.listening.parts.length
-          ? "listening"
-          : "reading";
+      const firstMode = queryPartAvailable
+        ? requestedMode!
+        : storedPart
+          ? (stored?.mode ?? "listening")
+          : result.listening.parts.length
+            ? "listening"
+            : "reading";
       const first = result[firstMode];
-      const selectedPart = storedPart || first.parts[0] || "";
+      const selectedPart = queryPartAvailable
+        ? (queryPart ?? "")
+        : storedPart || first.parts[0] || "";
       const selectedDifficulty =
         stored?.mode === firstMode &&
         (!stored.difficulty || first.difficulties.includes(stored.difficulty))
           ? stored.difficulty
-          : first.difficulties[0] ?? "";
+          : (first.difficulties[0] ?? "");
       const selectedTopic =
         firstMode === "reading" &&
         stored?.mode === firstMode &&
@@ -160,8 +175,13 @@ export function ToeicPracticePage() {
         difficulty: selectedDifficulty,
         topic: selectedTopic,
       });
-      if (storedPart) {
-        await openSession(firstMode, selectedPart, selectedDifficulty, selectedTopic);
+      if (storedPart || queryPartAvailable) {
+        await openSession(
+          firstMode,
+          selectedPart,
+          selectedDifficulty,
+          selectedTopic,
+        );
       }
     } catch {
       setCatalogueError(true);
@@ -174,6 +194,8 @@ export function ToeicPracticePage() {
     // The catalogue is an external request; its async completion owns the state update.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     void loadCatalogue();
+    // The catalogue request is intentionally initial-load only; query params
+    // are read as the initial remediation deep link.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -215,7 +237,9 @@ export function ToeicPracticePage() {
       setSession({ ...session, answered: result.answered });
       setSelected("");
     } catch {
-      setError("Chưa ghi nhận được câu trả lời. Bạn vẫn ở câu này; hãy thử lại.");
+      setError(
+        "Chưa ghi nhận được câu trả lời. Bạn vẫn ở câu này; hãy thử lại.",
+      );
     } finally {
       setPending(false);
     }
@@ -252,7 +276,8 @@ export function ToeicPracticePage() {
           <p className={styles.kicker}>TOEIC Practice</p>
           <h1>Luyện đúng phần bạn cần</h1>
           <p className={styles.lede}>
-            Chọn một bộ lọc được cung cấp từ nội dung đã sẵn sàng, rồi hoàn thành từng câu theo đúng thứ tự.
+            Chọn một bộ lọc được cung cấp từ nội dung đã sẵn sàng, rồi hoàn
+            thành từng câu theo đúng thứ tự.
           </p>
         </header>
 
@@ -276,23 +301,34 @@ export function ToeicPracticePage() {
               <div className={styles.stateError} role="alert">
                 <strong>Không tải được bộ lọc.</strong>
                 <span>Hãy thử lại để lấy catalogue mới nhất.</span>
-                <button className={styles.secondary} onClick={() => void loadCatalogue()}>
+                <button
+                  className={styles.secondary}
+                  onClick={() => void loadCatalogue()}
+                >
                   Thử lại
                 </button>
               </div>
             )}
             {!catalogueLoading && !catalogueError && catalogue && (
               <>
-                <div className={styles.modeSwitch} role="group" aria-label="Kỹ năng">
+                <div
+                  className={styles.modeSwitch}
+                  role="group"
+                  aria-label="Kỹ năng"
+                >
                   <button
-                    className={mode === "listening" ? styles.active : styles.switchButton}
+                    className={
+                      mode === "listening" ? styles.active : styles.switchButton
+                    }
                     onClick={() => changeMode("listening")}
                     type="button"
                   >
                     Listening
                   </button>
                   <button
-                    className={mode === "reading" ? styles.active : styles.switchButton}
+                    className={
+                      mode === "reading" ? styles.active : styles.switchButton
+                    }
                     onClick={() => changeMode("reading")}
                     type="button"
                   >
@@ -309,28 +345,43 @@ export function ToeicPracticePage() {
                   <div className={styles.filters}>
                     <label>
                       Part
-                      <select value={part} onChange={(event) => setPart(event.target.value)}>
+                      <select
+                        value={part}
+                        onChange={(event) => setPart(event.target.value)}
+                      >
                         {options?.parts.map((value) => (
-                          <option key={value} value={value}>{label(value)}</option>
+                          <option key={value} value={value}>
+                            {label(value)}
+                          </option>
                         ))}
                       </select>
                     </label>
                     <label>
                       Mức độ
-                      <select value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
+                      <select
+                        value={difficulty}
+                        onChange={(event) => setDifficulty(event.target.value)}
+                      >
                         <option value="">Mọi mức độ có sẵn</option>
                         {options?.difficulties.map((value) => (
-                          <option key={value} value={value}>{difficultyLabel(value)}</option>
+                          <option key={value} value={value}>
+                            {difficultyLabel(value)}
+                          </option>
                         ))}
                       </select>
                     </label>
                     {mode === "reading" && (
                       <label>
                         Chủ đề
-                        <select value={topic} onChange={(event) => setTopic(event.target.value)}>
+                        <select
+                          value={topic}
+                          onChange={(event) => setTopic(event.target.value)}
+                        >
                           <option value="">Mọi chủ đề có sẵn</option>
                           {readingTopics.map((value) => (
-                            <option key={value} value={value}>{value.trim()}</option>
+                            <option key={value} value={value}>
+                              {value.trim()}
+                            </option>
                           ))}
                         </select>
                       </label>
@@ -341,8 +392,17 @@ export function ToeicPracticePage() {
                 <p className={styles.summary}>
                   Lựa chọn hiện tại: <strong>{filterSummary}</strong>
                 </p>
-                {error && <p role="alert" className={styles.error}>{error}</p>}
-                <button className={styles.primary} disabled={pending || isEmpty || !part} onClick={() => void start()} type="button">
+                {error && (
+                  <p role="alert" className={styles.error}>
+                    {error}
+                  </p>
+                )}
+                <button
+                  className={styles.primary}
+                  disabled={pending || isEmpty || !part}
+                  onClick={() => void start()}
+                  type="button"
+                >
                   {pending ? "Đang mở bài…" : "Bắt đầu luyện tập"}
                 </button>
               </>
@@ -354,12 +414,32 @@ export function ToeicPracticePage() {
           <section className={styles.panel} aria-live="polite">
             <p className={styles.eyebrow}>Đã hoàn thành</p>
             <h2>Kết quả của bạn</h2>
-            <p className={styles.score}>{session.score ?? 0}<span> / {session.total}</span></p>
-            <p>Đáp án đúng chỉ được dùng để chấm ở phía máy chủ. Bạn có thể luyện một lượt mới với bộ lọc khác.</p>
-            {finalError && <p role="alert" className={styles.error}>{error}</p>}
+            <p className={styles.score}>
+              {session.score ?? 0}
+              <span> / {session.total}</span>
+            </p>
+            <p>
+              Đáp án đúng chỉ được dùng để chấm ở phía máy chủ. Bạn có thể luyện
+              một lượt mới với bộ lọc khác.
+            </p>
+            {finalError && (
+              <p role="alert" className={styles.error}>
+                {error}
+              </p>
+            )}
             <div className={styles.actions}>
-              <Link href="/dashboard" className={styles.primary}>Về dashboard</Link>
-              <button className={styles.secondary} onClick={() => { setSession(null); setQuestions([]); setError(""); }} type="button">
+              <Link href="/dashboard" className={styles.primary}>
+                Về dashboard
+              </Link>
+              <button
+                className={styles.secondary}
+                onClick={() => {
+                  setSession(null);
+                  setQuestions([]);
+                  setError("");
+                }}
+                type="button"
+              >
                 Luyện lượt mới
               </button>
             </div>
@@ -370,24 +450,41 @@ export function ToeicPracticePage() {
           <>
             <section className={styles.panel} aria-labelledby="question-title">
               <div className={styles.progressRow}>
-                <span>Câu {session.answered + 1} / {session.total}</span>
-                <span>{Math.round((session.answered / session.total) * 100)}%</span>
+                <span>
+                  Câu {session.answered + 1} / {session.total}
+                </span>
+                <span>
+                  {Math.round((session.answered / session.total) * 100)}%
+                </span>
               </div>
               <div className={styles.progressTrack} aria-hidden="true">
-                <span style={{ width: `${(session.answered / session.total) * 100}%` }} />
+                <span
+                  style={{
+                    width: `${(session.answered / session.total) * 100}%`,
+                  }}
+                />
               </div>
               <p className={styles.summary}>{filterSummary}</p>
-              <p className={styles.eyebrow}>{label(current.part)} · {difficultyLabel(current.difficulty)}</p>
+              <p className={styles.eyebrow}>
+                {label(current.part)} · {difficultyLabel(current.difficulty)}
+              </p>
               <h2 id="question-title">{current.prompt}</h2>
-              {current.mediaReference && /^https?:\/\//.test(current.mediaReference) && (
-                <audio controls src={current.mediaReference} aria-label="Audio câu hỏi" />
-              )}
+              {current.mediaReference &&
+                /^https?:\/\//.test(current.mediaReference) && (
+                  <audio
+                    controls
+                    src={current.mediaReference}
+                    aria-label="Audio câu hỏi"
+                  />
+                )}
             </section>
             <section className={styles.options} aria-label="Các lựa chọn">
               {current.options.map((option) => (
                 <button
                   key={option.id}
-                  className={selected === option.id ? styles.selected : styles.option}
+                  className={
+                    selected === option.id ? styles.selected : styles.option
+                  }
                   aria-pressed={selected === option.id}
                   disabled={pending}
                   onClick={() => setSelected(option.id)}
@@ -397,9 +494,22 @@ export function ToeicPracticePage() {
                   <span>{option.text}</span>
                 </button>
               ))}
-              {error && <p role="alert" className={styles.error}>{error}</p>}
-              <button className={styles.primary} disabled={!selected || pending} onClick={() => void answer()} type="button">
-                {pending ? "Đang ghi nhận…" : session.answered + 1 === session.total ? "Ghi nhận câu cuối" : "Ghi nhận và tiếp tục"}
+              {error && (
+                <p role="alert" className={styles.error}>
+                  {error}
+                </p>
+              )}
+              <button
+                className={styles.primary}
+                disabled={!selected || pending}
+                onClick={() => void answer()}
+                type="button"
+              >
+                {pending
+                  ? "Đang ghi nhận…"
+                  : session.answered + 1 === session.total
+                    ? "Ghi nhận câu cuối"
+                    : "Ghi nhận và tiếp tục"}
               </button>
             </section>
           </>
@@ -409,9 +519,21 @@ export function ToeicPracticePage() {
           <section className={styles.panel}>
             <p className={styles.eyebrow}>Đã đủ câu trả lời</p>
             <h2>Sẵn sàng nộp bài</h2>
-            <p>Bạn đã trả lời toàn bộ câu hỏi. Kiểm tra lại lựa chọn rồi gửi để nhận kết quả.</p>
-            {error && <p role="alert" className={styles.error}>{error}</p>}
-            <button className={styles.primary} disabled={pending} onClick={() => void finish()} type="button">
+            <p>
+              Bạn đã trả lời toàn bộ câu hỏi. Kiểm tra lại lựa chọn rồi gửi để
+              nhận kết quả.
+            </p>
+            {error && (
+              <p role="alert" className={styles.error}>
+                {error}
+              </p>
+            )}
+            <button
+              className={styles.primary}
+              disabled={pending}
+              onClick={() => void finish()}
+              type="button"
+            >
               {pending ? "Đang chấm…" : "Nộp bài"}
             </button>
           </section>

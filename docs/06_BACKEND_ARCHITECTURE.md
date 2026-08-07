@@ -264,3 +264,10 @@ the owner-scoped practice repository. The repository verifies a finalized sessio
 belongs to that owner, upserts the TOEIC source/reference pair idempotently, and
 returns a bounded page for notebook reads. Capture failure does not hide a valid
 timed result; a later finalized read retries reconciliation.
+
+EP2-ST011 keeps pack selection as a read-time service policy over the finalized
+analysis. Vocabulary eligibility is delegated to the exported `VocabularyService`
+and its published taxonomy predicate; grammar links come from a reviewed
+internal allowlist; practice links require a current TOEIC catalogue Part.
+Pack lookup is bounded and failure-isolated, so no content lookup can invalidate
+an owner-scoped finalized score or analysis.

@@ -116,3 +116,9 @@ The Error Notebook uses the same learning-surface tokens and has explicit loadin
 empty, error, and success states. TOEIC entries carry a text source label and a
 keyboard-operable remediation link; bounded previous/next controls remain usable
 at 360px and status is never communicated by color alone.
+
+TOEIC remediation packs use the same panel surface and semantic link treatment.
+Each pack exposes its purpose and related Part/skill as text, with visible focus
+and no color-only meaning. A missing pack is an explicit empty state;
+unavailability does not hide the score or analysis. Pack links may deep-link the
+existing practice page, which accepts only server-approved catalogue filters.

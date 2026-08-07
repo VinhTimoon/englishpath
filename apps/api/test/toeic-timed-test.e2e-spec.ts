@@ -496,6 +496,11 @@ describe('TOEIC timed-test API', () => {
         href: '/error-notebook?source=TOEIC_TIMED_TEST',
       },
     });
+    const packs = (first.body as ApiBody).data.remediation as {
+      packs?: unknown;
+    };
+    expect(Array.isArray(packs.packs)).toBe(true);
+    expect(JSON.stringify(packs.packs)).toContain('toeicPart=2');
     expect(JSON.stringify(first.body)).not.toMatch(
       /questionId|selectedOption|isCorrect|correctAnswer|userId|license|reviewStatus|publication|provider/,
     );
@@ -581,6 +586,7 @@ describe('TOEIC timed-test API', () => {
       status: 'empty',
       count: 0,
       href: null,
+      packs: [],
     });
   });
 

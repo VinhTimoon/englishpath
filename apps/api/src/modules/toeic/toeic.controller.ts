@@ -247,8 +247,26 @@ export class ToeicController {
                   nullable: true,
                   enum: ['/error-notebook?source=TOEIC_TIMED_TEST', null],
                 },
+                packs: {
+                  type: 'array',
+                  maxItems: 6,
+                  items: {
+                    type: 'object',
+                    properties: {
+                      kind: {
+                        type: 'string',
+                        enum: ['VOCABULARY', 'GRAMMAR', 'PRACTICE'],
+                      },
+                      title: { type: 'string' },
+                      description: { type: 'string' },
+                      href: { type: 'string' },
+                      relatedLabel: { type: 'string' },
+                    },
+                    required: ['kind', 'title', 'description', 'href'],
+                  },
+                },
               },
-              required: ['status', 'count', 'href'],
+              required: ['status', 'count', 'href', 'packs'],
             },
           },
         },
