@@ -1,7 +1,7 @@
 ---
 id: EP2-ST012
 title: TOEIC L&R security, browser, accessibility, and content-license exit review
-status: ready
+status: blocked
 type: exit-review
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -189,3 +189,24 @@ browser/accessibility evidence, content/license eligibility evidence, owner
 decisions or AI requests, known risks, and the final commits merged to `dev`.
 The final repository must be clean on `dev`, synchronized with `origin/dev`,
 and must not contain any automatic change to `main`.
+
+## Blocked Report
+
+- Failed step: planning phase (`pnpm story:plan` / configured Codex CLI)
+- Exit code: 1
+- Attempts: 1 primary planning attempt; configured capacity fallback was not
+  eligible because the failure was authentication, not capacity.
+- Summary: The Codex CLI session and the planning subAgent both failed before
+  producing a valid plan artifact because the local refresh token was revoked.
+
+### Evidence
+
+```text
+401 Unauthorized: Encountered invalidated oauth token
+Your access token could not be refreshed because your refresh token was revoked.
+Please log out and sign in again.
+```
+
+The story remains blocked in place. No source implementation, schema,
+credential, deployment, or Phase 3 story was created.
+
