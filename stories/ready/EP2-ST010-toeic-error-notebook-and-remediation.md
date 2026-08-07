@@ -1,7 +1,7 @@
 ---
 id: EP2-ST010
 title: TOEIC Error Notebook and remediation integration
-status: blocked
+status: ready
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -82,14 +82,21 @@ capture behavior, owner isolation, and answer-key secrecy.
    and test documents with the chosen ownership model and evidence. Do not add
    Phase 3+ behavior, AI calls, paid providers, or official TOEIC conversion.
 
-## Current blocker
+## Approval evidence
 
-This story must not resume until the owner approves the data-contract decision
-in [AI request](../../notes/ai-req/2026-08-06-ep2-st010-error-notebook-schema-ownership.md).
+The owner approved Option 1 on 2026-08-07 in the linked
+[AI request](../../notes/ai-req/2026-08-06-ep2-st010-error-notebook-schema-ownership.md).
+The story may resume from `ready` using an additive local migration only; no
+remote/shared database migration or production promotion is authorized.
+
+## Former blocker, now resolved
+
 The current `ErrorNotebookEntry.sessionId` is a required `PracticeSession` FK,
 while TOEIC timed attempts use the separate `ToeicTimedTestSession` boundary.
-Using a synthetic `PracticeSession`, a fake foreign key, or an in-memory-only
-bridge would corrupt learning data or fail the approved acceptance criteria.
+The approved implementation must add an explicit source discriminator and
+nullable references while preserving the existing practice relation. Using a
+synthetic `PracticeSession`, a fake foreign key, or an in-memory-only bridge is
+still forbidden.
 
 ## Verification commands after approval
 

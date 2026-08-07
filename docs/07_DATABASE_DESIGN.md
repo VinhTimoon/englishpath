@@ -252,6 +252,19 @@ are not persisted in client-readable records before answer submission.
 
 ## Physical TOEIC Question Governance Boundary
 
+### Cross-source Error Notebook projection (EP2-ST010)
+
+Owner-approved migration `20260807100000_error_notebook_toeic_source` keeps
+existing daily-practice `ErrorNotebookEntry` rows attached to `PracticeSession`
+and adds `source`, nullable `toeicTimedTestSessionId`, and the corresponding
+owner-scoped relation to `ToeicTimedTestSession`. The existing practice
+uniqueness `(sessionId, questionId)` is preserved; TOEIC errors use a separate
+unique `(toeicTimedTestSessionId, questionId)` constraint. A database check
+requires exactly one source/reference pair, preventing synthetic sessions and
+cross-source ambiguity. The migration is additive, has a manual rollback note
+in its SQL, and is validated locally only; it is never run automatically
+against shared Supabase or production.
+
 EP2-ST007 adds `ToeicTimedTestSession` and `ToeicTimedTestAnswer` additively.
 Sessions snapshot ordered version IDs, mode, policy version, server start and
 deadline, and final state; answers are unique by session/question and cascade

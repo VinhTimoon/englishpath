@@ -2,7 +2,14 @@
 
 Date: 2026-08-06
 Story: EP2-ST010
-Status: awaiting owner decision
+Status: resolved; owner-approved on 2026-08-07
+
+## Owner Decision
+
+Approved Option 1: generalize `ErrorNotebookEntry` with an explicit source
+discriminator and nullable references to `PracticeSession` and
+`ToeicTimedTestSession`. Preserve existing practice behavior while supporting
+TOEIC sessions through additive schema changes and owner-scoped constraints.
 
 ## Decision required
 

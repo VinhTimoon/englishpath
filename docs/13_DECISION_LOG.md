@@ -87,3 +87,15 @@ areas, and clamped time use from the immutable question and answer snapshot.
 Analysis is available only for finalized sessions; the browser supplies no
 analysis inputs and receives no per-question correctness or governance fields.
 Error Notebook and remediation links remain deferred to EP2-ST010.
+
+### Decision: cross-source Error Notebook ownership (EP2-ST010)
+
+Owner approved Option 1 on 2026-08-07. `ErrorNotebookEntry` remains the shared
+learner-private projection, with an explicit source discriminator and nullable
+owner-scoped references to either the existing `PracticeSession` or the
+separate `ToeicTimedTestSession`. Existing daily-practice rows and capture
+semantics remain unchanged. TOEIC capture is additive, limited to finalized
+incorrect answers, and protected by a separate `(toeicTimedTestSessionId,
+questionId)` uniqueness constraint plus database-level source/reference
+invariants. The migration is local/generated evidence only; it is not applied
+automatically to shared Supabase or production.
