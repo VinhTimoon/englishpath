@@ -1,7 +1,7 @@
 ---
 id: EP2-ST010
 title: TOEIC Error Notebook and remediation integration
-status: ready
+status: review
 type: vertical-slice
 priority: high
 phase: phase-2-toeic-listening-reading
@@ -13,6 +13,7 @@ allowed_paths:
   - apps/api/src/modules/toeic/**
   - apps/api/prisma/schema.prisma
   - apps/api/prisma/migrations/**
+  - apps/api/src/generated/**
   - apps/api/test/**
   - apps/web/src/app/error-notebook/**
   - apps/web/src/app/toeic/test/**
@@ -38,7 +39,6 @@ allowed_paths:
 forbidden_paths:
   - apps/api/.env
   - apps/web/.env
-  - apps/api/src/generated/**
   - packages/**
   - package.json
   - pnpm-lock.yaml
@@ -113,3 +113,4 @@ still forbidden.
 - `pnpm story:verify stories/in-progress/EP2-ST010-toeic-error-notebook-and-remediation.md`
 - `pnpm e2e`
 - `git diff --check`
+

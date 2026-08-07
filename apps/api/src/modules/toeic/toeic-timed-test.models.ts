@@ -3,12 +3,18 @@ import type {
   ToeicPart,
   ToeicQuestionType,
 } from '../../generated/prisma/enums';
+import type { ErrorNotebookCaptureHandler } from '../practice/practice.models';
 import type { TimedTestMode, TimedTestStatus } from './toeic-timed-test.policy';
 
 export const TOEIC_TIMED_TEST_REPOSITORY = Symbol(
   'TOEIC_TIMED_TEST_REPOSITORY',
 );
 export const TOEIC_TIMED_TEST_CLOCK = Symbol('TOEIC_TIMED_TEST_CLOCK');
+
+export type { ErrorNotebookCaptureHandler };
+export const TOEIC_ERROR_NOTEBOOK_CAPTURE = Symbol(
+  'TOEIC_ERROR_NOTEBOOK_CAPTURE',
+);
 
 export type TimedTestClock = () => Date;
 

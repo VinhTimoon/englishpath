@@ -402,8 +402,11 @@ unknown or non-owned items return 404 without revealing ownership.
 - `GET /api/v1/quiz/session/:id/result` returns only the caller's persisted result.
 - `GET /api/v1/quiz/session/summary/progress` returns owner-derived XP, streak, completed
   sessions, and review-error totals with zero defaults.
-- `GET /api/v1/quiz/session/summary/errors` returns at most 20 newest private review
-  entries for the authenticated learner.
+- `GET /api/v1/quiz/session/summary/errors` returns a bounded private review page
+  for the authenticated learner. `page` defaults to 1 and `size` defaults to 20
+  (maximum 50); optional `source` is `PRACTICE` or `TOEIC_TIMED_TEST`. The response
+  is `{ entries, pagination: { page, size, total, hasNext } }`, while legacy array
+  consumers remain readable during migration.
 
 ## TOEIC Practice Catalogue
 
@@ -447,3 +450,13 @@ the persisted policy limit. No question IDs, answer rows, selected options,
 correctness flags, answer keys, user IDs, or governance metadata are returned.
 Repeated reads are side-effect free and retain the standard correlation/error
 envelope.
+
+### Timed-test Error Notebook remediation (EP2-ST010)
+
+Finalized result/analysis reads reconcile incorrect answers into the existing
+private notebook. `data.analysis.remediation` is one of:
+`{ status: "ready", count, href }`, `{ status: "empty", count: 0, href: null }`,
+or `{ status: "unavailable", count: 0, href: null }`. The link is a safe
+`/error-notebook?source=TOEIC_TIMED_TEST` route and contains no question ID,
+selected option, correctness flag, answer key, or provider metadata. Capture is
+server-derived, owner-scoped, and retry-safe.

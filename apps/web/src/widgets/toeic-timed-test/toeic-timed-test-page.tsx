@@ -541,6 +541,35 @@ export function ToeicTimedTestPage() {
                 <p>Chưa có dữ liệu phân tích.</p>
               )}
             </section>
+            {analysis ? (
+              <section
+                className={styles.remediation}
+                aria-labelledby="remediation-title"
+              >
+                <h3 id="remediation-title">Bước tiếp theo</h3>
+                {analysis.remediation.status === "ready" ? (
+                  <>
+                    <p>
+                      Đã lưu {analysis.remediation.count} lỗi sai để bạn ôn lại
+                      trong sổ lỗi riêng.
+                    </p>
+                    <Link
+                      className={styles.secondary}
+                      href={analysis.remediation.href ?? "/error-notebook"}
+                    >
+                      Mở sổ lỗi TOEIC
+                    </Link>
+                  </>
+                ) : analysis.remediation.status === "empty" ? (
+                  <p>Chưa có lỗi sai nào cần ôn lại từ bài thi này.</p>
+                ) : (
+                  <p>
+                    Chưa xác nhận được sổ lỗi. Kết quả bài thi vẫn được giữ
+                    nguyên; bạn có thể mở lại sau.
+                  </p>
+                )}
+              </section>
+            ) : null}
             <button
               type="button"
               className={styles.secondary}

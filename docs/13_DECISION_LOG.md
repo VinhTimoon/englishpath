@@ -86,7 +86,8 @@ raw score, bounded percentages, Part/skill aggregates, deterministic weakest
 areas, and clamped time use from the immutable question and answer snapshot.
 Analysis is available only for finalized sessions; the browser supplies no
 analysis inputs and receives no per-question correctness or governance fields.
-Error Notebook and remediation links remain deferred to EP2-ST010.
+Error Notebook and remediation links are implemented by EP2-ST010 under the
+approved cross-source ownership decision below.
 
 ### Decision: cross-source Error Notebook ownership (EP2-ST010)
 

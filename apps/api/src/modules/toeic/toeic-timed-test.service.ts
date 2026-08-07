@@ -1,5 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Optional } from '@nestjs/common';
 import type { ApplicationPrincipal } from '../access';
+import {
+  TOEIC_ERROR_NOTEBOOK_CAPTURE,
+  type ErrorNotebookCaptureHandler,
+} from '../practice/practice.models';
 import { TOEIC_ERROR_CODES, ToeicQuestionError } from './toeic-question.error';
 import type {
   TimedPrivateQuestion,
@@ -108,6 +112,10 @@ export class ToeicTimedTestService {
     private readonly repository: ToeicTimedTestRepository,
     @Inject(TOEIC_TIMED_TEST_CLOCK)
     private readonly clock: TimedTestClock,
+    @Inject(TOEIC_ERROR_NOTEBOOK_CAPTURE)
+    @Optional()
+    private readonly captureErrors: ErrorNotebookCaptureHandler = () =>
+      Promise.resolve(0),
   ) {}
 
   async start(
@@ -191,6 +199,9 @@ export class ToeicTimedTestService {
 
   async get(principal: ApplicationPrincipal, sessionId: string) {
     const session = await this.resolveSession(principal, sessionId);
+    if (session.status !== 'ACTIVE') {
+      await this.captureFinalizedErrors(principal.applicationUserId, session);
+    }
     const questions =
       session.status === 'ACTIVE' ? await this.safeQuestions(session) : [];
     return { session: safeSession(session, this.clock, questions), questions };
@@ -293,6 +304,12 @@ export class ToeicTimedTestService {
       if (result.state === 'incomplete') {
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.INCOMPLETE);
       }
+      if (result.session.status !== 'ACTIVE') {
+        await this.captureFinalizedErrors(
+          principal.applicationUserId,
+          result.session,
+        );
+      }
       return { session: safeSession(result.session, this.clock) };
     } catch (error) {
       if (error instanceof ToeicQuestionError) throw error;
@@ -305,6 +322,9 @@ export class ToeicTimedTestService {
       const session = await this.resolveSession(principal, sessionId);
       const questions =
         session.status === 'ACTIVE' ? await this.safeQuestions(session) : [];
+      if (session.status !== 'ACTIVE') {
+        await this.captureFinalizedErrors(principal.applicationUserId, session);
+      }
       return {
         session: safeSession(session, this.clock, questions),
         questions,
@@ -325,7 +345,15 @@ export class ToeicTimedTestService {
       );
       if (questions.length !== session.questionIds.length)
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
-      return { analysis: buildTimedTestAnalysis(session, questions) };
+      const remediation = await this.captureFinalizedErrors(
+        principal.applicationUserId,
+        session,
+        questions,
+      );
+      return {
+        analysis: buildTimedTestAnalysis(session, questions),
+        remediation,
+      };
     } catch (error) {
       if (error instanceof ToeicQuestionError) throw error;
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.REPOSITORY_FAILURE);
@@ -365,5 +393,44 @@ export class ToeicTimedTestService {
     }
     const byId = new Map(questions.map((question) => [question.id, question]));
     return session.questionIds.map((id) => safeQuestion(byId.get(id)!));
+  }
+
+  private async captureFinalizedErrors(
+    userId: string,
+    session: TimedSession,
+    knownQuestions?: readonly TimedPrivateQuestion[],
+  ) {
+    try {
+      const questions =
+        knownQuestions ??
+        (await this.repository.finalizedQuestionsByIds(session.questionIds));
+      if (questions.length !== session.questionIds.length) {
+        return { status: 'unavailable' as const, count: 0, href: null };
+      }
+      const count = await this.captureErrors({
+        userId,
+        sessionId: session.id,
+        answers: session.answers.map((answer) => ({
+          questionId: answer.questionId,
+          selectedOption: answer.selectedOption,
+          isCorrect: answer.isCorrect,
+        })),
+        questions: questions.map((question) => ({
+          questionId: question.id,
+          prompt: question.prompt,
+          correctOption: question.correctAnswer,
+          explanation: question.explanation ?? '',
+        })),
+      });
+      return count > 0
+        ? {
+            status: 'ready' as const,
+            count,
+            href: '/error-notebook?source=TOEIC_TIMED_TEST',
+          }
+        : { status: 'empty' as const, count: 0, href: null };
+    } catch {
+      return { status: 'unavailable' as const, count: 0, href: null };
+    }
   }
 }

@@ -1,4 +1,13 @@
-import { IsIn, IsString, Matches } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsIn,
+  IsInt,
+  IsOptional,
+  IsString,
+  Matches,
+  Max,
+  Min,
+} from 'class-validator';
 
 export class StartPracticeDto {
   @IsString()
@@ -13,4 +22,22 @@ export class AnswerPracticeDto {
 
   @IsIn(['a', 'b', 'c'])
   selectedOption!: string;
+}
+
+export class ErrorNotebookQueryDto {
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(1000)
+  page = 1;
+
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(50)
+  size = 20;
+
+  @IsOptional()
+  @IsIn(['PRACTICE', 'TOEIC_TIMED_TEST'])
+  source?: 'PRACTICE' | 'TOEIC_TIMED_TEST';
 }

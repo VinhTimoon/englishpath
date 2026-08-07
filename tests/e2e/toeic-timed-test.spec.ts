@@ -46,7 +46,13 @@ function activeResponse(
   };
 }
 
-function analysisResponse() {
+function analysisResponse(
+  remediation = {
+    status: "ready",
+    count: 3,
+    href: "/error-notebook?source=TOEIC_TIMED_TEST",
+  },
+) {
   return {
     data: {
       analysis: {
@@ -82,6 +88,7 @@ function analysisResponse() {
           averageSecondsPerAnswered: 45,
         },
       },
+      remediation,
     },
     meta,
   };
@@ -465,6 +472,13 @@ test.describe("TOEIC timed test learner journey", () => {
     ).toBeVisible({ timeout: 5000 });
     await expect(page.getByText("17", { exact: true })).toBeVisible();
     await expect(page.getByText(/85%/)).toBeVisible();
+    const remediation = page.getByRole("link", { name: "Mở sổ lỗi TOEIC" });
+    await expect(remediation).toHaveAttribute(
+      "href",
+      "/error-notebook?source=TOEIC_TIMED_TEST",
+    );
+    await remediation.focus();
+    await expect(remediation).toBeFocused();
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
     await page.reload();
     await expect(page.getByText(/85%/)).toBeVisible();
@@ -582,6 +596,105 @@ test.describe("TOEIC timed test learner journey", () => {
     const analysisSection = page.locator('[class*="analysis"]').first();
     await expect(analysisSection).toBeVisible();
     await expect(analysisSection.locator("p")).toHaveCount(1);
+  });
+
+  test("renders an unavailable remediation state without hiding analysis", async ({
+    page,
+  }) => {
+    await installSession(page);
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.toeic.test.active",
+        "remediation-unavailable-session",
+      );
+    });
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/remediation-unavailable-session`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              session: {
+                sessionId: "remediation-unavailable-session",
+                mode: "MINI",
+                status: "SUBMITTED",
+                total: 20,
+                answered: 20,
+                remainingSeconds: 0,
+                score: 12,
+              },
+              questions: [],
+            },
+            meta,
+          }),
+        }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/remediation-unavailable-session/analysis`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            analysisResponse({ status: "unavailable", count: 0, href: null }),
+          ),
+        }),
+    );
+    await page.goto("/toeic/test");
+    await expect(page.getByText("Chưa xác nhận được sổ lỗi.")).toBeVisible();
+    await expect(page.getByText(/85%/)).toBeVisible();
+  });
+
+  test("renders a no-errors remediation state after a clean final attempt", async ({
+    page,
+  }) => {
+    await installSession(page);
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.toeic.test.active",
+        "remediation-empty-session",
+      );
+    });
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/remediation-empty-session`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              session: {
+                sessionId: "remediation-empty-session",
+                mode: "MINI",
+                status: "SUBMITTED",
+                total: 20,
+                answered: 20,
+                remainingSeconds: 0,
+                score: 20,
+              },
+              questions: [],
+            },
+            meta,
+          }),
+        }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/remediation-empty-session/analysis`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            analysisResponse({ status: "empty", count: 0, href: null }),
+          ),
+        }),
+    );
+    await page.goto("/toeic/test");
+    await expect(
+      page.getByText("Chưa có lỗi sai nào cần ôn lại từ bài thi này."),
+    ).toBeVisible();
   });
 
   test("keeps an answer retryable and reconciles server expiry", async ({

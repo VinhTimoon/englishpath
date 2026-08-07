@@ -1,4 +1,7 @@
 import type {
+  ErrorNotebookCapture,
+  ErrorNotebookPage,
+  ErrorNotebookQuery,
   PersistedPracticeAnswer,
   PracticeAnswerInput,
   PracticeSessionState,
@@ -6,6 +9,7 @@ import type {
 } from './practice.models';
 
 export interface PracticeRepository {
+  captureToeicErrors?(input: ErrorNotebookCapture): Promise<number>;
   start(
     userId: string,
     clientSessionId: string,
@@ -25,5 +29,5 @@ export interface PracticeRepository {
     sessionId: string,
   ): Promise<PracticeSessionState | null>;
   summary(userId: string): Promise<ProgressSummary>;
-  errors(userId: string): Promise<PracticeSessionState['errors']>;
+  errors(userId: string, query: ErrorNotebookQuery): Promise<ErrorNotebookPage>;
 }

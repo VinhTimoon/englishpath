@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import type { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 import type {
+  ErrorNotebookCapture,
+  ErrorNotebookQuery,
   PracticeAnswerInput,
   PracticeSessionState,
 } from './practice.models';
@@ -20,6 +22,15 @@ function vietnamPracticeDay(value: Date) {
   const local = new Date(value.getTime() + 7 * 3_600_000);
   return new Date(
     Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate()),
+  );
+}
+
+function isUniqueConstraint(error: unknown) {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    error.code === 'P2002'
   );
 }
 
@@ -45,6 +56,71 @@ function state(record: PracticeRecord): PracticeSessionState {
 @Injectable()
 export class PrismaPracticeRepository implements PracticeRepository {
   constructor(private readonly prisma: PrismaService) {}
+
+  async captureToeicErrors(input: ErrorNotebookCapture) {
+    const questions = new Map(
+      input.questions.map((question) => [question.questionId, question]),
+    );
+    const incorrect = input.answers.filter((answer) => !answer.isCorrect);
+    if (incorrect.length === 0) return 0;
+
+    return this.prisma.$transaction(async (tx) => {
+      const session = await tx.toeicTimedTestSession.findFirst({
+        where: {
+          id: input.sessionId,
+          userId: input.userId,
+          status: { in: ['SUBMITTED', 'EXPIRED'] },
+        },
+        select: { id: true },
+      });
+      if (!session) return 0;
+
+      let captured = 0;
+      for (const answer of incorrect) {
+        const question = questions.get(answer.questionId);
+        if (!question) continue;
+        const where = {
+          toeicTimedTestSessionId_questionId: {
+            toeicTimedTestSessionId: input.sessionId,
+            questionId: answer.questionId,
+          },
+        } as const;
+        try {
+          await tx.errorNotebookEntry.upsert({
+            where,
+            create: {
+              userId: input.userId,
+              source: 'TOEIC_TIMED_TEST',
+              toeicTimedTestSessionId: input.sessionId,
+              questionId: answer.questionId,
+              prompt: question.prompt,
+              selectedOption: answer.selectedOption,
+              correctOption: question.correctOption,
+              explanation:
+                question.explanation ||
+                'Hãy xem lại kiến thức liên quan đến câu hỏi này.',
+            },
+            update: {},
+          });
+        } catch (error) {
+          if (!isUniqueConstraint(error)) throw error;
+          const existing = await tx.errorNotebookEntry.findUnique({
+            where,
+            select: { userId: true, source: true },
+          });
+          if (
+            !existing ||
+            existing.userId !== input.userId ||
+            existing.source !== 'TOEIC_TIMED_TEST'
+          ) {
+            throw error;
+          }
+        }
+        captured += 1;
+      }
+      return captured;
+    });
+  }
 
   async start(
     userId: string,
@@ -205,18 +281,45 @@ export class PrismaPracticeRepository implements PracticeRepository {
     };
   }
 
-  async errors(userId: string) {
-    return this.prisma.errorNotebookEntry.findMany({
-      where: { userId },
-      orderBy: { createdAt: 'desc' },
-      take: 20,
-      select: {
-        questionId: true,
-        prompt: true,
-        selectedOption: true,
-        correctOption: true,
-        explanation: true,
+  async errors(userId: string, query: ErrorNotebookQuery) {
+    const where = {
+      userId,
+      ...(query.source ? { source: query.source } : {}),
+    };
+    const [total, entries] = await Promise.all([
+      this.prisma.errorNotebookEntry.count({ where }),
+      this.prisma.errorNotebookEntry.findMany({
+        where,
+        orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+        skip: (query.page - 1) * query.size,
+        take: query.size,
+        select: {
+          questionId: true,
+          prompt: true,
+          selectedOption: true,
+          correctOption: true,
+          explanation: true,
+          source: true,
+        },
+      }),
+    ]);
+    return {
+      entries: entries.map((entry) => ({
+        ...entry,
+        remediation: {
+          href: '/error-notebook',
+          label:
+            entry.source === 'TOEIC_TIMED_TEST'
+              ? 'Ôn lỗi TOEIC'
+              : 'Xem lại lỗi',
+        },
+      })),
+      pagination: {
+        page: query.page,
+        size: query.size,
+        total,
+        hasNext: query.page * query.size < total,
       },
-    });
+    };
   }
 }

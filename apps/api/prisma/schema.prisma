@@ -152,7 +152,9 @@ model LearnerProgress {
 model ErrorNotebookEntry {
   id             String          @id @default(cuid())
   userId         String
-  sessionId      String
+  source         ErrorNotebookSource @default(PRACTICE)
+  sessionId      String?
+  toeicTimedTestSessionId String?
   questionId     String
   prompt         String
   selectedOption String
@@ -160,10 +162,13 @@ model ErrorNotebookEntry {
   explanation    String
   createdAt      DateTime        @default(now())
   user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  session        PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session        PracticeSession? @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  toeicTimedTestSession ToeicTimedTestSession? @relation(fields: [toeicTimedTestSessionId], references: [id], onDelete: Cascade)
 
   @@unique([sessionId, questionId])
+  @@unique([toeicTimedTestSessionId, questionId])
   @@index([userId, createdAt])
+  @@index([userId, source, createdAt])
 }
 
 model UserProfile {
@@ -508,9 +513,15 @@ model ToeicTimedTestSession {
   finalizedAt     DateTime?
   user            User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
   answers         ToeicTimedTestAnswer[]
+  errorNotebookEntries ErrorNotebookEntry[]
   @@unique([userId, clientSessionId])
   @@index([userId, status])
   @@index([deadlineAt, status])
+}
+
+enum ErrorNotebookSource {
+  PRACTICE
+  TOEIC_TIMED_TEST
 }
 
 model ToeicTimedTestAnswer {

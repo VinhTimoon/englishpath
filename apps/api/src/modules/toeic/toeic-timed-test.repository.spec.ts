@@ -14,6 +14,7 @@ const migrationSource = readFileSync(
   ),
   'utf8',
 );
+const normalizedRepositorySource = repositorySource.replace(/\r\n/g, '\n');
 
 describe('TOEIC timed-test repository boundary', () => {
   it('keeps only the first deterministic newest version per canonical question', () => {
@@ -46,16 +47,16 @@ describe('TOEIC timed-test repository boundary', () => {
     expect(repositorySource).toContain('deadlineAt: { gt: input.answeredAt }');
     expect(repositorySource).toContain('finalizedAt: null');
     expect(repositorySource).toContain('updated.count !== 1');
-    expect(repositorySource).toContain(
+    expect(normalizedRepositorySource).toContain(
       "where: { id, userId, status: 'ACTIVE' }",
     );
-    expect(repositorySource).toContain(
+    expect(normalizedRepositorySource).toContain(
       'Acquire the same active-session row lock used by answer insertion',
     );
-    expect(repositorySource).toContain(
+    expect(normalizedRepositorySource).toContain(
       'const raced = await transaction.toeicTimedTestAnswer.findUnique',
     );
-    expect(repositorySource).toContain(
+    expect(normalizedRepositorySource).toContain(
       "? 'replayed'\n            : 'conflict'",
     );
   });

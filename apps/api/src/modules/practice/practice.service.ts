@@ -92,7 +92,14 @@ export class PracticeService {
     return this.repository.summary(principal.applicationUserId);
   }
 
-  errors(principal: ApplicationPrincipal) {
-    return this.repository.errors(principal.applicationUserId);
+  errors(
+    principal: ApplicationPrincipal,
+    query: Readonly<{
+      page: number;
+      size: number;
+      source?: 'PRACTICE' | 'TOEIC_TIMED_TEST';
+    }>,
+  ) {
+    return this.repository.errors(principal.applicationUserId, query);
   }
 }

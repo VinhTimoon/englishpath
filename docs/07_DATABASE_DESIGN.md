@@ -1,5 +1,14 @@
 # Database Design V2
 
+## Error Notebook ownership (EP2-ST010)
+
+`ErrorNotebookEntry` uses `ErrorNotebookSource` (`PRACTICE` or
+`TOEIC_TIMED_TEST`). Existing practice rows remain practice-sourced. The local
+additive migration adds source-aware uniqueness, owner/source/date indexes, and a
+check constraint requiring the reference matching the source. It contains no
+destructive SQL; rollback is an owner-approved local operation documented in the
+migration header.
+
 ## Purpose
 
 This document defines conceptual data ownership and boundaries for Phase 0-6. It
@@ -254,7 +263,7 @@ are not persisted in client-readable records before answer submission.
 
 ### Cross-source Error Notebook projection (EP2-ST010)
 
-Owner-approved migration `20260807100000_error_notebook_toeic_source` keeps
+Owner-approved migration `20260807120000_toeic_error_notebook_ownership` keeps
 existing daily-practice `ErrorNotebookEntry` rows attached to `PracticeSession`
 and adds `source`, nullable `toeicTimedTestSessionId`, and the corresponding
 owner-scoped relation to `ToeicTimedTestSession`. The existing practice

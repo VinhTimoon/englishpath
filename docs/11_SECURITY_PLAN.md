@@ -160,3 +160,13 @@ is not serialized into the learner projection. Explicit owner-bound lookup,
 snapshot completeness checks, recursive forbidden-field assertions, and
 side-effect-free repeated reads protect score integrity and prevent answer-key,
 user, or governance metadata disclosure.
+
+EP2-ST010 extends the ownership boundary without weakening it. An
+`ErrorNotebookEntry` has exactly one source/reference pair: daily practice uses
+`PracticeSession`, while TOEIC uses `ToeicTimedTestSession`; the repository checks
+the TOEIC session owner and finalized status before writing. Capture accepts only
+server-computed incorrect answers and is idempotent by timed-session/question.
+Notebook pages are authenticated, owner-scoped, bounded, and source-filtered;
+remediation projections contain no answer keys, correctness flags, provider, or
+governance fields. Capture failure leaves the final result available and exposes
+only an unavailable/retryable state.

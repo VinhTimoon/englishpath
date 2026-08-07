@@ -23,9 +23,10 @@ import {
   TOEIC_TIMED_TEST_CLOCK,
   TOEIC_TIMED_TEST_REPOSITORY,
 } from './toeic-timed-test.models';
+import { PracticeModule } from '../practice/practice.module';
 
 @Module({
-  imports: [AuthModule, AuditModule],
+  imports: [AuthModule, AuditModule, PracticeModule],
   controllers: [ToeicController],
   providers: [
     ToeicQuestionService,

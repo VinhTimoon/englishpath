@@ -256,3 +256,11 @@ question snapshot with explicit private selects; the service maps Parts 1-4 to
 LISTENING and Parts 5-7 to READING, then returns only aggregates. Controllers
 remain transport-only and never receive client score, elapsed-time, Part, or
 weakness inputs.
+
+EP2-ST010 keeps Error Notebook persistence in the practice module while exposing
+an internal capture port to the TOEIC service. Finalization/result/analysis reads
+pass only server-derived incorrect answers and private question explanations to
+the owner-scoped practice repository. The repository verifies a finalized session
+belongs to that owner, upserts the TOEIC source/reference pair idempotently, and
+returns a bounded page for notebook reads. Capture failure does not hide a valid
+timed result; a later finalized read retries reconciliation.

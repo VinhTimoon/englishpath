@@ -10,13 +10,18 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import type { AuthenticatedRequest } from '../auth/auth-request';
 import { authCorrelationId } from '../auth/auth-exception.filter';
 import { AuthenticationGuard } from '../auth/auth.guards';
 import { RoadmapExceptionFilter } from '../roadmap/roadmap-exception.filter';
-import { AnswerPracticeDto, StartPracticeDto } from './dto/practice.dto';
+import {
+  AnswerPracticeDto,
+  ErrorNotebookQueryDto,
+  StartPracticeDto,
+} from './dto/practice.dto';
 import { PracticeService } from './practice.service';
 
 @ApiTags('daily-practice')
@@ -94,9 +99,13 @@ export class PracticeController {
   @Get('summary/errors')
   errorNotebook(
     @Req() request: AuthenticatedRequest,
+    @Query() query: ErrorNotebookQueryDto,
     @Headers('x-correlation-id') correlation?: string,
   ) {
-    return this.wrap(this.service.errors(request.principal!), correlation);
+    return this.wrap(
+      this.service.errors(request.principal!, query),
+      correlation,
+    );
   }
 
   private async wrap<T>(data: Promise<T>, correlation?: string) {

@@ -198,3 +198,12 @@ accuracy, Part 1-7 and Listening/Reading summaries, deterministic weakest areas,
 and server-derived time use. Active sessions, cross-owner IDs, and malformed
 snapshots do not disclose analysis. Analysis retrieval is read-only; a failed
 analysis request leaves the valid final result visible and offers retry.
+
+### Error Notebook remediation (EP2-ST010)
+
+Finalized `SUBMITTED` or `EXPIRED` TOEIC sessions project only incorrect answers
+into the learner's existing private Error Notebook. Capture is idempotent and
+reconciles on repeated result/analysis reads. The result shows a Vietnamese
+remediation link when entries are ready, an explicit no-errors state when none
+exist, and an unavailable state when capture cannot be confirmed. The notebook
+remains owner-scoped, bounded, paginated, and retains the daily-practice flow.

@@ -111,3 +111,8 @@ Part/skill summaries, weakest areas, and server-derived time use only after
 finalization. Analysis errors preserve the result card and expose a keyboard
 operable retry; no official TOEIC conversion or per-question correctness is
 shown in this surface.
+
+The Error Notebook uses the same learning-surface tokens and has explicit loading,
+empty, error, and success states. TOEIC entries carry a text source label and a
+keyboard-operable remediation link; bounded previous/next controls remain usable
+at 360px and status is never communicated by color alone.

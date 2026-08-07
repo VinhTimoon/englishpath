@@ -326,3 +326,13 @@ frontend unit runner passed 6 checks, the focused timed-test browser journey
 passed 12 tests, and the full browser suite passed 64 tests. Project lint,
 typecheck, test (52 suites/388 tests), build, Prisma validate, formatting, and
 planning traceability also passed.
+
+## EP2-ST010 Error Notebook evidence
+
+Coverage must prove additive source/reference constraints, finalized-only capture,
+incorrect-answer filtering, duplicate and unique-race replay, owner isolation,
+bounded source-filtered pagination, practice regression, and absence of private
+fields in timed-test responses. Browser coverage exercises notebook loading,
+empty/error/success states, TOEIC remediation navigation, keyboard access, and a
+360px no-overflow viewport. Local Prisma validation and mocked repository tests
+are evidence only; the additive migration is not applied to shared Supabase.

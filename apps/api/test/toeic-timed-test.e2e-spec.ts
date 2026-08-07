@@ -25,6 +25,10 @@ import {
   type TimedSession,
   type ToeicTimedTestRepository,
 } from '../src/modules/toeic/toeic-timed-test.models';
+import {
+  PRACTICE_REPOSITORY,
+  TOEIC_ERROR_NOTEBOOK_CAPTURE,
+} from '../src/modules/practice/practice.models';
 
 const identity = createExternalIdentity({
   provider: 'SUPABASE',
@@ -35,6 +39,13 @@ const identity = createExternalIdentity({
 const principal = createApplicationPrincipal({
   applicationUserId: 'timed-e2e-learner',
   externalIdentity: identity,
+  roles: ['FREE_USER'],
+  ownerships: [],
+  entitlements: [],
+});
+const alternatePrincipal = createApplicationPrincipal({
+  applicationUserId: 'another-learner',
+  externalIdentity: { ...identity, subject: 'another-subject' },
   roles: ['FREE_USER'],
   ownerships: [],
   entitlements: [],
@@ -129,6 +140,11 @@ describe('TOEIC timed-test API', () => {
     createAnswer: jest.fn(),
     finalize: jest.fn(),
   };
+  const captureErrors = jest.fn();
+  const practiceRepository = {
+    errors: jest.fn(),
+  };
+  const resolvePrincipal = jest.fn();
 
   beforeEach(async () => {
     currentSession = makeSession();
@@ -183,6 +199,22 @@ describe('TOEIC timed-test API', () => {
       state: 'incomplete',
       session: makeSession(),
     });
+    captureErrors.mockResolvedValue(1);
+    resolvePrincipal.mockResolvedValue(principal);
+    practiceRepository.errors.mockResolvedValue({
+      entries: [
+        {
+          questionId: 'timed-question-2',
+          prompt: 'Prompt 2',
+          selectedOption: 'B',
+          correctOption: 'A',
+          explanation: 'Review this rule.',
+          source: 'TOEIC_TIMED_TEST',
+          remediation: { href: '/error-notebook', label: 'Ôn lỗi TOEIC' },
+        },
+      ],
+      pagination: { page: 2, size: 1, total: 2, hasNext: false },
+    });
 
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
@@ -191,12 +223,16 @@ describe('TOEIC timed-test API', () => {
       .useValue({})
       .overrideProvider(TOEIC_TIMED_TEST_REPOSITORY)
       .useValue(repository)
+      .overrideProvider(PRACTICE_REPOSITORY)
+      .useValue(practiceRepository)
+      .overrideProvider(TOEIC_ERROR_NOTEBOOK_CAPTURE)
+      .useValue(captureErrors)
       .overrideProvider(TOEIC_TIMED_TEST_CLOCK)
       .useValue(() => new Date('2026-08-06T00:00:00.000Z'))
       .overrideProvider(EXTERNAL_IDENTITY_VERIFIER)
       .useValue({ verify: jest.fn().mockResolvedValue(identity) })
       .overrideProvider(APPLICATION_PRINCIPAL_RESOLVER)
-      .useValue({ resolve: jest.fn().mockResolvedValue(principal) })
+      .useValue({ resolve: resolvePrincipal })
       .compile();
     app = moduleFixture.createNestApplication();
     configureOpenApi(app);
@@ -453,8 +489,15 @@ describe('TOEIC timed-test API', () => {
         remainingSeconds: 1075,
       },
     });
+    expect((first.body as ApiBody).data).toMatchObject({
+      remediation: {
+        status: 'ready',
+        count: 1,
+        href: '/error-notebook?source=TOEIC_TIMED_TEST',
+      },
+    });
     expect(JSON.stringify(first.body)).not.toMatch(
-      /questionId|selectedOption|isCorrect|correctAnswer|userId|source|license|review|publication|provider/,
+      /questionId|selectedOption|isCorrect|correctAnswer|userId|license|reviewStatus|publication|provider/,
     );
 
     repository.find.mockResolvedValue(makeSession());
@@ -468,6 +511,77 @@ describe('TOEIC timed-test API', () => {
       .get('/api/v1/toeic/tests/sessions/not-owned/analysis')
       .set('Authorization', 'Bearer local.signed.token')
       .expect(404);
+  });
+
+  it('returns an authenticated, bounded, source-filtered Error Notebook page', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/quiz/session/summary/errors')
+      .query({ page: 2, size: 1, source: 'TOEIC_TIMED_TEST' })
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+
+    expect((response.body as ApiBody).data).toMatchObject({
+      pagination: { page: 2, size: 1, total: 2, hasNext: false },
+    });
+    expect(practiceRepository.errors).toHaveBeenCalledWith(
+      principal.applicationUserId,
+      { page: 2, size: 1, source: 'TOEIC_TIMED_TEST' },
+    );
+    expect(JSON.stringify(response.body)).not.toMatch(
+      /userId|correctAnswer|provider|rightsOwner|publicationState/,
+    );
+  });
+
+  it('rejects unauthenticated and out-of-bounds Error Notebook queries', async () => {
+    await request(app.getHttpServer())
+      .get('/api/v1/quiz/session/summary/errors')
+      .expect(401);
+    await request(app.getHttpServer())
+      .get('/api/v1/quiz/session/summary/errors')
+      .query({ page: 0, size: 51, source: 'UNKNOWN' })
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(400);
+    expect(practiceRepository.errors).toHaveBeenCalledTimes(0);
+  });
+
+  it('does not expose notebook rows when the authenticated owner changes', async () => {
+    practiceRepository.errors.mockResolvedValueOnce({
+      entries: [],
+      pagination: { page: 1, size: 20, total: 0, hasNext: false },
+    });
+    resolvePrincipal.mockResolvedValueOnce(alternatePrincipal);
+
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/quiz/session/summary/errors')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+
+    expect((response.body as ApiBody).data.entries).toEqual([]);
+    expect(practiceRepository.errors).toHaveBeenCalledWith('another-learner', {
+      page: 1,
+      size: 20,
+    });
+    expect(JSON.stringify(response.body)).not.toContain('timed-question-2');
+  });
+
+  it('returns an explicit empty remediation state when no TOEIC errors were captured', async () => {
+    captureErrors.mockResolvedValueOnce(0);
+    const final = makeSession({
+      status: 'SUBMITTED',
+      score: 20,
+      finalizedAt: new Date('2026-08-06T00:02:05.000Z'),
+    });
+    repository.find.mockResolvedValue(final);
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .expect(200);
+
+    expect((response.body as ApiBody).data.remediation).toEqual({
+      status: 'empty',
+      count: 0,
+      href: null,
+    });
   });
 
   it('returns HALF analysis totals from the finalized server snapshot', async () => {

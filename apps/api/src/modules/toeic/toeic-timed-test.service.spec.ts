@@ -415,6 +415,71 @@ describe('ToeicTimedTestService', () => {
     expect(JSON.stringify(result)).not.toContain('isCorrect');
   });
 
+  it('captures an expired session finalized during a general session read', async () => {
+    const now = new Date(baseTime.getTime() + 20 * 60 * 1000);
+    const final = session({
+      status: 'EXPIRED',
+      score: 0,
+      finalizedAt: now,
+      answers: [
+        {
+          questionId: 'version-2',
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    const capture = jest.fn().mockResolvedValue(1);
+    const repo = repository({
+      find: jest
+        .fn()
+        .mockResolvedValue(
+          session({ deadlineAt: new Date(now.getTime() - 1) }),
+        ),
+      finalize: jest.fn().mockResolvedValue({
+        state: 'finalized',
+        session: final,
+      }),
+    });
+
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => now,
+      capture,
+    ).get(principal, final.id);
+
+    expect(result.session.status).toBe('EXPIRED');
+    expect(capture).toHaveBeenCalledWith(
+      expect.objectContaining({ sessionId: final.id }),
+    );
+  });
+
+  it('reconciles repeated finalization reads without changing the final result', async () => {
+    const final = session({
+      status: 'SUBMITTED',
+      score: 17,
+      finalizedAt: baseTime,
+    });
+    const capture = jest.fn().mockResolvedValue(1);
+    const repo = repository({
+      finalize: jest
+        .fn()
+        .mockResolvedValueOnce({ state: 'finalized', session: final })
+        .mockResolvedValueOnce({ state: 'already-finalized', session: final }),
+    });
+    const service = new ToeicTimedTestService(repo, () => baseTime, capture);
+
+    const results = await Promise.all([
+      service.submit(principal, final.id),
+      service.submit(principal, final.id),
+    ]);
+
+    expect(results.map(({ session: value }) => value.score)).toEqual([17, 17]);
+    expect(capture).toHaveBeenCalledTimes(2);
+    expect(repo.finalize.mock.calls).toHaveLength(2);
+  });
+
   it('builds deterministic aggregate analysis without per-question disclosure', () => {
     const final = session({
       status: 'SUBMITTED',
@@ -520,6 +585,84 @@ describe('ToeicTimedTestService', () => {
     );
     expect(boundary.accuracy).toBe(33);
     expect(boundary.time.averageSecondsPerAnswered).toBe(0.3);
+  });
+
+  it('captures only finalized incorrect answers and returns a safe remediation state', async () => {
+    const final = session({
+      status: 'SUBMITTED',
+      score: 1,
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: [
+        {
+          questionId: 'version-1',
+          selectedOption: 'A',
+          isCorrect: true,
+          answeredAt: baseTime,
+        },
+        {
+          questionId: 'version-2',
+          selectedOption: 'B',
+          isCorrect: false,
+          answeredAt: baseTime,
+        },
+      ],
+    });
+    const capture = jest.fn().mockResolvedValue(1);
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(final),
+    });
+
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      capture,
+    ).analysis(principal, final.id);
+
+    expect(capture).toHaveBeenCalledWith(
+      expect.objectContaining({
+        userId: principal.applicationUserId,
+        sessionId: final.id,
+        answers: [
+          expect.objectContaining({ questionId: 'version-1', isCorrect: true }),
+          expect.objectContaining({
+            questionId: 'version-2',
+            isCorrect: false,
+          }),
+        ],
+      }),
+    );
+    expect(result.remediation).toEqual({
+      status: 'ready',
+      count: 1,
+      href: '/error-notebook?source=TOEIC_TIMED_TEST',
+    });
+    expect(JSON.stringify(result)).not.toMatch(
+      /correctAnswer|isCorrect|selectedOption|questionId|userId/,
+    );
+  });
+
+  it('keeps the finalized analysis available when notebook capture is unavailable', async () => {
+    const final = session({
+      status: 'EXPIRED',
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+    });
+    const repo = repository({ find: jest.fn().mockResolvedValue(final) });
+    const capture = jest
+      .fn()
+      .mockRejectedValue(new Error('notebook unavailable'));
+
+    const result = await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      capture,
+    ).analysis(principal, final.id);
+
+    expect(result.analysis.score.total).toBe(20);
+    expect(result.remediation).toEqual({
+      status: 'unavailable',
+      count: 0,
+      href: null,
+    });
   });
 
   it('fails closed for active, duplicate, or cross-snapshot analysis data', () => {

@@ -202,11 +202,21 @@ const checks = [
               averageSecondsPerAnswered: 41.7,
             },
           },
+          remediation: {
+            status: "ready",
+            count: 2,
+            href: "/error-notebook?source=TOEIC_TIMED_TEST",
+          },
         },
       };
       const analysis = contracts.parseTimedAnalysis(payload);
       assert.equal(analysis.score.correct, 2);
       assert.equal(analysis.time.remainingSeconds, 1075);
+      assert.deepEqual(analysis.remediation, {
+        status: "ready",
+        count: 2,
+        href: "/error-notebook?source=TOEIC_TIMED_TEST",
+      });
       assert.throws(
         () =>
           contracts.parseTimedAnalysis({
@@ -218,6 +228,21 @@ const checks = [
                 parts: [
                   { ...payload.data.analysis.parts[0], questionId: "private" },
                 ],
+              },
+            },
+          }),
+        /INVALID_RESPONSE/,
+      );
+      assert.throws(
+        () =>
+          contracts.parseTimedAnalysis({
+            ...payload,
+            data: {
+              ...payload.data,
+              remediation: {
+                status: "ready",
+                count: 1,
+                href: "https://unsafe.example/errors",
               },
             },
           }),

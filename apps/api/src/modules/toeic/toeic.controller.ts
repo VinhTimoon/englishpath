@@ -166,7 +166,7 @@ export class ToeicController {
   })
   @ApiOkResponse({
     description:
-      'Aggregate score, Part/skill summaries, weaknesses, and server-clock time only.',
+      'Aggregate score, Part/skill summaries, weaknesses, server-clock time, and safe Error Notebook remediation state only.',
     schema: {
       type: 'object',
       properties: {
@@ -233,6 +233,22 @@ export class ToeicController {
                   },
                 },
               },
+            },
+            remediation: {
+              type: 'object',
+              properties: {
+                status: {
+                  type: 'string',
+                  enum: ['ready', 'empty', 'unavailable'],
+                },
+                count: { type: 'integer', minimum: 0 },
+                href: {
+                  type: 'string',
+                  nullable: true,
+                  enum: ['/error-notebook?source=TOEIC_TIMED_TEST', null],
+                },
+              },
+              required: ['status', 'count', 'href'],
             },
           },
         },

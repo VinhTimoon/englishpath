@@ -55,6 +55,11 @@ export type TimedAnalysis = {
     remainingSeconds: number;
     averageSecondsPerAnswered: number;
   };
+  remediation: {
+    status: "ready" | "empty" | "unavailable";
+    count: number;
+    href: "/error-notebook?source=TOEIC_TIMED_TEST" | null;
+  };
 };
 
 export const TIMED_TEST_SHAPE: Record<
@@ -296,10 +301,36 @@ function parseAnalysisScore(value: unknown): TimedAnalysis["score"] | null {
   };
 }
 
+function parseRemediation(value: unknown): TimedAnalysis["remediation"] {
+  const remediation = record(value);
+  if (!remediation) {
+    return { status: "unavailable", count: 0, href: null };
+  }
+  const status = remediation.status;
+  const count = remediation.count;
+  const href = remediation.href;
+  if (
+    (status !== "ready" && status !== "empty" && status !== "unavailable") ||
+    !integer(count) ||
+    count < 0 ||
+    (href !== null && href !== "/error-notebook?source=TOEIC_TIMED_TEST") ||
+    (status === "ready" && (count < 1 || href === null)) ||
+    (status !== "ready" && (count !== 0 || href !== null))
+  ) {
+    throw new Error("INVALID_RESPONSE");
+  }
+  return {
+    status,
+    count,
+    href,
+  };
+}
+
 export function parseTimedAnalysis(value: unknown): TimedAnalysis | null {
   const root = record(value);
   const data = record(root?.data);
   const analysis = record(data?.analysis);
+  const remediation = parseRemediation(data?.remediation);
   if (root && data && analysis === null) return null;
   const score = parseAnalysisScore(analysis?.score);
   const time = record(analysis?.time);
@@ -354,7 +385,7 @@ export function parseTimedAnalysis(value: unknown): TimedAnalysis | null {
   if (
     !analysis ||
     !hasOnlyKeys(root, ["data", "meta"]) ||
-    !hasOnlyKeys(data, ["analysis"]) ||
+    !hasOnlyKeys(data, ["analysis", "remediation"]) ||
     (record(root?.meta) !== null &&
       !hasOnlyKeys(record(root?.meta), [
         "correlationId",
@@ -444,6 +475,7 @@ export function parseTimedAnalysis(value: unknown): TimedAnalysis | null {
       remainingSeconds: time.remainingSeconds,
       averageSecondsPerAnswered: time.averageSecondsPerAnswered,
     },
+    remediation,
   };
 }
 

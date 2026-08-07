@@ -139,3 +139,9 @@ allowlists score, accuracy, Part/skill aggregates, weaknesses, and time fields,
 rejecting recursive private-field leakage. Analysis loading, unavailable, error,
 retry, and success states are separate from the base final-result state so an
 analysis failure cannot erase a valid learner result.
+
+The Error Notebook widget accepts both the legacy array response and the bounded
+`{ entries, pagination }` response. It supports an optional TOEIC source filter,
+loading skeleton, empty state, retryable error, source labels, remediation links,
+and keyboard-accessible previous/next pagination. It never derives taxonomy or
+answer correctness on the client.
