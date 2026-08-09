@@ -147,3 +147,8 @@ stable server contract.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## AI Request
+
+Blocked by the approved persistence/source boundary decision request:
+`notes/ai-req/2026-08-10-ep4-st002-speaking-submission-persistence-boundary.md`.
