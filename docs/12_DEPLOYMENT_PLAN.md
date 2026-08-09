@@ -79,6 +79,7 @@ alerts. Minimum launch signals include API latency/error rate, queue length, slo
 and database pressure indicators, cache hit rate, media bandwidth, active learners,
 guest-to-signup conversion, and daily active learners. AI cost is added by its owning
 gateway story.
+
 ### EP3-ST012 phase-exit deployment boundary
 
 Phase 3 is approved only for the credential-free local/reviewed fixture path.

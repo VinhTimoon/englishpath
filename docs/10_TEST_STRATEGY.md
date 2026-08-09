@@ -402,6 +402,7 @@ and restoration of the library version context.
 Governance tests cover identity validation, exact replay, duplicate/conflict
 handling, and batch atomicity. Library API tests cover publication gating,
 unavailable states, deterministic inventory ordering, and learner redaction.
+
 ### EP3-ST012 phase-exit evidence (2026-08-10)
 
 Credential-free targeted verification passed: 16 API unit suites/195 tests and

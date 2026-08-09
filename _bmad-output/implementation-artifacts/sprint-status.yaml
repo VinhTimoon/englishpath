@@ -138,7 +138,7 @@ development_status:
   2-12-toeic-lr-phase-exit-review: done
   epic-2-retrospective: optional
 
-  epic-3: done
+  epic-3: in-progress
   3-1-library-storage-content-version-and-drive-manifest: done
   3-2-drive-inventory-checksum-and-change-detection: done
   3-3-license-review-import-and-publish-workflow: done
@@ -150,11 +150,11 @@ development_status:
   3-9-shadowing-workflow-and-progress: done
   3-10-learning-content-linking: done
   3-11-reviewed-licensed-content-batch: done
-  3-12-licensed-library-phase-exit-review: blocked
+  3-12-licensed-library-phase-exit-review: review
   epic-3-retrospective: optional
 
-  epic-4: in-progress
-  4-1-speaking-writing-task-and-rubric-models: ready-for-dev
+  epic-4: backlog
+  4-1-speaking-writing-task-and-rubric-models: backlog
   4-2-toeic-speaking-task-and-submission-api: backlog
   4-3-recording-storage-and-controlled-playback: backlog
   4-4-toeic-speaking-task-and-recording-ui: backlog

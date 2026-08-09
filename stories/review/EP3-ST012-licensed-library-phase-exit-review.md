@@ -1,7 +1,7 @@
 ---
 id: EP3-ST012
 title: Storage Security, License, Browser, Performance, and Phase Exit Review
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -142,6 +142,42 @@ dependency-ready story.
 - Created after EP3-ST011 recovery commit `3f1a142` and close commit `71770e5`.
 - EP3-ST011 blocked history remains preserved; this story is a phase-exit review,
   not a retry or replacement for any earlier story.
+
+## Recovery Record
+
+- Resumed in place after blocked commit `5ec721b`.
+- The loop produced complete evidence artifacts and documentation changes but
+  failed its build/debug phase contract and moved the story to blocked. That
+  harness state is preserved as history; this is the same story execution, not
+  a new recovery ID.
+- Revalidation must confirm the documentation evidence against real commands
+  before lifecycle closure.
+
+## Recovery Verification
+
+- The blocked loop commit `5ec721b` was revalidated in place; its documented
+  Phase 3 boundary was retained and the two formatting defects in
+  `docs/10_TEST_STRATEGY.md` and `docs/12_DEPLOYMENT_PLAN.md` were corrected.
+- Focused verification passed: 16 API suites / 195 tests and 4 API E2E suites
+  / 10 tests for governance, inventory, access, and library boundaries.
+- Full quality gate passed: formatting, planning traceability, tooling 59/59,
+  Prisma validation, lint, typecheck, unit 63 suites / 457 tests, API E2E 19
+  suites / 109 tests, build, browser E2E 87/87, and `git diff --check`.
+- Browser verification used the configured local web port 4173; no real
+  provider, credential, migration, or shared production data was used.
+
+## Manual High-Risk Review
+
+- PASS: existing server-owned eligibility and controlled-media boundaries remain
+  the only path to learner catalogue/item/progress availability.
+- PASS: phase-exit documentation records safe allowlists, fail-closed license
+  and storage states, bounded local fixtures, redaction, and reproducible
+  evidence without claiming provider activation.
+- PASS: all changed paths remain inside story scope; no Prisma, auth, TOEIC,
+  AI, `.env`, dependency, CI, or production deployment path changed.
+- Automated review/debug contract failure is preserved as history in `5ec721b`;
+  final manual review and the independent full gate above are the evidence for
+  this resumed execution.
 
 
 ## Blocked Report
