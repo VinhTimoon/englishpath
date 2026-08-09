@@ -1,7 +1,7 @@
 ---
 id: EP3-ST004
 title: Admin Library Inventory and Review UI
-status: blocked
+status: review
 type: frontend
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -107,3 +107,32 @@ disclosure issue remains.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
 ```
+
+## Recovery and Review Evidence
+
+The original blocked result at commit `1c46dbd` is historical evidence only;
+this story was recovered in place and the failed review command was not
+rerun. Manual review identified and fixed two P1 issues:
+
+- API URL validation now matches the existing admin client boundary, so an
+  untrusted `NEXT_PUBLIC_API_BASE_URL` cannot receive the admin bearer token.
+- Browser coverage verifies safe-field redaction, disabled provider actions,
+  empty, unavailable, retry, 360px overflow, and axe accessibility behavior.
+
+Additional review fixes abort requests on unmount/retry and use a valid heading
+hierarchy for inventory cards. The server remains authoritative; review and
+publish controls stay disabled because no authorized mutation contract exists
+in this story.
+
+Verification evidence:
+
+- `pnpm --filter web typecheck` — passed
+- `pnpm --filter web lint` — passed
+- `pnpm --filter web exec next build` — passed
+- `pnpm e2e -- tests/e2e/admin-shell.spec.ts` — 7 passed
+- `pnpm story:checks` — passed: formatting, planning/tooling, Prisma validation,
+  58 API unit suites / 425 tests, 12 API E2E suites / 90 tests, build, and 75
+  browser tests
+- automated review subAgent — unavailable on this Windows runner
+  (`CreateProcessWithLogonW failed: 2`); manual review completed and findings
+  fixed
