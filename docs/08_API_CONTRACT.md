@@ -539,6 +539,17 @@ catalogue/item visibility and are owned by later stories.
 
 ## EP3-ST007 learner state
 
+## EP3-ST010 related learning
+
+`GET /api/v1/library/items/:versionId/links` requires authentication and
+rechecks library eligibility through the item projection. Eligible content
+returns a bounded deterministic list of learner-safe `roadmap`, `vocabulary`,
+and `quiz` links. Each link has only `kind`, `label`, and a server-built
+internal `href`; the href carries the bounded `returnVersionId` context. No
+provider locators, source evidence, private IDs, completion records, or client
+URLs are accepted or returned. Ineligible, withdrawn, expired, and unknown
+versions fail closed using the library not-found behavior.
+
 `GET /api/v1/library/items/:versionId/state` returns the safe item projection
 plus only the authenticated owner's progress, bookmarks, and personal note.
 Progress writes, bookmark writes, and note writes are authenticated,

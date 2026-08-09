@@ -392,3 +392,7 @@ Tests must prove answer-key redaction, strict option/question validation,
 request-time eligibility, owner-scoped immutable outcomes, duplicate replay,
 retry/unavailable/empty UI states, keyboard submission, narrow-screen layout,
 and accessibility without color-only correctness communication.
+Library-link coverage includes authenticated eligibility failures, deterministic
+ordering, safe internal-route redaction, and owner isolation. Browser coverage
+checks loading/empty/error/success states, retry, keyboard focus, mobile width,
+and restoration of the library version context.

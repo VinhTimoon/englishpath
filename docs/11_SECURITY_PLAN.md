@@ -234,3 +234,7 @@ Public projections are allowlisted, and submission validates identity/options
 before scoring. Outcomes include the authenticated user in every repository
 predicate and are uniquely keyed so retries replay the finalized selection;
 answer keys and private provider/source fields are never logged or returned.
+Related-learning links are server-owned allow-listed routes. The library links
+endpoint accepts no target IDs or URLs, delegates eligibility to the existing
+library policy, and exposes no provider/source/admin fields or learner-owned
+progress from another module.

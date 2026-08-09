@@ -6,6 +6,7 @@ import {
   LocalLibraryCatalogueAdapter,
 } from './library-catalogue.port';
 import { LibraryCatalogueService } from './library-catalogue.service';
+import { LibraryLinksService } from './library-links.service';
 import { LibraryLearningService } from './library-learning.service';
 import { LibraryLearningRepository } from './library-learning.repository';
 import { LIBRARY_LEARNING_REPOSITORY } from './library-learning.port';
@@ -23,6 +24,7 @@ import {
   controllers: [LibraryCatalogueController],
   providers: [
     LibraryCatalogueService,
+    LibraryLinksService,
     LibraryLearningService,
     LibraryLearningRepository,
     {

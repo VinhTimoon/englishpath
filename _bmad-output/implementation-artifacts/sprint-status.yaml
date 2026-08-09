@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-09T18:41:37.026Z
+# last_updated: 2026-08-09T18:57:52.254Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-10T02:00:00.000Z
+last_updated: 2026-08-09T18:57:52.254Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -148,7 +148,7 @@ development_status:
   3-7-player-resume-bookmark-and-notes: done
   3-8-listening-drills-and-persisted-outcomes: done
   3-9-shadowing-workflow-and-progress: done
-  3-10-learning-content-linking: ready-for-dev
+  3-10-learning-content-linking: blocked
   3-11-reviewed-licensed-content-batch: backlog
   3-12-licensed-library-phase-exit-review: backlog
   epic-3-retrospective: optional

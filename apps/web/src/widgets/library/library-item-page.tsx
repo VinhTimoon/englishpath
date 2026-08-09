@@ -11,6 +11,7 @@ import {
 } from "@/features/library/library-api";
 import { LibraryDrillPanel } from "@/features/library/library-drill";
 import { ShadowingWorkspace } from "@/features/library/shadowing-workspace";
+import { RelatedLearningPanel } from "./related-learning-panel";
 
 type Props = { versionId: string };
 
@@ -245,6 +246,7 @@ export function LibraryItemPage({ versionId }: Props) {
       </section>
       <LibraryDrillPanel versionId={versionId} />
       <ShadowingWorkspace versionId={versionId} />
+      <RelatedLearningPanel versionId={versionId} />
 
       <section className="mt-8" aria-labelledby="notes-heading">
         <h2 id="notes-heading" className="text-xl font-bold">

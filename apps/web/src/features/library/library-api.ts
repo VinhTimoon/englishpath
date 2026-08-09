@@ -59,6 +59,24 @@ export function getLibraryState(versionId: string, signal?: AbortSignal) {
   ).then((response) => response.data);
 }
 
+export type LibraryLinks = {
+  status: "success" | "empty";
+  versionId: string;
+  links: Array<{
+    kind: "roadmap" | "vocabulary" | "quiz";
+    label: string;
+    href: string;
+    completed?: boolean;
+  }>;
+};
+
+export function getLibraryLinks(versionId: string, signal?: AbortSignal) {
+  return requestLearnerApi<{ data: LibraryLinks }>(
+    `/library/items/${encodeURIComponent(versionId)}/links`,
+    { signal },
+  ).then((response) => response.data);
+}
+
 export function saveLibraryProgress(
   versionId: string,
   body: { status: string; positionSeconds: number },

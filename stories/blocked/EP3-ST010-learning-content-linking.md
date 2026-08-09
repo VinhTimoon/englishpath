@@ -1,7 +1,7 @@
 ---
 id: EP3-ST010
 title: Roadmap, Vocabulary, Quiz, and Content Linking
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -126,3 +126,19 @@ library item, return without losing context, and see honest empty/unavailable
 states. Ownership, redaction, route allow-listing, and existing progress
 behavior remain enforced, all quality gates pass, and no known P0/P1 issue
 remains.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```

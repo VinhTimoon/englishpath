@@ -33,6 +33,7 @@ import {
 import { LibraryCatalogueExceptionFilter } from './library-catalogue-exception.filter';
 import { LibraryCatalogueService } from './library-catalogue.service';
 import { LibraryLearningService } from './library-learning.service';
+import { LibraryLinksService } from './library-links.service';
 import { LibraryDrillAnswerDto } from './library-drill.dto';
 import {
   LibraryProgressDto,
@@ -63,6 +64,7 @@ export class LibraryCatalogueController {
   constructor(
     private readonly service: LibraryCatalogueService,
     private readonly learning: LibraryLearningService,
+    private readonly links: LibraryLinksService,
   ) {}
 
   @Get('items/:versionId/shadowing')
@@ -263,6 +265,27 @@ export class LibraryCatalogueController {
   ) {
     return {
       data: await this.service.getItem(params.versionId),
+      meta: {
+        correlationId: authCorrelationId(correlation),
+        idempotencyStatus: 'not_applicable',
+      },
+    };
+  }
+
+  @Get('items/:versionId/links')
+  @ApiOperation({
+    summary: 'Get safe related-learning links for an eligible item',
+  })
+  @ApiOkResponse({
+    description: 'Bounded learner-safe related-learning projection',
+  })
+  @ApiNotFoundResponse({ description: 'Library item is not available' })
+  async getLinks(
+    @Param() params: LibraryItemParamsDto,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return {
+      data: await this.links.getLinks(params.versionId),
       meta: {
         correlationId: authCorrelationId(correlation),
         idempotencyStatus: 'not_applicable',

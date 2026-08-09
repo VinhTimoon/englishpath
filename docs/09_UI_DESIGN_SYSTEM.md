@@ -60,6 +60,11 @@ parts, topics, or difficulty labels.
 
 ## Components And States
 
+Library related-learning panels must expose loading, explicit empty, retryable
+error, and success states. Links use semantic anchors, preserve visible focus,
+retain the current version through the bounded return context, and remain
+usable at the 360px mobile baseline.
+
 Every reusable component documents default, hover, focus-visible, active, disabled,
 loading, error, and success states where applicable.
 
