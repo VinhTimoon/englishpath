@@ -73,8 +73,22 @@ export type LearnerTask = Readonly<
   >
 >;
 
-const has = (values: readonly string[], value: unknown): value is string =>
-  typeof value === 'string' && values.includes(value);
+const has = <T extends string>(
+  values: readonly T[],
+  value: unknown,
+): value is T => typeof value === 'string' && values.includes(value as T);
+const TOKEN_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:@/+~-]{0,127}$/;
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+const text = (value: unknown, max: number) =>
+  typeof value === 'string' && value.trim().length > 0 && value.length <= max;
+const token = (value: unknown) =>
+  typeof value === 'string' && TOKEN_PATTERN.test(value.trim());
+const isMediaReference = (value: unknown): value is MediaReference =>
+  isRecord(value) &&
+  has(['IMAGE', 'AUDIO'] as const, value.kind) &&
+  token(value.assetId) &&
+  (value.altText === undefined || text(value.altText, 500));
 const cloneFreeze = <T>(value: T): T => {
   if (Array.isArray(value)) return Object.freeze(value.map(cloneFreeze)) as T;
   if (value && typeof value === 'object')
@@ -92,6 +106,7 @@ export function createTaskVersion(input: TaskDefinitionInput): TaskVersion {
   if (
     !input ||
     typeof input !== 'object' ||
+    Array.isArray(input) ||
     !has(TOEIC_SPEAKING_WRITING_SKILLS, input.skill) ||
     !has(TOEIC_TASK_TYPES, input.taskType) ||
     !has(TOEIC_PROMPT_KINDS, input.promptKind) ||
@@ -123,16 +138,42 @@ export function createTaskVersion(input: TaskDefinitionInput): TaskVersion {
     fail('INVALID_METADATA');
   if (
     input.promptKind === 'IMAGE' &&
-    !input.media?.some((m) => m.kind === 'IMAGE')
+    !input.media?.some((m) => isRecord(m) && m.kind === 'IMAGE')
+  )
+    fail('INVALID_METADATA');
+  const media = input.media;
+  if (
+    media !== undefined &&
+    (!Array.isArray(media) ||
+      media.length > 8 ||
+      media.some(
+        (reference) =>
+          !isMediaReference(reference) ||
+          Object.keys(reference).some(
+            (key) => !['kind', 'assetId', 'altText'].includes(key),
+          ),
+      ))
   )
     fail('INVALID_METADATA');
   if (
-    !input.id ||
-    !input.version ||
-    input.instruction.length < 1 ||
-    input.instruction.length > 2000 ||
-    input.prompt.length < 1 ||
-    input.prompt.length > 5000 ||
+    input.promptKind === 'TEXT' &&
+    media?.some(
+      (reference) => isMediaReference(reference) && reference.kind === 'IMAGE',
+    )
+  )
+    fail('INVALID_METADATA');
+  if (
+    input.promptKind === 'TEXT_AND_IMAGE' &&
+    !media?.some(
+      (reference) => isMediaReference(reference) && reference.kind === 'IMAGE',
+    )
+  )
+    fail('INVALID_METADATA');
+  if (
+    !token(input.id) ||
+    !token(input.version) ||
+    !text(input.instruction, 2000) ||
+    !text(input.prompt, 5000) ||
     (input.durationSeconds !== undefined &&
       (!Number.isInteger(input.durationSeconds) ||
         input.durationSeconds < 1 ||
@@ -145,13 +186,9 @@ export function createTaskVersion(input: TaskDefinitionInput): TaskVersion {
       (!Number.isInteger(input.maxWords) ||
         input.maxWords < (input.minWords ?? 1) ||
         input.maxWords > 10000)) ||
-    input.media?.some(
-      (m) =>
-        !['IMAGE', 'AUDIO'].includes(m.kind) ||
-        !m.assetId ||
-        m.assetId.length > 200 ||
-        (m.altText !== undefined && m.altText.length > 500),
-    )
+    (input.supersedesVersion !== undefined &&
+      (!token(input.supersedesVersion) ||
+        input.supersedesVersion.trim() === input.version.trim()))
   )
     fail('INVALID_METADATA');
   if (
@@ -161,7 +198,14 @@ export function createTaskVersion(input: TaskDefinitionInput): TaskVersion {
     fail('INVALID_METADATA');
   return cloneFreeze({
     ...input,
-    media: input.media ? [...input.media] : undefined,
+    id: input.id.trim(),
+    version: input.version.trim(),
+    instruction: input.instruction.trim(),
+    prompt: input.prompt.trim(),
+    ...(input.supersedesVersion
+      ? { supersedesVersion: input.supersedesVersion.trim() }
+      : {}),
+    media: media ? [...media] : undefined,
   });
 }
 export function learnerTaskProjection(
@@ -211,36 +255,98 @@ export type AdvisoryRubric = Readonly<{
   criteria: readonly RubricCriterion[];
   advisoryOnly: true;
 }>;
+export type LearnerAdvisoryRubric = Readonly<{
+  id: string;
+  version: string;
+  skill: SpeakingWritingSkill;
+  criteria: readonly Readonly<{
+    id: string;
+    label: string;
+    descriptors: readonly RubricDescriptor[];
+  }>[];
+}>;
 export function createAdvisoryRubric(
   input: Omit<AdvisoryRubric, 'advisoryOnly'>,
 ): AdvisoryRubric {
   if (
-    !input.id ||
-    !input.version ||
+    !input ||
+    typeof input !== 'object' ||
+    Array.isArray(input) ||
+    !token(input.id) ||
+    !token(input.version) ||
     !has(TOEIC_SPEAKING_WRITING_SKILLS, input.skill) ||
-    !input.criteria.length ||
-    input.criteria.some(
-      (c) =>
-        !c.id ||
-        c.skill !== input.skill ||
-        !c.label ||
-        !Number.isInteger(c.weightBasisPoints) ||
-        c.weightBasisPoints <= 0 ||
-        c.minScore < 0 ||
-        c.maxScore <= c.minScore ||
-        !c.descriptors.length ||
-        c.descriptors.some(
-          (d) =>
-            !d.id || !d.level || !d.description || d.description.length > 1000,
-        ),
-    ) ||
-    new Set(input.criteria.map((c) => c.id)).size !== input.criteria.length ||
-    input.criteria.reduce((sum, c) => sum + c.weightBasisPoints, 0) !== 10000 ||
-    input.criteria.some(
-      (c) =>
-        new Set(c.descriptors.map((d) => d.id)).size !== c.descriptors.length,
+    !Array.isArray(input.criteria) ||
+    input.criteria.length === 0 ||
+    input.criteria.length > 12
+  )
+    fail('INVALID_METADATA');
+  const criteria = input.criteria as readonly unknown[];
+  const validCriteria = criteria.every((candidate) => {
+    if (!isRecord(candidate)) return false;
+    if (
+      !token(candidate.id) ||
+      candidate.skill !== input.skill ||
+      !text(candidate.label, 200) ||
+      typeof candidate.weightBasisPoints !== 'number' ||
+      !Number.isInteger(candidate.weightBasisPoints) ||
+      candidate.weightBasisPoints < 1 ||
+      candidate.weightBasisPoints > 10000 ||
+      typeof candidate.minScore !== 'number' ||
+      !Number.isInteger(candidate.minScore) ||
+      typeof candidate.maxScore !== 'number' ||
+      !Number.isInteger(candidate.maxScore) ||
+      candidate.minScore < 0 ||
+      candidate.maxScore <= candidate.minScore ||
+      candidate.maxScore > 100 ||
+      !Array.isArray(candidate.descriptors) ||
+      candidate.descriptors.length === 0 ||
+      candidate.descriptors.length > 10
+    )
+      return false;
+    return candidate.descriptors.every(
+      (descriptor) =>
+        isRecord(descriptor) &&
+        token(descriptor.id) &&
+        text(descriptor.level, 50) &&
+        text(descriptor.description, 1000),
+    );
+  });
+  if (!validCriteria) fail('INVALID_METADATA');
+  const typedCriteria = criteria as readonly RubricCriterion[];
+  if (
+    new Set(typedCriteria.map((criterion) => criterion.id)).size !==
+      typedCriteria.length ||
+    typedCriteria.reduce(
+      (sum, criterion) => sum + criterion.weightBasisPoints,
+      0,
+    ) !== 10000 ||
+    typedCriteria.some(
+      (criterion) =>
+        new Set(criterion.descriptors.map((descriptor) => descriptor.id))
+          .size !== criterion.descriptors.length,
     )
   )
     fail('INVALID_METADATA');
-  return cloneFreeze({ ...input, advisoryOnly: true });
+  return cloneFreeze({
+    ...input,
+    id: input.id.trim(),
+    version: input.version.trim(),
+    advisoryOnly: true,
+  });
+}
+
+export function advisoryRubricProjection(
+  rubric: AdvisoryRubric,
+): LearnerAdvisoryRubric {
+  if (!rubric || rubric.advisoryOnly !== true) fail('INVALID_METADATA');
+  return cloneFreeze({
+    id: rubric.id,
+    version: rubric.version,
+    skill: rubric.skill,
+    criteria: rubric.criteria.map(({ id, label, descriptors }) => ({
+      id,
+      label,
+      descriptors,
+    })),
+  });
 }

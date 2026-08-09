@@ -1,7 +1,7 @@
 ---
 id: EP4-ST001
 title: TOEIC Speaking and Writing Task and Rubric Models
-status: blocked
+status: review
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -124,6 +124,47 @@ behavior prematurely.
 - Created after Phase 3 close commit `75e946f`.
 - EP4-ST001 is the only dependency-ready story; later EP4/EP5 stories remain
   backlog until their declared dependencies pass.
+
+## Recovery Record
+
+- Resumed in place after the blocked loop/review commit for EP4-ST001.
+- The reviewer evaluated only committed metadata and did not see the valid
+  untracked model/spec files produced by the build phase. The blocked history
+  is preserved; this is the same story execution and no new recovery ID.
+- The recovery will stage and verify the model/spec files explicitly, then run
+  the focused and full gates again before review/merge.
+
+## Recovery Verification
+
+- Added the missing model/spec files to the reviewed scope and hardened runtime
+  validation for malformed media, prompt/task contradictions, version lineage,
+  rubric bounds, duplicate IDs, and invalid numeric metadata.
+- Added an explicit advisory rubric projection that excludes weights and hidden
+  flags; task versions remain deeply frozen and unpublished tasks fail closed.
+- Focused verification passed: 20 API unit suites / 147 tests and TOEIC
+  practice/timed-test API E2E 1 suite / 19 tests.
+- Full verification passed: formatting, planning traceability, tooling 59/59,
+  Prisma validation, lint, typecheck, unit 64 suites / 462 tests, API E2E 19
+  suites / 109 tests, build, browser E2E 87/87, and `git diff --check`.
+- The combined `pnpm story:checks` wrapper was interrupted by its outer command
+  timeout during Playwright output, so the equivalent full commands were rerun
+  directly; direct `pnpm test`, `pnpm build`, and `pnpm e2e` completed with the
+  counts above.
+
+## Manual High-Risk Review
+
+- PASS: models are provider-neutral and pure; no submission endpoint,
+  recording, AI call, official score, persistence, migration, or frontend code
+  was introduced.
+- PASS: task type/skill/response mode/prompt media combinations and advisory
+  rubric weights are server-validated; errors use the sanitized domain code.
+- PASS: learner task and rubric projections are explicit allowlists and do not
+  expose scoring weights, hidden advisory flags, provider credentials, answer
+  keys, or raw source evidence.
+- Automated review blocked because the Windows review environment could not
+  start read-only commands and did not include the untracked build files in its
+  changed-file view; the finding is preserved in blocked history and this
+  manual review plus direct gates is the final evidence.
 
 
 
