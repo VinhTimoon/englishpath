@@ -2,6 +2,8 @@ import {
   allocateFourSkills,
   FOUR_SKILLS,
   learnerSafeFourSkillsProjection,
+  recalculateFourSkills,
+  type FourSkillsActivity,
   validateFourSkillsMetadata,
 } from './four-skills.balance';
 
@@ -9,11 +11,14 @@ const evidence = {
   completedBySkill: { READING: 4, LISTENING: 1, SPEAKING: 0, WRITING: 2 },
   targetPerDay: 4,
 } as const;
-const pool = FOUR_SKILLS.map((skill) => ({
+const pool: readonly FourSkillsActivity[] = FOUR_SKILLS.map((skill) => ({
   reference: `${skill.toLowerCase()}-1`,
   skill,
   kind: skill,
   target: 10,
+  source:
+    skill === 'SPEAKING' || skill === 'WRITING' ? 'TOEIC_TASK' : 'ROADMAP',
+  published: skill === 'SPEAKING' || skill === 'WRITING',
 }));
 
 describe('four skills balance policy', () => {
@@ -63,5 +68,40 @@ describe('four skills balance policy', () => {
         completionState: 'PENDING',
       }),
     );
+  });
+
+  it('fails closed for unpublished speaking/writing references', () => {
+    const result = allocateFourSkills(evidence, [
+      ...pool.filter(({ skill }) => skill !== 'WRITING'),
+      { ...pool[3], published: false },
+    ]);
+    expect(result.find(({ skill }) => skill === 'WRITING')).toMatchObject({
+      activity: null,
+      reason: 'UNAVAILABLE',
+    });
+  });
+
+  it('returns stable initial, unchanged, and changed recalculation reasons', () => {
+    const initial = recalculateFourSkills(evidence, pool);
+    expect(initial.reason).toBe('INITIAL');
+    expect(recalculateFourSkills(evidence, pool, initial).reason).toBe(
+      'UNCHANGED',
+    );
+    expect(
+      recalculateFourSkills({ ...evidence, targetPerDay: 3 }, pool, initial)
+        .reason,
+    ).toBe('EVIDENCE_CHANGED');
+    expect(
+      recalculateFourSkills(evidence, pool, {
+        policyVersion: 'old-policy',
+        inputFingerprint: initial.inputFingerprint,
+      }).reason,
+    ).toBe('POLICY_CHANGED');
+    expect(() =>
+      recalculateFourSkills(
+        { ...evidence, policyVersion: 'old-policy' },
+        pool,
+      ),
+    ).toThrow('Unsupported balance policy version.');
   });
 });

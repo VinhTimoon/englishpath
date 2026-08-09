@@ -14,6 +14,8 @@ export type FourSkillsActivity = Readonly<{
   skill: FourSkill;
   kind: RoadmapTaskType;
   target: number;
+  source: 'ROADMAP' | 'TOEIC_TASK';
+  published?: boolean;
   required?: boolean;
   due?: boolean;
   status?: RoadmapItemStatus;
@@ -30,6 +32,13 @@ export type FourSkillsAllocation = Readonly<{
   activity: FourSkillsActivity | null;
   target: number;
   reason: 'REQUIRED' | 'DUE' | 'UNDERREPRESENTED' | 'BALANCED' | 'UNAVAILABLE';
+}>;
+
+export type FourSkillsRecalculation = Readonly<{
+  policyVersion: string;
+  inputFingerprint: string;
+  reason: 'INITIAL' | 'EVIDENCE_CHANGED' | 'POLICY_CHANGED' | 'UNCHANGED';
+  allocations: readonly FourSkillsAllocation[];
 }>;
 
 export class FourSkillsBalanceError extends Error {
@@ -67,7 +76,12 @@ function stableActivities(pool: readonly FourSkillsActivity[]) {
       if (
         !isSkill(activity.skill) ||
         !activity.reference ||
-        seen.has(activity.reference)
+        seen.has(activity.reference) ||
+        (activity.source !== 'ROADMAP' && activity.source !== 'TOEIC_TASK') ||
+        ((activity.skill === 'SPEAKING' || activity.skill === 'WRITING') &&
+          (activity.source !== 'TOEIC_TASK' || activity.published !== true)) ||
+        ((activity.skill === 'READING' || activity.skill === 'LISTENING') &&
+          activity.source === 'TOEIC_TASK' && activity.published !== true)
       )
         return false;
       seen.add(activity.reference);
@@ -82,6 +96,11 @@ export function allocateFourSkills(
   pool: readonly FourSkillsActivity[],
 ): readonly FourSkillsAllocation[] {
   validateFourSkillsMetadata(Object.keys(evidence.completedBySkill));
+  if (
+    evidence.policyVersion !== undefined &&
+    evidence.policyVersion !== FOUR_SKILLS_BALANCE_POLICY_VERSION
+  )
+    throw new FourSkillsBalanceError('Unsupported balance policy version.');
   if (!Number.isInteger(evidence.targetPerDay) || evidence.targetPerDay < 0)
     throw new FourSkillsBalanceError('Target must be a non-negative integer.');
   const activities = stableActivities(pool);
@@ -127,6 +146,61 @@ export function allocateFourSkills(
     });
   }
   return chosen;
+}
+
+function stableFingerprint(
+  evidence: FourSkillsEvidence,
+  pool: readonly FourSkillsActivity[],
+) {
+  const canonicalEvidence = FOUR_SKILLS.map((skill) => [
+    skill,
+    evidence.completedBySkill[skill],
+  ]);
+  const canonicalPool = stableActivities(pool).map((activity) => ({
+    reference: activity.reference,
+    skill: activity.skill,
+    kind: activity.kind,
+    target: activity.target,
+    source: activity.source,
+    published: activity.published ?? false,
+    required: activity.required ?? false,
+    due: activity.due ?? false,
+    status: activity.status ?? 'PENDING',
+  }));
+  return JSON.stringify({
+    policyVersion: FOUR_SKILLS_BALANCE_POLICY_VERSION,
+    targetPerDay: evidence.targetPerDay,
+    completedBySkill: canonicalEvidence,
+    activities: canonicalPool,
+  });
+}
+
+/** Pure version/recalculation boundary; persistence remains in the roadmap repository. */
+export function recalculateFourSkills(
+  evidence: FourSkillsEvidence,
+  pool: readonly FourSkillsActivity[],
+  previous?: Pick<FourSkillsRecalculation, 'policyVersion' | 'inputFingerprint'>,
+): FourSkillsRecalculation {
+  const inputFingerprint = stableFingerprint(evidence, pool);
+  const policyChanged =
+    previous !== undefined &&
+    previous.policyVersion !== FOUR_SKILLS_BALANCE_POLICY_VERSION;
+  const unchanged =
+    previous !== undefined &&
+    previous.policyVersion === FOUR_SKILLS_BALANCE_POLICY_VERSION &&
+    previous.inputFingerprint === inputFingerprint;
+  return {
+    policyVersion: FOUR_SKILLS_BALANCE_POLICY_VERSION,
+    inputFingerprint,
+    reason: previous === undefined
+      ? 'INITIAL'
+      : policyChanged
+        ? 'POLICY_CHANGED'
+        : unchanged
+          ? 'UNCHANGED'
+          : 'EVIDENCE_CHANGED',
+    allocations: allocateFourSkills(evidence, pool),
+  };
 }
 
 export function learnerSafeFourSkillsProjection(
