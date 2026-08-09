@@ -1,7 +1,7 @@
 ---
 id: EP3-ST010
 title: Roadmap, Vocabulary, Quiz, and Content Linking
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -20,6 +20,7 @@ allowed_paths:
   - apps/web/src/widgets/roadmap/**
   - apps/web/src/shared/**
   - tests/e2e/library-links.spec.ts
+  - tests/e2e/library-player.spec.ts
   - docs/08_API_CONTRACT.md
   - docs/09_UI_DESIGN_SYSTEM.md
   - docs/10_TEST_STRATEGY.md
@@ -93,8 +94,8 @@ No AI, TOEIC changes, external providers, credentials, or Phase 4/5 features.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/ready/EP3-ST010-learning-content-linking.md`
-- `pnpm story:verify stories/in-progress/EP3-ST010-learning-content-linking.md`
+- `node scripts/story-doctor.mjs stories/review/EP3-ST010-learning-content-linking.md`
+- `pnpm story:verify stories/review/EP3-ST010-learning-content-linking.md`
 - `pnpm --filter api exec node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand src/modules/library/**/*.spec.ts src/modules/roadmap/**/*.spec.ts src/modules/vocabulary/**/*.spec.ts src/modules/practice/**/*.spec.ts`
 - `pnpm --filter api test:e2e -- library-links.e2e-spec.ts`
 - `pnpm lint`
@@ -142,3 +143,26 @@ remains.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## Recovery Record
+
+- The initial blocked lifecycle and commit `6e2f085` are preserved as history.
+- EP3-ST010 is resumed in place on `story/ep3-st010`; no recovery story or
+  history rewrite is used.
+
+## Recovery Verification and Manual Review
+
+- `pnpm story:checks` passed: format, planning traceability, tooling `59/59`,
+  Prisma validation, lint, typecheck, unit `63 suites / 453 tests`, API E2E
+  `18 suites / 107 tests`, production build, and browser E2E `87/87`.
+- Focused related-links unit coverage passed `2/2`, API E2E `2/2`, and browser
+  coverage `2/2`; `git diff --check`, story doctor, and story verification
+  passed.
+- Manual review found no P0/P1 findings: endpoint access remains authenticated
+  and eligibility-gated, link kinds and destinations are server allow-listed,
+  return context is bounded, no client target or private source field is
+  accepted/returned, and existing player, drill, shadowing, and learner flows
+  retain explicit states and regression coverage.
+- Automated review was unavailable before repository inspection because the
+  Windows subagent runner returned `CreateProcessWithLogonW failed: 2`; this is
+  recorded as an environment limitation, not as a passed automated review.
