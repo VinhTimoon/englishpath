@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-10T05:50:00.000Z
+# last_updated: 2026-08-09T20:47:29.217Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-10T05:50:00.000Z
+last_updated: 2026-08-09T20:47:29.217Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -160,7 +160,7 @@ development_status:
   4-4-toeic-speaking-task-and-recording-ui: backlog
   4-5-toeic-writing-task-and-submission-api: blocked
   4-6-toeic-writing-practice-ui: backlog
-  4-7-provider-neutral-ai-feedback-gateway: ready-for-dev
+  4-7-provider-neutral-ai-feedback-gateway: blocked
   4-8-speaking-feedback-worker-and-fallback: backlog
   4-9-writing-feedback-worker-and-fallback: backlog
   4-10-four-skills-roadmap-balance-rules: done

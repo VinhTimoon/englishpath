@@ -1,7 +1,7 @@
 ---
 id: EP4-ST007
 title: Provider-Neutral Advisory Feedback Gateway and Quota Boundary
-status: ready
+status: blocked
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -121,3 +121,25 @@ feedback workers without activating a provider.
 - EP0-ST022 observability foundation is done.
 - EP4-ST002 and EP4-ST005 remain blocked by separate source/persistence AI
   requests; this story is independent and does not resume either story.
+
+## AI Request
+
+This story is blocked because the approved quota/cost policy, advisory response
+schema, policy/prompt versions, and licensed prompt source are not present.
+
+AI request file: `notes/ai-req/2026-08-10-ep4-st007-provider-neutral-feedback-gateway-policy.md`
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
