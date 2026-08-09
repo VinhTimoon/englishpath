@@ -1,5 +1,15 @@
 # API Contract V2
 
+## TOEIC learner eligibility governance (EP2-ST012)
+
+All learner-facing TOEIC question catalogues use the same server-owned
+eligibility predicate. A row must be reviewed, published, license-approved,
+within its validity window, free-tier, and carry the approved
+`sourceIdentity` `englishpath-original`. Timed MINI/HALF selection additionally
+requires the `MOCK_TEST` usage scope; practice selection requires `PRACTICE`.
+The source allowlist is enforced in the repository predicate, not inferred from
+client filters or the visible response.
+
 ## Current Repository Evidence
 
 - Implemented route groups include health, authenticated profile, learner onboarding,
@@ -146,12 +156,13 @@ standard correlation/error envelope.
 
 License, ownership, usage scope, and access tier are resolved by a server-owned
 source allowlist. The current beta allowlist contains only `englishpath-original`
-with EnglishPath CC0-1.0 provenance, `PRACTICE` scope, and `FREE` access. Import
-claims must match that policy; they cannot create or broaden publication rights.
-The accepted source URL is fixed by the policy and the submitted checksum must
-equal the server-computed SHA-256 fingerprint of the canonical governed payload.
-Import identity is derived only from the authenticated actor, import route, and
-`Idempotency-Key`.
+with EnglishPath CC0-1.0 provenance and `FREE` access. The source policy permits
+the `PRACTICE` and `MOCK_TEST` scopes; each imported version stores only a
+requested supported subset, and claims cannot create or broaden publication
+rights. The accepted source URL is fixed by the policy and the submitted
+checksum must equal the server-computed SHA-256 fingerprint of the canonical
+governed payload. Import identity is derived only from the authenticated actor,
+import route, and `Idempotency-Key`.
 
 Authenticated learner endpoints are available at `/api/v1/toeic/questions` and
 `/api/v1/toeic/questions/:id`. The collection accepts `page` (default 1), `size`
@@ -161,8 +172,10 @@ ordered by canonical question ID and current version, and use the standard list
 or resource envelope above.
 
 Only versions with `REVIEWED`, `PUBLISHED`, `APPROVED`, a reached `publishedAt`,
-and no expired `validUntil` are eligible. The server selects one current version
-per canonical question. Responses contain only learner fields: identity, TOEIC
+no expired `validUntil`, approved `englishpath-original` source identity, `FREE`
+access, and `PRACTICE` usage scope are eligible for these learner question
+endpoints. The server selects one current version per canonical question.
+Responses contain only learner fields: identity, TOEIC
 classification, topic/stimulus metadata, prompt, options, media reference, and
 explanation. Answers, source/provenance, rights/license, review, reviewer, and
 publication internals are never selected or serialized.

@@ -109,3 +109,13 @@ published TOEIC taxonomy service, practice uses the existing catalogue, and
 grammar uses a small reviewed internal guide allowlist until a governed grammar
 content model exists. Pack lookup is failure-isolated and never overrides a
 valid finalized result or creates client-authored weakness data.
+
+### Decision: TOEIC learner source boundary (EP2-ST012)
+
+Keep TOEIC content eligibility fail-closed on the server-owned source allowlist.
+The approved `englishpath-original` policy supports both `PRACTICE` and
+`MOCK_TEST`; an individual import may request either supported subset. Timed
+MINI/HALF repositories require `MOCK_TEST`, practice repositories require
+`PRACTICE`, and every learner predicate must also require the approved source
+identity. This is an application-policy hardening change with no schema or
+external-provider change.

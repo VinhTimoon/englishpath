@@ -1,5 +1,13 @@
 # EnglishPath Test Strategy
 
+## EP2-ST012 TOEIC exit evidence
+
+TOEIC eligibility regression coverage asserts that practice and timed-test
+catalogues share the approved source-identity allowlist while applying their
+distinct usage scopes. The exit gate also exercises answer-key protection,
+owner-scoped sessions, content governance, responsive keyboard journeys, and
+the full browser suite on the approved local ports (`3005` API and `4173` web).
+
 ## Purpose
 
 Testing protects learner progress, API contracts, content integrity, and the

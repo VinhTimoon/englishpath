@@ -65,6 +65,9 @@ describe('PrismaToeicQuestionRepository', () => {
       reviewStatus: 'REVIEWED',
       publicationState: 'PUBLISHED',
       licenseStatus: 'APPROVED',
+      sourceIdentity: { in: ['englishpath-original'] },
+      allowedUsageScopes: { has: 'PRACTICE' },
+      accessTier: 'FREE',
       publishedAt: { lte: now },
     });
     expect(findManyCall.orderBy).toEqual([
@@ -100,7 +103,12 @@ describe('PrismaToeicQuestionRepository', () => {
     const findFirstCall = findFirst.mock.calls[0]?.[0];
     expect(findFirstCall).toBeDefined();
     if (!findFirstCall) throw new Error('findFirst was not called');
-    expect(findFirstCall.where).toMatchObject({ questionId: 'q-1' });
+    expect(findFirstCall.where).toMatchObject({
+      questionId: 'q-1',
+      sourceIdentity: { in: ['englishpath-original'] },
+      allowedUsageScopes: { has: 'PRACTICE' },
+      accessTier: 'FREE',
+    });
     expect(findFirstCall.orderBy).toEqual({ version: 'desc' });
   });
 });

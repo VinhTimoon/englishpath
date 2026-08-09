@@ -14,7 +14,11 @@ export class PrismaToeicQuestionRepository implements ToeicQuestionRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   private eligibleWhere(now: Date): Prisma.ToeicQuestionVersionWhereInput {
-    return toeicEligibleWhere(now);
+    return toeicEligibleWhere(now, {
+      practiceEligible: true,
+      usageScope: 'PRACTICE',
+      accessTier: 'FREE',
+    });
   }
 
   async list(input: ToeicQuestionListInput) {

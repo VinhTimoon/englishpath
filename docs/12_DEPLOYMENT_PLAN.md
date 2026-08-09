@@ -1,5 +1,13 @@
 # Deployment And Migration Safety Plan
 
+## EP2-ST012 local exit boundary
+
+The Phase 2 exit gate uses the approved local-equivalent topology: API on
+`3005`, web on `4173`, deterministic local adapters, and no credentials,
+network dependency, shared database, provider activation, or production
+promotion. `dev` is the highest branch autonomous delivery may merge to;
+promotion to `main` and real staging/production rollout remain owner-controlled.
+
 ## Scope
 
 This project does not permit CI or autonomous story loops to deploy production code,

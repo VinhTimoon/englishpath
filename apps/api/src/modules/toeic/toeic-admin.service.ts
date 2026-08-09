@@ -22,10 +22,21 @@ import {
   type ToeicAdminRecord,
   type ToeicAdminRepository,
 } from './toeic-admin.models';
+import { TOEIC_APPROVED_SOURCE_IDENTITIES } from './toeic-eligibility.policy';
 
 const EDITOR_ROLES = ['CONTENT_EDITOR', 'ADMIN', 'SUPER_ADMIN'] as const;
 const PUBLISH_ROLES = ['ADMIN', 'SUPER_ADMIN'] as const;
 const VERSION_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
+const LEARNER_USAGE_SCOPES = [
+  ToeicUsageScope.PRACTICE,
+  ToeicUsageScope.MOCK_TEST,
+] as const;
+
+function isLearnerUsageScope(
+  scope: ToeicUsageScope,
+): scope is (typeof LEARNER_USAGE_SCOPES)[number] {
+  return (LEARNER_USAGE_SCOPES as readonly ToeicUsageScope[]).includes(scope);
+}
 
 type ResolvedGovernance = Readonly<{
   sourceIdentity: string;
@@ -47,7 +58,13 @@ const TOEIC_SOURCE_POLICIES: Readonly<Record<string, ResolvedGovernance>> = {
     provenance: 'CC0-1.0',
     rightsOwner: 'EnglishPath',
     licenseStatus: ToeicLicenseStatus.APPROVED,
-    allowedUsageScopes: Object.freeze([ToeicUsageScope.PRACTICE]),
+    // The same approved internal source may feed learner practice and
+    // governed MINI/HALF tests.  Individual imports may request a narrower
+    // subset, but no import may broaden this server-owned allowlist.
+    allowedUsageScopes: Object.freeze([
+      ToeicUsageScope.PRACTICE,
+      ToeicUsageScope.MOCK_TEST,
+    ]),
     accessTier: ToeicAccessTier.FREE,
   }),
 };
@@ -109,19 +126,22 @@ function assertImportDate(validUntil: string | undefined): Date | null {
 
 function resolveGovernance(dto: ToeicImportDto): ResolvedGovernance {
   const policy = TOEIC_SOURCE_POLICIES[dto.sourceIdentity];
+  const requestedScopes = [...new Set(dto.allowedUsageScopes)];
   if (
     !policy ||
     dto.sourceUrl !== policy.sourceUrl ||
     dto.provenance !== policy.provenance ||
     dto.rightsOwner !== policy.rightsOwner ||
     dto.licenseStatus !== policy.licenseStatus ||
-    JSON.stringify(dto.allowedUsageScopes) !==
-      JSON.stringify(policy.allowedUsageScopes) ||
+    requestedScopes.length === 0 ||
+    requestedScopes.some(
+      (scope) => !policy.allowedUsageScopes.includes(scope),
+    ) ||
     dto.accessTier !== policy.accessTier
   ) {
     throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
   }
-  return policy;
+  return { ...policy, allowedUsageScopes: requestedScopes };
 }
 
 function expectedChecksum(
@@ -203,7 +223,7 @@ function isCompleteForReview(row: ToeicAdminRecord): boolean {
   if (!row.sourceVersion || !row.provenance || !row.rightsOwner) return false;
   if (row.licenseStatus !== ToeicLicenseStatus.APPROVED) return false;
   if (row.accessTier !== ToeicAccessTier.FREE) return false;
-  if (!row.allowedUsageScopes.includes(ToeicUsageScope.PRACTICE)) return false;
+  if (!row.allowedUsageScopes.some(isLearnerUsageScope)) return false;
   if (row.validUntil !== null && row.validUntil <= new Date()) return false;
   if (!Array.isArray(row.options) || row.options.length < 2) return false;
   const options = row.options as Array<{ id?: unknown; text?: unknown }>;
@@ -225,13 +245,18 @@ function isCompleteForReview(row: ToeicAdminRecord): boolean {
 function hasResolvedGovernance(row: ToeicAdminRecord): boolean {
   const policy = TOEIC_SOURCE_POLICIES[row.sourceIdentity];
   return Boolean(
+    TOEIC_APPROVED_SOURCE_IDENTITIES.includes(
+      row.sourceIdentity as (typeof TOEIC_APPROVED_SOURCE_IDENTITIES)[number],
+    ) &&
     policy &&
     row.provenance === policy.provenance &&
     row.sourceUrl === policy.sourceUrl &&
     row.rightsOwner === policy.rightsOwner &&
     row.licenseStatus === policy.licenseStatus &&
-    JSON.stringify(row.allowedUsageScopes) ===
-      JSON.stringify(policy.allowedUsageScopes) &&
+    row.allowedUsageScopes.length > 0 &&
+    row.allowedUsageScopes.every((scope) =>
+      policy.allowedUsageScopes.includes(scope),
+    ) &&
     row.accessTier === policy.accessTier,
   );
 }
@@ -764,7 +789,7 @@ export class ToeicAdminService {
       row.publicationState !== ToeicPublicationState.UNPUBLISHED ||
       row.licenseStatus !== ToeicLicenseStatus.APPROVED ||
       row.accessTier !== ToeicAccessTier.FREE ||
-      !row.allowedUsageScopes.includes(ToeicUsageScope.PRACTICE) ||
+      !row.allowedUsageScopes.some(isLearnerUsageScope) ||
       !row.sourceIdentity ||
       !row.sourceUrl ||
       !row.checksum ||

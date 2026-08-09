@@ -154,6 +154,14 @@ The server persists the governed version IDs at start and grades only that
 snapshot for display; every answer also passes the current governance predicate
 before the private grading projection is used.
 
+The learner eligibility predicate is fail-closed on the server-owned TOEIC
+source allowlist. The current approved source is `englishpath-original`; its
+governance policy may grant `PRACTICE` and `MOCK_TEST` scopes, while each
+imported version stores only the requested subset. MINI/HALF selection requires
+`MOCK_TEST`, and ordinary practice requires `PRACTICE`. A reviewed/published
+row from another source, even if it carries an approved license and usage scope,
+cannot enter a learner catalogue.
+
 The EP2-ST009 analysis endpoint is aggregate-only and available only after server
 finalization. Private correctness is consumed inside the timed-test service and
 is not serialized into the learner projection. Explicit owner-bound lookup,

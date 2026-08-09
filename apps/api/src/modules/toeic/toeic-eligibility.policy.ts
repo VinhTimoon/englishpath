@@ -1,6 +1,14 @@
 import type { Prisma } from '../../generated/prisma/client';
 import { ToeicDifficulty, ToeicPart } from '../../generated/prisma/enums';
 
+// Learner eligibility is fail-closed until a source is explicitly approved by
+// the server-owned import/governance policy.  Keep this list in the shared
+// predicate so every learner catalogue (practice and timed tests) enforces the
+// same source boundary.
+export const TOEIC_APPROVED_SOURCE_IDENTITIES = [
+  'englishpath-original',
+] as const;
+
 export const TOEIC_LISTENING_PARTS = [
   ToeicPart.PART_1,
   ToeicPart.PART_2,
@@ -48,6 +56,7 @@ export function toeicEligibleWhere(
     reviewStatus: 'REVIEWED',
     publicationState: 'PUBLISHED',
     licenseStatus: 'APPROVED',
+    sourceIdentity: { in: [...TOEIC_APPROVED_SOURCE_IDENTITIES] },
     ...(options.practiceEligible || options.usageScope
       ? {
           allowedUsageScopes: { has: options.usageScope ?? 'PRACTICE' },

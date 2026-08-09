@@ -462,6 +462,32 @@ describe('ToeicAdminService', () => {
     expect(repository.create.mock.calls).toHaveLength(0);
   });
 
+  it('allows the approved source to opt a governed item into MOCK_TEST use', async () => {
+    const { repository, service } = dependencies();
+    repository.findByImportIdentity.mockResolvedValue(null);
+    repository.findByQuestionVersion.mockResolvedValue(null);
+    repository.findBySourceVersion.mockResolvedValue(null);
+    repository.create.mockResolvedValue(
+      row({ allowedUsageScopes: [ToeicUsageScope.MOCK_TEST] }),
+    );
+
+    const dto = withValidChecksum({
+      allowedUsageScopes: [ToeicUsageScope.MOCK_TEST],
+    });
+    await expect(
+      service.import(
+        dto,
+        principal('importer-1', ['CONTENT_EDITOR']),
+        'corr-ep2-003',
+        'idem-ep2-mock-test',
+      ),
+    ).resolves.toMatchObject({ idempotencyStatus: 'created' });
+    expect(repository.create.mock.calls[0]?.[0]).toMatchObject({
+      sourceIdentity: 'englishpath-original',
+      allowedUsageScopes: [ToeicUsageScope.MOCK_TEST],
+    });
+  });
+
   it('rejects malformed version IDs and incomplete approvals', async () => {
     const malformed = dependencies();
     await expect(
