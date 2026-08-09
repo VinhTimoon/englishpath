@@ -150,6 +150,7 @@ function SuccessOverview({ data }: { data: AdminOverview }) {
         </div>
       )}
       <CmsWorkspace role={data.role} />
+      <p><Link className={styles.secondary} href="/admin/library">Open library inventory</Link></p>
     </div>
   );
 }

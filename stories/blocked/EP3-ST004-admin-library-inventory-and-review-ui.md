@@ -1,7 +1,7 @@
 ---
 id: EP3-ST004
 title: Admin Library Inventory and Review UI
-status: ready
+status: blocked
 type: frontend
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -91,3 +91,19 @@ browser accessibility. No provider or permission decision is made in the client.
 The admin library surface is verified in the approved local browser harness,
 server-boundary limitations are explicit, and no known P0/P1 authorization or
 disclosure issue remains.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```
