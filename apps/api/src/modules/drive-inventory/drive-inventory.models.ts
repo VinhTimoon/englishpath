@@ -47,6 +47,32 @@ export type DriveInventoryResult = Readonly<{
   manifestCount: number;
 }>;
 
+export const DRIVE_INVENTORY_CHANGE_KINDS = [
+  'new',
+  'unchanged',
+  'changed',
+  'removed',
+] as const;
+
+export type DriveInventoryChangeKind =
+  (typeof DRIVE_INVENTORY_CHANGE_KINDS)[number];
+
+export type DriveInventoryEvidenceState = Readonly<{
+  reviewStatus: 'DRAFT' | 'PRESERVED';
+  publicationState: 'UNPUBLISHED' | 'PRESERVED';
+}>;
+
+export type DriveInventorySnapshotRecord = Readonly<{
+  change: DriveInventoryChangeKind;
+  manifest: DriveInventoryManifest;
+  evidence: DriveInventoryEvidenceState;
+}>;
+
+export type DriveInventorySnapshotComparison = Readonly<{
+  complete: true;
+  records: readonly DriveInventorySnapshotRecord[];
+}>;
+
 export type CreateDriveInventoryResultInput = Readonly<{
   query?: DriveInventoryQuery;
   manifests: readonly DriveInventoryManifest[];

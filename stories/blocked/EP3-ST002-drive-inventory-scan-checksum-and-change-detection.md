@@ -1,7 +1,7 @@
 ---
 id: EP3-ST002
 title: Drive Inventory Scan, Metadata, Checksum, and Change Detection
-status: ready
+status: blocked
 type: integration
 priority: critical
 phase: phase-3-licensed-content-library-and-listening
@@ -94,3 +94,19 @@ not use production credentials or perform a live scan.
 Local adapter and change-detection rules are implemented and fully verified. The
 story is `done` only if the approved scope does not require an external provider;
 otherwise it remains `blocked` with a dated AI request and exact owner decision.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```
