@@ -1,7 +1,7 @@
 ---
 id: EP3-ST004
 title: Admin Library Inventory and Review UI
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-3-licensed-content-library-and-listening
