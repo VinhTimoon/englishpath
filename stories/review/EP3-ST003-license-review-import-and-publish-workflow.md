@@ -1,7 +1,7 @@
 ---
 id: EP3-ST003
 title: Licensed Content Review, Import, and Publish Workflow
-status: blocked
+status: review
 type: backend
 priority: critical
 phase: phase-3-licensed-content-library-and-listening
@@ -91,6 +91,41 @@ mandatory. This story must remain credential-free and route-free.
 The local governance policy and tests pass with no known P0/P1 rights, ownership,
 or disclosure issue. Production asset import and provider activation remain outside
 the artifact and are not claimed as deployed.
+
+## Implementation Record
+
+- Added a validated Drive-manifest-to-draft boundary that omits private source URLs
+  from governed content source metadata.
+- Reused server-owned content governance for exact review evidence, separation of
+  duties, publish rights/expiry checks, and fail-closed transitions.
+- Added focused library workflow tests for draft import, self-review rejection,
+  expired publish rejection, malformed manifests, and private metadata redaction.
+- Documented the route-free provider boundary and rights/review ownership in API
+  and security plans.
+
+## Verification Evidence
+
+- Focused governance tests: 3 suites / 74 tests passed after recovery fix.
+- `pnpm lint`, `pnpm typecheck`, and `git diff --check` passed after recovery.
+- The initial loop also passed full unit/build gates before review; the remaining
+  full `pnpm story:checks` gate is rerun before merge.
+- No credentials, routes, Prisma changes, copyrighted assets, network calls, or
+  storage/publication activation were introduced.
+
+## Review Evidence
+
+The automated read-only review was blocked by the Windows sandbox startup failure
+and correctly identified missing focused tests and boundary documentation in the
+initial implementation. Supervised recovery added `library-governance.spec.ts`,
+API/security documentation, and the manifest validation/redaction boundary. The
+focused suite now passes with no known P0/P1 rights, ownership, or disclosure issue.
+
+## Historical Blocked Report
+
+- Initial loop result: review blocked because the implementation diff lacked test
+  and documentation evidence; this was not a timeout or capacity failure.
+- Commit `ac08afb` preserves the original blocked lifecycle evidence. The same
+  story ID is being recovered; no competing recovery story was created.
 
 
 

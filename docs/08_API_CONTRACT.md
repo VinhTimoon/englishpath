@@ -142,6 +142,20 @@ planned v2 envelope.
 - `SUSPICIOUS_ATTEMPT_BLOCKED`
 - `INTERNAL_ERROR`
 
+## Licensed Library Governance (EP3-ST003)
+
+The library import boundary accepts only validated, private Drive inventory
+evidence and creates an unpublished draft projection. Review is a distinct
+authorized human action bound to the exact content/version/checksum/source
+version; self-review is rejected. Publication requires current approved rights,
+review, supported usage/access policy, and a non-expired license. Changed or
+stale source evidence cannot reuse prior review or publication state. This story
+adds no HTTP route: the local policy is provider-neutral and does not grant
+storage or learner delivery authority.
+
+Operator projections omit private Drive references, raw manifests, credentials,
+reviewer internals, and learner-only fields.
+
 ## TOEIC Question Bank (implemented EP2-ST002)
 
 ### TOEIC Admin Governance (EP2-ST003)

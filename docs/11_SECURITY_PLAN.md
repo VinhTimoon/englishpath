@@ -27,6 +27,12 @@
 
 ## Data and Content Protection
 
+The licensed library workflow keeps Drive manifests as private source evidence.
+Import creates draft-only governed state; review and publish are separate
+server-owned decisions bound to exact checksum/source-version evidence. A changed
+or expired source fails closed and cannot inherit prior approval. Local fixtures
+never read credentials or contact Drive/storage providers.
+
 - Correct answers, scoring rubrics, moderation internals, provider secrets, and
   private storage locations never leave the backend unless policy explicitly allows
   a sanitized projection.
