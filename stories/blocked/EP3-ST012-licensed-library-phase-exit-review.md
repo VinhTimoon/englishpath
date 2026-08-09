@@ -1,7 +1,7 @@
 ---
 id: EP3-ST012
 title: Storage Security, License, Browser, Performance, and Phase Exit Review
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -142,3 +142,20 @@ dependency-ready story.
 - Created after EP3-ST011 recovery commit `3f1a142` and close commit `71770e5`.
 - EP3-ST011 blocked history remains preserved; this story is a phase-exit review,
   not a retry or replacement for any earlier story.
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+- Exit code: 1
+- Attempts: 3
+- Summary: The automated loop could not complete this story.
+
+### Evidence
+
+```text
+Debug phase did not produce a terminal fix or blocked result.
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "debug" ".codex-debug-task.md"
+
+Command failed with exit code 1: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```

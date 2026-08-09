@@ -356,3 +356,9 @@ governed version identity and binds it to checksum and source version. Batch
 preflight is all-or-nothing; exact replay is idempotent, while changed source
 evidence is a conflict. These are conceptual invariants only and require no
 Prisma schema or migration change.
+### EP3-ST012 phase-exit boundary
+
+Phase 3 closes without a Prisma schema or migration change. Storage provider
+locators, object keys, checksums, rights ownership, review evidence, and
+operator identity remain server-owned projections; learner state continues to
+reference only the governed version and authenticated owner.

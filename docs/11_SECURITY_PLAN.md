@@ -244,3 +244,10 @@ Source IDs, private locators, checksums, license records, and reviewer evidence
 remain operator-side data. Publication is gated by approved review, valid
 rights, usage scope, access tier, and published state; learner projections are
 explicitly allow-listed.
+### EP3-ST012 phase-exit review
+
+The phase-exit review confirms fail-closed handling for `AVAILABLE`, `PENDING`,
+`QUARANTINED`, and `RETIRED` storage states. Learner responses and sanitized
+errors contain no provider locator, object key, checksum, private source URL,
+rights owner, review evidence, or operator identity. The local reviewed batch
+remains bounded, replay-safe, atomic, and provider-neutral.

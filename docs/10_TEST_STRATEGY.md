@@ -402,3 +402,10 @@ and restoration of the library version context.
 Governance tests cover identity validation, exact replay, duplicate/conflict
 handling, and batch atomicity. Library API tests cover publication gating,
 unavailable states, deterministic inventory ordering, and learner redaction.
+### EP3-ST012 phase-exit evidence (2026-08-10)
+
+Credential-free targeted verification passed: 16 API unit suites/195 tests and
+4 API E2E suites/10 tests. Full verification passed lint, typecheck, 63 API
+unit suites/457 tests, build, 87 Chromium browser tests, and `git diff --check`.
+No Drive, Supabase Storage, CDN, third-party provider, credential, migration,
+or shared database was used.

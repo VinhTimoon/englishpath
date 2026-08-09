@@ -571,3 +571,11 @@ version. Duplicate identities, malformed source evidence, and checksum/source
 version conflicts return deterministic governance errors. Learner catalogue,
 item, media, drill, shadowing, and link responses expose only currently
 published, approved, rights-compatible content and never operator evidence.
+### EP3-ST012 phase-exit evidence
+
+The final credential-free review passed the focused library unit boundary
+(16 suites, 195 tests), focused library API E2E (4 suites, 10 tests), and the
+full project gates. Catalogue, item, media, drill, shadowing, progress, and
+related-learning responses remain explicit safe allowlists. Unknown, expired,
+withdrawn, rejected, conflicted, wrong-tier, and non-`AVAILABLE` media states
+fail closed.
