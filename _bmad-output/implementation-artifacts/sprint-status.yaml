@@ -154,8 +154,8 @@ development_status:
   epic-3-retrospective: optional
 
   epic-4: in-progress
-  4-1-speaking-writing-task-and-rubric-models: review
-  4-2-toeic-speaking-task-and-submission-api: backlog
+  4-1-speaking-writing-task-and-rubric-models: done
+  4-2-toeic-speaking-task-and-submission-api: ready-for-dev
   4-3-recording-storage-and-controlled-playback: backlog
   4-4-toeic-speaking-task-and-recording-ui: backlog
   4-5-toeic-writing-task-and-submission-api: backlog
