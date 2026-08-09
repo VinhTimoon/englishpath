@@ -57,7 +57,6 @@ export interface ControlledStoragePort {
 export const CONTROLLED_MEDIA_PORT = Symbol('CONTROLLED_MEDIA_PORT');
 export type ControlledMediaResult = Readonly<{
   state: 'AVAILABLE' | 'PENDING' | 'QUARANTINED' | 'RETIRED';
-  locator?: string;
 }>;
 export interface ControlledMediaPort {
   resolve(

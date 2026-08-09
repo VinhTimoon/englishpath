@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import {
   IsInt,
+  IsNotEmpty,
   IsOptional,
   IsString,
   Max,
@@ -45,6 +46,7 @@ export class LibraryCatalogueQueryDto {
 
 export class LibraryItemParamsDto {
   @IsString()
+  @IsNotEmpty()
   @MaxLength(120)
   versionId!: string;
 }

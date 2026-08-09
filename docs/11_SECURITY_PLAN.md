@@ -207,3 +207,12 @@ or counts. The learner response is an explicit allowlist and excludes source
 URLs, object keys, checksums, rights evidence, reviewer/actor identifiers, raw
 manifests, credentials, and provider internals. A catalogue item is descriptive
 only; controlled media authorization remains a separate EP3-ST006 boundary.
+
+## EP3-ST006 media and transcript controls
+
+Library item access performs a fresh server-side eligibility check and makes
+ineligible and unknown versions indistinguishable. Storage state is mapped to a
+safe learner state; failures fall back to unavailable/pending behavior. The
+response allowlist excludes every provider locator and source/private field,
+and transcript validation prevents malformed or oversized timing/text data
+from crossing the API.

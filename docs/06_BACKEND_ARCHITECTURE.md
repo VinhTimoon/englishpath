@@ -281,3 +281,12 @@ projection. The current local adapter is intentionally credential-free and
 fixture-compatible; it does not read Drive/Supabase, persist data, or grant
 controlled media access. Controllers validate transport input and return the
 standard envelope; policy and redaction remain in the service layer.
+
+## EP3-ST006 controlled media boundary
+
+Item access reuses the EP3-ST005 eligibility predicate and resolves storage
+through a narrow injectable controlled-media port. The local adapter is
+credential-free and reports state only. The service validates transcript
+timestamps/count/text bounds, orders segments deterministically, and constructs
+the learner projection field-by-field. Provider locators are internal adapter
+data and never become HTTP response fields.

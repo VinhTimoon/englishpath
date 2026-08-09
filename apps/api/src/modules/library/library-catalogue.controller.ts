@@ -4,7 +4,6 @@ import {
   Headers,
   Query,
   Param,
-  Req,
   UseFilters,
   UseGuards,
   UsePipes,
@@ -15,6 +14,7 @@ import {
   ApiBadRequestResponse,
   ApiHeader,
   ApiOkResponse,
+  ApiNotFoundResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
@@ -24,7 +24,6 @@ import {
   LibraryCatalogueQueryDto,
   LibraryItemParamsDto,
 } from './library-catalogue.dto';
-import type { AuthenticatedRequest } from '../auth/auth-request';
 import { LibraryCatalogueExceptionFilter } from './library-catalogue-exception.filter';
 import { LibraryCatalogueService } from './library-catalogue.service';
 
@@ -71,9 +70,9 @@ export class LibraryCatalogueController {
   @ApiOkResponse({
     description: 'Safe transcript and controlled media projection',
   })
+  @ApiNotFoundResponse({ description: 'Library item is not available' })
   async getItem(
     @Param() params: LibraryItemParamsDto,
-    @Req() _request: AuthenticatedRequest,
     @Headers('x-correlation-id') correlation?: string,
   ) {
     return {

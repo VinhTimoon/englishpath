@@ -522,3 +522,17 @@ duration/level, and availability only; Drive URLs, object keys, checksums,
 rights/reviewer data, raw manifests, and provider details never cross the
 boundary. Catalogue visibility does not authorize media delivery; that boundary
 belongs to EP3-ST006.
+
+## Controlled media and transcript (EP3-ST006)
+
+`GET /api/v1/library/items/:versionId` rechecks the learner catalogue
+eligibility predicate at request time. Unknown, private, draft, expired,
+withdrawn, or wrong-tier versions all return the same safe not-found response.
+The success projection contains only item metadata, bounded deterministically
+ordered transcript segments, duration, and `{ media: { state } }`.
+
+Controlled storage states are `AVAILABLE`, `PENDING`, `QUARANTINED`, or
+`RETIRED`. The endpoint never returns a provider locator, Drive reference,
+object key, source/checksum, rights/reviewer evidence, manifest, credential, or
+unsigned URL. Provider activation and playable delivery remain separate from
+catalogue/item visibility and are owned by later stories.

@@ -1,7 +1,7 @@
 ---
 id: EP3-ST006
 title: Controlled Media and Transcript API
-status: blocked
+status: review
 type: backend
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -121,3 +121,38 @@ storage/provider activation or playable external URL is claimed.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## Recovery Record
+
+The initial build result at commit `700b4ac` is historical evidence only. This
+story is being recovered in place; no competing recovery story is created and
+the blocked build is not blindly retried. The initial endpoint/policy skeleton
+left the dedicated media E2E suite and boundary documentation incomplete.
+
+Recovery also removes provider locators from learner responses. A controlled
+adapter may retain an internal locator for a future authorized delivery flow,
+but this endpoint returns only a safe media state.
+
+## Recovery Verification and Manual Review
+
+Recovery added the item endpoint, request-time reuse of the catalogue
+eligibility predicate, bounded deterministic transcript projection, controlled
+storage-state mapping, sanitized not-found/provider failures, and credential-
+free adapter tests. No Prisma/schema, generated client, web, credential, or
+production provider configuration was changed.
+
+Manual high-risk review checked authentication, indistinguishable ineligible
+and unknown responses, field-by-field redaction, locator exclusion, transcript
+bounds/order, exhaustive state handling, provider-failure fallback, and the
+catalogue-versus-media authorization boundary. Automated review subAgent is
+unavailable on this Windows runner because its managed process startup fails
+with `CreateProcessWithLogonW failed: 2`; this story is not marked pass based on
+that unavailable result.
+
+Verification evidence:
+
+- focused media unit tests — 18 passed
+- media API E2E — 4 passed
+- full `pnpm story:checks` — passed: formatting, planning/tooling, Prisma
+  validation, 61 API unit suites / 443 tests, 14 API E2E suites / 96 tests,
+  build, and 79 browser tests

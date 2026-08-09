@@ -13,7 +13,9 @@ import {
 } from './library-catalogue.port';
 import {
   CONTROLLED_MEDIA_PORT,
+  LIBRARY_STORAGE_STATES,
   type ControlledMediaPort,
+  type ControlledMediaResult,
 } from './library-content.ports';
 import type { LibraryCatalogueQueryDto } from './library-catalogue.dto';
 
@@ -91,18 +93,34 @@ export class LibraryCatalogueService {
       )
     )
       throw new BadRequestException('Invalid transcript');
-    let media: { state: string; locator?: string } = { state: 'PENDING' };
+    const durationSeconds =
+      record.durationSeconds ??
+      (record.durationMinutes === undefined
+        ? undefined
+        : record.durationMinutes * 60);
+    if (
+      durationSeconds !== undefined &&
+      (!Number.isFinite(durationSeconds) ||
+        durationSeconds < 0 ||
+        durationSeconds > 86_400)
+    ) {
+      throw new BadRequestException('Invalid media duration');
+    }
+    if (
+      durationSeconds !== undefined &&
+      segments.some((segment) => segment.endSeconds > durationSeconds)
+    ) {
+      throw new BadRequestException('Transcript exceeds media duration');
+    }
+    let mediaState: ControlledMediaResult['state'] = 'PENDING';
     if (record.storage) {
       try {
         const resolved = await this.media.resolve(record.storage);
-        media =
-          resolved.state === 'AVAILABLE' &&
-          typeof resolved.locator === 'string' &&
-          resolved.locator.trim()
-            ? { state: 'AVAILABLE', locator: resolved.locator }
-            : { state: resolved.state };
+        mediaState = LIBRARY_STORAGE_STATES.includes(resolved.state)
+          ? resolved.state
+          : 'QUARANTINED';
       } catch {
-        media = { state: 'PENDING' };
+        mediaState = 'PENDING';
       }
     }
     return {
@@ -118,17 +136,13 @@ export class LibraryCatalogueService {
           : {}),
         relatedSkills: [...record.version.taxonomy.relatedSkills],
       },
-      durationSeconds:
-        record.durationSeconds ??
-        (record.durationMinutes === undefined
-          ? undefined
-          : record.durationMinutes * 60),
+      durationSeconds,
       transcript: segments.map(({ startSeconds, endSeconds, text }) => ({
         startSeconds,
         endSeconds,
         text,
       })),
-      media,
+      media: { state: mediaState },
     };
   }
 

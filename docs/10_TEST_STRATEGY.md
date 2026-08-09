@@ -368,3 +368,11 @@ safe-field redaction, distinct empty states, and sanitized adapter failure.
 Browser coverage must prove URL query preservation, retry, keyboard/focus
 behavior, 360px no-overflow, and an accessibility smoke check. The local
 catalogue adapter is fixture-compatible and must not contact a real provider.
+
+## EP3-ST006 media evidence
+
+API tests must prove request-time eligibility, indistinguishable not-found
+responses, transcript ordering/bounds, all controlled storage states, provider
+failure sanitization, and absence of locators/source fields. The local adapter
+must not contact Drive, Supabase, or real storage; no browser player test is
+required until EP3-ST007.
