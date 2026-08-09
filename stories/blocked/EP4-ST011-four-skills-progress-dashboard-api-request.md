@@ -64,3 +64,5 @@ must remain compatible.
 
 Until this contract exists, EP4-ST011 remains blocked and no frontend
 dashboard implementation should be added.
+
+AI request file: `notes/ai-req/2026-08-10-ep4-st011-roadmap-progress-projection.md`
