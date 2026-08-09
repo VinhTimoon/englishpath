@@ -7,7 +7,7 @@ export type LibraryGovernanceDefaults = Readonly<{
 export type ControlledStorageReference = Readonly<{
   provider: string;
   objectKey: string;
-  state: 'PENDING' | 'AVAILABLE' | 'QUARANTINED' | 'RETIRED';
+  state: string;
 }>;
 
 export type LearnerSafeStorageReference = Readonly<{
@@ -52,6 +52,31 @@ export interface ControlledStoragePort {
   attach(
     reference: ControlledStorageReference,
   ): Promise<LearnerSafeStorageReference>;
+}
+
+export const CONTROLLED_MEDIA_PORT = Symbol('CONTROLLED_MEDIA_PORT');
+export type ControlledMediaResult = Readonly<{
+  state: 'AVAILABLE' | 'PENDING' | 'QUARANTINED' | 'RETIRED';
+  locator?: string;
+}>;
+export interface ControlledMediaPort {
+  resolve(
+    reference: ControlledStorageReference,
+  ): Promise<ControlledMediaResult>;
+}
+
+export class LocalControlledMediaAdapter implements ControlledMediaPort {
+  resolve(
+    reference: ControlledStorageReference,
+  ): Promise<ControlledMediaResult> {
+    return Promise.resolve({
+      state: ['AVAILABLE', 'PENDING', 'QUARANTINED', 'RETIRED'].includes(
+        reference.state,
+      )
+        ? (reference.state as ControlledMediaResult['state'])
+        : 'QUARANTINED',
+    });
+  }
 }
 
 export const LIBRARY_GOVERNANCE_DEFAULTS: LibraryGovernanceDefaults =

@@ -1,6 +1,7 @@
 import {
   ArgumentsHost,
   BadRequestException,
+  NotFoundException,
   Catch,
   ExceptionFilter,
   ServiceUnavailableException,
@@ -42,6 +43,10 @@ export class LibraryCatalogueExceptionFilter implements ExceptionFilter {
       status = 400;
       code = 'VALIDATION_FAILED';
       message = 'Request validation failed.';
+    } else if (exception instanceof NotFoundException) {
+      status = 404;
+      code = 'LIBRARY_ITEM_NOT_FOUND';
+      message = 'Library item not found.';
     } else if (exception instanceof ServiceUnavailableException) {
       status = 503;
       code = 'CATALOGUE_UNAVAILABLE';

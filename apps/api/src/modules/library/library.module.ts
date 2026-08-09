@@ -6,6 +6,10 @@ import {
   LocalLibraryCatalogueAdapter,
 } from './library-catalogue.port';
 import { LibraryCatalogueService } from './library-catalogue.service';
+import {
+  CONTROLLED_MEDIA_PORT,
+  LocalControlledMediaAdapter,
+} from './library-content.ports';
 
 @Module({
   imports: [AuthModule],
@@ -13,9 +17,14 @@ import { LibraryCatalogueService } from './library-catalogue.service';
   providers: [
     LibraryCatalogueService,
     LocalLibraryCatalogueAdapter,
+    LocalControlledMediaAdapter,
     {
       provide: LIBRARY_CATALOGUE_PORT,
       useExisting: LocalLibraryCatalogueAdapter,
+    },
+    {
+      provide: CONTROLLED_MEDIA_PORT,
+      useExisting: LocalControlledMediaAdapter,
     },
   ],
 })

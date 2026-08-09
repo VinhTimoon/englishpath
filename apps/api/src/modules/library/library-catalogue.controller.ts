@@ -3,6 +3,8 @@ import {
   Get,
   Headers,
   Query,
+  Param,
+  Req,
   UseFilters,
   UseGuards,
   UsePipes,
@@ -18,7 +20,11 @@ import {
 } from '@nestjs/swagger';
 import { AuthenticationGuard } from '../auth/auth.guards';
 import { authCorrelationId } from '../auth/auth-exception.filter';
-import { LibraryCatalogueQueryDto } from './library-catalogue.dto';
+import {
+  LibraryCatalogueQueryDto,
+  LibraryItemParamsDto,
+} from './library-catalogue.dto';
+import type { AuthenticatedRequest } from '../auth/auth-request';
 import { LibraryCatalogueExceptionFilter } from './library-catalogue-exception.filter';
 import { LibraryCatalogueService } from './library-catalogue.service';
 
@@ -52,6 +58,26 @@ export class LibraryCatalogueController {
   ) {
     return {
       data: await this.service.query(query),
+      meta: {
+        correlationId: authCorrelationId(correlation),
+        idempotencyStatus: 'not_applicable',
+      },
+    };
+  }
+
+  @Get('items/:versionId')
+  @UsePipes(strictValidation)
+  @ApiOperation({ summary: 'Get an eligible learner-safe library item' })
+  @ApiOkResponse({
+    description: 'Safe transcript and controlled media projection',
+  })
+  async getItem(
+    @Param() params: LibraryItemParamsDto,
+    @Req() _request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return {
+      data: await this.service.getItem(params.versionId),
       meta: {
         correlationId: authCorrelationId(correlation),
         idempotencyStatus: 'not_applicable',

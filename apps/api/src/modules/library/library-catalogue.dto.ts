@@ -42,3 +42,9 @@ export class LibraryCatalogueQueryDto {
   @MaxLength(120)
   contentType?: string;
 }
+
+export class LibraryItemParamsDto {
+  @IsString()
+  @MaxLength(120)
+  versionId!: string;
+}

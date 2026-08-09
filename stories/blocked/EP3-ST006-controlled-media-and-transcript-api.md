@@ -1,7 +1,7 @@
 ---
 id: EP3-ST006
 title: Controlled Media and Transcript API
-status: ready
+status: blocked
 type: backend
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -105,3 +105,19 @@ no private/provider field can cross the HTTP boundary.
 The local API contract safely serves governed item/transcript projections and
 explicit media availability states with comprehensive evidence. No production
 storage/provider activation or playable external URL is claimed.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```

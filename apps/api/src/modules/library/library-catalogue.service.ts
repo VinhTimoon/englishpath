@@ -3,6 +3,7 @@ import {
   Injectable,
   ServiceUnavailableException,
   BadRequestException,
+  NotFoundException,
 } from '@nestjs/common';
 import { isEligibleLearnerLibraryVersion } from '../access/library-access-policy';
 import {
@@ -10,6 +11,10 @@ import {
   type LibraryCataloguePort,
   type LibraryCatalogueRecord,
 } from './library-catalogue.port';
+import {
+  CONTROLLED_MEDIA_PORT,
+  type ControlledMediaPort,
+} from './library-content.ports';
 import type { LibraryCatalogueQueryDto } from './library-catalogue.dto';
 
 const ALLOWED = new Set([
@@ -45,7 +50,87 @@ function safeProjection(r: LibraryCatalogueRecord) {
 export class LibraryCatalogueService {
   constructor(
     @Inject(LIBRARY_CATALOGUE_PORT) private readonly port: LibraryCataloguePort,
+    @Inject(CONTROLLED_MEDIA_PORT)
+    private readonly media: ControlledMediaPort = {
+      resolve: () => Promise.resolve({ state: 'PENDING' as const }),
+    },
   ) {}
+
+  async getItem(versionId: string) {
+    if (!versionId.trim()) throw new BadRequestException('Invalid version ID');
+    let record: LibraryCatalogueRecord | undefined;
+    try {
+      record = (await this.port.load()).find(
+        (candidate) =>
+          candidate.version.versionId === versionId &&
+          isEligibleLearnerLibraryVersion(candidate.version),
+      );
+    } catch {
+      throw new ServiceUnavailableException('Library catalogue unavailable');
+    }
+    if (!record) throw new NotFoundException('Library item not found');
+    const segments = (record.transcript ?? [])
+      .map((segment, index) => ({ ...segment, index }))
+      .sort(
+        (a, b) =>
+          a.startSeconds - b.startSeconds ||
+          (a.order ?? a.index) - (b.order ?? b.index) ||
+          a.index - b.index,
+      );
+    if (
+      segments.length > 500 ||
+      segments.some(
+        (s) =>
+          !Number.isFinite(s.startSeconds) ||
+          !Number.isFinite(s.endSeconds) ||
+          s.startSeconds < 0 ||
+          s.endSeconds < s.startSeconds ||
+          typeof s.text !== 'string' ||
+          !s.text.trim() ||
+          s.text.length > 2000,
+      )
+    )
+      throw new BadRequestException('Invalid transcript');
+    let media: { state: string; locator?: string } = { state: 'PENDING' };
+    if (record.storage) {
+      try {
+        const resolved = await this.media.resolve(record.storage);
+        media =
+          resolved.state === 'AVAILABLE' &&
+          typeof resolved.locator === 'string' &&
+          resolved.locator.trim()
+            ? { state: 'AVAILABLE', locator: resolved.locator }
+            : { state: resolved.state };
+      } catch {
+        media = { state: 'PENDING' };
+      }
+    }
+    return {
+      itemId: record.version.contentId,
+      versionId: record.version.versionId,
+      title: record.title,
+      summary: record.summary,
+      taxonomy: {
+        level: record.version.taxonomy.level,
+        topic: record.version.taxonomy.topic,
+        ...(record.version.taxonomy.subtopic
+          ? { subtopic: record.version.taxonomy.subtopic }
+          : {}),
+        relatedSkills: [...record.version.taxonomy.relatedSkills],
+      },
+      durationSeconds:
+        record.durationSeconds ??
+        (record.durationMinutes === undefined
+          ? undefined
+          : record.durationMinutes * 60),
+      transcript: segments.map(({ startSeconds, endSeconds, text }) => ({
+        startSeconds,
+        endSeconds,
+        text,
+      })),
+      media,
+    };
+  }
 
   async query(query: LibraryCatalogueQueryDto) {
     const pageValue = query.page === undefined ? 1 : Number(query.page);
