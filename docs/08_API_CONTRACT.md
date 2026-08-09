@@ -564,3 +564,10 @@ question, prompt, and option projection. `POST /drill/submit` validates the
 question and option server-side, computes correctness after submission, and
 replays the immutable owner-scoped outcome on retries. Answer keys, provider
 references, and reviewer/source data never cross the API boundary.
+### Reviewed licensed batch import
+
+Credential-free local imports validate every manifest before accepting any
+version. Duplicate identities, malformed source evidence, and checksum/source
+version conflicts return deterministic governance errors. Learner catalogue,
+item, media, drill, shadowing, and link responses expose only currently
+published, approved, rights-compatible content and never operator evidence.

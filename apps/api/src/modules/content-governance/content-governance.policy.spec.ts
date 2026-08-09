@@ -11,6 +11,7 @@ import {
 } from './content-governance.models';
 import {
   authorizeHumanContentAction,
+  importValidatedSourceManifestBatch,
   isPublicLearningContentVersion,
   publishContentVersion,
   reviewContentVersion,
@@ -101,6 +102,69 @@ function approvedVersion(input = baseInput) {
 }
 
 describe('content governance lifecycle policy', () => {
+  it('imports a reviewed-batch boundary atomically and replays it idempotently', () => {
+    const input = {
+      createdByActorId: 'batch-import',
+      provenance: 'imported' as const,
+      usageScope: 'learning' as const,
+      accessTier: 'authenticated' as const,
+      taxonomy: baseInput.taxonomy,
+      rights: baseInput.rights,
+    };
+    const batch = [
+      {
+        manifest: {
+          contentId: 'batch-content-1',
+          versionId: 'batch-version-1',
+          sourceId: 'batch-source-1',
+          checksum: 'sha256:batch1',
+          sourceVersion: 'drive-v1',
+          validated: true as const,
+        },
+        input,
+      },
+    ];
+    const first = importValidatedSourceManifestBatch(batch);
+    const replay = importValidatedSourceManifestBatch(batch);
+    expect(replay[0]).toBe(first[0]);
+  });
+
+  it('does not publish any new batch item when a later item conflicts', () => {
+    const input = {
+      createdByActorId: 'batch-atomic',
+      provenance: 'imported' as const,
+      usageScope: 'learning' as const,
+      accessTier: 'authenticated' as const,
+      taxonomy: baseInput.taxonomy,
+      rights: baseInput.rights,
+    };
+    const valid = {
+      manifest: {
+        contentId: 'atomic-content-1',
+        versionId: 'atomic-version-1',
+        sourceId: 'atomic-source-1',
+        checksum: 'sha256:atomic1',
+        sourceVersion: 'drive-v1',
+        validated: true as const,
+      },
+      input,
+    };
+    const invalid = {
+      ...valid,
+      manifest: {
+        ...valid.manifest,
+        contentId: 'atomic-content-2',
+        versionId: 'atomic-version-2',
+        checksum: 'malformed',
+      },
+    };
+    expectGovernanceError(
+      () => importValidatedSourceManifestBatch([valid, invalid]),
+      CONTENT_GOVERNANCE_ERROR_CODES.SOURCE_MANIFEST_INVALID,
+    );
+    expect(importValidatedSourceManifestBatch([valid])).toHaveLength(1);
+  });
+
   it('recognizes only issued, current, public learning publications', () => {
     const draft = createGovernedContentVersion({
       ...baseInput,

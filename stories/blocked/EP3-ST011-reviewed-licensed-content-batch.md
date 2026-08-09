@@ -1,7 +1,7 @@
 ---
 id: EP3-ST011
 title: Reviewed Licensed Content Batch and Import Validation
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -112,3 +112,19 @@ The approved local batch imports and replays safely, invalid content cannot
 reach learner projections, governance and ownership boundaries remain intact,
 all quality gates pass, and no known P0/P1 license, data-integrity, or
 disclosure issue remains.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```

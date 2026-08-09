@@ -21,6 +21,9 @@ const issuedHumanDecisions = new WeakSet<object>();
 const issuedLifecycleVersions = new WeakSet<object>();
 const issuedReviewedVersions = new WeakSet<object>();
 const importReplay = new Map<string, GovernedContentVersion>();
+const CHECKSUM_PATTERN =
+  /^[A-Za-z0-9][A-Za-z0-9._-]{0,31}:[A-Za-z0-9+/=_-]{1,512}$/;
+const SOURCE_VERSION_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:@/+~-]{0,255}$/;
 
 const permissionFor = {
   review: 'content:review',
@@ -97,6 +100,22 @@ function manifestKey(manifest: ValidatedSourceManifest) {
   return `${manifest.contentId}\u0000${manifest.versionId}`;
 }
 
+function validateManifestIdentity(manifest: ValidatedSourceManifest) {
+  if (
+    !CHECKSUM_PATTERN.test(manifest.checksum.trim()) ||
+    !SOURCE_VERSION_PATTERN.test(manifest.sourceVersion.trim())
+  ) {
+    throw new ContentGovernanceError(
+      CONTENT_GOVERNANCE_ERROR_CODES.SOURCE_MANIFEST_INVALID,
+    );
+  }
+}
+
+export type ValidatedSourceManifestImport = Readonly<{
+  manifest: ValidatedSourceManifest;
+  input: Omit<CreateContentVersionInput, 'contentId' | 'versionId' | 'source'>;
+}>;
+
 /** Imports metadata only; it never grants rights, delivery, review, or publication. */
 export function importValidatedSourceManifest(
   manifest: ValidatedSourceManifest,
@@ -124,6 +143,7 @@ export function importValidatedSourceManifest(
         CONTENT_GOVERNANCE_ERROR_CODES.SOURCE_MANIFEST_INVALID,
       );
     }
+    validateManifestIdentity(manifest);
     const key = manifestKey(manifest);
     const existing = importReplay.get(key);
     if (existing) {
@@ -149,6 +169,81 @@ export function importValidatedSourceManifest(
     });
     importReplay.set(key, draft);
     return draft;
+  });
+}
+
+/** Validates the complete local batch before changing replay state. */
+export function importValidatedSourceManifestBatch(
+  batch: readonly ValidatedSourceManifestImport[],
+): readonly GovernedContentVersion[] {
+  return runPolicy(() => {
+    if (!batch || typeof batch !== 'object' || batch.length === 0) {
+      throw new ContentGovernanceError(
+        CONTENT_GOVERNANCE_ERROR_CODES.SOURCE_MANIFEST_INVALID,
+      );
+    }
+
+    const keys = new Set<string>();
+    const sourceEvidence = new Map<string, string>();
+    const staged: GovernedContentVersion[] = [];
+
+    for (const entry of batch) {
+      if (!entry || typeof entry !== 'object') {
+        throw new ContentGovernanceError(
+          CONTENT_GOVERNANCE_ERROR_CODES.SOURCE_MANIFEST_INVALID,
+        );
+      }
+      const { manifest } = entry;
+      const key = manifestKey(manifest);
+      if (keys.has(key)) {
+        throw new ContentGovernanceError(
+          CONTENT_GOVERNANCE_ERROR_CODES.IMPORT_CONFLICT,
+        );
+      }
+      keys.add(key);
+      validateManifestIdentity(manifest);
+
+      const evidence = `${manifest.checksum}\u0000${manifest.sourceVersion}`;
+      const priorIdentity = sourceEvidence.get(manifest.sourceId);
+      if (priorIdentity && priorIdentity !== evidence) {
+        throw new ContentGovernanceError(
+          CONTENT_GOVERNANCE_ERROR_CODES.IMPORT_CONFLICT,
+        );
+      }
+      sourceEvidence.set(manifest.sourceId, evidence);
+
+      const existing = importReplay.get(key);
+      if (existing) {
+        if (
+          existing.source.checksum !== manifest.checksum ||
+          existing.source.sourceVersion !== manifest.sourceVersion
+        ) {
+          throw new ContentGovernanceError(
+            CONTENT_GOVERNANCE_ERROR_CODES.IMPORT_CONFLICT,
+          );
+        }
+        staged.push(existing);
+        continue;
+      }
+      staged.push(
+        createGovernedContentVersion({
+          ...entry.input,
+          contentId: manifest.contentId,
+          versionId: manifest.versionId,
+          source: {
+            sourceId: manifest.sourceId,
+            checksum: manifest.checksum,
+            sourceVersion: manifest.sourceVersion,
+          },
+        }),
+      );
+    }
+
+    for (const version of staged) {
+      const key = `${version.contentId}\u0000${version.versionId}`;
+      if (!importReplay.has(key)) importReplay.set(key, version);
+    }
+    return Object.freeze(staged);
   });
 }
 

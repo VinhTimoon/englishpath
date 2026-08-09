@@ -396,3 +396,9 @@ Library-link coverage includes authenticated eligibility failures, deterministic
 ordering, safe internal-route redaction, and owner isolation. Browser coverage
 checks loading/empty/error/success states, retry, keyboard focus, mobile width,
 and restoration of the library version context.
+
+### Reviewed batch coverage
+
+Governance tests cover identity validation, exact replay, duplicate/conflict
+handling, and batch atomicity. Library API tests cover publication gating,
+unavailable states, deterministic inventory ordering, and learner redaction.

@@ -238,3 +238,9 @@ Related-learning links are server-owned allow-listed routes. The library links
 endpoint accepts no target IDs or URLs, delegates eligibility to the existing
 library policy, and exposes no provider/source/admin fields or learner-owned
 progress from another module.
+### Reviewed content operator-data boundary
+
+Source IDs, private locators, checksums, license records, and reviewer evidence
+remain operator-side data. Publication is gated by approved review, valid
+rights, usage scope, access tier, and published state; learner projections are
+explicitly allow-listed.

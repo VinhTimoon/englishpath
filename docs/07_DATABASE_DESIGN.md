@@ -349,3 +349,10 @@ only; automation must not apply it to shared Supabase infrastructure. Owner-
 approved rollback, if ever required, removes version foreign keys/indexes/table,
 then the canonical table and new enums, preserving all existing learner, CMS,
 vocabulary, progress, and identity data.
+### EP3-ST011 governed import invariants
+
+The local reviewed-batch boundary treats `(contentId, versionId)` as the
+governed version identity and binds it to checksum and source version. Batch
+preflight is all-or-nothing; exact replay is idempotent, while changed source
+evidence is a conflict. These are conceptual invariants only and require no
+Prisma schema or migration change.
