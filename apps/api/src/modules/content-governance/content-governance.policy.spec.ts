@@ -11,6 +11,7 @@ import {
 } from './content-governance.models';
 import {
   authorizeHumanContentAction,
+  importReviewedSourceManifestBatch,
   importValidatedSourceManifestBatch,
   isPublicLearningContentVersion,
   publishContentVersion,
@@ -127,6 +128,130 @@ describe('content governance lifecycle policy', () => {
     const first = importValidatedSourceManifestBatch(batch);
     const replay = importValidatedSourceManifestBatch(batch);
     expect(replay[0]).toBe(first[0]);
+  });
+
+  it('publishes a complete reviewed batch only after every entry passes policy', () => {
+    const input = {
+      createdByActorId: 'reviewed-batch-import',
+      provenance: 'imported' as const,
+      usageScope: 'library' as const,
+      accessTier: 'authenticated' as const,
+      taxonomy: baseInput.taxonomy,
+      rights: {
+        ...baseInput.rights,
+        allowedUsageScopes: ['library'] as const,
+      },
+    };
+    const createEntry = (
+      suffix: string,
+      licenseStatus = 'approved' as const,
+    ) => {
+      const manifest = {
+        contentId: `reviewed-content-${suffix}`,
+        versionId: `reviewed-version-${suffix}`,
+        sourceId: `reviewed-source-${suffix}`,
+        checksum: `sha256:reviewed-${suffix}`,
+        sourceVersion: 'reviewed-v1',
+        validated: true as const,
+      };
+      const reviewAuthorization = humanAuthorization('review', 'reviewer-1');
+      return {
+        manifest,
+        input: {
+          ...input,
+          rights: { ...input.rights, licenseStatus },
+        },
+        reviewAuthorization,
+        publishAuthorization: humanAuthorization('publish', 'publisher-1'),
+        reviewEvidence: {
+          reviewerId: 'reviewer-1',
+          decision: 'approved' as const,
+          reviewedAt: '2026-07-17T01:00:00.000Z',
+          contentId: manifest.contentId,
+          versionId: manifest.versionId,
+          checksum: manifest.checksum,
+          sourceVersion: manifest.sourceVersion,
+        },
+      };
+    };
+
+    const batch = [createEntry('one'), createEntry('two')];
+    const published = importReviewedSourceManifestBatch(batch, {
+      now: fixedNow,
+    });
+    const replay = importReviewedSourceManifestBatch(batch, { now: fixedNow });
+
+    expect(published.map((version) => version.versionId)).toEqual([
+      'reviewed-version-one',
+      'reviewed-version-two',
+    ]);
+    expect(
+      published.every((version) => version.publishStatus === 'published'),
+    ).toBe(true);
+    expect(replay.map((version) => version.versionId)).toEqual(
+      published.map((version) => version.versionId),
+    );
+  });
+
+  it('does not expose a partial publication when a reviewed batch has blocked rights', () => {
+    const input = {
+      createdByActorId: 'blocked-rights-batch',
+      provenance: 'imported' as const,
+      usageScope: 'library' as const,
+      accessTier: 'authenticated' as const,
+      taxonomy: baseInput.taxonomy,
+      rights: {
+        ...baseInput.rights,
+        allowedUsageScopes: ['library'] as const,
+      },
+    };
+    const entry = (suffix: string, licenseStatus: 'approved' | 'blocked') => {
+      const manifest = {
+        contentId: `blocked-batch-content-${suffix}`,
+        versionId: `blocked-batch-version-${suffix}`,
+        sourceId: `blocked-batch-source-${suffix}`,
+        checksum: `sha256:blocked-${suffix}`,
+        sourceVersion: 'blocked-v1',
+        validated: true as const,
+      };
+      const reviewAuthorization = humanAuthorization(
+        'review',
+        'blocked-reviewer',
+      );
+      return {
+        manifest,
+        input: { ...input, rights: { ...input.rights, licenseStatus } },
+        reviewAuthorization,
+        publishAuthorization: humanAuthorization(
+          'publish',
+          'blocked-publisher',
+        ),
+        reviewEvidence: {
+          reviewerId: 'blocked-reviewer',
+          decision: 'approved' as const,
+          reviewedAt: '2026-07-17T01:00:00.000Z',
+          contentId: manifest.contentId,
+          versionId: manifest.versionId,
+          checksum: manifest.checksum,
+          sourceVersion: manifest.sourceVersion,
+        },
+      };
+    };
+
+    expectGovernanceError(
+      () =>
+        importReviewedSourceManifestBatch(
+          [entry('one', 'approved'), entry('two', 'blocked')],
+          {
+            now: fixedNow,
+          },
+        ),
+      CONTENT_GOVERNANCE_ERROR_CODES.LICENSE_NOT_PUBLISHABLE,
+    );
+    expect(
+      importValidatedSourceManifestBatch([entry('one', 'approved')])[0]
+        .publishStatus,
+    ).toBe('draft');
   });
 
   it('does not publish any new batch item when a later item conflicts', () => {

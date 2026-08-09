@@ -116,6 +116,14 @@ export type ValidatedSourceManifestImport = Readonly<{
   input: Omit<CreateContentVersionInput, 'contentId' | 'versionId' | 'source'>;
 }>;
 
+export type ReviewedSourceManifestImport = Readonly<
+  ValidatedSourceManifestImport & {
+    reviewEvidence: ReviewEvidence;
+    reviewAuthorization: HumanAuthorizationDecision;
+    publishAuthorization: HumanAuthorizationDecision;
+  }
+>;
+
 /** Imports metadata only; it never grants rights, delivery, review, or publication. */
 export function importValidatedSourceManifest(
   manifest: ValidatedSourceManifest,
@@ -244,6 +252,34 @@ export function importValidatedSourceManifestBatch(
       if (!importReplay.has(key)) importReplay.set(key, version);
     }
     return Object.freeze(staged);
+  });
+}
+
+/**
+ * Imports a complete reviewed batch and only returns learner-eligible
+ * lifecycle versions after every entry has passed review and publication
+ * policy. The local replay boundary remains deterministic and credential-free.
+ */
+export function importReviewedSourceManifestBatch(
+  batch: readonly ReviewedSourceManifestImport[],
+  options: Readonly<{ now?: () => number }> = {},
+): readonly GovernedContentVersion[] {
+  return runPolicy(() => {
+    const drafts = importValidatedSourceManifestBatch(
+      batch.map(({ manifest, input }) => ({ manifest, input })),
+    );
+    const published = batch.map((entry, index) => {
+      const reviewed = reviewContentVersion(
+        drafts[index],
+        entry.reviewEvidence,
+        entry.reviewAuthorization,
+      );
+      return publishContentVersion(reviewed, {
+        authorization: entry.publishAuthorization,
+        now: options.now,
+      });
+    });
+    return Object.freeze(published);
   });
 }
 

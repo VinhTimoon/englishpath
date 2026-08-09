@@ -1,7 +1,7 @@
 ---
 id: EP3-ST011
 title: Reviewed Licensed Content Batch and Import Validation
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -113,7 +113,47 @@ reach learner projections, governance and ownership boundaries remain intact,
 all quality gates pass, and no known P0/P1 license, data-integrity, or
 disclosure issue remains.
 
+## Recovery Verification
 
+- Added `importReviewedSourceManifestBatch` as the all-or-nothing local
+  review/publish boundary. Exact replay retains version identity; blocked
+  rights fail closed before any learner projection is returned.
+- Added two bounded approved local listening fixtures and wired the default
+  catalogue adapter to load only their published governed versions.
+- Added unit coverage for reviewed batch publication/replay and blocked-rights
+  atomicity, plus `apps/api/test/library-reviewed-batch.e2e-spec.ts` for
+  authenticated catalogue/item redaction and controlled media state.
+- Scoped verification passed: story doctor, story verify, 13 API unit suites
+  / 165 tests, and the reviewed-batch API E2E 2/2.
+- Full quality gate passed: formatting, planning traceability, tooling 59/59,
+  Prisma validation, lint, typecheck, unit 63 suites / 457 tests, API E2E 19
+  suites / 109 tests, build, browser E2E 87/87, and `git diff --check`.
+
+## Manual High-Risk Review
+
+- PASS: import validates manifest identity and delegates rights, taxonomy,
+  review evidence, authorization, and publication eligibility to the existing
+  governance policy.
+- PASS: replay is keyed by content/version identity and conflicting checksum or
+  source version fails closed; learner catalogue/item responses use the existing
+  safe projections and never return source or review evidence.
+- PASS: the local fixture uses no provider SDK, network, credentials, Prisma
+  schema change, or production migration. Real provider activation remains out
+  of scope.
+- Automated review subAgent could not be used because the Windows harness
+  environment returns `CreateProcessWithLogonW failed: 2`; this is recorded as
+  an environment limitation, not as an automated review pass.
+
+
+
+## Recovery Record
+
+- Resumed in place after blocked commit `b57fa37`.
+- The blocked review result is preserved in git history; this story is the
+  successor execution and the blocked lifecycle state is not being resumed.
+- Root cause: the first implementation added policy-only validation without a
+  reviewed local batch adapter, learner catalogue integration, or API E2E
+  evidence.
 
 ## Blocked Report
 
