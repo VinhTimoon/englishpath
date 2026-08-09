@@ -1,7 +1,7 @@
 ---
 id: EP4-ST011
 title: Four Skills Progress Dashboard
-status: ready
+status: blocked
 type: frontend
 priority: medium
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -106,3 +106,19 @@ backend ownership or progress semantics.
   contract.
 - EP4-ST002, EP4-ST005, and EP4-ST007 remain blocked by separate AI requests;
   this dashboard is independent and does not resume them.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
