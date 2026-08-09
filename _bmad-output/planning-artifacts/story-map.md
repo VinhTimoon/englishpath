@@ -182,8 +182,9 @@ produce accurate analysis, and route weaknesses into remediation.
 ## Phase 3 Licensed Content Library And Listening
 
 Execution queue: `EP3-ST001` through `EP3-ST012` and `EP4-ST001` are complete
-and merged to `dev`; `EP4-ST002` is the single next dependency-ready story.
-Later Phase 4–5 stories remain backlog until their declared dependencies pass.
+and merged to `dev`; `EP4-ST002` is blocked by its AI request and `EP4-ST010`
+is the single next independent dependency-ready story. Later Phase 4–5 stories
+remain backlog until their declared dependencies pass.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |
