@@ -132,6 +132,8 @@ boundary, including the publication predicate, deterministic word-count rule,
 owner/idempotency uniqueness constraints, and allowed Prisma repository/generated
 client boundary. EP4-ST005 remains blocked until that decision is recorded.
 
+AI request file: `notes/ai-req/2026-08-10-ep4-st005-writing-submission-persistence-boundary.md`
+
 
 ## Blocked Report
 
