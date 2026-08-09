@@ -69,7 +69,7 @@ export type DriveInventorySnapshotRecord = Readonly<{
 }>;
 
 export type DriveInventorySnapshotComparison = Readonly<{
-  complete: true;
+  complete: boolean;
   records: readonly DriveInventorySnapshotRecord[];
 }>;
 

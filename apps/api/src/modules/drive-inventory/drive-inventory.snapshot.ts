@@ -29,7 +29,7 @@ export function compareDriveInventorySnapshots(
   options: Readonly<{ complete: boolean }> = { complete: true },
 ): DriveInventorySnapshotComparison {
   if (!options.complete) {
-    return Object.freeze({ complete: true, records: Object.freeze([]) });
+    return Object.freeze({ complete: false, records: Object.freeze([]) });
   }
 
   const previousResult = createDriveInventoryResult({ manifests: previous });
