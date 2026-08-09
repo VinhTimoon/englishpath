@@ -1,7 +1,7 @@
 ---
 id: EP3-ST007
 title: Player, Resume, Bookmark, and Personal Note UI
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
