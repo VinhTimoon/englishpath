@@ -1,7 +1,7 @@
 ---
 id: EP3-ST006
 title: Controlled Media and Transcript API
-status: review
+status: done
 type: backend
 priority: high
 phase: phase-3-licensed-content-library-and-listening

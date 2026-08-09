@@ -182,8 +182,8 @@ produce accurate analysis, and route weaknesses into remediation.
 ## Phase 3 Licensed Content Library And Listening
 
 Execution queue: `EP3-ST001` through `EP3-ST004` are complete and merged to
-`dev`; `EP3-ST001` through `EP3-ST005` are complete and merged. `EP3-ST006`
-is in supervised review after same-story recovery. Later Phase 3–5 stories remain backlog
+`dev`; `EP3-ST001` through `EP3-ST006` are complete and merged. `EP3-ST007`
+is the single next dependency-ready story. Later Phase 3–5 stories remain backlog
 until their declared dependencies pass.
 
 | Story       | Increment                                                              | Depends on                       |
@@ -193,7 +193,7 @@ until their declared dependencies pass.
 | `EP3-ST003` | License/review/import/publish workflow                                 | `EP3-ST002`, `EP1-ST028` (ready) |
 | `EP3-ST004` | Admin library inventory/review UI                                      | `EP3-ST003` (done)               |
 | `EP3-ST005` | Learner catalog, search, filters, and access policy                    | `EP3-ST003` (done)               |
-| `EP3-ST006` | Controlled media/transcript API                                        | `EP3-ST005` (review)             |
+| `EP3-ST006` | Controlled media/transcript API                                        | `EP3-ST005` (done)               |
 | `EP3-ST007` | Player, resume, bookmark, and personal note UI                         | `EP3-ST006`                      |
 | `EP3-ST008` | Listening drills and persisted outcomes                                | `EP3-ST006`                      |
 | `EP3-ST009` | Shadowing workflow and progress                                        | `EP3-ST008`                      |
