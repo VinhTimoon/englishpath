@@ -15,3 +15,14 @@ export class LibraryNoteDto {
 export class LibraryBookmarkParamsDto extends LibraryItemParamsDto {
   @Type(() => Number) @IsInt() @Min(0) @Max(86400) timestampSeconds!: number;
 }
+export class ShadowingProgressDto {
+  @IsInt() @Min(0) @Max(500) segmentIndex!: number;
+  @IsInt() @Min(0) @Max(86400) positionSeconds!: number;
+  @IsIn(['active', 'paused']) status!: 'active' | 'paused';
+  @IsInt() @Min(1) @Max(5) selfRating?: number;
+}
+export class ShadowingFinalizeDto {
+  @IsInt() @Min(0) @Max(500) segmentIndex!: number;
+  @IsInt() @Min(0) @Max(86400) positionSeconds!: number;
+  @IsInt() @Min(1) @Max(5) selfRating!: number;
+}

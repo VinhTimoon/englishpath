@@ -18,6 +18,7 @@ export type LibraryDrillOutcomeRecord = {
   score: number;
   completedAt: Date;
 };
+export type ShadowingAttemptRecord = { attemptKey: string; segmentIndex: number; positionSeconds: number; status: string; selfRating: number | null; createdAt: Date; updatedAt: Date; finalizedAt: Date | null };
 export type CreateLibraryDrillOutcome = {
   userId: string;
   contentVersionId: string;
@@ -81,4 +82,8 @@ export type LibraryLearningRepositoryPort = {
     userId: string,
     contentVersionId: string,
   ): Promise<LibraryDrillOutcomeRecord[]>;
+  findShadowingAttempt?(userId: string, contentVersionId: string): Promise<ShadowingAttemptRecord | null>;
+  listShadowingAttempts?(userId: string, contentVersionId: string): Promise<ShadowingAttemptRecord[]>;
+  upsertShadowingAttempt?(userId: string, contentVersionId: string, data: { segmentIndex: number; positionSeconds: number; status: 'ACTIVE' | 'PAUSED'; selfRating?: number }): Promise<ShadowingAttemptRecord>;
+  finalizeShadowingAttempt?(userId: string, contentVersionId: string, data: { segmentIndex: number; positionSeconds: number; selfRating: number }): Promise<ShadowingAttemptRecord>;
 };

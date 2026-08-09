@@ -37,6 +37,7 @@ model User {
   libraryBookmarks             LibraryBookmark[]
   libraryNotes                  LibraryPersonalNote[]
   libraryDrillOutcomes          LibraryDrillOutcome[]
+  shadowingAttempts              LibraryShadowingAttempt[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -84,6 +85,7 @@ model LibraryContentVersion {
   libraryBookmarks      LibraryBookmark[]
   libraryNotes          LibraryPersonalNote[]
   drillOutcomes         LibraryDrillOutcome[]
+  shadowingAttempts     LibraryShadowingAttempt[]
 
   @@unique([contentId, versionNumber])
   @@unique([contentId, sourceChecksum, sourceVersion])
@@ -207,6 +209,31 @@ model LibraryDrillOutcome {
 
   @@unique([userId, contentVersionId, drillId, questionId])
   @@index([userId, contentVersionId, completedAt])
+}
+
+enum LibraryShadowingAttemptStatus {
+  ACTIVE
+  PAUSED
+  FINALIZED
+}
+
+model LibraryShadowingAttempt {
+  id                String                         @id @default(cuid())
+  attemptKey        String                         @unique @default(cuid())
+  userId            String
+  contentVersionId  String
+  segmentIndex      Int                            @default(0)
+  positionSeconds   Int                            @default(0)
+  status            LibraryShadowingAttemptStatus  @default(ACTIVE)
+  selfRating        Int?
+  createdAt         DateTime                       @default(now())
+  updatedAt         DateTime                       @updatedAt
+  finalizedAt       DateTime?
+  user              User                           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentVersion    LibraryContentVersion          @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+
+  @@index([userId, contentVersionId, updatedAt])
+  @@index([userId, finalizedAt])
 }
 
 model LearnerOnboarding {

@@ -278,6 +278,13 @@ roadmaps, and then roadmap enums, and is never executed automatically.
 
 ## Physical Daily Practice Baseline
 
+EP3-ST009 adds `LibraryShadowingAttempt`, an additive owner-scoped record for
+bounded segment/position progress and a 1–5 self-rating. It stores no audio,
+device metadata, provider locator, or client timestamp. `attemptKey` is server
+generated and stable; finalized rows retain `finalizedAt` and are immutable.
+The migration is additive and rollback, if ever required, is a manual removal
+of the dependent table and enum after verification.
+
 Migration `20260718103000_daily_practice` adds owner-scoped practice sessions, unique
 question answers, learner XP/streak progress, and private Error Notebook entries. Session
 and answer uniqueness make retries safe; only an `ACTIVE` session transaction can award

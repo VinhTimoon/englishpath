@@ -117,4 +117,19 @@ export class LibraryLearningRepository implements LibraryLearningRepositoryPort 
       orderBy: [{ completedAt: 'desc' }, { questionId: 'asc' }],
     });
   }
+
+  findShadowingAttempt(userId: string, contentVersionId: string) { return this.prisma.libraryShadowingAttempt.findFirst({ where: { userId, contentVersionId, finalizedAt: null }, orderBy: { updatedAt: 'desc' } }); }
+  listShadowingAttempts(userId: string, contentVersionId: string) { return this.prisma.libraryShadowingAttempt.findMany({ where: { userId, contentVersionId }, orderBy: { updatedAt: 'desc' }, take: 50 }); }
+  async upsertShadowingAttempt(userId: string, contentVersionId: string, data: { segmentIndex: number; positionSeconds: number; status: 'ACTIVE' | 'PAUSED'; selfRating?: number }) {
+    const existing = await this.prisma.libraryShadowingAttempt.findFirst({ where: { userId, contentVersionId }, orderBy: { updatedAt: 'desc' } });
+    if (existing?.finalizedAt) return existing;
+    if (existing) return this.prisma.libraryShadowingAttempt.update({ where: { attemptKey: existing.attemptKey }, data });
+    return this.prisma.libraryShadowingAttempt.create({ data: { userId, contentVersionId, ...data } });
+  }
+  async finalizeShadowingAttempt(userId: string, contentVersionId: string, data: { segmentIndex: number; positionSeconds: number; selfRating: number }) {
+    const existing = await this.prisma.libraryShadowingAttempt.findFirst({ where: { userId, contentVersionId }, orderBy: { updatedAt: 'desc' } });
+    if (existing?.finalizedAt) return existing;
+    if (existing) return this.prisma.libraryShadowingAttempt.update({ where: { attemptKey: existing.attemptKey }, data: { ...data, status: 'FINALIZED', finalizedAt: new Date() } });
+    return this.prisma.libraryShadowingAttempt.create({ data: { userId, contentVersionId, ...data, status: 'FINALIZED', finalizedAt: new Date() } });
+  }
 }
