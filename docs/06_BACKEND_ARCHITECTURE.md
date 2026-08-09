@@ -290,3 +290,7 @@ credential-free and reports state only. The service validates transcript
 timestamps/count/text bounds, orders segments deterministically, and constructs
 the learner projection field-by-field. Provider locators are internal adapter
 data and never become HTTP response fields.
+
+## Four Skills balance boundary
+
+The roadmap balance policy is a pure deterministic engine input/output. Version orchestration remains in the roadmap service/repository; controllers do not allocate activities. No schema, provider, submission, recording, or AI gateway state is created by balancing.

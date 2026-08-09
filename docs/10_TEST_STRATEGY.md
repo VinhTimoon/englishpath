@@ -418,3 +418,7 @@ lineage/publication behavior, deep immutability, rubric weights and duplicate
 identifiers, safe projections, and forbidden-field absence. Persistence,
 submission, recording, AI, and official-score behavior are intentionally not
 tested until their later stories.
+
+## Four Skills balance coverage
+
+Test the canonical bucket validator, deterministic ordering, bounded allocation, required/due preservation, underrepresented skills, empty or unavailable pools, learner-safe projections, and regression of roadmap/today ownership behavior.

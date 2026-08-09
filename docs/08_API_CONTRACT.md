@@ -585,3 +585,7 @@ No endpoint is introduced. Later task APIs may use the server-owned task/version
 and learner-safe projection contracts. Rubrics are advisory only and are not an
 official TOEIC score or scoring formula. Submissions, recordings, AI feedback,
 and official scoring belong to later stories.
+
+## Four Skills roadmap projection
+
+Learner-safe balance projections expose only `skill`, `activityKind`, bounded `target`, approved `reference`, `allocationReason`, and `completionState`. Missing Speaking/Writing references are represented as unavailable; the API never fabricates prompts, scores, submissions, answer keys, or rubric internals.

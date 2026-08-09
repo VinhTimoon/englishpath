@@ -1,7 +1,7 @@
 ---
 id: EP4-ST010
 title: TOEIC Four Skills Roadmap Balance Rules
-status: ready
+status: blocked
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -121,3 +121,19 @@ persistence.
   boundary request; this story depends only on EP1-ST015 and EP4-ST001.
 - EP4-ST010 is the single next dependency-ready story; EP4-ST002 remains
   blocked with its AI request and is not resumed by this story.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```

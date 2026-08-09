@@ -131,3 +131,7 @@ Every product story must improve at least one of: general English, TOEIC results
 vocabulary retention, study consistency, recurring-error remediation, access to
 licensed content, or product administration/security/quality measurement. A story
 that serves none of these objectives requires product review.
+
+## Four Skills roadmap balance invariant
+
+TOEIC Four Skills roadmap balancing uses only the canonical Reading, Listening, Speaking, and Writing buckets. It preserves required and due practice, uses approved activity references only, and is separate from submissions, recordings, official scoring, and AI feedback.

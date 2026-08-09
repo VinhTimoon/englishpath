@@ -257,3 +257,7 @@ Pre-submission projections are explicit allowlists. They exclude answer keys,
 private source locators, provider credentials, raw claims/tokens, reviewer
 evidence, hidden scoring formulas, AI output, and official scores. Media values
 are controlled asset identifiers only; provider activation remains later work.
+
+## Four Skills separation
+
+Roadmap balancing is not official TOEIC scoring and does not accept or persist submissions, recordings, provider claims, or AI feedback. Speaking/Writing entries require approved server references; unavailable pools fail closed without fabricated learner state.

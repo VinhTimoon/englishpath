@@ -1,0 +1,143 @@
+import type { RoadmapItemStatus, RoadmapTaskType } from './roadmap.models';
+
+export const FOUR_SKILLS = [
+  'READING',
+  'LISTENING',
+  'SPEAKING',
+  'WRITING',
+] as const;
+export type FourSkill = (typeof FOUR_SKILLS)[number];
+export const FOUR_SKILLS_BALANCE_POLICY_VERSION = 'four-skills-balance-v1';
+
+export type FourSkillsActivity = Readonly<{
+  reference: string;
+  skill: FourSkill;
+  kind: RoadmapTaskType;
+  target: number;
+  required?: boolean;
+  due?: boolean;
+  status?: RoadmapItemStatus;
+}>;
+
+export type FourSkillsEvidence = Readonly<{
+  completedBySkill: Readonly<Record<FourSkill, number>>;
+  targetPerDay: number;
+  policyVersion?: string;
+}>;
+
+export type FourSkillsAllocation = Readonly<{
+  skill: FourSkill;
+  activity: FourSkillsActivity | null;
+  target: number;
+  reason: 'REQUIRED' | 'DUE' | 'UNDERREPRESENTED' | 'BALANCED' | 'UNAVAILABLE';
+}>;
+
+export class FourSkillsBalanceError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'FourSkillsBalanceError';
+  }
+}
+
+const skillSet = new Set<string>(FOUR_SKILLS);
+const isSkill = (value: unknown): value is FourSkill =>
+  typeof value === 'string' && skillSet.has(value);
+
+/** Validates the one canonical four-skill metadata shape. */
+export function validateFourSkillsMetadata(
+  skills: readonly unknown[],
+): readonly FourSkill[] {
+  if (!Array.isArray(skills) || skills.length !== FOUR_SKILLS.length)
+    throw new FourSkillsBalanceError('Exactly four skills are required.');
+  const normalized = skills.map((skill) => {
+    if (!isSkill(skill)) throw new FourSkillsBalanceError('Unknown skill.');
+    return skill;
+  });
+  if (new Set(normalized).size !== normalized.length)
+    throw new FourSkillsBalanceError('Duplicate skill metadata.');
+  if (FOUR_SKILLS.some((skill) => !normalized.includes(skill)))
+    throw new FourSkillsBalanceError('Contradictory skill metadata.');
+  return FOUR_SKILLS;
+}
+
+function stableActivities(pool: readonly FourSkillsActivity[]) {
+  const seen = new Set<string>();
+  return [...pool]
+    .filter((activity) => {
+      if (
+        !isSkill(activity.skill) ||
+        !activity.reference ||
+        seen.has(activity.reference)
+      )
+        return false;
+      seen.add(activity.reference);
+      return Number.isInteger(activity.target) && activity.target > 0;
+    })
+    .sort((a, b) => a.reference.localeCompare(b.reference));
+}
+
+/** Pure allocation: required/due work wins, then the least evidenced skill. */
+export function allocateFourSkills(
+  evidence: FourSkillsEvidence,
+  pool: readonly FourSkillsActivity[],
+): readonly FourSkillsAllocation[] {
+  validateFourSkillsMetadata(Object.keys(evidence.completedBySkill));
+  if (!Number.isInteger(evidence.targetPerDay) || evidence.targetPerDay < 0)
+    throw new FourSkillsBalanceError('Target must be a non-negative integer.');
+  const activities = stableActivities(pool);
+  const chosen: FourSkillsAllocation[] = [];
+  const required = activities
+    .filter((activity) => activity.required || activity.due)
+    .sort(
+      (a, b) =>
+        Number(Boolean(b.required)) - Number(Boolean(a.required)) ||
+        a.reference.localeCompare(b.reference),
+    );
+  for (const activity of required) {
+    if (chosen.length >= evidence.targetPerDay) break;
+    chosen.push({
+      skill: activity.skill,
+      activity,
+      target: activity.target,
+      reason: activity.required ? 'REQUIRED' : 'DUE',
+    });
+  }
+  const available = FOUR_SKILLS.map((skill) => ({
+    skill,
+    count: evidence.completedBySkill[skill],
+    activity: activities.find(
+      (candidate) =>
+        candidate.skill === skill &&
+        !chosen.some(
+          (item) => item.activity?.reference === candidate.reference,
+        ),
+    ),
+  })).sort((a, b) => a.count - b.count || a.skill.localeCompare(b.skill));
+  for (const candidate of available) {
+    if (chosen.length >= evidence.targetPerDay) break;
+    chosen.push({
+      skill: candidate.skill,
+      activity: candidate.activity ?? null,
+      target: candidate.activity?.target ?? 0,
+      reason: candidate.activity
+        ? candidate.count < Math.min(...available.map((item) => item.count))
+          ? 'UNDERREPRESENTED'
+          : 'BALANCED'
+        : 'UNAVAILABLE',
+    });
+  }
+  return chosen;
+}
+
+export function learnerSafeFourSkillsProjection(
+  allocation: FourSkillsAllocation,
+) {
+  return {
+    skill: allocation.skill,
+    activityKind: allocation.activity?.kind ?? null,
+    target: allocation.target,
+    reference: allocation.activity?.reference ?? null,
+    allocationReason: allocation.reason,
+    completionState: allocation.activity?.status ?? 'PENDING',
+  } as const;
+}
