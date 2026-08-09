@@ -13,7 +13,10 @@ import {
   CONTROLLED_MEDIA_PORT,
   LocalControlledMediaAdapter,
 } from './library-content.ports';
-import { LIBRARY_DRILL_PORT, LocalLibraryDrillAdapter } from './library-drill.port';
+import {
+  LIBRARY_DRILL_PORT,
+  LocalLibraryDrillAdapter,
+} from './library-drill.port';
 
 @Module({
   imports: [AuthModule],

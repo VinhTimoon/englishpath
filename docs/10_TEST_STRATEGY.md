@@ -385,3 +385,10 @@ bookmark and note CRUD, note control-data rejection, media-state redaction,
 and indistinguishable not-found behavior. Browser coverage verifies server
 resume, unavailable media, note-save and bookmark flows, retry, keyboard
 accessibility, and a 360px layout.
+
+## EP3-ST008 listening drill coverage
+
+Tests must prove answer-key redaction, strict option/question validation,
+request-time eligibility, owner-scoped immutable outcomes, duplicate replay,
+retry/unavailable/empty UI states, keyboard submission, narrow-screen layout,
+and accessibility without color-only correctness communication.

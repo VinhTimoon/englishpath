@@ -1,6 +1,14 @@
-import { BadRequestException, Inject, Injectable, Optional } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  Optional,
+} from '@nestjs/common';
 import { LibraryCatalogueService } from './library-catalogue.service';
-import { LIBRARY_DRILL_PORT, type LibraryDrillPort } from './library-drill.port';
+import {
+  LIBRARY_DRILL_PORT,
+  type LibraryDrillPort,
+} from './library-drill.port';
 import type { LibraryDrillAnswerDto } from './library-drill.dto';
 import type {
   LibraryProgressDto,
@@ -9,6 +17,7 @@ import type {
 } from './library-learning.dto';
 import {
   LIBRARY_LEARNING_REPOSITORY,
+  type LibraryDrillOutcomeRecord,
   type LibraryLearningRepositoryPort,
 } from './library-learning.port';
 
@@ -25,31 +34,103 @@ export class LibraryLearningService {
     @Inject(LIBRARY_LEARNING_REPOSITORY)
     private readonly repository: LibraryLearningRepositoryPort,
     private readonly catalogue: LibraryCatalogueService,
-    @Optional() @Inject(LIBRARY_DRILL_PORT) private readonly drills: LibraryDrillPort = { find: async () => null },
+    @Optional()
+    @Inject(LIBRARY_DRILL_PORT)
+    private readonly drills: LibraryDrillPort = {
+      find: () => Promise.resolve(null),
+    },
   ) {}
 
   async getDrill(_userId: string, versionId: string) {
     await this.item(versionId);
     const drill = await this.drills.find(versionId);
-    if (!drill) return null;
-    const { correctOptionId: _answer, ...publicDrill } = drill;
+    if (!drill || drill.versionId !== versionId) return null;
+    const publicDrill = { ...drill };
+    delete (publicDrill as { correctOptionId?: string }).correctOptionId;
     return publicDrill;
   }
 
-  async submitDrill(userId: string, versionId: string, dto: LibraryDrillAnswerDto) {
+  async submitDrill(
+    userId: string,
+    versionId: string,
+    dto: LibraryDrillAnswerDto,
+  ) {
     await this.item(versionId);
     const drill = await this.drills.find(versionId);
-    if (!drill || drill.questionId !== dto.questionId) throw new BadRequestException('Invalid drill question');
-    if (!drill.options.some((option) => option.id === dto.selectedOptionId)) throw new BadRequestException('Invalid drill option');
-    const existing = await this.repository.findDrillOutcome?.(userId, versionId, drill.drillId, drill.questionId);
-    if (existing) return { questionId: existing.questionId, selectedOptionId: existing.selectedOptionId, isCorrect: existing.isCorrect, score: existing.score, completedAt: existing.completedAt };
+    if (
+      !drill ||
+      drill.versionId !== versionId ||
+      drill.questionId !== dto.questionId
+    )
+      throw new BadRequestException('Invalid drill question');
+    if (!drill.options.some((option) => option.id === dto.selectedOptionId))
+      throw new BadRequestException('Invalid drill option');
+    const existing = await this.repository.findDrillOutcome?.(
+      userId,
+      versionId,
+      drill.drillId,
+      drill.questionId,
+    );
+    if (existing)
+      return {
+        questionId: existing.questionId,
+        selectedOptionId: existing.selectedOptionId,
+        isCorrect: existing.isCorrect,
+        score: existing.score,
+        completedAt: existing.completedAt,
+      };
     const correct = dto.selectedOptionId === drill.correctOptionId;
-    if (!this.repository.createDrillOutcome) throw new BadRequestException('Drill outcomes unavailable');
-    const result = await this.repository.createDrillOutcome({ userId, contentVersionId: versionId, drillId: drill.drillId, questionId: drill.questionId, selectedOptionId: dto.selectedOptionId, isCorrect: correct, score: correct ? 1 : 0 });
-    return { questionId: result.questionId, selectedOptionId: result.selectedOptionId, isCorrect: result.isCorrect, score: result.score, completedAt: result.completedAt };
+    if (!this.repository.createDrillOutcome)
+      throw new BadRequestException('Drill outcomes unavailable');
+    let result: LibraryDrillOutcomeRecord;
+    try {
+      result = await this.repository.createDrillOutcome({
+        userId,
+        contentVersionId: versionId,
+        drillId: drill.drillId,
+        questionId: drill.questionId,
+        selectedOptionId: dto.selectedOptionId,
+        isCorrect: correct,
+        score: correct ? 1 : 0,
+      });
+    } catch (error) {
+      const replay = await this.repository.findDrillOutcome?.(
+        userId,
+        versionId,
+        drill.drillId,
+        drill.questionId,
+      );
+      if (replay)
+        return {
+          questionId: replay.questionId,
+          selectedOptionId: replay.selectedOptionId,
+          isCorrect: replay.isCorrect,
+          score: replay.score,
+          completedAt: replay.completedAt,
+        };
+      throw error;
+    }
+    return {
+      questionId: result.questionId,
+      selectedOptionId: result.selectedOptionId,
+      isCorrect: result.isCorrect,
+      score: result.score,
+      completedAt: result.completedAt,
+    };
   }
 
-  async drillHistory(userId: string, versionId: string) { await this.item(versionId); const outcomes = this.repository.listDrillOutcomes ? await this.repository.listDrillOutcomes(userId, versionId) : []; return outcomes.map(({ questionId, isCorrect, score, completedAt }) => ({ questionId, isCorrect, score, completedAt })); }
+  async drillHistory(userId: string, versionId: string) {
+    await this.item(versionId);
+    const outcomes = this.repository.listDrillOutcomes
+      ? await this.repository.listDrillOutcomes(userId, versionId)
+      : [];
+    return outcomes.map(({ questionId, isCorrect, score, completedAt }) => ({
+      questionId,
+      isCorrect,
+      score,
+      completedAt,
+    }));
+  }
 
   private async item(versionId: string) {
     const item = await this.catalogue.getItem(versionId);

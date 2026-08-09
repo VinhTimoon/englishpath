@@ -545,3 +545,11 @@ Progress writes, bookmark writes, and note writes are authenticated,
 owner-scoped, bounded, and idempotent upserts; delete operations are
 owner-scoped idempotent deletes. Every response uses the standard envelope.
 The server rechecks item eligibility before reading or mutating learner state.
+
+## EP3-ST008 listening drills
+
+`GET /api/v1/library/items/:versionId/drill` exposes only the stable drill,
+question, prompt, and option projection. `POST /drill/submit` validates the
+question and option server-side, computes correctness after submission, and
+replays the immutable owner-scoped outcome on retries. Answer keys, provider
+references, and reviewer/source data never cross the API boundary.

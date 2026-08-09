@@ -1,7 +1,7 @@
 ---
 id: EP3-ST008
 title: Listening Drills and Persisted Outcomes
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -19,6 +19,7 @@ allowed_paths:
   - apps/web/src/widgets/library/**
   - apps/web/src/shared/**
   - tests/e2e/library-listening.spec.ts
+  - tests/e2e/library-player.spec.ts
   - docs/04_SYSTEM_ARCHITECTURE.md
   - docs/06_BACKEND_ARCHITECTURE.md
   - docs/07_DATABASE_DESIGN.md
@@ -97,8 +98,8 @@ provider activation, credentials, or Phase 4/5 work.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/in-progress/EP3-ST008-listening-drills-and-persisted-outcomes.md`
-- `pnpm story:verify stories/in-progress/EP3-ST008-listening-drills-and-persisted-outcomes.md`
+- `node scripts/story-doctor.mjs stories/review/EP3-ST008-listening-drills-and-persisted-outcomes.md`
+- `pnpm story:verify stories/review/EP3-ST008-listening-drills-and-persisted-outcomes.md`
 - `pnpm --filter api exec prisma validate`
 - `pnpm --filter api exec node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand src/modules/library/**/*.spec.ts src/modules/access/**/*.spec.ts`
 - `pnpm --filter api test:e2e -- library-listening.e2e-spec.ts`
@@ -138,3 +139,27 @@ provider activation, credentials, or Phase 4/5 work.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## Recovery Record
+
+- The original blocked lifecycle and commit `a00e2ef` are preserved as history.
+- EP3-ST008 was resumed in place on `story/ep3-st008`; no new recovery story
+  was created and no history was rewritten.
+- The implementation now uses the approved local drill fixture and completes
+  the full learner/API persistence path without external provider activation.
+
+## Recovery Verification and Manual Review
+
+- `pnpm story:checks` passed: format, planning traceability, tooling `59/59`,
+  Prisma validation, lint, typecheck, unit `62 suites / 449 tests`, API E2E
+  `16 suites / 102 tests`, production build, and browser E2E `83/83`.
+- Focused coverage passed for library unit tests, listening API E2E `3/3`,
+  and listening browser E2E `2/2`; `git diff --check` passed.
+- Manual high-risk review found no P0/P1 findings: answer keys stay server-side,
+  eligibility is rechecked, outcomes are owner-scoped and uniquely persisted,
+  finalized submissions replay immutably, invalid options fail closed, and
+  the UI covers loading, unavailable, error/retry, active, submitted, empty,
+  keyboard, mobile, and accessible result states.
+- Automated review was unavailable before repository inspection because the
+  Windows subagent runner returned `CreateProcessWithLogonW failed: 2`; this is
+  recorded as an environment limitation, not as a passed automated review.

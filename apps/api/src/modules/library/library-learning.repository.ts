@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import type { LibraryLearningRepositoryPort } from './library-learning.port';
+import type { CreateLibraryDrillOutcome } from './library-learning.port';
 
 @Injectable()
 export class LibraryLearningRepository implements LibraryLearningRepositoryPort {
@@ -90,7 +91,30 @@ export class LibraryLearningRepository implements LibraryLearningRepositoryPort 
       where: { userId, contentVersionId },
     });
   }
-  findDrillOutcome(userId: string, contentVersionId: string, drillId: string, questionId: string) { return this.prisma.libraryDrillOutcome.findUnique({ where: { userId_contentVersionId_drillId_questionId: { userId, contentVersionId, drillId, questionId } } }); }
-  createDrillOutcome(data: any) { return this.prisma.libraryDrillOutcome.create({ data }); }
-  listDrillOutcomes(userId: string, contentVersionId: string) { return this.prisma.libraryDrillOutcome.findMany({ where: { userId, contentVersionId }, orderBy: [{ completedAt: 'desc' }, { questionId: 'asc' }] }); }
+  findDrillOutcome(
+    userId: string,
+    contentVersionId: string,
+    drillId: string,
+    questionId: string,
+  ) {
+    return this.prisma.libraryDrillOutcome.findUnique({
+      where: {
+        userId_contentVersionId_drillId_questionId: {
+          userId,
+          contentVersionId,
+          drillId,
+          questionId,
+        },
+      },
+    });
+  }
+  createDrillOutcome(data: CreateLibraryDrillOutcome) {
+    return this.prisma.libraryDrillOutcome.create({ data });
+  }
+  listDrillOutcomes(userId: string, contentVersionId: string) {
+    return this.prisma.libraryDrillOutcome.findMany({
+      where: { userId, contentVersionId },
+      orderBy: [{ completedAt: 'desc' }, { questionId: 'asc' }],
+    });
+  }
 }

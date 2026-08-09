@@ -11,6 +11,22 @@ export type LibraryProgressRecord = {
 
 export type LibraryBookmarkRecord = { timestampSeconds: number };
 export type LibraryNoteRecord = { body: string; updatedAt: Date };
+export type LibraryDrillOutcomeRecord = {
+  questionId: string;
+  selectedOptionId: string;
+  isCorrect: boolean;
+  score: number;
+  completedAt: Date;
+};
+export type CreateLibraryDrillOutcome = {
+  userId: string;
+  contentVersionId: string;
+  drillId: string;
+  questionId: string;
+  selectedOptionId: string;
+  isCorrect: boolean;
+  score: number;
+};
 
 export type LibraryLearningRepositoryPort = {
   findProgress(
@@ -52,7 +68,17 @@ export type LibraryLearningRepositoryPort = {
     userId: string,
     contentVersionId: string,
   ): Promise<{ count: number }>;
-  findDrillOutcome?(userId: string, contentVersionId: string, drillId: string, questionId: string): Promise<any | null>;
-  createDrillOutcome?(data: any): Promise<any>;
-  listDrillOutcomes?(userId: string, contentVersionId: string): Promise<any[]>;
+  findDrillOutcome?(
+    userId: string,
+    contentVersionId: string,
+    drillId: string,
+    questionId: string,
+  ): Promise<LibraryDrillOutcomeRecord | null>;
+  createDrillOutcome?(
+    data: CreateLibraryDrillOutcome,
+  ): Promise<LibraryDrillOutcomeRecord>;
+  listDrillOutcomes?(
+    userId: string,
+    contentVersionId: string,
+  ): Promise<LibraryDrillOutcomeRecord[]>;
 };

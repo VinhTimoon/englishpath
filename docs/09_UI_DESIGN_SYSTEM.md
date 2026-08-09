@@ -131,3 +131,10 @@ server-confirmed; browser state is limited to transient draft UI. Media
 controls are not rendered as playable unless the API supplies an authorized
 safe delivery reference. Transcript timestamp controls are labelled,
 keyboard-operable, visibly focused, and usable at narrow widths.
+
+## EP3-ST008 listening drill
+
+The drill uses explicit loading, unavailable/empty, retryable error, active,
+and submitted-result states. Options are labelled buttons with visible focus;
+the result is expressed as text and score, not color alone. Once submitted,
+choices are disabled and the UI renders only the server result.

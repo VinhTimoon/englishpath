@@ -1,9 +1,52 @@
 "use client";
-import { useEffect, useState } from "react";
+
+import { useCallback, useEffect, useState } from "react";
 import { getLibraryDrill, submitLibraryDrill, type LibraryDrill, type LibraryDrillResult } from "./library-api";
+
 export function LibraryDrillPanel({ versionId }: { versionId: string }) {
-  const [drill, setDrill] = useState<LibraryDrill | null | undefined>(); const [result, setResult] = useState<LibraryDrillResult | null>(null); const [selected, setSelected] = useState(""); const [error, setError] = useState(false);
-  const load = () => { setError(false); void getLibraryDrill(versionId).then(setDrill).catch(() => setError(true)); }; useEffect(load, [versionId]);
-  if (drill === undefined) return <p role="status">Đang tải bài nghe…</p>; if (error) return <div role="alert"><p>Không thể tải bài luyện nghe.</p><button type="button" onClick={load}>Thử lại</button></div>; if (!drill) return <p role="status">Chưa có bài luyện nghe cho nội dung này.</p>;
-  return <section aria-labelledby="drill-heading" className="mt-8 border border-[var(--border)] p-4"><h2 id="drill-heading" className="text-xl font-bold">Bài luyện nghe</h2><p className="mt-3">{drill.prompt}</p><div className="mt-3 grid gap-2">{drill.options.map((option) => <button key={option.id} type="button" className="min-h-11 border p-3 text-left focus:outline-2" disabled={!!result} aria-pressed={selected === option.id} onClick={() => setSelected(option.id)}>{option.label}</button>)}</div>{!result ? <button type="button" className="mt-4 min-h-11 bg-[var(--brand)] px-4 font-bold text-white" disabled={!selected} onClick={() => void submitLibraryDrill(versionId, { questionId: drill.questionId, selectedOptionId: selected }).then(setResult).catch(() => setError(true))}>Nộp đáp án</button> : <p className="mt-4" role="status">{result.isCorrect ? "Đúng" : "Chưa đúng"}. Điểm: {result.score}</p>}</section>;
+  const [drill, setDrill] = useState<LibraryDrill | null | undefined>();
+  const [result, setResult] = useState<LibraryDrillResult | null>(null);
+  const [selected, setSelected] = useState("");
+  const [error, setError] = useState(false);
+
+  const load = useCallback(async (signal?: AbortSignal) => {
+    setError(false);
+    setResult(null);
+    setSelected("");
+    try {
+      setDrill(await getLibraryDrill(versionId, signal));
+    } catch {
+      if (!signal?.aborted) setError(true);
+    }
+  }, [versionId]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    queueMicrotask(() => void load(controller.signal));
+    return () => controller.abort();
+  }, [load]);
+
+  async function submit() {
+    setError(false);
+    try {
+      setResult(await submitLibraryDrill(versionId, { questionId: drill!.questionId, selectedOptionId: selected }));
+    } catch {
+      setError(true);
+    }
+  }
+
+  if (drill === undefined) return <p role="status">Đang tải bài nghe…</p>;
+  if (error) return <div role="alert"><p>Không thể tải bài luyện nghe.</p><button type="button" onClick={() => void load()}>Thử lại</button></div>;
+  if (!drill) return <p role="status">Chưa có bài luyện nghe cho nội dung này.</p>;
+
+  return (
+    <section aria-labelledby="drill-heading" className="mt-8 border border-[var(--border)] p-4">
+      <h2 id="drill-heading" className="text-xl font-bold">Bài luyện nghe</h2>
+      <p className="mt-3">{drill.prompt}</p>
+      <div className="mt-3 grid gap-2">
+        {drill.options.map((option) => <button key={option.id} type="button" className="min-h-11 border p-3 text-left focus:outline-2" disabled={!!result} aria-pressed={selected === option.id} onClick={() => setSelected(option.id)}>{option.label}</button>)}
+      </div>
+      {!result ? <button type="button" className="mt-4 min-h-11 bg-[var(--brand)] px-4 font-bold text-white" disabled={!selected} onClick={() => void submit()}>Nộp đáp án</button> : <p className="mt-4" role="status">{result.isCorrect ? "Đúng" : "Chưa đúng"}. Điểm: {result.score}</p>}
+    </section>
+  );
 }

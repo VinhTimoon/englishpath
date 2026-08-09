@@ -43,6 +43,12 @@ test.describe("learner library player", () => {
             contentType: "application/json",
             body: JSON.stringify({ data: state }),
           });
+        if (url.pathname.endsWith("/drill"))
+          return route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: JSON.stringify({ data: null }),
+          });
         writes.push(`${route.request().method()} ${url.pathname}`);
         return route.fulfill({
           status: 200,

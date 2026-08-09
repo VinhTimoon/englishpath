@@ -23,6 +23,9 @@ describe('LibraryLearningService', () => {
     deleteBookmark: jest.fn(),
     upsertNote: jest.fn(),
     deleteNote: jest.fn(),
+    findDrillOutcome: jest.fn(),
+    createDrillOutcome: jest.fn(),
+    listDrillOutcomes: jest.fn(),
   };
   let service: LibraryLearningService;
 
@@ -34,6 +37,8 @@ describe('LibraryLearningService', () => {
     repository.findNote.mockResolvedValue(null);
     repository.deleteBookmark.mockResolvedValue({ count: 1 });
     repository.deleteNote.mockResolvedValue({ count: 1 });
+    repository.findDrillOutcome.mockResolvedValue(null);
+    repository.listDrillOutcomes.mockResolvedValue([]);
     service = new LibraryLearningService(repository, catalogue as never);
   });
 
@@ -123,5 +128,73 @@ describe('LibraryLearningService', () => {
       service.saveNote('learner-1', 'version-1', { body: 'bad\u0000note' }),
     ).rejects.toBeInstanceOf(BadRequestException);
     expect(repository.upsertNote).not.toHaveBeenCalled();
+  });
+
+  it('redacts the drill answer and persists an immutable owner outcome', async () => {
+    const drills = {
+      find: jest.fn().mockResolvedValue({
+        drillId: 'drill-1',
+        versionId: 'version-1',
+        questionId: 'question-1',
+        prompt: 'Choose one',
+        options: [
+          { id: 'option-a', label: 'A' },
+          { id: 'option-b', label: 'B' },
+        ],
+        correctOptionId: 'option-a',
+      }),
+    };
+    repository.createDrillOutcome.mockResolvedValue({
+      questionId: 'question-1',
+      selectedOptionId: 'option-a',
+      isCorrect: true,
+      score: 1,
+      completedAt: new Date('2026-01-01'),
+    });
+    const drillService = new LibraryLearningService(
+      repository,
+      catalogue as never,
+      drills,
+    );
+
+    const projection = await drillService.getDrill('learner-1', 'version-1');
+    expect(projection).not.toHaveProperty('correctOptionId');
+    const result = await drillService.submitDrill('learner-1', 'version-1', {
+      questionId: 'question-1',
+      selectedOptionId: 'option-a',
+    });
+    expect(result).toMatchObject({ isCorrect: true, score: 1 });
+    expect(repository.createDrillOutcome).toHaveBeenCalledWith(
+      expect.objectContaining({
+        userId: 'learner-1',
+        contentVersionId: 'version-1',
+        selectedOptionId: 'option-a',
+      }),
+    );
+  });
+
+  it('rejects an option that is not in the server drill projection', async () => {
+    const drills = {
+      find: jest.fn().mockResolvedValue({
+        drillId: 'drill-1',
+        versionId: 'version-1',
+        questionId: 'question-1',
+        prompt: 'Choose one',
+        options: [{ id: 'option-a', label: 'A' }],
+        correctOptionId: 'option-a',
+      }),
+    };
+    const drillService = new LibraryLearningService(
+      repository,
+      catalogue as never,
+      drills,
+    );
+    await expect(
+      drillService.submitDrill('learner-1', 'version-1', {
+        questionId: 'question-1',
+        selectedOptionId: 'option-b',
+      }),
+    ).rejects.toBeInstanceOf(BadRequestException);
+    expect(repository.createDrillOutcome).not.toHaveBeenCalled();
   });
 });

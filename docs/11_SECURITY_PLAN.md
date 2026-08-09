@@ -226,3 +226,11 @@ includes the user key in every query. Projections omit database IDs and
 provider metadata. Notes are bounded plain text, reject control data, are not
 logged, and are rendered without HTML interpretation. Media unavailable states
 never fabricate a URL or reveal storage/provider details.
+
+## EP3-ST008 answer secrecy and outcomes
+
+The local drill adapter keeps correct options in backend-only internal types.
+Public projections are allowlisted, and submission validates identity/options
+before scoring. Outcomes include the authenticated user in every repository
+predicate and are uniquely keyed so retries replay the finalized selection;
+answer keys and private provider/source fields are never logged or returned.
