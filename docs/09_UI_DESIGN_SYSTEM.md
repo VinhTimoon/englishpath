@@ -122,3 +122,12 @@ Each pack exposes its purpose and related Part/skill as text, with visible focus
 and no color-only meaning. A missing pack is an explicit empty state;
 unavailability does not hide the score or analysis. Pack links may deep-link the
 existing practice page, which accepts only server-approved catalogue filters.
+
+## EP3-ST007 learner player
+
+The library item view is mobile-first and exposes loading, unavailable,
+error/retry, empty-transcript, and success states. Resume and completion are
+server-confirmed; browser state is limited to transient draft UI. Media
+controls are not rendered as playable unless the API supplies an authorized
+safe delivery reference. Transcript timestamp controls are labelled,
+keyboard-operable, visibly focused, and usable at narrow widths.

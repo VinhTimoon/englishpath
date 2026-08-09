@@ -1,7 +1,7 @@
 ---
 id: EP3-ST007
 title: Player, Resume, Bookmark, and Personal Note UI
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -153,3 +153,26 @@ claiming automated review passed.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## Recovery Record
+
+The initial loop result is preserved in commit `88246d5` and this blocked
+report. The story was resumed in place on `story/ep3-st007`; no new story ID
+was created and no WIP history was rewritten. Recovery completed the missing
+tests, repository boundary, UI state handling, formatting, and verification
+evidence.
+
+## Recovery Verification and Manual Review
+
+- `pnpm story:checks`: pass; format, planning traceability, Prisma validation,
+  tooling `59/59`, lint, typecheck, unit `62 suites / 447 tests`, API E2E
+  `15 suites / 99 tests`, build, and browser `81/81` all passed.
+- Focused recovery checks: library learning unit `4/4`, player API E2E `3/3`,
+  targeted browser `2/2`, and `git diff --check` passed.
+- Manual high-risk review found no P0/P1 issue in ownership, eligibility
+  re-check, provider redaction, progress bounds/idempotency, migration
+  constraints, note control-data handling, or mobile/accessibility states.
+- Automated review was attempted through the configured Codex runner but was
+  unavailable before repository inspection because Windows returned
+  `CreateProcessWithLogonW failed: 2`; the stale prompt artifact was not used
+  as evidence. Manual review is recorded instead of claiming automated pass.

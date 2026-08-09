@@ -376,3 +376,12 @@ responses, transcript ordering/bounds, all controlled storage states, provider
 failure sanitization, and absence of locators/source fields. The local adapter
 must not contact Drive, Supabase, or real storage; no browser player test is
 required until EP3-ST007.
+
+## EP3-ST007 learner state coverage
+
+The player slice requires API unit and E2E coverage for authentication,
+request-time eligibility, owner isolation, bounded/idempotent progress,
+bookmark and note CRUD, note control-data rejection, media-state redaction,
+and indistinguishable not-found behavior. Browser coverage verifies server
+resume, unavailable media, note-save and bookmark flows, retry, keyboard
+accessibility, and a 360px layout.

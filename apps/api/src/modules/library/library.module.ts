@@ -7,6 +7,8 @@ import {
 } from './library-catalogue.port';
 import { LibraryCatalogueService } from './library-catalogue.service';
 import { LibraryLearningService } from './library-learning.service';
+import { LibraryLearningRepository } from './library-learning.repository';
+import { LIBRARY_LEARNING_REPOSITORY } from './library-learning.port';
 import {
   CONTROLLED_MEDIA_PORT,
   LocalControlledMediaAdapter,
@@ -18,6 +20,11 @@ import {
   providers: [
     LibraryCatalogueService,
     LibraryLearningService,
+    LibraryLearningRepository,
+    {
+      provide: LIBRARY_LEARNING_REPOSITORY,
+      useExisting: LibraryLearningRepository,
+    },
     LocalLibraryCatalogueAdapter,
     LocalControlledMediaAdapter,
     {

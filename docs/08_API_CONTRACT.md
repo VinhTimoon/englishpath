@@ -536,3 +536,12 @@ Controlled storage states are `AVAILABLE`, `PENDING`, `QUARANTINED`, or
 object key, source/checksum, rights/reviewer evidence, manifest, credential, or
 unsigned URL. Provider activation and playable delivery remain separate from
 catalogue/item visibility and are owned by later stories.
+
+## EP3-ST007 learner state
+
+`GET /api/v1/library/items/:versionId/state` returns the safe item projection
+plus only the authenticated owner's progress, bookmarks, and personal note.
+Progress writes, bookmark writes, and note writes are authenticated,
+owner-scoped, bounded, and idempotent upserts; delete operations are
+owner-scoped idempotent deletes. Every response uses the standard envelope.
+The server rechecks item eligibility before reading or mutating learner state.

@@ -216,3 +216,13 @@ safe learner state; failures fall back to unavailable/pending behavior. The
 response allowlist excludes every provider locator and source/private field,
 and transcript validation prevents malformed or oversized timing/text data
 from crossing the API.
+
+## EP3-ST007 learner-state ownership
+
+Library learning progress, bookmarks, and personal notes are keyed by the
+authenticated application user and content version. The service reuses the
+EP3-ST005 eligibility predicate before every read or write and the repository
+includes the user key in every query. Projections omit database IDs and
+provider metadata. Notes are bounded plain text, reject control data, are not
+logged, and are rendered without HTML interpretation. Media unavailable states
+never fabricate a URL or reveal storage/provider details.
