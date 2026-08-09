@@ -1,7 +1,7 @@
 ---
 id: EP3-ST012
 title: Storage Security, License, Browser, Performance, and Phase Exit Review
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
