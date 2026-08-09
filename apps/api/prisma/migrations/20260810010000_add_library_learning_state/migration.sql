@@ -1,0 +1,16 @@
+CREATE TYPE "LibraryProgressStatus" AS ENUM ('NOT_STARTED', 'IN_PROGRESS', 'COMPLETED', 'ABANDONED');
+CREATE TABLE "LibraryLearningProgress" ("id" TEXT NOT NULL,"userId" TEXT NOT NULL,"contentVersionId" TEXT NOT NULL,"status" "LibraryProgressStatus" NOT NULL DEFAULT 'NOT_STARTED',"positionSeconds" INTEGER NOT NULL DEFAULT 0,"version" INTEGER NOT NULL DEFAULT 1,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"updatedAt" TIMESTAMP(3) NOT NULL,CONSTRAINT "LibraryLearningProgress_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "LibraryBookmark" ("id" TEXT NOT NULL,"userId" TEXT NOT NULL,"contentVersionId" TEXT NOT NULL,"timestampSeconds" INTEGER NOT NULL,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,CONSTRAINT "LibraryBookmark_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "LibraryPersonalNote" ("id" TEXT NOT NULL,"userId" TEXT NOT NULL,"contentVersionId" TEXT NOT NULL,"body" TEXT NOT NULL,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"updatedAt" TIMESTAMP(3) NOT NULL,CONSTRAINT "LibraryPersonalNote_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "LibraryLearningProgress_userId_contentVersionId_key" ON "LibraryLearningProgress"("userId","contentVersionId");
+CREATE UNIQUE INDEX "LibraryBookmark_userId_contentVersionId_timestampSeconds_key" ON "LibraryBookmark"("userId","contentVersionId","timestampSeconds");
+CREATE UNIQUE INDEX "LibraryPersonalNote_userId_contentVersionId_key" ON "LibraryPersonalNote"("userId","contentVersionId");
+CREATE INDEX "LibraryLearningProgress_userId_updatedAt_idx" ON "LibraryLearningProgress"("userId","updatedAt");
+CREATE INDEX "LibraryBookmark_userId_contentVersionId_timestampSeconds_idx" ON "LibraryBookmark"("userId","contentVersionId","timestampSeconds");
+CREATE INDEX "LibraryPersonalNote_userId_updatedAt_idx" ON "LibraryPersonalNote"("userId","updatedAt");
+ALTER TABLE "LibraryLearningProgress" ADD CONSTRAINT "LibraryLearningProgress_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "LibraryLearningProgress" ADD CONSTRAINT "LibraryLearningProgress_contentVersionId_fkey" FOREIGN KEY ("contentVersionId") REFERENCES "LibraryContentVersion"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "LibraryBookmark" ADD CONSTRAINT "LibraryBookmark_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "LibraryBookmark" ADD CONSTRAINT "LibraryBookmark_contentVersionId_fkey" FOREIGN KEY ("contentVersionId") REFERENCES "LibraryContentVersion"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "LibraryPersonalNote" ADD CONSTRAINT "LibraryPersonalNote_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "LibraryPersonalNote" ADD CONSTRAINT "LibraryPersonalNote_contentVersionId_fkey" FOREIGN KEY ("contentVersionId") REFERENCES "LibraryContentVersion"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

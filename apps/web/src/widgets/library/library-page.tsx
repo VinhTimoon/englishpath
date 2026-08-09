@@ -183,7 +183,7 @@ export function LibraryPage() {
                 <p className="text-sm font-bold text-[var(--brand)]">
                   {item.level} · {item.contentType}
                 </p>
-                <h2 className="mt-2 text-xl font-bold">{item.title}</h2>
+                <h2 className="mt-2 text-xl font-bold"><a className="underline" href={"/library/"+item.versionId}>{item.title}</a></h2>
                 <p className="mt-2 text-[var(--ink-muted)]">{item.summary}</p>
                 <p className="mt-5 text-sm">
                   {item.taxonomy.topic}

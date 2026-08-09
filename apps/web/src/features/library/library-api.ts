@@ -35,3 +35,7 @@ export function getCatalogue(query: URLSearchParams, signal?: AbortSignal) {
     { signal },
   ).then((response) => response.data);
 }
+export type LibraryState = { item: { title:string; summary:string; taxonomy:{level:string;topic:string;subtopic?:string;relatedSkills:string[]}; durationSeconds?:number; transcript:Array<{startSeconds:number;endSeconds:number;text:string}>; media:{state:"AVAILABLE"|"PENDING"|"QUARANTINED"|"RETIRED"} }; progress: {positionSeconds:number;status:string}|null; bookmarks:Array<{timestampSeconds:number}>; note:{body:string}|null };
+export function getLibraryState(versionId:string, signal?:AbortSignal) { return requestLearnerApi<{data:LibraryState}>("/library/items/"+encodeURIComponent(versionId)+"/state",{signal}).then(r=>r.data); }
+export function saveLibraryProgress(versionId:string, body:{status:string;positionSeconds:number}) { return requestLearnerApi<{data:LibraryState["progress"]}>("/library/items/"+encodeURIComponent(versionId)+"/progress",{method:"PUT",body}).then(r=>r.data); }
+export function saveLibraryNote(versionId:string, body:string) { return requestLearnerApi<{data:{body:string}}>("/library/items/"+encodeURIComponent(versionId)+"/note",{method:"PUT",body:{body}}).then(r=>r.data); }

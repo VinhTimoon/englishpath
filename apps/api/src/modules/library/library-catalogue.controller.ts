@@ -8,7 +8,13 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Body,
+  Delete,
+  Post,
+  Put,
+  Req,
 } from '@nestjs/common';
+import type { AuthenticatedRequest } from '../auth/auth-request';
 import {
   ApiBearerAuth,
   ApiBadRequestResponse,
@@ -26,6 +32,8 @@ import {
 } from './library-catalogue.dto';
 import { LibraryCatalogueExceptionFilter } from './library-catalogue-exception.filter';
 import { LibraryCatalogueService } from './library-catalogue.service';
+import { LibraryLearningService } from './library-learning.service';
+import { LibraryProgressDto, LibraryBookmarkDto, LibraryNoteDto } from './library-learning.dto';
 
 const strictValidation = new ValidationPipe({
   transform: true,
@@ -44,7 +52,41 @@ const strictValidation = new ValidationPipe({
 @UseGuards(AuthenticationGuard)
 @UseFilters(LibraryCatalogueExceptionFilter)
 export class LibraryCatalogueController {
-  constructor(private readonly service: LibraryCatalogueService) {}
+  constructor(private readonly service: LibraryCatalogueService, private readonly learning: LibraryLearningService) {}
+
+  @Get('items/:versionId/state')
+  @UsePipes(strictValidation)
+  async getState(@Param() params: LibraryItemParamsDto, @Req() req: AuthenticatedRequest) {
+    return { data: await this.learning.state(req.principal!.applicationUserId, params.versionId) };
+  }
+
+  @Put('items/:versionId/progress')
+  @UsePipes(strictValidation)
+  async saveProgress(@Param() params: LibraryItemParamsDto, @Body() body: LibraryProgressDto, @Req() req: AuthenticatedRequest) {
+    return { data: await this.learning.saveProgress(req.principal!.applicationUserId, params.versionId, body) };
+  }
+
+  @Post('items/:versionId/bookmarks')
+  @UsePipes(strictValidation)
+  async addBookmark(@Param() params: LibraryItemParamsDto, @Body() body: LibraryBookmarkDto, @Req() req: AuthenticatedRequest) {
+    return { data: await this.learning.addBookmark(req.principal!.applicationUserId, params.versionId, body) };
+  }
+
+  @Delete('items/:versionId/bookmarks/:timestampSeconds')
+  async deleteBookmark(@Param() params: LibraryItemParamsDto & { timestampSeconds: string }, @Req() req: AuthenticatedRequest) {
+    return { data: await this.learning.deleteBookmark(req.principal!.applicationUserId, params.versionId, Number(params.timestampSeconds)) };
+  }
+
+  @Put('items/:versionId/note')
+  @UsePipes(strictValidation)
+  async saveNote(@Param() params: LibraryItemParamsDto, @Body() body: LibraryNoteDto, @Req() req: AuthenticatedRequest) {
+    return { data: await this.learning.saveNote(req.principal!.applicationUserId, params.versionId, body) };
+  }
+
+  @Delete('items/:versionId/note')
+  async deleteNote(@Param() params: LibraryItemParamsDto, @Req() req: AuthenticatedRequest) {
+    return { data: await this.learning.deleteNote(req.principal!.applicationUserId, params.versionId) };
+  }
 
   @Get('catalogue')
   @UsePipes(strictValidation)

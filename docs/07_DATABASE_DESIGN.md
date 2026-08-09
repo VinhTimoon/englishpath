@@ -13,6 +13,12 @@ migration header.
 
 ### EP3-ST001 Library content foundation
 
+EP3-ST007 adds additive owner-scoped LibraryLearningProgress, LibraryBookmark,
+and LibraryPersonalNote records. Each is keyed by application user and content
+version; progress positions are bounded by authoritative duration, bookmarks
+are unique by timestamp, and notes are one per item. The migration is
+non-destructive and isolated to these new tables and enum.
+
 `LibraryContent` is the stable identity; `LibraryContentVersion` is immutable
 lineage keyed by content, version, checksum, and source version. `LibrarySourceManifest`
 is private Drive inventory evidence only and retains distinct checksum/source-version

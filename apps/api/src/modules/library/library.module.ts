@@ -6,6 +6,7 @@ import {
   LocalLibraryCatalogueAdapter,
 } from './library-catalogue.port';
 import { LibraryCatalogueService } from './library-catalogue.service';
+import { LibraryLearningService } from './library-learning.service';
 import {
   CONTROLLED_MEDIA_PORT,
   LocalControlledMediaAdapter,
@@ -16,6 +17,7 @@ import {
   controllers: [LibraryCatalogueController],
   providers: [
     LibraryCatalogueService,
+    LibraryLearningService,
     LocalLibraryCatalogueAdapter,
     LocalControlledMediaAdapter,
     {

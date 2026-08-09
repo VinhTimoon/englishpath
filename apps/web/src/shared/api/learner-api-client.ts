@@ -38,7 +38,7 @@ export function learnerApiRequiresAuth(error: unknown): boolean {
 export async function requestLearnerApi<T>(
   path: string,
   options: {
-    method?: "GET" | "POST" | "PATCH";
+    method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
     body?: unknown;
     signal?: AbortSignal;
   } = {},

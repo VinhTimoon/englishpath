@@ -1,7 +1,7 @@
 ---
 id: EP3-ST007
 title: Player, Resume, Bookmark, and Personal Note UI
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -137,3 +137,19 @@ mandatory. Automated review may be unavailable under the known Windows
 `CreateProcessWithLogonW failed: 2` runner limitation; if so, record the
 manual adversarial review and all actual evidence in the story rather than
 claiming automated review passed.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
