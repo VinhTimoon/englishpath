@@ -1,7 +1,7 @@
 ---
 id: EP2-ST012
 title: TOEIC L&R security, browser, accessibility, and content-license exit review
-status: review
+status: done
 type: exit-review
 priority: critical
 phase: phase-2-toeic-listening-reading
@@ -311,4 +311,3 @@ Please log out and sign in again.
 
 At that historical attempt the story remained blocked in place. No source
 implementation, schema, credential, deployment, or Phase 3 story was created.
-

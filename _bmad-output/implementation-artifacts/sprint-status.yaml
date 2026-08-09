@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-09T14:58:32.700Z
+# last_updated: 2026-08-09T14:59:02.821Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-09T14:58:32.700Z
+last_updated: 2026-08-09T14:59:02.821Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -123,7 +123,7 @@ development_status:
   1-51-phase-1-rebaseline-and-loop-routing: done
   epic-1-retrospective: optional
 
-  epic-2: in-progress
+  epic-2: done
   2-1-toeic-question-content-and-license-schema: done
   2-2-question-bank-api-and-answer-protection: done
   2-3-admin-import-review-and-publish-workflow: done
@@ -135,7 +135,7 @@ development_status:
   2-9-scoring-weakness-and-time-analysis: done
   2-10-toeic-error-notebook-and-remediation: done
   2-11-toeic-vocabulary-and-grammar-packs: done
-  2-12-toeic-lr-phase-exit-review: review
+  2-12-toeic-lr-phase-exit-review: done
   epic-2-retrospective: optional
 
   epic-3: backlog
