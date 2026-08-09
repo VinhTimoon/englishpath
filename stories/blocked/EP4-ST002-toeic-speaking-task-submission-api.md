@@ -1,7 +1,7 @@
 ---
 id: EP4-ST002
 title: TOEIC Speaking Task and Submission API
-status: ready
+status: blocked
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -131,3 +131,19 @@ stable server contract.
 - Created after EP4-ST001 close commit `980257b`.
 - EP4-ST002 is the only dependency-ready story; later EP4/EP5 stories remain
   backlog until their declared dependencies pass.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
