@@ -183,9 +183,9 @@ produce accurate analysis, and route weaknesses into remediation.
 
 Execution queue: `EP3-ST001` through `EP3-ST012`, `EP4-ST001`, and `EP4-ST010`
 are complete and merged to `dev`; `EP4-ST002` is blocked by its AI request and
-`EP4-ST005` is blocked by its AI request; `EP4-ST007` is queued as the next
-independent dependency-ready story. Later Phase 4-5 stories remain backlog
-until their declared dependencies pass.
+`EP4-ST005` and `EP4-ST007` are blocked by their AI requests; `EP4-ST011` is
+the next independent dependency-ready story. Later Phase 4-5 stories remain
+backlog until their declared dependencies pass.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |
