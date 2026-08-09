@@ -1,7 +1,7 @@
 ---
 id: EP3-ST003
 title: Licensed Content Review, Import, and Publish Workflow
-status: review
+status: done
 type: backend
 priority: critical
 phase: phase-3-licensed-content-library-and-listening
@@ -77,8 +77,8 @@ provider calls in this story.
 - `pnpm test`
 - `pnpm build`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/in-progress/EP3-ST003-license-review-import-and-publish-workflow.md`
-- `pnpm story:verify stories/in-progress/EP3-ST003-license-review-import-and-publish-workflow.md`
+- `node scripts/story-doctor.mjs stories/review/EP3-ST003-license-review-import-and-publish-workflow.md`
+- `pnpm story:verify stories/review/EP3-ST003-license-review-import-and-publish-workflow.md`
 
 ## Risk and Review
 
