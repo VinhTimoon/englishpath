@@ -359,3 +359,12 @@ keyboard focus, 360px layout, and axe checks.
 The library foundation is verified with static Prisma schema/migration checks and
 credential-free deterministic adapter tests. Tests must not read `.env`, access
 Drive/Supabase, call a network, or apply migrations to shared infrastructure.
+
+## EP3-ST005 catalogue evidence
+
+API unit and E2E coverage must prove authentication, fail-closed eligibility,
+server-derived facets, bounded validation, deterministic pagination/search,
+safe-field redaction, distinct empty states, and sanitized adapter failure.
+Browser coverage must prove URL query preservation, retry, keyboard/focus
+behavior, 360px no-overflow, and an accessibility smoke check. The local
+catalogue adapter is fixture-compatible and must not contact a real provider.

@@ -271,3 +271,13 @@ and its published taxonomy predicate; grammar links come from a reviewed
 internal allowlist; practice links require a current TOEIC catalogue Part.
 Pack lookup is bounded and failure-isolated, so no content lookup can invalidate
 an owner-scoped finalized score or analysis.
+
+## EP3-ST005 learner catalogue boundary
+
+The learner library catalogue is a provider-neutral read service over an
+injectable catalogue port. The service applies the server-owned library access
+predicate before facets, search, filtering, ordering, pagination, or response
+projection. The current local adapter is intentionally credential-free and
+fixture-compatible; it does not read Drive/Supabase, persist data, or grant
+controlled media access. Controllers validate transport input and return the
+standard envelope; policy and redaction remain in the service layer.

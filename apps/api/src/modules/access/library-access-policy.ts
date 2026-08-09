@@ -4,15 +4,21 @@ export function isEligibleLearnerLibraryVersion(
   version: GovernedContentVersion,
   now = new Date(),
 ): boolean {
-  return (
-    version.reviewStatus === 'approved' &&
-    version.publishStatus === 'published' &&
-    version.rights.licenseStatus === 'approved' &&
-    version.rights.allowedUsageScopes.includes('library') &&
-    version.rights.allowedAccessTiers.includes('authenticated') &&
-    version.usageScope === 'library' &&
-    version.accessTier === 'authenticated' &&
-    Boolean(version.rights.validUntil) &&
-    Date.parse(version.rights.validUntil!) >= now.getTime()
-  );
+  try {
+    const validUntil = version.rights.validUntil;
+    const validDate = validUntil === undefined ? true : Date.parse(validUntil);
+    return (
+      version.reviewStatus === 'approved' &&
+      version.publishStatus === 'published' &&
+      version.rights.licenseStatus === 'approved' &&
+      version.rights.allowedUsageScopes.includes('library') &&
+      version.rights.allowedAccessTiers.includes('authenticated') &&
+      version.usageScope === 'library' &&
+      version.accessTier === 'authenticated' &&
+      (validDate === true ||
+        (Number.isFinite(validDate) && validDate >= now.getTime()))
+    );
+  } catch {
+    return false;
+  }
 }

@@ -1,7 +1,7 @@
 ---
 id: EP3-ST005
 title: Learner Catalog, Search, Filters, and Access Policy
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -136,3 +136,41 @@ production deployment is claimed.
 Child process returned blocked exit code 42.
 Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
 ```
+
+## Recovery Record
+
+The initial build result at commit `e87e43e` is historical evidence only. The
+same story is being recovered in place; no competing recovery story is created
+and the blocked build is not blindly retried.
+
+The initial implementation established the route and policy skeleton but left
+the fixture-backed eligible/error scenarios, API/browser evidence, and required
+boundary documentation incomplete. Recovery will complete those acceptance
+criteria within the existing allowed paths before review.
+
+## Recovery Verification and Manual Review
+
+Recovery completed the provider-neutral catalogue port, strict query
+validation, server-owned eligibility/facet ordering, explicit safe projection,
+authenticated API envelope/error handling, learner URL-state UI, and fixture
+coverage. No Prisma/schema, credential, Drive, Supabase, media-delivery, or
+production configuration was changed.
+
+The automated review invocation was not usable for this story: the existing
+`.codex-review-task.md` remained a stale EP3-ST004 prompt, and its Codex read
+attempts ended with the Windows sandbox error `CreateProcessWithLogonW failed:
+2`. It is not treated as an EP3-ST005 review result. Manual high-risk review
+therefore checked the actual EP3-ST005 diff for authentication, fail-closed
+eligibility before facets/search, strict pagination/filter validation, safe
+response allowlisting, provider/media boundary separation, scope compliance,
+and browser state/accessibility evidence.
+
+Targeted evidence:
+
+- API policy/catalogue unit tests — 11 passed
+- API catalogue E2E — 2 passed
+- web typecheck, lint, and Next build — passed
+- learner catalogue browser suite — 4 passed, including 360px and axe checks
+- full `pnpm story:checks` — passed: formatting, planning/tooling, Prisma
+  validation, 60 API unit suites / 436 tests, 13 API E2E suites / 92 tests,
+  build, and 79 browser tests

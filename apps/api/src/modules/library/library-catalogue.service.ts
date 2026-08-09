@@ -20,17 +20,26 @@ const ALLOWED = new Set([
   'topic',
   'contentType',
 ]);
-const safe = (r: LibraryCatalogueRecord) => ({
-  itemId: r.version.contentId,
-  versionId: r.version.versionId,
-  title: r.title,
-  summary: r.summary,
-  taxonomy: r.version.taxonomy,
-  contentType: r.contentType,
-  durationMinutes: r.durationMinutes,
-  level: r.level ?? r.version.taxonomy.level,
-  availability: 'available' as const,
-});
+function safeProjection(r: LibraryCatalogueRecord) {
+  return {
+    itemId: r.version.contentId,
+    versionId: r.version.versionId,
+    title: r.title,
+    summary: r.summary,
+    taxonomy: {
+      level: r.version.taxonomy.level,
+      topic: r.version.taxonomy.topic,
+      ...(r.version.taxonomy.subtopic
+        ? { subtopic: r.version.taxonomy.subtopic }
+        : {}),
+      relatedSkills: [...r.version.taxonomy.relatedSkills],
+    },
+    contentType: r.contentType,
+    durationMinutes: r.durationMinutes,
+    level: r.level ?? r.version.taxonomy.level,
+    availability: 'available' as const,
+  };
+}
 
 @Injectable()
 export class LibraryCatalogueService {
@@ -54,8 +63,8 @@ export class LibraryCatalogueService {
       throw new BadRequestException('Unsupported catalogue query field');
     let records: readonly LibraryCatalogueRecord[];
     try {
-      records = (await this.port.load()).filter((r) =>
-        isEligibleLearnerLibraryVersion(r.version),
+      records = (await this.port.load()).filter((record) =>
+        isEligibleLearnerLibraryVersion(record.version),
       );
     } catch {
       throw new ServiceUnavailableException('Library catalogue unavailable');
@@ -67,6 +76,15 @@ export class LibraryCatalogueService {
       topics: [...new Set(records.map((r) => r.version.taxonomy.topic))].sort(),
       contentTypes: [...new Set(records.map((r) => r.contentType))].sort(),
     };
+    for (const [key, value, values] of [
+      ['level', query.level, facets.levels],
+      ['topic', query.topic, facets.topics],
+      ['contentType', query.contentType, facets.contentTypes],
+    ] as const) {
+      if (value && !values.includes(value)) {
+        throw new BadRequestException(`Unsupported catalogue ${key} filter`);
+      }
+    }
     const search = query.search?.trim().toLocaleLowerCase('en-US');
     const filtered = records
       .filter(
@@ -93,7 +111,7 @@ export class LibraryCatalogueService {
         : records.length
           ? 'filtered-empty'
           : 'empty',
-      items: filtered.slice((page - 1) * size, page * size).map(safe),
+      items: filtered.slice((page - 1) * size, page * size).map(safeProjection),
       facets,
       pagination: {
         page,

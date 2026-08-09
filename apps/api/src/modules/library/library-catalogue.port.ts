@@ -15,7 +15,9 @@ export interface LibraryCataloguePort {
 export const LIBRARY_CATALOGUE_PORT = Symbol('LIBRARY_CATALOGUE_PORT');
 
 export class LocalLibraryCatalogueAdapter implements LibraryCataloguePort {
+  private readonly records: readonly LibraryCatalogueRecord[] = [];
+
   load(): Promise<readonly LibraryCatalogueRecord[]> {
-    return Promise.resolve([]);
+    return Promise.resolve(this.records);
   }
 }

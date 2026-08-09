@@ -1,10 +1,44 @@
-import { IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsInt,
+  IsOptional,
+  IsString,
+  Max,
+  MaxLength,
+  Min,
+} from 'class-validator';
 
 export class LibraryCatalogueQueryDto {
-  @IsOptional() @IsInt() @Min(1) page = 1;
-  @IsOptional() @IsInt() @Min(1) @Max(50) size = 12;
-  @IsOptional() @IsString() search?: string;
-  @IsOptional() @IsString() level?: string;
-  @IsOptional() @IsString() topic?: string;
-  @IsOptional() @IsString() contentType?: string;
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page = 1;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(50)
+  size = 12;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(120)
+  search?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(120)
+  level?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(120)
+  topic?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(120)
+  contentType?: string;
 }

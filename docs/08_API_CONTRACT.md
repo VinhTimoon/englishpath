@@ -503,3 +503,22 @@ uses the published TOEIC taxonomy predicate, practice links require a current
 catalogue Part, and grammar links are limited to the reviewed internal guide
 allowlist. Missing content returns `packs: []`; pack objects contain no answer,
 question, session, user, correctness, timing, governance, or provider fields.
+
+## Licensed learner catalogue (EP3-ST005)
+
+`GET /api/v1/library/catalogue` requires an authenticated learner and returns a
+safe `{ data, meta }` envelope. The server filters before deriving facets or
+search results. A version is eligible only when it is reviewed, published,
+license-approved, unexpired (or explicitly non-expiring), uses the `library`
+scope, and permits the `authenticated` tier. Missing or malformed governance
+evidence fails closed.
+
+The bounded query accepts `page`, `size` (maximum 50), `search`, `level`,
+`topic`, and `contentType`. Unknown fields, invalid pagination, and filters not
+present in the eligible server-derived facets are rejected. Results use stable
+ordering and distinguish `empty`, `filtered-empty`, and `success` statuses.
+Learner items allowlist identity, title, summary, taxonomy, content type,
+duration/level, and availability only; Drive URLs, object keys, checksums,
+rights/reviewer data, raw manifests, and provider details never cross the
+boundary. Catalogue visibility does not authorize media delivery; that boundary
+belongs to EP3-ST006.

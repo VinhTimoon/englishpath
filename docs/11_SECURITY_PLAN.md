@@ -198,3 +198,12 @@ Source references, Drive paths, rights evidence, review evidence, storage object
 keys, and provider metadata are server-owned and must be redacted from learner
 projections. Controlled-storage adapters return only safe state and manifests
 never imply publication or access authority.
+
+## EP3-ST005 learner catalogue redaction
+
+Catalogue eligibility is evaluated server-side before any facet or search
+projection, so private, draft, or expired content cannot leak through filters
+or counts. The learner response is an explicit allowlist and excludes source
+URLs, object keys, checksums, rights evidence, reviewer/actor identifiers, raw
+manifests, credentials, and provider internals. A catalogue item is descriptive
+only; controlled media authorization remains a separate EP3-ST006 boundary.
