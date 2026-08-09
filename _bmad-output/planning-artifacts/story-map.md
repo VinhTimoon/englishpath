@@ -195,7 +195,7 @@ until their declared dependencies pass.
 | `EP3-ST005` | Learner catalog, search, filters, and access policy                    | `EP3-ST003` (done)               |
 | `EP3-ST006` | Controlled media/transcript API                                        | `EP3-ST005` (done)               |
 | `EP3-ST007` | Player, resume, bookmark, and personal note UI                         | `EP3-ST006` (done)               |
-| `EP3-ST008` | Listening drills and persisted outcomes                                | `EP3-ST006`                      |
+| `EP3-ST008` | Listening drills and persisted outcomes                                | `EP3-ST006` (done)               |
 | `EP3-ST009` | Shadowing workflow and progress                                        | `EP3-ST008`                      |
 | `EP3-ST010` | Roadmap/vocabulary/quiz/content linking                                | `EP3-ST007`, `EP3-ST008`         |
 | `EP3-ST011` | Reviewed licensed content batch and import validation                  | `EP3-ST004`                      |
