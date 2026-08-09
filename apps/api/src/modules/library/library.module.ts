@@ -13,6 +13,7 @@ import {
   CONTROLLED_MEDIA_PORT,
   LocalControlledMediaAdapter,
 } from './library-content.ports';
+import { LIBRARY_DRILL_PORT, LocalLibraryDrillAdapter } from './library-drill.port';
 
 @Module({
   imports: [AuthModule],
@@ -35,6 +36,8 @@ import {
       provide: CONTROLLED_MEDIA_PORT,
       useExisting: LocalControlledMediaAdapter,
     },
+    LocalLibraryDrillAdapter,
+    { provide: LIBRARY_DRILL_PORT, useExisting: LocalLibraryDrillAdapter },
   ],
 })
 export class LibraryModule {}

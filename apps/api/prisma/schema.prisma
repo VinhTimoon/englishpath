@@ -36,6 +36,7 @@ model User {
   libraryProgress              LibraryLearningProgress[]
   libraryBookmarks             LibraryBookmark[]
   libraryNotes                  LibraryPersonalNote[]
+  libraryDrillOutcomes          LibraryDrillOutcome[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -82,6 +83,7 @@ model LibraryContentVersion {
   libraryProgress       LibraryLearningProgress[]
   libraryBookmarks      LibraryBookmark[]
   libraryNotes          LibraryPersonalNote[]
+  drillOutcomes         LibraryDrillOutcome[]
 
   @@unique([contentId, versionNumber])
   @@unique([contentId, sourceChecksum, sourceVersion])
@@ -188,6 +190,23 @@ model LibraryPersonalNote {
   contentVersion    LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
   @@unique([userId, contentVersionId])
   @@index([userId, updatedAt])
+}
+
+model LibraryDrillOutcome {
+  id                String                @id @default(cuid())
+  userId            String
+  contentVersionId  String
+  drillId           String
+  questionId        String
+  selectedOptionId  String
+  isCorrect         Boolean
+  score             Int
+  completedAt       DateTime              @default(now())
+  user              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentVersion    LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+
+  @@unique([userId, contentVersionId, drillId, questionId])
+  @@index([userId, contentVersionId, completedAt])
 }
 
 model LearnerOnboarding {

@@ -52,4 +52,7 @@ export type LibraryLearningRepositoryPort = {
     userId: string,
     contentVersionId: string,
   ): Promise<{ count: number }>;
+  findDrillOutcome?(userId: string, contentVersionId: string, drillId: string, questionId: string): Promise<any | null>;
+  createDrillOutcome?(data: any): Promise<any>;
+  listDrillOutcomes?(userId: string, contentVersionId: string): Promise<any[]>;
 };

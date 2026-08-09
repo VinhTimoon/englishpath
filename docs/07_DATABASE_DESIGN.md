@@ -1,5 +1,13 @@
 # Database Design V2
 
+## Library drill outcomes (EP3-ST008)
+
+`LibraryDrillOutcome` is an additive, owner-scoped immutable record keyed by
+user, library version, drill, and question. It stores only the selected option,
+server-computed correctness/score, and completion time; answer keys remain in
+the backend drill adapter. The unique key makes retries replay the finalized
+outcome.
+
 ## Error Notebook ownership (EP2-ST010)
 
 `ErrorNotebookEntry` uses `ErrorNotebookSource` (`PRACTICE` or

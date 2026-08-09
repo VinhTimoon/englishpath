@@ -54,3 +54,8 @@ export function deleteLibraryBookmark(versionId: string, timestampSeconds: numbe
 export function saveLibraryNote(versionId: string, body: string) {
   return requestLearnerApi<{ data: { body: string; updatedAt: string } }>(`/library/items/${encodeURIComponent(versionId)}/note`, { method: "PUT", body: { body } }).then((response) => response.data);
 }
+
+export type LibraryDrill = { drillId: string; versionId: string; questionId: string; prompt: string; options: Array<{ id: string; label: string }> };
+export type LibraryDrillResult = { questionId: string; selectedOptionId: string; isCorrect: boolean; score: number; completedAt: string };
+export function getLibraryDrill(versionId: string, signal?: AbortSignal) { return requestLearnerApi<{ data: LibraryDrill | null }>(`/library/items/${encodeURIComponent(versionId)}/drill`, { signal }).then((r) => r.data); }
+export function submitLibraryDrill(versionId: string, body: { questionId: string; selectedOptionId: string }) { return requestLearnerApi<{ data: LibraryDrillResult }>(`/library/items/${encodeURIComponent(versionId)}/drill/submit`, { method: "POST", body }).then((r) => r.data); }

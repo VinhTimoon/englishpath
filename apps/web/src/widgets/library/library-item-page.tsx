@@ -9,6 +9,7 @@ import {
   saveLibraryProgress,
   type LibraryState,
 } from "@/features/library/library-api";
+import { LibraryDrillPanel } from "@/features/library/library-drill";
 
 type Props = { versionId: string };
 
@@ -123,6 +124,7 @@ export function LibraryItemPage({ versionId }: Props) {
         <h2 id="transcript-heading" className="text-xl font-bold">Transcript</h2>
         {item.transcript.length === 0 ? <p className="mt-3" role="status">Chưa có transcript.</p> : <ol className="mt-3 space-y-3">{item.transcript.map((segment) => <li key={`${segment.startSeconds}-${segment.endSeconds}`} className="flex gap-3 border-b border-[var(--border)] pb-3"><button type="button" className="min-h-11 shrink-0 underline" aria-label={`Đánh dấu tại ${segment.startSeconds} giây`} aria-pressed={bookmarked.has(segment.startSeconds)} disabled={savingBookmark === segment.startSeconds} onClick={() => void toggleBookmark(segment.startSeconds)}>{bookmarked.has(segment.startSeconds) ? "Đã đánh dấu" : `${segment.startSeconds}s`}</button><span>{segment.text}</span></li>)}</ol>}
       </section>
+      <LibraryDrillPanel versionId={versionId} />
 
       <section className="mt-8" aria-labelledby="notes-heading">
         <h2 id="notes-heading" className="text-xl font-bold">Ghi chú cá nhân</h2>

@@ -90,4 +90,7 @@ export class LibraryLearningRepository implements LibraryLearningRepositoryPort 
       where: { userId, contentVersionId },
     });
   }
+  findDrillOutcome(userId: string, contentVersionId: string, drillId: string, questionId: string) { return this.prisma.libraryDrillOutcome.findUnique({ where: { userId_contentVersionId_drillId_questionId: { userId, contentVersionId, drillId, questionId } } }); }
+  createDrillOutcome(data: any) { return this.prisma.libraryDrillOutcome.create({ data }); }
+  listDrillOutcomes(userId: string, contentVersionId: string) { return this.prisma.libraryDrillOutcome.findMany({ where: { userId, contentVersionId }, orderBy: [{ completedAt: 'desc' }, { questionId: 'asc' }] }); }
 }

@@ -1,7 +1,7 @@
 ---
 id: EP3-ST008
 title: Listening Drills and Persisted Outcomes
-status: ready
+status: blocked
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -122,3 +122,19 @@ provider activation, credentials, or Phase 4/5 work.
 - Keep local fixtures credential-free and provider-neutral. If real licensed
   content, storage activation, a destructive migration, or an external paid
   service is required, create the required AI request and block this story.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```

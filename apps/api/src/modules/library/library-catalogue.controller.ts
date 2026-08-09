@@ -33,6 +33,7 @@ import {
 import { LibraryCatalogueExceptionFilter } from './library-catalogue-exception.filter';
 import { LibraryCatalogueService } from './library-catalogue.service';
 import { LibraryLearningService } from './library-learning.service';
+import { LibraryDrillAnswerDto } from './library-drill.dto';
 import {
   LibraryProgressDto,
   LibraryBookmarkDto,
@@ -217,5 +218,21 @@ export class LibraryCatalogueController {
         idempotencyStatus: 'not_applicable',
       },
     };
+  }
+
+  @Get('items/:versionId/drill')
+  async getDrill(@Param() params: LibraryItemParamsDto, @Req() req: AuthenticatedRequest, @Headers('x-correlation-id') correlation?: string) {
+    return { data: await this.learning.getDrill(req.principal!.applicationUserId, params.versionId), meta: { correlationId: authCorrelationId(correlation), idempotencyStatus: 'not_applicable' } };
+  }
+
+  @Post('items/:versionId/drill/submit')
+  @UsePipes(strictValidation)
+  async submitDrill(@Param() params: LibraryItemParamsDto, @Body() body: LibraryDrillAnswerDto, @Req() req: AuthenticatedRequest, @Headers('x-correlation-id') correlation?: string) {
+    return { data: await this.learning.submitDrill(req.principal!.applicationUserId, params.versionId, body), meta: { correlationId: authCorrelationId(correlation), idempotencyStatus: 'idempotent_replay' } };
+  }
+
+  @Get('items/:versionId/drill/history')
+  async drillHistory(@Param() params: LibraryItemParamsDto, @Req() req: AuthenticatedRequest, @Headers('x-correlation-id') correlation?: string) {
+    return { data: await this.learning.drillHistory(req.principal!.applicationUserId, params.versionId), meta: { correlationId: authCorrelationId(correlation), idempotencyStatus: 'not_applicable' } };
   }
 }
