@@ -1,7 +1,7 @@
 ---
 id: EP3-ST010
 title: Roadmap, Vocabulary, Quiz, and Content Linking
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -94,8 +94,8 @@ No AI, TOEIC changes, external providers, credentials, or Phase 4/5 features.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/review/EP3-ST010-learning-content-linking.md`
-- `pnpm story:verify stories/review/EP3-ST010-learning-content-linking.md`
+- `node scripts/story-doctor.mjs stories/done/EP3-ST010-learning-content-linking.md`
+- `pnpm story:verify stories/done/EP3-ST010-learning-content-linking.md`
 - `pnpm --filter api exec node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand src/modules/library/**/*.spec.ts src/modules/roadmap/**/*.spec.ts src/modules/vocabulary/**/*.spec.ts src/modules/practice/**/*.spec.ts`
 - `pnpm --filter api test:e2e -- library-links.e2e-spec.ts`
 - `pnpm lint`
