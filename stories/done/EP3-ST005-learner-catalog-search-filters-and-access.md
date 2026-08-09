@@ -1,7 +1,7 @@
 ---
 id: EP3-ST005
 title: Learner Catalog, Search, Filters, and Access Policy
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening

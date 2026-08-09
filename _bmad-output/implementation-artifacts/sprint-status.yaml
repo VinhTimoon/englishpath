@@ -143,7 +143,7 @@ development_status:
   3-2-drive-inventory-checksum-and-change-detection: done
   3-3-license-review-import-and-publish-workflow: done
   3-4-admin-library-inventory-and-review-ui: done
-  3-5-learner-catalog-search-filters-and-access: review
+  3-5-learner-catalog-search-filters-and-access: done
   3-6-controlled-media-and-transcript-api: backlog
   3-7-player-resume-bookmark-and-notes: backlog
   3-8-listening-drills-and-persisted-outcomes: backlog
