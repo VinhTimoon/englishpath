@@ -1,7 +1,7 @@
 ---
 id: EP4-ST010
 title: TOEIC Four Skills Roadmap Balance Rules
-status: in-progress
+status: review
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -159,3 +159,28 @@ Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".c
   initial, unchanged, evidence-changed, and policy-changed outcomes.
 - Focused verification passed: roadmap balance unit suite, 6 tests; API
   TypeScript compilation passed; `git diff --check` passed.
+
+## Manual Review
+
+- PASS: the complete recovered diff is now committed and includes the balance
+  policy, tests, and documentation; the prior automated review false negative
+  is not used as implementation evidence.
+- PASS: the policy accepts exactly the four canonical skills, orders inputs
+  deterministically, bounds allocations, preserves required/due work first,
+  fails closed for unavailable or unpublished Speaking/Writing references, and
+  exposes only the learner-safe projection fields.
+- PASS: recalculation uses a stable policy version and canonical fingerprint;
+  unchanged input is idempotent, while evidence/policy changes are explicit.
+- PASS: no Prisma, auth, AI gateway, provider, frontend, credential, package,
+  CI, or production-branch paths were changed.
+- Automated reviewer limitation: the loop reviewer returned blocked because its
+  Windows read-only context omitted new files before they were committed. The
+  review was repeated manually against the complete committed diff.
+
+## Recovery Quality Gates
+
+- `node scripts/story-doctor.mjs stories/in-progress/EP4-ST010-four-skills-roadmap-balance-rules.md` passed.
+- `pnpm story:verify stories/in-progress/EP4-ST010-four-skills-roadmap-balance-rules.md` passed.
+- Focused API unit: 22 suites / 160 tests passed for roadmap, TOEIC, and access.
+- Focused API E2E: roadmap/today and TOEIC practice, 1 suite / 3 tests passed.
+- Full workspace lint, typecheck, test, build, browser E2E, and `git diff --check` passed; browser E2E reported 87 passed.

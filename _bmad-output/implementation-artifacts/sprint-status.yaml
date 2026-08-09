@@ -163,7 +163,7 @@ development_status:
   4-7-provider-neutral-ai-feedback-gateway: backlog
   4-8-speaking-feedback-worker-and-fallback: backlog
   4-9-writing-feedback-worker-and-fallback: backlog
-  4-10-four-skills-roadmap-balance-rules: in-progress
+  4-10-four-skills-roadmap-balance-rules: review
   4-11-four-skills-progress-dashboard: backlog
   4-12-four-skills-phase-exit-review: backlog
   epic-4-retrospective: optional
