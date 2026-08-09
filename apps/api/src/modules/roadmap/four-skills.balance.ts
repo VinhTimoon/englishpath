@@ -81,7 +81,8 @@ function stableActivities(pool: readonly FourSkillsActivity[]) {
         ((activity.skill === 'SPEAKING' || activity.skill === 'WRITING') &&
           (activity.source !== 'TOEIC_TASK' || activity.published !== true)) ||
         ((activity.skill === 'READING' || activity.skill === 'LISTENING') &&
-          activity.source === 'TOEIC_TASK' && activity.published !== true)
+          activity.source === 'TOEIC_TASK' &&
+          activity.published !== true)
       )
         return false;
       seen.add(activity.reference);
@@ -179,7 +180,10 @@ function stableFingerprint(
 export function recalculateFourSkills(
   evidence: FourSkillsEvidence,
   pool: readonly FourSkillsActivity[],
-  previous?: Pick<FourSkillsRecalculation, 'policyVersion' | 'inputFingerprint'>,
+  previous?: Pick<
+    FourSkillsRecalculation,
+    'policyVersion' | 'inputFingerprint'
+  >,
 ): FourSkillsRecalculation {
   const inputFingerprint = stableFingerprint(evidence, pool);
   const policyChanged =
@@ -192,13 +196,14 @@ export function recalculateFourSkills(
   return {
     policyVersion: FOUR_SKILLS_BALANCE_POLICY_VERSION,
     inputFingerprint,
-    reason: previous === undefined
-      ? 'INITIAL'
-      : policyChanged
-        ? 'POLICY_CHANGED'
-        : unchanged
-          ? 'UNCHANGED'
-          : 'EVIDENCE_CHANGED',
+    reason:
+      previous === undefined
+        ? 'INITIAL'
+        : policyChanged
+          ? 'POLICY_CHANGED'
+          : unchanged
+            ? 'UNCHANGED'
+            : 'EVIDENCE_CHANGED',
     allocations: allocateFourSkills(evidence, pool),
   };
 }

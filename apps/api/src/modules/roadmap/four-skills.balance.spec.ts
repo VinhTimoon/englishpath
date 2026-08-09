@@ -98,10 +98,7 @@ describe('four skills balance policy', () => {
       }).reason,
     ).toBe('POLICY_CHANGED');
     expect(() =>
-      recalculateFourSkills(
-        { ...evidence, policyVersion: 'old-policy' },
-        pool,
-      ),
+      recalculateFourSkills({ ...evidence, policyVersion: 'old-policy' }, pool),
     ).toThrow('Unsupported balance policy version.');
   });
 });
