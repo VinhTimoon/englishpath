@@ -11,6 +11,16 @@ migration header.
 
 ## Purpose
 
+### EP3-ST001 Library content foundation
+
+`LibraryContent` is the stable identity; `LibraryContentVersion` is immutable
+lineage keyed by content, version, checksum, and source version. `LibrarySourceManifest`
+is private Drive inventory evidence only. Storage references and media/transcript
+metadata belong to a governed version and use restrictive relations. New rows are
+draft, unpublished, and rights-pending. Migration
+`20260809160000_library_content_foundation` is additive and local-only; rollback is
+an owner-approved removal in reverse dependency order and must never run remotely.
+
 This document defines conceptual data ownership and boundaries for Phase 0-6. It
 does not prescribe a physical Prisma schema in this story.
 

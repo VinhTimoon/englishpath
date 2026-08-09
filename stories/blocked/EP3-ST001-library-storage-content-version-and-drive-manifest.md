@@ -1,7 +1,7 @@
 ---
 id: EP3-ST001
 title: Library Storage, Content Version, and Drive Manifest Foundation
-status: ready
+status: blocked
 type: database
 priority: critical
 phase: phase-3-licensed-content-library-and-listening
@@ -142,3 +142,19 @@ replaced by a new story unless a concrete scope blocker is recorded with evidenc
 - Story file records the implementation file list, checks, review findings, and
   completion evidence before it is moved to `review` and merged fast-forward to
   `dev`.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```

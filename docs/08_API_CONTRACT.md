@@ -1,5 +1,12 @@
 # API Contract V2
 
+## EP3-ST001 library foundation
+
+This story adds no HTTP endpoint or learner projection. Drive manifests, source
+URLs, hierarchy hints, rights/review evidence, storage locations, and provider
+metadata remain server-owned. A manifest is source evidence and cannot authorize
+review, publication, learner access, or runtime delivery.
+
 ## TOEIC learner eligibility governance (EP2-ST012)
 
 All learner-facing TOEIC question catalogues use the same server-owned

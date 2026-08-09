@@ -353,3 +353,9 @@ catalogue-confirmed practice deep links, empty-content behavior, failure
 isolation, strict response parsing, and absence of answer/session/user fields.
 Browser evidence covers pack links, deep-link setup, unavailable/empty states,
 keyboard focus, 360px layout, and axe checks.
+
+# EP3-ST001 local verification
+
+The library foundation is verified with static Prisma schema/migration checks and
+credential-free deterministic adapter tests. Tests must not read `.env`, access
+Drive/Supabase, call a network, or apply migrations to shared infrastructure.

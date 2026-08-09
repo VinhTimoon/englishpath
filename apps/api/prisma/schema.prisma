@@ -38,6 +38,105 @@ model User {
   @@index([status])
 }
 
+model LibraryContent {
+  id                String                @id
+  contentType       LibraryContentType
+  title             String
+  accessTier        LibraryAccessTier     @default(FREE)
+  usageScope        LibraryUsageScope     @default(PRACTICE)
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  versions          LibraryContentVersion[]
+  manifests         LibrarySourceManifest[]
+
+  @@index([contentType, accessTier, usageScope])
+}
+
+model LibraryContentVersion {
+  id                    String                 @id
+  contentId             String
+  versionNumber         Int
+  previousVersionId     String?
+  sourceManifestId      String?
+  sourceChecksum        String
+  sourceVersion         String
+  reviewStatus          LibraryReviewStatus    @default(DRAFT)
+  publicationState      LibraryPublicationState @default(UNPUBLISHED)
+  rightsStatus          LibraryRightsStatus    @default(PENDING)
+  rightsExpiresAt       DateTime?
+  reviewedAt            DateTime?
+  reviewedBy            String?
+  publishedAt           DateTime?
+  retiredAt             DateTime?
+  createdAt             DateTime               @default(now())
+  content               LibraryContent         @relation(fields: [contentId], references: [id], onDelete: Restrict)
+  sourceManifest        LibrarySourceManifest? @relation(fields: [sourceManifestId], references: [id], onDelete: SetNull)
+  previousVersion       LibraryContentVersion? @relation("LibraryVersionLineage", fields: [previousVersionId], references: [id], onDelete: SetNull)
+  nextVersions          LibraryContentVersion[] @relation("LibraryVersionLineage")
+  storageReferences     LibraryStorageReference[]
+  mediaMetadata         LibraryMediaMetadata?
+  transcriptMetadata    LibraryTranscriptMetadata?
+
+  @@unique([contentId, versionNumber])
+  @@unique([contentId, sourceChecksum, sourceVersion])
+  @@index([reviewStatus, publicationState, rightsStatus, rightsExpiresAt])
+  @@index([contentId, publicationState, versionNumber])
+}
+
+model LibrarySourceManifest {
+  id              String                 @id
+  provider        String
+  sourceFileId    String
+  sourceChecksum  String
+  sourceVersion   String
+  privateSourceRef String
+  parentPathHints String[]
+  manifestJson    Json
+  inventoriedAt   DateTime
+  createdAt       DateTime               @default(now())
+  contentId       String?
+  content         LibraryContent?        @relation(fields: [contentId], references: [id], onDelete: SetNull)
+  versions        LibraryContentVersion[]
+
+  @@unique([provider, sourceFileId])
+  @@unique([provider, sourceFileId, sourceChecksum, sourceVersion])
+  @@index([contentId, inventoriedAt])
+  @@index([sourceChecksum, sourceVersion])
+}
+
+model LibraryStorageReference {
+  id             String                @id
+  contentVersionId String
+  provider       String
+  objectKey      String
+  state          LibraryStorageState   @default(PENDING)
+  metadataJson   Json?
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+  contentVersion LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+
+  @@unique([provider, objectKey])
+  @@index([contentVersionId, state])
+}
+
+model LibraryMediaMetadata {
+  contentVersionId String                @id
+  durationSeconds  Int?
+  mimeType         String
+  byteLength       Int?
+  codec            String?
+  language         String?
+  contentVersion   LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+}
+
+model LibraryTranscriptMetadata {
+  contentVersionId String                @id
+  format           String
+  language         String
+  segmentCount     Int?
+  contentVersion   LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+}
+
 model LearnerOnboarding {
   userId         String           @id
   primaryGoal    LearningGoal
@@ -696,4 +795,52 @@ enum RoadmapItemStatus {
 enum PracticeStatus {
   ACTIVE
   SUBMITTED
+}
+
+enum LibraryContentType {
+  LESSON
+  AUDIO
+  VIDEO
+  TRANSCRIPT
+  DOCUMENT
+}
+
+enum LibraryStorageState {
+  PENDING
+  AVAILABLE
+  QUARANTINED
+  RETIRED
+}
+
+enum LibraryReviewStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  REJECTED
+}
+
+enum LibraryPublicationState {
+  UNPUBLISHED
+  PUBLISHED
+  RETIRED
+}
+
+enum LibraryRightsStatus {
+  PENDING
+  APPROVED
+  EXPIRED
+  REJECTED
+}
+
+enum LibraryAccessTier {
+  FREE
+  PREMIUM
+  INTERNAL
+}
+
+enum LibraryUsageScope {
+  PRACTICE
+  COURSE
+  REVIEW
+  INTERNAL
 }
