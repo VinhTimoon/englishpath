@@ -1,7 +1,7 @@
 ---
 id: EP3-ST002
 title: Drive Inventory Scan, Metadata, Checksum, and Change Detection
-status: review
+status: done
 type: integration
 priority: critical
 phase: phase-3-licensed-content-library-and-listening
@@ -79,8 +79,8 @@ deployment is owner-controlled and must not be fabricated or enabled locally.
 - `pnpm test`
 - `pnpm build`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/in-progress/EP3-ST002-drive-inventory-scan-checksum-and-change-detection.md`
-- `pnpm story:verify stories/in-progress/EP3-ST002-drive-inventory-scan-checksum-and-change-detection.md`
+- `node scripts/story-doctor.mjs stories/review/EP3-ST002-drive-inventory-scan-checksum-and-change-detection.md`
+- `pnpm story:verify stories/review/EP3-ST002-drive-inventory-scan-checksum-and-change-detection.md`
 
 ## Risk and Review
 
