@@ -1,7 +1,7 @@
 ---
 id: EP3-ST009
 title: Shadowing Workflow and Progress
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -97,8 +97,8 @@ external storage, provider credentials, or Phase 4 speaking features.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/review/EP3-ST009-shadowing-workflow-and-progress.md`
-- `pnpm story:verify stories/review/EP3-ST009-shadowing-workflow-and-progress.md`
+- `node scripts/story-doctor.mjs stories/done/EP3-ST009-shadowing-workflow-and-progress.md`
+- `pnpm story:verify stories/done/EP3-ST009-shadowing-workflow-and-progress.md`
 - `pnpm --filter api exec prisma validate`
 - `pnpm --filter api exec node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand src/modules/library/**/*.spec.ts src/modules/access/**/*.spec.ts`
 - `pnpm --filter api test:e2e -- library-shadowing.e2e-spec.ts`
