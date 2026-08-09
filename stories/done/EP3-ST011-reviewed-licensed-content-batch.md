@@ -1,7 +1,7 @@
 ---
 id: EP3-ST011
 title: Reviewed Licensed Content Batch and Import Validation
-status: review
+status: done
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
