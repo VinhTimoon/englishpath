@@ -12,11 +12,15 @@ import {
   type HumanAuthorizationDecision,
   type HumanAuthorizationPort,
   type ReviewEvidence,
+  type CreateContentVersionInput,
+  type OperatorContentProjection,
+  type ValidatedSourceManifest,
 } from './content-governance.models';
 
 const issuedHumanDecisions = new WeakSet<object>();
 const issuedLifecycleVersions = new WeakSet<object>();
 const issuedReviewedVersions = new WeakSet<object>();
+const importReplay = new Map<string, GovernedContentVersion>();
 
 const permissionFor = {
   review: 'content:review',
@@ -86,6 +90,84 @@ export function authorizeHumanContentAction(
     });
     issuedHumanDecisions.add(decision);
     return decision;
+  });
+}
+
+function manifestKey(manifest: ValidatedSourceManifest) {
+  return `${manifest.contentId}\u0000${manifest.versionId}`;
+}
+
+/** Imports metadata only; it never grants rights, delivery, review, or publication. */
+export function importValidatedSourceManifest(
+  manifest: ValidatedSourceManifest,
+  input: Omit<CreateContentVersionInput, 'contentId' | 'versionId' | 'source'>,
+): GovernedContentVersion {
+  return runPolicy(() => {
+    if (
+      !manifest ||
+      manifest.validated !== true ||
+      typeof manifest !== 'object'
+    ) {
+      throw new ContentGovernanceError(
+        CONTENT_GOVERNANCE_ERROR_CODES.SOURCE_MANIFEST_INVALID,
+      );
+    }
+    const values = [
+      manifest.contentId,
+      manifest.versionId,
+      manifest.sourceId,
+      manifest.checksum,
+      manifest.sourceVersion,
+    ];
+    if (values.some((value) => typeof value !== 'string' || !value.trim())) {
+      throw new ContentGovernanceError(
+        CONTENT_GOVERNANCE_ERROR_CODES.SOURCE_MANIFEST_INVALID,
+      );
+    }
+    const key = manifestKey(manifest);
+    const existing = importReplay.get(key);
+    if (existing) {
+      if (
+        existing.source.checksum !== manifest.checksum ||
+        existing.source.sourceVersion !== manifest.sourceVersion
+      ) {
+        throw new ContentGovernanceError(
+          CONTENT_GOVERNANCE_ERROR_CODES.IMPORT_CONFLICT,
+        );
+      }
+      return existing;
+    }
+    const draft = createGovernedContentVersion({
+      ...input,
+      contentId: manifest.contentId,
+      versionId: manifest.versionId,
+      source: {
+        sourceId: manifest.sourceId,
+        checksum: manifest.checksum,
+        sourceVersion: manifest.sourceVersion,
+      },
+    });
+    importReplay.set(key, draft);
+    return draft;
+  });
+}
+
+export function toOperatorContentProjection(
+  version: GovernedContentVersion,
+): OperatorContentProjection {
+  const issued = requireIssuedVersion(version);
+  return Object.freeze({
+    contentId: issued.contentId,
+    versionId: issued.versionId,
+    reviewStatus: issued.reviewStatus,
+    publishStatus: issued.publishStatus,
+    usageScope: issued.usageScope,
+    accessTier: issued.accessTier,
+    licenseStatus: issued.rights.licenseStatus,
+    sourceEvidence: Object.freeze({
+      checksum: issued.source.checksum,
+      sourceVersion: issued.source.sourceVersion,
+    }),
   });
 }
 

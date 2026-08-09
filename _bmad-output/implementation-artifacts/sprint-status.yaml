@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-09T16:13:52.559Z
+# last_updated: 2026-08-09T16:28:34.232Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-09T16:13:52.559Z
+last_updated: 2026-08-09T16:28:34.232Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -141,7 +141,7 @@ development_status:
   epic-3: in-progress
   3-1-library-storage-content-version-and-drive-manifest: done
   3-2-drive-inventory-checksum-and-change-detection: done
-  3-3-license-review-import-and-publish-workflow: ready-for-dev
+  3-3-license-review-import-and-publish-workflow: blocked
   3-4-admin-library-inventory-and-review-ui: backlog
   3-5-learner-catalog-search-filters-and-access: backlog
   3-6-controlled-media-and-transcript-api: backlog

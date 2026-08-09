@@ -61,6 +61,27 @@ export type ContentSource = Readonly<{
   sourceVersion: string;
 }>;
 
+/** Provider-neutral, already validated inventory evidence. It contains metadata only. */
+export type ValidatedSourceManifest = Readonly<{
+  contentId: string;
+  versionId: string;
+  sourceId: string;
+  checksum: string;
+  sourceVersion: string;
+  validated: true;
+}>;
+
+export type OperatorContentProjection = Readonly<{
+  contentId: string;
+  versionId: string;
+  reviewStatus: ReviewStatus;
+  publishStatus: PublishStatus;
+  usageScope: ContentUsageScope;
+  accessTier: ContentAccessTier;
+  licenseStatus: LicenseStatus;
+  sourceEvidence: Readonly<{ checksum: string; sourceVersion: string }>;
+}>;
+
 export type ContentRights = Readonly<{
   owner: string;
   licenseStatus: LicenseStatus;

@@ -1,7 +1,7 @@
 ---
 id: EP3-ST003
 title: Licensed Content Review, Import, and Publish Workflow
-status: ready
+status: blocked
 type: backend
 priority: critical
 phase: phase-3-licensed-content-library-and-listening
@@ -91,3 +91,19 @@ mandatory. This story must remain credential-free and route-free.
 The local governance policy and tests pass with no known P0/P1 rights, ownership,
 or disclosure issue. Production asset import and provider activation remain outside
 the artifact and are not claimed as deployed.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```

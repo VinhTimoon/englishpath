@@ -186,20 +186,20 @@ Execution queue: `EP3-ST001` is complete and merged to `dev`; `EP3-ST002` is now
 dependency-ready story in `stories/ready`. Later Phase 3–5 stories remain backlog
 until their declared dependencies pass.
 
-| Story       | Increment                                                              | Depends on                 |
-| ----------- | ---------------------------------------------------------------------- | -------------------------- |
-| `EP3-ST001` | Library/storage/content version model and Drive manifest adapter       | `EP2-ST012`                |
-| `EP3-ST002` | Drive inventory scan, metadata, checksum, and change detection         | `EP3-ST001` (ready)        |
+| Story       | Increment                                                              | Depends on                       |
+| ----------- | ---------------------------------------------------------------------- | -------------------------------- |
+| `EP3-ST001` | Library/storage/content version model and Drive manifest adapter       | `EP2-ST012`                      |
+| `EP3-ST002` | Drive inventory scan, metadata, checksum, and change detection         | `EP3-ST001` (ready)              |
 | `EP3-ST003` | License/review/import/publish workflow                                 | `EP3-ST002`, `EP1-ST028` (ready) |
-| `EP3-ST004` | Admin library inventory/review UI                                      | `EP3-ST003`                |
-| `EP3-ST005` | Learner catalog, search, filters, and access policy                    | `EP3-ST003`                |
-| `EP3-ST006` | Controlled media/transcript API                                        | `EP3-ST005`                |
-| `EP3-ST007` | Player, resume, bookmark, and personal note UI                         | `EP3-ST006`                |
-| `EP3-ST008` | Listening drills and persisted outcomes                                | `EP3-ST006`                |
-| `EP3-ST009` | Shadowing workflow and progress                                        | `EP3-ST008`                |
-| `EP3-ST010` | Roadmap/vocabulary/quiz/content linking                                | `EP3-ST007`, `EP3-ST008`   |
-| `EP3-ST011` | Reviewed licensed content batch and import validation                  | `EP3-ST004`                |
-| `EP3-ST012` | Storage security, license, browser, performance, and phase exit review | `EP3-ST005` to `EP3-ST011` |
+| `EP3-ST004` | Admin library inventory/review UI                                      | `EP3-ST003`                      |
+| `EP3-ST005` | Learner catalog, search, filters, and access policy                    | `EP3-ST003`                      |
+| `EP3-ST006` | Controlled media/transcript API                                        | `EP3-ST005`                      |
+| `EP3-ST007` | Player, resume, bookmark, and personal note UI                         | `EP3-ST006`                      |
+| `EP3-ST008` | Listening drills and persisted outcomes                                | `EP3-ST006`                      |
+| `EP3-ST009` | Shadowing workflow and progress                                        | `EP3-ST008`                      |
+| `EP3-ST010` | Roadmap/vocabulary/quiz/content linking                                | `EP3-ST007`, `EP3-ST008`         |
+| `EP3-ST011` | Reviewed licensed content batch and import validation                  | `EP3-ST004`                      |
+| `EP3-ST012` | Storage security, license, browser, performance, and phase exit review | `EP3-ST005` to `EP3-ST011`       |
 
 Exit: Drive is only a governed source; reviewed assets are safely imported, searched,
 resumed, practiced, linked, and audited through application data/storage.

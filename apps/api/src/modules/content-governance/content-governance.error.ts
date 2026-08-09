@@ -9,6 +9,8 @@ export const CONTENT_GOVERNANCE_ERROR_CODES = {
   LICENSE_NOT_PUBLISHABLE: 'LICENSE_NOT_PUBLISHABLE',
   APPROVED_REVIEW_REQUIRED: 'APPROVED_REVIEW_REQUIRED',
   REVISION_EVIDENCE_UNCHANGED: 'REVISION_EVIDENCE_UNCHANGED',
+  SOURCE_MANIFEST_INVALID: 'SOURCE_MANIFEST_INVALID',
+  IMPORT_CONFLICT: 'IMPORT_CONFLICT',
 } as const;
 
 export type ContentGovernanceErrorCode =
@@ -26,6 +28,9 @@ const ERROR_MESSAGES: Record<ContentGovernanceErrorCode, string> = {
   LICENSE_NOT_PUBLISHABLE: 'Content rights do not permit publication.',
   APPROVED_REVIEW_REQUIRED: 'Approved review evidence is required.',
   REVISION_EVIDENCE_UNCHANGED: 'A revision requires changed source evidence.',
+  SOURCE_MANIFEST_INVALID: 'The source manifest is invalid or unvalidated.',
+  IMPORT_CONFLICT:
+    'The import identity conflicts with existing source evidence.',
 };
 
 export class ContentGovernanceError extends Error {
