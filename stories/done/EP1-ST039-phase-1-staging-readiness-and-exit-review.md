@@ -11,7 +11,7 @@ depends_on:
   - EP1-ST030
   - EP1-ST038
 blocked_by:
-  - notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md
+  - notes/ai-req/**
 allowed_paths:
   - docs/11_SECURITY_PLAN.md
   - docs/12_DEPLOYMENT_PLAN.md
@@ -23,7 +23,7 @@ allowed_paths:
   - stories/done/EP1-ST039-phase-1-staging-readiness-and-exit-review.md
   - stories/blocked/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
   - stories/done/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
-  - notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md
+  - notes/ai-req/**
   - _bmad-output/planning-artifacts/story-map.md
   - _bmad-output/planning-artifacts/epic-map.md
   - _bmad-output/implementation-artifacts/sprint-status.yaml
@@ -55,8 +55,7 @@ then record the owner-controlled release decision.
 
 ## Historical Blocked Report
 
-This exit story depended on the real observability launch decision in
-`notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md`. The owner has
+This exit story depended on the real observability launch decision. The owner has
 resolved that decision by selecting Option 3: the Phase 1 beta remains on local/no-op
 observability and real provider activation is deferred.
 

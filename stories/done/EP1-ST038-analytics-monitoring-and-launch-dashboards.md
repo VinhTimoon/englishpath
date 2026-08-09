@@ -11,7 +11,7 @@ depends_on:
   - EP0-ST022
   - EP1-ST027
 blocked_by:
-  - notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md
+  - notes/ai-req/**
 allowed_paths:
   - apps/api/src/modules/observability/**
   - apps/api/src/modules/admin/**
@@ -27,7 +27,7 @@ allowed_paths:
   - stories/done/EP1-ST038-analytics-monitoring-and-launch-dashboards.md
   - stories/blocked/EP1-ST039-phase-1-staging-readiness-and-exit-review.md
   - stories/done/EP1-ST039-phase-1-staging-readiness-and-exit-review.md
-  - notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md
+  - notes/ai-req/**
   - _bmad-output/planning-artifacts/story-map.md
   - _bmad-output/planning-artifacts/epic-map.md
   - _bmad-output/implementation-artifacts/sprint-status.yaml
@@ -64,9 +64,8 @@ for Phase 1 launch without activating an external provider without owner authori
 ## Historical Blocked Report
 
 Implementation was paused because real provider accounts/configuration and production
-credentials required owner approval. The owner selected Option 3 in:
-
-`notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md`
+credentials required owner approval. The owner selected Option 3; the owner-approved
+decision is recorded in this story and the decision log.
 
 The real PostHog/Sentry activation remains explicitly deferred. The existing
 local/no-op adapters are the approved Phase 1 beta path.

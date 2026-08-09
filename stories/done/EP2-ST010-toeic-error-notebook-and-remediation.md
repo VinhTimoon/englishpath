@@ -32,7 +32,7 @@ allowed_paths:
   - docs/10_TEST_STRATEGY.md
   - docs/11_SECURITY_PLAN.md
   - docs/13_DECISION_LOG.md
-  - notes/ai-req/2026-08-06-ep2-st010-error-notebook-schema-ownership.md
+  - notes/ai-req/**
   - stories/**
   - _bmad-output/implementation-artifacts/sprint-status.yaml
   - _bmad-output/planning-artifacts/story-map.md
@@ -84,8 +84,8 @@ capture behavior, owner isolation, and answer-key secrecy.
 
 ## Approval evidence
 
-The owner approved Option 1 on 2026-08-07 in the linked
-[AI request](../../notes/ai-req/2026-08-06-ep2-st010-error-notebook-schema-ownership.md).
+The owner approved Option 1 on 2026-08-07; the decision is preserved in this story,
+`docs/07_DATABASE_DESIGN.md`, and `docs/13_DECISION_LOG.md`.
 The story may resume from `ready` using an additive local migration only; no
 remote/shared database migration or production promotion is authorized.
 
@@ -113,5 +113,3 @@ still forbidden.
 - `pnpm story:verify stories/in-progress/EP2-ST010-toeic-error-notebook-and-remediation.md`
 - `pnpm e2e`
 - `git diff --check`
-
-

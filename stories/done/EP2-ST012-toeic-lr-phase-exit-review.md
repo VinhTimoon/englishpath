@@ -249,7 +249,8 @@ are silently omitted from this exit checklist.
 - `pnpm prisma:validate`/Prisma validation is validate-only. No schema,
   migration, credentials, external provider, deployment, or `main` change was
   made. PostHog/Sentry activation remains owner-deferred under
-  `notes/ai-req/2026-08-06-ep1-st038-observability-provider-launch.md` (Option 3).
+  the owner-approved Option 3 decision recorded in the Phase 1 observability stories
+  and `docs/13_DECISION_LOG.md`.
 
 ### Executed gates
 

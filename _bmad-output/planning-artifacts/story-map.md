@@ -125,9 +125,9 @@ The vocabulary route is now `EP1-ST050` -> completed `EP1-ST018` -> completed
 history only and were closed through the verified successor without resuming WIP.
 
 `EP1-ST060` reached the final browser gate, but the gate was blocked because external
-process PID `8364` served Anh Decor on port `5173`; see
-`notes/ai-req/2026-08-04-EP1-ST060-e2e-port-conflict.md`. That request is now resolved
-in the repository harness. `EP1-ST061` applied the isolated-port configuration and
+process PID `8364` served Anh Decor on port `5173`; the historical external
+port-conflict request is now resolved in the repository harness. `EP1-ST061` applied
+the isolated-port configuration and
 has since passed the full public-blog browser evidence, including the keyboard and
 not-found journeys. It is now completed after owner approval.
 

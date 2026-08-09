@@ -88,6 +88,6 @@ and a basic placement result, replacing the former micro-story sequence `EP1-ST0
 
 ## Remaining Decision
 
-Production Supabase browser auth remains behind the approved dependency request in
-`notes/ai-req/2026-07-17-ep1-st042-supabase-js.md`; local auth is hard-disabled when
+Production Supabase browser auth remains behind the owner-approved exact dependency
+decision recorded in this story; local auth is hard-disabled when
 `NODE_ENV=production`.

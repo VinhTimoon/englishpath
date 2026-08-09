@@ -177,7 +177,8 @@ decision is backend-owned, auditable, and safe to extend with the CMS story.
 - Root cause: local `dev` was clean but ahead of `origin/dev` by commits `f4678c3` and
   `9d9d22`; the harness required exact upstream synchronization.
 - No feature implementation was started for this story.
-- AI request: `notes/ai-req/2026-08-04-EP1-ST028-dev-upstream-sync.md`.
+- The upstream synchronization request was resolved by the authorized normal push
+  recorded below.
 
 ## Recovery Evidence
 

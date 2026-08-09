@@ -100,7 +100,7 @@ historical evidence and must not be resumed or merged.
   the gate targeted the wrong application.
 - Codex review classified the blocker as external environment/port conflict.
 - WIP commit `99d024e` remains only on `story/ep1-st060` and is not merged.
-- AI request: `notes/ai-req/2026-08-04-EP1-ST060-e2e-port-conflict.md`.
+- The external port-conflict request was resolved by the isolated-port recovery
+  recorded in `EP1-ST061`.
 
 No external process was stopped or modified.
-
