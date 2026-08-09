@@ -1,7 +1,7 @@
 ---
 id: EP3-ST001
 title: Library Storage, Content Version, and Drive Manifest Foundation
-status: review
+status: done
 type: database
 priority: critical
 phase: phase-3-licensed-content-library-and-listening
@@ -113,8 +113,8 @@ stories and owner-controlled operations.
 - `pnpm test`
 - `pnpm build`
 - `git diff --check`
-- `node scripts/story-doctor.mjs stories/in-progress/EP3-ST001-library-storage-content-version-and-drive-manifest.md`
-- `pnpm story:verify stories/in-progress/EP3-ST001-library-storage-content-version-and-drive-manifest.md`
+- `node scripts/story-doctor.mjs stories/done/EP3-ST001-library-storage-content-version-and-drive-manifest.md`
+- `pnpm story:verify stories/done/EP3-ST001-library-storage-content-version-and-drive-manifest.md`
 
 ## Risk and Review
 
@@ -211,5 +211,5 @@ The implementation was rechecked in the current worktree: the additive migration
 library adapter, schema tests, and documentation are present; generated Prisma
 output was regenerated and Prettier-normalized so existing models are not rewritten
 by lint; and the storage adapter lint issue was corrected by the build debug phase.
-The remaining gates and an independent read-only review must pass before this story
-can move to `review`.
+The remaining gates and supervised read-only review passed; no owner approval is
+required for this local-only foundation story, so it is closed as `done`.
