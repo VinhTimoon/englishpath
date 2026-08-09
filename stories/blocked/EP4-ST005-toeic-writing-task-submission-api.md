@@ -1,7 +1,7 @@
 ---
 id: EP4-ST005
 title: TOEIC Writing Task and Submission API
-status: ready
+status: blocked
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -116,3 +116,33 @@ documented, and ready for later Writing UI/feedback stories.
 - EP4-ST001 is done and provides the task/rubric model contract.
 - EP4-ST002 remains blocked by its separate Speaking persistence/source AI
   request; this story is independent and does not resume or replace it.
+
+## Blocked Report
+
+EP4-ST001 provides Writing task versions only as immutable in-memory contracts.
+There is no approved published Writing catalogue/source or durable persistence
+boundary for learner-owned attempts, submissions, and idempotency. Implementing
+this story would require inventing content, bypassing publication governance, or
+creating an unapproved persistence boundary, violating this story's guardrails.
+
+## AI Request
+
+Confirm the approved Writing task catalogue/source and durable persistence
+boundary, including the publication predicate, deterministic word-count rule,
+owner/idempotency uniqueness constraints, and allowed Prisma repository/generated
+client boundary. EP4-ST005 remains blocked until that decision is recorded.
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```
