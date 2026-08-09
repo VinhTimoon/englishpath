@@ -66,15 +66,52 @@ export class LibraryCatalogueController {
   ) {}
 
   @Get('items/:versionId/shadowing')
-  async getShadowing(@Param() params: LibraryItemParamsDto, @Req() req: AuthenticatedRequest) { return { data: await this.learning.shadowing(req.principal!.applicationUserId, params.versionId), meta: { idempotencyStatus: 'not_applicable' } }; }
+  async getShadowing(
+    @Param() params: LibraryItemParamsDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return {
+      data: await this.learning.shadowing(
+        req.principal!.applicationUserId,
+        params.versionId,
+      ),
+      meta: { idempotencyStatus: 'not_applicable' },
+    };
+  }
 
   @Put('items/:versionId/shadowing')
   @UsePipes(strictValidation)
-  async saveShadowing(@Param() params: LibraryItemParamsDto, @Body() body: ShadowingProgressDto, @Req() req: AuthenticatedRequest) { return { data: await this.learning.saveShadowing(req.principal!.applicationUserId, params.versionId, body), meta: { idempotencyStatus: 'idempotent_upsert' } }; }
+  async saveShadowing(
+    @Param() params: LibraryItemParamsDto,
+    @Body() body: ShadowingProgressDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return {
+      data: await this.learning.saveShadowing(
+        req.principal!.applicationUserId,
+        params.versionId,
+        body,
+      ),
+      meta: { idempotencyStatus: 'idempotent_upsert' },
+    };
+  }
 
   @Post('items/:versionId/shadowing/finalize')
   @UsePipes(strictValidation)
-  async finalizeShadowing(@Param() params: LibraryItemParamsDto, @Body() body: ShadowingFinalizeDto, @Req() req: AuthenticatedRequest) { return { data: await this.learning.finalizeShadowing(req.principal!.applicationUserId, params.versionId, body), meta: { idempotencyStatus: 'idempotent_replay' } }; }
+  async finalizeShadowing(
+    @Param() params: LibraryItemParamsDto,
+    @Body() body: ShadowingFinalizeDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return {
+      data: await this.learning.finalizeShadowing(
+        req.principal!.applicationUserId,
+        params.versionId,
+        body,
+      ),
+      meta: { idempotencyStatus: 'idempotent_replay' },
+    };
+  }
 
   @Get('items/:versionId/state')
   @UsePipes(strictValidation)

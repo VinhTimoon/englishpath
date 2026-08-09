@@ -251,27 +251,81 @@ export class LibraryLearningService {
 
   async shadowing(userId: string, versionId: string) {
     const item = await this.catalogue.getItem(versionId);
-    const [attempt, history] = await Promise.all([this.repository.findShadowingAttempt?.(userId, versionId), this.repository.listShadowingAttempts?.(userId, versionId)]);
-    return { item, attempt: attempt ? this.shadowingProjection(attempt) : null, history: (history ?? []).map((entry) => this.shadowingProjection(entry)) };
+    const [attempt, history] = await Promise.all([
+      this.repository.findShadowingAttempt?.(userId, versionId),
+      this.repository.listShadowingAttempts?.(userId, versionId),
+    ]);
+    return {
+      item,
+      attempt: attempt ? this.shadowingProjection(attempt) : null,
+      history: (history ?? []).map((entry) => this.shadowingProjection(entry)),
+    };
   }
 
-  async saveShadowing(userId: string, versionId: string, dto: ShadowingProgressDto) {
+  async saveShadowing(
+    userId: string,
+    versionId: string,
+    dto: ShadowingProgressDto,
+  ) {
     const item = await this.catalogue.getItem(versionId);
-    if (dto.segmentIndex >= item.transcript.length) throw new BadRequestException('Invalid shadowing segment');
-    if (item.durationSeconds !== undefined && dto.positionSeconds > item.durationSeconds) throw new BadRequestException('Invalid shadowing position');
-    if (!this.repository.upsertShadowingAttempt) throw new BadRequestException('Shadowing unavailable');
-    return this.shadowingProjection(await this.repository.upsertShadowingAttempt(userId, versionId, { segmentIndex: dto.segmentIndex, positionSeconds: dto.positionSeconds, status: dto.status.toUpperCase() as 'ACTIVE' | 'PAUSED', ...(dto.selfRating === undefined ? {} : { selfRating: dto.selfRating }) }));
+    if (dto.segmentIndex >= item.transcript.length)
+      throw new BadRequestException('Invalid shadowing segment');
+    if (
+      item.durationSeconds !== undefined &&
+      dto.positionSeconds > item.durationSeconds
+    )
+      throw new BadRequestException('Invalid shadowing position');
+    if (!this.repository.upsertShadowingAttempt)
+      throw new BadRequestException('Shadowing unavailable');
+    return this.shadowingProjection(
+      await this.repository.upsertShadowingAttempt(userId, versionId, {
+        segmentIndex: dto.segmentIndex,
+        positionSeconds: dto.positionSeconds,
+        status: dto.status.toUpperCase() as 'ACTIVE' | 'PAUSED',
+        ...(dto.selfRating === undefined ? {} : { selfRating: dto.selfRating }),
+      }),
+    );
   }
 
-  async finalizeShadowing(userId: string, versionId: string, dto: ShadowingFinalizeDto) {
+  async finalizeShadowing(
+    userId: string,
+    versionId: string,
+    dto: ShadowingFinalizeDto,
+  ) {
     const item = await this.catalogue.getItem(versionId);
-    if (dto.segmentIndex >= item.transcript.length) throw new BadRequestException('Invalid shadowing segment');
-    if (item.durationSeconds !== undefined && dto.positionSeconds > item.durationSeconds) throw new BadRequestException('Invalid shadowing position');
-    if (!this.repository.finalizeShadowingAttempt) throw new BadRequestException('Shadowing unavailable');
-    return this.shadowingProjection(await this.repository.finalizeShadowingAttempt(userId, versionId, dto));
+    if (dto.segmentIndex >= item.transcript.length)
+      throw new BadRequestException('Invalid shadowing segment');
+    if (
+      item.durationSeconds !== undefined &&
+      dto.positionSeconds > item.durationSeconds
+    )
+      throw new BadRequestException('Invalid shadowing position');
+    if (!this.repository.finalizeShadowingAttempt)
+      throw new BadRequestException('Shadowing unavailable');
+    return this.shadowingProjection(
+      await this.repository.finalizeShadowingAttempt(userId, versionId, dto),
+    );
   }
 
-  private shadowingProjection(entry: { attemptKey: string; segmentIndex: number; positionSeconds: number; status: string; selfRating: number | null; createdAt: Date; updatedAt: Date; finalizedAt: Date | null }) {
-    return { attemptKey: entry.attemptKey, segmentIndex: entry.segmentIndex, positionSeconds: entry.positionSeconds, status: entry.status.toLowerCase(), selfRating: entry.selfRating, createdAt: entry.createdAt, updatedAt: entry.updatedAt, finalizedAt: entry.finalizedAt };
+  private shadowingProjection(entry: {
+    attemptKey: string;
+    segmentIndex: number;
+    positionSeconds: number;
+    status: string;
+    selfRating: number | null;
+    createdAt: Date;
+    updatedAt: Date;
+    finalizedAt: Date | null;
+  }) {
+    return {
+      attemptKey: entry.attemptKey,
+      segmentIndex: entry.segmentIndex,
+      positionSeconds: entry.positionSeconds,
+      status: entry.status.toLowerCase(),
+      selfRating: entry.selfRating,
+      createdAt: entry.createdAt,
+      updatedAt: entry.updatedAt,
+      finalizedAt: entry.finalizedAt,
+    };
   }
 }

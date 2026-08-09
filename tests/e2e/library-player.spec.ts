@@ -49,6 +49,14 @@ test.describe("learner library player", () => {
             contentType: "application/json",
             body: JSON.stringify({ data: null }),
           });
+        if (url.pathname.endsWith("/shadowing"))
+          return route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: JSON.stringify({
+              data: { item: state.item, attempt: null, history: [] },
+            }),
+          });
         writes.push(`${route.request().method()} ${url.pathname}`);
         return route.fulfill({
           status: 200,

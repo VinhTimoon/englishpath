@@ -1,7 +1,7 @@
 ---
 id: EP3-ST009
 title: Shadowing Workflow and Progress
-status: blocked
+status: review
 type: fullstack
 priority: high
 phase: phase-3-licensed-content-library-and-listening
@@ -18,6 +18,7 @@ allowed_paths:
   - apps/web/src/widgets/library/**
   - apps/web/src/shared/**
   - tests/e2e/library-shadowing.spec.ts
+  - tests/e2e/library-player.spec.ts
   - docs/07_DATABASE_DESIGN.md
   - docs/08_API_CONTRACT.md
   - docs/09_UI_DESIGN_SYSTEM.md
@@ -96,8 +97,8 @@ external storage, provider credentials, or Phase 4 speaking features.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/ready/EP3-ST009-shadowing-workflow-and-progress.md`
-- `pnpm story:verify stories/in-progress/EP3-ST009-shadowing-workflow-and-progress.md`
+- `node scripts/story-doctor.mjs stories/review/EP3-ST009-shadowing-workflow-and-progress.md`
+- `pnpm story:verify stories/review/EP3-ST009-shadowing-workflow-and-progress.md`
 - `pnpm --filter api exec prisma validate`
 - `pnpm --filter api exec node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand src/modules/library/**/*.spec.ts src/modules/access/**/*.spec.ts`
 - `pnpm --filter api test:e2e -- library-shadowing.e2e-spec.ts`
@@ -130,6 +131,30 @@ local/staging harness, progress ownership and finalized state are enforced by
 the API, no recording bytes or answer/provider secrets leave the browser, all
 quality gates pass, and no known P0/P1 security or data-integrity finding
 remains.
+
+## Recovery Record
+
+- The initial blocked lifecycle and commit `5fda5dc` are preserved as history.
+- EP3-ST009 is resumed in place on `story/ep3-st009`; no recovery story or
+  history rewrite is used.
+
+## Recovery Verification and Manual Review
+
+- `pnpm story:checks` passed: format, planning traceability, tooling `59/59`,
+  Prisma validation, lint, typecheck, unit `62 suites / 451 tests`, API E2E
+  `17 suites / 105 tests`, production build, and browser E2E `85/85`.
+- Focused API shadowing E2E passed `3/3`; focused library unit coverage passed
+  `8/8`; focused browser shadowing coverage passed `2/2`; `git diff --check`,
+  story doctor, and story verification passed.
+- Manual high-risk review found no P0/P1 findings: every read/write rechecks
+  library eligibility, persistence is owner-scoped, input is strict and
+  bounded, finalized attempts replay immutably, recording blobs remain local,
+  safe projections exclude provider/source data, and UI states cover loading,
+  unavailable, retry, empty, permission-denied, resumable, submitted,
+  keyboard, mobile, and accessibility behavior.
+- Automated review was unavailable before repository inspection because the
+  Windows subagent runner returned `CreateProcessWithLogonW failed: 2`; this is
+  recorded as an environment limitation, not as a passed automated review.
 
 
 

@@ -26,6 +26,10 @@ describe('LibraryLearningService', () => {
     findDrillOutcome: jest.fn(),
     createDrillOutcome: jest.fn(),
     listDrillOutcomes: jest.fn(),
+    findShadowingAttempt: jest.fn(),
+    listShadowingAttempts: jest.fn(),
+    upsertShadowingAttempt: jest.fn(),
+    finalizeShadowingAttempt: jest.fn(),
   };
   let service: LibraryLearningService;
 
@@ -39,6 +43,8 @@ describe('LibraryLearningService', () => {
     repository.deleteNote.mockResolvedValue({ count: 1 });
     repository.findDrillOutcome.mockResolvedValue(null);
     repository.listDrillOutcomes.mockResolvedValue([]);
+    repository.findShadowingAttempt.mockResolvedValue(null);
+    repository.listShadowingAttempts.mockResolvedValue([]);
     service = new LibraryLearningService(repository, catalogue as never);
   });
 
@@ -196,5 +202,77 @@ describe('LibraryLearningService', () => {
       }),
     ).rejects.toBeInstanceOf(BadRequestException);
     expect(repository.createDrillOutcome).not.toHaveBeenCalled();
+  });
+
+  it('keeps shadowing progress owner-scoped, bounded, and redacted', async () => {
+    const attempt = {
+      attemptKey: 'attempt-1',
+      segmentIndex: 0,
+      positionSeconds: 4,
+      status: 'PAUSED',
+      selfRating: 4,
+      createdAt: new Date('2026-01-01'),
+      updatedAt: new Date('2026-01-01'),
+      finalizedAt: null,
+      userId: 'private-user',
+      contentVersionId: 'version-1',
+    };
+    catalogue.getItem.mockResolvedValue({
+      ...item,
+      transcript: [{ startSeconds: 0, endSeconds: 10, text: 'Repeat me' }],
+    });
+    repository.upsertShadowingAttempt.mockResolvedValue(attempt);
+    const result = await service.saveShadowing('learner-1', 'version-1', {
+      segmentIndex: 0,
+      positionSeconds: 4,
+      status: 'paused',
+      selfRating: 4,
+    });
+
+    expect(repository.upsertShadowingAttempt).toHaveBeenCalledWith(
+      'learner-1',
+      'version-1',
+      expect.objectContaining({ status: 'PAUSED', positionSeconds: 4 }),
+    );
+    expect(result).not.toHaveProperty('userId');
+    expect(result).not.toHaveProperty('contentVersionId');
+    await expect(
+      service.saveShadowing('learner-1', 'version-1', {
+        segmentIndex: 1,
+        positionSeconds: 4,
+        status: 'active',
+      }),
+    ).rejects.toBeInstanceOf(BadRequestException);
+  });
+
+  it('replays a finalized shadowing attempt without mutating it', async () => {
+    const finalized = {
+      attemptKey: 'attempt-1',
+      segmentIndex: 0,
+      positionSeconds: 10,
+      status: 'FINALIZED',
+      selfRating: 5,
+      createdAt: new Date('2026-01-01'),
+      updatedAt: new Date('2026-01-01'),
+      finalizedAt: new Date('2026-01-01T00:01:00Z'),
+    };
+    catalogue.getItem.mockResolvedValue({
+      ...item,
+      transcript: [{ startSeconds: 0, endSeconds: 10, text: 'Repeat me' }],
+    });
+    repository.finalizeShadowingAttempt.mockResolvedValue(finalized);
+    const result = await service.finalizeShadowing('learner-1', 'version-1', {
+      segmentIndex: 0,
+      positionSeconds: 10,
+      selfRating: 5,
+    });
+
+    expect(result).toMatchObject({ status: 'finalized', selfRating: 5 });
+    expect(result.finalizedAt).toEqual(finalized.finalizedAt);
+    expect(repository.finalizeShadowingAttempt).toHaveBeenCalledWith(
+      'learner-1',
+      'version-1',
+      expect.objectContaining({ selfRating: 5 }),
+    );
   });
 });

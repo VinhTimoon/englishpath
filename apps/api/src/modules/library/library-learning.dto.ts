@@ -1,5 +1,13 @@
 import { Type } from 'class-transformer';
-import { IsIn, IsInt, IsString, Max, MaxLength, Min } from 'class-validator';
+import {
+  IsIn,
+  IsInt,
+  IsOptional,
+  IsString,
+  Max,
+  MaxLength,
+  Min,
+} from 'class-validator';
 import { LibraryItemParamsDto } from './library-catalogue.dto';
 export class LibraryProgressDto {
   @IsIn(['not_started', 'in_progress', 'completed', 'abandoned'])
@@ -19,7 +27,7 @@ export class ShadowingProgressDto {
   @IsInt() @Min(0) @Max(500) segmentIndex!: number;
   @IsInt() @Min(0) @Max(86400) positionSeconds!: number;
   @IsIn(['active', 'paused']) status!: 'active' | 'paused';
-  @IsInt() @Min(1) @Max(5) selfRating?: number;
+  @IsOptional() @IsInt() @Min(1) @Max(5) selfRating?: number;
 }
 export class ShadowingFinalizeDto {
   @IsInt() @Min(0) @Max(500) segmentIndex!: number;
