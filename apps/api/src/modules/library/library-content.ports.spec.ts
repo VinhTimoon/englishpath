@@ -32,4 +32,15 @@ describe('library storage boundary', () => {
     expect(output).toEqual({ state: 'PENDING' });
     expect(Object.isFrozen(output)).toBe(true);
   });
+
+  it.each([
+    undefined,
+    { provider: 1, objectKey: 'object-1', state: 'PENDING' },
+    { provider: 'fixture', objectKey: '', state: 'PENDING' },
+    { provider: 'fixture', objectKey: 'object-1', state: 'UNKNOWN' },
+  ])('rejects malformed storage references: %p', async (reference) => {
+    await expect(
+      new DeterministicLocalStorageAdapter().attach(reference as never),
+    ).rejects.toThrow('INVALID_STORAGE_REFERENCE');
+  });
 });

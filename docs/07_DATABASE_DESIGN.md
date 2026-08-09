@@ -15,7 +15,8 @@ migration header.
 
 `LibraryContent` is the stable identity; `LibraryContentVersion` is immutable
 lineage keyed by content, version, checksum, and source version. `LibrarySourceManifest`
-is private Drive inventory evidence only. Storage references and media/transcript
+is private Drive inventory evidence only and retains distinct checksum/source-version
+snapshots for change detection. Storage references and media/transcript
 metadata belong to a governed version and use restrictive relations. New rows are
 draft, unpublished, and rights-pending. Migration
 `20260809160000_library_content_foundation` is additive and local-only; rollback is

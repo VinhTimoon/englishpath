@@ -185,6 +185,7 @@ published/catalogue predicates; grammar destinations are fixed reviewed
 internal paths. The frontend rejects external or malformed pack URLs and
 private recursive fields. Pack lookup failure returns an empty or unavailable
 pack state without changing the authoritative score or exposing answer data.
+
 # EP3-ST001 storage boundary
 
 Source references, Drive paths, rights evidence, review evidence, storage object

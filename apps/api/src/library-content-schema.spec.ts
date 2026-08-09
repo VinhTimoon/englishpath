@@ -27,11 +27,24 @@ describe('EP3-ST001 library schema foundation', () => {
     expect(schema).toContain(
       '@@unique([contentId, sourceChecksum, sourceVersion])',
     );
+    expect(schema).toContain(
+      '@@unique([provider, sourceFileId, sourceChecksum, sourceVersion])',
+    );
+    expect(schema).toContain(
+      '@@index([provider, sourceFileId, inventoriedAt])',
+    );
+    expect(schema).not.toContain('@@unique([provider, sourceFileId])');
     expect(schema).toContain('onDelete: Restrict');
   });
 
   it('contains additive migration SQL only', () => {
     expect(migration).not.toMatch(/^\s*(DROP|DELETE|TRUNCATE)\b/im);
     expect(migration).toContain('CREATE TABLE "LibraryContent"');
+    expect(migration).toContain(
+      'CREATE INDEX "LibrarySourceManifest_provider_sourceFileId_inventoriedAt"',
+    );
+    expect(migration).not.toContain(
+      'LibrarySourceManifest_provider_sourceFileId_key',
+    );
   });
 });

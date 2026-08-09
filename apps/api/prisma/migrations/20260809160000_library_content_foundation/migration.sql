@@ -19,12 +19,12 @@ CREATE TABLE "LibraryTranscriptMetadata" ("contentVersionId" TEXT NOT NULL, "for
 
 CREATE UNIQUE INDEX "LibraryContentVersion_contentId_versionNumber_key" ON "LibraryContentVersion"("contentId", "versionNumber");
 CREATE UNIQUE INDEX "LibraryContentVersion_contentId_sourceChecksum_sourceVersion_key" ON "LibraryContentVersion"("contentId", "sourceChecksum", "sourceVersion");
-CREATE UNIQUE INDEX "LibrarySourceManifest_provider_sourceFileId_key" ON "LibrarySourceManifest"("provider", "sourceFileId");
 CREATE UNIQUE INDEX "LibrarySourceManifest_provider_sourceFileId_sourceChecksum_sourceVersion_key" ON "LibrarySourceManifest"("provider", "sourceFileId", "sourceChecksum", "sourceVersion");
 CREATE UNIQUE INDEX "LibraryStorageReference_provider_objectKey_key" ON "LibraryStorageReference"("provider", "objectKey");
 CREATE INDEX "LibraryContentVersion_governed_lookup" ON "LibraryContentVersion"("reviewStatus", "publicationState", "rightsStatus", "rightsExpiresAt");
 CREATE INDEX "LibraryContentVersion_contentId_publicationState_versionNumber" ON "LibraryContentVersion"("contentId", "publicationState", "versionNumber");
 CREATE INDEX "LibrarySourceManifest_contentId_inventoriedAt" ON "LibrarySourceManifest"("contentId", "inventoriedAt");
+CREATE INDEX "LibrarySourceManifest_provider_sourceFileId_inventoriedAt" ON "LibrarySourceManifest"("provider", "sourceFileId", "inventoriedAt");
 CREATE INDEX "LibraryStorageReference_contentVersionId_state" ON "LibraryStorageReference"("contentVersionId", "state");
 
 ALTER TABLE "LibrarySourceManifest" ADD CONSTRAINT "LibrarySourceManifest_contentId_fkey" FOREIGN KEY ("contentId") REFERENCES "LibraryContent"("id") ON DELETE SET NULL ON UPDATE CASCADE;

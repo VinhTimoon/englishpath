@@ -98,8 +98,8 @@ model LibrarySourceManifest {
   content         LibraryContent?        @relation(fields: [contentId], references: [id], onDelete: SetNull)
   versions        LibraryContentVersion[]
 
-  @@unique([provider, sourceFileId])
   @@unique([provider, sourceFileId, sourceChecksum, sourceVersion])
+  @@index([provider, sourceFileId, inventoriedAt])
   @@index([contentId, inventoriedAt])
   @@index([sourceChecksum, sourceVersion])
 }
