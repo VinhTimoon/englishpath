@@ -362,3 +362,8 @@ Phase 3 closes without a Prisma schema or migration change. Storage provider
 locators, object keys, checksums, rights ownership, review evidence, and
 operator identity remain server-owned projections; learner state continues to
 reference only the governed version and authenticated owner.
+# EP4-ST001 additive boundary
+
+Speaking/Writing task versions and advisory rubrics are currently pure, immutable
+in-memory contracts. This story adds no Prisma models, migration, persistence,
+submission, recording, or official-score storage; those belong to later stories.

@@ -410,3 +410,11 @@ Credential-free targeted verification passed: 16 API unit suites/195 tests and
 unit suites/457 tests, build, 87 Chromium browser tests, and `git diff --check`.
 No Drive, Supabase Storage, CDN, third-party provider, credential, migration,
 or shared database was used.
+
+# EP4-ST001 coverage
+
+The additive model boundary has focused unit coverage for allowlists, bounds,
+lineage/publication behavior, deep immutability, rubric weights and duplicate
+identifiers, safe projections, and forbidden-field absence. Persistence,
+submission, recording, AI, and official-score behavior are intentionally not
+tested until their later stories.

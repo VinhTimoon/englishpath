@@ -251,3 +251,9 @@ The phase-exit review confirms fail-closed handling for `AVAILABLE`, `PENDING`,
 errors contain no provider locator, object key, checksum, private source URL,
 rights owner, review evidence, or operator identity. The local reviewed batch
 remains bounded, replay-safe, atomic, and provider-neutral.
+# EP4-ST001 security boundary
+
+Pre-submission projections are explicit allowlists. They exclude answer keys,
+private source locators, provider credentials, raw claims/tokens, reviewer
+evidence, hidden scoring formulas, AI output, and official scores. Media values
+are controlled asset identifiers only; provider activation remains later work.

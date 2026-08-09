@@ -579,3 +579,9 @@ full project gates. Catalogue, item, media, drill, shadowing, progress, and
 related-learning responses remain explicit safe allowlists. Unknown, expired,
 withdrawn, rejected, conflicted, wrong-tier, and non-`AVAILABLE` media states
 fail closed.
+# EP4-ST001 model boundary
+
+No endpoint is introduced. Later task APIs may use the server-owned task/version
+and learner-safe projection contracts. Rubrics are advisory only and are not an
+official TOEIC score or scoring formula. Submissions, recordings, AI feedback,
+and official scoring belong to later stories.
