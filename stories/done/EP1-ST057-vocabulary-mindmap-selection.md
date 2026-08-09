@@ -114,8 +114,8 @@ be resumed, cherry-picked, or merged.
 - Local build configuration: `1200000ms`; build reasoning mitigation: `low`.
 - The direct subprocess test independently survived `245006ms`.
 - WIP commit `5876f56` remains only on `story/ep1-st057`; it is not merged.
-- AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+- The historical runner-cap request was closed through the verified recovery chain
+  `EP1-ST055` -> `EP1-ST062`; the external cap itself was not claimed fixed.
 
-This story must not be resumed until the Codex execution cap is resolved or an owner
-approves a different execution path.
-
+This story must not be resumed. The cap-dependent work was closed by the verified
+recovery chain and its final learner evidence is recorded in `EP1-ST062`.

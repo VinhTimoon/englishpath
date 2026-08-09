@@ -200,7 +200,8 @@ decision is backend-owned, auditable, and safe to extend with the CMS story.
 - Full loop elapsed: `237.1s`.
 - Local build timeout remained `1200000ms`; build reasoning was `low`.
 - WIP commit `7a5c909` remains only on `story/ep1-st028` and is not merged.
-- New AI request: `notes/ai-req/2026-08-04-EP1-ST028-build-runner-timeout.md`.
+- The external build-cap request was closed by the owner-authorized supervised
+  execution documented below; the cap itself remains an external harness limitation.
 
 ## Supervised Execution
 

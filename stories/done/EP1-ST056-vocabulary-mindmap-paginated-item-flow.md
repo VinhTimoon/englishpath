@@ -125,10 +125,10 @@ must not be resumed, cherry-picked, or merged.
 - Build configuration was `1200000ms`; the Codex build process remained live beyond
   the generic shell 240-second test window before the loop failed.
 - Implementation WIP exists only on the blocked story branch and was not merged.
-- Existing AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+- The historical runner-cap request was closed through the verified recovery chain
+  `EP1-ST055` -> `EP1-ST062`; the external cap itself was not claimed fixed.
 
 ### Recovery Split
 
 `EP1-ST057` is the only ready successor and narrows the work to the initial mindmap
 selection slice. This blocked story must not be resumed.
-

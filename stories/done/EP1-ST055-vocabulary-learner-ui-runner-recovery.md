@@ -15,7 +15,7 @@ blocked_evidence:
   - blocked/ep1-st019-review-findings
   - EP1-ST052
   - EP1-ST054
-  - notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md
+  - EP1-ST054 runner-cap incident (closed through EP1-ST062)
 allowed_paths:
   - apps/web/src/app/vocabulary/**
   - apps/web/src/entities/vocabulary/**
@@ -145,11 +145,11 @@ the implementation attempt.
 - WIP implementation commit `9416553` remains only on `story/ep1-st055` and is not
   merged into `dev`.
 - Original WIP commit `8efb8c8` remains historical and is not merged.
-- Existing AI request: `notes/ai-req/2026-08-04-EP1-ST054-build-runner-timeout.md`.
+- The historical runner-cap request was closed through the verified recovery chain
+  `EP1-ST055` -> `EP1-ST062`; the external cap itself was not claimed fixed.
 
 ### Recovery Split
 
 `EP1-ST056` is the only ready successor and narrows the next implementation to the
 mindmap and paginated item flow so it can finish within the observed external model
 execution window. This blocked story must not be resumed.
-
