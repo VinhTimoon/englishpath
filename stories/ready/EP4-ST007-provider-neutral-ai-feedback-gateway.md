@@ -1,7 +1,7 @@
 ---
 id: EP4-ST007
 title: Provider-Neutral Advisory Feedback Gateway and Quota Boundary
-status: blocked
+status: ready
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
