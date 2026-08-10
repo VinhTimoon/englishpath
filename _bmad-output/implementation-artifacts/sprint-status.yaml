@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-10T17:10:00.000Z
+last_updated: 2026-08-10T17:15:00.000Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -162,7 +162,7 @@ development_status:
   4-7-provider-neutral-ai-feedback-gateway: done
   4-6-toeic-writing-practice-ui: review
   4-8-speaking-feedback-worker-and-fallback: backlog
-  4-9-writing-feedback-worker-and-fallback: ready
+  4-9-writing-feedback-worker-and-fallback: in-progress
   4-10-four-skills-roadmap-balance-rules: done
   4-11-four-skills-progress-dashboard: done
   4-12-four-skills-phase-exit-review: backlog
