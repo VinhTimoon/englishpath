@@ -93,7 +93,8 @@ export const ModelName = {
   ToeicSpeakingSession: 'ToeicSpeakingSession',
   ToeicSpeakingSubmission: 'ToeicSpeakingSubmission',
   ToeicWritingSession: 'ToeicWritingSession',
-  ToeicWritingSubmission: 'ToeicWritingSubmission'
+  ToeicWritingSubmission: 'ToeicWritingSubmission',
+  AiFeedbackUsage: 'AiFeedbackUsage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -792,6 +793,28 @@ export const ToeicWritingSubmissionScalarFieldEnum = {
 } as const
 
 export type ToeicWritingSubmissionScalarFieldEnum = (typeof ToeicWritingSubmissionScalarFieldEnum)[keyof typeof ToeicWritingSubmissionScalarFieldEnum]
+
+
+export const AiFeedbackUsageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  feature: 'feature',
+  skill: 'skill',
+  policyVersion: 'policyVersion',
+  promptVersion: 'promptVersion',
+  adapterKind: 'adapterKind',
+  modelVersion: 'modelVersion',
+  idempotencyKey: 'idempotencyKey',
+  requestFingerprint: 'requestFingerprint',
+  outcome: 'outcome',
+  estimatedCostMicros: 'estimatedCostMicros',
+  quotaRemaining: 'quotaRemaining',
+  feedbackJson: 'feedbackJson',
+  correlationId: 'correlationId',
+  createdAt: 'createdAt'
+} as const
+
+export type AiFeedbackUsageScalarFieldEnum = (typeof AiFeedbackUsageScalarFieldEnum)[keyof typeof AiFeedbackUsageScalarFieldEnum]
 
 
 export const SortOrder = {

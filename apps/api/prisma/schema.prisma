@@ -37,6 +37,7 @@ model User {
   toeicSpeakingSubmissions     ToeicSpeakingSubmission[]
   toeicWritingSessions         ToeicWritingSession[]
   toeicWritingSubmissions      ToeicWritingSubmission[]
+  aiFeedbackUsages             AiFeedbackUsage[]
   libraryProgress              LibraryLearningProgress[]
   libraryBookmarks             LibraryBookmark[]
   libraryNotes                 LibraryPersonalNote[]
@@ -825,6 +826,36 @@ model ToeicWritingSubmission {
 
   @@unique([userId, idempotencyKey])
   @@index([userId, submittedAt])
+}
+
+enum AiFeedbackOutcome {
+  ALLOWED
+  DENIED
+  PROVIDER_UNAVAILABLE
+}
+
+model AiFeedbackUsage {
+  id                  String            @id @default(cuid())
+  userId              String
+  feature             String
+  skill               String
+  policyVersion       String
+  promptVersion       String
+  adapterKind         String
+  modelVersion        String
+  idempotencyKey      String
+  requestFingerprint  String
+  outcome             AiFeedbackOutcome
+  estimatedCostMicros Int
+  quotaRemaining      Int
+  feedbackJson        Json?
+  correlationId       String
+  createdAt           DateTime          @default(now())
+  user                User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, idempotencyKey])
+  @@index([userId, createdAt])
+  @@index([userId, outcome, createdAt])
 }
 
 enum IdentityProvider {

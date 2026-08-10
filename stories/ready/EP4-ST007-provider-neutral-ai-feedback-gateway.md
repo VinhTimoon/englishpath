@@ -1,7 +1,7 @@
 ---
 id: EP4-ST007
 title: Provider-Neutral Advisory Feedback Gateway and Quota Boundary
-status: ready
+status: in-progress
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -129,6 +129,68 @@ schema, policy/prompt versions, and licensed prompt source are not present.
 
 AI request file: `notes/ai-req/2026-08-10-ep4-st007-provider-neutral-feedback-gateway-policy.md`
 
+
+## Owner Decision / Recovery Record
+
+- Owner approved the safe beta policy on 2026-08-10 and authorized resuming
+  this same story; no recovery story is created.
+- Policy version is feedback-gateway-v1; the local deterministic/no-op adapter
+  is the only active adapter and reports zero estimated provider cost.
+- Each authenticated learner has 10 requests per UTC calendar day. Outcomes
+  are explicit ALLOWED, DENIED, and PROVIDER_UNAVAILABLE; exact retries
+  replay the original result and changed idempotency payloads conflict.
+- Output is bounded advisory-only feedback and cannot set official scores,
+  mutate progress, expose hidden prompts/rubric internals, or return provider
+  data, credentials, or raw response content.
+- Persistence is additive and owner-scoped usage evidence only. No paid
+  provider, external quota/billing system, credential, or network call is
+  activated.
+
+## Implementation Tasks
+
+- [x] Add the authenticated gateway contract and strict request/output policy.
+- [x] Add deterministic local adapter, quota, exact replay, and unavailable
+  handling.
+- [x] Add owner-scoped usage/cost evidence persistence and safe API response.
+- [x] Add unit/API regression coverage and documentation.
+- [x] Run full quality gates.
+
+## Implementation Record
+
+- Added the authenticated ai-gateway route and strict feature/skill,
+  prompt-version, task, input, and idempotency validation.
+- Added the deterministic LOCAL_NOOP adapter with policy version
+  feedback-gateway-v1, zero estimated cost, bounded advisory-only output, and
+  fail-closed unavailable handling.
+- Added additive AiFeedbackUsage persistence with owner/idempotency
+  uniqueness, request fingerprints, UTC quota remainder, outcome, correlation,
+  and neutral adapter/model evidence. Raw input/provider response is not
+  persisted or returned.
+
+## Verification Evidence
+
+- Story doctor and story verification passed.
+- Prisma validation and generated-client TypeScript validation passed.
+- Focused gateway unit: 1 suite / 4 tests passed.
+- Focused gateway API E2E: 1 suite / 2 tests passed.
+- ai/observability/access/toeic regression: 27 suites / 198 tests passed.
+- Gateway/TOEIC practice/timed-test E2E: 2 suites / 21 tests passed.
+- Full lint, typecheck, test (68 suites / 480 tests), and build passed.
+- Full browser E2E: 87/87 passed on port 4173 after one transient
+  Chromium ERR_NO_BUFFER_SPACE rerun; the affected vocabulary test also passed
+  independently.
+- git diff --check passed.
+
+## High-risk Review Evidence
+
+- Every request resolves ownership from the authenticated application
+  principal; the repository and uniqueness key include user id.
+- The learner projection is allowlisted and excludes raw input/output,
+  provider/credential fields, hidden prompts, rubric internals, official
+  scores, and progress mutation.
+- Quota and idempotency are server-owned; exact retries replay persisted
+  outcomes and changed payloads conflict. No paid provider, network call, or
+  external quota/billing system is activated.
 
 ## Blocked Report
 

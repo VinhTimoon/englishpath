@@ -286,3 +286,12 @@ principal, never request payloads. Prisma reads and state transitions include
 and server-side Unicode word counting bound input. Raw submitted text remains
 owner-scoped persistence and is excluded from learner responses, along with
 provider, rubric, answer-key, credential, and official score fields.
+## EP4-ST007 controls
+
+The gateway derives ownership from the authenticated application principal.
+Strict DTOs and service validation enforce feature/skill/prompt/task/input
+bounds. A SHA-256 request fingerprint supports exact replay without retaining
+raw input. Usage records are owner-scoped, quota is server-owned, and output
+validation permits only bounded advisory fields. No provider credentials,
+network call, raw provider response, rubric internals, official score, or
+progress mutation is allowed.

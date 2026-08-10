@@ -225,6 +225,7 @@ export type UserWhereInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter
   toeicWritingSessions?: Prisma.ToeicWritingSessionListRelationFilter
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionListRelationFilter
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageListRelationFilter
   libraryProgress?: Prisma.LibraryLearningProgressListRelationFilter
   libraryBookmarks?: Prisma.LibraryBookmarkListRelationFilter
   libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter
@@ -261,6 +262,7 @@ export type UserOrderByWithRelationInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionOrderByRelationAggregateInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionOrderByRelationAggregateInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionOrderByRelationAggregateInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageOrderByRelationAggregateInput
   libraryProgress?: Prisma.LibraryLearningProgressOrderByRelationAggregateInput
   libraryBookmarks?: Prisma.LibraryBookmarkOrderByRelationAggregateInput
   libraryNotes?: Prisma.LibraryPersonalNoteOrderByRelationAggregateInput
@@ -301,6 +303,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter
   toeicWritingSessions?: Prisma.ToeicWritingSessionListRelationFilter
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionListRelationFilter
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageListRelationFilter
   libraryProgress?: Prisma.LibraryLearningProgressListRelationFilter
   libraryBookmarks?: Prisma.LibraryBookmarkListRelationFilter
   libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter
@@ -365,6 +368,7 @@ export type UserCreateInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -401,6 +405,7 @@ export type UserUncheckedCreateInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -437,6 +442,7 @@ export type UserUpdateInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -473,6 +479,7 @@ export type UserUncheckedUpdateInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -935,6 +942,20 @@ export type UserUpdateOneRequiredWithoutToeicWritingSubmissionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicWritingSubmissionsInput, Prisma.UserUpdateWithoutToeicWritingSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutToeicWritingSubmissionsInput>
 }
 
+export type UserCreateNestedOneWithoutAiFeedbackUsagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiFeedbackUsagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAiFeedbackUsagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiFeedbackUsagesInput
+  upsert?: Prisma.UserUpsertWithoutAiFeedbackUsagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiFeedbackUsagesInput, Prisma.UserUpdateWithoutAiFeedbackUsagesInput>, Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput>
+}
+
 export type UserCreateWithoutLibraryProgressInput = {
   id?: string
   email: string
@@ -964,6 +985,7 @@ export type UserCreateWithoutLibraryProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
@@ -999,6 +1021,7 @@ export type UserUncheckedCreateWithoutLibraryProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
@@ -1050,6 +1073,7 @@ export type UserUpdateWithoutLibraryProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
@@ -1085,6 +1109,7 @@ export type UserUncheckedUpdateWithoutLibraryProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
@@ -1120,6 +1145,7 @@ export type UserCreateWithoutLibraryBookmarksInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
@@ -1155,6 +1181,7 @@ export type UserUncheckedCreateWithoutLibraryBookmarksInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
@@ -1206,6 +1233,7 @@ export type UserUpdateWithoutLibraryBookmarksInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
@@ -1241,6 +1269,7 @@ export type UserUncheckedUpdateWithoutLibraryBookmarksInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
@@ -1276,6 +1305,7 @@ export type UserCreateWithoutLibraryNotesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
@@ -1311,6 +1341,7 @@ export type UserUncheckedCreateWithoutLibraryNotesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
@@ -1362,6 +1393,7 @@ export type UserUpdateWithoutLibraryNotesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
@@ -1397,6 +1429,7 @@ export type UserUncheckedUpdateWithoutLibraryNotesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
@@ -1432,6 +1465,7 @@ export type UserCreateWithoutLibraryDrillOutcomesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -1467,6 +1501,7 @@ export type UserUncheckedCreateWithoutLibraryDrillOutcomesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -1518,6 +1553,7 @@ export type UserUpdateWithoutLibraryDrillOutcomesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -1553,6 +1589,7 @@ export type UserUncheckedUpdateWithoutLibraryDrillOutcomesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -1588,6 +1625,7 @@ export type UserCreateWithoutShadowingAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -1623,6 +1661,7 @@ export type UserUncheckedCreateWithoutShadowingAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -1674,6 +1713,7 @@ export type UserUpdateWithoutShadowingAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -1709,6 +1749,7 @@ export type UserUncheckedUpdateWithoutShadowingAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -1743,6 +1784,7 @@ export type UserCreateWithoutOnboardingInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -1778,6 +1820,7 @@ export type UserUncheckedCreateWithoutOnboardingInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -1829,6 +1872,7 @@ export type UserUpdateWithoutOnboardingInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -1864,6 +1908,7 @@ export type UserUncheckedUpdateWithoutOnboardingInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -1899,6 +1944,7 @@ export type UserCreateWithoutPlacementAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -1934,6 +1980,7 @@ export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -1985,6 +2032,7 @@ export type UserUpdateWithoutPlacementAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -2020,6 +2068,7 @@ export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -2055,6 +2104,7 @@ export type UserCreateWithoutRoadmapsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -2090,6 +2140,7 @@ export type UserUncheckedCreateWithoutRoadmapsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -2141,6 +2192,7 @@ export type UserUpdateWithoutRoadmapsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -2176,6 +2228,7 @@ export type UserUncheckedUpdateWithoutRoadmapsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -2211,6 +2264,7 @@ export type UserCreateWithoutPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -2246,6 +2300,7 @@ export type UserUncheckedCreateWithoutPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -2297,6 +2352,7 @@ export type UserUpdateWithoutPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -2332,6 +2388,7 @@ export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -2367,6 +2424,7 @@ export type UserCreateWithoutLearnerProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -2402,6 +2460,7 @@ export type UserUncheckedCreateWithoutLearnerProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -2453,6 +2512,7 @@ export type UserUpdateWithoutLearnerProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -2488,6 +2548,7 @@ export type UserUncheckedUpdateWithoutLearnerProgressInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -2523,6 +2584,7 @@ export type UserCreateWithoutErrorNotebookEntriesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -2558,6 +2620,7 @@ export type UserUncheckedCreateWithoutErrorNotebookEntriesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -2609,6 +2672,7 @@ export type UserUpdateWithoutErrorNotebookEntriesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -2644,6 +2708,7 @@ export type UserUncheckedUpdateWithoutErrorNotebookEntriesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -2679,6 +2744,7 @@ export type UserCreateWithoutProfileInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -2714,6 +2780,7 @@ export type UserUncheckedCreateWithoutProfileInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -2765,6 +2832,7 @@ export type UserUpdateWithoutProfileInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -2800,6 +2868,7 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -2835,6 +2904,7 @@ export type UserCreateWithoutDailySentenceCompletionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -2870,6 +2940,7 @@ export type UserUncheckedCreateWithoutDailySentenceCompletionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -2921,6 +2992,7 @@ export type UserUpdateWithoutDailySentenceCompletionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -2956,6 +3028,7 @@ export type UserUncheckedUpdateWithoutDailySentenceCompletionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -2991,6 +3064,7 @@ export type UserCreateWithoutVocabularyMasteryStatesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -3026,6 +3100,7 @@ export type UserUncheckedCreateWithoutVocabularyMasteryStatesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -3077,6 +3152,7 @@ export type UserUpdateWithoutVocabularyMasteryStatesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -3112,6 +3188,7 @@ export type UserUncheckedUpdateWithoutVocabularyMasteryStatesInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -3147,6 +3224,7 @@ export type UserCreateWithoutVocabularyReviewSubmissionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -3182,6 +3260,7 @@ export type UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -3233,6 +3312,7 @@ export type UserUpdateWithoutVocabularyReviewSubmissionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -3268,6 +3348,7 @@ export type UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -3303,6 +3384,7 @@ export type UserCreateWithoutRoleAssignmentsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -3338,6 +3420,7 @@ export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -3378,6 +3461,7 @@ export type UserCreateWithoutRoleAssignmentsAuthoredInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -3413,6 +3497,7 @@ export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -3464,6 +3549,7 @@ export type UserUpdateWithoutRoleAssignmentsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -3499,6 +3585,7 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -3545,6 +3632,7 @@ export type UserUpdateWithoutRoleAssignmentsAuthoredInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -3580,6 +3668,7 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -3615,6 +3704,7 @@ export type UserCreateWithoutPrivilegedAuditEventsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -3650,6 +3740,7 @@ export type UserUncheckedCreateWithoutPrivilegedAuditEventsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -3701,6 +3792,7 @@ export type UserUpdateWithoutPrivilegedAuditEventsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -3736,6 +3828,7 @@ export type UserUncheckedUpdateWithoutPrivilegedAuditEventsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -3771,6 +3864,7 @@ export type UserCreateWithoutToeicPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -3806,6 +3900,7 @@ export type UserUncheckedCreateWithoutToeicPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -3857,6 +3952,7 @@ export type UserUpdateWithoutToeicPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -3892,6 +3988,7 @@ export type UserUncheckedUpdateWithoutToeicPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -3927,6 +4024,7 @@ export type UserCreateWithoutToeicReadingPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -3962,6 +4060,7 @@ export type UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -4013,6 +4112,7 @@ export type UserUpdateWithoutToeicReadingPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -4048,6 +4148,7 @@ export type UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -4083,6 +4184,7 @@ export type UserCreateWithoutToeicTimedTestSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -4118,6 +4220,7 @@ export type UserUncheckedCreateWithoutToeicTimedTestSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -4169,6 +4272,7 @@ export type UserUpdateWithoutToeicTimedTestSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -4204,6 +4308,7 @@ export type UserUncheckedUpdateWithoutToeicTimedTestSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -4239,6 +4344,7 @@ export type UserCreateWithoutToeicSpeakingSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -4274,6 +4380,7 @@ export type UserUncheckedCreateWithoutToeicSpeakingSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -4325,6 +4432,7 @@ export type UserUpdateWithoutToeicSpeakingSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -4360,6 +4468,7 @@ export type UserUncheckedUpdateWithoutToeicSpeakingSessionsInput = {
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -4395,6 +4504,7 @@ export type UserCreateWithoutToeicSpeakingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -4430,6 +4540,7 @@ export type UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -4481,6 +4592,7 @@ export type UserUpdateWithoutToeicSpeakingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -4516,6 +4628,7 @@ export type UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -4551,6 +4664,7 @@ export type UserCreateWithoutToeicWritingSessionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -4586,6 +4700,7 @@ export type UserUncheckedCreateWithoutToeicWritingSessionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -4637,6 +4752,7 @@ export type UserUpdateWithoutToeicWritingSessionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -4672,6 +4788,7 @@ export type UserUncheckedUpdateWithoutToeicWritingSessionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -4707,6 +4824,7 @@ export type UserCreateWithoutToeicWritingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
@@ -4742,6 +4860,7 @@ export type UserUncheckedCreateWithoutToeicWritingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
@@ -4793,6 +4912,7 @@ export type UserUpdateWithoutToeicWritingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
@@ -4828,6 +4948,167 @@ export type UserUncheckedUpdateWithoutToeicWritingSubmissionsInput = {
   toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
   toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAiFeedbackUsagesInput = {
+  id?: string
+  email: string
+  legacyName?: string | null
+  authProvider?: $Enums.IdentityProvider
+  externalSubject?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAiFeedbackUsagesInput = {
+  id?: string
+  email: string
+  legacyName?: string | null
+  authProvider?: $Enums.IdentityProvider
+  externalSubject?: string | null
+  status?: $Enums.UserStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAiFeedbackUsagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
+}
+
+export type UserUpsertWithoutAiFeedbackUsagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAiFeedbackUsagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput>
+}
+
+export type UserUpdateWithoutAiFeedbackUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
+  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAiFeedbackUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
+  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
   libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
@@ -4858,6 +5139,7 @@ export type UserCountOutputType = {
   toeicSpeakingSubmissions: number
   toeicWritingSessions: number
   toeicWritingSubmissions: number
+  aiFeedbackUsages: number
   libraryProgress: number
   libraryBookmarks: number
   libraryNotes: number
@@ -4883,6 +5165,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   toeicSpeakingSubmissions?: boolean | UserCountOutputTypeCountToeicSpeakingSubmissionsArgs
   toeicWritingSessions?: boolean | UserCountOutputTypeCountToeicWritingSessionsArgs
   toeicWritingSubmissions?: boolean | UserCountOutputTypeCountToeicWritingSubmissionsArgs
+  aiFeedbackUsages?: boolean | UserCountOutputTypeCountAiFeedbackUsagesArgs
   libraryProgress?: boolean | UserCountOutputTypeCountLibraryProgressArgs
   libraryBookmarks?: boolean | UserCountOutputTypeCountLibraryBookmarksArgs
   libraryNotes?: boolean | UserCountOutputTypeCountLibraryNotesArgs
@@ -5022,6 +5305,13 @@ export type UserCountOutputTypeCountToeicWritingSubmissionsArgs<ExtArgs extends 
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountAiFeedbackUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AiFeedbackUsageWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountLibraryProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.LibraryLearningProgressWhereInput
 }
@@ -5084,6 +5374,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   toeicSpeakingSubmissions?: boolean | Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>
   toeicWritingSessions?: boolean | Prisma.User$toeicWritingSessionsArgs<ExtArgs>
   toeicWritingSubmissions?: boolean | Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>
+  aiFeedbackUsages?: boolean | Prisma.User$aiFeedbackUsagesArgs<ExtArgs>
   libraryProgress?: boolean | Prisma.User$libraryProgressArgs<ExtArgs>
   libraryBookmarks?: boolean | Prisma.User$libraryBookmarksArgs<ExtArgs>
   libraryNotes?: boolean | Prisma.User$libraryNotesArgs<ExtArgs>
@@ -5147,6 +5438,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   toeicSpeakingSubmissions?: boolean | Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>
   toeicWritingSessions?: boolean | Prisma.User$toeicWritingSessionsArgs<ExtArgs>
   toeicWritingSubmissions?: boolean | Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>
+  aiFeedbackUsages?: boolean | Prisma.User$aiFeedbackUsagesArgs<ExtArgs>
   libraryProgress?: boolean | Prisma.User$libraryProgressArgs<ExtArgs>
   libraryBookmarks?: boolean | Prisma.User$libraryBookmarksArgs<ExtArgs>
   libraryNotes?: boolean | Prisma.User$libraryNotesArgs<ExtArgs>
@@ -5180,6 +5472,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     toeicSpeakingSubmissions: Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>[]
     toeicWritingSessions: Prisma.$ToeicWritingSessionPayload<ExtArgs>[]
     toeicWritingSubmissions: Prisma.$ToeicWritingSubmissionPayload<ExtArgs>[]
+    aiFeedbackUsages: Prisma.$AiFeedbackUsagePayload<ExtArgs>[]
     libraryProgress: Prisma.$LibraryLearningProgressPayload<ExtArgs>[]
     libraryBookmarks: Prisma.$LibraryBookmarkPayload<ExtArgs>[]
     libraryNotes: Prisma.$LibraryPersonalNotePayload<ExtArgs>[]
@@ -5609,6 +5902,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   toeicSpeakingSubmissions<T extends Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   toeicWritingSessions<T extends Prisma.User$toeicWritingSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicWritingSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   toeicWritingSubmissions<T extends Prisma.User$toeicWritingSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiFeedbackUsages<T extends Prisma.User$aiFeedbackUsagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiFeedbackUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   libraryProgress<T extends Prisma.User$libraryProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$libraryProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryLearningProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   libraryBookmarks<T extends Prisma.User$libraryBookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$libraryBookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryBookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   libraryNotes<T extends Prisma.User$libraryNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$libraryNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryPersonalNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6506,6 +6800,30 @@ export type User$toeicWritingSubmissionsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.ToeicWritingSubmissionScalarFieldEnum | Prisma.ToeicWritingSubmissionScalarFieldEnum[]
+}
+
+/**
+ * User.aiFeedbackUsages
+ */
+export type User$aiFeedbackUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiFeedbackUsage
+   */
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiFeedbackUsage
+   */
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  where?: Prisma.AiFeedbackUsageWhereInput
+  orderBy?: Prisma.AiFeedbackUsageOrderByWithRelationInput | Prisma.AiFeedbackUsageOrderByWithRelationInput[]
+  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AiFeedbackUsageScalarFieldEnum | Prisma.AiFeedbackUsageScalarFieldEnum[]
 }
 
 /**

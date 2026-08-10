@@ -426,7 +426,8 @@ export const ModelName = {
   ToeicSpeakingSession: 'ToeicSpeakingSession',
   ToeicSpeakingSubmission: 'ToeicSpeakingSubmission',
   ToeicWritingSession: 'ToeicWritingSession',
-  ToeicWritingSubmission: 'ToeicWritingSubmission'
+  ToeicWritingSubmission: 'ToeicWritingSubmission',
+  AiFeedbackUsage: 'AiFeedbackUsage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -442,7 +443,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "libraryContent" | "libraryContentVersion" | "librarySourceManifest" | "libraryStorageReference" | "libraryMediaMetadata" | "libraryTranscriptMetadata" | "libraryLearningProgress" | "libraryBookmark" | "libraryPersonalNote" | "libraryDrillOutcome" | "libraryShadowingAttempt" | "learnerOnboarding" | "placementAttempt" | "roadmap" | "roadmapItem" | "practiceSession" | "practiceAnswer" | "learnerProgress" | "errorNotebookEntry" | "userProfile" | "governedSentence" | "governedVocabularyItem" | "cmsTaxonomyNode" | "cmsContent" | "cmsContentVersion" | "dailySentenceCompletion" | "vocabularyMasteryState" | "vocabularyReviewSubmission" | "role" | "userRole" | "privilegedAuditEvent" | "toeicQuestion" | "toeicQuestionVersion" | "toeicPracticeSession" | "toeicPracticeAnswer" | "toeicReadingPracticeSession" | "toeicReadingPracticeAnswer" | "toeicTimedTestSession" | "toeicTimedTestAnswer" | "toeicSpeakingSession" | "toeicSpeakingSubmission" | "toeicWritingSession" | "toeicWritingSubmission"
+    modelProps: "user" | "libraryContent" | "libraryContentVersion" | "librarySourceManifest" | "libraryStorageReference" | "libraryMediaMetadata" | "libraryTranscriptMetadata" | "libraryLearningProgress" | "libraryBookmark" | "libraryPersonalNote" | "libraryDrillOutcome" | "libraryShadowingAttempt" | "learnerOnboarding" | "placementAttempt" | "roadmap" | "roadmapItem" | "practiceSession" | "practiceAnswer" | "learnerProgress" | "errorNotebookEntry" | "userProfile" | "governedSentence" | "governedVocabularyItem" | "cmsTaxonomyNode" | "cmsContent" | "cmsContentVersion" | "dailySentenceCompletion" | "vocabularyMasteryState" | "vocabularyReviewSubmission" | "role" | "userRole" | "privilegedAuditEvent" | "toeicQuestion" | "toeicQuestionVersion" | "toeicPracticeSession" | "toeicPracticeAnswer" | "toeicReadingPracticeSession" | "toeicReadingPracticeAnswer" | "toeicTimedTestSession" | "toeicTimedTestAnswer" | "toeicSpeakingSession" | "toeicSpeakingSubmission" | "toeicWritingSession" | "toeicWritingSubmission" | "aiFeedbackUsage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3702,6 +3703,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AiFeedbackUsage: {
+      payload: Prisma.$AiFeedbackUsagePayload<ExtArgs>
+      fields: Prisma.AiFeedbackUsageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AiFeedbackUsageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AiFeedbackUsageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>
+        }
+        findFirst: {
+          args: Prisma.AiFeedbackUsageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AiFeedbackUsageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>
+        }
+        findMany: {
+          args: Prisma.AiFeedbackUsageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>[]
+        }
+        create: {
+          args: Prisma.AiFeedbackUsageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>
+        }
+        createMany: {
+          args: Prisma.AiFeedbackUsageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AiFeedbackUsageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>[]
+        }
+        delete: {
+          args: Prisma.AiFeedbackUsageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>
+        }
+        update: {
+          args: Prisma.AiFeedbackUsageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>
+        }
+        deleteMany: {
+          args: Prisma.AiFeedbackUsageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AiFeedbackUsageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AiFeedbackUsageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>[]
+        }
+        upsert: {
+          args: Prisma.AiFeedbackUsageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiFeedbackUsagePayload>
+        }
+        aggregate: {
+          args: Prisma.AiFeedbackUsageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAiFeedbackUsage>
+        }
+        groupBy: {
+          args: Prisma.AiFeedbackUsageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiFeedbackUsageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AiFeedbackUsageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiFeedbackUsageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4423,6 +4498,28 @@ export const ToeicWritingSubmissionScalarFieldEnum = {
 export type ToeicWritingSubmissionScalarFieldEnum = (typeof ToeicWritingSubmissionScalarFieldEnum)[keyof typeof ToeicWritingSubmissionScalarFieldEnum]
 
 
+export const AiFeedbackUsageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  feature: 'feature',
+  skill: 'skill',
+  policyVersion: 'policyVersion',
+  promptVersion: 'promptVersion',
+  adapterKind: 'adapterKind',
+  modelVersion: 'modelVersion',
+  idempotencyKey: 'idempotencyKey',
+  requestFingerprint: 'requestFingerprint',
+  outcome: 'outcome',
+  estimatedCostMicros: 'estimatedCostMicros',
+  quotaRemaining: 'quotaRemaining',
+  feedbackJson: 'feedbackJson',
+  correlationId: 'correlationId',
+  createdAt: 'createdAt'
+} as const
+
+export type AiFeedbackUsageScalarFieldEnum = (typeof AiFeedbackUsageScalarFieldEnum)[keyof typeof AiFeedbackUsageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -5045,6 +5142,20 @@ export type ListEnumToeicWritingSessionStatusFieldRefInput<$PrismaModel> = Field
 
 
 /**
+ * Reference to a field of type 'AiFeedbackOutcome'
+ */
+export type EnumAiFeedbackOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiFeedbackOutcome'>
+
+
+
+/**
+ * Reference to a field of type 'AiFeedbackOutcome[]'
+ */
+export type ListEnumAiFeedbackOutcomeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiFeedbackOutcome[]'>
+
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5211,6 +5322,7 @@ export type GlobalOmitConfig = {
   toeicSpeakingSubmission?: Prisma.ToeicSpeakingSubmissionOmit
   toeicWritingSession?: Prisma.ToeicWritingSessionOmit
   toeicWritingSubmission?: Prisma.ToeicWritingSubmissionOmit
+  aiFeedbackUsage?: Prisma.AiFeedbackUsageOmit
 }
 
 /* Types for Logging */

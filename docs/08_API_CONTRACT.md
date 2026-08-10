@@ -631,3 +631,15 @@ The response contains task prompt metadata, lifecycle state, word/character
 counts, and timestamps. It does not contain submitted text, official scores,
 rubric/provider data, answer keys, or credentials. Word count is server-owned
 and uses Unicode letter/number tokens with apostrophe/hyphen joins.
+## EP4-ST007 advisory feedback gateway
+
+Authenticated route:
+
+- POST /api/v1/ai-gateway/feedback accepts feature, matching skill,
+  local-fixture-v1 prompt version, bounded task id, bounded input text, and a
+  required Idempotency-Key.
+
+The response is an allowlisted projection containing outcome,
+feedback-gateway-v1 policy version, prompt version, feature, skill, quota
+remainder, and advisory-only feedback. It never contains provider credentials,
+raw response/input, hidden prompt, rubric weights, or official scores.

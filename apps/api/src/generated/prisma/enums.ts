@@ -53,6 +53,15 @@ export const ToeicWritingSessionStatus = {
 export type ToeicWritingSessionStatus = (typeof ToeicWritingSessionStatus)[keyof typeof ToeicWritingSessionStatus]
 
 
+export const AiFeedbackOutcome = {
+  ALLOWED: 'ALLOWED',
+  DENIED: 'DENIED',
+  PROVIDER_UNAVAILABLE: 'PROVIDER_UNAVAILABLE'
+} as const
+
+export type AiFeedbackOutcome = (typeof AiFeedbackOutcome)[keyof typeof AiFeedbackOutcome]
+
+
 export const IdentityProvider = {
   SUPABASE: 'SUPABASE'
 } as const

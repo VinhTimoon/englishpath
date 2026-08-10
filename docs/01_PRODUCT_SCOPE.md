@@ -135,3 +135,11 @@ that serves none of these objectives requires product review.
 ## Four Skills roadmap balance invariant
 
 TOEIC Four Skills roadmap balancing uses only the canonical Reading, Listening, Speaking, and Writing buckets. It preserves required and due practice, uses approved activity references only, and is separate from submissions, recordings, official scoring, and AI feedback.
+## EP4-ST007 feedback gateway boundary
+
+The Phase 4 beta feedback boundary is advisory-only and backend-owned. It uses
+the local deterministic/no-op adapter with policy version
+feedback-gateway-v1, a quota of 10 authenticated requests per learner per UTC
+day, and explicit ALLOWED, DENIED, or PROVIDER_UNAVAILABLE outcomes. Paid
+providers, credentials, billing, official scores, progress mutation, and
+learner UI are out of scope.

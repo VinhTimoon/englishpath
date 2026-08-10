@@ -388,3 +388,11 @@ repository finalizes an active session and creates its single submission in one
 transaction. Submitted text is bounded and retained only for the owning
 learner; learner projections expose counts/timestamps, never raw text, scores,
 rubric internals, answer keys, or provider data.
+## EP4-ST007 feedback usage evidence
+
+AiFeedbackUsage stores only owner-scoped policy and cost evidence: feature,
+skill, policy/prompt versions, neutral adapter/model labels, idempotency
+fingerprint, outcome, quota remainder, correlation id, and bounded advisory
+JSON. It stores no credentials, provider response, raw learner input, rubric
+internals, official score, or hidden prompt. Owner/idempotency uniqueness and
+UTC-day indexes support deterministic replay and quota decisions.

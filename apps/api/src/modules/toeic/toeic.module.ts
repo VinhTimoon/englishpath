@@ -25,6 +25,7 @@ import {
 } from './toeic-timed-test.models';
 import { PracticeModule } from '../practice/practice.module';
 import { VocabularyModule } from '../vocabulary/vocabulary.module';
+import { AiGatewayModule } from '../ai-gateway/ai-gateway.module';
 import { ToeicSpeakingSubmissionService } from './toeic-speaking-submission.service';
 import { PrismaToeicSpeakingSubmissionRepository } from './toeic-speaking-submission.repository';
 import { EnglishPathSpeakingTaskCatalogue } from './toeic-speaking-task.catalogue';
@@ -41,7 +42,13 @@ import {
 } from './toeic-writing-submission.models';
 
 @Module({
-  imports: [AuthModule, AuditModule, PracticeModule, VocabularyModule],
+  imports: [
+    AuthModule,
+    AuditModule,
+    PracticeModule,
+    VocabularyModule,
+    AiGatewayModule,
+  ],
   controllers: [ToeicController],
   providers: [
     ToeicQuestionService,

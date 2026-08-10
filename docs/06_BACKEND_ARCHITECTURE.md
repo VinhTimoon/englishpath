@@ -294,3 +294,10 @@ data and never become HTTP response fields.
 ## Four Skills balance boundary
 
 The roadmap balance policy is a pure deterministic engine input/output. Version orchestration remains in the roadmap service/repository; controllers do not allocate activities. No schema, provider, submission, recording, or AI gateway state is created by balancing.
+## EP4-ST007 gateway layering
+
+The ai-gateway module keeps controller, service/policy, adapter, and Prisma
+repository boundaries separate. The controller never invokes an adapter
+directly. Idempotency fingerprints, quota decisions, redaction, and output
+validation are server-owned in the service; usage evidence is additive and
+owner-scoped.

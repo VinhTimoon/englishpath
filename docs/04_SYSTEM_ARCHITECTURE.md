@@ -117,3 +117,10 @@ controlled storage, CMS import, and publication.
 - Application code
 - CI changes
 - Environment or production configuration
+## EP4-ST007 provider-neutral gateway
+
+Feedback requests enter through the authenticated API gateway, then pass the
+server-owned contract, UTC-day quota, deterministic local adapter, and
+owner-scoped usage repository. The gateway returns only bounded advisory
+feedback. Adapter/provider metadata and zero-cost evidence remain internal;
+the local adapter makes no network or paid-provider call.

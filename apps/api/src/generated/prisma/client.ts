@@ -258,3 +258,8 @@ export type ToeicWritingSession = Prisma.ToeicWritingSessionModel
  *
  */
 export type ToeicWritingSubmission = Prisma.ToeicWritingSubmissionModel
+/**
+ * Model AiFeedbackUsage
+ *
+ */
+export type AiFeedbackUsage = Prisma.AiFeedbackUsageModel

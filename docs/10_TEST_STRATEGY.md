@@ -436,3 +436,9 @@ changed-key conflicts, finalization immutability, and safe response redaction.
 Writing submission unit and API E2E tests cover Unicode word counting,
 publication/catalogue gating, bounds, owner isolation, idempotent start and
 finalization, immutable retry/conflict behavior, and redacted learner output.
+## EP4-ST007 coverage
+
+Gateway unit/API tests cover authenticated owner scoping, contract validation,
+deterministic local output, zero-cost evidence, ten-request UTC quota,
+ALLOWED/DENIED/PROVIDER_UNAVAILABLE outcomes, exact replay, changed-key
+conflict, unsafe-output fail-closed behavior, and redaction.
