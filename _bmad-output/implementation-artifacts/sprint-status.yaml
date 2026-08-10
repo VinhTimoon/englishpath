@@ -160,7 +160,7 @@ development_status:
   4-4-toeic-speaking-task-and-recording-ui: backlog
   4-5-toeic-writing-task-and-submission-api: done
   4-7-provider-neutral-ai-feedback-gateway: done
-  4-6-toeic-writing-practice-ui: backlog
+  4-6-toeic-writing-practice-ui: ready
   4-8-speaking-feedback-worker-and-fallback: backlog
   4-9-writing-feedback-worker-and-fallback: backlog
   4-10-four-skills-roadmap-balance-rules: done
