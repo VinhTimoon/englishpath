@@ -564,6 +564,7 @@ question, prompt, and option projection. `POST /drill/submit` validates the
 question and option server-side, computes correctness after submission, and
 replays the immutable owner-scoped outcome on retries. Answer keys, provider
 references, and reviewer/source data never cross the API boundary.
+
 ### Reviewed licensed batch import
 
 Credential-free local imports validate every manifest before accepting any
@@ -571,6 +572,7 @@ version. Duplicate identities, malformed source evidence, and checksum/source
 version conflicts return deterministic governance errors. Learner catalogue,
 item, media, drill, shadowing, and link responses expose only currently
 published, approved, rights-compatible content and never operator evidence.
+
 ### EP3-ST012 phase-exit evidence
 
 The final credential-free review passed the focused library unit boundary
@@ -579,6 +581,7 @@ full project gates. Catalogue, item, media, drill, shadowing, progress, and
 related-learning responses remain explicit safe allowlists. Unknown, expired,
 withdrawn, rejected, conflicted, wrong-tier, and non-`AVAILABLE` media states
 fail closed.
+
 # EP4-ST001 model boundary
 
 No endpoint is introduced. Later task APIs may use the server-owned task/version
@@ -589,3 +592,11 @@ and official scoring belong to later stories.
 ## Four Skills roadmap projection
 
 Learner-safe balance projections expose only `skill`, `activityKind`, bounded `target`, approved `reference`, `allocationReason`, and `completionState`. Missing Speaking/Writing references are represented as unavailable; the API never fabricates prompts, scores, submissions, answer keys, or rubric internals.
+
+The authenticated `GET /api/v1/roadmaps/current` response adds a `fourSkills`
+array with exactly `READING`, `LISTENING`, `SPEAKING`, and `WRITING` in that
+order. Each entry also exposes `availability` (`AVAILABLE` or `UNAVAILABLE`).
+For unavailable entries, `target` and `reference` are `null` and
+`completionState` is `UNAVAILABLE`; clients must not reinterpret this as zero,
+completed, or a fabricated task. Existing roadmap, today, and aggregate fields
+remain unchanged.

@@ -13,6 +13,7 @@ import {
 } from '../src/modules/auth/auth.tokens';
 import { ROADMAP_REPOSITORY } from '../src/modules/roadmap/roadmap.models';
 import type { RoadmapRepository } from '../src/modules/roadmap/roadmap.ports';
+import type { RoadmapView } from '../src/modules/roadmap/roadmap.models';
 import { PrismaService } from '../src/prisma/prisma.service';
 
 describe('Roadmap and today vertical slice (e2e)', () => {
@@ -102,6 +103,81 @@ describe('Roadmap and today vertical slice (e2e)', () => {
     );
     const body = response.body as { data: { todayItems: unknown[] } };
     expect(body.data.todayItems).toHaveLength(1);
+  });
+
+  it('returns an additive owner-scoped Four Skills projection', async () => {
+    const current: RoadmapView = {
+      ...roadmap,
+      items: [
+        {
+          ...item,
+          id: 'reading-1',
+          skill: 'READING',
+          taskType: 'READING',
+          status: 'COMPLETED',
+          completedAt: new Date(),
+        },
+        {
+          ...item,
+          id: 'listening-1',
+          skill: 'LISTENING',
+          taskType: 'LISTENING',
+        },
+      ],
+    };
+    repository.findCurrent.mockResolvedValue(current);
+
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/roadmaps/current')
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(200);
+    expect(repository.findCurrent.mock.calls[0]).toEqual([
+      'application-user-001',
+    ]);
+    const body = response.body as {
+      data: {
+        fourSkills: Array<Record<string, unknown>>;
+        todayItems: unknown[];
+        items: unknown[];
+      };
+    };
+    expect(body.data.items).toHaveLength(2);
+    expect(body.data.todayItems).toHaveLength(2);
+    expect(body.data.fourSkills).toHaveLength(4);
+    expect(body.data.fourSkills.map((entry) => entry.skill)).toEqual([
+      'READING',
+      'LISTENING',
+      'SPEAKING',
+      'WRITING',
+    ]);
+    expect(Object.keys(body.data.fourSkills[0] ?? {}).sort()).toEqual([
+      'activityKind',
+      'allocationReason',
+      'availability',
+      'completionState',
+      'reference',
+      'skill',
+      'target',
+    ]);
+    expect(body.data.fourSkills[0]).toEqual(
+      expect.objectContaining({
+        target: 1,
+        reference: 'reading-1',
+        completionState: 'COMPLETED',
+        availability: 'AVAILABLE',
+      }),
+    );
+    expect(body.data.fourSkills[2]).toEqual(
+      expect.objectContaining({
+        target: null,
+        reference: null,
+        completionState: 'UNAVAILABLE',
+        availability: 'UNAVAILABLE',
+      }),
+    );
+    expect(JSON.stringify(body.data.fourSkills)).not.toMatch(
+      /provider|rubric|submission|credential|answer/i,
+    );
   });
 
   it('updates only an owner task and validates status', async () => {

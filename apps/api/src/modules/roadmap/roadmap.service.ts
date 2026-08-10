@@ -12,6 +12,7 @@ import {
 } from './roadmap.models';
 import type { RoadmapRepository } from './roadmap.ports';
 import { buildRoadmap } from './roadmap.engine';
+import { projectRoadmapFourSkills } from './four-skills.balance';
 
 @Injectable()
 export class RoadmapService {
@@ -92,6 +93,7 @@ export class RoadmapService {
     );
     return {
       ...roadmap,
+      fourSkills: projectRoadmapFourSkills(roadmap.items),
       todayNumber,
       todayItems,
       completedItems: roadmap.items.filter(

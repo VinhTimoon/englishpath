@@ -1,4 +1,8 @@
-import type { RoadmapItemStatus, RoadmapTaskType } from './roadmap.models';
+import type {
+  RoadmapItemStatus,
+  RoadmapItemView,
+  RoadmapTaskType,
+} from './roadmap.models';
 
 export const FOUR_SKILLS = [
   'READING',
@@ -39,6 +43,16 @@ export type FourSkillsRecalculation = Readonly<{
   inputFingerprint: string;
   reason: 'INITIAL' | 'EVIDENCE_CHANGED' | 'POLICY_CHANGED' | 'UNCHANGED';
   allocations: readonly FourSkillsAllocation[];
+}>;
+
+export type LearnerSafeFourSkillsProjection = Readonly<{
+  skill: FourSkill;
+  activityKind: RoadmapTaskType | null;
+  target: number | null;
+  reference: string | null;
+  allocationReason: FourSkillsAllocation['reason'];
+  completionState: RoadmapItemStatus | 'UNAVAILABLE';
+  availability: 'AVAILABLE' | 'UNAVAILABLE';
 }>;
 
 export class FourSkillsBalanceError extends Error {
@@ -210,13 +224,61 @@ export function recalculateFourSkills(
 
 export function learnerSafeFourSkillsProjection(
   allocation: FourSkillsAllocation,
-) {
+): LearnerSafeFourSkillsProjection {
+  const available = allocation.activity !== null;
   return {
     skill: allocation.skill,
-    activityKind: allocation.activity?.kind ?? null,
-    target: allocation.target,
-    reference: allocation.activity?.reference ?? null,
+    activityKind: available ? allocation.activity.kind : null,
+    target: available ? allocation.target : null,
+    reference: available ? allocation.activity.reference : null,
     allocationReason: allocation.reason,
-    completionState: allocation.activity?.status ?? 'PENDING',
-  } as const;
+    completionState: available
+      ? (allocation.activity.status ?? 'PENDING')
+      : 'UNAVAILABLE',
+    availability: available ? 'AVAILABLE' : 'UNAVAILABLE',
+  };
+}
+
+function aggregateStatus(items: readonly RoadmapItemView[]): RoadmapItemStatus {
+  if (items.every(({ status }) => status === 'COMPLETED')) return 'COMPLETED';
+  if (items.every(({ status }) => status === 'SKIPPED')) return 'SKIPPED';
+  return 'PENDING';
+}
+
+/**
+ * Projects only the existing server-owned roadmap activity pool. Speaking and
+ * Writing are intentionally unavailable until an approved TOEIC task
+ * reference exists; a generic roadmap item is never promoted into that pool.
+ */
+export function projectRoadmapFourSkills(
+  items: readonly RoadmapItemView[],
+): readonly LearnerSafeFourSkillsProjection[] {
+  return FOUR_SKILLS.map((skill) => {
+    const skillItems =
+      skill === 'READING' || skill === 'LISTENING'
+        ? items.filter((item) => item.skill === skill)
+        : [];
+    const first = skillItems[0];
+    if (!first) {
+      return learnerSafeFourSkillsProjection({
+        skill,
+        activity: null,
+        target: 0,
+        reason: 'UNAVAILABLE',
+      });
+    }
+    return learnerSafeFourSkillsProjection({
+      skill,
+      activity: {
+        reference: first.id,
+        skill,
+        kind: first.taskType,
+        target: skillItems.length,
+        source: 'ROADMAP',
+        status: aggregateStatus(skillItems),
+      },
+      target: skillItems.length,
+      reason: 'BALANCED',
+    });
+  });
 }

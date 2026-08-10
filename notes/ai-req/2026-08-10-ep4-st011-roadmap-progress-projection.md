@@ -58,3 +58,10 @@ coverage. Do not create a recovery story.
   `apps/api/src/modules/roadmap/roadmap.models.ts`; it contains only items and
   aggregate today counts.
 - No frontend files were changed; the loop stopped before implementation.
+
+## Owner decision
+
+Approved Option 1: extend the authenticated `GET /api/v1/roadmaps/current`
+response with the minimal learner-safe Four Skills projection. Preserve all
+existing fields and behavior, keep ownership server-side, and represent
+unavailable Speaking/Writing pools explicitly without fabricated values.

@@ -238,12 +238,14 @@ Related-learning links are server-owned allow-listed routes. The library links
 endpoint accepts no target IDs or URLs, delegates eligibility to the existing
 library policy, and exposes no provider/source/admin fields or learner-owned
 progress from another module.
+
 ### Reviewed content operator-data boundary
 
 Source IDs, private locators, checksums, license records, and reviewer evidence
 remain operator-side data. Publication is gated by approved review, valid
 rights, usage scope, access tier, and published state; learner projections are
 explicitly allow-listed.
+
 ### EP3-ST012 phase-exit review
 
 The phase-exit review confirms fail-closed handling for `AVAILABLE`, `PENDING`,
@@ -251,6 +253,7 @@ The phase-exit review confirms fail-closed handling for `AVAILABLE`, `PENDING`,
 errors contain no provider locator, object key, checksum, private source URL,
 rights owner, review evidence, or operator identity. The local reviewed batch
 remains bounded, replay-safe, atomic, and provider-neutral.
+
 # EP4-ST001 security boundary
 
 Pre-submission projections are explicit allowlists. They exclude answer keys,
@@ -261,3 +264,8 @@ are controlled asset identifiers only; provider activation remains later work.
 ## Four Skills separation
 
 Roadmap balancing is not official TOEIC scoring and does not accept or persist submissions, recordings, provider claims, or AI feedback. Speaking/Writing entries require approved server references; unavailable pools fail closed without fabricated learner state.
+
+The current-roadmap `fourSkills` response is produced after the authenticated
+principal has been resolved and after the owner-scoped repository query. It is
+an explicit allowlist; unavailable Speaking/Writing entries contain no target
+or reference and cannot be converted into learner progress by the client.

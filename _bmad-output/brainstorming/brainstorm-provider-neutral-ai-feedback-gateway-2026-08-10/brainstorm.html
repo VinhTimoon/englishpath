@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gateway Without Guesswork</title>
+  <style>
+    :root { --ink:#18211f; --paper:#f4f0e7; --mint:#b9d6c2; --coral:#df765d; --line:#c7c1b4; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.5 Georgia, serif; }
+    main { max-width:1100px; margin:auto; padding:clamp(24px,6vw,76px); }
+    header { display:grid; grid-template-columns:1.4fr .8fr; gap:32px; align-items:end; border-bottom:2px solid var(--ink); padding-bottom:28px; }
+    h1 { font:clamp(42px,8vw,92px)/.9 Arial, sans-serif; letter-spacing:-.08em; margin:0; max-width:760px; }
+    .dek { font-size:1.18rem; max-width:330px; }
+    section { padding:34px 0; border-bottom:1px solid var(--line); }
+    h2 { font:700 14px/1 Arial, sans-serif; text-transform:uppercase; letter-spacing:.14em; margin:0 0 20px; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    article { border:1px solid var(--line); padding:18px; min-height:150px; background:#faf8f2; }
+    article strong { display:block; font:700 20px/1.1 Arial, sans-serif; margin-bottom:10px; }
+    .flow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; font:700 18px Arial, sans-serif; }
+    .flow span { padding:10px 12px; background:var(--mint); }
+    .flow i { font-style:normal; color:var(--coral); }
+    .verdict { background:var(--ink); color:var(--paper); padding:28px; }
+    .verdict strong { color:var(--mint); font:700 28px Arial, sans-serif; }
+    footer { padding-top:24px; font:12px Arial, sans-serif; color:#59615e; }
+    @media (max-width:700px) { header { grid-template-columns:1fr; } .grid { grid-template-columns:1fr; } h1 { font-size:58px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Gateway<br />without guesswork.</h1>
+      <p class="dek">A provider-neutral feedback boundary that stays useful when the provider, quota, licence, or cost is uncertain.</p>
+    </header>
+    <section>
+      <h2>The invariant</h2>
+      <div class="flow"><span>unknown</span><i>→</i><span>explicit state</span><i>→</i><span>safe projection</span><i>→</i><span>honest learner action</span></div>
+      <p>Never turn unavailable into success, zero, a fake task, a fake cost, or an official score. The same rule ties together licensing, retries, observability, quota, and UX.</p>
+    </section>
+    <section>
+      <h2>Ideas that survived the pressure test</h2>
+      <div class="grid">
+        <article><strong>Local first</strong>Use a deterministic no-op/local adapter for staging and tests. The future provider is only an adapter swap.</article>
+        <article><strong>Policy as data</strong>Version quota, prompt provenance, response schema, and cost buckets. Controllers never own limits.</article>
+        <article><strong>Idempotency first</strong>Reserve quota and record usage by owner plus request key; detect conflicting retries by fingerprint.</article>
+        <article><strong>Firewall before logs</strong>Allowlist the learner projection before response or observability emission. Logs are a boundary too.</article>
+        <article><strong>Advisory only</strong>Make feedback immutable and structurally unable to mutate progress, official score, or hidden rubric state.</article>
+        <article><strong>Fail closed</strong>Withdrawn source, malformed output, unknown cost, or unavailable provider becomes a named outcome.</article>
+      </div>
+    </section>
+    <section class="verdict">
+      <strong>Recommended EP4-ST007 shape</strong>
+      <p>One authenticated gateway → pure policy decision → idempotent usage boundary → deterministic local adapter → schema validator → learner-safe projection. Approve the policy and provenance first; activate no paid provider in this story.</p>
+    </section>
+    <footer>Generated from the autonomous brainstorming memlog: 45 ideas, four lenses, one fail-closed direction.</footer>
+  </main>
+</body>
+</html>

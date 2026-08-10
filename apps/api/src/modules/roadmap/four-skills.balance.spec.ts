@@ -2,6 +2,7 @@ import {
   allocateFourSkills,
   FOUR_SKILLS,
   learnerSafeFourSkillsProjection,
+  projectRoadmapFourSkills,
   recalculateFourSkills,
   type FourSkillsActivity,
   validateFourSkillsMetadata,
@@ -65,8 +66,67 @@ describe('four skills balance policy', () => {
       expect.objectContaining({
         skill: 'WRITING',
         reference: null,
-        completionState: 'PENDING',
+        completionState: 'UNAVAILABLE',
+        availability: 'UNAVAILABLE',
       }),
+    );
+  });
+
+  it('projects four canonical skills from server-owned roadmap items', () => {
+    const items = [
+      {
+        id: 'reading-1',
+        dayNumber: 1,
+        sequence: 1,
+        phase: 'FOUNDATION' as const,
+        skill: 'READING' as const,
+        taskType: 'READING' as const,
+        title: 'Reading',
+        minutes: 10,
+        status: 'COMPLETED' as const,
+        completedAt: new Date(),
+      },
+      {
+        id: 'reading-2',
+        dayNumber: 2,
+        sequence: 1,
+        phase: 'FOUNDATION' as const,
+        skill: 'READING' as const,
+        taskType: 'READING' as const,
+        title: 'Reading',
+        minutes: 10,
+        status: 'PENDING' as const,
+        completedAt: null,
+      },
+      {
+        id: 'listening-1',
+        dayNumber: 1,
+        sequence: 2,
+        phase: 'FOUNDATION' as const,
+        skill: 'LISTENING' as const,
+        taskType: 'LISTENING' as const,
+        title: 'Listening',
+        minutes: 10,
+        status: 'PENDING' as const,
+        completedAt: null,
+      },
+    ];
+    const projection = projectRoadmapFourSkills(items);
+    expect(projection.map(({ skill }) => skill)).toEqual(FOUR_SKILLS);
+    expect(projection[0]).toMatchObject({
+      target: 2,
+      reference: 'reading-1',
+      completionState: 'PENDING',
+      availability: 'AVAILABLE',
+    });
+    expect(projection[2]).toMatchObject({
+      target: null,
+      reference: null,
+      completionState: 'UNAVAILABLE',
+      availability: 'UNAVAILABLE',
+    });
+    expect(JSON.stringify(projection)).not.toMatch(
+      /provider|rubric|submission|credential|answer/i,
     );
   });
 

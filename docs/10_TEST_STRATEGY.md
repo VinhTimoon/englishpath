@@ -422,3 +422,8 @@ tested until their later stories.
 ## Four Skills balance coverage
 
 Test the canonical bucket validator, deterministic ordering, bounded allocation, required/due preservation, underrepresented skills, empty or unavailable pools, learner-safe projections, and regression of roadmap/today ownership behavior.
+
+The roadmap API regression suite also verifies the additive `fourSkills`
+projection, canonical ordering, owner-authenticated access, explicit
+Speaking/Writing unavailability, backward-compatible roadmap/today fields, and
+absence of provider, rubric, submission, credential, or answer data.

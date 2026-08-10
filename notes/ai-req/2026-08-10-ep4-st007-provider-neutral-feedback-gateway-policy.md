@@ -46,3 +46,17 @@ provider activation or production credential is required for the eventual local
 adapter, but the policy and contract decisions are prerequisites even for a
 deterministic implementation.
 
+## Owner brainstorming artifact
+
+An autonomous brainstorming pass was completed for this request. It recommends
+starting with a local deterministic/no-op adapter behind a provider-neutral port,
+with a versioned server-owned quota policy, idempotency, safe allowlisted output,
+and explicit provider-unavailable outcomes before any external provider is
+activated.
+
+- `_bmad-output/brainstorming/brainstorm-provider-neutral-ai-feedback-gateway-2026-08-10/brainstorm.html`
+- `_bmad-output/brainstorming/brainstorm-provider-neutral-ai-feedback-gateway-2026-08-10/.memlog.md`
+
+No EP4-ST007 implementation, provider activation, credential use, or external
+service call was performed in this turn.
+

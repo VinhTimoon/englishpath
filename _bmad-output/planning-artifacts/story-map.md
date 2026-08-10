@@ -182,10 +182,10 @@ produce accurate analysis, and route weaknesses into remediation.
 ## Phase 3 Licensed Content Library And Listening
 
 Execution queue: `EP3-ST001` through `EP3-ST012`, `EP4-ST001`, and `EP4-ST010`
-are complete and merged to `dev`; `EP4-ST002` is blocked by its AI request and
-`EP4-ST005`, `EP4-ST007`, and `EP4-ST011` are blocked by their AI requests;
-there is no remaining dependency-ready Phase 4 story. Later Phase 4-5 stories
-remain backlog until an owner decision unblocks their declared dependencies.
+are complete and merged to `dev`; `EP4-ST011` is in review after its approved
+additive roadmap projection was verified. `EP4-ST002`, `EP4-ST005`, and
+`EP4-ST007` remain blocked by their separate AI requests. Later Phase 4-5
+stories remain backlog until an owner decision unblocks their dependencies.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |
