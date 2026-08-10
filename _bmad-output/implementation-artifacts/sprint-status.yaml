@@ -158,7 +158,7 @@ development_status:
   4-2-toeic-speaking-task-and-submission-api: done
   4-3-recording-storage-and-controlled-playback: backlog
   4-4-toeic-speaking-task-and-recording-ui: backlog
-  4-5-toeic-writing-task-and-submission-api: ready
+  4-5-toeic-writing-task-and-submission-api: review
   4-6-toeic-writing-practice-ui: backlog
   4-7-provider-neutral-ai-feedback-gateway: blocked
   4-8-speaking-feedback-worker-and-fallback: backlog

@@ -1,7 +1,7 @@
 ---
 id: EP4-ST005
 title: TOEIC Writing Task and Submission API
-status: in-progress
+status: review
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -180,6 +180,18 @@ AI request file: `notes/ai-req/2026-08-10-ep4-st005-writing-submission-persisten
 - Full lint, typecheck, test (67 suites / 476 tests), and build passed.
 - Full browser E2E: 87/87 passed on port 4173.
 - git diff --check passed.
+
+## High-risk Review Evidence
+
+- Repository reads and finalization predicates include the authenticated
+  application user id; no request-supplied owner field is trusted.
+- The catalogue is the only task source, and the learner projection excludes
+  submittedText, provider fields, rubric internals, answer keys, scores, and
+  credentials.
+- Finalization is an ACTIVE-only transaction with unique owner/idempotency
+  constraints; changed retries return conflict and exact retries replay.
+- The diff is limited to the story allowlist and additive migration/docs; no
+  auth, frontend, provider, credential, or destructive migration paths changed.
 
 
 ## Blocked Report
