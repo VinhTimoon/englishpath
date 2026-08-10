@@ -78,8 +78,8 @@ submission, or provider integration.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/in-progress/EP4-ST011-four-skills-progress-dashboard.md`
-- `pnpm story:verify stories/in-progress/EP4-ST011-four-skills-progress-dashboard.md`
+- `node scripts/story-doctor.mjs stories/done/EP4-ST011-four-skills-progress-dashboard.md`
+- `pnpm story:verify stories/done/EP4-ST011-four-skills-progress-dashboard.md`
 - `pnpm --filter api test -- --runInBand src/modules/roadmap/four-skills.balance.spec.ts`
 - `pnpm --filter api test:e2e -- roadmap-today.e2e-spec.ts`
 - `pnpm --filter api exec tsc --noEmit`
@@ -167,8 +167,8 @@ Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".co
 
 ## Quality Gates
 
-- `node scripts/story-doctor.mjs stories/in-progress/EP4-ST011-four-skills-progress-dashboard.md` passed.
-- `pnpm story:verify stories/in-progress/EP4-ST011-four-skills-progress-dashboard.md` passed.
+- `node scripts/story-doctor.mjs stories/done/EP4-ST011-four-skills-progress-dashboard.md` passed.
+- `pnpm story:verify stories/done/EP4-ST011-four-skills-progress-dashboard.md` passed.
 - Targeted Four Skills unit: 1 suite / 7 tests passed.
 - Targeted roadmap API E2E: 1 suite / 4 tests passed.
 - `pnpm --filter api exec tsc --noEmit` passed.
