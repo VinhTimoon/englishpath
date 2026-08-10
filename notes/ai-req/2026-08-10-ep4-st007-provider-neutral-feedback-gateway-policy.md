@@ -60,3 +60,14 @@ activated.
 No EP4-ST007 implementation, provider activation, credential use, or external
 service call was performed in this turn.
 
+## Owner Decision
+
+On 2026-08-10 the owner approved implementation using the brainstormed safe beta
+policy: a local deterministic/no-op adapter behind a provider-neutral gateway;
+policy version `feedback-gateway-v1`; ten authenticated requests per learner
+per UTC day; deterministic `ALLOWED`, `DENIED`, and `PROVIDER_UNAVAILABLE`
+outcomes; exact idempotency replay; zero estimated provider cost for the local
+adapter; bounded advisory-only output; and owner-scoped additive usage evidence.
+No paid provider, external quota/billing system, credential, or Drive source is
+activated by this story.
+

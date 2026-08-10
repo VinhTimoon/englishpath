@@ -59,3 +59,14 @@ quality gates before review/merge.
   persistence boundary; no implementation files were created.
 - Existing `apps/api/prisma/schema.prisma` has no approved Writing attempt/
   submission model for this story.
+
+## Owner Decision
+
+On 2026-08-10 the owner approved Option 1: use an EnglishPath-owned,
+credential-free reviewed Writing task fixture/catalogue with a server-owned
+published predicate, deterministic Unicode-aware word count, and additive
+Prisma models/constraints for owner-scoped attempts, submissions, and
+idempotency. The implementation must not activate providers or modify/delete
+the supplied Drive originals. Chrome/Drive access was not available in this
+execution environment, so no Drive content is copied into the runtime
+fixture.

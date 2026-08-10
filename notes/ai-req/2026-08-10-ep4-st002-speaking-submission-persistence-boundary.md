@@ -71,3 +71,15 @@ current blocked story and do not resume it until the decision is recorded.
 - Planning result: `.codex-plan.result.md` identified the missing approved
   task catalogue and forbidden generated Prisma path.
 - Existing generator path: `apps/api/src/generated/prisma`.
+
+## Owner Decision
+
+On 2026-08-10 the owner approved implementation of EP4-ST002 using Option 1:
+an EnglishPath-owned, credential-free reviewed task fixture/catalogue and an
+additive Prisma persistence boundary, including the generated client path
+`apps/api/src/generated/prisma/**`. The implementation must remain
+owner-scoped, idempotent, redacted, and must not activate recording storage,
+provider media, or AI. The supplied Drive sources may be inspected read-only;
+Drive originals must not be edited or deleted. Chrome/Drive access was not
+available in this execution environment, so no Drive content is copied into
+the runtime fixture.
