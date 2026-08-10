@@ -32,6 +32,13 @@ import {
   TOEIC_SPEAKING_SUBMISSION_REPOSITORY,
   TOEIC_SPEAKING_TASK_CATALOGUE,
 } from './toeic-speaking-submission.models';
+import { ToeicWritingSubmissionService } from './toeic-writing-submission.service';
+import { PrismaToeicWritingSubmissionRepository } from './toeic-writing-submission.repository';
+import { EnglishPathWritingTaskCatalogue } from './toeic-writing-task.catalogue';
+import {
+  TOEIC_WRITING_SUBMISSION_REPOSITORY,
+  TOEIC_WRITING_TASK_CATALOGUE,
+} from './toeic-writing-submission.models';
 
 @Module({
   imports: [AuthModule, AuditModule, PracticeModule, VocabularyModule],
@@ -45,6 +52,9 @@ import {
     ToeicSpeakingSubmissionService,
     PrismaToeicSpeakingSubmissionRepository,
     EnglishPathSpeakingTaskCatalogue,
+    ToeicWritingSubmissionService,
+    PrismaToeicWritingSubmissionRepository,
+    EnglishPathWritingTaskCatalogue,
     {
       provide: TOEIC_SPEAKING_SUBMISSION_REPOSITORY,
       useExisting: PrismaToeicSpeakingSubmissionRepository,
@@ -52,6 +62,14 @@ import {
     {
       provide: TOEIC_SPEAKING_TASK_CATALOGUE,
       useExisting: EnglishPathSpeakingTaskCatalogue,
+    },
+    {
+      provide: TOEIC_WRITING_SUBMISSION_REPOSITORY,
+      useExisting: PrismaToeicWritingSubmissionRepository,
+    },
+    {
+      provide: TOEIC_WRITING_TASK_CATALOGUE,
+      useExisting: EnglishPathWritingTaskCatalogue,
     },
     PrismaToeicTimedTestRepository,
     {

@@ -226,3 +226,13 @@ export type ToeicSpeakingSession = Prisma.ToeicSpeakingSessionModel
  *
  */
 export type ToeicSpeakingSubmission = Prisma.ToeicSpeakingSubmissionModel
+/**
+ * Model ToeicWritingSession
+ *
+ */
+export type ToeicWritingSession = Prisma.ToeicWritingSessionModel
+/**
+ * Model ToeicWritingSubmission
+ *
+ */
+export type ToeicWritingSubmission = Prisma.ToeicWritingSubmissionModel

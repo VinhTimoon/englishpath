@@ -278,3 +278,11 @@ mode, duration, size, and application reference. Raw audio, provider locators,
 credentials, rubric weights, hidden prompts, and official scores are excluded.
 Finalization is an owner/status compare-and-set transaction with unique
 idempotency constraints, so retries cannot duplicate or reopen evidence.
+## EP4-ST005 Writing submission controls
+
+Writing routes require authentication and resolve ownership from the application
+principal, never request payloads. Prisma reads and state transitions include
+`userId`; finalization is transactional and single-use. Strict DTO validation
+and server-side Unicode word counting bound input. Raw submitted text remains
+owner-scoped persistence and is excluded from learner responses, along with
+provider, rubric, answer-key, credential, and official score fields.

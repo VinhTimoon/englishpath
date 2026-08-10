@@ -431,3 +431,8 @@ absence of provider, rubric, submission, credential, or answer data.
 EP4-ST002 adds service, repository-boundary, and API E2E coverage for published
 task gating, owner-scoped sessions, DTO bounds, exact idempotent replay,
 changed-key conflicts, finalization immutability, and safe response redaction.
+## EP4-ST005 coverage
+
+Writing submission unit and API E2E tests cover Unicode word counting,
+publication/catalogue gating, bounds, owner isolation, idempotent start and
+finalization, immutable retry/conflict behavior, and redacted learner output.

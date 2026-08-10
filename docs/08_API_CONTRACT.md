@@ -616,3 +616,18 @@ controlled application reference; it never accepts audio bytes, provider URLs,
 scores, rubric internals, or client ownership. Exact retries replay the safe
 acknowledgement, while changed payloads, cross-owner access, missing/withdrawn
 tasks, and finalized sessions return sanitized conflicts/not-found responses.
+## EP4-ST005 Writing task/submission API
+
+Authenticated routes:
+
+- `POST /api/v1/toeic/writing/tasks/:taskId/sessions` starts a published
+  catalogue task with a required `Idempotency-Key`.
+- `GET /api/v1/toeic/writing/sessions/:sessionId` returns the owner-scoped
+  learner projection.
+- `POST /api/v1/toeic/writing/sessions/:sessionId/submissions` accepts only a
+  bounded `text` body and a required idempotency key.
+
+The response contains task prompt metadata, lifecycle state, word/character
+counts, and timestamps. It does not contain submitted text, official scores,
+rubric/provider data, answer keys, or credentials. Word count is server-owned
+and uses Unicode letter/number tokens with apostrophe/hyphen joins.

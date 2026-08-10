@@ -379,3 +379,12 @@ reference; it never stores raw audio bytes, provider locators, credentials, or
 official scores. Migration `20260810100000_toeic_speaking_submission_boundary`
 is local/generated evidence and must not be applied automatically to shared
 Supabase or production.
+## EP4-ST005 Writing submission boundary
+
+The approved additive Writing boundary uses `ToeicWritingSession` and
+`ToeicWritingSubmission`. Both records are owner-scoped through `userId`;
+session start and submission idempotency keys are unique per owner, and the
+repository finalizes an active session and creates its single submission in one
+transaction. Submitted text is bounded and retained only for the owning
+learner; learner projections expose counts/timestamps, never raw text, scores,
+rubric internals, answer keys, or provider data.

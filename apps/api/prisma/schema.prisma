@@ -35,6 +35,8 @@ model User {
   toeicTimedTestSessions       ToeicTimedTestSession[]
   toeicSpeakingSessions        ToeicSpeakingSession[]
   toeicSpeakingSubmissions     ToeicSpeakingSubmission[]
+  toeicWritingSessions         ToeicWritingSession[]
+  toeicWritingSubmissions      ToeicWritingSubmission[]
   libraryProgress              LibraryLearningProgress[]
   libraryBookmarks             LibraryBookmark[]
   libraryNotes                 LibraryPersonalNote[]
@@ -780,6 +782,46 @@ model ToeicSpeakingSubmission {
   submittedAt         DateTime             @default(now())
   session             ToeicSpeakingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, idempotencyKey])
+  @@index([userId, submittedAt])
+}
+
+enum ToeicWritingSessionStatus {
+  ACTIVE
+  FINALIZED
+  CANCELLED
+}
+
+model ToeicWritingSession {
+  id                  String                    @id @default(cuid())
+  userId              String
+  taskId              String
+  taskVersion         String
+  startIdempotencyKey String
+  status              ToeicWritingSessionStatus @default(ACTIVE)
+  startedAt           DateTime                  @default(now())
+  finalizedAt         DateTime?
+  user                User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  submissions         ToeicWritingSubmission[]
+
+  @@unique([userId, startIdempotencyKey])
+  @@index([userId, status, startedAt])
+  @@index([taskId, taskVersion, status])
+}
+
+model ToeicWritingSubmission {
+  id             String              @id @default(cuid())
+  sessionId      String              @unique
+  userId         String
+  idempotencyKey String
+  responseMode   String
+  wordCount      Int
+  characterCount Int
+  submittedText  String
+  submittedAt    DateTime            @default(now())
+  session        ToeicWritingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, idempotencyKey])
   @@index([userId, submittedAt])

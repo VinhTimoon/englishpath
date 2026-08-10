@@ -424,7 +424,9 @@ export const ModelName = {
   ToeicTimedTestSession: 'ToeicTimedTestSession',
   ToeicTimedTestAnswer: 'ToeicTimedTestAnswer',
   ToeicSpeakingSession: 'ToeicSpeakingSession',
-  ToeicSpeakingSubmission: 'ToeicSpeakingSubmission'
+  ToeicSpeakingSubmission: 'ToeicSpeakingSubmission',
+  ToeicWritingSession: 'ToeicWritingSession',
+  ToeicWritingSubmission: 'ToeicWritingSubmission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -440,7 +442,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "libraryContent" | "libraryContentVersion" | "librarySourceManifest" | "libraryStorageReference" | "libraryMediaMetadata" | "libraryTranscriptMetadata" | "libraryLearningProgress" | "libraryBookmark" | "libraryPersonalNote" | "libraryDrillOutcome" | "libraryShadowingAttempt" | "learnerOnboarding" | "placementAttempt" | "roadmap" | "roadmapItem" | "practiceSession" | "practiceAnswer" | "learnerProgress" | "errorNotebookEntry" | "userProfile" | "governedSentence" | "governedVocabularyItem" | "cmsTaxonomyNode" | "cmsContent" | "cmsContentVersion" | "dailySentenceCompletion" | "vocabularyMasteryState" | "vocabularyReviewSubmission" | "role" | "userRole" | "privilegedAuditEvent" | "toeicQuestion" | "toeicQuestionVersion" | "toeicPracticeSession" | "toeicPracticeAnswer" | "toeicReadingPracticeSession" | "toeicReadingPracticeAnswer" | "toeicTimedTestSession" | "toeicTimedTestAnswer" | "toeicSpeakingSession" | "toeicSpeakingSubmission"
+    modelProps: "user" | "libraryContent" | "libraryContentVersion" | "librarySourceManifest" | "libraryStorageReference" | "libraryMediaMetadata" | "libraryTranscriptMetadata" | "libraryLearningProgress" | "libraryBookmark" | "libraryPersonalNote" | "libraryDrillOutcome" | "libraryShadowingAttempt" | "learnerOnboarding" | "placementAttempt" | "roadmap" | "roadmapItem" | "practiceSession" | "practiceAnswer" | "learnerProgress" | "errorNotebookEntry" | "userProfile" | "governedSentence" | "governedVocabularyItem" | "cmsTaxonomyNode" | "cmsContent" | "cmsContentVersion" | "dailySentenceCompletion" | "vocabularyMasteryState" | "vocabularyReviewSubmission" | "role" | "userRole" | "privilegedAuditEvent" | "toeicQuestion" | "toeicQuestionVersion" | "toeicPracticeSession" | "toeicPracticeAnswer" | "toeicReadingPracticeSession" | "toeicReadingPracticeAnswer" | "toeicTimedTestSession" | "toeicTimedTestAnswer" | "toeicSpeakingSession" | "toeicSpeakingSubmission" | "toeicWritingSession" | "toeicWritingSubmission"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3552,6 +3554,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ToeicWritingSession: {
+      payload: Prisma.$ToeicWritingSessionPayload<ExtArgs>
+      fields: Prisma.ToeicWritingSessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ToeicWritingSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ToeicWritingSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>
+        }
+        findFirst: {
+          args: Prisma.ToeicWritingSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ToeicWritingSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>
+        }
+        findMany: {
+          args: Prisma.ToeicWritingSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>[]
+        }
+        create: {
+          args: Prisma.ToeicWritingSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>
+        }
+        createMany: {
+          args: Prisma.ToeicWritingSessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ToeicWritingSessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>[]
+        }
+        delete: {
+          args: Prisma.ToeicWritingSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>
+        }
+        update: {
+          args: Prisma.ToeicWritingSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ToeicWritingSessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ToeicWritingSessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ToeicWritingSessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ToeicWritingSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSessionPayload>
+        }
+        aggregate: {
+          args: Prisma.ToeicWritingSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateToeicWritingSession>
+        }
+        groupBy: {
+          args: Prisma.ToeicWritingSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ToeicWritingSessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ToeicWritingSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ToeicWritingSessionCountAggregateOutputType> | number
+        }
+      }
+    }
+    ToeicWritingSubmission: {
+      payload: Prisma.$ToeicWritingSubmissionPayload<ExtArgs>
+      fields: Prisma.ToeicWritingSubmissionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ToeicWritingSubmissionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ToeicWritingSubmissionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>
+        }
+        findFirst: {
+          args: Prisma.ToeicWritingSubmissionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ToeicWritingSubmissionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>
+        }
+        findMany: {
+          args: Prisma.ToeicWritingSubmissionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>[]
+        }
+        create: {
+          args: Prisma.ToeicWritingSubmissionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>
+        }
+        createMany: {
+          args: Prisma.ToeicWritingSubmissionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ToeicWritingSubmissionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>[]
+        }
+        delete: {
+          args: Prisma.ToeicWritingSubmissionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>
+        }
+        update: {
+          args: Prisma.ToeicWritingSubmissionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ToeicWritingSubmissionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ToeicWritingSubmissionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ToeicWritingSubmissionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ToeicWritingSubmissionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ToeicWritingSubmissionPayload>
+        }
+        aggregate: {
+          args: Prisma.ToeicWritingSubmissionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateToeicWritingSubmission>
+        }
+        groupBy: {
+          args: Prisma.ToeicWritingSubmissionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ToeicWritingSubmissionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ToeicWritingSubmissionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ToeicWritingSubmissionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4244,6 +4394,35 @@ export const ToeicSpeakingSubmissionScalarFieldEnum = {
 export type ToeicSpeakingSubmissionScalarFieldEnum = (typeof ToeicSpeakingSubmissionScalarFieldEnum)[keyof typeof ToeicSpeakingSubmissionScalarFieldEnum]
 
 
+export const ToeicWritingSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  taskId: 'taskId',
+  taskVersion: 'taskVersion',
+  startIdempotencyKey: 'startIdempotencyKey',
+  status: 'status',
+  startedAt: 'startedAt',
+  finalizedAt: 'finalizedAt'
+} as const
+
+export type ToeicWritingSessionScalarFieldEnum = (typeof ToeicWritingSessionScalarFieldEnum)[keyof typeof ToeicWritingSessionScalarFieldEnum]
+
+
+export const ToeicWritingSubmissionScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  idempotencyKey: 'idempotencyKey',
+  responseMode: 'responseMode',
+  wordCount: 'wordCount',
+  characterCount: 'characterCount',
+  submittedText: 'submittedText',
+  submittedAt: 'submittedAt'
+} as const
+
+export type ToeicWritingSubmissionScalarFieldEnum = (typeof ToeicWritingSubmissionScalarFieldEnum)[keyof typeof ToeicWritingSubmissionScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -4852,6 +5031,20 @@ export type ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel> = Fiel
 
 
 /**
+ * Reference to a field of type 'ToeicWritingSessionStatus'
+ */
+export type EnumToeicWritingSessionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ToeicWritingSessionStatus'>
+
+
+
+/**
+ * Reference to a field of type 'ToeicWritingSessionStatus[]'
+ */
+export type ListEnumToeicWritingSessionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ToeicWritingSessionStatus[]'>
+
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5016,6 +5209,8 @@ export type GlobalOmitConfig = {
   toeicTimedTestAnswer?: Prisma.ToeicTimedTestAnswerOmit
   toeicSpeakingSession?: Prisma.ToeicSpeakingSessionOmit
   toeicSpeakingSubmission?: Prisma.ToeicSpeakingSubmissionOmit
+  toeicWritingSession?: Prisma.ToeicWritingSessionOmit
+  toeicWritingSubmission?: Prisma.ToeicWritingSubmissionOmit
 }
 
 /* Types for Logging */

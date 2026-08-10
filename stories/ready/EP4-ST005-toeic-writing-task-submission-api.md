@@ -1,7 +1,7 @@
 ---
 id: EP4-ST005
 title: TOEIC Writing Task and Submission API
-status: ready
+status: in-progress
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -133,6 +133,53 @@ owner/idempotency uniqueness constraints, and allowed Prisma repository/generate
 client boundary. EP4-ST005 remains blocked until that decision is recorded.
 
 AI request file: `notes/ai-req/2026-08-10-ep4-st005-writing-submission-persistence-boundary.md`
+
+## Owner Decision / Recovery Record
+
+- Owner approved Option 1 on 2026-08-10 and authorized resuming this same
+  story; no recovery story is created.
+- The task source boundary is an EnglishPath-owned, credential-free reviewed
+  fixture/catalogue. Supplied Drive sources remain read-only references; no
+  Drive original is edited or deleted.
+- Published means the existing task contract has `publicationState: PUBLISHED`
+  and the Writing task/version is served only by the catalogue.
+- Word count is deterministic over Unicode letter/number tokens, including
+  apostrophe or hyphen joins; raw text is bounded and owner-scoped.
+- The additive Prisma boundary stores the submitted text for the owning learner
+  only, with unique owner/idempotency keys and immutable finalized sessions.
+
+## Implementation Tasks
+
+- [x] Add additive Writing task/session/submission persistence and migration.
+- [x] Add owner-scoped repository and service with publication, Unicode bounds,
+  lifecycle, and idempotency policy.
+- [x] Add strict DTO/controller routes and safe projections.
+- [x] Add unit and API E2E regression coverage.
+- [x] Update database/API/security/test documentation and run full gates.
+
+## Implementation Record
+
+- Added a published EnglishPath-owned Writing fixture
+  ep-writing-sentence-001 behind a catalogue boundary; no Drive original or
+  external provider is accessed or changed.
+- Added additive ToeicWritingSession and ToeicWritingSubmission models,
+  owner/idempotency indexes, and transactional ACTIVE-to-FINALIZED submission
+  persistence.
+- Added protected start, read, and submit routes with strict text bounds,
+  deterministic Unicode word counting, exact replay/conflict handling,
+  publication gating, owner scoping, and learner-safe redaction.
+
+## Verification Evidence
+
+- Story doctor and story verification passed.
+- Prisma validation and generated-client TypeScript validation passed.
+- Focused unit: 1 suite / 3 tests passed.
+- Focused API E2E: 1 suite / 2 tests passed.
+- TOEIC/access regression: 22 suites / 154 tests passed.
+- TOEIC practice/writing/timed-test E2E: 2 suites / 21 tests passed.
+- Full lint, typecheck, test (67 suites / 476 tests), and build passed.
+- Full browser E2E: 87/87 passed on port 4173.
+- git diff --check passed.
 
 
 ## Blocked Report

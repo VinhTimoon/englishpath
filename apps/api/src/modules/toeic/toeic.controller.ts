@@ -58,6 +58,8 @@ import {
 } from './dto/toeic-timed-test.dto';
 import { SubmitToeicSpeakingDto } from './dto/toeic-speaking-submission.dto';
 import { ToeicSpeakingSubmissionService } from './toeic-speaking-submission.service';
+import { SubmitToeicWritingDto } from './dto/toeic-writing-submission.dto';
+import { ToeicWritingSubmissionService } from './toeic-writing-submission.service';
 
 const strictValidation = new ValidationPipe({
   transform: true,
@@ -84,6 +86,7 @@ export class ToeicController {
     private readonly catalogue: ToeicPracticeCatalogueService,
     private readonly timed: ToeicTimedTestService,
     private readonly speakingSubmission: ToeicSpeakingSubmissionService,
+    private readonly writingSubmission: ToeicWritingSubmissionService,
   ) {}
 
   @Post('speaking/tasks/:taskId/sessions')
@@ -136,6 +139,66 @@ export class ToeicController {
     @Headers('x-correlation-id') correlation?: string,
   ) {
     return this.speakingSubmission
+      .submit(request.principal!, sessionId, input, idempotencyKey)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
+  }
+
+  @Post('writing/tasks/:taskId/sessions')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Start an approved TOEIC Writing task' })
+  startWriting(
+    @Param('taskId') taskId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('idempotency-key') idempotencyKey?: string,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.writingSubmission
+      .start(request.principal!, taskId, idempotencyKey)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
+  }
+
+  @Get('writing/sessions/:sessionId')
+  @ApiOperation({ summary: 'Read an owner-scoped TOEIC Writing session' })
+  getWriting(
+    @Param('sessionId') sessionId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.writingSubmission
+      .get(request.principal!, sessionId)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: 'not_applicable',
+        },
+      }));
+  }
+
+  @Post('writing/sessions/:sessionId/submissions')
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(strictValidation)
+  @ApiOperation({ summary: 'Finalize a bounded TOEIC Writing submission' })
+  submitWriting(
+    @Param('sessionId') sessionId: string,
+    @Body() input: SubmitToeicWritingDto,
+    @Req() request: AuthenticatedRequest,
+    @Headers('idempotency-key') idempotencyKey?: string,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.writingSubmission
       .submit(request.principal!, sessionId, input, idempotencyKey)
       .then((data) => ({
         data,
