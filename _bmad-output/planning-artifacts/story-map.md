@@ -186,8 +186,8 @@ are complete and merged to `dev`, including the approved additive `EP4-ST011`
 roadmap projection. `EP4-ST002` is done under the approved additive Speaking
 boundary; `EP4-ST002` and `EP4-ST005` are done under their approved additive
 boundaries. `EP4-ST007` is done under the approved local/no-op gateway
-policy. `EP4-ST006` is the active learner-facing story; later EP4/EP5 stories
-remain backlog until their declared dependencies pass.
+policy. `EP4-ST006` is implemented and in review; later EP4/EP5 stories remain
+backlog until their declared dependencies pass.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |

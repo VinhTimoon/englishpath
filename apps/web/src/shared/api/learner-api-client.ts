@@ -41,6 +41,7 @@ export async function requestLearnerApi<T>(
     method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
     body?: unknown;
     signal?: AbortSignal;
+    idempotencyKey?: string;
   } = {},
 ): Promise<T> {
   const session = readSession();
@@ -52,6 +53,9 @@ export async function requestLearnerApi<T>(
         Accept: "application/json",
         Authorization: `Bearer ${session.accessToken}`,
         ...(options.body ? { "Content-Type": "application/json" } : {}),
+        ...(options.idempotencyKey
+          ? { "Idempotency-Key": options.idempotencyKey }
+          : {}),
       },
       ...(options.body ? { body: JSON.stringify(options.body) } : {}),
       signal: options.signal,

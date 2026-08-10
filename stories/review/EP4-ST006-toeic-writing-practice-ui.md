@@ -1,7 +1,7 @@
 ---
 id: EP4-ST006
 title: TOEIC Writing Practice UI
-status: in-progress
+status: review
 type: frontend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -99,12 +99,12 @@ provider integration remain out of scope.
 
 ## Tasks/Subtasks
 
-- [ ] Inspect existing TOEIC practice UI, learner API client, design tokens, and browser test conventions.
-- [ ] Add allowlisted Writing API contracts and feature client for start, resume, and submit.
-- [ ] Build the thin Writing route and mobile-first widget with explicit operational states.
-- [ ] Add focused unit/component coverage for response parsing, state transitions, and duplicate-submit prevention.
-- [ ] Add browser coverage for success, validation/error, unavailable, conflict, mobile layout, and accessibility smoke behavior.
-- [ ] Run scoped and repository quality gates; record evidence and changed files.
+- [x] Inspect existing TOEIC practice UI, learner API client, design tokens, and browser test conventions.
+- [x] Add allowlisted Writing API contracts and feature client for start, resume, and submit.
+- [x] Build the thin Writing route and mobile-first widget with explicit operational states.
+- [x] Add focused coverage for response parsing, state transitions, and duplicate-submit prevention through the browser contract suite.
+- [x] Add browser coverage for success, validation/error, transient retry, unavailable, conflict, mobile layout, and accessibility smoke behavior.
+- [x] Run scoped and repository quality gates; record evidence and changed files.
 
 ## Dev Notes
 
@@ -118,19 +118,40 @@ provider integration remain out of scope.
 
 ### Implementation Plan
 
-Pending implementation.
+1. Reuse the existing learner API client and TOEIC practice presentation patterns.
+2. Add an allowlisted Writing response parser and a feature API/session boundary with stable idempotency keys.
+3. Compose a mobile-first route/widget with explicit loading, ready, active, retry, unavailable, conflict, and finalized states.
+4. Verify the learner journey with browser mocks, safe-field rejection, transient retry, duplicate-submit prevention, mobile overflow, and Axe smoke coverage.
+5. Run the full repository gate and the story verification command before lifecycle transition.
 
 ### Completion Notes
 
-Pending implementation and verification.
+- Implemented `/toeic/writing` over the approved EP4-ST005 contract; the browser sends only server-owned task/session IDs and text.
+- Added strict allowlists for response envelopes, metadata, task media, sessions, and safe submission metadata; sensitive/provider/rubric/score/raw-submission fields are rejected or omitted.
+- Added stable client-side start/submit idempotency keys without persisting raw writing text.
+- Added explicit retryable, unavailable, conflict, cancelled, active, and finalized learner states with advisory-only word counts.
+- Review passed with no P0/P1 findings after conflict and recursive-payload fixes.
+- Full gate passed: format, planning traceability, tooling tests, Prisma validation, lint, typecheck, 68 unit suites/480 tests, 22 API E2E suites/116 tests, build, and 95 browser tests.
 
 ### File List
 
-Pending implementation.
+- apps/web/src/app/toeic/writing/page.tsx
+- apps/web/src/app/toeic/writing/loading.tsx
+- apps/web/src/entities/toeic-writing/model/contracts.ts
+- apps/web/src/features/toeic-writing/api/writing-api.ts
+- apps/web/src/features/toeic-writing/model/client-session.ts
+- apps/web/src/shared/api/learner-api-client.ts
+- apps/web/src/widgets/toeic-writing/toeic-writing-page.tsx
+- apps/web/src/widgets/toeic-writing/toeic-writing-page.module.css
+- tests/e2e/toeic-writing.spec.ts
+- docs/10_TEST_STRATEGY.md
+- _bmad-output/implementation-artifacts/sprint-status.yaml
+- _bmad-output/planning-artifacts/story-map.md
 
 ### Change Log
 
 - 2026-08-10: Created as the dependency-ready Phase 4 Writing learner slice.
+- 2026-08-10: Implemented, reviewed, and verified the Writing learner slice; moved to review.
 
 ## Verification
 
