@@ -1,7 +1,7 @@
 ---
 id: EP4-ST005
 title: TOEIC Writing Task and Submission API
-status: blocked
+status: ready
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
