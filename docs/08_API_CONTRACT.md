@@ -600,3 +600,19 @@ For unavailable entries, `target` and `reference` are `null` and
 `completionState` is `UNAVAILABLE`; clients must not reinterpret this as zero,
 completed, or a fabricated task. Existing roadmap, today, and aggregate fields
 remain unchanged.
+
+## TOEIC Speaking submission boundary (EP4-ST002)
+
+Protected routes are:
+
+- `POST /api/v1/toeic/speaking/tasks/:taskId/sessions`
+- `GET /api/v1/toeic/speaking/sessions/:sessionId`
+- `POST /api/v1/toeic/speaking/sessions/:sessionId/submissions`
+
+Start and submit requests require an `Idempotency-Key`. The start response
+contains the published learner task projection and an owner-scoped session ID.
+Submission accepts only `RECORDED_AUDIO`, bounded duration/size metadata, and a
+controlled application reference; it never accepts audio bytes, provider URLs,
+scores, rubric internals, or client ownership. Exact retries replay the safe
+acknowledgement, while changed payloads, cross-owner access, missing/withdrawn
+tasks, and finalized sessions return sanitized conflicts/not-found responses.

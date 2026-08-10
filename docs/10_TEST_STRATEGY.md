@@ -427,3 +427,7 @@ The roadmap API regression suite also verifies the additive `fourSkills`
 projection, canonical ordering, owner-authenticated access, explicit
 Speaking/Writing unavailability, backward-compatible roadmap/today fields, and
 absence of provider, rubric, submission, credential, or answer data.
+
+EP4-ST002 adds service, repository-boundary, and API E2E coverage for published
+task gating, owner-scoped sessions, DTO bounds, exact idempotent replay,
+changed-key conflicts, finalization immutability, and safe response redaction.

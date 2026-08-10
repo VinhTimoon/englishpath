@@ -898,6 +898,23 @@ export type EnumToeicTimedTestStatusWithAggregatesFilter<$PrismaModel = never> =
   _max?: Prisma.NestedEnumToeicTimedTestStatusFilter<$PrismaModel>
 }
 
+export type EnumToeicSpeakingSessionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ToeicSpeakingSessionStatus | Prisma.EnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumToeicSpeakingSessionStatusFilter<$PrismaModel> | $Enums.ToeicSpeakingSessionStatus
+}
+
+export type EnumToeicSpeakingSessionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ToeicSpeakingSessionStatus | Prisma.EnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumToeicSpeakingSessionStatusWithAggregatesFilter<$PrismaModel> | $Enums.ToeicSpeakingSessionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumToeicSpeakingSessionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumToeicSpeakingSessionStatusFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1740,6 +1757,23 @@ export type NestedEnumToeicTimedTestStatusWithAggregatesFilter<$PrismaModel = ne
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumToeicTimedTestStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumToeicTimedTestStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumToeicSpeakingSessionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ToeicSpeakingSessionStatus | Prisma.EnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumToeicSpeakingSessionStatusFilter<$PrismaModel> | $Enums.ToeicSpeakingSessionStatus
+}
+
+export type NestedEnumToeicSpeakingSessionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ToeicSpeakingSessionStatus | Prisma.EnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ToeicSpeakingSessionStatus[] | Prisma.ListEnumToeicSpeakingSessionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumToeicSpeakingSessionStatusWithAggregatesFilter<$PrismaModel> | $Enums.ToeicSpeakingSessionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumToeicSpeakingSessionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumToeicSpeakingSessionStatusFilter<$PrismaModel>
 }
 
 

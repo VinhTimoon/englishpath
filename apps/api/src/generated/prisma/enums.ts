@@ -35,6 +35,15 @@ export const ErrorNotebookSource = {
 export type ErrorNotebookSource = (typeof ErrorNotebookSource)[keyof typeof ErrorNotebookSource]
 
 
+export const ToeicSpeakingSessionStatus = {
+  ACTIVE: 'ACTIVE',
+  FINALIZED: 'FINALIZED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ToeicSpeakingSessionStatus = (typeof ToeicSpeakingSessionStatus)[keyof typeof ToeicSpeakingSessionStatus]
+
+
 export const IdentityProvider = {
   SUPABASE: 'SUPABASE'
 } as const

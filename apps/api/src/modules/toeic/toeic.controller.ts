@@ -56,6 +56,8 @@ import {
   AnswerToeicTimedTestDto,
   StartToeicTimedTestDto,
 } from './dto/toeic-timed-test.dto';
+import { SubmitToeicSpeakingDto } from './dto/toeic-speaking-submission.dto';
+import { ToeicSpeakingSubmissionService } from './toeic-speaking-submission.service';
 
 const strictValidation = new ValidationPipe({
   transform: true,
@@ -81,7 +83,68 @@ export class ToeicController {
     private readonly reading: ToeicReadingPracticeService,
     private readonly catalogue: ToeicPracticeCatalogueService,
     private readonly timed: ToeicTimedTestService,
+    private readonly speakingSubmission: ToeicSpeakingSubmissionService,
   ) {}
+
+  @Post('speaking/tasks/:taskId/sessions')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Start an approved TOEIC Speaking task' })
+  startSpeaking(
+    @Param('taskId') taskId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('idempotency-key') idempotencyKey?: string,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.speakingSubmission
+      .start(request.principal!, taskId, idempotencyKey)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
+  }
+
+  @Get('speaking/sessions/:sessionId')
+  @ApiOperation({ summary: 'Read an owner-scoped TOEIC Speaking session' })
+  getSpeaking(
+    @Param('sessionId') sessionId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.speakingSubmission
+      .get(request.principal!, sessionId)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: 'not_applicable',
+        },
+      }));
+  }
+
+  @Post('speaking/sessions/:sessionId/submissions')
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(strictValidation)
+  @ApiOperation({ summary: 'Finalize a bounded TOEIC Speaking submission' })
+  submitSpeaking(
+    @Param('sessionId') sessionId: string,
+    @Body() input: SubmitToeicSpeakingDto,
+    @Req() request: AuthenticatedRequest,
+    @Headers('idempotency-key') idempotencyKey?: string,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.speakingSubmission
+      .submit(request.principal!, sessionId, input, idempotencyKey)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
+  }
 
   @Post('tests/sessions')
   @HttpCode(HttpStatus.OK)

@@ -1,7 +1,7 @@
 ---
 id: EP4-ST002
 title: TOEIC Speaking Task and Submission API
-status: blocked
+status: in-progress
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -14,6 +14,7 @@ allowed_paths:
   - apps/api/test/**
   - apps/api/prisma/schema.prisma
   - apps/api/prisma/migrations/**
+  - apps/api/src/generated/prisma/**
   - docs/07_DATABASE_DESIGN.md
   - docs/08_API_CONTRACT.md
   - docs/10_TEST_STRATEGY.md
@@ -152,3 +153,48 @@ Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".co
 
 Blocked by the approved persistence/source boundary decision request:
 `notes/ai-req/2026-08-10-ep4-st002-speaking-submission-persistence-boundary.md`.
+
+## Owner Decision / Recovery Record
+
+- Owner approved Option 1 on 2026-08-10 and authorized resuming this same
+  story; no recovery story is created.
+- The task source boundary is an EnglishPath-owned, credential-free reviewed
+  fixture/catalogue. Supplied Drive sources remain read-only references; no
+  Drive original is edited or deleted.
+- The generated Prisma client path is explicitly added to the allowed scope.
+- Recording storage, provider media, AI, official scoring, and frontend remain
+  out of scope. The local catalogue is bounded to reviewed EnglishPath-owned
+  fixture data until a governed source import is available.
+
+## Implementation Tasks
+
+- [x] Add additive Speaking task/session/submission persistence and migration.
+- [x] Add owner-scoped repository and service with publication, bounds,
+  lifecycle, and idempotency policy.
+- [x] Add strict DTO/controller routes and safe projections.
+- [x] Add unit, repository, and API E2E regression coverage.
+- [x] Update database/API/security/test documentation and run full gates.
+
+## Implementation Record
+
+- Added published EnglishPath-owned Speaking fixture `ep-speaking-read-aloud-001`
+  behind a catalogue boundary. It is credential-free and does not expose
+  provider/source internals.
+- Added additive `ToeicSpeakingSession` and `ToeicSpeakingSubmission` models,
+  owner/idempotency indexes, and transactional ACTIVE-to-FINALIZED compare and
+  set. The migration is validation/generated evidence only.
+- Added protected start, read, and submit routes with strict DTO allowlists,
+  bounded recording metadata, exact replay, changed-key conflict, publication
+  gating, owner scoping, and learner-safe projections.
+
+## Verification Evidence
+
+- Story doctor and story verification passed.
+- Prisma validation and generated-client TypeScript validation passed.
+- Focused unit: 1 suite / 4 tests passed.
+- Focused API E2E: 1 suite / 2 tests passed.
+- TOEIC/access/audit regression: 22 suites / 153 tests passed.
+- TOEIC practice/speaking/timed-test E2E: 2 suites / 21 tests passed.
+- Full typecheck, test (66 suites / 473 tests), build, and browser E2E (87/87)
+  passed. Full lint passed after the final lint fixes.
+- `git diff --check` passed.

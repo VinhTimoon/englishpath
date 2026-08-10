@@ -9,83 +9,85 @@ datasource db {
 }
 
 model User {
-  id                          String                       @id @default(cuid())
-  email                       String                       @unique
-  legacyName                  String?                      @map("name")
-  authProvider                IdentityProvider             @default(SUPABASE)
-  externalSubject             String?
-  status                      UserStatus                   @default(ACTIVE)
-  createdAt                   DateTime                     @default(now())
-  updatedAt                   DateTime                     @updatedAt
-  profile                     UserProfile?
-  roleAssignments             UserRole[]                   @relation("AssignedUserRoles")
-  roleAssignmentsAuthored     UserRole[]                   @relation("RoleAssignmentActor")
-  onboarding                  LearnerOnboarding?
-  placementAttempts           PlacementAttempt[]
-  roadmaps                    Roadmap[]
-  practiceSessions            PracticeSession[]
-  learnerProgress             LearnerProgress?
-  errorNotebookEntries        ErrorNotebookEntry[]
-  dailySentenceCompletions    DailySentenceCompletion[]
-  vocabularyMasteryStates     VocabularyMasteryState[]
-  vocabularyReviewSubmissions VocabularyReviewSubmission[]
-  privilegedAuditEvents       PrivilegedAuditEvent[]
-  toeicPracticeSessions       ToeicPracticeSession[]
+  id                           String                        @id @default(cuid())
+  email                        String                        @unique
+  legacyName                   String?                       @map("name")
+  authProvider                 IdentityProvider              @default(SUPABASE)
+  externalSubject              String?
+  status                       UserStatus                    @default(ACTIVE)
+  createdAt                    DateTime                      @default(now())
+  updatedAt                    DateTime                      @updatedAt
+  profile                      UserProfile?
+  roleAssignments              UserRole[]                    @relation("AssignedUserRoles")
+  roleAssignmentsAuthored      UserRole[]                    @relation("RoleAssignmentActor")
+  onboarding                   LearnerOnboarding?
+  placementAttempts            PlacementAttempt[]
+  roadmaps                     Roadmap[]
+  practiceSessions             PracticeSession[]
+  learnerProgress              LearnerProgress?
+  errorNotebookEntries         ErrorNotebookEntry[]
+  dailySentenceCompletions     DailySentenceCompletion[]
+  vocabularyMasteryStates      VocabularyMasteryState[]
+  vocabularyReviewSubmissions  VocabularyReviewSubmission[]
+  privilegedAuditEvents        PrivilegedAuditEvent[]
+  toeicPracticeSessions        ToeicPracticeSession[]
   toeicReadingPracticeSessions ToeicReadingPracticeSession[]
   toeicTimedTestSessions       ToeicTimedTestSession[]
+  toeicSpeakingSessions        ToeicSpeakingSession[]
+  toeicSpeakingSubmissions     ToeicSpeakingSubmission[]
   libraryProgress              LibraryLearningProgress[]
   libraryBookmarks             LibraryBookmark[]
-  libraryNotes                  LibraryPersonalNote[]
-  libraryDrillOutcomes          LibraryDrillOutcome[]
-  shadowingAttempts              LibraryShadowingAttempt[]
+  libraryNotes                 LibraryPersonalNote[]
+  libraryDrillOutcomes         LibraryDrillOutcome[]
+  shadowingAttempts            LibraryShadowingAttempt[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
 }
 
 model LibraryContent {
-  id                String                @id
-  contentType       LibraryContentType
-  title             String
-  accessTier        LibraryAccessTier     @default(FREE)
-  usageScope        LibraryUsageScope     @default(PRACTICE)
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
-  versions          LibraryContentVersion[]
-  manifests         LibrarySourceManifest[]
+  id          String                  @id
+  contentType LibraryContentType
+  title       String
+  accessTier  LibraryAccessTier       @default(FREE)
+  usageScope  LibraryUsageScope       @default(PRACTICE)
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  versions    LibraryContentVersion[]
+  manifests   LibrarySourceManifest[]
 
   @@index([contentType, accessTier, usageScope])
 }
 
 model LibraryContentVersion {
-  id                    String                 @id
-  contentId             String
-  versionNumber         Int
-  previousVersionId     String?
-  sourceManifestId      String?
-  sourceChecksum        String
-  sourceVersion         String
-  reviewStatus          LibraryReviewStatus    @default(DRAFT)
-  publicationState      LibraryPublicationState @default(UNPUBLISHED)
-  rightsStatus          LibraryRightsStatus    @default(PENDING)
-  rightsExpiresAt       DateTime?
-  reviewedAt            DateTime?
-  reviewedBy            String?
-  publishedAt           DateTime?
-  retiredAt             DateTime?
-  createdAt             DateTime               @default(now())
-  content               LibraryContent         @relation(fields: [contentId], references: [id], onDelete: Restrict)
-  sourceManifest        LibrarySourceManifest? @relation(fields: [sourceManifestId], references: [id], onDelete: SetNull)
-  previousVersion       LibraryContentVersion? @relation("LibraryVersionLineage", fields: [previousVersionId], references: [id], onDelete: SetNull)
-  nextVersions          LibraryContentVersion[] @relation("LibraryVersionLineage")
-  storageReferences     LibraryStorageReference[]
-  mediaMetadata         LibraryMediaMetadata?
-  transcriptMetadata    LibraryTranscriptMetadata?
-  libraryProgress       LibraryLearningProgress[]
-  libraryBookmarks      LibraryBookmark[]
-  libraryNotes          LibraryPersonalNote[]
-  drillOutcomes         LibraryDrillOutcome[]
-  shadowingAttempts     LibraryShadowingAttempt[]
+  id                 String                     @id
+  contentId          String
+  versionNumber      Int
+  previousVersionId  String?
+  sourceManifestId   String?
+  sourceChecksum     String
+  sourceVersion      String
+  reviewStatus       LibraryReviewStatus        @default(DRAFT)
+  publicationState   LibraryPublicationState    @default(UNPUBLISHED)
+  rightsStatus       LibraryRightsStatus        @default(PENDING)
+  rightsExpiresAt    DateTime?
+  reviewedAt         DateTime?
+  reviewedBy         String?
+  publishedAt        DateTime?
+  retiredAt          DateTime?
+  createdAt          DateTime                   @default(now())
+  content            LibraryContent             @relation(fields: [contentId], references: [id], onDelete: Restrict)
+  sourceManifest     LibrarySourceManifest?     @relation(fields: [sourceManifestId], references: [id], onDelete: SetNull)
+  previousVersion    LibraryContentVersion?     @relation("LibraryVersionLineage", fields: [previousVersionId], references: [id], onDelete: SetNull)
+  nextVersions       LibraryContentVersion[]    @relation("LibraryVersionLineage")
+  storageReferences  LibraryStorageReference[]
+  mediaMetadata      LibraryMediaMetadata?
+  transcriptMetadata LibraryTranscriptMetadata?
+  libraryProgress    LibraryLearningProgress[]
+  libraryBookmarks   LibraryBookmark[]
+  libraryNotes       LibraryPersonalNote[]
+  drillOutcomes      LibraryDrillOutcome[]
+  shadowingAttempts  LibraryShadowingAttempt[]
 
   @@unique([contentId, versionNumber])
   @@unique([contentId, sourceChecksum, sourceVersion])
@@ -94,19 +96,19 @@ model LibraryContentVersion {
 }
 
 model LibrarySourceManifest {
-  id              String                 @id
-  provider        String
-  sourceFileId    String
-  sourceChecksum  String
-  sourceVersion   String
+  id               String                  @id
+  provider         String
+  sourceFileId     String
+  sourceChecksum   String
+  sourceVersion    String
   privateSourceRef String
-  parentPathHints String[]
-  manifestJson    Json
-  inventoriedAt   DateTime
-  createdAt       DateTime               @default(now())
-  contentId       String?
-  content         LibraryContent?        @relation(fields: [contentId], references: [id], onDelete: SetNull)
-  versions        LibraryContentVersion[]
+  parentPathHints  String[]
+  manifestJson     Json
+  inventoriedAt    DateTime
+  createdAt        DateTime                @default(now())
+  contentId        String?
+  content          LibraryContent?         @relation(fields: [contentId], references: [id], onDelete: SetNull)
+  versions         LibraryContentVersion[]
 
   @@unique([provider, sourceFileId, sourceChecksum, sourceVersion])
   @@index([provider, sourceFileId, inventoriedAt])
@@ -115,15 +117,15 @@ model LibrarySourceManifest {
 }
 
 model LibraryStorageReference {
-  id             String                @id
+  id               String                @id
   contentVersionId String
-  provider       String
-  objectKey      String
-  state          LibraryStorageState   @default(PENDING)
-  metadataJson   Json?
-  createdAt      DateTime              @default(now())
-  updatedAt      DateTime              @updatedAt
-  contentVersion LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+  provider         String
+  objectKey        String
+  state            LibraryStorageState   @default(PENDING)
+  metadataJson     Json?
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  contentVersion   LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
 
   @@unique([provider, objectKey])
   @@index([contentVersionId, state])
@@ -155,57 +157,60 @@ enum LibraryProgressStatus {
 }
 
 model LibraryLearningProgress {
-  id                String                @id @default(cuid())
-  userId            String
-  contentVersionId  String
-  status            LibraryProgressStatus @default(NOT_STARTED)
-  positionSeconds   Int                   @default(0)
-  version           Int                   @default(1)
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
-  user              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contentVersion    LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+  id               String                @id @default(cuid())
+  userId           String
+  contentVersionId String
+  status           LibraryProgressStatus @default(NOT_STARTED)
+  positionSeconds  Int                   @default(0)
+  version          Int                   @default(1)
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  user             User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentVersion   LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+
   @@unique([userId, contentVersionId])
   @@index([userId, updatedAt])
 }
 
 model LibraryBookmark {
-  id                String                @id @default(cuid())
-  userId            String
-  contentVersionId  String
-  timestampSeconds  Int
-  createdAt         DateTime              @default(now())
-  user              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contentVersion    LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+  id               String                @id @default(cuid())
+  userId           String
+  contentVersionId String
+  timestampSeconds Int
+  createdAt        DateTime              @default(now())
+  user             User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentVersion   LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+
   @@unique([userId, contentVersionId, timestampSeconds])
   @@index([userId, contentVersionId, timestampSeconds])
 }
 
 model LibraryPersonalNote {
-  id                String                @id @default(cuid())
-  userId            String
-  contentVersionId  String
-  body              String
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
-  user              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contentVersion    LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+  id               String                @id @default(cuid())
+  userId           String
+  contentVersionId String
+  body             String
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  user             User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentVersion   LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+
   @@unique([userId, contentVersionId])
   @@index([userId, updatedAt])
 }
 
 model LibraryDrillOutcome {
-  id                String                @id @default(cuid())
-  userId            String
-  contentVersionId  String
-  drillId           String
-  questionId        String
-  selectedOptionId  String
-  isCorrect         Boolean
-  score             Int
-  completedAt       DateTime              @default(now())
-  user              User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contentVersion    LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+  id               String                @id @default(cuid())
+  userId           String
+  contentVersionId String
+  drillId          String
+  questionId       String
+  selectedOptionId String
+  isCorrect        Boolean
+  score            Int
+  completedAt      DateTime              @default(now())
+  user             User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentVersion   LibraryContentVersion @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
 
   @@unique([userId, contentVersionId, drillId, questionId])
   @@index([userId, contentVersionId, completedAt])
@@ -218,19 +223,19 @@ enum LibraryShadowingAttemptStatus {
 }
 
 model LibraryShadowingAttempt {
-  id                String                         @id @default(cuid())
-  attemptKey        String                         @unique @default(cuid())
-  userId            String
-  contentVersionId  String
-  segmentIndex      Int                            @default(0)
-  positionSeconds   Int                            @default(0)
-  status            LibraryShadowingAttemptStatus  @default(ACTIVE)
-  selfRating        Int?
-  createdAt         DateTime                       @default(now())
-  updatedAt         DateTime                       @updatedAt
-  finalizedAt       DateTime?
-  user              User                           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contentVersion    LibraryContentVersion          @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
+  id               String                        @id @default(cuid())
+  attemptKey       String                        @unique @default(cuid())
+  userId           String
+  contentVersionId String
+  segmentIndex     Int                           @default(0)
+  positionSeconds  Int                           @default(0)
+  status           LibraryShadowingAttemptStatus @default(ACTIVE)
+  selfRating       Int?
+  createdAt        DateTime                      @default(now())
+  updatedAt        DateTime                      @updatedAt
+  finalizedAt      DateTime?
+  user             User                          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentVersion   LibraryContentVersion         @relation(fields: [contentVersionId], references: [id], onDelete: Restrict)
 
   @@index([userId, contentVersionId, updatedAt])
   @@index([userId, finalizedAt])
@@ -348,20 +353,20 @@ model LearnerProgress {
 }
 
 model ErrorNotebookEntry {
-  id             String          @id @default(cuid())
-  userId         String
-  source         ErrorNotebookSource @default(PRACTICE)
-  sessionId      String?
+  id                      String                 @id @default(cuid())
+  userId                  String
+  source                  ErrorNotebookSource    @default(PRACTICE)
+  sessionId               String?
   toeicTimedTestSessionId String?
-  questionId     String
-  prompt         String
-  selectedOption String
-  correctOption  String
-  explanation    String
-  createdAt      DateTime        @default(now())
-  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  session        PracticeSession? @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  toeicTimedTestSession ToeicTimedTestSession? @relation(fields: [toeicTimedTestSessionId], references: [id], onDelete: Cascade)
+  questionId              String
+  prompt                  String
+  selectedOption          String
+  correctOption           String
+  explanation             String
+  createdAt               DateTime               @default(now())
+  user                    User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  session                 PracticeSession?       @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  toeicTimedTestSession   ToeicTimedTestSession? @relation(fields: [toeicTimedTestSessionId], references: [id], onDelete: Cascade)
 
   @@unique([sessionId, questionId])
   @@unique([toeicTimedTestSessionId, questionId])
@@ -581,49 +586,49 @@ model PrivilegedAuditEvent {
 }
 
 model ToeicQuestion {
-  id        String                @id
-  versions ToeicQuestionVersion[]
-  createdAt DateTime              @default(now())
-  updatedAt DateTime              @updatedAt
+  id        String                 @id
+  versions  ToeicQuestionVersion[]
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @updatedAt
 }
 
 model ToeicQuestionVersion {
-  id                  String                   @id
-  questionId          String
-  version             Int
-  previousVersionId   String?
-  importIdentity      String
-  part                ToeicPart
-  questionType        ToeicQuestionType
-  difficulty          ToeicDifficulty
-  topic               String?
-  stimulusGroup       String?
-  prompt              String
-  options             Json
-  mediaReference      String?
-  explanation         String?
-  correctAnswer       String
-  sourceIdentity      String
-  sourceUrl           String?
-  checksum            String
-  sourceVersion       String
-  provenance          String
-  rightsOwner         String
-  licenseStatus       ToeicLicenseStatus
-  allowedUsageScopes  ToeicUsageScope[]
-  accessTier          ToeicAccessTier
-  reviewStatus        ToeicReviewStatus       @default(DRAFT)
-  reviewDecision      ToeicReviewDecision?
-  reviewEvidence      String?
-  reviewerIdentity    String?
-  reviewedAt          DateTime?
-  publicationState    ToeicPublicationState   @default(UNPUBLISHED)
-  publishedAt         DateTime?
-  validUntil          DateTime?
-  createdAt           DateTime                @default(now())
-  question            ToeicQuestion           @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  previousVersion     ToeicQuestionVersion?   @relation("ToeicVersionLineage", fields: [previousVersionId], references: [id], onDelete: Restrict)
-  nextVersions        ToeicQuestionVersion[]  @relation("ToeicVersionLineage")
+  id                 String                 @id
+  questionId         String
+  version            Int
+  previousVersionId  String?
+  importIdentity     String
+  part               ToeicPart
+  questionType       ToeicQuestionType
+  difficulty         ToeicDifficulty
+  topic              String?
+  stimulusGroup      String?
+  prompt             String
+  options            Json
+  mediaReference     String?
+  explanation        String?
+  correctAnswer      String
+  sourceIdentity     String
+  sourceUrl          String?
+  checksum           String
+  sourceVersion      String
+  provenance         String
+  rightsOwner        String
+  licenseStatus      ToeicLicenseStatus
+  allowedUsageScopes ToeicUsageScope[]
+  accessTier         ToeicAccessTier
+  reviewStatus       ToeicReviewStatus      @default(DRAFT)
+  reviewDecision     ToeicReviewDecision?
+  reviewEvidence     String?
+  reviewerIdentity   String?
+  reviewedAt         DateTime?
+  publicationState   ToeicPublicationState  @default(UNPUBLISHED)
+  publishedAt        DateTime?
+  validUntil         DateTime?
+  createdAt          DateTime               @default(now())
+  question           ToeicQuestion          @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  previousVersion    ToeicQuestionVersion?  @relation("ToeicVersionLineage", fields: [previousVersionId], references: [id], onDelete: Restrict)
+  nextVersions       ToeicQuestionVersion[] @relation("ToeicVersionLineage")
 
   @@unique([questionId, version])
   @@unique([sourceIdentity, checksum, sourceVersion])
@@ -635,83 +640,88 @@ model ToeicQuestionVersion {
 }
 
 model ToeicPracticeSession {
-  id              String                   @id @default(cuid())
+  id              String                @id @default(cuid())
   userId          String
   clientSessionId String
   listeningPart   ToeicPart?
   difficulty      ToeicDifficulty?
   questionIds     String[]
-  status          ToeicPracticeStatus      @default(ACTIVE)
+  status          ToeicPracticeStatus   @default(ACTIVE)
   total           Int
   score           Int?
-  startedAt       DateTime                 @default(now())
+  startedAt       DateTime              @default(now())
   submittedAt     DateTime?
-  user            User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user            User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   answers         ToeicPracticeAnswer[]
+
   @@unique([userId, clientSessionId])
   @@index([userId, status])
   @@index([id])
 }
 
 model ToeicPracticeAnswer {
-  id             String              @id @default(cuid())
+  id             String               @id @default(cuid())
   sessionId      String
   questionId     String
   selectedOption String
   isCorrect      Boolean
-  answeredAt     DateTime            @default(now())
+  answeredAt     DateTime             @default(now())
   session        ToeicPracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
   @@unique([sessionId, questionId])
   @@index([sessionId])
 }
 
 model ToeicReadingPracticeSession {
-  id              String              @id @default(cuid())
+  id              String                       @id @default(cuid())
   userId          String
   clientSessionId String
   readingPart     ToeicPart?
   difficulty      ToeicDifficulty?
   topic           String?
   questionIds     String[]
-  status          ToeicPracticeStatus @default(ACTIVE)
+  status          ToeicPracticeStatus          @default(ACTIVE)
   total           Int
   score           Int?
-  startedAt       DateTime            @default(now())
+  startedAt       DateTime                     @default(now())
   submittedAt     DateTime?
-  user            User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user            User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
   answers         ToeicReadingPracticeAnswer[]
+
   @@unique([userId, clientSessionId])
   @@index([userId, status])
 }
 
 model ToeicReadingPracticeAnswer {
-  id             String                       @id @default(cuid())
+  id             String                      @id @default(cuid())
   sessionId      String
   questionId     String
   selectedOption String
   isCorrect      Boolean
-  answeredAt     DateTime                     @default(now())
-  session        ToeicReadingPracticeSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  answeredAt     DateTime                    @default(now())
+  session        ToeicReadingPracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
   @@unique([sessionId, questionId])
   @@index([sessionId])
 }
 
 model ToeicTimedTestSession {
-  id              String                 @id @default(cuid())
-  userId          String
-  clientSessionId String
-  mode            ToeicTimedTestMode
-  policyVersion   String
-  questionIds     String[]
-  startedAt       DateTime
-  deadlineAt      DateTime
-  status          ToeicTimedTestStatus    @default(ACTIVE)
-  total           Int
-  score           Int?
-  finalizedAt     DateTime?
-  user            User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  answers         ToeicTimedTestAnswer[]
+  id                   String                 @id @default(cuid())
+  userId               String
+  clientSessionId      String
+  mode                 ToeicTimedTestMode
+  policyVersion        String
+  questionIds          String[]
+  startedAt            DateTime
+  deadlineAt           DateTime
+  status               ToeicTimedTestStatus   @default(ACTIVE)
+  total                Int
+  score                Int?
+  finalizedAt          DateTime?
+  user                 User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answers              ToeicTimedTestAnswer[]
   errorNotebookEntries ErrorNotebookEntry[]
+
   @@unique([userId, clientSessionId])
   @@index([userId, status])
   @@index([deadlineAt, status])
@@ -730,8 +740,49 @@ model ToeicTimedTestAnswer {
   isCorrect      Boolean
   answeredAt     DateTime              @default(now())
   session        ToeicTimedTestSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
   @@unique([sessionId, questionId])
   @@index([sessionId])
+}
+
+enum ToeicSpeakingSessionStatus {
+  ACTIVE
+  FINALIZED
+  CANCELLED
+}
+
+model ToeicSpeakingSession {
+  id                  String                     @id @default(cuid())
+  userId              String
+  taskId              String
+  taskVersion         String
+  startIdempotencyKey String
+  status              ToeicSpeakingSessionStatus @default(ACTIVE)
+  startedAt           DateTime                   @default(now())
+  finalizedAt         DateTime?
+  user                User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  submissions         ToeicSpeakingSubmission[]
+
+  @@unique([userId, startIdempotencyKey])
+  @@index([userId, status, startedAt])
+  @@index([taskId, taskVersion, status])
+}
+
+model ToeicSpeakingSubmission {
+  id                  String               @id @default(cuid())
+  sessionId           String               @unique
+  userId              String
+  idempotencyKey      String
+  responseMode        String
+  durationSeconds     Int
+  sizeBytes           Int
+  submissionReference String
+  submittedAt         DateTime             @default(now())
+  session             ToeicSpeakingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, idempotencyKey])
+  @@index([userId, submittedAt])
 }
 
 enum IdentityProvider {
@@ -766,6 +817,7 @@ enum ToeicPart {
   PART_6
   PART_7
 }
+
 enum ToeicQuestionType {
   PHOTO_DESCRIPTION
   QUESTION_RESPONSE
@@ -775,6 +827,7 @@ enum ToeicQuestionType {
   TEXT_COMPLETION
   READING_COMPREHENSION
 }
+
 enum ToeicDifficulty {
   BEGINNER
   ELEMENTARY
@@ -782,6 +835,7 @@ enum ToeicDifficulty {
   UPPER_INTERMEDIATE
   ADVANCED
 }
+
 enum ToeicLicenseStatus {
   UNKNOWN
   PENDING_REVIEW
@@ -789,28 +843,33 @@ enum ToeicLicenseStatus {
   REJECTED
   EXPIRED
 }
+
 enum ToeicReviewStatus {
   DRAFT
   IN_REVIEW
   REVIEWED
   REJECTED
 }
+
 enum ToeicReviewDecision {
   APPROVE
   REJECT
   REQUEST_CHANGES
 }
+
 enum ToeicPublicationState {
   UNPUBLISHED
   PUBLISHED
   RETIRED
 }
+
 enum ToeicUsageScope {
   PRACTICE
   MOCK_TEST
   EXAM
   REVIEW
 }
+
 enum ToeicAccessTier {
   FREE
   PREMIUM

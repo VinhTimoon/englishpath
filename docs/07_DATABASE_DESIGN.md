@@ -367,3 +367,15 @@ reference only the governed version and authenticated owner.
 Speaking/Writing task versions and advisory rubrics are currently pure, immutable
 in-memory contracts. This story adds no Prisma models, migration, persistence,
 submission, recording, or official-score storage; those belong to later stories.
+
+## EP4-ST002 Speaking submission boundary
+
+`ToeicSpeakingSession` and `ToeicSpeakingSubmission` are additive, learner-owned
+records. Sessions snapshot the approved task ID/version and start idempotency
+key; submissions are unique by session and owner/idempotency key. Finalization
+uses an owner/status compare-and-set inside a transaction. The persisted
+submission contains only bounded metadata and a controlled application
+reference; it never stores raw audio bytes, provider locators, credentials, or
+official scores. Migration `20260810100000_toeic_speaking_submission_boundary`
+is local/generated evidence and must not be applied automatically to shared
+Supabase or production.

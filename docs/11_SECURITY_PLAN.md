@@ -269,3 +269,12 @@ The current-roadmap `fourSkills` response is produced after the authenticated
 principal has been resolved and after the owner-scoped repository query. It is
 an explicit allowlist; unavailable Speaking/Writing entries contain no target
 or reference and cannot be converted into learner progress by the client.
+
+## EP4-ST002 speaking submission boundary
+
+Speaking start/read/submit routes use the authenticated application user ID for
+every repository lookup. The server validates published task identity, response
+mode, duration, size, and application reference. Raw audio, provider locators,
+credentials, rubric weights, hidden prompts, and official scores are excluded.
+Finalization is an owner/status compare-and-set transaction with unique
+idempotency constraints, so retries cannot duplicate or reopen evidence.

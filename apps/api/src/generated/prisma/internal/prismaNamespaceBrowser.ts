@@ -89,7 +89,9 @@ export const ModelName = {
   ToeicReadingPracticeSession: 'ToeicReadingPracticeSession',
   ToeicReadingPracticeAnswer: 'ToeicReadingPracticeAnswer',
   ToeicTimedTestSession: 'ToeicTimedTestSession',
-  ToeicTimedTestAnswer: 'ToeicTimedTestAnswer'
+  ToeicTimedTestAnswer: 'ToeicTimedTestAnswer',
+  ToeicSpeakingSession: 'ToeicSpeakingSession',
+  ToeicSpeakingSubmission: 'ToeicSpeakingSubmission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -730,6 +732,35 @@ export const ToeicTimedTestAnswerScalarFieldEnum = {
 } as const
 
 export type ToeicTimedTestAnswerScalarFieldEnum = (typeof ToeicTimedTestAnswerScalarFieldEnum)[keyof typeof ToeicTimedTestAnswerScalarFieldEnum]
+
+
+export const ToeicSpeakingSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  taskId: 'taskId',
+  taskVersion: 'taskVersion',
+  startIdempotencyKey: 'startIdempotencyKey',
+  status: 'status',
+  startedAt: 'startedAt',
+  finalizedAt: 'finalizedAt'
+} as const
+
+export type ToeicSpeakingSessionScalarFieldEnum = (typeof ToeicSpeakingSessionScalarFieldEnum)[keyof typeof ToeicSpeakingSessionScalarFieldEnum]
+
+
+export const ToeicSpeakingSubmissionScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  idempotencyKey: 'idempotencyKey',
+  responseMode: 'responseMode',
+  durationSeconds: 'durationSeconds',
+  sizeBytes: 'sizeBytes',
+  submissionReference: 'submissionReference',
+  submittedAt: 'submittedAt'
+} as const
+
+export type ToeicSpeakingSubmissionScalarFieldEnum = (typeof ToeicSpeakingSubmissionScalarFieldEnum)[keyof typeof ToeicSpeakingSubmissionScalarFieldEnum]
 
 
 export const SortOrder = {
