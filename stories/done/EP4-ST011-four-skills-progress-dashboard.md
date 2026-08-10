@@ -1,7 +1,7 @@
 ---
 id: EP4-ST011
 title: Four Skills Progress Dashboard
-status: review
+status: done
 type: backend
 priority: medium
 phase: phase-4-toeic-speaking-writing-and-four-skills
