@@ -1,7 +1,7 @@
 ---
 id: EP4-ST002
 title: TOEIC Speaking Task and Submission API
-status: in-progress
+status: review
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -94,7 +94,7 @@ correlation metadata, and sanitized TOEIC error handling.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/ready/EP4-ST002-toeic-speaking-task-submission-api.md`
+- `node scripts/story-doctor.mjs stories/review/EP4-ST002-toeic-speaking-task-submission-api.md`
 - `pnpm story:verify stories/in-progress/EP4-ST002-toeic-speaking-task-submission-api.md`
 - `pnpm prisma:validate`
 - `pnpm --filter api test -- --runInBand "toeic|access|audit"`
@@ -130,7 +130,7 @@ stable server contract.
 ## Story Creation Notes
 
 - Created after EP4-ST001 close commit `980257b`.
-- EP4-ST002 is the only dependency-ready story; later EP4/EP5 stories remain
+- EP4-ST002 implementation is complete and in review; later EP4/EP5 stories remain
   backlog until their declared dependencies pass.
 
 
