@@ -34,6 +34,7 @@ import {
   TOEIC_SPEAKING_TASK_CATALOGUE,
 } from './toeic-speaking-submission.models';
 import { ToeicWritingSubmissionService } from './toeic-writing-submission.service';
+import { ToeicWritingFeedbackService } from './toeic-writing-feedback.service';
 import { PrismaToeicWritingSubmissionRepository } from './toeic-writing-submission.repository';
 import { EnglishPathWritingTaskCatalogue } from './toeic-writing-task.catalogue';
 import {
@@ -60,6 +61,7 @@ import {
     PrismaToeicSpeakingSubmissionRepository,
     EnglishPathSpeakingTaskCatalogue,
     ToeicWritingSubmissionService,
+    ToeicWritingFeedbackService,
     PrismaToeicWritingSubmissionRepository,
     EnglishPathWritingTaskCatalogue,
     {

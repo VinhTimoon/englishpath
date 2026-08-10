@@ -1,4 +1,8 @@
-import { INestApplication } from '@nestjs/common';
+import {
+  ConflictException,
+  INestApplication,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { App } from 'supertest/types';
@@ -19,6 +23,7 @@ import {
   type WritingSessionRecord,
   type WritingSubmissionRecord,
 } from '../src/modules/toeic/toeic-writing-submission.models';
+import { AiFeedbackGatewayService } from '../src/modules/ai-gateway/ai-feedback.service';
 import { createTaskVersion } from '../src/modules/toeic/toeic-speaking-writing.models';
 import { PrismaService } from '../src/prisma/prisma.service';
 
@@ -60,6 +65,25 @@ describe('TOEIC Writing submission vertical slice (e2e)', () => {
   const catalogue: jest.Mocked<ToeicWritingTaskCatalogue> = {
     findPublished: jest.fn().mockResolvedValue(task),
   };
+  const feedbackGateway = {
+    request: jest.fn().mockResolvedValue({
+      feedback: {
+        outcome: 'ALLOWED',
+        policyVersion: 'feedback-gateway-v1',
+        promptVersion: 'local-fixture-v1',
+        feature: 'WRITING',
+        skill: 'WRITING',
+        quotaRemaining: 9,
+        feedback: {
+          advisoryOnly: true,
+          summary: 'A safe advisory summary.',
+          strengths: ['The response is complete.'],
+          nextSteps: ['Review word choice.'],
+        },
+      },
+      replayed: false,
+    }),
+  };
   const activeSession = (): WritingSessionRecord => ({
     id: 'writing-session-e2e',
     userId: principal.applicationUserId,
@@ -81,6 +105,12 @@ describe('TOEIC Writing submission vertical slice (e2e)', () => {
     submittedText: 'Daily practice helps me learn English every morning.',
     submittedAt: new Date('2026-08-10T00:01:00.000Z'),
   });
+  const finalizedSession = (): WritingSessionRecord => ({
+    ...activeSession(),
+    status: 'FINALIZED',
+    finalizedAt: new Date('2026-08-10T00:01:00.000Z'),
+    submission: finalSubmission(),
+  });
 
   beforeEach(async () => {
     repository.findByStartIdempotency.mockResolvedValue(null);
@@ -96,6 +126,7 @@ describe('TOEIC Writing submission vertical slice (e2e)', () => {
       },
       created: true,
     });
+    feedbackGateway.request.mockClear();
     const module = await Test.createTestingModule({ imports: [AppModule] })
       .overrideProvider(PrismaService)
       .useValue({ $queryRaw: jest.fn().mockResolvedValue([{ result: 1 }]) })
@@ -107,6 +138,8 @@ describe('TOEIC Writing submission vertical slice (e2e)', () => {
       .useValue(repository)
       .overrideProvider(TOEIC_WRITING_TASK_CATALOGUE)
       .useValue(catalogue)
+      .overrideProvider(AiFeedbackGatewayService)
+      .useValue(feedbackGateway)
       .compile();
     app = module.createNestApplication();
     await app.init();
@@ -158,5 +191,132 @@ describe('TOEIC Writing submission vertical slice (e2e)', () => {
       .get('/api/v1/toeic/writing/sessions/other-owner-session')
       .set('Authorization', 'Bearer local.token.value')
       .expect(404);
+    expect(repository.findSession.mock.calls).toContainEqual([
+      principal.applicationUserId,
+      'other-owner-session',
+    ]);
+  });
+
+  it('requests safe advisory feedback only for the owner finalized session', async () => {
+    repository.findSession.mockResolvedValue(finalizedSession());
+    const response = await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${finalizedSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-writing-e2e')
+      .expect(200);
+    const body = response.body as {
+      data: { feedback: { feedback: { advisoryOnly: boolean } } };
+    };
+    expect(body.data.feedback.feedback).toEqual(
+      expect.objectContaining({ advisoryOnly: true }),
+    );
+    expect(feedbackGateway.request.mock.calls).toContainEqual([
+      principal,
+      expect.objectContaining({
+        feature: 'WRITING',
+        skill: 'WRITING',
+        taskId: task.id,
+        inputText: finalSubmission().submittedText,
+      }),
+      'feedback-writing-e2e',
+      expect.any(String),
+    ]);
+    expect(JSON.stringify(response.body)).not.toMatch(
+      /submittedText|provider|credential|rubric|official score/i,
+    );
+  });
+
+  it('fails closed for active and cross-owner feedback requests', async () => {
+    repository.findSession.mockResolvedValue(activeSession());
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${activeSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-writing-active')
+      .expect(422);
+    expect(feedbackGateway.request).not.toHaveBeenCalled();
+    repository.findSession.mockResolvedValue({
+      ...finalizedSession(),
+      status: 'CANCELLED',
+      finalizedAt: null,
+      submission: null,
+    });
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${activeSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-writing-cancelled')
+      .expect(422);
+    repository.findSession.mockResolvedValue({
+      ...finalizedSession(),
+      submission: null,
+    });
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${activeSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-writing-incomplete')
+      .expect(422);
+    repository.findSession.mockResolvedValue(null);
+    await request(app.getHttpServer())
+      .post('/api/v1/toeic/writing/sessions/other-owner-session/feedback')
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-writing-other-owner')
+      .expect(404);
+    expect(repository.findSession.mock.calls).toContainEqual([
+      principal.applicationUserId,
+      'other-owner-session',
+    ]);
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${activeSession().id}/feedback`)
+      .expect(401);
+  });
+
+  it('passes exact gateway replay state through the endpoint', async () => {
+    repository.findSession.mockResolvedValue(finalizedSession());
+    feedbackGateway.request.mockResolvedValueOnce({
+      feedback: {
+        outcome: 'PROVIDER_UNAVAILABLE',
+        policyVersion: 'feedback-gateway-v1',
+        promptVersion: 'local-fixture-v1',
+        feature: 'WRITING',
+        skill: 'WRITING',
+        quotaRemaining: 8,
+        feedback: null,
+      },
+      replayed: true,
+    });
+    const response = await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${finalizedSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-writing-replay')
+      .expect(200);
+    const body = response.body as { meta: { idempotencyStatus: string } };
+    expect(body.meta.idempotencyStatus).toBe('replayed');
+  });
+
+  it('maps feedback gateway retry and validation failures to safe HTTP errors', async () => {
+    repository.findSession.mockResolvedValue(finalizedSession());
+    feedbackGateway.request.mockRejectedValueOnce(
+      new ConflictException('changed payload'),
+    );
+    const conflict = await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${finalizedSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-writing-conflict')
+      .expect(409);
+    const conflictBody = conflict.body as { error: { code: string } };
+    expect(conflictBody.error).toEqual(
+      expect.objectContaining({ code: 'IDEMPOTENCY_CONFLICT' }),
+    );
+
+    feedbackGateway.request.mockRejectedValueOnce(
+      new UnprocessableEntityException('missing key'),
+    );
+    const invalid = await request(app.getHttpServer())
+      .post(`/api/v1/toeic/writing/sessions/${finalizedSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(422);
+    const invalidBody = invalid.body as { error: { code: string } };
+    expect(invalidBody.error).toEqual(
+      expect.objectContaining({ code: 'VALIDATION_FAILED' }),
+    );
   });
 });

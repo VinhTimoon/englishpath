@@ -183,12 +183,11 @@ produce accurate analysis, and route weaknesses into remediation.
 
 Execution queue: `EP3-ST001` through `EP3-ST012`, `EP4-ST001`, and `EP4-ST010`
 are complete and merged to `dev`, including the approved additive `EP4-ST011`
-roadmap projection. `EP4-ST002` is done under the approved additive Speaking
-boundary; `EP4-ST002` and `EP4-ST005` are done under their approved additive
-boundaries. `EP4-ST007` is done under the approved local/no-op gateway
-policy. `EP4-ST006` is implemented and in review. `EP4-ST009` is the active
-independent backend slice; later EP4/EP5 stories remain backlog until their
-declared dependencies pass.
+roadmap projection. `EP4-ST002` and `EP4-ST005` are done under their approved
+additive boundaries. `EP4-ST007` is done under the approved local/no-op gateway
+policy. `EP4-ST006` and `EP4-ST009` are implemented and in review. Remaining
+EP4 stories stay backlog until their declared dependencies pass or an owner
+decision resolves the recording boundary.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |

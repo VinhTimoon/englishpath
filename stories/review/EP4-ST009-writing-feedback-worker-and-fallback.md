@@ -1,7 +1,7 @@
 ---
 id: EP4-ST009
 title: Writing Feedback Worker And Fallback
-status: in-progress
+status: review
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -94,18 +94,18 @@ official scoring, Speaking implementation, or frontend is part of this story.
 
 ## Tasks/Subtasks
 
-- [ ] Inspect existing Writing repository, TOEIC controller/module, gateway
+- [x] Inspect existing Writing repository, TOEIC controller/module, gateway
   contract, exception mapping, and E2E conventions.
-- [ ] Add the owner-scoped Writing feedback service and thin endpoint.
-- [ ] Export/reuse the approved gateway service without adding provider wiring.
-- [ ] Add unit and API E2E coverage for lifecycle, ownership, fallback,
+- [x] Add the owner-scoped Writing feedback service and thin endpoint.
+- [x] Export/reuse the approved gateway service without adding provider wiring.
+- [x] Add unit and API E2E coverage for lifecycle, ownership, fallback,
   redaction, and idempotency.
-- [ ] Run full high-risk quality gates and record evidence.
+- [x] Run full high-risk quality gates and record evidence.
 
 ## Verification
 
-- node scripts/story-doctor.mjs stories/ready/EP4-ST009-writing-feedback-worker-and-fallback.md
-- pnpm story:verify stories/in-progress/EP4-ST009-writing-feedback-worker-and-fallback.md
+- node scripts/story-doctor.mjs stories/review/EP4-ST009-writing-feedback-worker-and-fallback.md
+- pnpm story:verify stories/review/EP4-ST009-writing-feedback-worker-and-fallback.md
 - pnpm --filter api lint
 - pnpm --filter api typecheck
 - pnpm --filter api test -- --runInBand
@@ -127,16 +127,37 @@ merged to `dev` with no schema/provider/frontend changes.
 
 ### Implementation Plan
 
-Pending implementation.
+1. Reuse the existing owner-scoped Writing repository and AI feedback gateway.
+2. Add a thin authenticated endpoint with finalized-session lifecycle gating.
+3. Add unit/API regression coverage for ownership, fallback, redaction, retries,
+   and safe exception mapping.
+4. Run the repository high-risk quality gate before merge.
 
 ### Completion Notes
 
-Pending implementation and verification.
+Implemented and verified the additive Writing feedback boundary. Only
+`FINALIZED` sessions with a non-null owner-scoped submission reach the gateway;
+the response remains the gateway's learner-safe advisory projection. Gateway
+idempotency, quota, policy, prompt, cost, and adapter behavior is reused. The
+full gate passed: formatting, planning traceability, 59 tooling tests, Prisma
+validation, lint, typecheck, API unit tests, 22 API E2E suites / 120 tests,
+production build, and 95 browser E2E tests.
 
 ### File List
 
-Pending implementation.
+- `apps/api/src/modules/ai-gateway/ai-gateway.module.ts`
+- `apps/api/src/modules/toeic/toeic-exception.filter.ts`
+- `apps/api/src/modules/toeic/toeic-writing-feedback.service.spec.ts`
+- `apps/api/src/modules/toeic/toeic-writing-feedback.service.ts`
+- `apps/api/src/modules/toeic/toeic.controller.ts`
+- `apps/api/src/modules/toeic/toeic.module.ts`
+- `apps/api/test/toeic-writing.e2e-spec.ts`
+- `docs/04_SYSTEM_ARCHITECTURE.md`
+- `docs/10_TEST_STRATEGY.md`
 
 ### Change Log
 
 - 2026-08-10: Created as the next dependency-ready Phase 4 backend slice.
+- 2026-08-10: Implemented owner-scoped gateway-backed Writing feedback with
+  safe fallback, idempotency delegation, exception mapping, and regression
+  coverage; moved to review after full quality gates passed.

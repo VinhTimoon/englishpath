@@ -60,6 +60,7 @@ import { SubmitToeicSpeakingDto } from './dto/toeic-speaking-submission.dto';
 import { ToeicSpeakingSubmissionService } from './toeic-speaking-submission.service';
 import { SubmitToeicWritingDto } from './dto/toeic-writing-submission.dto';
 import { ToeicWritingSubmissionService } from './toeic-writing-submission.service';
+import { ToeicWritingFeedbackService } from './toeic-writing-feedback.service';
 
 const strictValidation = new ValidationPipe({
   transform: true,
@@ -87,6 +88,7 @@ export class ToeicController {
     private readonly timed: ToeicTimedTestService,
     private readonly speakingSubmission: ToeicSpeakingSubmissionService,
     private readonly writingSubmission: ToeicWritingSubmissionService,
+    private readonly writingFeedback: ToeicWritingFeedbackService,
   ) {}
 
   @Post('speaking/tasks/:taskId/sessions')
@@ -204,6 +206,40 @@ export class ToeicController {
         data,
         meta: {
           correlationId: authCorrelationId(correlation),
+          idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
+  }
+
+  @Post('writing/sessions/:sessionId/feedback')
+  @HttpCode(HttpStatus.OK)
+  @ApiHeader({
+    name: 'Idempotency-Key',
+    required: true,
+    description: 'Actor-bound key for safe feedback retries.',
+  })
+  @ApiOperation({
+    summary: 'Request safe advisory feedback for a finalized Writing session',
+  })
+  @ApiOkResponse({ description: 'Safe advisory gateway feedback projection.' })
+  @ApiNotFoundResponse({ description: 'The Writing session is unavailable.' })
+  @ApiConflictResponse({ description: 'The feedback retry conflicts.' })
+  @ApiUnprocessableEntityResponse({
+    description: 'Only finalized sessions with a submission are eligible.',
+  })
+  requestWritingFeedback(
+    @Param('sessionId') sessionId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('idempotency-key') idempotencyKey?: string,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    const correlationId = authCorrelationId(correlation);
+    return this.writingFeedback
+      .request(request.principal!, sessionId, idempotencyKey, correlationId)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId,
           idempotencyStatus: data.replayed ? 'replayed' : 'created',
         },
       }));

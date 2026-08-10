@@ -3,6 +3,7 @@ import {
   BadRequestException,
   Catch,
   ExceptionFilter,
+  HttpException,
 } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import type { Request, Response } from 'express';
@@ -32,6 +33,21 @@ export class ToeicExceptionFilter implements ExceptionFilter {
       status = 400;
       code = 'VALIDATION_FAILED';
       message = 'Request validation failed.';
+    } else if (exception instanceof HttpException) {
+      status = exception.getStatus();
+      if (status === 409) {
+        code = 'IDEMPOTENCY_CONFLICT';
+        message = 'The TOEIC request conflicts with an existing request.';
+      } else if (status === 422) {
+        code = 'VALIDATION_FAILED';
+        message = 'The TOEIC request cannot be accepted.';
+      } else {
+        code = status >= 500 ? 'INTERNAL_ERROR' : 'REQUEST_INVALID';
+        message =
+          status >= 500
+            ? 'An unexpected error occurred.'
+            : 'The TOEIC request is invalid.';
+      }
     } else if (isAccessError(exception)) {
       const forbidden = [
         ACCESS_ERROR_CODES.FORBIDDEN_ROLE,

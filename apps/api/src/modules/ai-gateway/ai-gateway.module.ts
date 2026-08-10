@@ -25,5 +25,6 @@ import { LocalNoopFeedbackAdapter } from './local-noop-feedback.adapter';
       useExisting: LocalNoopFeedbackAdapter,
     },
   ],
+  exports: [AiFeedbackGatewayService],
 })
 export class AiGatewayModule {}

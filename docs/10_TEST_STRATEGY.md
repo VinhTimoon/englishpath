@@ -451,3 +451,9 @@ Gateway unit/API tests cover authenticated owner scoping, contract validation,
 deterministic local output, zero-cost evidence, ten-request UTC quota,
 ALLOWED/DENIED/PROVIDER_UNAVAILABLE outcomes, exact replay, changed-key
 conflict, unsafe-output fail-closed behavior, and redaction.
+
+## EP4-ST009 coverage
+
+Writing feedback service and API tests cover finalized-session gating,
+owner-scoped repository lookup, gateway delegation, safe advisory fallback,
+idempotent replay, active/incomplete rejection, and response redaction.
