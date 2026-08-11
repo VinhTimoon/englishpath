@@ -1,7 +1,7 @@
 ---
 id: EP5-ST007
 title: AI explanation service and grounded fallback
-status: review
+status: done
 type: backend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -117,4 +117,5 @@ The explanation route is authenticated, owner-scoped, quota/idempotency-safe,
 grounded only in persisted Error Notebook explanations, explicitly unavailable
 when grounding is absent, covered by unit/API/E2E tests, documented, and all
 required project gates pass without schema/provider/frontend changes.
+
 
