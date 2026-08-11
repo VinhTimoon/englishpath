@@ -1,7 +1,7 @@
 ---
 id: EP5-ST004
 title: Full scoring, integrity events, and weakness analysis
-status: ready
+status: in-progress
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
