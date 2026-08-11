@@ -1,7 +1,7 @@
 ---
 id: EP5-ST003
 title: Strict FULL exam UI and interruption handling
-status: review
+status: done
 type: frontend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -149,12 +149,12 @@ scoring policy, integrity telemetry, AI, or Phase 6.
 ## Verification commands
 
 ```text
-pnpm story:doctor -- stories/review/EP5-ST003-strict-exam-ui-and-interruption-handling.md
+pnpm story:doctor -- stories/done/EP5-ST003-strict-exam-ui-and-interruption-handling.md
 pnpm planning:traceability
 pnpm --filter web lint
 pnpm --filter web typecheck
 pnpm e2e --grep "TOEIC timed test learner journey"
-pnpm story:verify stories/review/EP5-ST003-strict-exam-ui-and-interruption-handling.md
+pnpm story:verify stories/done/EP5-ST003-strict-exam-ui-and-interruption-handling.md
 pnpm story:checks
 git diff --check
 ```
@@ -223,3 +223,9 @@ Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".co
   unit tests, 124 API E2E tests, and 104 Playwright browser tests; format,
   traceability, Prisma validation, lint, typecheck, build, and `git diff --check`
   also passed. Focused timed-test E2E passed 20/20.
+
+## Completion Evidence
+
+- Commit `e5aa963` was fast-forward merged into `dev` and pushed to `origin/dev`.
+- No production `main` checkout, merge, promotion, credential, or environment
+  change was performed.
