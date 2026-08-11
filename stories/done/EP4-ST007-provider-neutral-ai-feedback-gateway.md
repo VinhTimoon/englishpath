@@ -127,7 +127,8 @@ feedback workers without activating a provider.
 This story is blocked because the approved quota/cost policy, advisory response
 schema, policy/prompt versions, and licensed prompt source are not present.
 
-AI request file: `notes/ai-req/2026-08-10-ep4-st007-provider-neutral-feedback-gateway-policy.md`
+The owner-approved gateway policy decision is recorded in this story; the
+related request has been resolved and archived.
 
 
 ## Owner Decision / Recovery Record

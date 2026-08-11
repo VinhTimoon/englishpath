@@ -186,8 +186,8 @@ are complete and merged to `dev`, including the approved additive `EP4-ST011`
 roadmap projection. `EP4-ST002` and `EP4-ST005` are done under their approved
 additive boundaries. `EP4-ST007` is done under the approved local/no-op gateway
 policy. `EP4-ST006` and `EP4-ST009` are done and merged. EP4-ST003 is now
-done and merged to `dev` under the owner-approved recording storage decision in
-`notes/ai-req/2026-08-10-ep4-st003-recording-storage-controlled-playback.md`.
+done and merged to `dev` under the owner-approved recording storage decision;
+the related request has been resolved and archived.
 EP4-ST004 is done after passing the full quality gate and fast-forward merge to
 `dev`. EP4-ST008 is done with a safe finalized-recording fallback;
 its approved gateway path reports unavailable until an audio-capable provider

@@ -28,7 +28,6 @@ forbidden_paths:
   - production credentials
   - main
 requires_human_approval: true
-blocked_by: notes/ai-req/2026-08-10-ep4-st003-recording-storage-controlled-playback.md
 max_fix_rounds: 2
 risk: high
 delivery_mode: full
