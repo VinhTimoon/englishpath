@@ -1,7 +1,7 @@
 ---
 id: EP5-ST006
 title: Adaptive roadmap evidence, rules, and versioning
-status: ready
+status: in-progress
 type: backend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -128,3 +128,4 @@ git diff --check
 Adaptive recalculation is a bounded, deterministic, owner-safe server policy
 with explicit evidence/version semantics, preserved historical roadmaps,
 regression coverage, documentation, and all required quality gates passing.
+
