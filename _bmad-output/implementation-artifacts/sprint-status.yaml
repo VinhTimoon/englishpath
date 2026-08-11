@@ -153,7 +153,7 @@ development_status:
   3-12-licensed-library-phase-exit-review: done
   epic-3-retrospective: optional
 
-  epic-4: in-progress
+  epic-4: done
   4-1-speaking-writing-task-and-rubric-models: done
   4-2-toeic-speaking-task-and-submission-api: done
   4-3-recording-storage-and-controlled-playback: done
@@ -165,7 +165,7 @@ development_status:
   4-9-writing-feedback-worker-and-fallback: done
   4-10-four-skills-roadmap-balance-rules: done
   4-11-four-skills-progress-dashboard: done
-  4-12-four-skills-phase-exit-review: blocked
+  4-12-four-skills-phase-exit-review: done
   epic-4-retrospective: optional
 
   epic-5: backlog

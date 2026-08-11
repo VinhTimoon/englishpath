@@ -191,7 +191,8 @@ done and merged to `dev` under the owner-approved recording storage decision in
 EP4-ST004 is done after passing the full quality gate and fast-forward merge to
 `dev`. EP4-ST008 is done with a safe finalized-recording fallback;
 its approved gateway path reports unavailable until an audio-capable provider
-contract exists. EP4-ST012 remains blocked until all Phase 4 slices pass.
+contract exists. EP4-ST012 is done after the Phase 4 exit gate passed; Epic 4
+is complete for the approved local/test release boundary.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |
