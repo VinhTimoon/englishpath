@@ -186,10 +186,10 @@ are complete and merged to `dev`, including the approved additive `EP4-ST011`
 roadmap projection. `EP4-ST002` and `EP4-ST005` are done under their approved
 additive boundaries. `EP4-ST007` is done under the approved local/no-op gateway
 policy. `EP4-ST006` and `EP4-ST009` are done and merged. EP4-ST003 is now
-in-progress under the owner-approved recording storage decision in
+done and merged to `dev` under the owner-approved recording storage decision in
 `notes/ai-req/2026-08-10-ep4-st003-recording-storage-controlled-playback.md`.
-EP4-ST004, EP4-ST008, and EP4-ST012 remain dependency-blocked until its
-credential-free contract passes.
+EP4-ST004 and EP4-ST008 are now dependency-ready; EP4-ST004 is the next
+implementation slice. EP4-ST012 remains blocked until all Phase 4 slices pass.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |
