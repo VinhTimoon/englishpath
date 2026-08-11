@@ -1,7 +1,7 @@
 ---
 id: EP5-ST003
 title: Strict FULL exam UI and interruption handling
-status: ready
+status: blocked
 type: frontend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -191,3 +191,19 @@ EP5-ST001 and EP5-ST002 are done and merged into `dev`. This is the sole
 dependency-ready Phase 5 implementation story. EP5-ST004 and later remain backlog
 until their direct dependencies pass. Phase 6 remains suspended indefinitely until
 production has many users.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "build" ".codex-build-task.md"
+```

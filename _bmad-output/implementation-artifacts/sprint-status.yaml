@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-11T09:59:40.135Z
+# last_updated: 2026-08-11T10:42:34.598Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-11T09:59:40.135Z
+last_updated: 2026-08-11T10:42:34.598Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -171,7 +171,7 @@ development_status:
   epic-5: in-progress
   5-1-full-mock-test-assembly-and-versioning: done
   5-2-full-exam-session-timer-and-finalization: done
-  5-3-strict-exam-ui-and-interruption-handling: ready-for-dev
+  5-3-strict-exam-ui-and-interruption-handling: blocked
   5-4-scoring-integrity-and-weakness-analysis: backlog
   5-5-advanced-cross-skill-error-notebook: backlog
   5-6-adaptive-roadmap-rules-and-versioning: backlog

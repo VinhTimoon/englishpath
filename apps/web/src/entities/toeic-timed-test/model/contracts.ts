@@ -1,4 +1,4 @@
-export type TimedMode = "MINI" | "HALF";
+export type TimedMode = "MINI" | "HALF" | "FULL";
 export type TimedStatus = "ACTIVE" | "SUBMITTED" | "EXPIRED";
 
 export type TimedOption = { id: string; text: string };
@@ -75,6 +75,7 @@ export const TIMED_TEST_SHAPE: Record<
 > = {
   MINI: { total: 20, minutes: 20 },
   HALF: { total: 50, minutes: 45 },
+  FULL: { total: 200, minutes: 120 },
 };
 
 const forbiddenKeys = new Set([
@@ -154,7 +155,9 @@ export function parseTimedSession(value: unknown): TimedSession {
   const session = record(data?.session);
   const mode = session?.mode;
   const shape =
-    mode === "MINI" || mode === "HALF" ? TIMED_TEST_SHAPE[mode] : null;
+    mode === "MINI" || mode === "HALF" || mode === "FULL"
+      ? TIMED_TEST_SHAPE[mode]
+      : null;
   const rawQuestions = data?.questions;
   const questions = Array.isArray(rawQuestions)
     ? rawQuestions.map(parseQuestion)

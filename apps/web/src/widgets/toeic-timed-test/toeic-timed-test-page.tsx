@@ -171,6 +171,22 @@ export function ToeicTimedTestPage() {
     return () => window.clearInterval(timer);
   }, [reconcile, serverRemaining, sessionId, sessionStatus]);
 
+  useEffect(() => {
+    if (!sessionId || sessionStatus !== "ACTIVE") return;
+
+    const reconcileAfterInterruption = () => {
+      if (document.visibilityState === "visible") void reconcile(sessionId);
+    };
+    const reconnect = () => void reconcile(sessionId);
+
+    document.addEventListener("visibilitychange", reconcileAfterInterruption);
+    window.addEventListener("online", reconnect);
+    return () => {
+      document.removeEventListener("visibilitychange", reconcileAfterInterruption);
+      window.removeEventListener("online", reconnect);
+    };
+  }, [reconcile, sessionId, sessionStatus]);
+
   async function start() {
     if (busy) return;
     setBusy(true);
