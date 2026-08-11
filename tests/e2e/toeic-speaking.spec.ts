@@ -23,6 +23,10 @@ function envelope(data: unknown) {
   };
 }
 
+function feedbackEnvelope(data: Record<string, unknown>, replayed = false) {
+  return envelope({ feedback: data, replayed });
+}
+
 function session(status: "ACTIVE" | "FINALIZED" = "ACTIVE") {
   return {
     sessionId,
@@ -111,6 +115,7 @@ test.describe("TOEIC Speaking learner journey", () => {
     await installBrowserAudio(page);
     await routeStart(page);
     let submittedBody: Record<string, unknown> | null = null;
+    let feedbackRequests = 0;
     await page.route(
       `${apiOrigin}/toeic/speaking/sessions/${sessionId}/submissions`,
       async (route) => {
@@ -123,6 +128,39 @@ test.describe("TOEIC Speaking learner journey", () => {
           contentType: "application/json",
           body: JSON.stringify(
             envelope({ session: session("FINALIZED"), replayed: false }),
+          ),
+        });
+      },
+    );
+    await page.route(
+      `${apiOrigin}/toeic/speaking/sessions/${sessionId}/feedback`,
+      async (route) => {
+        feedbackRequests += 1;
+        expect(route.request().method()).toBe("POST");
+        expect(route.request().headers().authorization).toBe("Bearer local");
+        expect(route.request().postData()).toBeNull();
+        expect(route.request().headers()["idempotency-key"]).toMatch(
+          /^speaking-feedback-/,
+        );
+        await new Promise((resolve) => setTimeout(resolve, 75));
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            feedbackEnvelope({
+              outcome: "ALLOWED",
+              policyVersion: "feedback-gateway-v1",
+              promptVersion: "local-fixture-v1",
+              feature: "SPEAKING",
+              skill: "SPEAKING",
+              quotaRemaining: 9,
+              feedback: {
+                advisoryOnly: true,
+                summary: "Keep a steady pace and articulate the final sounds.",
+                strengths: ["Clear attempt"],
+                nextSteps: ["Repeat the sentence once at a natural pace."],
+              },
+            }),
           ),
         });
       },
@@ -210,6 +248,31 @@ test.describe("TOEIC Speaking learner journey", () => {
     ).toBeVisible();
     await expect(
       page.getByText(/Server-controlled playback is ready/),
+    ).toBeVisible();
+    const feedbackButton = page.getByRole("button", {
+      name: "Request feedback",
+    });
+    await feedbackButton.focus();
+    await feedbackButton.press("Enter");
+    await expect(page.getByText(/Requesting safe feedback/)).toBeVisible();
+    await expect(page.locator('[aria-busy="true"]')).toHaveCount(1);
+    await expect(
+      page.getByRole("button", { name: "Request feedback" }),
+    ).toHaveCount(0);
+    await expect(
+      page.getByText("Keep a steady pace and articulate the final sounds."),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Repeat the sentence once at a natural pace."),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("status").filter({ hasText: "Keep a steady pace" }),
+    ).toBeVisible();
+    expect(feedbackRequests).toBe(1);
+    await expect(
+      page.locator(
+        'audio[aria-label="Your server-controlled Speaking recording"]',
+      ),
     ).toBeVisible();
     expect(submittedBody).toEqual(
       expect.objectContaining({
@@ -309,5 +372,175 @@ test.describe("TOEIC Speaking learner journey", () => {
     ).toHaveCount(0);
     expect(submissions).toBe(2);
     expect(uploads).toBe(2);
+  });
+
+  test("keeps the finalized recording safe when feedback is unavailable and retryable", async ({
+    page,
+  }) => {
+    await installBrowserAudio(page);
+    await routeStart(page);
+    let submissionRequests = 0;
+    await page.route(
+      `${apiOrigin}/toeic/speaking/sessions/${sessionId}/submissions`,
+      async (route) => (
+        (submissionRequests += 1),
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            envelope({ session: session("FINALIZED"), replayed: false }),
+          ),
+        })
+      ),
+    );
+    let uploadRequests = 0;
+    await page.route(
+      `${apiOrigin}/toeic/speaking/recordings/speaking-recording-browser/content`,
+      async (route) => (
+        (uploadRequests += 1),
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(envelope({ uploaded: true })),
+        })
+      ),
+    );
+    let feedbackRequests = 0;
+    const feedbackKeys: string[] = [];
+    await page.route(
+      `${apiOrigin}/toeic/speaking/sessions/${sessionId}/feedback`,
+      async (route) => {
+        feedbackRequests += 1;
+        feedbackKeys.push(route.request().headers()["idempotency-key"] ?? "");
+        if (feedbackRequests === 1) {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          return route.fulfill({ status: 503, body: "temporary" });
+        }
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            feedbackEnvelope({
+              outcome: "PROVIDER_UNAVAILABLE",
+              policyVersion: "feedback-gateway-v1",
+              promptVersion: "local-fixture-v1",
+              feature: "SPEAKING",
+              skill: "SPEAKING",
+              quotaRemaining: 9,
+              feedback: null,
+            }),
+          ),
+        });
+      },
+    );
+
+    await page.goto("/toeic/speaking");
+    await page.getByRole("button", { name: "Start Speaking" }).click();
+    await page.getByRole("button", { name: "Start recording" }).click();
+    await page.getByRole("button", { name: "Stop recording" }).click();
+    await page.getByRole("button", { name: "Submit recording" }).click();
+    await expect(
+      page.getByRole("heading", {
+        name: "Your Speaking attempt is safely recorded",
+      }),
+    ).toBeVisible();
+
+    await page.setViewportSize({ width: 360, height: 800 });
+    const preview = page.locator(
+      'audio[aria-label="Your local Speaking recording preview"]',
+    );
+    const feedbackButton = page.getByRole("button", {
+      name: "Request feedback",
+    });
+    await expect(feedbackButton).toBeEnabled();
+    await feedbackButton.evaluate((button) => {
+      button.click();
+      button.click();
+    });
+    await expect(page.locator('[aria-busy="true"]')).toHaveCount(1);
+    await expect(page.getByText(/Feedback could not be loaded/)).toBeVisible();
+    await page.getByRole("button", { name: "Retry feedback" }).click();
+    await expect(
+      page.getByText(/audio feedback service is not ready/),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("status").filter({ hasText: /audio feedback service/ }),
+    ).toBeVisible();
+    expect(feedbackRequests).toBe(2);
+    expect(feedbackKeys[0]).toBe(feedbackKeys[1]);
+    expect(submissionRequests).toBe(1);
+    expect(uploadRequests).toBe(1);
+    await expect(preview).toBeVisible();
+    expect(
+      await page.locator("html").evaluate((node) => node.scrollWidth),
+    ).toBeLessThanOrEqual(360);
+    expect(await page.locator("body").innerText()).not.toMatch(
+      /rubric|provider metadata|credential|raw submission/i,
+    );
+  });
+
+  test("fails closed on malformed feedback and distinguishes validation", async ({
+    page,
+  }) => {
+    await installBrowserAudio(page);
+    await page.route(
+      `${apiOrigin}/toeic/speaking/tasks/${taskId}/sessions`,
+      async (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            envelope({ session: session("FINALIZED"), replayed: false }),
+          ),
+        }),
+    );
+    let feedbackRequests = 0;
+    await page.route(
+      `${apiOrigin}/toeic/speaking/sessions/${sessionId}/feedback`,
+      async (route) => {
+        feedbackRequests += 1;
+        if (feedbackRequests === 1)
+          return route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: JSON.stringify({
+              ...feedbackEnvelope({
+                outcome: "ALLOWED",
+                feedback: {
+                  advisoryOnly: true,
+                  summary: "safe-looking text",
+                  strengths: [],
+                  nextSteps: [],
+                  hiddenRubric: "must be rejected",
+                },
+              }),
+              meta: {
+                correlationId: "browser-speaking",
+                idempotencyStatus: "created",
+                provider: "must be rejected",
+              },
+            }),
+          });
+        await route.fulfill({ status: 422, body: "not eligible" });
+      },
+    );
+
+    await page.goto("/toeic/speaking");
+    await page.getByRole("button", { name: "Start Speaking" }).click();
+    await expect(
+      page.getByRole("heading", {
+        name: "Your Speaking attempt is safely recorded",
+      }),
+    ).toBeVisible();
+    await page.getByRole("button", { name: "Request feedback" }).click();
+    await expect(page.getByText(/Feedback could not be loaded/)).toBeVisible();
+    await page.getByRole("button", { name: "Retry feedback" }).click();
+    await expect(
+      page.getByText(/Feedback is not available for this attempt yet/),
+    ).toBeVisible();
+    expect(feedbackRequests).toBe(2);
+    expect(await page.locator("body").innerText()).not.toMatch(
+      /hiddenRubric|must be rejected|provider|credential/i,
+    );
   });
 });

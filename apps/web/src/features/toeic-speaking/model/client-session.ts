@@ -5,6 +5,7 @@ export type SpeakingClientAttempt = {
   sessionId: string | null;
   startKey: string;
   submitKey: string;
+  feedbackKey: string;
 };
 
 function newKey(prefix: string) {
@@ -22,7 +23,8 @@ function valid(value: unknown): value is SpeakingClientAttempt {
     typeof attempt.taskId === "string" &&
     (attempt.sessionId === null || typeof attempt.sessionId === "string") &&
     typeof attempt.startKey === "string" &&
-    typeof attempt.submitKey === "string"
+    typeof attempt.submitKey === "string" &&
+    typeof attempt.feedbackKey === "string"
   );
 }
 
@@ -32,7 +34,25 @@ export function readSpeakingAttempt(): SpeakingClientAttempt | null {
     const parsed: unknown = JSON.parse(
       window.localStorage.getItem(STORAGE_KEY) ?? "null",
     );
-    return valid(parsed) ? parsed : null;
+    if (valid(parsed)) return parsed;
+    if (
+      parsed &&
+      typeof parsed === "object" &&
+      !Array.isArray(parsed) &&
+      typeof (parsed as Record<string, unknown>).taskId === "string" &&
+      ((parsed as Record<string, unknown>).sessionId === null ||
+        typeof (parsed as Record<string, unknown>).sessionId === "string") &&
+      typeof (parsed as Record<string, unknown>).startKey === "string" &&
+      typeof (parsed as Record<string, unknown>).submitKey === "string"
+    ) {
+      const migrated = {
+        ...(parsed as Omit<SpeakingClientAttempt, "feedbackKey">),
+        feedbackKey: newKey("speaking-feedback"),
+      };
+      rememberSpeakingAttempt(migrated);
+      return migrated;
+    }
+    return null;
   } catch {
     return null;
   }
@@ -44,6 +64,7 @@ export function createSpeakingAttempt(taskId: string): SpeakingClientAttempt {
     sessionId: null,
     startKey: newKey("speaking-start"),
     submitKey: newKey("speaking-submit"),
+    feedbackKey: newKey("speaking-feedback"),
   };
   rememberSpeakingAttempt(attempt);
   return attempt;

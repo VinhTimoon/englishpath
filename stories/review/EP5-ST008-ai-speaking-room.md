@@ -1,7 +1,7 @@
 ---
 id: EP5-ST008
 title: AI Speaking room learner feedback surface
-status: ready
+status: review
 type: frontend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -33,14 +33,14 @@ acceptance_criteria:
   - The learner surface does not expose provider metadata, credentials, raw submissions, hidden rubric fields, or answer-bearing data.
   - Existing Speaking record, upload, controlled playback, finalize, and retry behavior remains unchanged.
   - The layout remains usable at 360px and supports keyboard and accessible status announcements.
-  - Unit/client and browser regression coverage proves the feedback journey, unavailable state, retry, duplicate-click protection, and existing Speaking journey.
+  - Client-contract and browser regression coverage proves the feedback journey, unavailable state, retry, duplicate-click protection, and existing Speaking journey; no standalone web unit runner is introduced because the repository has none.
 verification_commands:
   - pnpm --filter web lint
   - pnpm --filter web typecheck
   - pnpm --filter api test:e2e -- toeic-speaking.e2e-spec.ts
   - pnpm e2e -- tests/e2e/toeic-speaking.spec.ts
   - pnpm format:check
-  - pnpm story:verify stories/ready/EP5-ST008-ai-speaking-room.md
+  - pnpm story:verify stories/in-progress/EP5-ST008-ai-speaking-room.md
   - pnpm story:checks
 max_fix_rounds: 2
 risk: medium
@@ -94,7 +94,7 @@ recording and playback boundaries when feedback is unavailable.
 - `pnpm --filter api test:e2e -- toeic-speaking.e2e-spec.ts`
 - `pnpm e2e -- tests/e2e/toeic-speaking.spec.ts`
 - `pnpm format:check`
-- `pnpm story:verify stories/ready/EP5-ST008-ai-speaking-room.md`
+- `pnpm story:verify stories/in-progress/EP5-ST008-ai-speaking-room.md`
 - `pnpm story:checks`
 
 ## Implementation constraints
@@ -115,9 +115,10 @@ recording and playback boundaries when feedback is unavailable.
 
 ## Required tests
 
-- API-client/unit coverage for authenticated request shape, idempotency key
-  reuse, safe envelope parsing, malformed response, unavailable, and retryable
-  error states.
+- Browser client-contract coverage for authenticated request shape, exact
+  idempotency-key reuse, safe envelope parsing, malformed response,
+  unavailable, and retryable error states. The repository has no standalone
+  web unit runner, so this story does not add a new test framework or script.
 - Browser coverage at the existing 360px Speaking route for: request feedback
   after finalize, loading/duplicate-click guard, unavailable result, transient
   retry while recording/playback remains intact, and keyboard/accessibility
@@ -139,3 +140,4 @@ The Speaking room offers a safe explicit feedback action over the existing
 contract, preserves the recording journey, renders unavailable and retryable
 states correctly, passes targeted browser/API checks and the full project gate,
 and makes no provider, schema, backend, credential, or Phase 6 change.
+

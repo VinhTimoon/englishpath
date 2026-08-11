@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { SpeakingSession } from "@/entities/toeic-speaking/model/contracts";
 import {
   authorizeSpeakingPlayback,
@@ -12,6 +12,8 @@ import {
   startSpeaking,
   submitSpeaking,
   uploadSpeakingRecording,
+  requestSpeakingFeedback,
+  type SpeakingFeedback,
 } from "@/features/toeic-speaking/api/speaking-api";
 import {
   createSpeakingAttempt,
@@ -75,6 +77,19 @@ export function ToeicSpeakingPage() {
   const [uploadState, setUploadState] = useState<
     "idle" | "uploading" | "saved" | "failed"
   >("idle");
+  const [feedbackState, setFeedbackState] = useState<
+    | "ready"
+    | "loading"
+    | "success"
+    | "unavailable"
+    | "denied"
+    | "validation"
+    | "error"
+  >("ready");
+  const [feedback, setFeedback] = useState<SpeakingFeedback | null>(null);
+  const [feedbackError, setFeedbackError] = useState("");
+  const feedbackInFlight = useRef(false);
+  const feedbackOperation = useRef(0);
   const task = session?.task;
   const recorder = useSpeakingRecorder(task?.durationSeconds ?? 3600);
 
@@ -264,6 +279,47 @@ export function ToeicSpeakingPage() {
     setBusy(false);
   }
 
+  async function requestFeedback() {
+    if (
+      busy ||
+      feedbackInFlight.current ||
+      !attempt?.sessionId ||
+      view !== "finalized"
+    )
+      return;
+    const operation = ++feedbackOperation.current;
+    feedbackInFlight.current = true;
+    setFeedbackState("loading");
+    setFeedbackError("");
+    try {
+      const result = await requestSpeakingFeedback(
+        attempt.sessionId,
+        attempt.feedbackKey,
+      );
+      if (feedbackOperation.current !== operation) return;
+      setFeedback(result);
+      setFeedbackState(
+        result.outcome === "ALLOWED" && result.feedback
+          ? "success"
+          : result.outcome === "DENIED"
+            ? "denied"
+            : "unavailable",
+      );
+    } catch (caught) {
+      if (feedbackOperation.current !== operation) return;
+      const status = learnerApiStatus(caught);
+      setFeedbackState(status === 422 ? "validation" : "error");
+      setFeedbackError(
+        status === 422
+          ? "Feedback is not available for this attempt yet. You can keep your recording and try again later."
+          : "Feedback could not be loaded. Your recording is still safe; retry when ready.",
+      );
+    } finally {
+      if (feedbackOperation.current === operation)
+        feedbackInFlight.current = false;
+    }
+  }
+
   function newAttempt() {
     if (attempt) void removeSpeakingRecordingDraft(attempt.startKey);
     forgetSpeakingAttempt();
@@ -271,6 +327,11 @@ export function ToeicSpeakingPage() {
     setAttempt(null);
     setSession(null);
     setError("");
+    setFeedbackState("ready");
+    setFeedback(null);
+    setFeedbackError("");
+    feedbackOperation.current += 1;
+    feedbackInFlight.current = false;
     setView("ready");
   }
 
@@ -571,6 +632,74 @@ export function ToeicSpeakingPage() {
             <p className={styles.stateCopy}>
               No score or official result is inferred in the browser.
             </p>
+            <div
+              className={styles.playbackState}
+              role="status"
+              aria-live="polite"
+              aria-busy={feedbackState === "loading"}
+            >
+              <p className={styles.eyebrow}>Learner feedback</p>
+              {feedbackState === "ready" && (
+                <button
+                  className={styles.secondary}
+                  type="button"
+                  disabled={busy}
+                  onClick={() => void requestFeedback()}
+                >
+                  Request feedback
+                </button>
+              )}
+              {feedbackState === "loading" && (
+                <span>Requesting safe feedback…</span>
+              )}
+              {feedbackState === "unavailable" && (
+                <span>
+                  Feedback is temporarily unavailable because the audio feedback
+                  service is not ready. Your recording remains saved and
+                  playable.
+                </span>
+              )}
+              {feedbackState === "denied" && (
+                <span>
+                  Feedback is not available for this attempt under the current
+                  learner limit. Your recording remains saved and playable.
+                </span>
+              )}
+              {feedbackState === "validation" && <span>{feedbackError}</span>}
+              {feedbackState === "error" && (
+                <>
+                  <span>{feedbackError}</span>
+                  <button
+                    className={styles.secondary}
+                    type="button"
+                    onClick={() => void requestFeedback()}
+                  >
+                    Retry feedback
+                  </button>
+                </>
+              )}
+              {feedbackState === "success" && feedback?.feedback && (
+                <div>
+                  <p>{feedback.feedback.summary}</p>
+                  <p>
+                    <strong>Strengths</strong>
+                  </p>
+                  <ul>
+                    {feedback.feedback.strengths.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <p>
+                    <strong>Next steps</strong>
+                  </p>
+                  <ul>
+                    {feedback.feedback.nextSteps.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
             <div className={styles.actions}>
               <Link href="/dashboard" className={styles.primary}>
                 Back to dashboard
