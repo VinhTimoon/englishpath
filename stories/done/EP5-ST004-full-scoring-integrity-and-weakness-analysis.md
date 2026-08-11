@@ -1,7 +1,7 @@
 ---
 id: EP5-ST004
 title: Full scoring, integrity events, and weakness analysis
-status: review
+status: done
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -172,7 +172,7 @@ git diff --check
 This is the sole dependency-ready Phase 5 story after EP5-ST003. Phase 6 remains
 suspended indefinitely until production has many users.
 
-## Review Evidence
+## Completion Evidence
 
 - Story doctor passed for this story.
 - Planning traceability passed.
