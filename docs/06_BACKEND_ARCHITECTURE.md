@@ -321,3 +321,15 @@ allocates every Part quota deterministically, and returns an immutable version-I
 snapshot or an explicit insufficient-catalogue result. It introduces no route,
 session persistence, timer, scoring, provider, or Prisma schema change; EP5-ST002
 owns the authenticated session boundary.
+
+## EP5-ST004 scoring and integrity boundary
+
+Finalized FULL analysis reuses the timed-test service and immutable session
+snapshot; it does not create a second score or session model. The pure analysis
+policy validates the persisted FULL policy/version and Part quotas before
+producing bounded score, Part/skill, weakness, and server-clock time projections.
+The controller only forwards the authenticated principal and correlation ID.
+Server-observable replay, conflict, closed/late-answer, and duplicate/late-
+finalization signals use the existing redacted audit service. Audit evidence is
+append-oriented and never carries answer content, answer keys, prompts, or raw
+request data.

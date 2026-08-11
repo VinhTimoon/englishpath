@@ -10,6 +10,7 @@ export const TOEIC_TIMED_TEST_REPOSITORY = Symbol(
   'TOEIC_TIMED_TEST_REPOSITORY',
 );
 export const TOEIC_TIMED_TEST_CLOCK = Symbol('TOEIC_TIMED_TEST_CLOCK');
+export const TOEIC_AUDIT_SERVICE = Symbol('TOEIC_AUDIT_SERVICE');
 
 export type { ErrorNotebookCaptureHandler };
 export const TOEIC_ERROR_NOTEBOOK_CAPTURE = Symbol(

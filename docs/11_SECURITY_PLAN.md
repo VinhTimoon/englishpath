@@ -185,6 +185,16 @@ remediation projections contain no answer keys, correctness flags, provider, or
 governance fields. Capture failure leaves the final result available and exposes
 only an unavailable/retryable state.
 
+EP5-ST004 extends the same fail-closed analysis boundary to FULL-MOCK-BETA-V1:
+the server validates the persisted 200-question snapshot and computes all score,
+Part/skill, weakness, and time values from owner-scoped server state. The
+existing redacted audit service records only server-observable replay, conflict,
+closed/late-answer, and duplicate/late-finalization actions with bounded safe
+attributes and correlation linkage. These audit writes never contain answers,
+keys, prompts, raw request bodies, credentials, or provider data, and an audit
+failure cannot make the learner projection client-authored or disclose private
+fields.
+
 EP2-ST011 remediation packs are derived only after finalized owner-scoped
 analysis. Vocabulary and practice destinations are selected from server-side
 published/catalogue predicates; grammar destinations are fixed reviewed

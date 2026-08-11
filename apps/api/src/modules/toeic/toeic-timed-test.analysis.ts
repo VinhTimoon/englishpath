@@ -5,8 +5,8 @@ import type {
 } from './toeic-timed-test.models';
 import { TOEIC_ERROR_CODES, ToeicQuestionError } from './toeic-question.error';
 import {
-  TOEIC_TIMED_TEST_POLICY_VERSION,
   timedTestPolicy,
+  timedTestPolicyVersion,
 } from './toeic-timed-test.policy';
 
 export type TimedTestAnalysis = Readonly<{
@@ -98,7 +98,11 @@ export function buildTimedTestAnalysis(
 ): TimedTestAnalysis {
   const invalidSnapshot = () =>
     new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
-  if (session.mode !== 'MINI' && session.mode !== 'HALF') {
+  if (
+    session.mode !== 'MINI' &&
+    session.mode !== 'HALF' &&
+    session.mode !== 'FULL'
+  ) {
     throw invalidSnapshot();
   }
   const policy = timedTestPolicy(session.mode);
@@ -110,10 +114,10 @@ export function buildTimedTestAnalysis(
   if (
     (session.status !== 'SUBMITTED' && session.status !== 'EXPIRED') ||
     !session.finalizedAt ||
-    session.policyVersion !== TOEIC_TIMED_TEST_POLICY_VERSION ||
+    session.policyVersion !== timedTestPolicyVersion(session.mode) ||
     session.total !== policy.total ||
     session.total !== session.questionIds.length ||
-    questions.length !== session.questionIds.length ||
+    questions.length !== policy.total ||
     new Set(session.questionIds).size !== session.questionIds.length ||
     !hasExpectedPartQuotas ||
     !Number.isFinite(session.startedAt.getTime()) ||
@@ -138,7 +142,7 @@ export function buildTimedTestAnalysis(
   );
   if (
     answers.size !== session.answers.length ||
-    session.answers.length > session.total ||
+    session.answers.length > policy.total ||
     session.answers.some(
       (answer) =>
         !questionIds.has(answer.questionId) ||
@@ -155,24 +159,20 @@ export function buildTimedTestAnalysis(
       answers,
     );
     return { part, ...value };
-  }).filter((part) => part.total > 0);
+  });
 
-  const skills = (['LISTENING', 'READING'] as const)
-    .map((skill) => ({
-      skill,
-      ...aggregate(
-        orderedQuestions.filter(
-          (question) => partSkill(question.part) === skill,
-        ),
-        answers,
-      ),
-    }))
-    .filter((skill) => skill.total > 0);
+  const skills = (['LISTENING', 'READING'] as const).map((skill) => ({
+    skill,
+    ...aggregate(
+      orderedQuestions.filter((question) => partSkill(question.part) === skill),
+      answers,
+    ),
+  }));
 
   const score = {
-    correct: session.answers.filter((answer) => answer.isCorrect).length,
-    total: session.total,
-    answered: session.answers.length,
+    correct: [...answers.values()].filter((answer) => answer.isCorrect).length,
+    total: policy.total,
+    answered: answers.size,
   };
   const usedSeconds = Math.max(
     0,

@@ -470,3 +470,15 @@ required for the assembly unit. EP5-ST002 adds the authenticated FULL session
 boundary, immutable question-version snapshot grading, server deadline,
 idempotent client replay, owner scoping, finalization, and safe API projection
 gates.
+
+## EP5-ST004 scoring and integrity coverage
+
+FULL analysis tests validate the persisted 200-question snapshot, exact Part
+quotas, LISTENING/READING totals, server-clock clamping, deterministic weakness
+ordering, finalized-only access, owner isolation, malformed-snapshot rejection,
+and answer-key/redaction boundaries while retaining MINI/HALF regressions.
+Timed-test service/API tests also verify bounded audit actions for server-
+observable replay, conflict, closed/late-answer, and duplicate/late-finalization
+paths. Audit attributes are checked to exclude answer content, prompts, keys,
+raw request bodies, and credentials; audit persistence is evidence-only and
+cannot replace or alter the authoritative score.

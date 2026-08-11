@@ -1,4 +1,6 @@
 import { Inject, Injectable, Optional } from '@nestjs/common';
+import { randomUUID } from 'node:crypto';
+import type { AuditService } from '../audit/audit.service';
 import type { ApplicationPrincipal } from '../access';
 import {
   TOEIC_ERROR_NOTEBOOK_CAPTURE,
@@ -14,6 +16,7 @@ import type {
 } from './toeic-timed-test.models';
 import {
   TOEIC_TIMED_TEST_CLOCK,
+  TOEIC_AUDIT_SERVICE,
   TOEIC_TIMED_TEST_REPOSITORY,
 } from './toeic-timed-test.models';
 import {
@@ -31,6 +34,15 @@ import type { ToeicPart } from '../../generated/prisma/enums';
 type Option = Readonly<{ id: string; text: string }>;
 
 const MAX_REMEDIATION_PACKS = 6;
+const TIMED_INTEGRITY_ACTIONS = [
+  'TOEIC_ANSWER_REPLAY',
+  'TOEIC_ANSWER_CONFLICT',
+  'TOEIC_ANSWER_CLOSED',
+  'TOEIC_FINALIZE_INCOMPLETE',
+  'TOEIC_FINALIZE_LATE',
+  'TOEIC_FINALIZE_DUPLICATE',
+] as const;
+type TimedIntegrityAction = (typeof TIMED_INTEGRITY_ACTIONS)[number];
 const GRAMMAR_GUIDES: Readonly<
   Partial<Record<'PART_5' | 'PART_6', { slug: string; title: string }>>
 > = {
@@ -145,6 +157,9 @@ export class ToeicTimedTestService {
       Promise.resolve(0),
     @Optional() private readonly vocabulary?: VocabularyService,
     @Optional() private readonly catalogue?: ToeicPracticeCatalogueService,
+    @Optional()
+    @Inject(TOEIC_AUDIT_SERVICE)
+    private readonly audit?: AuditService,
   ) {}
 
   async start(
@@ -284,6 +299,7 @@ export class ToeicTimedTestService {
     principal: ApplicationPrincipal,
     sessionId: string,
     input: Readonly<{ questionId: string; selectedOption: string }>,
+    correlationId: string = randomUUID(),
   ) {
     try {
       const session = await this.repository.find(
@@ -299,6 +315,12 @@ export class ToeicTimedTestService {
             principal.applicationUserId,
             now,
           );
+        await this.recordIntegrity(
+          'TOEIC_ANSWER_CLOSED',
+          principal.applicationUserId,
+          session.id,
+          correlationId,
+        );
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
       }
       if (!session.questionIds.includes(input.questionId)) {
@@ -323,8 +345,20 @@ export class ToeicTimedTestService {
       );
       if (prior) {
         if (prior.selectedOption !== input.selectedOption) {
+          await this.recordIntegrity(
+            'TOEIC_ANSWER_CONFLICT',
+            principal.applicationUserId,
+            session.id,
+            correlationId,
+          );
           throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
         }
+        await this.recordIntegrity(
+          'TOEIC_ANSWER_REPLAY',
+          principal.applicationUserId,
+          session.id,
+          correlationId,
+        );
         return {
           accepted: true,
           replayed: true,
@@ -342,10 +376,30 @@ export class ToeicTimedTestService {
         answeredAt: now,
       });
       if (result === 'closed') {
+        await this.recordIntegrity(
+          'TOEIC_ANSWER_CLOSED',
+          principal.applicationUserId,
+          session.id,
+          correlationId,
+        );
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
       }
       if (result === 'conflict') {
+        await this.recordIntegrity(
+          'TOEIC_ANSWER_CONFLICT',
+          principal.applicationUserId,
+          session.id,
+          correlationId,
+        );
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
+      }
+      if (result === 'replayed') {
+        await this.recordIntegrity(
+          'TOEIC_ANSWER_REPLAY',
+          principal.applicationUserId,
+          session.id,
+          correlationId,
+        );
       }
       const current = await this.repository.find(
         sessionId,
@@ -367,7 +421,11 @@ export class ToeicTimedTestService {
     }
   }
 
-  async submit(principal: ApplicationPrincipal, sessionId: string) {
+  async submit(
+    principal: ApplicationPrincipal,
+    sessionId: string,
+    correlationId: string = randomUUID(),
+  ) {
     try {
       const result = await this.repository.finalize(
         sessionId,
@@ -378,7 +436,31 @@ export class ToeicTimedTestService {
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
       }
       if (result.state === 'incomplete') {
+        await this.recordIntegrity(
+          'TOEIC_FINALIZE_INCOMPLETE',
+          principal.applicationUserId,
+          sessionId,
+          correlationId,
+        );
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.INCOMPLETE);
+      }
+      if (result.state === 'already-finalized') {
+        await this.recordIntegrity(
+          result.session.status === 'EXPIRED'
+            ? 'TOEIC_FINALIZE_LATE'
+            : 'TOEIC_FINALIZE_DUPLICATE',
+          principal.applicationUserId,
+          sessionId,
+          correlationId,
+        );
+      }
+      if (result.state === 'finalized' && result.session.status === 'EXPIRED') {
+        await this.recordIntegrity(
+          'TOEIC_FINALIZE_LATE',
+          principal.applicationUserId,
+          sessionId,
+          correlationId,
+        );
       }
       if (result.session.status !== 'ACTIVE') {
         await this.captureFinalizedErrors(
@@ -390,6 +472,35 @@ export class ToeicTimedTestService {
     } catch (error) {
       if (error instanceof ToeicQuestionError) throw error;
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.REPOSITORY_FAILURE);
+    }
+  }
+
+  private async recordIntegrity(
+    action: TimedIntegrityAction,
+    actorUserId: string,
+    sessionId: string,
+    correlationId: string,
+  ) {
+    if (!this.audit) return;
+    if (!TIMED_INTEGRITY_ACTIONS.includes(action)) return;
+    try {
+      await this.audit.append({
+        actorUserId,
+        action,
+        target: `toeic-session:${sessionId}`,
+        policyResult:
+          action === 'TOEIC_ANSWER_REPLAY' ||
+          action === 'TOEIC_FINALIZE_DUPLICATE'
+            ? 'ALLOW'
+            : 'DENY',
+        correlationId,
+        attributes: {
+          outcome: action.slice('TOEIC_'.length),
+          capability: 'timed-test',
+        },
+      });
+    } catch {
+      // Audit is evidence only; it must not alter the authoritative outcome.
     }
   }
 

@@ -486,6 +486,15 @@ correctness flags, answer keys, user IDs, or governance metadata are returned.
 Repeated reads are side-effect free and retain the standard correlation/error
 envelope.
 
+The same endpoint supports the approved FULL-MOCK-BETA-V1 session additively:
+`total` is 200, the persisted policy limit is 7,200 seconds, and the response
+contains all Part 1-7 and LISTENING/READING aggregates after snapshot validation.
+The result remains a practice-simulation analysis and is not an official TOEIC
+score conversion. Server-observable answer replay/conflict, closed/late-answer,
+and duplicate/late-finalization signals are recorded through the redacted audit
+boundary using the request correlation ID; they are never returned as raw audit
+payloads or used as client-authored scoring input.
+
 ### Timed-test Error Notebook remediation (EP2-ST010)
 
 Finalized result/analysis reads reconcile incorrect answers into the existing

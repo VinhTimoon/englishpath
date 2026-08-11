@@ -1,3 +1,7 @@
+jest.mock('../../prisma/prisma.service', () => ({
+  PrismaService: class PrismaService {},
+}));
+
 import { createApplicationPrincipal } from '../access';
 import {
   ToeicDifficulty,
@@ -13,6 +17,7 @@ import type {
 } from './toeic-timed-test.models';
 import { ToeicTimedTestService } from './toeic-timed-test.service';
 import { buildTimedTestAnalysis } from './toeic-timed-test.analysis';
+import { AuditService } from '../audit/audit.service';
 import type { VocabularyService } from '../vocabulary/vocabulary.service';
 import type { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.service';
 
@@ -539,6 +544,225 @@ describe('ToeicTimedTestService', () => {
         { questionId: 'version-1', selectedOption: 'A' },
       ),
     ).resolves.toMatchObject({ replayed: true, answered: 1, total: 20 });
+  });
+
+  it('records bounded audit evidence for answer replay and conflict', async () => {
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(
+        session({
+          answers: [
+            {
+              questionId: 'version-1',
+              selectedOption: 'A',
+              isCorrect: true,
+              answeredAt: baseTime,
+            },
+          ],
+        }),
+      ),
+    });
+    const audit = { append: jest.fn().mockResolvedValue(undefined) };
+    const service = new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      undefined,
+      undefined,
+      undefined,
+      audit as never,
+    );
+
+    await expect(
+      service.answer(
+        principal,
+        'timed-session-1',
+        { questionId: 'version-1', selectedOption: 'A' },
+        'corr-replay-001',
+      ),
+    ).resolves.toMatchObject({ replayed: true });
+    await expect(
+      service.answer(
+        principal,
+        'timed-session-1',
+        { questionId: 'version-1', selectedOption: 'B' },
+        'corr-conflict-001',
+      ),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.CONFLICT });
+
+    expect(audit.append).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        actorUserId: principal.applicationUserId,
+        action: 'TOEIC_ANSWER_REPLAY',
+        target: 'toeic-session:timed-session-1',
+        policyResult: 'ALLOW',
+        correlationId: 'corr-replay-001',
+        attributes: { outcome: 'ANSWER_REPLAY', capability: 'timed-test' },
+      }),
+    );
+    expect(audit.append).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        action: 'TOEIC_ANSWER_CONFLICT',
+        policyResult: 'DENY',
+        correlationId: 'corr-conflict-001',
+      }),
+    );
+    expect(JSON.stringify(audit.append.mock.calls)).not.toMatch(
+      /selectedOption|correctAnswer|questionId|prompt|password|token/,
+    );
+  });
+
+  it('records first late finalization and isolates audit persistence failure', async () => {
+    const expired = session({
+      status: 'EXPIRED',
+      score: 0,
+      finalizedAt: new Date(baseTime.getTime() + 1200 * 1000),
+    });
+    const repo = repository({
+      finalize: jest.fn().mockResolvedValue({
+        state: 'finalized',
+        session: expired,
+      }),
+    });
+    const audit = {
+      append: jest.fn().mockRejectedValue(new Error('audit down')),
+    };
+
+    await expect(
+      new ToeicTimedTestService(
+        repo,
+        () => new Date(baseTime.getTime() + 1200 * 1000),
+        undefined,
+        undefined,
+        undefined,
+        audit as never,
+      ).submit(principal, expired.id, 'corr-late-001'),
+    ).resolves.toMatchObject({
+      session: { status: 'EXPIRED', score: 0 },
+    });
+    expect(audit.append).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: 'TOEIC_FINALIZE_LATE',
+        correlationId: 'corr-late-001',
+        policyResult: 'DENY',
+      }),
+    );
+  });
+
+  it('records incomplete and late-answer audit actions', async () => {
+    const audit = { append: jest.fn().mockResolvedValue(undefined) };
+    const incompleteRepo = repository({
+      finalize: jest.fn().mockResolvedValue({
+        state: 'incomplete',
+        session: session(),
+      }),
+    });
+    await expect(
+      new ToeicTimedTestService(
+        incompleteRepo,
+        () => baseTime,
+        undefined,
+        undefined,
+        undefined,
+        audit as never,
+      ).submit(principal, 'timed-session-1', 'corr-incomplete-001'),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.INCOMPLETE });
+
+    const full = fullCatalogue();
+    const activeFull = session({
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      total: 200,
+      questionIds: full.map((item) => item.id),
+      deadlineAt: new Date(baseTime.getTime() - 1),
+    });
+    const lateRepo = repository({
+      find: jest.fn().mockResolvedValue(activeFull),
+      finalize: jest.fn().mockResolvedValue({
+        state: 'finalized',
+        session: {
+          ...activeFull,
+          status: 'EXPIRED',
+          score: 0,
+          finalizedAt: baseTime,
+        },
+      }),
+      finalizedQuestionsByIds: jest.fn().mockResolvedValue([full[0]]),
+    });
+    await expect(
+      new ToeicTimedTestService(
+        lateRepo,
+        () => baseTime,
+        undefined,
+        undefined,
+        undefined,
+        audit as never,
+      ).answer(
+        principal,
+        activeFull.id,
+        { questionId: full[0].id, selectedOption: 'A' },
+        'corr-late-answer-001',
+      ),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.CONFLICT });
+
+    expect(audit.append).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: 'TOEIC_FINALIZE_INCOMPLETE',
+        correlationId: 'corr-incomplete-001',
+      }),
+    );
+    expect(audit.append).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: 'TOEIC_ANSWER_CLOSED',
+        correlationId: 'corr-late-answer-001',
+      }),
+    );
+  });
+
+  it('passes timed-test audit evidence through the real redaction service', async () => {
+    const auditRepository = { append: jest.fn().mockResolvedValue(undefined) };
+    const audit = new AuditService(auditRepository as never);
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(
+        session({
+          answers: [
+            {
+              questionId: 'version-1',
+              selectedOption: 'A',
+              isCorrect: true,
+              answeredAt: baseTime,
+            },
+          ],
+        }),
+      ),
+    });
+
+    await new ToeicTimedTestService(
+      repo,
+      () => baseTime,
+      undefined,
+      undefined,
+      undefined,
+      audit,
+    ).answer(
+      principal,
+      'timed-session-1',
+      { questionId: 'version-1', selectedOption: 'A' },
+      'corr-redaction-001',
+    );
+
+    expect(auditRepository.append).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: 'TOEIC_ANSWER_REPLAY',
+        attributes: {
+          outcome: 'ANSWER_REPLAY',
+          capability: 'timed-test',
+        },
+      }),
+    );
+    expect(JSON.stringify(auditRepository.append.mock.calls)).not.toMatch(
+      /selectedOption|correctAnswer|questionId|prompt|token|password|email/,
+    );
   });
 
   it('maps an answer/submit race to one closed write and one final result', async () => {
@@ -1295,6 +1519,106 @@ describe('ToeicTimedTestService', () => {
       2, 6, 10, 7, 8, 4, 13,
     ]);
     expect(analysis.time.limitSeconds).toBe(2700);
+  });
+
+  it('scores FULL from the persisted 200-question snapshot across all Parts', () => {
+    const questions = fullCatalogue();
+    const final = session({
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      status: 'EXPIRED',
+      total: 200,
+      questionIds: questions.map((item) => item.id),
+      deadlineAt: new Date(baseTime.getTime() + 7200 * 1000),
+      finalizedAt: new Date(baseTime.getTime() + 7200 * 1000),
+      answers: questions.slice(0, 7).map((item, index) => ({
+        questionId: item.id,
+        selectedOption: index % 2 === 0 ? 'A' : 'B',
+        isCorrect: index % 2 === 0,
+        answeredAt: baseTime,
+      })),
+    });
+
+    const analysis = buildTimedTestAnalysis(final, questions);
+
+    expect(analysis.score).toEqual({ correct: 4, total: 200, answered: 7 });
+    expect(analysis.parts.map((item) => item.total)).toEqual([
+      6, 25, 39, 30, 30, 16, 54,
+    ]);
+    expect(analysis.skills).toEqual([
+      expect.objectContaining({ skill: 'LISTENING', total: 100 }),
+      expect.objectContaining({ skill: 'READING', total: 100 }),
+    ]);
+    expect(analysis.time).toEqual({
+      limitSeconds: 7200,
+      usedSeconds: 7200,
+      remainingSeconds: 0,
+      averageSecondsPerAnswered: 1028.6,
+    });
+    expect(JSON.stringify(analysis)).not.toMatch(
+      /questionId|selectedOption|isCorrect|correctAnswer|userId|provider|license/,
+    );
+  });
+
+  it('keeps FULL zero-answer clamping and weakness ordering deterministic', () => {
+    const questions = fullCatalogue();
+    const zero = session({
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      status: 'EXPIRED',
+      total: 200,
+      questionIds: questions.map((item) => item.id),
+      finalizedAt: new Date(baseTime.getTime() + 3 * 60 * 60 * 1000),
+    });
+    const zeroAnalysis = buildTimedTestAnalysis(zero, questions);
+    expect(zeroAnalysis.score).toEqual({ correct: 0, total: 200, answered: 0 });
+    expect(zeroAnalysis.weaknesses).toEqual([]);
+    expect(zeroAnalysis.time).toEqual({
+      limitSeconds: 7200,
+      usedSeconds: 7200,
+      remainingSeconds: 0,
+      averageSecondsPerAnswered: 0,
+    });
+
+    const early = session({
+      ...zero,
+      status: 'SUBMITTED',
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+      answers: questions.slice(0, 7).map((item) => ({
+        questionId: item.id,
+        selectedOption: 'B',
+        isCorrect: false,
+        answeredAt: baseTime,
+      })),
+    });
+    const earlyAnalysis = buildTimedTestAnalysis(early, questions);
+    expect(earlyAnalysis.time).toEqual({
+      limitSeconds: 7200,
+      usedSeconds: 1,
+      remainingSeconds: 7199,
+      averageSecondsPerAnswered: 0.1,
+    });
+    expect(earlyAnalysis.weaknesses.map((item) => item.name)).toEqual([
+      'Part 1',
+      'Part 2',
+      'LISTENING',
+    ]);
+  });
+
+  it('fails closed for an incomplete FULL analysis snapshot', () => {
+    const questions = fullCatalogue();
+    const final = session({
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      status: 'SUBMITTED',
+      total: 200,
+      questionIds: questions.map((item) => item.id),
+      finalizedAt: new Date(baseTime.getTime() + 1_000),
+    });
+
+    expect(() =>
+      buildTimedTestAnalysis(final, questions.slice(0, 199)),
+    ).toThrow(TOEIC_ERROR_CODES.INVALID_CONTENT);
   });
 
   it('returns zero-answer expiry safely and clamps server time to the policy', () => {

@@ -1,7 +1,7 @@
 ---
 id: EP5-ST004
 title: Full scoring, integrity events, and weakness analysis
-status: in-progress
+status: review
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -171,3 +171,22 @@ git diff --check
 
 This is the sole dependency-ready Phase 5 story after EP5-ST003. Phase 6 remains
 suspended indefinitely until production has many users.
+
+## Review Evidence
+
+- Story doctor passed for this story.
+- Planning traceability passed.
+- Targeted unit coverage passed: 4 suites, 54 tests.
+- Targeted timed-test API/E2E coverage passed: 1 suite, 23 tests.
+- API typecheck and lint passed; workspace format check and `git diff --check`
+  passed.
+- Full quality gate passed: 73 API unit suites / 526 tests, 22 API E2E suites /
+  126 tests, 104 browser tests, Prisma validation, workspace lint, typecheck,
+  build, planning traceability, tooling tests, and story checks.
+- Required full Codex review passed with no P0/P1 findings. The runner-native
+  review path was unavailable on Windows (`CreateProcessWithLogonW failed: 2`),
+  so the approved direct Codex CLI fallback was used; it reported pass. It
+  noted only non-blocking P2 coverage improvements for direct FULL retrieval and
+  an explicit expired-duplicate distinction.
+- No Prisma schema, migration, frontend, provider, AI, credential, or Phase 6
+  changes were introduced.

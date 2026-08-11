@@ -130,3 +130,15 @@ boundary pure and immutable with no route or persistence change. The policy is a
 practice-simulation contract, not official score conversion or official exam
 provenance; session, timing, finalization, scoring, and suspicious-event handling
 are deferred to EP5-ST002 through EP5-ST004.
+
+### Decision: FULL scoring and server-observable integrity evidence (EP5-ST004)
+
+Extend the existing finalized timed-test analysis contract to the approved FULL
+snapshot using the same deterministic aggregate/weakness policy, with a fixed
+200-question total and 7,200-second server limit. Preserve MINI/HALF behavior and
+do not add official TOEIC score conversion. Use the existing redacted audit
+boundary for replay, conflict, closed/late-answer, and duplicate/late-
+finalization signals already observable at the server API boundary. Do not add a
+new integrity model, client navigation telemetry, provider integration, or raw
+answer data to audit attributes; audit persistence is append-only evidence and
+never changes the authoritative score.

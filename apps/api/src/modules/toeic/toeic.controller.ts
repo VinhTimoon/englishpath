@@ -474,13 +474,15 @@ export class ToeicController {
     @Headers('x-correlation-id') correlation?: string,
   ) {
     const correlationId = authCorrelationId(correlation);
-    return this.timed.answer(request.principal!, id, input).then((data) => ({
-      data,
-      meta: {
-        correlationId,
-        idempotencyStatus: data.replayed ? 'replayed' : 'created',
-      },
-    }));
+    return this.timed
+      .answer(request.principal!, id, input, correlationId)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId,
+          idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
   }
 
   @Post('tests/sessions/:sessionId/submit')
@@ -491,10 +493,12 @@ export class ToeicController {
     @Headers('x-correlation-id') correlation?: string,
   ) {
     const correlationId = authCorrelationId(correlation);
-    return this.timed.submit(request.principal!, id).then((data) => ({
-      data,
-      meta: { correlationId, idempotencyStatus: 'not_applicable' },
-    }));
+    return this.timed
+      .submit(request.principal!, id, correlationId)
+      .then((data) => ({
+        data,
+        meta: { correlationId, idempotencyStatus: 'not_applicable' },
+      }));
   }
 
   @Get('tests/sessions/:sessionId/result')

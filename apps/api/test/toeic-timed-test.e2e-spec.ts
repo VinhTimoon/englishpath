@@ -19,6 +19,7 @@ import {
   ToeicQuestionType,
 } from '../src/generated/prisma/enums';
 import {
+  TOEIC_AUDIT_SERVICE,
   TOEIC_TIMED_TEST_CLOCK,
   TOEIC_TIMED_TEST_REPOSITORY,
   type TimedPrivateQuestion,
@@ -158,6 +159,7 @@ describe('TOEIC timed-test API', () => {
     finalize: jest.fn(),
   };
   const captureErrors = jest.fn();
+  const audit = { append: jest.fn() };
   const practiceRepository = {
     errors: jest.fn(),
   };
@@ -217,6 +219,7 @@ describe('TOEIC timed-test API', () => {
       session: makeSession(),
     });
     captureErrors.mockResolvedValue(1);
+    audit.append.mockResolvedValue(undefined);
     resolvePrincipal.mockResolvedValue(principal);
     practiceRepository.errors.mockResolvedValue({
       entries: [
@@ -244,6 +247,8 @@ describe('TOEIC timed-test API', () => {
       .useValue(practiceRepository)
       .overrideProvider(TOEIC_ERROR_NOTEBOOK_CAPTURE)
       .useValue(captureErrors)
+      .overrideProvider(TOEIC_AUDIT_SERVICE)
+      .useValue(audit)
       .overrideProvider(TOEIC_TIMED_TEST_CLOCK)
       .useValue(() => new Date('2026-08-06T00:00:00.000Z'))
       .overrideProvider(EXTERNAL_IDENTITY_VERIFIER)
@@ -674,6 +679,108 @@ describe('TOEIC timed-test API', () => {
       ],
       time: { limitSeconds: 2700, usedSeconds: 2700, remainingSeconds: 0 },
     });
+  });
+
+  it('returns FULL analysis across all Parts and records no sensitive fields', async () => {
+    const full = fullCatalogue();
+    const final = makeSession({
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      status: 'EXPIRED',
+      total: 200,
+      questionIds: full.map((item) => item.id),
+      deadlineAt: new Date('2026-08-06T02:00:00.000Z'),
+      finalizedAt: new Date('2026-08-06T02:00:00.000Z'),
+      answers: full.slice(0, 7).map((item, index) => ({
+        questionId: item.id,
+        selectedOption: index % 2 === 0 ? 'A' : 'B',
+        isCorrect: index % 2 === 0,
+        answeredAt: new Date('2026-08-06T00:01:00.000Z'),
+      })),
+    });
+    repository.find.mockResolvedValue(final);
+    repository.finalizedQuestionsByIds.mockResolvedValue(full);
+
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/toeic/tests/sessions/timed-session-1/analysis')
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('x-correlation-id', 'full-analysis-001')
+      .expect(200);
+
+    expect((response.body as ApiBody).data.analysis).toMatchObject({
+      score: { correct: 4, total: 200, answered: 7 },
+      parts: [
+        expect.objectContaining({ part: 'PART_1', total: 6 }),
+        expect.objectContaining({ part: 'PART_2', total: 25 }),
+        expect.objectContaining({ part: 'PART_3', total: 39 }),
+        expect.objectContaining({ part: 'PART_4', total: 30 }),
+        expect.objectContaining({ part: 'PART_5', total: 30 }),
+        expect.objectContaining({ part: 'PART_6', total: 16 }),
+        expect.objectContaining({ part: 'PART_7', total: 54 }),
+      ],
+      skills: [
+        expect.objectContaining({ skill: 'LISTENING', total: 100 }),
+        expect.objectContaining({ skill: 'READING', total: 100 }),
+      ],
+      time: { limitSeconds: 7200, usedSeconds: 7200, remainingSeconds: 0 },
+    });
+    expect(JSON.stringify(response.body)).not.toMatch(
+      /questionId|selectedOption|isCorrect|correctAnswer|userId|provider|license|prompt/,
+    );
+  });
+
+  it('records bounded integrity evidence for a closed answer and duplicate finalization', async () => {
+    const final = makeSession({
+      status: 'SUBMITTED',
+      score: 1,
+      finalizedAt: new Date('2026-08-06T00:02:00.000Z'),
+      answers: [
+        {
+          questionId: questions[0].id,
+          selectedOption: 'A',
+          isCorrect: true,
+          answeredAt: new Date('2026-08-06T00:01:00.000Z'),
+        },
+      ],
+    });
+    repository.find.mockResolvedValue(final);
+    repository.finalizedQuestionsByIds.mockResolvedValue(questions);
+    repository.finalize.mockResolvedValue({
+      state: 'already-finalized',
+      session: final,
+    });
+
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/tests/sessions/${final.id}/answers`)
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('x-correlation-id', 'integrity-replay-001')
+      .send({ questionId: questions[0].id, selectedOption: 'A' })
+      .expect(409);
+
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/tests/sessions/${final.id}/submit`)
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('x-correlation-id', 'integrity-submit-001')
+      .expect(200);
+
+    expect(audit.append).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: 'TOEIC_ANSWER_CLOSED',
+        actorUserId: principal.applicationUserId,
+        target: `toeic-session:${final.id}`,
+        correlationId: 'integrity-replay-001',
+        policyResult: 'DENY',
+      }),
+    );
+    expect(audit.append).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: 'TOEIC_FINALIZE_DUPLICATE',
+        correlationId: 'integrity-submit-001',
+      }),
+    );
+    expect(JSON.stringify(audit.append.mock.calls)).not.toMatch(
+      /questionId|selectedOption|correctAnswer|prompt|password|token|email/,
+    );
   });
 
   it('sanitizes malformed analysis snapshots and repository failures', async () => {

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from '../auth/auth.module';
 import { AuditModule } from '../audit/audit.module';
+import { AuditService } from '../audit/audit.service';
 import { PrismaToeicAdminRepository } from './toeic-admin.repository';
 import { TOEIC_ADMIN_REPOSITORY } from './toeic-admin.models';
 import { ToeicAdminService } from './toeic-admin.service';
@@ -20,6 +21,7 @@ import { ToeicPracticeCatalogueService } from './toeic-practice-catalogue.servic
 import { ToeicTimedTestService } from './toeic-timed-test.service';
 import { PrismaToeicTimedTestRepository } from './toeic-timed-test.repository';
 import {
+  TOEIC_AUDIT_SERVICE,
   TOEIC_TIMED_TEST_CLOCK,
   TOEIC_TIMED_TEST_REPOSITORY,
 } from './toeic-timed-test.models';
@@ -109,6 +111,7 @@ import {
       provide: TOEIC_TIMED_TEST_CLOCK,
       useFactory: () => () => new Date(),
     },
+    { provide: TOEIC_AUDIT_SERVICE, useExisting: AuditService },
     PrismaToeicPracticeCatalogueRepository,
     {
       provide: TOEIC_PRACTICE_CATALOGUE_REPOSITORY,
