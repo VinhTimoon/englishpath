@@ -1,7 +1,7 @@
 ---
 id: EP4-ST004
 title: TOEIC Speaking Task And Recording UI
-status: blocked
+status: ready
 type: frontend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills
@@ -53,7 +53,8 @@ submission journey using the approved backend recording boundary.
 - `pnpm e2e`
 - `git diff --check`
 
-## Blocker
+## Dependency resolution
 
-This story cannot be implemented safely until EP4-ST003 and its linked storage
-decision pass.
+EP4-ST003 and its approved Option 1 storage boundary passed full quality gates
+and were merged to `dev` on 2026-08-11. This story may proceed against the
+server-owned recording and playback contracts.
