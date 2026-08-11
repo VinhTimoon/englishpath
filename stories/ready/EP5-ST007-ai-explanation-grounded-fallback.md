@@ -1,7 +1,7 @@
 ---
 id: EP5-ST007
 title: AI explanation service and grounded fallback
-status: ready-for-dev
+status: ready
 type: backend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
