@@ -4,6 +4,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { PRACTICE_REPOSITORY } from '../practice/practice.models';
+import type { PracticeRepository } from '../practice/practice.ports';
 import type { ApplicationPrincipal } from '../access';
 import {
   ROADMAP_REPOSITORY,
@@ -13,12 +15,15 @@ import {
 import type { RoadmapRepository } from './roadmap.ports';
 import { buildRoadmap } from './roadmap.engine';
 import { projectRoadmapFourSkills } from './four-skills.balance';
+import { adaptRoadmap } from './adaptive-roadmap.policy';
 
 @Injectable()
 export class RoadmapService {
   constructor(
     @Inject(ROADMAP_REPOSITORY)
     private readonly repository: RoadmapRepository,
+    @Inject(PRACTICE_REPOSITORY)
+    private readonly practice: PracticeRepository,
   ) {}
 
   async generate(principal: ApplicationPrincipal) {
@@ -48,13 +53,22 @@ export class RoadmapService {
     const current = await this.repository.findCurrent(userId);
     if (!current) throw new ConflictException('Generate a roadmap first.');
     const seed = await this.requireSeed(userId);
+    const evidence = this.practice.roadmapAdaptiveEvidence
+      ? await this.practice.roadmapAdaptiveEvidence(userId)
+      : { policyVersion: 'adaptive-roadmap-v1' as const, domains: [] };
+    const items = adaptRoadmap(current, evidence);
+    const equivalent =
+      current.items.length === items.length &&
+      current.items.every((item, index) => {
+        const next = items[index];
+        return (
+          next &&
+          JSON.stringify({ ...item, id: undefined }) === JSON.stringify(next)
+        );
+      });
+    if (equivalent) return this.withToday(current);
     return this.withToday(
-      await this.repository.createVersion(
-        userId,
-        seed,
-        buildRoadmap(seed),
-        true,
-      ),
+      await this.repository.createVersion(userId, seed, items, true),
     );
   }
 

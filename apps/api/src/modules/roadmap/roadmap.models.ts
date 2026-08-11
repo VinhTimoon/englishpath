@@ -5,6 +5,7 @@ import type {
 } from '../onboarding/onboarding.models';
 
 export const ROADMAP_REPOSITORY = Symbol('ROADMAP_REPOSITORY');
+export const ROADMAP_ADAPTIVE_POLICY = 'adaptive-roadmap-v1' as const;
 export const ROADMAP_ITEM_STATUSES = [
   'PENDING',
   'COMPLETED',
@@ -42,6 +43,8 @@ export type RoadmapItemDraft = Readonly<{
   taskType: RoadmapTaskType;
   title: string;
   minutes: number;
+  status: RoadmapItemStatus;
+  completedAt?: Date | null;
 }>;
 
 export type RoadmapItemView = RoadmapItemDraft &

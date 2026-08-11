@@ -18,6 +18,6 @@ import { TOEIC_ERROR_NOTEBOOK_CAPTURE } from './practice.models';
       useExisting: PrismaPracticeRepository,
     },
   ],
-  exports: [TOEIC_ERROR_NOTEBOOK_CAPTURE],
+  exports: [TOEIC_ERROR_NOTEBOOK_CAPTURE, PRACTICE_REPOSITORY],
 })
 export class PracticeModule {}

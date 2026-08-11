@@ -72,16 +72,21 @@ threshold, score, task, or taxonomy.
    version, uses bounded canonical ordering, and is replay-stable for identical
    seed/evidence. It never calls AI, uses wall-clock randomness, or treats
    unavailable evidence as zero performance or completion.
-3. Recalculation preserves all existing required/due roadmap work and the
-   existing EP4-ST010 learner-safe Four Skills rules. It may add or reorder
-   only approved existing roadmap activities and must never fabricate a prompt,
-   content reference, Speaking/Writing task, answer, score, or submission.
+3. Recalculation preserves every existing roadmap item record, including
+   status/completion timestamps, item count, day/slot bounds, and the existing
+   EP4-ST010 learner-safe Four Skills projection. The current persisted roadmap
+   contract has no required/due flags, so this story does not invent or
+   reallocate such metadata. It may reorder only existing pending activities
+   and must never fabricate a prompt, content reference, Speaking/Writing
+   task, answer, score, or submission.
 4. A successful recalculation creates the next server-owned roadmap version with
    existing `previousRoadmapId` lineage and leaves the historical roadmap
    unchanged. Identical evidence is idempotent/no-op or returns the existing
-   equivalent version according to the current repository contract; changed
-   validated evidence produces an explicit new version rather than silently
-   mutating today/progress state.
+   equivalent version according to the current repository contract. When
+   validated evidence changes the canonical existing-item ordering, the
+   service creates an explicit new version; if evidence changes but the
+   schema-free candidate is equivalent, it returns the current version
+   because no persistence fingerprint is approved for this story.
 5. Existing `GET /api/v1/roadmaps/current`, generate, item-status, today counts,
    and Four Skills projection remain backward compatible. No learner can read
    or influence another learner's roadmap/evidence.
@@ -91,8 +96,9 @@ threshold, score, task, or taxonomy.
    fake task or a zero/completed state.
 7. Unit and API/E2E regression coverage proves deterministic policy behavior,
    owner isolation, version/lineage behavior, repeated recalculation, changed
-   evidence, required/due preservation, unavailable evidence, sensitive-field
-   redaction, and unchanged roadmap/today behavior.
+   evidence that changes the candidate, completion preservation,
+   unavailable/malformed evidence, sensitive-field redaction, Four Skills
+   projection, and unchanged roadmap/today behavior.
 8. Backend/API/security/test documentation records the policy version,
    evidence allowlist, fail-closed behavior, and the separation from official
    scoring, AI feedback, submissions, and provider data.
@@ -128,4 +134,3 @@ git diff --check
 Adaptive recalculation is a bounded, deterministic, owner-safe server policy
 with explicit evidence/version semantics, preserved historical roadmaps,
 regression coverage, documentation, and all required quality gates passing.
-

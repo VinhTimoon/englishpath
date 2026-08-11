@@ -489,3 +489,7 @@ observable replay, conflict, closed/late-answer, and duplicate/late-finalization
 paths. Audit attributes are checked to exclude answer content, prompts, keys,
 raw request bodies, and credentials; audit persistence is evidence-only and
 cannot replace or alter the authoritative score.
+
+### Adaptive roadmap regression coverage
+
+The roadmap policy suite verifies stable state-based ordering (without count-derived weights), bounded item preservation, protected status slots, and fail-closed evidence. API/E2E coverage verifies owner isolation, repeated recalculation, successor lineage, historical immutability, redaction, concurrent repository races, Four Skills projection, and unchanged today counts.

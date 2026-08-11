@@ -154,3 +154,7 @@ are unavailable with zero count rather than exposing partial classification.
 Speaking and Writing remain unavailable until an approved notebook evidence
 source exists. No recurrence, scheduling, score, provider, feedback, rubric,
 submission, schema, or migration change is part of this decision.
+
+### EP5-ST006: bounded adaptive policy
+
+Adopted policy version `adaptive-roadmap-v1`. Because no schema change is allowed, idempotence is determined by canonical comparison with the current roadmap; changed existing-item ordering creates a successor with repository-managed lineage, while an evidence change that produces an equivalent candidate is a safe no-op. Existing completion timestamps are carried into successor items. `entryCount` is validation-only: it is not converted into a score, threshold, or priority weight. The only adaptive ordering rule is `available` before `empty`, with a fixed `LISTENING` then `READING` tie-break; unavailable domains produce no signal. No persistence field is used to encode policy state, and no required/due metadata is invented beyond the current roadmap contract.

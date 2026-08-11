@@ -336,3 +336,7 @@ returns only an immutable blueprint/version-ID snapshot, and fails closed withou
 partial or fabricated content. The assembly boundary does not create a session or
 expose answer keys; owner binding, timer, finalization, and integrity-event controls
 remain required in EP5-ST002 through EP5-ST004.
+
+### Adaptive roadmap security
+
+Evidence is queried with the authenticated application user ID through the practice repository. Only aggregate Error Notebook coverage crosses into roadmap policy; raw answers, correct answers, prompts, submissions, provider data, and official scoring do not. Unsupported or unavailable evidence produces no adaptive signal.

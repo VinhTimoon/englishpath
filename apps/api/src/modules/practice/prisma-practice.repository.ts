@@ -339,15 +339,12 @@ export class PrismaPracticeRepository implements PracticeRepository {
             LEFT JOIN "ToeicQuestionVersion" qv ON qv."id" = e."questionId"
             WHERE e."userId" = ${userId}
           `
-        : Promise.resolve<ErrorNotebookCoverageRow[]>([]),
+        : Promise.resolve<ErrorNotebookCoverageRow[] | null>(null),
     ]);
-    const coverage = coverageRows[0] ?? {
-      generalEntries: 0,
-      invalidToeicEntries: 0,
-      listeningEntries: 0,
-      readingEntries: 0,
-    };
-    const toeicMetadataValid = coverage.invalidToeicEntries === 0;
+    const coverage = coverageRows?.[0];
+    const coverageAvailable = coverage !== undefined && coverage !== null;
+    const toeicMetadataValid =
+      coverageAvailable && coverage.invalidToeicEntries === 0;
     const domain = (
       name: 'GENERAL' | 'LISTENING' | 'READING' | 'SPEAKING' | 'WRITING',
       count: number,
@@ -361,8 +358,10 @@ export class PrismaPracticeRepository implements PracticeRepository {
           : ('empty' as const),
       entryCount: supported ? count : 0,
     });
-    const listening = toeicMetadataValid ? coverage.listeningEntries : 0;
-    const reading = toeicMetadataValid ? coverage.readingEntries : 0;
+    const listening = toeicMetadataValid
+      ? (coverage?.listeningEntries ?? 0)
+      : 0;
+    const reading = toeicMetadataValid ? (coverage?.readingEntries ?? 0) : 0;
     return {
       entries: entries.map((entry) => ({
         ...entry,
@@ -382,13 +381,25 @@ export class PrismaPracticeRepository implements PracticeRepository {
       },
       coverage: {
         domains: [
-          domain('GENERAL', coverage.generalEntries),
+          domain(
+            'GENERAL',
+            coverageAvailable ? (coverage?.generalEntries ?? 0) : 0,
+            coverageAvailable,
+          ),
           domain('LISTENING', listening, toeicMetadataValid),
           domain('READING', reading, toeicMetadataValid),
           domain('SPEAKING', 0, false),
           domain('WRITING', 0, false),
         ],
       },
+    };
+  }
+
+  async roadmapAdaptiveEvidence(userId: string) {
+    const page = await this.errors(userId, { page: 1, size: 1 });
+    return {
+      policyVersion: 'adaptive-roadmap-v1' as const,
+      domains: page.coverage.domains.map((domain) => ({ ...domain })),
     };
   }
 }

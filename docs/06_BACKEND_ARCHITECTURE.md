@@ -346,3 +346,7 @@ Missing or malformed TOEIC metadata fails closed for both TOEIC domains, while
 Speaking and Writing remain explicitly unavailable because this boundary has no
 approved notebook evidence for them. No score, recurrence, schedule, provider,
 feedback, rubric, submission, or schema model is introduced.
+
+### Adaptive roadmap boundary (EP5-ST006)
+
+`adaptive-roadmap-v1` is a pure, deterministic server policy. Its allowlist is the owner-scoped roadmap item status and the sanitized Error Notebook coverage projection (`GENERAL`, `LISTENING`, `READING`, `SPEAKING`, `WRITING`). Unavailable, malformed, duplicate, or unsupported evidence fails closed; it is never treated as zero performance. `entryCount` is validated for consistency but is not a score or priority weight. The policy uses only the approved coverage state (`available` before `empty`) plus the fixed `LISTENING`/`READING` tie-break; unavailable domains have no adaptive signal and remain in place. It reorders only existing pending items within their existing day/slot set.

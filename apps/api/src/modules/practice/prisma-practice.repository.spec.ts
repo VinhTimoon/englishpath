@@ -262,6 +262,59 @@ describe('PrismaPracticeRepository Error Notebook integration', () => {
     expect(prisma.$queryRaw).toHaveBeenCalled();
   });
 
+  it('projects only sanitized owner-scoped adaptive evidence', async () => {
+    const findMany = jest.fn().mockResolvedValue([]);
+    const prisma = {
+      errorNotebookEntry: { count: jest.fn().mockResolvedValue(0), findMany },
+      $queryRaw: jest.fn().mockResolvedValue([
+        {
+          generalEntries: 0,
+          invalidToeicEntries: 0,
+          listeningEntries: 2,
+          readingEntries: 1,
+        },
+      ]),
+    };
+    const repository = new PrismaPracticeRepository(prisma as never);
+
+    await expect(
+      repository.roadmapAdaptiveEvidence('learner-1'),
+    ).resolves.toEqual({
+      policyVersion: 'adaptive-roadmap-v1',
+      domains: [
+        { domain: 'GENERAL', state: 'empty', entryCount: 0 },
+        { domain: 'LISTENING', state: 'available', entryCount: 2 },
+        { domain: 'READING', state: 'available', entryCount: 1 },
+        { domain: 'SPEAKING', state: 'unavailable', entryCount: 0 },
+        { domain: 'WRITING', state: 'unavailable', entryCount: 0 },
+      ],
+    });
+    expect(prisma.$queryRaw).toHaveBeenCalled();
+    expect(findMany).toHaveBeenCalledWith(
+      expect.objectContaining({ where: { userId: 'learner-1' } }),
+    );
+  });
+
+  it('marks all coverage unavailable when metadata aggregation is unavailable', async () => {
+    const prisma = {
+      errorNotebookEntry: {
+        count: jest.fn().mockResolvedValue(0),
+        findMany: jest.fn().mockResolvedValue([]),
+      },
+    };
+    const repository = new PrismaPracticeRepository(prisma as never);
+
+    const page = await repository.errors('learner-1', { page: 1, size: 1 });
+
+    expect(page.coverage.domains).toEqual([
+      { domain: 'GENERAL', state: 'unavailable', entryCount: 0 },
+      { domain: 'LISTENING', state: 'unavailable', entryCount: 0 },
+      { domain: 'READING', state: 'unavailable', entryCount: 0 },
+      { domain: 'SPEAKING', state: 'unavailable', entryCount: 0 },
+      { domain: 'WRITING', state: 'unavailable', entryCount: 0 },
+    ]);
+  });
+
   it('keeps the migration additive and enforces source/reference consistency', () => {
     const migration = readFileSync(
       join(

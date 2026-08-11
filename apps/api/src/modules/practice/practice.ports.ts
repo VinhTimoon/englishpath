@@ -6,9 +6,11 @@ import type {
   PracticeAnswerInput,
   PracticeSessionState,
   ProgressSummary,
+  RoadmapAdaptiveEvidence,
 } from './practice.models';
 
 export interface PracticeRepository {
+  roadmapAdaptiveEvidence?(userId: string): Promise<RoadmapAdaptiveEvidence>;
   captureToeicErrors?(input: ErrorNotebookCapture): Promise<number>;
   start(
     userId: string,

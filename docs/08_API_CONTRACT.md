@@ -713,3 +713,7 @@ finalization are validated on the backend; malformed or insufficient content fai
 before a session write. The additive Prisma enum migration is local/generated
 evidence only and must not be applied to shared Supabase or production by
 automation.
+
+### Roadmap recalculation
+
+`POST /api/v1/roadmaps/recalculate` derives identity and evidence from the authenticated principal. Request fields cannot supply identity, scores, evidence, weights, priorities, or policy versions. Recalculation preserves item count, statuses, completion timestamps, and protected slots, creates a successor only when the canonical existing-item ordering changes, and never creates prompts, submissions, official scores, AI output, or Speaking/Writing tasks. The policy validates `entryCount` but never uses it as a score or priority weight; it only orders supported `available` coverage before `empty` coverage with a fixed `LISTENING`/`READING` tie-break. Unavailable domains produce no signal. The current schema has no evidence fingerprint; an evidence change that yields an equivalent candidate is therefore a safe no-op.

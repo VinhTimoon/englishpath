@@ -1,5 +1,14 @@
 export const PRACTICE_REPOSITORY = Symbol('PRACTICE_REPOSITORY');
 
+export type RoadmapAdaptiveEvidence = Readonly<{
+  policyVersion: 'adaptive-roadmap-v1';
+  domains: readonly Readonly<{
+    domain: ErrorNotebookDomain;
+    state: 'available' | 'empty' | 'unavailable';
+    entryCount: number;
+  }>[];
+}>;
+
 export const TOEIC_ERROR_NOTEBOOK_CAPTURE = Symbol(
   'TOEIC_ERROR_NOTEBOOK_CAPTURE',
 );

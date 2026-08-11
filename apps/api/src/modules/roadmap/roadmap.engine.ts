@@ -87,6 +87,8 @@ export function buildRoadmap(seed: RoadmapSeed): readonly RoadmapItemDraft[] {
       sequence: index + 1,
       phase,
       minutes,
+      status: 'PENDING' as const,
+      completedAt: null,
     }));
   }).flat();
 }
