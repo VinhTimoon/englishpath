@@ -203,6 +203,7 @@ export type ToeicAccessTier =
 export const ToeicTimedTestMode = {
   MINI: 'MINI',
   HALF: 'HALF',
+  FULL: 'FULL',
 } as const;
 
 export type ToeicTimedTestMode =

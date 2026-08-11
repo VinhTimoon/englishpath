@@ -12,7 +12,7 @@ review, publication, learner access, or runtime delivery.
 All learner-facing TOEIC question catalogues use the same server-owned
 eligibility predicate. A row must be reviewed, published, license-approved,
 within its validity window, free-tier, and carry the approved
-`sourceIdentity` `englishpath-original`. Timed MINI/HALF selection additionally
+`sourceIdentity` `englishpath-original`. Timed MINI/HALF/FULL selection additionally
 requires the `MOCK_TEST` usage scope; practice selection requires `PRACTICE`.
 The source allowlist is enforced in the repository predicate, not inferred from
 client filters or the visible response.
@@ -456,8 +456,9 @@ the corresponding session table and is part of replay/conflict comparison.
 
 Authenticated routes are `POST /api/v1/toeic/tests/sessions`, session GET,
 answer POST, submit POST, and result GET. The only start inputs are
-`clientSessionId` and `mode` (`MINI` or `HALF`). Policy v1 is server-owned:
-MINI is 20 questions/1200 seconds and HALF is 50/2700 seconds. Active
+`clientSessionId` and `mode` (`MINI`, `HALF`, or `FULL`). Policy values are
+server-owned: MINI is 20 questions/1200 seconds, HALF is 50/2700 seconds, and
+FULL is 200 questions/7200 seconds with the approved Part quotas. Active
 projections never include answer keys or correctness. Late access finalizes as
 expired; repeated start and submit are replay-safe. The selected version IDs are
 an immutable server snapshot for session display. Answer writes re-check current
@@ -465,7 +466,7 @@ governance and option membership, and insertion re-reads the session after a
 concurrent write so progress is authoritative.
 
 The web client consumes the envelope as `unknown` and accepts an active session
-only when the server projection contains the governed MINI/HALF total and the
+only when the server projection contains the governed mode total and the
 complete ordered question snapshot. Final projections contain no questions and
 may contain only the approved aggregate score. The client sends no answer,
 grading, source, license, review, publication, or provider fields to the learner
@@ -685,6 +686,13 @@ EP5-ST001 introduces no HTTP endpoint. The backend owns the immutable full-mock
 blueprint version, 200-question Part quota shape, and deterministic selection of
 governed question versions for the later EP5 session service. An incomplete eligible
 catalogue produces an internal insufficient-content result and never a partial or
-fabricated test. FULL is not added to the existing MINI/HALF session input until
-EP5-ST002 defines authenticated persistence, timer, finalization, and safe response
-contracts.
+fabricated test. EP5-ST002 extends the existing authenticated session route
+additively for `FULL`. The server invokes the EP5-ST001 assembler before persisting
+the owner-scoped session, stores the policy version, server-clock deadline, and
+ordered immutable version-ID snapshot in the existing timed-session columns, and
+exposes the same safe question projection used by MINI/HALF. FULL catalogue
+identity, persisted version numbers, options, timer, answer membership, and
+finalization are validated on the backend; malformed or insufficient content fails
+before a session write. The additive Prisma enum migration is local/generated
+evidence only and must not be applied to shared Supabase or production by
+automation.

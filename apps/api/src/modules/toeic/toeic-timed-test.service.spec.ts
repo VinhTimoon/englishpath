@@ -51,6 +51,7 @@ function question(part: ToeicPart, index: number): TimedPrivateQuestion {
     mediaReference: null,
     explanation: null,
     correctAnswer: 'A',
+    version: 1,
   };
 }
 
@@ -90,6 +91,22 @@ function halfCatalogue(): TimedPrivateQuestion[] {
     PART_7: 13,
   };
   let index = 100;
+  return Object.entries(counts).flatMap(([part, count]) =>
+    Array.from({ length: count }, () => question(part as ToeicPart, index++)),
+  );
+}
+
+function fullCatalogue(): TimedPrivateQuestion[] {
+  const counts: Record<ToeicPart, number> = {
+    PART_1: 6,
+    PART_2: 25,
+    PART_3: 39,
+    PART_4: 30,
+    PART_5: 30,
+    PART_6: 16,
+    PART_7: 54,
+  };
+  let index = 1000;
   return Object.entries(counts).flatMap(([part, count]) =>
     Array.from({ length: count }, () => question(part as ToeicPart, index++)),
   );
@@ -224,6 +241,204 @@ describe('ToeicTimedTestService', () => {
     ]);
   });
 
+  it('assembles the exact FULL snapshot and server deadline through EP5-ST001', async () => {
+    const full = fullCatalogue();
+    const repo = repository({
+      eligibleQuestions: jest.fn().mockResolvedValue(full),
+    });
+    const result = await new ToeicTimedTestService(repo, () => baseTime).start(
+      principal,
+      { clientSessionId: 'full-client-123', mode: 'FULL' },
+    );
+
+    expect(result.questions).toHaveLength(200);
+    expect(result.session).toMatchObject({
+      mode: 'FULL',
+      total: 200,
+      deadlineAt: new Date(baseTime.getTime() + 7200 * 1000),
+    });
+    expect(repo.create.mock.calls).toContainEqual([
+      expect.objectContaining({
+        mode: 'FULL',
+        policyVersion: 'FULL-MOCK-BETA-V1',
+        total: 200,
+        questionIds: full.map((item) => item.id),
+      }),
+    ]);
+    expect(JSON.stringify(result)).not.toMatch(
+      /correctAnswer|isCorrect|sourceUrl|rightsOwner|reviewStatus|publicationState/,
+    );
+  });
+
+  it('does not persist a FULL session when the governed catalogue is incomplete', async () => {
+    const repo = repository({
+      eligibleQuestions: jest
+        .fn()
+        .mockResolvedValue(fullCatalogue().slice(0, 199)),
+    });
+
+    await expect(
+      new ToeicTimedTestService(repo, () => baseTime).start(principal, {
+        clientSessionId: 'full-incomplete-client',
+        mode: 'FULL',
+      }),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.NOT_FOUND });
+    expect(repo.create.mock.calls).toHaveLength(0);
+  });
+
+  it('does not persist a FULL session when a selected question projection is malformed', async () => {
+    const malformed = fullCatalogue();
+    malformed[0] = { ...malformed[0], options: [{ id: 'A' }] };
+    const repo = repository({
+      eligibleQuestions: jest.fn().mockResolvedValue(malformed),
+    });
+
+    await expect(
+      new ToeicTimedTestService(repo, () => baseTime).start(principal, {
+        clientSessionId: 'full-malformed-client',
+        mode: 'FULL',
+      }),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.INVALID_CONTENT });
+    expect(repo.create.mock.calls).toHaveLength(0);
+  });
+
+  it('does not persist a FULL session when an unselected eligible row is malformed', async () => {
+    const malformed = [
+      ...fullCatalogue(),
+      {
+        ...question(ToeicPart.PART_7, 9999),
+        options: [{ id: 'A' }],
+      },
+    ];
+    const repo = repository({
+      eligibleQuestions: jest.fn().mockResolvedValue(malformed),
+    });
+
+    await expect(
+      new ToeicTimedTestService(repo, () => baseTime).start(principal, {
+        clientSessionId: 'full-unselected-malformed-client',
+        mode: 'FULL',
+      }),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.INVALID_CONTENT });
+    expect(repo.create.mock.calls).toHaveLength(0);
+  });
+
+  it('replays a FULL client session and rejects a mode conflict without creating another session', async () => {
+    const full = fullCatalogue();
+    const existing = session({
+      clientSessionId: 'full-replay-client',
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      questionIds: full.map((item) => item.id),
+      total: 200,
+      deadlineAt: new Date(baseTime.getTime() + 7200 * 1000),
+    });
+    const repo = repository({
+      findByClient: jest.fn().mockResolvedValue(existing),
+      safeQuestionsByIds: jest.fn().mockResolvedValue(full),
+    });
+    const service = new ToeicTimedTestService(repo, () => baseTime);
+
+    await expect(
+      service.start(principal, {
+        clientSessionId: 'full-replay-client',
+        mode: 'FULL',
+      }),
+    ).resolves.toMatchObject({ replayed: true, session: { total: 200 } });
+    await expect(
+      service.start(principal, {
+        clientSessionId: 'full-replay-client',
+        mode: 'MINI',
+      }),
+    ).rejects.toMatchObject({ code: TOEIC_ERROR_CODES.CONFLICT });
+    expect(repo.create.mock.calls).toHaveLength(0);
+  });
+
+  it('grades a FULL answer from the immutable snapshot after live eligibility changes', async () => {
+    const full = fullCatalogue();
+    const active = session({
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      questionIds: full.map((item) => item.id),
+      total: 200,
+      deadlineAt: new Date(baseTime.getTime() + 7200 * 1000),
+    });
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(active),
+      privateQuestionsByIds: jest.fn().mockResolvedValue([]),
+      finalizedQuestionsByIds: jest.fn().mockResolvedValue([full[0]]),
+    });
+
+    await expect(
+      new ToeicTimedTestService(repo, () => baseTime).answer(
+        principal,
+        active.id,
+        { questionId: full[0].id, selectedOption: 'A' },
+      ),
+    ).resolves.toMatchObject({ accepted: true, total: 200 });
+    expect(repo.privateQuestionsByIds.mock.calls).toHaveLength(0);
+    expect(repo.finalizedQuestionsByIds.mock.calls).toContainEqual([
+      [full[0].id],
+    ]);
+  });
+
+  it('keeps FULL expiry and incomplete-submit decisions server-owned', async () => {
+    const full = fullCatalogue();
+    const active = session({
+      mode: 'FULL',
+      policyVersion: 'FULL-MOCK-BETA-V1',
+      questionIds: full.map((item) => item.id),
+      total: 200,
+      deadlineAt: new Date(baseTime.getTime() + 7200 * 1000),
+    });
+    const expired = session({
+      ...active,
+      status: 'EXPIRED',
+      finalizedAt: new Date(baseTime.getTime() + 7200 * 1000),
+      score: 0,
+    });
+    const repo = repository({
+      find: jest.fn().mockResolvedValue(active),
+      finalize: jest.fn().mockResolvedValue({
+        state: 'finalized',
+        session: expired,
+      }),
+    });
+    const expiredService = new ToeicTimedTestService(
+      repo,
+      () => new Date(baseTime.getTime() + 7200 * 1000),
+    );
+    const expiredAnswer = () =>
+      expiredService.answer(principal, active.id, {
+        questionId: full[0].id,
+        selectedOption: 'A',
+      });
+    await expect(expiredAnswer()).rejects.toMatchObject({
+      code: TOEIC_ERROR_CODES.CONFLICT,
+    });
+    expect(repo.finalize.mock.calls).toContainEqual([
+      active.id,
+      principal.applicationUserId,
+      new Date(baseTime.getTime() + 7200 * 1000),
+    ]);
+
+    const incompleteRepo = repository({
+      find: jest.fn().mockResolvedValue(active),
+      finalize: jest.fn().mockResolvedValue({
+        state: 'incomplete',
+        session: active,
+      }),
+    });
+    const incompleteSubmit = () =>
+      new ToeicTimedTestService(incompleteRepo, () => baseTime).submit(
+        principal,
+        active.id,
+      );
+    await expect(incompleteSubmit()).rejects.toMatchObject({
+      code: TOEIC_ERROR_CODES.INCOMPLETE,
+    });
+  });
+
   it('fails closed when a required Part quota is unavailable', async () => {
     const repo = repository({
       eligibleQuestions: jest
@@ -286,7 +501,7 @@ describe('ToeicTimedTestService', () => {
           ],
         }),
       ),
-      privateQuestionsByIds: jest.fn().mockResolvedValue([]),
+      finalizedQuestionsByIds: jest.fn().mockResolvedValue([]),
     });
     await expect(
       new ToeicTimedTestService(repo, () => baseTime).answer(

@@ -224,6 +224,9 @@ export class PrismaToeicTimedTestRepository implements ToeicTimedTestRepository 
   }
 
   async privateQuestionsByIds(ids: readonly string[], now: Date) {
+    // This port remains available for catalogue/private projections. Timed
+    // answer grading uses finalizedQuestionsByIds so a live eligibility
+    // refresh cannot invalidate an already-started immutable snapshot.
     if (ids.length === 0) return [];
     const rows = await this.db.toeicQuestionVersion.findMany({
       // Active display uses the immutable session snapshot. Answer writes

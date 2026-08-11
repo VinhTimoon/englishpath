@@ -174,14 +174,26 @@ export class ToeicTimedTestService {
       const eligible = await this.repository.eligibleQuestions(startedAt);
       let selected: TimedPrivateQuestion[];
       if (mode === 'FULL') {
-        const assembly = assembleFullMockTest(
-          eligible.map((question) => ({
+        // The catalogue is an atomic input: malformed content must fail the
+        // start even when the deterministic quota assembler would not select
+        // that row into the 200-question snapshot.
+        eligible.forEach((question) => safeQuestion(question));
+        const fullCatalogue = eligible.map((question) => {
+          if (
+            typeof question.version !== 'number' ||
+            !Number.isInteger(question.version) ||
+            question.version <= 0
+          ) {
+            throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
+          }
+          return {
             canonicalQuestionId: question.questionId,
             versionId: question.id,
-            version: question.version ?? 1,
+            version: question.version,
             part: question.part,
-          })),
-        );
+          };
+        });
+        const assembly = assembleFullMockTest(fullCatalogue);
         if (
           !assembly.ok ||
           assembly.assembly.selectedVersionIds.length !== policy.total
@@ -215,6 +227,11 @@ export class ToeicTimedTestService {
         }
       }
 
+      // Validate the complete learner-safe question projection before the
+      // session write. Catalogue identity validation alone cannot detect a
+      // malformed option payload; persisting first would violate atomic
+      // failure for a malformed FULL catalogue.
+      const questions = selected.map(safeQuestion);
       const created = await this.repository.create({
         userId: principal.applicationUserId,
         clientSessionId: input.clientSessionId,
@@ -227,7 +244,6 @@ export class ToeicTimedTestService {
         ),
         total: policy.total,
       });
-      const questions = selected.map(safeQuestion);
       return {
         session: safeSession(created, this.clock, questions),
         questions,
@@ -291,8 +307,11 @@ export class ToeicTimedTestService {
       // Validate the persisted question snapshot and its option set before
       // handling retries. This keeps malformed/retired snapshot rows closed
       // even when an answer request is repeated.
+      // A started session owns an immutable question-version snapshot. Do not
+      // re-apply the current catalogue eligibility predicate here: governance
+      // changes after start must not invalidate a learner's active attempt.
       const question = (
-        await this.repository.privateQuestionsByIds([input.questionId], now)
+        await this.repository.finalizedQuestionsByIds([input.questionId])
       )[0];
       if (!question) throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
       const options = parseOptions(question.options);

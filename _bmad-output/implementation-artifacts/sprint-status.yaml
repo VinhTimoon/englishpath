@@ -170,7 +170,7 @@ development_status:
 
   epic-5: in-progress
   5-1-full-mock-test-assembly-and-versioning: review
-  5-2-full-exam-session-timer-and-finalization: blocked
+  5-2-full-exam-session-timer-and-finalization: review
   5-3-strict-exam-ui-and-interruption-handling: backlog
   5-4-scoring-integrity-and-weakness-analysis: backlog
   5-5-advanced-cross-skill-error-notebook: backlog

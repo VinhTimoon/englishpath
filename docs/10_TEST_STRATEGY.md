@@ -465,5 +465,8 @@ validate positive/integer policy values and complete Part declarations, select o
 newest eligible version per canonical question, reject duplicate identities and
 cross-Part histories, preserve deterministic Part ordering, fail atomically when a
 quota is unavailable, freeze nested snapshots, and assert forbidden-field absence.
-Existing MINI/HALF policy tests remain a regression gate; no full-session route or
-shared database is required until EP5-ST002.
+Existing MINI/HALF policy tests remain a regression gate; no shared database is
+required for the assembly unit. EP5-ST002 adds the authenticated FULL session
+boundary, immutable question-version snapshot grading, server deadline,
+idempotent client replay, owner scoping, finalization, and safe API projection
+gates.

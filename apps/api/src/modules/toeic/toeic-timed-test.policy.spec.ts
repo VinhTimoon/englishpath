@@ -71,4 +71,28 @@ describe('TOEIC timed-test policy', () => {
       expect(policy.durationSeconds).toBeGreaterThan(0);
     }
   });
+
+  it('freezes the approved FULL policy and version boundary', () => {
+    expect(TOEIC_TIMED_TEST_POLICIES.FULL).toMatchObject({
+      total: 200,
+      durationSeconds: 7200,
+      listening: 100,
+      reading: 100,
+      quotas: {
+        [ToeicPart.PART_1]: 6,
+        [ToeicPart.PART_2]: 25,
+        [ToeicPart.PART_3]: 39,
+        [ToeicPart.PART_4]: 30,
+        [ToeicPart.PART_5]: 30,
+        [ToeicPart.PART_6]: 16,
+        [ToeicPart.PART_7]: 54,
+      },
+    });
+    expect(TOEIC_TIMED_TEST_POLICIES.FULL.total).toBe(
+      Object.values(TOEIC_TIMED_TEST_POLICIES.FULL.quotas).reduce(
+        (sum, value) => sum + value,
+        0,
+      ),
+    );
+  });
 });

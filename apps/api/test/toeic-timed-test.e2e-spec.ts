@@ -68,6 +68,7 @@ function question(part: ToeicPart, index: number): TimedPrivateQuestion {
     mediaReference: null,
     explanation: null,
     correctAnswer: 'A',
+    version: 1,
   };
 }
 
@@ -98,6 +99,22 @@ function halfCatalogue() {
     PART_7: 13,
   };
   let index = 100;
+  return Object.entries(counts).flatMap(([part, count]) =>
+    Array.from({ length: count }, () => question(part as ToeicPart, index++)),
+  );
+}
+
+function fullCatalogue() {
+  const counts: Record<ToeicPart, number> = {
+    PART_1: 6,
+    PART_2: 25,
+    PART_3: 39,
+    PART_4: 30,
+    PART_5: 30,
+    PART_6: 16,
+    PART_7: 54,
+  };
+  let index = 1000;
   return Object.entries(counts).flatMap(([part, count]) =>
     Array.from({ length: count }, () => question(part as ToeicPart, index++)),
   );
@@ -300,6 +317,47 @@ describe('TOEIC timed-test API', () => {
     expect(JSON.stringify(body)).not.toMatch(
       /correctAnswer|isCorrect|sourceUrl|rightsOwner|reviewStatus|publicationState|answers/,
     );
+  });
+
+  it('assembles the server-owned FULL shape with the approved timer and snapshot', async () => {
+    const full = fullCatalogue();
+    repository.eligibleQuestions.mockResolvedValue(full);
+    const response = await request(app.getHttpServer())
+      .post('/api/v1/toeic/tests/sessions')
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('X-Correlation-Id', 'timed-full-001')
+      .send({ clientSessionId: 'timed-full-client-1', mode: 'FULL' })
+      .expect(200);
+    const body = response.body as ApiBody;
+    expect(body.data.session).toMatchObject({
+      mode: 'FULL',
+      total: 200,
+      remainingSeconds: 7200,
+    });
+    expect(body.data.questions).toHaveLength(200);
+    expect(repository.create.mock.calls).toContainEqual([
+      expect.objectContaining({
+        mode: 'FULL',
+        policyVersion: 'FULL-MOCK-BETA-V1',
+        total: 200,
+        questionIds: full.map((item) => item.id),
+      }),
+    ]);
+    expect(JSON.stringify(body)).not.toMatch(
+      /correctAnswer|isCorrect|sourceUrl|rightsOwner|reviewStatus|publicationState|answers/,
+    );
+  });
+
+  it('fails FULL atomically when a required Part is unavailable', async () => {
+    repository.eligibleQuestions.mockResolvedValue(
+      fullCatalogue().slice(0, 199),
+    );
+    await request(app.getHttpServer())
+      .post('/api/v1/toeic/tests/sessions')
+      .set('Authorization', 'Bearer local.signed.token')
+      .send({ clientSessionId: 'timed-full-incomplete', mode: 'FULL' })
+      .expect(404);
+    expect(repository.create.mock.calls).toHaveLength(0);
   });
 
   it('fails closed for an empty catalogue and sanitizes repository failures', async () => {
