@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-11T14:24:52.763Z
+# last_updated: 2026-08-11T14:25:14.788Z
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-11T14:24:52.763Z
+last_updated: 2026-08-11T14:25:14.788Z
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -176,7 +176,7 @@ development_status:
   5-5-advanced-cross-skill-error-notebook: done
   5-6-adaptive-roadmap-rules-and-versioning: done
   5-7-ai-explanation-service: done
-  5-8-ai-speaking-room: review
+  5-8-ai-speaking-room: done
   5-9-ai-writing-coach: backlog
   5-10-community-content-report-and-moderation-api: backlog
   5-11-community-sharing-and-moderation-ui: backlog

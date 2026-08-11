@@ -1,7 +1,7 @@
 ---
 id: EP5-ST008
 title: AI Speaking room learner feedback surface
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -140,4 +140,5 @@ The Speaking room offers a safe explicit feedback action over the existing
 contract, preserves the recording journey, renders unavailable and retryable
 states correctly, passes targeted browser/API checks and the full project gate,
 and makes no provider, schema, backend, credential, or Phase 6 change.
+
 
