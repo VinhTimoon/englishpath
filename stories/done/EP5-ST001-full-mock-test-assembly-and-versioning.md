@@ -1,7 +1,7 @@
 ---
 id: EP5-ST001
 title: Full mock test assembly and versioned blueprint boundary
-status: review
+status: done
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community

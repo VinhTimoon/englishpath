@@ -1,7 +1,7 @@
 ---
 id: EP5-ST002
 title: Full exam session, server timer, finalization, and idempotency
-status: review
+status: done
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
