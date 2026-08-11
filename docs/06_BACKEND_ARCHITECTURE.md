@@ -294,6 +294,7 @@ data and never become HTTP response fields.
 ## Four Skills balance boundary
 
 The roadmap balance policy is a pure deterministic engine input/output. Version orchestration remains in the roadmap service/repository; controllers do not allocate activities. No schema, provider, submission, recording, or AI gateway state is created by balancing.
+
 ## EP4-ST007 gateway layering
 
 The ai-gateway module keeps controller, service/policy, adapter, and Prisma
@@ -333,3 +334,15 @@ Server-observable replay, conflict, closed/late-answer, and duplicate/late-
 finalization signals use the existing redacted audit service. Audit evidence is
 append-oriented and never carries answer content, answer keys, prompts, or raw
 request data.
+
+## EP5-ST005 Error Notebook coverage boundary
+
+The authenticated Error Notebook page keeps its existing owner-scoped entries,
+pagination, source filter, and remediation projection, and adds only the
+server-derived `coverage.domains` summary. Coverage is an overall owner query,
+independent of the page source filter. Daily-practice rows map to `GENERAL`;
+immutable TOEIC Part 1-4 and Part 5-7 metadata maps to `LISTENING` and `READING`.
+Missing or malformed TOEIC metadata fails closed for both TOEIC domains, while
+Speaking and Writing remain explicitly unavailable because this boundary has no
+approved notebook evidence for them. No score, recurrence, schedule, provider,
+feedback, rubric, submission, or schema model is introduced.

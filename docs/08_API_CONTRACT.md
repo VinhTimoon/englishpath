@@ -439,8 +439,14 @@ unknown or non-owned items return 404 without revealing ownership.
 - `GET /api/v1/quiz/session/summary/errors` returns a bounded private review page
   for the authenticated learner. `page` defaults to 1 and `size` defaults to 20
   (maximum 50); optional `source` is `PRACTICE` or `TOEIC_TIMED_TEST`. The response
-  is `{ entries, pagination: { page, size, total, hasNext } }`, while legacy array
-  consumers remain readable during migration.
+  is `{ entries, pagination: { page, size, total, hasNext }, coverage }`, while legacy
+  consumers remain readable during migration. `coverage.domains` is ordered
+  `GENERAL`, `LISTENING`, `READING`, `SPEAKING`, `WRITING`; each item contains only
+  `domain`, `state` (`available`, `empty`, or `unavailable`), and `entryCount`.
+  Coverage is owner-scoped and independent of `source`. Daily practice maps to
+  `GENERAL`; TOEIC Parts 1-4 and 5-7 map to `LISTENING` and `READING`. Missing or
+  malformed TOEIC Part metadata makes both TOEIC domains unavailable. Speaking and
+  Writing are unavailable because this endpoint has no approved notebook evidence.
 
 ## TOEIC Practice Catalogue
 
@@ -644,6 +650,7 @@ revocation, deletion, or ownership failure. Responses never include provider,
 object-key, credential, raw audio, or long-lived URL fields. The local/test
 adapter is credential-free; production storage activation is not performed by
 the application loop.
+
 ## EP4-ST005 Writing task/submission API
 
 Authenticated routes:
@@ -659,6 +666,7 @@ The response contains task prompt metadata, lifecycle state, word/character
 counts, and timestamps. It does not contain submitted text, official scores,
 rubric/provider data, answer keys, or credentials. Word count is server-owned
 and uses Unicode letter/number tokens with apostrophe/hyphen joins.
+
 ## EP4-ST007 advisory feedback gateway
 
 Authenticated route:

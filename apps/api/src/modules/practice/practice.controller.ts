@@ -12,7 +12,7 @@ import {
   ValidationPipe,
   Query,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import type { AuthenticatedRequest } from '../auth/auth-request';
 import { authCorrelationId } from '../auth/auth-exception.filter';
 import { AuthenticationGuard } from '../auth/auth.guards';
@@ -97,6 +97,51 @@ export class PracticeController {
   }
 
   @Get('summary/errors')
+  @ApiOkResponse({
+    description:
+      'Owner-scoped Error Notebook entries with additive cross-skill coverage.',
+    schema: {
+      type: 'object',
+      properties: {
+        data: {
+          type: 'object',
+          properties: {
+            entries: { type: 'array', items: { type: 'object' } },
+            pagination: { type: 'object' },
+            coverage: {
+              type: 'object',
+              properties: {
+                domains: {
+                  type: 'array',
+                  items: {
+                    type: 'object',
+                    required: ['domain', 'state', 'entryCount'],
+                    properties: {
+                      domain: {
+                        type: 'string',
+                        enum: [
+                          'GENERAL',
+                          'LISTENING',
+                          'READING',
+                          'SPEAKING',
+                          'WRITING',
+                        ],
+                      },
+                      state: {
+                        type: 'string',
+                        enum: ['available', 'empty', 'unavailable'],
+                      },
+                      entryCount: { type: 'integer', minimum: 0 },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  })
   errorNotebook(
     @Req() request: AuthenticatedRequest,
     @Query() query: ErrorNotebookQueryDto,

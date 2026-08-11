@@ -345,6 +345,13 @@ empty/error/success states, TOEIC remediation navigation, keyboard access, and a
 360px no-overflow viewport. Local Prisma validation and mocked repository tests
 are evidence only; the additive migration is not applied to shared Supabase.
 
+EP5-ST005 additionally proves deterministic five-domain coverage ordering, source
+filter independence, owner isolation, empty versus unavailable states, duplicate
+persisted-row counting, safe Part 1-4/5-7 mapping, and fail-closed missing or
+malformed TOEIC metadata. Coverage selects only immutable question-version `id` and
+`part`; no answer, governance, provider, feedback, rubric, recurrence, score, or
+schedule fields are exposed.
+
 ## EP2-ST011 remediation-pack evidence
 
 Coverage must also prove bounded deterministic pack ordering, duplicate removal,

@@ -142,3 +142,15 @@ finalization signals already observable at the server API boundary. Do not add a
 new integrity model, client navigation telemetry, provider integration, or raw
 answer data to audit attributes; audit persistence is append-only evidence and
 never changes the authoritative score.
+
+### Decision: additive cross-skill Error Notebook coverage (EP5-ST005)
+
+Keep the existing authenticated `/api/v1/quiz/session/summary/errors` page
+backward compatible and add only `coverage.domains` in the fixed order
+`GENERAL`, `LISTENING`, `READING`, `SPEAKING`, `WRITING`. Daily-practice rows map
+to `GENERAL`; immutable TOEIC Part 1-4 and Part 5-7 metadata maps to Listening
+and Reading. If any owner TOEIC row lacks valid Part metadata, both TOEIC domains
+are unavailable with zero count rather than exposing partial classification.
+Speaking and Writing remain unavailable until an approved notebook evidence
+source exists. No recurrence, scheduling, score, provider, feedback, rubric,
+submission, schema, or migration change is part of this decision.

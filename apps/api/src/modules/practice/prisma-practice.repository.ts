@@ -34,6 +34,13 @@ function isUniqueConstraint(error: unknown) {
   );
 }
 
+type ErrorNotebookCoverageRow = Readonly<{
+  generalEntries: number;
+  invalidToeicEntries: number;
+  listeningEntries: number;
+  readingEntries: number;
+}>;
+
 function state(record: PracticeRecord): PracticeSessionState {
   return {
     id: record.id,
@@ -286,7 +293,15 @@ export class PrismaPracticeRepository implements PracticeRepository {
       userId,
       ...(query.source ? { source: query.source } : {}),
     };
-    const [total, entries] = await Promise.all([
+    const queryRaw = (
+      this.prisma as typeof this.prisma & {
+        $queryRaw?: <T = unknown>(
+          query: TemplateStringsArray,
+          ...values: readonly unknown[]
+        ) => Promise<T>;
+      }
+    ).$queryRaw;
+    const [total, entries, coverageRows] = await Promise.all([
       this.prisma.errorNotebookEntry.count({ where }),
       this.prisma.errorNotebookEntry.findMany({
         where,
@@ -302,7 +317,52 @@ export class PrismaPracticeRepository implements PracticeRepository {
           source: true,
         },
       }),
+      queryRaw
+        ? queryRaw<ErrorNotebookCoverageRow[]>`
+            SELECT
+              COUNT(*) FILTER (WHERE e."source" = 'PRACTICE')::int AS "generalEntries",
+              COUNT(*) FILTER (
+                WHERE e."source" = 'TOEIC_TIMED_TEST'
+                  AND (qv."id" IS NULL OR qv."part" NOT IN (
+                    'PART_1', 'PART_2', 'PART_3', 'PART_4', 'PART_5', 'PART_6', 'PART_7'
+                  ))
+              )::int AS "invalidToeicEntries",
+              COUNT(*) FILTER (
+                WHERE e."source" = 'TOEIC_TIMED_TEST'
+                  AND qv."part" IN ('PART_1', 'PART_2', 'PART_3', 'PART_4')
+              )::int AS "listeningEntries",
+              COUNT(*) FILTER (
+                WHERE e."source" = 'TOEIC_TIMED_TEST'
+                  AND qv."part" IN ('PART_5', 'PART_6', 'PART_7')
+              )::int AS "readingEntries"
+            FROM "ErrorNotebookEntry" e
+            LEFT JOIN "ToeicQuestionVersion" qv ON qv."id" = e."questionId"
+            WHERE e."userId" = ${userId}
+          `
+        : Promise.resolve<ErrorNotebookCoverageRow[]>([]),
     ]);
+    const coverage = coverageRows[0] ?? {
+      generalEntries: 0,
+      invalidToeicEntries: 0,
+      listeningEntries: 0,
+      readingEntries: 0,
+    };
+    const toeicMetadataValid = coverage.invalidToeicEntries === 0;
+    const domain = (
+      name: 'GENERAL' | 'LISTENING' | 'READING' | 'SPEAKING' | 'WRITING',
+      count: number,
+      supported = true,
+    ) => ({
+      domain: name,
+      state: !supported
+        ? ('unavailable' as const)
+        : count > 0
+          ? ('available' as const)
+          : ('empty' as const),
+      entryCount: supported ? count : 0,
+    });
+    const listening = toeicMetadataValid ? coverage.listeningEntries : 0;
+    const reading = toeicMetadataValid ? coverage.readingEntries : 0;
     return {
       entries: entries.map((entry) => ({
         ...entry,
@@ -319,6 +379,15 @@ export class PrismaPracticeRepository implements PracticeRepository {
         size: query.size,
         total,
         hasNext: query.page * query.size < total,
+      },
+      coverage: {
+        domains: [
+          domain('GENERAL', coverage.generalEntries),
+          domain('LISTENING', listening, toeicMetadataValid),
+          domain('READING', reading, toeicMetadataValid),
+          domain('SPEAKING', 0, false),
+          domain('WRITING', 0, false),
+        ],
       },
     };
   }

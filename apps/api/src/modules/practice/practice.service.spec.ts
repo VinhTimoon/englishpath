@@ -66,4 +66,23 @@ describe('PracticeService', () => {
       expect.objectContaining({ isCorrect: false, correctOption: 'a' }),
     );
   });
+
+  it('preserves the repository coverage projection', async () => {
+    const page = {
+      entries: [],
+      pagination: { page: 1, size: 20, total: 0, hasNext: false },
+      coverage: { domains: [] },
+    };
+    repository.errors.mockResolvedValue(page);
+    await expect(
+      new PracticeService(repository).errors(principal, { page: 1, size: 20 }),
+    ).resolves.toBe(page);
+    expect(repository.errors.mock.calls[0]).toEqual([
+      'user-001',
+      {
+        page: 1,
+        size: 20,
+      },
+    ]);
+  });
 });

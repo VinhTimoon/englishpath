@@ -195,6 +195,15 @@ keys, prompts, raw request bodies, credentials, or provider data, and an audit
 failure cannot make the learner projection client-authored or disclose private
 fields.
 
+EP5-ST005 keeps the Error Notebook coverage query owner-scoped at the repository
+boundary and performs metadata lookup only for TOEIC question-version IDs found
+in that owner's notebook rows. The lookup selects only immutable `id` and `part`.
+The additive projection exposes bounded domain/state/count values; it never
+exposes question IDs, answer fields, governance/license data, providers,
+feedback, rubrics, submissions, or identity fields. Missing or malformed TOEIC
+metadata makes both TOEIC coverage domains unavailable with zero count, and no
+Speaking/Writing evidence is fabricated.
+
 EP2-ST011 remediation packs are derived only after finalized owner-scoped
 analysis. Vocabulary and practice destinations are selected from server-side
 published/catalogue predicates; grammar destinations are fixed reviewed
@@ -298,6 +307,7 @@ are opaque, hashed at rest, limited to five minutes, and checked against the
 recording state on every authorization. Revoked, expired, deleted, foreign, or
 missing recordings fail closed. Provider locators, object keys, credentials,
 raw audio bytes, and long-lived playback URLs are not learner response fields.
+
 ## EP4-ST005 Writing submission controls
 
 Writing routes require authentication and resolve ownership from the application
@@ -306,6 +316,7 @@ principal, never request payloads. Prisma reads and state transitions include
 and server-side Unicode word counting bound input. Raw submitted text remains
 owner-scoped persistence and is excluded from learner responses, along with
 provider, rubric, answer-key, credential, and official score fields.
+
 ## EP4-ST007 controls
 
 The gateway derives ownership from the authenticated application principal.

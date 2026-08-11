@@ -45,6 +45,17 @@ export type ErrorNotebookEntry = Readonly<{
   }>;
 }>;
 
+export type ErrorNotebookDomain =
+  'GENERAL' | 'LISTENING' | 'READING' | 'SPEAKING' | 'WRITING';
+export type ErrorNotebookCoverageDomain = Readonly<{
+  domain: ErrorNotebookDomain;
+  state: 'available' | 'empty' | 'unavailable';
+  entryCount: number;
+}>;
+export type ErrorNotebookCoverage = Readonly<{
+  domains: readonly ErrorNotebookCoverageDomain[];
+}>;
+
 export type ErrorNotebookPage = Readonly<{
   entries: readonly ErrorNotebookEntry[];
   pagination: Readonly<{
@@ -53,6 +64,7 @@ export type ErrorNotebookPage = Readonly<{
     total: number;
     hasNext: boolean;
   }>;
+  coverage: ErrorNotebookCoverage;
 }>;
 
 export type PracticeAnswerInput = Readonly<{

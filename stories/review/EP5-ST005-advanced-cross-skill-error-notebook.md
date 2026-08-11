@@ -1,7 +1,7 @@
 ---
 id: EP5-ST005
 title: Advanced cross-skill Error Notebook projection
-status: in-progress
+status: review
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -65,8 +65,8 @@ without seeing fabricated progress or losing the existing notebook entries.
 ## Scope
 
 This story extends the authenticated practice Error Notebook API only. The
-existing `GET /api/v1/practice/summary/errors` response remains backward
-compatible and gains an additive server-owned `coverage`/summary projection.
+existing `GET /api/v1/quiz/session/summary/errors` response remains backward
+compatible and gains one additive server-owned `coverage` projection.
 TOEIC Part metadata may be read from the immutable governed question version
 already referenced by a TOEIC notebook entry. Daily-practice entries retain
 their existing safe source classification unless an existing approved fixture
@@ -109,25 +109,31 @@ belongs to this story.
    semantics, and owner scope. Existing clients can ignore the additive
    projection without changing behavior.
 2. The response adds a bounded server-owned coverage projection for the known
-   learning domains. Every canonical domain is represented exactly once with
-   an explicit state such as `available`, `empty`, or `unavailable`; unavailable
-   does not become zero progress, completed, or a fabricated error count.
+   learning domains. Its exact additive shape is:
+   `coverage.domains` in deterministic order
+   `GENERAL`, `LISTENING`, `READING`, `SPEAKING`, `WRITING`, where every domain
+   contains only `{ domain, state, entryCount }`. `state` is `available` when
+   validated entries exist, `empty` when the domain is supported but has no
+   entries, and `unavailable` when no approved evidence/classification exists;
+   unavailable never becomes zero progress, completed, or a fabricated error
+   count. Coverage is an overall owner summary and is not narrowed by the
+   optional entry `source` filter.
 3. TOEIC Listening/Reading coverage is derived only from owner-scoped persisted
    notebook entries and approved immutable question metadata. Part mapping and
    source grouping are deterministic, bounded, and do not expose question
    governance, answer keys, selected options, provider fields, or raw private
-   persistence details.
-4. Daily-practice coverage never claims a more specific skill than the existing
-   approved practice metadata supports. Missing classification is explicit and
+   persistence details. If any TOEIC entry in the owner's notebook cannot be
+   joined to valid immutable Part metadata, both TOEIC domains are returned as
+   `unavailable` with `entryCount: 0`; valid partial counts are not exposed.
+4. Daily-practice entries map only to `GENERAL`; the API never claims a more
+   specific skill than the existing approved practice metadata supports. It
    does not infer skill from an ID, prompt, or answer.
 5. Speaking and Writing are explicit `unavailable` when no approved notebook
    source/evidence exists. The API does not manufacture entries from feedback,
    submissions, rubric values, provider outcomes, or task presence.
-6. Any aggregate counts or recurrence indicators are computed from persisted
-   owner-scoped entries only, bounded to the API contract, deterministic, and
-   documented. If the approved recurrence/scheduling policy is absent, the
-   projection omits that business field or marks it unavailable rather than
-   introducing a new threshold.
+6. `entryCount` is the only aggregate in this story and is computed from
+   persisted owner-scoped entries only. Recurrence, scheduling, scores, and
+   due dates are intentionally not added because no approved policy exists.
 7. Repository and service tests prove owner isolation, source filtering,
    deterministic ordering, pagination compatibility, empty versus unavailable
    states, safe TOEIC metadata mapping, malformed/missing metadata fail-closed
@@ -154,22 +160,23 @@ Before editing, inspect the complete current implementation and tests for:
 - EP3-ST008/EP4-ST009 output contracts only to confirm that no approved
   speaking/writing Error Notebook source exists for this story.
 
-If this inspection shows that a required coverage semantic needs a new product
-decision, stop with the exact missing contract and mark this story blocked with
-evidence. Do not modify schema, invent a recovery story, or silently choose a
-threshold.
+The additive field name, canonical domain order, states, and count semantics
+above are the minimal learner-safe contract for this story. Do not add further
+business semantics. If implementation discovers that even this projection
+cannot be derived from existing persisted data without a schema/provider change,
+stop with the exact technical blocker and do not guess.
 
 ## Verification commands
 
 ```text
-node scripts/story-doctor.mjs stories/ready/EP5-ST005-advanced-cross-skill-error-notebook.md
+node scripts/story-doctor.mjs stories/in-progress/EP5-ST005-advanced-cross-skill-error-notebook.md
 pnpm planning:traceability
 pnpm --filter api exec jest --runInBand src/modules/practice/practice.service.spec.ts src/modules/practice/prisma-practice.repository.spec.ts src/modules/toeic/toeic-timed-test.service.spec.ts
 pnpm --filter api test:e2e -- --runInBand practice.e2e-spec.ts toeic-timed-test.e2e-spec.ts
 pnpm --filter api lint
 pnpm --filter api typecheck
 pnpm format:check
-pnpm story:verify stories/ready/EP5-ST005-advanced-cross-skill-error-notebook.md
+pnpm story:verify stories/in-progress/EP5-ST005-advanced-cross-skill-error-notebook.md
 pnpm story:checks
 git diff --check
 ```
@@ -187,3 +194,22 @@ git diff --check
 
 Created as the single dependency-ready Phase 5 story after EP5-ST004. No other
 Phase 5 story is made ready concurrently.
+
+## Review Evidence
+
+- Story doctor, planning traceability, story verification, and `git diff --check`
+  passed.
+- Targeted unit coverage passed: 3 suites, 57 tests. Targeted API E2E coverage
+  passed: 4 suites, 42 tests, including authenticated coverage, owner scope,
+  OpenAPI shape, source-filter independence, and fail-closed metadata behavior.
+- API lint and typecheck, workspace format check, Prisma validation, full
+  workspace lint/typecheck, and full build passed.
+- Full quality gate passed: 73 API unit suites / 529 tests, 23 API E2E suites /
+  129 tests, and 104 browser tests; tooling, planning traceability, and all
+  available checks passed.
+- Required direct Codex review passed with no P0/P1 findings and no scope
+  findings. The remaining P2 note is that the aggregate SQL join is mocked in
+  tests; no shared database integration was run, by design.
+- The implementation uses one bounded owner-scoped aggregate query and selects
+  only safe aggregate fields. No schema, migration, frontend, provider, AI,
+  feedback, rubric, submission, credential, or Phase 6 change was introduced.

@@ -236,8 +236,8 @@ roadmaps work without AI authoring official scores.
 
 Execution queue: `EP5-ST001` and `EP5-ST002` are done and merged into `dev`.
 `EP5-ST003` and `EP5-ST004` are done and merged into `dev`; `EP5-ST005` is in
-progress as the only selected Phase 5 story. Later stories stay backlog until
-their direct predecessor passes.
+review after implementation and full quality-gate success. Later stories stay
+backlog until their direct predecessor passes.
 Phase 6 remains suspended indefinitely until production has many users.
 
 | Story       | Increment                                                                    | Depends on                            |

@@ -200,6 +200,68 @@ describe('PrismaPracticeRepository Error Notebook integration', () => {
     });
   });
 
+  it('derives owner-scoped coverage independently of the source filter and fails closed on malformed TOEIC metadata', async () => {
+    const findMany = jest
+      .fn()
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([]);
+    const prisma = {
+      errorNotebookEntry: { count: jest.fn().mockResolvedValue(0), findMany },
+      $queryRaw: jest.fn().mockResolvedValue([
+        {
+          generalEntries: 1,
+          invalidToeicEntries: 1,
+          listeningEntries: 0,
+          readingEntries: 0,
+        },
+      ]),
+    };
+    const page = await new PrismaPracticeRepository(prisma as never).errors(
+      'learner-1',
+      { page: 1, size: 20, source: 'PRACTICE' },
+    );
+    expect(page.coverage.domains).toEqual([
+      { domain: 'GENERAL', state: 'available', entryCount: 1 },
+      { domain: 'LISTENING', state: 'unavailable', entryCount: 0 },
+      { domain: 'READING', state: 'unavailable', entryCount: 0 },
+      { domain: 'SPEAKING', state: 'unavailable', entryCount: 0 },
+      { domain: 'WRITING', state: 'unavailable', entryCount: 0 },
+    ]);
+    expect(prisma.$queryRaw).toHaveBeenCalled();
+  });
+
+  it('maps valid TOEIC Parts and counts persisted rows without deduplication', async () => {
+    const findMany = jest
+      .fn()
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([]);
+    const prisma = {
+      errorNotebookEntry: { count: jest.fn().mockResolvedValue(0), findMany },
+      $queryRaw: jest.fn().mockResolvedValue([
+        {
+          generalEntries: 0,
+          invalidToeicEntries: 0,
+          listeningEntries: 1,
+          readingEntries: 2,
+        },
+      ]),
+    };
+
+    const page = await new PrismaPracticeRepository(prisma as never).errors(
+      'learner-1',
+      { page: 1, size: 20, source: 'PRACTICE' },
+    );
+
+    expect(page.coverage.domains).toEqual([
+      { domain: 'GENERAL', state: 'empty', entryCount: 0 },
+      { domain: 'LISTENING', state: 'available', entryCount: 1 },
+      { domain: 'READING', state: 'available', entryCount: 2 },
+      { domain: 'SPEAKING', state: 'unavailable', entryCount: 0 },
+      { domain: 'WRITING', state: 'unavailable', entryCount: 0 },
+    ]);
+    expect(prisma.$queryRaw).toHaveBeenCalled();
+  });
+
   it('keeps the migration additive and enforces source/reference consistency', () => {
     const migration = readFileSync(
       join(
