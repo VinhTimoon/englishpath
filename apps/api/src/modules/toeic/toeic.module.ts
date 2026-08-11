@@ -41,6 +41,13 @@ import {
   TOEIC_WRITING_SUBMISSION_REPOSITORY,
   TOEIC_WRITING_TASK_CATALOGUE,
 } from './toeic-writing-submission.models';
+import { ToeicRecordingService } from './toeic-recording.service';
+import { PrismaToeicSpeakingRecordingRepository } from './toeic-recording.repository';
+import { LocalToeicSpeakingRecordingStorage } from './toeic-recording.storage';
+import {
+  TOEIC_SPEAKING_RECORDING_REPOSITORY,
+  TOEIC_SPEAKING_RECORDING_STORAGE,
+} from './toeic-recording.models';
 
 @Module({
   imports: [
@@ -58,6 +65,9 @@ import {
     ToeicPracticeCatalogueService,
     ToeicTimedTestService,
     ToeicSpeakingSubmissionService,
+    ToeicRecordingService,
+    PrismaToeicSpeakingRecordingRepository,
+    LocalToeicSpeakingRecordingStorage,
     PrismaToeicSpeakingSubmissionRepository,
     EnglishPathSpeakingTaskCatalogue,
     ToeicWritingSubmissionService,
@@ -71,6 +81,14 @@ import {
     {
       provide: TOEIC_SPEAKING_TASK_CATALOGUE,
       useExisting: EnglishPathSpeakingTaskCatalogue,
+    },
+    {
+      provide: TOEIC_SPEAKING_RECORDING_REPOSITORY,
+      useExisting: PrismaToeicSpeakingRecordingRepository,
+    },
+    {
+      provide: TOEIC_SPEAKING_RECORDING_STORAGE,
+      useExisting: LocalToeicSpeakingRecordingStorage,
     },
     {
       provide: TOEIC_WRITING_SUBMISSION_REPOSITORY,

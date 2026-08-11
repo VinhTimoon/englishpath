@@ -7,936 +7,1136 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as runtime from '@prisma/client/runtime/client';
+import type * as $Enums from '../enums.js';
+import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model AiFeedbackUsage
  *
  */
-export type AiFeedbackUsageModel = runtime.Types.Result.DefaultSelection<Prisma.$AiFeedbackUsagePayload>
+export type AiFeedbackUsageModel =
+  runtime.Types.Result.DefaultSelection<Prisma.$AiFeedbackUsagePayload>;
 
 export type AggregateAiFeedbackUsage = {
-  _count: AiFeedbackUsageCountAggregateOutputType | null
-  _avg: AiFeedbackUsageAvgAggregateOutputType | null
-  _sum: AiFeedbackUsageSumAggregateOutputType | null
-  _min: AiFeedbackUsageMinAggregateOutputType | null
-  _max: AiFeedbackUsageMaxAggregateOutputType | null
-}
+  _count: AiFeedbackUsageCountAggregateOutputType | null;
+  _avg: AiFeedbackUsageAvgAggregateOutputType | null;
+  _sum: AiFeedbackUsageSumAggregateOutputType | null;
+  _min: AiFeedbackUsageMinAggregateOutputType | null;
+  _max: AiFeedbackUsageMaxAggregateOutputType | null;
+};
 
 export type AiFeedbackUsageAvgAggregateOutputType = {
-  estimatedCostMicros: number | null
-  quotaRemaining: number | null
-}
+  estimatedCostMicros: number | null;
+  quotaRemaining: number | null;
+};
 
 export type AiFeedbackUsageSumAggregateOutputType = {
-  estimatedCostMicros: number | null
-  quotaRemaining: number | null
-}
+  estimatedCostMicros: number | null;
+  quotaRemaining: number | null;
+};
 
 export type AiFeedbackUsageMinAggregateOutputType = {
-  id: string | null
-  userId: string | null
-  feature: string | null
-  skill: string | null
-  policyVersion: string | null
-  promptVersion: string | null
-  adapterKind: string | null
-  modelVersion: string | null
-  idempotencyKey: string | null
-  requestFingerprint: string | null
-  outcome: $Enums.AiFeedbackOutcome | null
-  estimatedCostMicros: number | null
-  quotaRemaining: number | null
-  correlationId: string | null
-  createdAt: Date | null
-}
+  id: string | null;
+  userId: string | null;
+  feature: string | null;
+  skill: string | null;
+  policyVersion: string | null;
+  promptVersion: string | null;
+  adapterKind: string | null;
+  modelVersion: string | null;
+  idempotencyKey: string | null;
+  requestFingerprint: string | null;
+  outcome: $Enums.AiFeedbackOutcome | null;
+  estimatedCostMicros: number | null;
+  quotaRemaining: number | null;
+  correlationId: string | null;
+  createdAt: Date | null;
+};
 
 export type AiFeedbackUsageMaxAggregateOutputType = {
-  id: string | null
-  userId: string | null
-  feature: string | null
-  skill: string | null
-  policyVersion: string | null
-  promptVersion: string | null
-  adapterKind: string | null
-  modelVersion: string | null
-  idempotencyKey: string | null
-  requestFingerprint: string | null
-  outcome: $Enums.AiFeedbackOutcome | null
-  estimatedCostMicros: number | null
-  quotaRemaining: number | null
-  correlationId: string | null
-  createdAt: Date | null
-}
+  id: string | null;
+  userId: string | null;
+  feature: string | null;
+  skill: string | null;
+  policyVersion: string | null;
+  promptVersion: string | null;
+  adapterKind: string | null;
+  modelVersion: string | null;
+  idempotencyKey: string | null;
+  requestFingerprint: string | null;
+  outcome: $Enums.AiFeedbackOutcome | null;
+  estimatedCostMicros: number | null;
+  quotaRemaining: number | null;
+  correlationId: string | null;
+  createdAt: Date | null;
+};
 
 export type AiFeedbackUsageCountAggregateOutputType = {
-  id: number
-  userId: number
-  feature: number
-  skill: number
-  policyVersion: number
-  promptVersion: number
-  adapterKind: number
-  modelVersion: number
-  idempotencyKey: number
-  requestFingerprint: number
-  outcome: number
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson: number
-  correlationId: number
-  createdAt: number
-  _all: number
-}
-
+  id: number;
+  userId: number;
+  feature: number;
+  skill: number;
+  policyVersion: number;
+  promptVersion: number;
+  adapterKind: number;
+  modelVersion: number;
+  idempotencyKey: number;
+  requestFingerprint: number;
+  outcome: number;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson: number;
+  correlationId: number;
+  createdAt: number;
+  _all: number;
+};
 
 export type AiFeedbackUsageAvgAggregateInputType = {
-  estimatedCostMicros?: true
-  quotaRemaining?: true
-}
+  estimatedCostMicros?: true;
+  quotaRemaining?: true;
+};
 
 export type AiFeedbackUsageSumAggregateInputType = {
-  estimatedCostMicros?: true
-  quotaRemaining?: true
-}
+  estimatedCostMicros?: true;
+  quotaRemaining?: true;
+};
 
 export type AiFeedbackUsageMinAggregateInputType = {
-  id?: true
-  userId?: true
-  feature?: true
-  skill?: true
-  policyVersion?: true
-  promptVersion?: true
-  adapterKind?: true
-  modelVersion?: true
-  idempotencyKey?: true
-  requestFingerprint?: true
-  outcome?: true
-  estimatedCostMicros?: true
-  quotaRemaining?: true
-  correlationId?: true
-  createdAt?: true
-}
+  id?: true;
+  userId?: true;
+  feature?: true;
+  skill?: true;
+  policyVersion?: true;
+  promptVersion?: true;
+  adapterKind?: true;
+  modelVersion?: true;
+  idempotencyKey?: true;
+  requestFingerprint?: true;
+  outcome?: true;
+  estimatedCostMicros?: true;
+  quotaRemaining?: true;
+  correlationId?: true;
+  createdAt?: true;
+};
 
 export type AiFeedbackUsageMaxAggregateInputType = {
-  id?: true
-  userId?: true
-  feature?: true
-  skill?: true
-  policyVersion?: true
-  promptVersion?: true
-  adapterKind?: true
-  modelVersion?: true
-  idempotencyKey?: true
-  requestFingerprint?: true
-  outcome?: true
-  estimatedCostMicros?: true
-  quotaRemaining?: true
-  correlationId?: true
-  createdAt?: true
-}
+  id?: true;
+  userId?: true;
+  feature?: true;
+  skill?: true;
+  policyVersion?: true;
+  promptVersion?: true;
+  adapterKind?: true;
+  modelVersion?: true;
+  idempotencyKey?: true;
+  requestFingerprint?: true;
+  outcome?: true;
+  estimatedCostMicros?: true;
+  quotaRemaining?: true;
+  correlationId?: true;
+  createdAt?: true;
+};
 
 export type AiFeedbackUsageCountAggregateInputType = {
-  id?: true
-  userId?: true
-  feature?: true
-  skill?: true
-  policyVersion?: true
-  promptVersion?: true
-  adapterKind?: true
-  modelVersion?: true
-  idempotencyKey?: true
-  requestFingerprint?: true
-  outcome?: true
-  estimatedCostMicros?: true
-  quotaRemaining?: true
-  feedbackJson?: true
-  correlationId?: true
-  createdAt?: true
-  _all?: true
-}
+  id?: true;
+  userId?: true;
+  feature?: true;
+  skill?: true;
+  policyVersion?: true;
+  promptVersion?: true;
+  adapterKind?: true;
+  modelVersion?: true;
+  idempotencyKey?: true;
+  requestFingerprint?: true;
+  outcome?: true;
+  estimatedCostMicros?: true;
+  quotaRemaining?: true;
+  feedbackJson?: true;
+  correlationId?: true;
+  createdAt?: true;
+  _all?: true;
+};
 
-export type AiFeedbackUsageAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageAggregateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which AiFeedbackUsage to aggregate.
    */
-  where?: Prisma.AiFeedbackUsageWhereInput
+  where?: Prisma.AiFeedbackUsageWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of AiFeedbackUsages to fetch.
    */
-  orderBy?: Prisma.AiFeedbackUsageOrderByWithRelationInput | Prisma.AiFeedbackUsageOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput
+  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` AiFeedbackUsages from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` AiFeedbackUsages.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Count returned AiFeedbackUsages
-  **/
-  _count?: true | AiFeedbackUsageCountAggregateInputType
+   **/
+  _count?: true | AiFeedbackUsageCountAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to average
-  **/
-  _avg?: AiFeedbackUsageAvgAggregateInputType
+   **/
+  _avg?: AiFeedbackUsageAvgAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to sum
-  **/
-  _sum?: AiFeedbackUsageSumAggregateInputType
+   **/
+  _sum?: AiFeedbackUsageSumAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
-  **/
-  _min?: AiFeedbackUsageMinAggregateInputType
+   **/
+  _min?: AiFeedbackUsageMinAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
-  **/
-  _max?: AiFeedbackUsageMaxAggregateInputType
-}
+   **/
+  _max?: AiFeedbackUsageMaxAggregateInputType;
+};
 
-export type GetAiFeedbackUsageAggregateType<T extends AiFeedbackUsageAggregateArgs> = {
-      [P in keyof T & keyof AggregateAiFeedbackUsage]: P extends '_count' | 'count'
+export type GetAiFeedbackUsageAggregateType<
+  T extends AiFeedbackUsageAggregateArgs,
+> = {
+  [P in keyof T & keyof AggregateAiFeedbackUsage]: P extends '_count' | 'count'
     ? T[P] extends true
       ? number
       : Prisma.GetScalarType<T[P], AggregateAiFeedbackUsage[P]>
-    : Prisma.GetScalarType<T[P], AggregateAiFeedbackUsage[P]>
-}
+    : Prisma.GetScalarType<T[P], AggregateAiFeedbackUsage[P]>;
+};
 
-
-
-
-export type AiFeedbackUsageGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AiFeedbackUsageWhereInput
-  orderBy?: Prisma.AiFeedbackUsageOrderByWithAggregationInput | Prisma.AiFeedbackUsageOrderByWithAggregationInput[]
-  by: Prisma.AiFeedbackUsageScalarFieldEnum[] | Prisma.AiFeedbackUsageScalarFieldEnum
-  having?: Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput
-  take?: number
-  skip?: number
-  _count?: AiFeedbackUsageCountAggregateInputType | true
-  _avg?: AiFeedbackUsageAvgAggregateInputType
-  _sum?: AiFeedbackUsageSumAggregateInputType
-  _min?: AiFeedbackUsageMinAggregateInputType
-  _max?: AiFeedbackUsageMaxAggregateInputType
-}
+export type AiFeedbackUsageGroupByArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.AiFeedbackUsageWhereInput;
+  orderBy?:
+    | Prisma.AiFeedbackUsageOrderByWithAggregationInput
+    | Prisma.AiFeedbackUsageOrderByWithAggregationInput[];
+  by:
+    | Prisma.AiFeedbackUsageScalarFieldEnum[]
+    | Prisma.AiFeedbackUsageScalarFieldEnum;
+  having?: Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput;
+  take?: number;
+  skip?: number;
+  _count?: AiFeedbackUsageCountAggregateInputType | true;
+  _avg?: AiFeedbackUsageAvgAggregateInputType;
+  _sum?: AiFeedbackUsageSumAggregateInputType;
+  _min?: AiFeedbackUsageMinAggregateInputType;
+  _max?: AiFeedbackUsageMaxAggregateInputType;
+};
 
 export type AiFeedbackUsageGroupByOutputType = {
-  id: string
-  userId: string
-  feature: string
-  skill: string
-  policyVersion: string
-  promptVersion: string
-  adapterKind: string
-  modelVersion: string
-  idempotencyKey: string
-  requestFingerprint: string
-  outcome: $Enums.AiFeedbackOutcome
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson: runtime.JsonValue | null
-  correlationId: string
-  createdAt: Date
-  _count: AiFeedbackUsageCountAggregateOutputType | null
-  _avg: AiFeedbackUsageAvgAggregateOutputType | null
-  _sum: AiFeedbackUsageSumAggregateOutputType | null
-  _min: AiFeedbackUsageMinAggregateOutputType | null
-  _max: AiFeedbackUsageMaxAggregateOutputType | null
-}
+  id: string;
+  userId: string;
+  feature: string;
+  skill: string;
+  policyVersion: string;
+  promptVersion: string;
+  adapterKind: string;
+  modelVersion: string;
+  idempotencyKey: string;
+  requestFingerprint: string;
+  outcome: $Enums.AiFeedbackOutcome;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson: runtime.JsonValue | null;
+  correlationId: string;
+  createdAt: Date;
+  _count: AiFeedbackUsageCountAggregateOutputType | null;
+  _avg: AiFeedbackUsageAvgAggregateOutputType | null;
+  _sum: AiFeedbackUsageSumAggregateOutputType | null;
+  _min: AiFeedbackUsageMinAggregateOutputType | null;
+  _max: AiFeedbackUsageMaxAggregateOutputType | null;
+};
 
-export type GetAiFeedbackUsageGroupByPayload<T extends AiFeedbackUsageGroupByArgs> = Prisma.PrismaPromise<
+export type GetAiFeedbackUsageGroupByPayload<
+  T extends AiFeedbackUsageGroupByArgs,
+> = Prisma.PrismaPromise<
   Array<
-    Prisma.PickEnumerable<AiFeedbackUsageGroupByOutputType, T['by']> &
-      {
-        [P in ((keyof T) & (keyof AiFeedbackUsageGroupByOutputType))]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
-            : Prisma.GetScalarType<T[P], AiFeedbackUsageGroupByOutputType[P]>
+    Prisma.PickEnumerable<AiFeedbackUsageGroupByOutputType, T['by']> & {
+      [
+        P in keyof T & keyof AiFeedbackUsageGroupByOutputType
+      ]: P extends '_count'
+        ? T[P] extends boolean
+          ? number
           : Prisma.GetScalarType<T[P], AiFeedbackUsageGroupByOutputType[P]>
-      }
-    >
+        : Prisma.GetScalarType<T[P], AiFeedbackUsageGroupByOutputType[P]>;
+    }
   >
-
-
+>;
 
 export type AiFeedbackUsageWhereInput = {
-  AND?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[]
-  OR?: Prisma.AiFeedbackUsageWhereInput[]
-  NOT?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[]
-  id?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  userId?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  feature?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  skill?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  policyVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  promptVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  adapterKind?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  modelVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  idempotencyKey?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  requestFingerprint?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFilter<"AiFeedbackUsage"> | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFilter<"AiFeedbackUsage"> | number
-  quotaRemaining?: Prisma.IntFilter<"AiFeedbackUsage"> | number
-  feedbackJson?: Prisma.JsonNullableFilter<"AiFeedbackUsage">
-  correlationId?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  createdAt?: Prisma.DateTimeFilter<"AiFeedbackUsage"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}
+  AND?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[];
+  OR?: Prisma.AiFeedbackUsageWhereInput[];
+  NOT?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[];
+  id?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  userId?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  feature?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  skill?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  policyVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  promptVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  adapterKind?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  modelVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  idempotencyKey?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  requestFingerprint?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFilter<'AiFeedbackUsage'>
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFilter<'AiFeedbackUsage'> | number;
+  quotaRemaining?: Prisma.IntFilter<'AiFeedbackUsage'> | number;
+  feedbackJson?: Prisma.JsonNullableFilter<'AiFeedbackUsage'>;
+  correlationId?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  createdAt?: Prisma.DateTimeFilter<'AiFeedbackUsage'> | Date | string;
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+};
 
 export type AiFeedbackUsageOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  feature?: Prisma.SortOrder
-  skill?: Prisma.SortOrder
-  policyVersion?: Prisma.SortOrder
-  promptVersion?: Prisma.SortOrder
-  adapterKind?: Prisma.SortOrder
-  modelVersion?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  requestFingerprint?: Prisma.SortOrder
-  outcome?: Prisma.SortOrder
-  estimatedCostMicros?: Prisma.SortOrder
-  quotaRemaining?: Prisma.SortOrder
-  feedbackJson?: Prisma.SortOrderInput | Prisma.SortOrder
-  correlationId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  feature?: Prisma.SortOrder;
+  skill?: Prisma.SortOrder;
+  policyVersion?: Prisma.SortOrder;
+  promptVersion?: Prisma.SortOrder;
+  adapterKind?: Prisma.SortOrder;
+  modelVersion?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  requestFingerprint?: Prisma.SortOrder;
+  outcome?: Prisma.SortOrder;
+  estimatedCostMicros?: Prisma.SortOrder;
+  quotaRemaining?: Prisma.SortOrder;
+  feedbackJson?: Prisma.SortOrderInput | Prisma.SortOrder;
+  correlationId?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  user?: Prisma.UserOrderByWithRelationInput;
+};
 
-export type AiFeedbackUsageWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
-  userId_idempotencyKey?: Prisma.AiFeedbackUsageUserIdIdempotencyKeyCompoundUniqueInput
-  AND?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[]
-  OR?: Prisma.AiFeedbackUsageWhereInput[]
-  NOT?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[]
-  userId?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  feature?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  skill?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  policyVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  promptVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  adapterKind?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  modelVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  idempotencyKey?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  requestFingerprint?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFilter<"AiFeedbackUsage"> | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFilter<"AiFeedbackUsage"> | number
-  quotaRemaining?: Prisma.IntFilter<"AiFeedbackUsage"> | number
-  feedbackJson?: Prisma.JsonNullableFilter<"AiFeedbackUsage">
-  correlationId?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  createdAt?: Prisma.DateTimeFilter<"AiFeedbackUsage"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id" | "userId_idempotencyKey">
+export type AiFeedbackUsageWhereUniqueInput = Prisma.AtLeast<
+  {
+    id?: string;
+    userId_idempotencyKey?: Prisma.AiFeedbackUsageUserIdIdempotencyKeyCompoundUniqueInput;
+    AND?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[];
+    OR?: Prisma.AiFeedbackUsageWhereInput[];
+    NOT?: Prisma.AiFeedbackUsageWhereInput | Prisma.AiFeedbackUsageWhereInput[];
+    userId?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    feature?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    skill?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    policyVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    promptVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    adapterKind?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    modelVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    idempotencyKey?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    requestFingerprint?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    outcome?:
+      | Prisma.EnumAiFeedbackOutcomeFilter<'AiFeedbackUsage'>
+      | $Enums.AiFeedbackOutcome;
+    estimatedCostMicros?: Prisma.IntFilter<'AiFeedbackUsage'> | number;
+    quotaRemaining?: Prisma.IntFilter<'AiFeedbackUsage'> | number;
+    feedbackJson?: Prisma.JsonNullableFilter<'AiFeedbackUsage'>;
+    correlationId?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+    createdAt?: Prisma.DateTimeFilter<'AiFeedbackUsage'> | Date | string;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  },
+  'id' | 'userId_idempotencyKey'
+>;
 
 export type AiFeedbackUsageOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  feature?: Prisma.SortOrder
-  skill?: Prisma.SortOrder
-  policyVersion?: Prisma.SortOrder
-  promptVersion?: Prisma.SortOrder
-  adapterKind?: Prisma.SortOrder
-  modelVersion?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  requestFingerprint?: Prisma.SortOrder
-  outcome?: Prisma.SortOrder
-  estimatedCostMicros?: Prisma.SortOrder
-  quotaRemaining?: Prisma.SortOrder
-  feedbackJson?: Prisma.SortOrderInput | Prisma.SortOrder
-  correlationId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  _count?: Prisma.AiFeedbackUsageCountOrderByAggregateInput
-  _avg?: Prisma.AiFeedbackUsageAvgOrderByAggregateInput
-  _max?: Prisma.AiFeedbackUsageMaxOrderByAggregateInput
-  _min?: Prisma.AiFeedbackUsageMinOrderByAggregateInput
-  _sum?: Prisma.AiFeedbackUsageSumOrderByAggregateInput
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  feature?: Prisma.SortOrder;
+  skill?: Prisma.SortOrder;
+  policyVersion?: Prisma.SortOrder;
+  promptVersion?: Prisma.SortOrder;
+  adapterKind?: Prisma.SortOrder;
+  modelVersion?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  requestFingerprint?: Prisma.SortOrder;
+  outcome?: Prisma.SortOrder;
+  estimatedCostMicros?: Prisma.SortOrder;
+  quotaRemaining?: Prisma.SortOrder;
+  feedbackJson?: Prisma.SortOrderInput | Prisma.SortOrder;
+  correlationId?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  _count?: Prisma.AiFeedbackUsageCountOrderByAggregateInput;
+  _avg?: Prisma.AiFeedbackUsageAvgOrderByAggregateInput;
+  _max?: Prisma.AiFeedbackUsageMaxOrderByAggregateInput;
+  _min?: Prisma.AiFeedbackUsageMinOrderByAggregateInput;
+  _sum?: Prisma.AiFeedbackUsageSumOrderByAggregateInput;
+};
 
 export type AiFeedbackUsageScalarWhereWithAggregatesInput = {
-  AND?: Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput | Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput[]
-  OR?: Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput | Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  feature?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  skill?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  policyVersion?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  promptVersion?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  adapterKind?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  modelVersion?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  idempotencyKey?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  requestFingerprint?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeWithAggregatesFilter<"AiFeedbackUsage"> | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntWithAggregatesFilter<"AiFeedbackUsage"> | number
-  quotaRemaining?: Prisma.IntWithAggregatesFilter<"AiFeedbackUsage"> | number
-  feedbackJson?: Prisma.JsonNullableWithAggregatesFilter<"AiFeedbackUsage">
-  correlationId?: Prisma.StringWithAggregatesFilter<"AiFeedbackUsage"> | string
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"AiFeedbackUsage"> | Date | string
-}
+  AND?:
+    | Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput
+    | Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput[];
+  OR?: Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput[];
+  NOT?:
+    | Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput
+    | Prisma.AiFeedbackUsageScalarWhereWithAggregatesInput[];
+  id?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  userId?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  feature?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  skill?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  policyVersion?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  promptVersion?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  adapterKind?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  modelVersion?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  idempotencyKey?:
+    Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  requestFingerprint?:
+    Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeWithAggregatesFilter<'AiFeedbackUsage'>
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?:
+    Prisma.IntWithAggregatesFilter<'AiFeedbackUsage'> | number;
+  quotaRemaining?: Prisma.IntWithAggregatesFilter<'AiFeedbackUsage'> | number;
+  feedbackJson?: Prisma.JsonNullableWithAggregatesFilter<'AiFeedbackUsage'>;
+  correlationId?: Prisma.StringWithAggregatesFilter<'AiFeedbackUsage'> | string;
+  createdAt?:
+    Prisma.DateTimeWithAggregatesFilter<'AiFeedbackUsage'> | Date | string;
+};
 
 export type AiFeedbackUsageCreateInput = {
-  id?: string
-  feature: string
-  skill: string
-  policyVersion: string
-  promptVersion: string
-  adapterKind: string
-  modelVersion: string
-  idempotencyKey: string
-  requestFingerprint: string
-  outcome: $Enums.AiFeedbackOutcome
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId: string
-  createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutAiFeedbackUsagesInput
-}
+  id?: string;
+  feature: string;
+  skill: string;
+  policyVersion: string;
+  promptVersion: string;
+  adapterKind: string;
+  modelVersion: string;
+  idempotencyKey: string;
+  requestFingerprint: string;
+  outcome: $Enums.AiFeedbackOutcome;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId: string;
+  createdAt?: Date | string;
+  user: Prisma.UserCreateNestedOneWithoutAiFeedbackUsagesInput;
+};
 
 export type AiFeedbackUsageUncheckedCreateInput = {
-  id?: string
-  userId: string
-  feature: string
-  skill: string
-  policyVersion: string
-  promptVersion: string
-  adapterKind: string
-  modelVersion: string
-  idempotencyKey: string
-  requestFingerprint: string
-  outcome: $Enums.AiFeedbackOutcome
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId: string
-  createdAt?: Date | string
-}
+  id?: string;
+  userId: string;
+  feature: string;
+  skill: string;
+  policyVersion: string;
+  promptVersion: string;
+  adapterKind: string;
+  modelVersion: string;
+  idempotencyKey: string;
+  requestFingerprint: string;
+  outcome: $Enums.AiFeedbackOutcome;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId: string;
+  createdAt?: Date | string;
+};
 
 export type AiFeedbackUsageUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  feature?: Prisma.StringFieldUpdateOperationsInput | string
-  skill?: Prisma.StringFieldUpdateOperationsInput | string
-  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string
-  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number
-  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutAiFeedbackUsagesNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  feature?: Prisma.StringFieldUpdateOperationsInput | string;
+  skill?: Prisma.StringFieldUpdateOperationsInput | string;
+  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string;
+  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number;
+  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  user?: Prisma.UserUpdateOneRequiredWithoutAiFeedbackUsagesNestedInput;
+};
 
 export type AiFeedbackUsageUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  feature?: Prisma.StringFieldUpdateOperationsInput | string
-  skill?: Prisma.StringFieldUpdateOperationsInput | string
-  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string
-  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number
-  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  feature?: Prisma.StringFieldUpdateOperationsInput | string;
+  skill?: Prisma.StringFieldUpdateOperationsInput | string;
+  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string;
+  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number;
+  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type AiFeedbackUsageCreateManyInput = {
-  id?: string
-  userId: string
-  feature: string
-  skill: string
-  policyVersion: string
-  promptVersion: string
-  adapterKind: string
-  modelVersion: string
-  idempotencyKey: string
-  requestFingerprint: string
-  outcome: $Enums.AiFeedbackOutcome
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId: string
-  createdAt?: Date | string
-}
+  id?: string;
+  userId: string;
+  feature: string;
+  skill: string;
+  policyVersion: string;
+  promptVersion: string;
+  adapterKind: string;
+  modelVersion: string;
+  idempotencyKey: string;
+  requestFingerprint: string;
+  outcome: $Enums.AiFeedbackOutcome;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId: string;
+  createdAt?: Date | string;
+};
 
 export type AiFeedbackUsageUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  feature?: Prisma.StringFieldUpdateOperationsInput | string
-  skill?: Prisma.StringFieldUpdateOperationsInput | string
-  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string
-  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number
-  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  feature?: Prisma.StringFieldUpdateOperationsInput | string;
+  skill?: Prisma.StringFieldUpdateOperationsInput | string;
+  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string;
+  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number;
+  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type AiFeedbackUsageUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  feature?: Prisma.StringFieldUpdateOperationsInput | string
-  skill?: Prisma.StringFieldUpdateOperationsInput | string
-  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string
-  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number
-  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  feature?: Prisma.StringFieldUpdateOperationsInput | string;
+  skill?: Prisma.StringFieldUpdateOperationsInput | string;
+  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string;
+  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number;
+  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type AiFeedbackUsageListRelationFilter = {
-  every?: Prisma.AiFeedbackUsageWhereInput
-  some?: Prisma.AiFeedbackUsageWhereInput
-  none?: Prisma.AiFeedbackUsageWhereInput
-}
+  every?: Prisma.AiFeedbackUsageWhereInput;
+  some?: Prisma.AiFeedbackUsageWhereInput;
+  none?: Prisma.AiFeedbackUsageWhereInput;
+};
 
 export type AiFeedbackUsageOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
+  _count?: Prisma.SortOrder;
+};
 
 export type AiFeedbackUsageUserIdIdempotencyKeyCompoundUniqueInput = {
-  userId: string
-  idempotencyKey: string
-}
+  userId: string;
+  idempotencyKey: string;
+};
 
 export type AiFeedbackUsageCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  feature?: Prisma.SortOrder
-  skill?: Prisma.SortOrder
-  policyVersion?: Prisma.SortOrder
-  promptVersion?: Prisma.SortOrder
-  adapterKind?: Prisma.SortOrder
-  modelVersion?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  requestFingerprint?: Prisma.SortOrder
-  outcome?: Prisma.SortOrder
-  estimatedCostMicros?: Prisma.SortOrder
-  quotaRemaining?: Prisma.SortOrder
-  feedbackJson?: Prisma.SortOrder
-  correlationId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  feature?: Prisma.SortOrder;
+  skill?: Prisma.SortOrder;
+  policyVersion?: Prisma.SortOrder;
+  promptVersion?: Prisma.SortOrder;
+  adapterKind?: Prisma.SortOrder;
+  modelVersion?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  requestFingerprint?: Prisma.SortOrder;
+  outcome?: Prisma.SortOrder;
+  estimatedCostMicros?: Prisma.SortOrder;
+  quotaRemaining?: Prisma.SortOrder;
+  feedbackJson?: Prisma.SortOrder;
+  correlationId?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+};
 
 export type AiFeedbackUsageAvgOrderByAggregateInput = {
-  estimatedCostMicros?: Prisma.SortOrder
-  quotaRemaining?: Prisma.SortOrder
-}
+  estimatedCostMicros?: Prisma.SortOrder;
+  quotaRemaining?: Prisma.SortOrder;
+};
 
 export type AiFeedbackUsageMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  feature?: Prisma.SortOrder
-  skill?: Prisma.SortOrder
-  policyVersion?: Prisma.SortOrder
-  promptVersion?: Prisma.SortOrder
-  adapterKind?: Prisma.SortOrder
-  modelVersion?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  requestFingerprint?: Prisma.SortOrder
-  outcome?: Prisma.SortOrder
-  estimatedCostMicros?: Prisma.SortOrder
-  quotaRemaining?: Prisma.SortOrder
-  correlationId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  feature?: Prisma.SortOrder;
+  skill?: Prisma.SortOrder;
+  policyVersion?: Prisma.SortOrder;
+  promptVersion?: Prisma.SortOrder;
+  adapterKind?: Prisma.SortOrder;
+  modelVersion?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  requestFingerprint?: Prisma.SortOrder;
+  outcome?: Prisma.SortOrder;
+  estimatedCostMicros?: Prisma.SortOrder;
+  quotaRemaining?: Prisma.SortOrder;
+  correlationId?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+};
 
 export type AiFeedbackUsageMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  feature?: Prisma.SortOrder
-  skill?: Prisma.SortOrder
-  policyVersion?: Prisma.SortOrder
-  promptVersion?: Prisma.SortOrder
-  adapterKind?: Prisma.SortOrder
-  modelVersion?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  requestFingerprint?: Prisma.SortOrder
-  outcome?: Prisma.SortOrder
-  estimatedCostMicros?: Prisma.SortOrder
-  quotaRemaining?: Prisma.SortOrder
-  correlationId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  feature?: Prisma.SortOrder;
+  skill?: Prisma.SortOrder;
+  policyVersion?: Prisma.SortOrder;
+  promptVersion?: Prisma.SortOrder;
+  adapterKind?: Prisma.SortOrder;
+  modelVersion?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  requestFingerprint?: Prisma.SortOrder;
+  outcome?: Prisma.SortOrder;
+  estimatedCostMicros?: Prisma.SortOrder;
+  quotaRemaining?: Prisma.SortOrder;
+  correlationId?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+};
 
 export type AiFeedbackUsageSumOrderByAggregateInput = {
-  estimatedCostMicros?: Prisma.SortOrder
-  quotaRemaining?: Prisma.SortOrder
-}
+  estimatedCostMicros?: Prisma.SortOrder;
+  quotaRemaining?: Prisma.SortOrder;
+};
 
 export type AiFeedbackUsageCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.AiFeedbackUsageCreateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput> | Prisma.AiFeedbackUsageCreateWithoutUserInput[] | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope
-  connect?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.AiFeedbackUsageCreateWithoutUserInput,
+        Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput
+      >
+    | Prisma.AiFeedbackUsageCreateWithoutUserInput[]
+    | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+};
 
 export type AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.AiFeedbackUsageCreateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput> | Prisma.AiFeedbackUsageCreateWithoutUserInput[] | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope
-  connect?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.AiFeedbackUsageCreateWithoutUserInput,
+        Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput
+      >
+    | Prisma.AiFeedbackUsageCreateWithoutUserInput[]
+    | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+};
 
 export type AiFeedbackUsageUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.AiFeedbackUsageCreateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput> | Prisma.AiFeedbackUsageCreateWithoutUserInput[] | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput | Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope
-  set?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  disconnect?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  delete?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  connect?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  update?: Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput | Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput | Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.AiFeedbackUsageScalarWhereInput | Prisma.AiFeedbackUsageScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.AiFeedbackUsageCreateWithoutUserInput,
+        Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput
+      >
+    | Prisma.AiFeedbackUsageCreateWithoutUserInput[]
+    | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  disconnect?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  delete?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  connect?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  update?:
+    | Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput
+    | Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.AiFeedbackUsageScalarWhereInput
+    | Prisma.AiFeedbackUsageScalarWhereInput[];
+};
 
 export type AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.AiFeedbackUsageCreateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput> | Prisma.AiFeedbackUsageCreateWithoutUserInput[] | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput | Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope
-  set?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  disconnect?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  delete?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  connect?: Prisma.AiFeedbackUsageWhereUniqueInput | Prisma.AiFeedbackUsageWhereUniqueInput[]
-  update?: Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput | Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput | Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.AiFeedbackUsageScalarWhereInput | Prisma.AiFeedbackUsageScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.AiFeedbackUsageCreateWithoutUserInput,
+        Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput
+      >
+    | Prisma.AiFeedbackUsageCreateWithoutUserInput[]
+    | Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput
+    | Prisma.AiFeedbackUsageCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.AiFeedbackUsageCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  disconnect?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  delete?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  connect?:
+    | Prisma.AiFeedbackUsageWhereUniqueInput
+    | Prisma.AiFeedbackUsageWhereUniqueInput[];
+  update?:
+    | Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput
+    | Prisma.AiFeedbackUsageUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.AiFeedbackUsageScalarWhereInput
+    | Prisma.AiFeedbackUsageScalarWhereInput[];
+};
 
 export type EnumAiFeedbackOutcomeFieldUpdateOperationsInput = {
-  set?: $Enums.AiFeedbackOutcome
-}
+  set?: $Enums.AiFeedbackOutcome;
+};
 
 export type AiFeedbackUsageCreateWithoutUserInput = {
-  id?: string
-  feature: string
-  skill: string
-  policyVersion: string
-  promptVersion: string
-  adapterKind: string
-  modelVersion: string
-  idempotencyKey: string
-  requestFingerprint: string
-  outcome: $Enums.AiFeedbackOutcome
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId: string
-  createdAt?: Date | string
-}
+  id?: string;
+  feature: string;
+  skill: string;
+  policyVersion: string;
+  promptVersion: string;
+  adapterKind: string;
+  modelVersion: string;
+  idempotencyKey: string;
+  requestFingerprint: string;
+  outcome: $Enums.AiFeedbackOutcome;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId: string;
+  createdAt?: Date | string;
+};
 
 export type AiFeedbackUsageUncheckedCreateWithoutUserInput = {
-  id?: string
-  feature: string
-  skill: string
-  policyVersion: string
-  promptVersion: string
-  adapterKind: string
-  modelVersion: string
-  idempotencyKey: string
-  requestFingerprint: string
-  outcome: $Enums.AiFeedbackOutcome
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId: string
-  createdAt?: Date | string
-}
+  id?: string;
+  feature: string;
+  skill: string;
+  policyVersion: string;
+  promptVersion: string;
+  adapterKind: string;
+  modelVersion: string;
+  idempotencyKey: string;
+  requestFingerprint: string;
+  outcome: $Enums.AiFeedbackOutcome;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId: string;
+  createdAt?: Date | string;
+};
 
 export type AiFeedbackUsageCreateOrConnectWithoutUserInput = {
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
-  create: Prisma.XOR<Prisma.AiFeedbackUsageCreateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.AiFeedbackUsageCreateWithoutUserInput,
+    Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type AiFeedbackUsageCreateManyUserInputEnvelope = {
-  data: Prisma.AiFeedbackUsageCreateManyUserInput | Prisma.AiFeedbackUsageCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.AiFeedbackUsageCreateManyUserInput
+    | Prisma.AiFeedbackUsageCreateManyUserInput[];
+  skipDuplicates?: boolean;
+};
 
 export type AiFeedbackUsageUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
-  update: Prisma.XOR<Prisma.AiFeedbackUsageUpdateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.AiFeedbackUsageCreateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.AiFeedbackUsageUpdateWithoutUserInput,
+    Prisma.AiFeedbackUsageUncheckedUpdateWithoutUserInput
+  >;
+  create: Prisma.XOR<
+    Prisma.AiFeedbackUsageCreateWithoutUserInput,
+    Prisma.AiFeedbackUsageUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type AiFeedbackUsageUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
-  data: Prisma.XOR<Prisma.AiFeedbackUsageUpdateWithoutUserInput, Prisma.AiFeedbackUsageUncheckedUpdateWithoutUserInput>
-}
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.AiFeedbackUsageUpdateWithoutUserInput,
+    Prisma.AiFeedbackUsageUncheckedUpdateWithoutUserInput
+  >;
+};
 
 export type AiFeedbackUsageUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.AiFeedbackUsageScalarWhereInput
-  data: Prisma.XOR<Prisma.AiFeedbackUsageUpdateManyMutationInput, Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserInput>
-}
+  where: Prisma.AiFeedbackUsageScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.AiFeedbackUsageUpdateManyMutationInput,
+    Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserInput
+  >;
+};
 
 export type AiFeedbackUsageScalarWhereInput = {
-  AND?: Prisma.AiFeedbackUsageScalarWhereInput | Prisma.AiFeedbackUsageScalarWhereInput[]
-  OR?: Prisma.AiFeedbackUsageScalarWhereInput[]
-  NOT?: Prisma.AiFeedbackUsageScalarWhereInput | Prisma.AiFeedbackUsageScalarWhereInput[]
-  id?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  userId?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  feature?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  skill?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  policyVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  promptVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  adapterKind?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  modelVersion?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  idempotencyKey?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  requestFingerprint?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFilter<"AiFeedbackUsage"> | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFilter<"AiFeedbackUsage"> | number
-  quotaRemaining?: Prisma.IntFilter<"AiFeedbackUsage"> | number
-  feedbackJson?: Prisma.JsonNullableFilter<"AiFeedbackUsage">
-  correlationId?: Prisma.StringFilter<"AiFeedbackUsage"> | string
-  createdAt?: Prisma.DateTimeFilter<"AiFeedbackUsage"> | Date | string
-}
+  AND?:
+    | Prisma.AiFeedbackUsageScalarWhereInput
+    | Prisma.AiFeedbackUsageScalarWhereInput[];
+  OR?: Prisma.AiFeedbackUsageScalarWhereInput[];
+  NOT?:
+    | Prisma.AiFeedbackUsageScalarWhereInput
+    | Prisma.AiFeedbackUsageScalarWhereInput[];
+  id?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  userId?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  feature?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  skill?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  policyVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  promptVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  adapterKind?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  modelVersion?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  idempotencyKey?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  requestFingerprint?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFilter<'AiFeedbackUsage'>
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFilter<'AiFeedbackUsage'> | number;
+  quotaRemaining?: Prisma.IntFilter<'AiFeedbackUsage'> | number;
+  feedbackJson?: Prisma.JsonNullableFilter<'AiFeedbackUsage'>;
+  correlationId?: Prisma.StringFilter<'AiFeedbackUsage'> | string;
+  createdAt?: Prisma.DateTimeFilter<'AiFeedbackUsage'> | Date | string;
+};
 
 export type AiFeedbackUsageCreateManyUserInput = {
-  id?: string
-  feature: string
-  skill: string
-  policyVersion: string
-  promptVersion: string
-  adapterKind: string
-  modelVersion: string
-  idempotencyKey: string
-  requestFingerprint: string
-  outcome: $Enums.AiFeedbackOutcome
-  estimatedCostMicros: number
-  quotaRemaining: number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId: string
-  createdAt?: Date | string
-}
+  id?: string;
+  feature: string;
+  skill: string;
+  policyVersion: string;
+  promptVersion: string;
+  adapterKind: string;
+  modelVersion: string;
+  idempotencyKey: string;
+  requestFingerprint: string;
+  outcome: $Enums.AiFeedbackOutcome;
+  estimatedCostMicros: number;
+  quotaRemaining: number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId: string;
+  createdAt?: Date | string;
+};
 
 export type AiFeedbackUsageUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  feature?: Prisma.StringFieldUpdateOperationsInput | string
-  skill?: Prisma.StringFieldUpdateOperationsInput | string
-  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string
-  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number
-  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  feature?: Prisma.StringFieldUpdateOperationsInput | string;
+  skill?: Prisma.StringFieldUpdateOperationsInput | string;
+  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string;
+  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number;
+  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type AiFeedbackUsageUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  feature?: Prisma.StringFieldUpdateOperationsInput | string
-  skill?: Prisma.StringFieldUpdateOperationsInput | string
-  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string
-  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number
-  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  feature?: Prisma.StringFieldUpdateOperationsInput | string;
+  skill?: Prisma.StringFieldUpdateOperationsInput | string;
+  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string;
+  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number;
+  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type AiFeedbackUsageUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  feature?: Prisma.StringFieldUpdateOperationsInput | string
-  skill?: Prisma.StringFieldUpdateOperationsInput | string
-  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string
-  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
-  outcome?: Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput | $Enums.AiFeedbackOutcome
-  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number
-  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number
-  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  correlationId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  feature?: Prisma.StringFieldUpdateOperationsInput | string;
+  skill?: Prisma.StringFieldUpdateOperationsInput | string;
+  policyVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  promptVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  adapterKind?: Prisma.StringFieldUpdateOperationsInput | string;
+  modelVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  requestFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
+  outcome?:
+    | Prisma.EnumAiFeedbackOutcomeFieldUpdateOperationsInput
+    | $Enums.AiFeedbackOutcome;
+  estimatedCostMicros?: Prisma.IntFieldUpdateOperationsInput | number;
+  quotaRemaining?: Prisma.IntFieldUpdateOperationsInput | number;
+  feedbackJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  correlationId?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
+export type AiFeedbackUsageSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    userId?: boolean;
+    feature?: boolean;
+    skill?: boolean;
+    policyVersion?: boolean;
+    promptVersion?: boolean;
+    adapterKind?: boolean;
+    modelVersion?: boolean;
+    idempotencyKey?: boolean;
+    requestFingerprint?: boolean;
+    outcome?: boolean;
+    estimatedCostMicros?: boolean;
+    quotaRemaining?: boolean;
+    feedbackJson?: boolean;
+    correlationId?: boolean;
+    createdAt?: boolean;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['aiFeedbackUsage']
+>;
 
+export type AiFeedbackUsageSelectCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    userId?: boolean;
+    feature?: boolean;
+    skill?: boolean;
+    policyVersion?: boolean;
+    promptVersion?: boolean;
+    adapterKind?: boolean;
+    modelVersion?: boolean;
+    idempotencyKey?: boolean;
+    requestFingerprint?: boolean;
+    outcome?: boolean;
+    estimatedCostMicros?: boolean;
+    quotaRemaining?: boolean;
+    feedbackJson?: boolean;
+    correlationId?: boolean;
+    createdAt?: boolean;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['aiFeedbackUsage']
+>;
 
-export type AiFeedbackUsageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  userId?: boolean
-  feature?: boolean
-  skill?: boolean
-  policyVersion?: boolean
-  promptVersion?: boolean
-  adapterKind?: boolean
-  modelVersion?: boolean
-  idempotencyKey?: boolean
-  requestFingerprint?: boolean
-  outcome?: boolean
-  estimatedCostMicros?: boolean
-  quotaRemaining?: boolean
-  feedbackJson?: boolean
-  correlationId?: boolean
-  createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["aiFeedbackUsage"]>
-
-export type AiFeedbackUsageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  userId?: boolean
-  feature?: boolean
-  skill?: boolean
-  policyVersion?: boolean
-  promptVersion?: boolean
-  adapterKind?: boolean
-  modelVersion?: boolean
-  idempotencyKey?: boolean
-  requestFingerprint?: boolean
-  outcome?: boolean
-  estimatedCostMicros?: boolean
-  quotaRemaining?: boolean
-  feedbackJson?: boolean
-  correlationId?: boolean
-  createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["aiFeedbackUsage"]>
-
-export type AiFeedbackUsageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  userId?: boolean
-  feature?: boolean
-  skill?: boolean
-  policyVersion?: boolean
-  promptVersion?: boolean
-  adapterKind?: boolean
-  modelVersion?: boolean
-  idempotencyKey?: boolean
-  requestFingerprint?: boolean
-  outcome?: boolean
-  estimatedCostMicros?: boolean
-  quotaRemaining?: boolean
-  feedbackJson?: boolean
-  correlationId?: boolean
-  createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["aiFeedbackUsage"]>
+export type AiFeedbackUsageSelectUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    userId?: boolean;
+    feature?: boolean;
+    skill?: boolean;
+    policyVersion?: boolean;
+    promptVersion?: boolean;
+    adapterKind?: boolean;
+    modelVersion?: boolean;
+    idempotencyKey?: boolean;
+    requestFingerprint?: boolean;
+    outcome?: boolean;
+    estimatedCostMicros?: boolean;
+    quotaRemaining?: boolean;
+    feedbackJson?: boolean;
+    correlationId?: boolean;
+    createdAt?: boolean;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['aiFeedbackUsage']
+>;
 
 export type AiFeedbackUsageSelectScalar = {
-  id?: boolean
-  userId?: boolean
-  feature?: boolean
-  skill?: boolean
-  policyVersion?: boolean
-  promptVersion?: boolean
-  adapterKind?: boolean
-  modelVersion?: boolean
-  idempotencyKey?: boolean
-  requestFingerprint?: boolean
-  outcome?: boolean
-  estimatedCostMicros?: boolean
-  quotaRemaining?: boolean
-  feedbackJson?: boolean
-  correlationId?: boolean
-  createdAt?: boolean
-}
+  id?: boolean;
+  userId?: boolean;
+  feature?: boolean;
+  skill?: boolean;
+  policyVersion?: boolean;
+  promptVersion?: boolean;
+  adapterKind?: boolean;
+  modelVersion?: boolean;
+  idempotencyKey?: boolean;
+  requestFingerprint?: boolean;
+  outcome?: boolean;
+  estimatedCostMicros?: boolean;
+  quotaRemaining?: boolean;
+  feedbackJson?: boolean;
+  correlationId?: boolean;
+  createdAt?: boolean;
+};
 
-export type AiFeedbackUsageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "feature" | "skill" | "policyVersion" | "promptVersion" | "adapterKind" | "modelVersion" | "idempotencyKey" | "requestFingerprint" | "outcome" | "estimatedCostMicros" | "quotaRemaining" | "feedbackJson" | "correlationId" | "createdAt", ExtArgs["result"]["aiFeedbackUsage"]>
-export type AiFeedbackUsageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type AiFeedbackUsageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type AiFeedbackUsageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
+export type AiFeedbackUsageOmit<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetOmit<
+  | 'id'
+  | 'userId'
+  | 'feature'
+  | 'skill'
+  | 'policyVersion'
+  | 'promptVersion'
+  | 'adapterKind'
+  | 'modelVersion'
+  | 'idempotencyKey'
+  | 'requestFingerprint'
+  | 'outcome'
+  | 'estimatedCostMicros'
+  | 'quotaRemaining'
+  | 'feedbackJson'
+  | 'correlationId'
+  | 'createdAt',
+  ExtArgs['result']['aiFeedbackUsage']
+>;
+export type AiFeedbackUsageInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type AiFeedbackUsageIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type AiFeedbackUsageIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
 
-export type $AiFeedbackUsagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "AiFeedbackUsage"
+export type $AiFeedbackUsagePayload<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  name: 'AiFeedbackUsage';
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-  }
-  scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    userId: string
-    feature: string
-    skill: string
-    policyVersion: string
-    promptVersion: string
-    adapterKind: string
-    modelVersion: string
-    idempotencyKey: string
-    requestFingerprint: string
-    outcome: $Enums.AiFeedbackOutcome
-    estimatedCostMicros: number
-    quotaRemaining: number
-    feedbackJson: runtime.JsonValue | null
-    correlationId: string
-    createdAt: Date
-  }, ExtArgs["result"]["aiFeedbackUsage"]>
-  composites: {}
-}
+    user: Prisma.$UserPayload<ExtArgs>;
+  };
+  scalars: runtime.Types.Extensions.GetPayloadResult<
+    {
+      id: string;
+      userId: string;
+      feature: string;
+      skill: string;
+      policyVersion: string;
+      promptVersion: string;
+      adapterKind: string;
+      modelVersion: string;
+      idempotencyKey: string;
+      requestFingerprint: string;
+      outcome: $Enums.AiFeedbackOutcome;
+      estimatedCostMicros: number;
+      quotaRemaining: number;
+      feedbackJson: runtime.JsonValue | null;
+      correlationId: string;
+      createdAt: Date;
+    },
+    ExtArgs['result']['aiFeedbackUsage']
+  >;
+  composites: {};
+};
 
-export type AiFeedbackUsageGetPayload<S extends boolean | null | undefined | AiFeedbackUsageDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload, S>
+export type AiFeedbackUsageGetPayload<
+  S extends boolean | null | undefined | AiFeedbackUsageDefaultArgs,
+> = runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload, S>;
 
-export type AiFeedbackUsageCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<AiFeedbackUsageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-    select?: AiFeedbackUsageCountAggregateInputType | true
-  }
+export type AiFeedbackUsageCountArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = Omit<
+  AiFeedbackUsageFindManyArgs,
+  'select' | 'include' | 'distinct' | 'omit'
+> & {
+  select?: AiFeedbackUsageCountAggregateInputType | true;
+};
 
-export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AiFeedbackUsage'], meta: { name: 'AiFeedbackUsage' } }
+export interface AiFeedbackUsageDelegate<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> {
+  [K: symbol]: {
+    types: Prisma.TypeMap<ExtArgs>['model']['AiFeedbackUsage'];
+    meta: { name: 'AiFeedbackUsage' };
+  };
   /**
    * Find zero or one AiFeedbackUsage that matches the filter.
    * @param {AiFeedbackUsageFindUniqueArgs} args - Arguments to find a AiFeedbackUsage
@@ -948,7 +1148,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *   }
    * })
    */
-  findUnique<T extends AiFeedbackUsageFindUniqueArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageFindUniqueArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends AiFeedbackUsageFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, AiFeedbackUsageFindUniqueArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'findUnique',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find one AiFeedbackUsage that matches the filter or throw an error with `error.code='P2025'`
@@ -962,7 +1174,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *   }
    * })
    */
-  findUniqueOrThrow<T extends AiFeedbackUsageFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends AiFeedbackUsageFindUniqueOrThrowArgs>(
+    args: Prisma.SelectSubset<T, AiFeedbackUsageFindUniqueOrThrowArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first AiFeedbackUsage that matches the filter.
@@ -977,7 +1201,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *   }
    * })
    */
-  findFirst<T extends AiFeedbackUsageFindFirstArgs>(args?: Prisma.SelectSubset<T, AiFeedbackUsageFindFirstArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends AiFeedbackUsageFindFirstArgs>(
+    args?: Prisma.SelectSubset<T, AiFeedbackUsageFindFirstArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'findFirst',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first AiFeedbackUsage that matches the filter or
@@ -993,7 +1229,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *   }
    * })
    */
-  findFirstOrThrow<T extends AiFeedbackUsageFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, AiFeedbackUsageFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends AiFeedbackUsageFindFirstOrThrowArgs>(
+    args?: Prisma.SelectSubset<T, AiFeedbackUsageFindFirstOrThrowArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'findFirstOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find zero or more AiFeedbackUsages that matches the filter.
@@ -1011,7 +1259,16 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * const aiFeedbackUsageWithIdOnly = await prisma.aiFeedbackUsage.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends AiFeedbackUsageFindManyArgs>(args?: Prisma.SelectSubset<T, AiFeedbackUsageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends AiFeedbackUsageFindManyArgs>(
+    args?: Prisma.SelectSubset<T, AiFeedbackUsageFindManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'findMany',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create a AiFeedbackUsage.
@@ -1025,7 +1282,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * })
    *
    */
-  create<T extends AiFeedbackUsageCreateArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageCreateArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends AiFeedbackUsageCreateArgs>(
+    args: Prisma.SelectSubset<T, AiFeedbackUsageCreateArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'create',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Create many AiFeedbackUsages.
@@ -1039,7 +1308,9 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * })
    *
    */
-  createMany<T extends AiFeedbackUsageCreateManyArgs>(args?: Prisma.SelectSubset<T, AiFeedbackUsageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends AiFeedbackUsageCreateManyArgs>(
+    args?: Prisma.SelectSubset<T, AiFeedbackUsageCreateManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Create many AiFeedbackUsages and returns the data saved in the database.
@@ -1063,7 +1334,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends AiFeedbackUsageCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, AiFeedbackUsageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends AiFeedbackUsageCreateManyAndReturnArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      AiFeedbackUsageCreateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'createManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Delete a AiFeedbackUsage.
@@ -1077,7 +1360,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * })
    *
    */
-  delete<T extends AiFeedbackUsageDeleteArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageDeleteArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends AiFeedbackUsageDeleteArgs>(
+    args: Prisma.SelectSubset<T, AiFeedbackUsageDeleteArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'delete',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Update one AiFeedbackUsage.
@@ -1094,7 +1389,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * })
    *
    */
-  update<T extends AiFeedbackUsageUpdateArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageUpdateArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends AiFeedbackUsageUpdateArgs>(
+    args: Prisma.SelectSubset<T, AiFeedbackUsageUpdateArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'update',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Delete zero or more AiFeedbackUsages.
@@ -1108,7 +1415,9 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * })
    *
    */
-  deleteMany<T extends AiFeedbackUsageDeleteManyArgs>(args?: Prisma.SelectSubset<T, AiFeedbackUsageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends AiFeedbackUsageDeleteManyArgs>(
+    args?: Prisma.SelectSubset<T, AiFeedbackUsageDeleteManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more AiFeedbackUsages.
@@ -1127,7 +1436,9 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * })
    *
    */
-  updateMany<T extends AiFeedbackUsageUpdateManyArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends AiFeedbackUsageUpdateManyArgs>(
+    args: Prisma.SelectSubset<T, AiFeedbackUsageUpdateManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more AiFeedbackUsages and returns the data updated in the database.
@@ -1157,7 +1468,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends AiFeedbackUsageUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends AiFeedbackUsageUpdateManyAndReturnArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      AiFeedbackUsageUpdateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'updateManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create or update one AiFeedbackUsage.
@@ -1176,8 +1499,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *   }
    * })
    */
-  upsert<T extends AiFeedbackUsageUpsertArgs>(args: Prisma.SelectSubset<T, AiFeedbackUsageUpsertArgs<ExtArgs>>): Prisma.Prisma__AiFeedbackUsageClient<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+  upsert<T extends AiFeedbackUsageUpsertArgs>(
+    args: Prisma.SelectSubset<T, AiFeedbackUsageUpsertArgs<ExtArgs>>,
+  ): Prisma.Prisma__AiFeedbackUsageClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+      T,
+      'upsert',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Count the number of AiFeedbackUsages.
@@ -1191,16 +1525,19 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *     // ... the filter for the AiFeedbackUsages we want to count
    *   }
    * })
-  **/
+   **/
   count<T extends AiFeedbackUsageCountArgs>(
     args?: Prisma.Subset<T, AiFeedbackUsageCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<T['select'], AiFeedbackUsageCountAggregateOutputType>
+        : Prisma.GetScalarType<
+            T['select'],
+            AiFeedbackUsageCountAggregateOutputType
+          >
       : number
-  >
+  >;
 
   /**
    * Allows you to perform aggregations operations on a AiFeedbackUsage.
@@ -1225,8 +1562,10 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *   },
    *   take: 10,
    * })
-  **/
-  aggregate<T extends AiFeedbackUsageAggregateArgs>(args: Prisma.Subset<T, AiFeedbackUsageAggregateArgs>): Prisma.PrismaPromise<GetAiFeedbackUsageAggregateType<T>>
+   **/
+  aggregate<T extends AiFeedbackUsageAggregateArgs>(
+    args: Prisma.Subset<T, AiFeedbackUsageAggregateArgs>,
+  ): Prisma.PrismaPromise<GetAiFeedbackUsageAggregateType<T>>;
 
   /**
    * Group by AiFeedbackUsage.
@@ -1245,69 +1584,76 @@ export interface AiFeedbackUsageDelegate<ExtArgs extends runtime.Types.Extension
    *   },
    * })
    *
-  **/
+   **/
   groupBy<
     T extends AiFeedbackUsageGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
-    OrderByArg extends Prisma.True extends HasSelectOrTake
+    OrderByArg extends (Prisma.True extends HasSelectOrTake
       ? { orderBy: AiFeedbackUsageGroupByArgs['orderBy'] }
-      : { orderBy?: AiFeedbackUsageGroupByArgs['orderBy'] },
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
+      : { orderBy?: AiFeedbackUsageGroupByArgs['orderBy'] }),
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<
+      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
+    >,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
-    InputErrors extends ByEmpty extends Prisma.True
-    ? `Error: "by" must not be empty.`
-    : HavingValid extends Prisma.False
-    ? {
-        [P in HavingFields]: P extends ByFields
-          ? never
-          : P extends string
-          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-          : [
-              Error,
-              'Field ',
-              P,
-              ` in "having" needs to be provided in "by"`,
-            ]
-      }[HavingFields]
-    : 'take' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
+    ByEmpty extends (T['by'] extends never[] ? Prisma.True : Prisma.False),
+    InputErrors extends (ByEmpty extends Prisma.True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends Prisma.False
+        ? {
+            [P in HavingFields]: P extends ByFields
               ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "take", you also need to provide "orderBy"'
-    : 'skip' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "skip", you also need to provide "orderBy"'
-    : ByValid extends Prisma.True
-    ? {}
-    : {
-        [P in OrderFields]: P extends ByFields
-          ? never
-          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-      }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, AiFeedbackUsageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAiFeedbackUsageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-/**
- * Fields of the AiFeedbackUsage model
- */
-readonly fields: AiFeedbackUsageFieldRefs;
+              : P extends string
+                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                : [
+                    Error,
+                    'Field ',
+                    P,
+                    ` in "having" needs to be provided in "by"`,
+                  ];
+          }[HavingFields]
+        : 'take' extends Prisma.Keys<T>
+          ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]
+            : 'Error: If you provide "take", you also need to provide "orderBy"'
+          : 'skip' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+              ? ByValid extends Prisma.True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "skip", you also need to provide "orderBy"'
+            : ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]),
+  >(
+    args: Prisma.SubsetIntersection<T, AiFeedbackUsageGroupByArgs, OrderByArg> &
+      InputErrors,
+  ): {} extends InputErrors
+    ? GetAiFeedbackUsageGroupByPayload<T>
+    : Prisma.PrismaPromise<InputErrors>;
+  /**
+   * Fields of the AiFeedbackUsage model
+   */
+  readonly fields: AiFeedbackUsageFieldRefs;
 }
 
 /**
@@ -1316,468 +1662,572 @@ readonly fields: AiFeedbackUsageFieldRefs;
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__AiFeedbackUsageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-  readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+export interface Prisma__AiFeedbackUsageClient<
+  T,
+  Null = never,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> extends Prisma.PrismaPromise<T> {
+  readonly [Symbol.toStringTag]: 'PrismaPromise';
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    | runtime.Types.Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >
+    | Null,
+    Null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of which ever callback is executed.
    */
-  then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?:
+      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+    onrejected?:
+      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
   /**
    * Attaches a callback for only the rejection of the Promise.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of the callback.
    */
-  catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>
+  catch<TResult = never>(
+    onrejected?:
+      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T | TResult>;
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
    * resolved value cannot be modified from the callback.
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
+  finally(
+    onfinally?: (() => void) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T>;
 }
-
-
-
 
 /**
  * Fields of the AiFeedbackUsage model
  */
 export interface AiFeedbackUsageFieldRefs {
-  readonly id: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly userId: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly feature: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly skill: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly policyVersion: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly promptVersion: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly adapterKind: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly modelVersion: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly idempotencyKey: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly requestFingerprint: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly outcome: Prisma.FieldRef<"AiFeedbackUsage", 'AiFeedbackOutcome'>
-  readonly estimatedCostMicros: Prisma.FieldRef<"AiFeedbackUsage", 'Int'>
-  readonly quotaRemaining: Prisma.FieldRef<"AiFeedbackUsage", 'Int'>
-  readonly feedbackJson: Prisma.FieldRef<"AiFeedbackUsage", 'Json'>
-  readonly correlationId: Prisma.FieldRef<"AiFeedbackUsage", 'String'>
-  readonly createdAt: Prisma.FieldRef<"AiFeedbackUsage", 'DateTime'>
+  readonly id: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly userId: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly feature: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly skill: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly policyVersion: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly promptVersion: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly adapterKind: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly modelVersion: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly idempotencyKey: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly requestFingerprint: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly outcome: Prisma.FieldRef<'AiFeedbackUsage', 'AiFeedbackOutcome'>;
+  readonly estimatedCostMicros: Prisma.FieldRef<'AiFeedbackUsage', 'Int'>;
+  readonly quotaRemaining: Prisma.FieldRef<'AiFeedbackUsage', 'Int'>;
+  readonly feedbackJson: Prisma.FieldRef<'AiFeedbackUsage', 'Json'>;
+  readonly correlationId: Prisma.FieldRef<'AiFeedbackUsage', 'String'>;
+  readonly createdAt: Prisma.FieldRef<'AiFeedbackUsage', 'DateTime'>;
 }
-
 
 // Custom InputTypes
 /**
  * AiFeedbackUsage findUnique
  */
-export type AiFeedbackUsageFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageFindUniqueArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * Filter, which AiFeedbackUsage to fetch.
    */
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
-}
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
+};
 
 /**
  * AiFeedbackUsage findUniqueOrThrow
  */
-export type AiFeedbackUsageFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageFindUniqueOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * Filter, which AiFeedbackUsage to fetch.
    */
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
-}
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
+};
 
 /**
  * AiFeedbackUsage findFirst
  */
-export type AiFeedbackUsageFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageFindFirstArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * Filter, which AiFeedbackUsage to fetch.
    */
-  where?: Prisma.AiFeedbackUsageWhereInput
+  where?: Prisma.AiFeedbackUsageWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of AiFeedbackUsages to fetch.
    */
-  orderBy?: Prisma.AiFeedbackUsageOrderByWithRelationInput | Prisma.AiFeedbackUsageOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for AiFeedbackUsages.
    */
-  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput
+  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` AiFeedbackUsages from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` AiFeedbackUsages.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of AiFeedbackUsages.
    */
-  distinct?: Prisma.AiFeedbackUsageScalarFieldEnum | Prisma.AiFeedbackUsageScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.AiFeedbackUsageScalarFieldEnum
+    | Prisma.AiFeedbackUsageScalarFieldEnum[];
+};
 
 /**
  * AiFeedbackUsage findFirstOrThrow
  */
-export type AiFeedbackUsageFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageFindFirstOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * Filter, which AiFeedbackUsage to fetch.
    */
-  where?: Prisma.AiFeedbackUsageWhereInput
+  where?: Prisma.AiFeedbackUsageWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of AiFeedbackUsages to fetch.
    */
-  orderBy?: Prisma.AiFeedbackUsageOrderByWithRelationInput | Prisma.AiFeedbackUsageOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for AiFeedbackUsages.
    */
-  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput
+  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` AiFeedbackUsages from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` AiFeedbackUsages.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of AiFeedbackUsages.
    */
-  distinct?: Prisma.AiFeedbackUsageScalarFieldEnum | Prisma.AiFeedbackUsageScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.AiFeedbackUsageScalarFieldEnum
+    | Prisma.AiFeedbackUsageScalarFieldEnum[];
+};
 
 /**
  * AiFeedbackUsage findMany
  */
-export type AiFeedbackUsageFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageFindManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * Filter, which AiFeedbackUsages to fetch.
    */
-  where?: Prisma.AiFeedbackUsageWhereInput
+  where?: Prisma.AiFeedbackUsageWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of AiFeedbackUsages to fetch.
    */
-  orderBy?: Prisma.AiFeedbackUsageOrderByWithRelationInput | Prisma.AiFeedbackUsageOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing AiFeedbackUsages.
    */
-  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput
+  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` AiFeedbackUsages from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` AiFeedbackUsages.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of AiFeedbackUsages.
    */
-  distinct?: Prisma.AiFeedbackUsageScalarFieldEnum | Prisma.AiFeedbackUsageScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.AiFeedbackUsageScalarFieldEnum
+    | Prisma.AiFeedbackUsageScalarFieldEnum[];
+};
 
 /**
  * AiFeedbackUsage create
  */
-export type AiFeedbackUsageCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageCreateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * The data needed to create a AiFeedbackUsage.
    */
-  data: Prisma.XOR<Prisma.AiFeedbackUsageCreateInput, Prisma.AiFeedbackUsageUncheckedCreateInput>
-}
+  data: Prisma.XOR<
+    Prisma.AiFeedbackUsageCreateInput,
+    Prisma.AiFeedbackUsageUncheckedCreateInput
+  >;
+};
 
 /**
  * AiFeedbackUsage createMany
  */
-export type AiFeedbackUsageCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageCreateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to create many AiFeedbackUsages.
    */
-  data: Prisma.AiFeedbackUsageCreateManyInput | Prisma.AiFeedbackUsageCreateManyInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.AiFeedbackUsageCreateManyInput
+    | Prisma.AiFeedbackUsageCreateManyInput[];
+  skipDuplicates?: boolean;
+};
 
 /**
  * AiFeedbackUsage createManyAndReturn
  */
-export type AiFeedbackUsageCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageCreateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelectCreateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * The data used to create many AiFeedbackUsages.
    */
-  data: Prisma.AiFeedbackUsageCreateManyInput | Prisma.AiFeedbackUsageCreateManyInput[]
-  skipDuplicates?: boolean
+  data:
+    | Prisma.AiFeedbackUsageCreateManyInput
+    | Prisma.AiFeedbackUsageCreateManyInput[];
+  skipDuplicates?: boolean;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageIncludeCreateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.AiFeedbackUsageIncludeCreateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * AiFeedbackUsage update
  */
-export type AiFeedbackUsageUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageUpdateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * The data needed to update a AiFeedbackUsage.
    */
-  data: Prisma.XOR<Prisma.AiFeedbackUsageUpdateInput, Prisma.AiFeedbackUsageUncheckedUpdateInput>
+  data: Prisma.XOR<
+    Prisma.AiFeedbackUsageUpdateInput,
+    Prisma.AiFeedbackUsageUncheckedUpdateInput
+  >;
   /**
    * Choose, which AiFeedbackUsage to update.
    */
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
-}
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
+};
 
 /**
  * AiFeedbackUsage updateMany
  */
-export type AiFeedbackUsageUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageUpdateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to update AiFeedbackUsages.
    */
-  data: Prisma.XOR<Prisma.AiFeedbackUsageUpdateManyMutationInput, Prisma.AiFeedbackUsageUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.AiFeedbackUsageUpdateManyMutationInput,
+    Prisma.AiFeedbackUsageUncheckedUpdateManyInput
+  >;
   /**
    * Filter which AiFeedbackUsages to update
    */
-  where?: Prisma.AiFeedbackUsageWhereInput
+  where?: Prisma.AiFeedbackUsageWhereInput;
   /**
    * Limit how many AiFeedbackUsages to update.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * AiFeedbackUsage updateManyAndReturn
  */
-export type AiFeedbackUsageUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageUpdateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelectUpdateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * The data used to update AiFeedbackUsages.
    */
-  data: Prisma.XOR<Prisma.AiFeedbackUsageUpdateManyMutationInput, Prisma.AiFeedbackUsageUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.AiFeedbackUsageUpdateManyMutationInput,
+    Prisma.AiFeedbackUsageUncheckedUpdateManyInput
+  >;
   /**
    * Filter which AiFeedbackUsages to update
    */
-  where?: Prisma.AiFeedbackUsageWhereInput
+  where?: Prisma.AiFeedbackUsageWhereInput;
   /**
    * Limit how many AiFeedbackUsages to update.
    */
-  limit?: number
+  limit?: number;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageIncludeUpdateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.AiFeedbackUsageIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * AiFeedbackUsage upsert
  */
-export type AiFeedbackUsageUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageUpsertArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * The filter to search for the AiFeedbackUsage to update in case it exists.
    */
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
   /**
    * In case the AiFeedbackUsage found by the `where` argument doesn't exist, create a new AiFeedbackUsage with this data.
    */
-  create: Prisma.XOR<Prisma.AiFeedbackUsageCreateInput, Prisma.AiFeedbackUsageUncheckedCreateInput>
+  create: Prisma.XOR<
+    Prisma.AiFeedbackUsageCreateInput,
+    Prisma.AiFeedbackUsageUncheckedCreateInput
+  >;
   /**
    * In case the AiFeedbackUsage was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.AiFeedbackUsageUpdateInput, Prisma.AiFeedbackUsageUncheckedUpdateInput>
-}
+  update: Prisma.XOR<
+    Prisma.AiFeedbackUsageUpdateInput,
+    Prisma.AiFeedbackUsageUncheckedUpdateInput
+  >;
+};
 
 /**
  * AiFeedbackUsage delete
  */
-export type AiFeedbackUsageDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageDeleteArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
   /**
    * Filter which AiFeedbackUsage to delete.
    */
-  where: Prisma.AiFeedbackUsageWhereUniqueInput
-}
+  where: Prisma.AiFeedbackUsageWhereUniqueInput;
+};
 
 /**
  * AiFeedbackUsage deleteMany
  */
-export type AiFeedbackUsageDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageDeleteManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which AiFeedbackUsages to delete
    */
-  where?: Prisma.AiFeedbackUsageWhereInput
+  where?: Prisma.AiFeedbackUsageWhereInput;
   /**
    * Limit how many AiFeedbackUsages to delete.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * AiFeedbackUsage without action
  */
-export type AiFeedbackUsageDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type AiFeedbackUsageDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
-}
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
+};

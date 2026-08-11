@@ -86,3 +86,10 @@ Phase 3 is approved only for the credential-free local/reviewed fixture path.
 No real Drive, Supabase Storage, CDN, third-party provider, production data,
 credential, migration, CI, or service configuration was changed. The next
 dependency-ready story is EP4-ST001; provider activation remains deferred.
+
+EP4-ST003 adds only a credential-free local/test recording state adapter and an
+additive migration artifact. Before production activation, the owner must
+configure the approved object-storage bucket, RLS/ownership policy, retention
+deletion job, credentials/secrets, and deployment environment. No production
+bucket, credential, migration, or provider configuration is changed by the
+story loop.

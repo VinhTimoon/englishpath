@@ -278,6 +278,16 @@ mode, duration, size, and application reference. Raw audio, provider locators,
 credentials, rubric weights, hidden prompts, and official scores are excluded.
 Finalization is an owner/status compare-and-set transaction with unique
 idempotency constraints, so retries cannot duplicate or reopen evidence.
+
+## EP4-ST003 speaking recording boundary
+
+Recording lookups and mutations require the authenticated application user ID.
+The server validates the allowlisted MIME type, bounded size/duration, final
+session state, retention expiry, and capability lifecycle. Playback capabilities
+are opaque, hashed at rest, limited to five minutes, and checked against the
+recording state on every authorization. Revoked, expired, deleted, foreign, or
+missing recordings fail closed. Provider locators, object keys, credentials,
+raw audio bytes, and long-lived playback URLs are not learner response fields.
 ## EP4-ST005 Writing submission controls
 
 Writing routes require authentication and resolve ownership from the application

@@ -7,744 +7,1011 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as runtime from '@prisma/client/runtime/client';
+import type * as $Enums from '../enums.js';
+import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model ToeicSpeakingSession
  *
  */
-export type ToeicSpeakingSessionModel = runtime.Types.Result.DefaultSelection<Prisma.$ToeicSpeakingSessionPayload>
+export type ToeicSpeakingSessionModel =
+  runtime.Types.Result.DefaultSelection<Prisma.$ToeicSpeakingSessionPayload>;
 
 export type AggregateToeicSpeakingSession = {
-  _count: ToeicSpeakingSessionCountAggregateOutputType | null
-  _min: ToeicSpeakingSessionMinAggregateOutputType | null
-  _max: ToeicSpeakingSessionMaxAggregateOutputType | null
-}
+  _count: ToeicSpeakingSessionCountAggregateOutputType | null;
+  _min: ToeicSpeakingSessionMinAggregateOutputType | null;
+  _max: ToeicSpeakingSessionMaxAggregateOutputType | null;
+};
 
 export type ToeicSpeakingSessionMinAggregateOutputType = {
-  id: string | null
-  userId: string | null
-  taskId: string | null
-  taskVersion: string | null
-  startIdempotencyKey: string | null
-  status: $Enums.ToeicSpeakingSessionStatus | null
-  startedAt: Date | null
-  finalizedAt: Date | null
-}
+  id: string | null;
+  userId: string | null;
+  taskId: string | null;
+  taskVersion: string | null;
+  startIdempotencyKey: string | null;
+  status: $Enums.ToeicSpeakingSessionStatus | null;
+  startedAt: Date | null;
+  finalizedAt: Date | null;
+};
 
 export type ToeicSpeakingSessionMaxAggregateOutputType = {
-  id: string | null
-  userId: string | null
-  taskId: string | null
-  taskVersion: string | null
-  startIdempotencyKey: string | null
-  status: $Enums.ToeicSpeakingSessionStatus | null
-  startedAt: Date | null
-  finalizedAt: Date | null
-}
+  id: string | null;
+  userId: string | null;
+  taskId: string | null;
+  taskVersion: string | null;
+  startIdempotencyKey: string | null;
+  status: $Enums.ToeicSpeakingSessionStatus | null;
+  startedAt: Date | null;
+  finalizedAt: Date | null;
+};
 
 export type ToeicSpeakingSessionCountAggregateOutputType = {
-  id: number
-  userId: number
-  taskId: number
-  taskVersion: number
-  startIdempotencyKey: number
-  status: number
-  startedAt: number
-  finalizedAt: number
-  _all: number
-}
-
+  id: number;
+  userId: number;
+  taskId: number;
+  taskVersion: number;
+  startIdempotencyKey: number;
+  status: number;
+  startedAt: number;
+  finalizedAt: number;
+  _all: number;
+};
 
 export type ToeicSpeakingSessionMinAggregateInputType = {
-  id?: true
-  userId?: true
-  taskId?: true
-  taskVersion?: true
-  startIdempotencyKey?: true
-  status?: true
-  startedAt?: true
-  finalizedAt?: true
-}
+  id?: true;
+  userId?: true;
+  taskId?: true;
+  taskVersion?: true;
+  startIdempotencyKey?: true;
+  status?: true;
+  startedAt?: true;
+  finalizedAt?: true;
+};
 
 export type ToeicSpeakingSessionMaxAggregateInputType = {
-  id?: true
-  userId?: true
-  taskId?: true
-  taskVersion?: true
-  startIdempotencyKey?: true
-  status?: true
-  startedAt?: true
-  finalizedAt?: true
-}
+  id?: true;
+  userId?: true;
+  taskId?: true;
+  taskVersion?: true;
+  startIdempotencyKey?: true;
+  status?: true;
+  startedAt?: true;
+  finalizedAt?: true;
+};
 
 export type ToeicSpeakingSessionCountAggregateInputType = {
-  id?: true
-  userId?: true
-  taskId?: true
-  taskVersion?: true
-  startIdempotencyKey?: true
-  status?: true
-  startedAt?: true
-  finalizedAt?: true
-  _all?: true
-}
+  id?: true;
+  userId?: true;
+  taskId?: true;
+  taskVersion?: true;
+  startIdempotencyKey?: true;
+  status?: true;
+  startedAt?: true;
+  finalizedAt?: true;
+  _all?: true;
+};
 
-export type ToeicSpeakingSessionAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionAggregateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which ToeicSpeakingSession to aggregate.
    */
-  where?: Prisma.ToeicSpeakingSessionWhereInput
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSessions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSessionOrderByWithRelationInput | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSessions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSessions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Count returned ToeicSpeakingSessions
-  **/
-  _count?: true | ToeicSpeakingSessionCountAggregateInputType
+   **/
+  _count?: true | ToeicSpeakingSessionCountAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
-  **/
-  _min?: ToeicSpeakingSessionMinAggregateInputType
+   **/
+  _min?: ToeicSpeakingSessionMinAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
-  **/
-  _max?: ToeicSpeakingSessionMaxAggregateInputType
-}
+   **/
+  _max?: ToeicSpeakingSessionMaxAggregateInputType;
+};
 
-export type GetToeicSpeakingSessionAggregateType<T extends ToeicSpeakingSessionAggregateArgs> = {
-      [P in keyof T & keyof AggregateToeicSpeakingSession]: P extends '_count' | 'count'
+export type GetToeicSpeakingSessionAggregateType<
+  T extends ToeicSpeakingSessionAggregateArgs,
+> = {
+  [P in keyof T & keyof AggregateToeicSpeakingSession]: P extends
+    '_count' | 'count'
     ? T[P] extends true
       ? number
       : Prisma.GetScalarType<T[P], AggregateToeicSpeakingSession[P]>
-    : Prisma.GetScalarType<T[P], AggregateToeicSpeakingSession[P]>
-}
+    : Prisma.GetScalarType<T[P], AggregateToeicSpeakingSession[P]>;
+};
 
-
-
-
-export type ToeicSpeakingSessionGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicSpeakingSessionWhereInput
-  orderBy?: Prisma.ToeicSpeakingSessionOrderByWithAggregationInput | Prisma.ToeicSpeakingSessionOrderByWithAggregationInput[]
-  by: Prisma.ToeicSpeakingSessionScalarFieldEnum[] | Prisma.ToeicSpeakingSessionScalarFieldEnum
-  having?: Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput
-  take?: number
-  skip?: number
-  _count?: ToeicSpeakingSessionCountAggregateInputType | true
-  _min?: ToeicSpeakingSessionMinAggregateInputType
-  _max?: ToeicSpeakingSessionMaxAggregateInputType
-}
+export type ToeicSpeakingSessionGroupByArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
+  orderBy?:
+    | Prisma.ToeicSpeakingSessionOrderByWithAggregationInput
+    | Prisma.ToeicSpeakingSessionOrderByWithAggregationInput[];
+  by:
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum[]
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum;
+  having?: Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput;
+  take?: number;
+  skip?: number;
+  _count?: ToeicSpeakingSessionCountAggregateInputType | true;
+  _min?: ToeicSpeakingSessionMinAggregateInputType;
+  _max?: ToeicSpeakingSessionMaxAggregateInputType;
+};
 
 export type ToeicSpeakingSessionGroupByOutputType = {
-  id: string
-  userId: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status: $Enums.ToeicSpeakingSessionStatus
-  startedAt: Date
-  finalizedAt: Date | null
-  _count: ToeicSpeakingSessionCountAggregateOutputType | null
-  _min: ToeicSpeakingSessionMinAggregateOutputType | null
-  _max: ToeicSpeakingSessionMaxAggregateOutputType | null
-}
+  id: string;
+  userId: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status: $Enums.ToeicSpeakingSessionStatus;
+  startedAt: Date;
+  finalizedAt: Date | null;
+  _count: ToeicSpeakingSessionCountAggregateOutputType | null;
+  _min: ToeicSpeakingSessionMinAggregateOutputType | null;
+  _max: ToeicSpeakingSessionMaxAggregateOutputType | null;
+};
 
-export type GetToeicSpeakingSessionGroupByPayload<T extends ToeicSpeakingSessionGroupByArgs> = Prisma.PrismaPromise<
+export type GetToeicSpeakingSessionGroupByPayload<
+  T extends ToeicSpeakingSessionGroupByArgs,
+> = Prisma.PrismaPromise<
   Array<
-    Prisma.PickEnumerable<ToeicSpeakingSessionGroupByOutputType, T['by']> &
-      {
-        [P in ((keyof T) & (keyof ToeicSpeakingSessionGroupByOutputType))]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
-            : Prisma.GetScalarType<T[P], ToeicSpeakingSessionGroupByOutputType[P]>
+    Prisma.PickEnumerable<ToeicSpeakingSessionGroupByOutputType, T['by']> & {
+      [
+        P in keyof T & keyof ToeicSpeakingSessionGroupByOutputType
+      ]: P extends '_count'
+        ? T[P] extends boolean
+          ? number
           : Prisma.GetScalarType<T[P], ToeicSpeakingSessionGroupByOutputType[P]>
-      }
-    >
+        : Prisma.GetScalarType<T[P], ToeicSpeakingSessionGroupByOutputType[P]>;
+    }
   >
-
-
+>;
 
 export type ToeicSpeakingSessionWhereInput = {
-  AND?: Prisma.ToeicSpeakingSessionWhereInput | Prisma.ToeicSpeakingSessionWhereInput[]
-  OR?: Prisma.ToeicSpeakingSessionWhereInput[]
-  NOT?: Prisma.ToeicSpeakingSessionWhereInput | Prisma.ToeicSpeakingSessionWhereInput[]
-  id?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  userId?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  taskId?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  taskVersion?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  startIdempotencyKey?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFilter<"ToeicSpeakingSession"> | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFilter<"ToeicSpeakingSession"> | Date | string
-  finalizedAt?: Prisma.DateTimeNullableFilter<"ToeicSpeakingSession"> | Date | string | null
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  submissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter
-}
+  AND?:
+    | Prisma.ToeicSpeakingSessionWhereInput
+    | Prisma.ToeicSpeakingSessionWhereInput[];
+  OR?: Prisma.ToeicSpeakingSessionWhereInput[];
+  NOT?:
+    | Prisma.ToeicSpeakingSessionWhereInput
+    | Prisma.ToeicSpeakingSessionWhereInput[];
+  id?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  userId?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  taskId?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  taskVersion?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  startIdempotencyKey?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFilter<'ToeicSpeakingSession'>
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFilter<'ToeicSpeakingSession'> | Date | string;
+  finalizedAt?:
+    | Prisma.DateTimeNullableFilter<'ToeicSpeakingSession'>
+    | Date
+    | string
+    | null;
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  submissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter;
+};
 
 export type ToeicSpeakingSessionOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  taskId?: Prisma.SortOrder
-  taskVersion?: Prisma.SortOrder
-  startIdempotencyKey?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  startedAt?: Prisma.SortOrder
-  finalizedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
-  submissions?: Prisma.ToeicSpeakingSubmissionOrderByRelationAggregateInput
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  taskId?: Prisma.SortOrder;
+  taskVersion?: Prisma.SortOrder;
+  startIdempotencyKey?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  finalizedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  user?: Prisma.UserOrderByWithRelationInput;
+  submissions?: Prisma.ToeicSpeakingSubmissionOrderByRelationAggregateInput;
+};
 
-export type ToeicSpeakingSessionWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
-  userId_startIdempotencyKey?: Prisma.ToeicSpeakingSessionUserIdStartIdempotencyKeyCompoundUniqueInput
-  AND?: Prisma.ToeicSpeakingSessionWhereInput | Prisma.ToeicSpeakingSessionWhereInput[]
-  OR?: Prisma.ToeicSpeakingSessionWhereInput[]
-  NOT?: Prisma.ToeicSpeakingSessionWhereInput | Prisma.ToeicSpeakingSessionWhereInput[]
-  userId?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  taskId?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  taskVersion?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  startIdempotencyKey?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFilter<"ToeicSpeakingSession"> | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFilter<"ToeicSpeakingSession"> | Date | string
-  finalizedAt?: Prisma.DateTimeNullableFilter<"ToeicSpeakingSession"> | Date | string | null
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  submissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter
-}, "id" | "userId_startIdempotencyKey">
+export type ToeicSpeakingSessionWhereUniqueInput = Prisma.AtLeast<
+  {
+    id?: string;
+    userId_startIdempotencyKey?: Prisma.ToeicSpeakingSessionUserIdStartIdempotencyKeyCompoundUniqueInput;
+    AND?:
+      | Prisma.ToeicSpeakingSessionWhereInput
+      | Prisma.ToeicSpeakingSessionWhereInput[];
+    OR?: Prisma.ToeicSpeakingSessionWhereInput[];
+    NOT?:
+      | Prisma.ToeicSpeakingSessionWhereInput
+      | Prisma.ToeicSpeakingSessionWhereInput[];
+    userId?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+    taskId?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+    taskVersion?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+    startIdempotencyKey?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+    status?:
+      | Prisma.EnumToeicSpeakingSessionStatusFilter<'ToeicSpeakingSession'>
+      | $Enums.ToeicSpeakingSessionStatus;
+    startedAt?: Prisma.DateTimeFilter<'ToeicSpeakingSession'> | Date | string;
+    finalizedAt?:
+      | Prisma.DateTimeNullableFilter<'ToeicSpeakingSession'>
+      | Date
+      | string
+      | null;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    submissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter;
+  },
+  'id' | 'userId_startIdempotencyKey'
+>;
 
 export type ToeicSpeakingSessionOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  taskId?: Prisma.SortOrder
-  taskVersion?: Prisma.SortOrder
-  startIdempotencyKey?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  startedAt?: Prisma.SortOrder
-  finalizedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  _count?: Prisma.ToeicSpeakingSessionCountOrderByAggregateInput
-  _max?: Prisma.ToeicSpeakingSessionMaxOrderByAggregateInput
-  _min?: Prisma.ToeicSpeakingSessionMinOrderByAggregateInput
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  taskId?: Prisma.SortOrder;
+  taskVersion?: Prisma.SortOrder;
+  startIdempotencyKey?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  finalizedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  _count?: Prisma.ToeicSpeakingSessionCountOrderByAggregateInput;
+  _max?: Prisma.ToeicSpeakingSessionMaxOrderByAggregateInput;
+  _min?: Prisma.ToeicSpeakingSessionMinOrderByAggregateInput;
+};
 
 export type ToeicSpeakingSessionScalarWhereWithAggregatesInput = {
-  AND?: Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput | Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput[]
-  OR?: Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput | Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSession"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSession"> | string
-  taskId?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSession"> | string
-  taskVersion?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSession"> | string
-  startIdempotencyKey?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSession"> | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusWithAggregatesFilter<"ToeicSpeakingSession"> | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeWithAggregatesFilter<"ToeicSpeakingSession"> | Date | string
-  finalizedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ToeicSpeakingSession"> | Date | string | null
-}
+  AND?:
+    | Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput
+    | Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput[];
+  OR?: Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput[];
+  NOT?:
+    | Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput
+    | Prisma.ToeicSpeakingSessionScalarWhereWithAggregatesInput[];
+  id?: Prisma.StringWithAggregatesFilter<'ToeicSpeakingSession'> | string;
+  userId?: Prisma.StringWithAggregatesFilter<'ToeicSpeakingSession'> | string;
+  taskId?: Prisma.StringWithAggregatesFilter<'ToeicSpeakingSession'> | string;
+  taskVersion?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSession'> | string;
+  startIdempotencyKey?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSession'> | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusWithAggregatesFilter<'ToeicSpeakingSession'>
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?:
+    Prisma.DateTimeWithAggregatesFilter<'ToeicSpeakingSession'> | Date | string;
+  finalizedAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<'ToeicSpeakingSession'>
+    | Date
+    | string
+    | null;
+};
 
 export type ToeicSpeakingSessionCreateInput = {
-  id?: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSessionsInput
-  submissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutSessionInput
-}
+  id?: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSessionsInput;
+  submissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutSessionInput;
+};
 
 export type ToeicSpeakingSessionUncheckedCreateInput = {
-  id?: string
-  userId: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutSessionInput
-}
+  id?: string;
+  userId: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutSessionInput;
+};
 
 export type ToeicSpeakingSessionUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSessionsNestedInput
-  submissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutSessionNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSessionsNestedInput;
+  submissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutSessionNestedInput;
+};
 
 export type ToeicSpeakingSessionUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionNestedInput;
+};
 
 export type ToeicSpeakingSessionCreateManyInput = {
-  id?: string
-  userId: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-}
+  id?: string;
+  userId: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+};
 
 export type ToeicSpeakingSessionUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+};
 
 export type ToeicSpeakingSessionUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+};
 
 export type ToeicSpeakingSessionListRelationFilter = {
-  every?: Prisma.ToeicSpeakingSessionWhereInput
-  some?: Prisma.ToeicSpeakingSessionWhereInput
-  none?: Prisma.ToeicSpeakingSessionWhereInput
-}
+  every?: Prisma.ToeicSpeakingSessionWhereInput;
+  some?: Prisma.ToeicSpeakingSessionWhereInput;
+  none?: Prisma.ToeicSpeakingSessionWhereInput;
+};
 
 export type ToeicSpeakingSessionOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
+  _count?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSessionUserIdStartIdempotencyKeyCompoundUniqueInput = {
-  userId: string
-  startIdempotencyKey: string
-}
+  userId: string;
+  startIdempotencyKey: string;
+};
 
 export type ToeicSpeakingSessionCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  taskId?: Prisma.SortOrder
-  taskVersion?: Prisma.SortOrder
-  startIdempotencyKey?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  startedAt?: Prisma.SortOrder
-  finalizedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  taskId?: Prisma.SortOrder;
+  taskVersion?: Prisma.SortOrder;
+  startIdempotencyKey?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  finalizedAt?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSessionMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  taskId?: Prisma.SortOrder
-  taskVersion?: Prisma.SortOrder
-  startIdempotencyKey?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  startedAt?: Prisma.SortOrder
-  finalizedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  taskId?: Prisma.SortOrder;
+  taskVersion?: Prisma.SortOrder;
+  startIdempotencyKey?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  finalizedAt?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSessionMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  taskId?: Prisma.SortOrder
-  taskVersion?: Prisma.SortOrder
-  startIdempotencyKey?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  startedAt?: Prisma.SortOrder
-  finalizedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  taskId?: Prisma.SortOrder;
+  taskVersion?: Prisma.SortOrder;
+  startIdempotencyKey?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  finalizedAt?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSessionScalarRelationFilter = {
-  is?: Prisma.ToeicSpeakingSessionWhereInput
-  isNot?: Prisma.ToeicSpeakingSessionWhereInput
-}
+  is?: Prisma.ToeicSpeakingSessionWhereInput;
+  isNot?: Prisma.ToeicSpeakingSessionWhereInput;
+};
 
 export type ToeicSpeakingSessionCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope
-  connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSessionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+};
 
 export type ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope
-  connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSessionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+};
 
 export type ToeicSpeakingSessionUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope
-  set?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  delete?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  update?: Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput | Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ToeicSpeakingSessionScalarWhereInput | Prisma.ToeicSpeakingSessionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSessionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput
+    | Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.ToeicSpeakingSessionScalarWhereInput
+    | Prisma.ToeicSpeakingSessionScalarWhereInput[];
+};
 
 export type ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope
-  set?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  delete?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput | Prisma.ToeicSpeakingSessionWhereUniqueInput[]
-  update?: Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput | Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ToeicSpeakingSessionScalarWhereInput | Prisma.ToeicSpeakingSessionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSessionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSessionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSessionCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSessionCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput
+    | Prisma.ToeicSpeakingSessionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput
+    | Prisma.ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.ToeicSpeakingSessionScalarWhereInput
+    | Prisma.ToeicSpeakingSessionScalarWhereInput[];
+};
 
 export type EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput = {
-  set?: $Enums.ToeicSpeakingSessionStatus
-}
+  set?: $Enums.ToeicSpeakingSessionStatus;
+};
 
 export type ToeicSpeakingSessionCreateNestedOneWithoutSubmissionsInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput>
-  connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutSubmissionsInput
-  connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput,
+    Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutSubmissionsInput;
+  connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+};
 
-export type ToeicSpeakingSessionUpdateOneRequiredWithoutSubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput>
-  connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutSubmissionsInput
-  upsert?: Prisma.ToeicSpeakingSessionUpsertWithoutSubmissionsInput
-  connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateToOneWithWhereWithoutSubmissionsInput, Prisma.ToeicSpeakingSessionUpdateWithoutSubmissionsInput>, Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutSubmissionsInput>
-}
+export type ToeicSpeakingSessionUpdateOneRequiredWithoutSubmissionsNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput,
+      Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput
+    >;
+    connectOrCreate?: Prisma.ToeicSpeakingSessionCreateOrConnectWithoutSubmissionsInput;
+    upsert?: Prisma.ToeicSpeakingSessionUpsertWithoutSubmissionsInput;
+    connect?: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.ToeicSpeakingSessionUpdateToOneWithWhereWithoutSubmissionsInput,
+        Prisma.ToeicSpeakingSessionUpdateWithoutSubmissionsInput
+      >,
+      Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutSubmissionsInput
+    >;
+  };
 
 export type ToeicSpeakingSessionCreateWithoutUserInput = {
-  id?: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-  submissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutSessionInput
-}
+  id?: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+  submissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutSessionInput;
+};
 
 export type ToeicSpeakingSessionUncheckedCreateWithoutUserInput = {
-  id?: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutSessionInput
-}
+  id?: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutSessionInput;
+};
 
 export type ToeicSpeakingSessionCreateOrConnectWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionCreateWithoutUserInput,
+    Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSessionCreateManyUserInputEnvelope = {
-  data: Prisma.ToeicSpeakingSessionCreateManyUserInput | Prisma.ToeicSpeakingSessionCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicSpeakingSessionCreateManyUserInput
+    | Prisma.ToeicSpeakingSessionCreateManyUserInput[];
+  skipDuplicates?: boolean;
+};
 
 export type ToeicSpeakingSessionUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateWithoutUserInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutUserInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionCreateWithoutUserInput,
+    Prisma.ToeicSpeakingSessionUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSessionUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateWithoutUserInput, Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateWithoutUserInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSessionUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSessionScalarWhereInput
-  data: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateManyMutationInput, Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSessionScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateManyMutationInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSessionScalarWhereInput = {
-  AND?: Prisma.ToeicSpeakingSessionScalarWhereInput | Prisma.ToeicSpeakingSessionScalarWhereInput[]
-  OR?: Prisma.ToeicSpeakingSessionScalarWhereInput[]
-  NOT?: Prisma.ToeicSpeakingSessionScalarWhereInput | Prisma.ToeicSpeakingSessionScalarWhereInput[]
-  id?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  userId?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  taskId?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  taskVersion?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  startIdempotencyKey?: Prisma.StringFilter<"ToeicSpeakingSession"> | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFilter<"ToeicSpeakingSession"> | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFilter<"ToeicSpeakingSession"> | Date | string
-  finalizedAt?: Prisma.DateTimeNullableFilter<"ToeicSpeakingSession"> | Date | string | null
-}
+  AND?:
+    | Prisma.ToeicSpeakingSessionScalarWhereInput
+    | Prisma.ToeicSpeakingSessionScalarWhereInput[];
+  OR?: Prisma.ToeicSpeakingSessionScalarWhereInput[];
+  NOT?:
+    | Prisma.ToeicSpeakingSessionScalarWhereInput
+    | Prisma.ToeicSpeakingSessionScalarWhereInput[];
+  id?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  userId?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  taskId?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  taskVersion?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  startIdempotencyKey?: Prisma.StringFilter<'ToeicSpeakingSession'> | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFilter<'ToeicSpeakingSession'>
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFilter<'ToeicSpeakingSession'> | Date | string;
+  finalizedAt?:
+    | Prisma.DateTimeNullableFilter<'ToeicSpeakingSession'>
+    | Date
+    | string
+    | null;
+};
 
 export type ToeicSpeakingSessionCreateWithoutSubmissionsInput = {
-  id?: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSessionsInput
-}
+  id?: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSessionsInput;
+};
 
 export type ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput = {
-  id?: string
-  userId: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-}
+  id?: string;
+  userId: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+};
 
 export type ToeicSpeakingSessionCreateOrConnectWithoutSubmissionsInput = {
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput>
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput,
+    Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput
+  >;
+};
 
 export type ToeicSpeakingSessionUpsertWithoutSubmissionsInput = {
-  update: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateWithoutSubmissionsInput, Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutSubmissionsInput>
-  create: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput, Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput>
-  where?: Prisma.ToeicSpeakingSessionWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateWithoutSubmissionsInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutSubmissionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionCreateWithoutSubmissionsInput,
+    Prisma.ToeicSpeakingSessionUncheckedCreateWithoutSubmissionsInput
+  >;
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
+};
 
 export type ToeicSpeakingSessionUpdateToOneWithWhereWithoutSubmissionsInput = {
-  where?: Prisma.ToeicSpeakingSessionWhereInput
-  data: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateWithoutSubmissionsInput, Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutSubmissionsInput>
-}
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateWithoutSubmissionsInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateWithoutSubmissionsInput
+  >;
+};
 
 export type ToeicSpeakingSessionUpdateWithoutSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSessionsNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSessionsNestedInput;
+};
 
 export type ToeicSpeakingSessionUncheckedUpdateWithoutSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+};
 
 export type ToeicSpeakingSessionCreateManyUserInput = {
-  id?: string
-  taskId: string
-  taskVersion: string
-  startIdempotencyKey: string
-  status?: $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Date | string
-  finalizedAt?: Date | string | null
-}
+  id?: string;
+  taskId: string;
+  taskVersion: string;
+  startIdempotencyKey: string;
+  status?: $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Date | string;
+  finalizedAt?: Date | string | null;
+};
 
 export type ToeicSpeakingSessionUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  submissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutSessionNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+  submissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutSessionNestedInput;
+};
 
 export type ToeicSpeakingSessionUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+  submissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionNestedInput;
+};
 
 export type ToeicSpeakingSessionUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  taskId?: Prisma.StringFieldUpdateOperationsInput | string
-  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string
-  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput | $Enums.ToeicSpeakingSessionStatus
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string;
+  taskVersion?: Prisma.StringFieldUpdateOperationsInput | string;
+  startIdempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumToeicSpeakingSessionStatusFieldUpdateOperationsInput
+    | $Enums.ToeicSpeakingSessionStatus;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  finalizedAt?:
+    Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+};
 
 /**
  * Count Type ToeicSpeakingSessionCountOutputType
  */
 
 export type ToeicSpeakingSessionCountOutputType = {
-  submissions: number
-}
+  submissions: number;
+};
 
-export type ToeicSpeakingSessionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  submissions?: boolean | ToeicSpeakingSessionCountOutputTypeCountSubmissionsArgs
-}
+export type ToeicSpeakingSessionCountOutputTypeSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  submissions?:
+    boolean | ToeicSpeakingSessionCountOutputTypeCountSubmissionsArgs;
+};
 
 /**
  * ToeicSpeakingSessionCountOutputType without action
  */
-export type ToeicSpeakingSessionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionCountOutputTypeDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSessionCountOutputType
    */
-  select?: Prisma.ToeicSpeakingSessionCountOutputTypeSelect<ExtArgs> | null
-}
+  select?: Prisma.ToeicSpeakingSessionCountOutputTypeSelect<ExtArgs> | null;
+};
 
 /**
  * ToeicSpeakingSessionCountOutputType without action
  */
-export type ToeicSpeakingSessionCountOutputTypeCountSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
-}
+export type ToeicSpeakingSessionCountOutputTypeCountSubmissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
+};
 
+export type ToeicSpeakingSessionSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    userId?: boolean;
+    taskId?: boolean;
+    taskVersion?: boolean;
+    startIdempotencyKey?: boolean;
+    status?: boolean;
+    startedAt?: boolean;
+    finalizedAt?: boolean;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    submissions?:
+      boolean | Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs>;
+    _count?:
+      boolean | Prisma.ToeicSpeakingSessionCountOutputTypeDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicSpeakingSession']
+>;
 
-export type ToeicSpeakingSessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  userId?: boolean
-  taskId?: boolean
-  taskVersion?: boolean
-  startIdempotencyKey?: boolean
-  status?: boolean
-  startedAt?: boolean
-  finalizedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  submissions?: boolean | Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs>
-  _count?: boolean | Prisma.ToeicSpeakingSessionCountOutputTypeDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicSpeakingSession"]>
+export type ToeicSpeakingSessionSelectCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    userId?: boolean;
+    taskId?: boolean;
+    taskVersion?: boolean;
+    startIdempotencyKey?: boolean;
+    status?: boolean;
+    startedAt?: boolean;
+    finalizedAt?: boolean;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicSpeakingSession']
+>;
 
-export type ToeicSpeakingSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  userId?: boolean
-  taskId?: boolean
-  taskVersion?: boolean
-  startIdempotencyKey?: boolean
-  status?: boolean
-  startedAt?: boolean
-  finalizedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicSpeakingSession"]>
-
-export type ToeicSpeakingSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  userId?: boolean
-  taskId?: boolean
-  taskVersion?: boolean
-  startIdempotencyKey?: boolean
-  status?: boolean
-  startedAt?: boolean
-  finalizedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicSpeakingSession"]>
+export type ToeicSpeakingSessionSelectUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    userId?: boolean;
+    taskId?: boolean;
+    taskVersion?: boolean;
+    startIdempotencyKey?: boolean;
+    status?: boolean;
+    startedAt?: boolean;
+    finalizedAt?: boolean;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicSpeakingSession']
+>;
 
 export type ToeicSpeakingSessionSelectScalar = {
-  id?: boolean
-  userId?: boolean
-  taskId?: boolean
-  taskVersion?: boolean
-  startIdempotencyKey?: boolean
-  status?: boolean
-  startedAt?: boolean
-  finalizedAt?: boolean
-}
+  id?: boolean;
+  userId?: boolean;
+  taskId?: boolean;
+  taskVersion?: boolean;
+  startIdempotencyKey?: boolean;
+  status?: boolean;
+  startedAt?: boolean;
+  finalizedAt?: boolean;
+};
 
-export type ToeicSpeakingSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "taskId" | "taskVersion" | "startIdempotencyKey" | "status" | "startedAt" | "finalizedAt", ExtArgs["result"]["toeicSpeakingSession"]>
-export type ToeicSpeakingSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  submissions?: boolean | Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs>
-  _count?: boolean | Prisma.ToeicSpeakingSessionCountOutputTypeDefaultArgs<ExtArgs>
-}
-export type ToeicSpeakingSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type ToeicSpeakingSessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
+export type ToeicSpeakingSessionOmit<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetOmit<
+  | 'id'
+  | 'userId'
+  | 'taskId'
+  | 'taskVersion'
+  | 'startIdempotencyKey'
+  | 'status'
+  | 'startedAt'
+  | 'finalizedAt',
+  ExtArgs['result']['toeicSpeakingSession']
+>;
+export type ToeicSpeakingSessionInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  submissions?: boolean | Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs>;
+  _count?:
+    boolean | Prisma.ToeicSpeakingSessionCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type ToeicSpeakingSessionIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type ToeicSpeakingSessionIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
 
-export type $ToeicSpeakingSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "ToeicSpeakingSession"
+export type $ToeicSpeakingSessionPayload<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  name: 'ToeicSpeakingSession';
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-    submissions: Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>[]
-  }
-  scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    userId: string
-    taskId: string
-    taskVersion: string
-    startIdempotencyKey: string
-    status: $Enums.ToeicSpeakingSessionStatus
-    startedAt: Date
-    finalizedAt: Date | null
-  }, ExtArgs["result"]["toeicSpeakingSession"]>
-  composites: {}
-}
+    user: Prisma.$UserPayload<ExtArgs>;
+    submissions: Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>[];
+  };
+  scalars: runtime.Types.Extensions.GetPayloadResult<
+    {
+      id: string;
+      userId: string;
+      taskId: string;
+      taskVersion: string;
+      startIdempotencyKey: string;
+      status: $Enums.ToeicSpeakingSessionStatus;
+      startedAt: Date;
+      finalizedAt: Date | null;
+    },
+    ExtArgs['result']['toeicSpeakingSession']
+  >;
+  composites: {};
+};
 
-export type ToeicSpeakingSessionGetPayload<S extends boolean | null | undefined | ToeicSpeakingSessionDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload, S>
+export type ToeicSpeakingSessionGetPayload<
+  S extends boolean | null | undefined | ToeicSpeakingSessionDefaultArgs,
+> = runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload, S>;
 
-export type ToeicSpeakingSessionCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<ToeicSpeakingSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-    select?: ToeicSpeakingSessionCountAggregateInputType | true
-  }
+export type ToeicSpeakingSessionCountArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = Omit<
+  ToeicSpeakingSessionFindManyArgs,
+  'select' | 'include' | 'distinct' | 'omit'
+> & {
+  select?: ToeicSpeakingSessionCountAggregateInputType | true;
+};
 
-export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ToeicSpeakingSession'], meta: { name: 'ToeicSpeakingSession' } }
+export interface ToeicSpeakingSessionDelegate<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> {
+  [K: symbol]: {
+    types: Prisma.TypeMap<ExtArgs>['model']['ToeicSpeakingSession'];
+    meta: { name: 'ToeicSpeakingSession' };
+  };
   /**
    * Find zero or one ToeicSpeakingSession that matches the filter.
    * @param {ToeicSpeakingSessionFindUniqueArgs} args - Arguments to find a ToeicSpeakingSession
@@ -756,7 +1023,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *   }
    * })
    */
-  findUnique<T extends ToeicSpeakingSessionFindUniqueArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionFindUniqueArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends ToeicSpeakingSessionFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSessionFindUniqueArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'findUnique',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find one ToeicSpeakingSession that matches the filter or throw an error with `error.code='P2025'`
@@ -770,7 +1049,22 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *   }
    * })
    */
-  findUniqueOrThrow<T extends ToeicSpeakingSessionFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends ToeicSpeakingSessionFindUniqueOrThrowArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSessionFindUniqueOrThrowArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first ToeicSpeakingSession that matches the filter.
@@ -785,7 +1079,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *   }
    * })
    */
-  findFirst<T extends ToeicSpeakingSessionFindFirstArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSessionFindFirstArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends ToeicSpeakingSessionFindFirstArgs>(
+    args?: Prisma.SelectSubset<T, ToeicSpeakingSessionFindFirstArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'findFirst',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first ToeicSpeakingSession that matches the filter or
@@ -801,7 +1107,22 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *   }
    * })
    */
-  findFirstOrThrow<T extends ToeicSpeakingSessionFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends ToeicSpeakingSessionFindFirstOrThrowArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSessionFindFirstOrThrowArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'findFirstOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find zero or more ToeicSpeakingSessions that matches the filter.
@@ -819,7 +1140,16 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * const toeicSpeakingSessionWithIdOnly = await prisma.toeicSpeakingSession.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends ToeicSpeakingSessionFindManyArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends ToeicSpeakingSessionFindManyArgs>(
+    args?: Prisma.SelectSubset<T, ToeicSpeakingSessionFindManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'findMany',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create a ToeicSpeakingSession.
@@ -833,7 +1163,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * })
    *
    */
-  create<T extends ToeicSpeakingSessionCreateArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionCreateArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends ToeicSpeakingSessionCreateArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSessionCreateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'create',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Create many ToeicSpeakingSessions.
@@ -847,7 +1189,9 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * })
    *
    */
-  createMany<T extends ToeicSpeakingSessionCreateManyArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends ToeicSpeakingSessionCreateManyArgs>(
+    args?: Prisma.SelectSubset<T, ToeicSpeakingSessionCreateManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Create many ToeicSpeakingSessions and returns the data saved in the database.
@@ -871,7 +1215,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends ToeicSpeakingSessionCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends ToeicSpeakingSessionCreateManyAndReturnArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSessionCreateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'createManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Delete a ToeicSpeakingSession.
@@ -885,7 +1241,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * })
    *
    */
-  delete<T extends ToeicSpeakingSessionDeleteArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionDeleteArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends ToeicSpeakingSessionDeleteArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSessionDeleteArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'delete',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Update one ToeicSpeakingSession.
@@ -902,7 +1270,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * })
    *
    */
-  update<T extends ToeicSpeakingSessionUpdateArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionUpdateArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends ToeicSpeakingSessionUpdateArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSessionUpdateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'update',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Delete zero or more ToeicSpeakingSessions.
@@ -916,7 +1296,9 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * })
    *
    */
-  deleteMany<T extends ToeicSpeakingSessionDeleteManyArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends ToeicSpeakingSessionDeleteManyArgs>(
+    args?: Prisma.SelectSubset<T, ToeicSpeakingSessionDeleteManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more ToeicSpeakingSessions.
@@ -935,7 +1317,9 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * })
    *
    */
-  updateMany<T extends ToeicSpeakingSessionUpdateManyArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends ToeicSpeakingSessionUpdateManyArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSessionUpdateManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more ToeicSpeakingSessions and returns the data updated in the database.
@@ -965,7 +1349,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends ToeicSpeakingSessionUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends ToeicSpeakingSessionUpdateManyAndReturnArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSessionUpdateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'updateManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create or update one ToeicSpeakingSession.
@@ -984,8 +1380,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *   }
    * })
    */
-  upsert<T extends ToeicSpeakingSessionUpsertArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSessionUpsertArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+  upsert<T extends ToeicSpeakingSessionUpsertArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSessionUpsertArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+      T,
+      'upsert',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Count the number of ToeicSpeakingSessions.
@@ -999,16 +1406,19 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *     // ... the filter for the ToeicSpeakingSessions we want to count
    *   }
    * })
-  **/
+   **/
   count<T extends ToeicSpeakingSessionCountArgs>(
     args?: Prisma.Subset<T, ToeicSpeakingSessionCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<T['select'], ToeicSpeakingSessionCountAggregateOutputType>
+        : Prisma.GetScalarType<
+            T['select'],
+            ToeicSpeakingSessionCountAggregateOutputType
+          >
       : number
-  >
+  >;
 
   /**
    * Allows you to perform aggregations operations on a ToeicSpeakingSession.
@@ -1033,8 +1443,10 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *   },
    *   take: 10,
    * })
-  **/
-  aggregate<T extends ToeicSpeakingSessionAggregateArgs>(args: Prisma.Subset<T, ToeicSpeakingSessionAggregateArgs>): Prisma.PrismaPromise<GetToeicSpeakingSessionAggregateType<T>>
+   **/
+  aggregate<T extends ToeicSpeakingSessionAggregateArgs>(
+    args: Prisma.Subset<T, ToeicSpeakingSessionAggregateArgs>,
+  ): Prisma.PrismaPromise<GetToeicSpeakingSessionAggregateType<T>>;
 
   /**
    * Group by ToeicSpeakingSession.
@@ -1053,69 +1465,80 @@ export interface ToeicSpeakingSessionDelegate<ExtArgs extends runtime.Types.Exte
    *   },
    * })
    *
-  **/
+   **/
   groupBy<
     T extends ToeicSpeakingSessionGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
-    OrderByArg extends Prisma.True extends HasSelectOrTake
+    OrderByArg extends (Prisma.True extends HasSelectOrTake
       ? { orderBy: ToeicSpeakingSessionGroupByArgs['orderBy'] }
-      : { orderBy?: ToeicSpeakingSessionGroupByArgs['orderBy'] },
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
+      : { orderBy?: ToeicSpeakingSessionGroupByArgs['orderBy'] }),
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<
+      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
+    >,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
-    InputErrors extends ByEmpty extends Prisma.True
-    ? `Error: "by" must not be empty.`
-    : HavingValid extends Prisma.False
-    ? {
-        [P in HavingFields]: P extends ByFields
-          ? never
-          : P extends string
-          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-          : [
-              Error,
-              'Field ',
-              P,
-              ` in "having" needs to be provided in "by"`,
-            ]
-      }[HavingFields]
-    : 'take' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
+    ByEmpty extends (T['by'] extends never[] ? Prisma.True : Prisma.False),
+    InputErrors extends (ByEmpty extends Prisma.True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends Prisma.False
+        ? {
+            [P in HavingFields]: P extends ByFields
               ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "take", you also need to provide "orderBy"'
-    : 'skip' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "skip", you also need to provide "orderBy"'
-    : ByValid extends Prisma.True
-    ? {}
-    : {
-        [P in OrderFields]: P extends ByFields
-          ? never
-          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-      }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, ToeicSpeakingSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetToeicSpeakingSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-/**
- * Fields of the ToeicSpeakingSession model
- */
-readonly fields: ToeicSpeakingSessionFieldRefs;
+              : P extends string
+                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                : [
+                    Error,
+                    'Field ',
+                    P,
+                    ` in "having" needs to be provided in "by"`,
+                  ];
+          }[HavingFields]
+        : 'take' extends Prisma.Keys<T>
+          ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]
+            : 'Error: If you provide "take", you also need to provide "orderBy"'
+          : 'skip' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+              ? ByValid extends Prisma.True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "skip", you also need to provide "orderBy"'
+            : ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]),
+  >(
+    args: Prisma.SubsetIntersection<
+      T,
+      ToeicSpeakingSessionGroupByArgs,
+      OrderByArg
+    > &
+      InputErrors,
+  ): {} extends InputErrors
+    ? GetToeicSpeakingSessionGroupByPayload<T>
+    : Prisma.PrismaPromise<InputErrors>;
+  /**
+   * Fields of the ToeicSpeakingSession model
+   */
+  readonly fields: ToeicSpeakingSessionFieldRefs;
 }
 
 /**
@@ -1124,485 +1547,617 @@ readonly fields: ToeicSpeakingSessionFieldRefs;
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__ToeicSpeakingSessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-  readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  submissions<T extends Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+export interface Prisma__ToeicSpeakingSessionClient<
+  T,
+  Null = never,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> extends Prisma.PrismaPromise<T> {
+  readonly [Symbol.toStringTag]: 'PrismaPromise';
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    | runtime.Types.Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >
+    | Null,
+    Null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  submissions<
+    T extends Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.ToeicSpeakingSession$submissionsArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of which ever callback is executed.
    */
-  then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?:
+      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+    onrejected?:
+      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
   /**
    * Attaches a callback for only the rejection of the Promise.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of the callback.
    */
-  catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>
+  catch<TResult = never>(
+    onrejected?:
+      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T | TResult>;
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
    * resolved value cannot be modified from the callback.
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
+  finally(
+    onfinally?: (() => void) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T>;
 }
-
-
-
 
 /**
  * Fields of the ToeicSpeakingSession model
  */
 export interface ToeicSpeakingSessionFieldRefs {
-  readonly id: Prisma.FieldRef<"ToeicSpeakingSession", 'String'>
-  readonly userId: Prisma.FieldRef<"ToeicSpeakingSession", 'String'>
-  readonly taskId: Prisma.FieldRef<"ToeicSpeakingSession", 'String'>
-  readonly taskVersion: Prisma.FieldRef<"ToeicSpeakingSession", 'String'>
-  readonly startIdempotencyKey: Prisma.FieldRef<"ToeicSpeakingSession", 'String'>
-  readonly status: Prisma.FieldRef<"ToeicSpeakingSession", 'ToeicSpeakingSessionStatus'>
-  readonly startedAt: Prisma.FieldRef<"ToeicSpeakingSession", 'DateTime'>
-  readonly finalizedAt: Prisma.FieldRef<"ToeicSpeakingSession", 'DateTime'>
+  readonly id: Prisma.FieldRef<'ToeicSpeakingSession', 'String'>;
+  readonly userId: Prisma.FieldRef<'ToeicSpeakingSession', 'String'>;
+  readonly taskId: Prisma.FieldRef<'ToeicSpeakingSession', 'String'>;
+  readonly taskVersion: Prisma.FieldRef<'ToeicSpeakingSession', 'String'>;
+  readonly startIdempotencyKey: Prisma.FieldRef<
+    'ToeicSpeakingSession',
+    'String'
+  >;
+  readonly status: Prisma.FieldRef<
+    'ToeicSpeakingSession',
+    'ToeicSpeakingSessionStatus'
+  >;
+  readonly startedAt: Prisma.FieldRef<'ToeicSpeakingSession', 'DateTime'>;
+  readonly finalizedAt: Prisma.FieldRef<'ToeicSpeakingSession', 'DateTime'>;
 }
-
 
 // Custom InputTypes
 /**
  * ToeicSpeakingSession findUnique
  */
-export type ToeicSpeakingSessionFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionFindUniqueArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSession to fetch.
    */
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSession findUniqueOrThrow
  */
-export type ToeicSpeakingSessionFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionFindUniqueOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSession to fetch.
    */
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSession findFirst
  */
-export type ToeicSpeakingSessionFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionFindFirstArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSession to fetch.
    */
-  where?: Prisma.ToeicSpeakingSessionWhereInput
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSessions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSessionOrderByWithRelationInput | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for ToeicSpeakingSessions.
    */
-  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSessions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSessions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicSpeakingSessions.
    */
-  distinct?: Prisma.ToeicSpeakingSessionScalarFieldEnum | Prisma.ToeicSpeakingSessionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum[];
+};
 
 /**
  * ToeicSpeakingSession findFirstOrThrow
  */
-export type ToeicSpeakingSessionFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionFindFirstOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSession to fetch.
    */
-  where?: Prisma.ToeicSpeakingSessionWhereInput
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSessions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSessionOrderByWithRelationInput | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for ToeicSpeakingSessions.
    */
-  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSessions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSessions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicSpeakingSessions.
    */
-  distinct?: Prisma.ToeicSpeakingSessionScalarFieldEnum | Prisma.ToeicSpeakingSessionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum[];
+};
 
 /**
  * ToeicSpeakingSession findMany
  */
-export type ToeicSpeakingSessionFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionFindManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSessions to fetch.
    */
-  where?: Prisma.ToeicSpeakingSessionWhereInput
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSessions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSessionOrderByWithRelationInput | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing ToeicSpeakingSessions.
    */
-  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSessions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSessions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicSpeakingSessions.
    */
-  distinct?: Prisma.ToeicSpeakingSessionScalarFieldEnum | Prisma.ToeicSpeakingSessionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum[];
+};
 
 /**
  * ToeicSpeakingSession create
  */
-export type ToeicSpeakingSessionCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionCreateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * The data needed to create a ToeicSpeakingSession.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateInput, Prisma.ToeicSpeakingSessionUncheckedCreateInput>
-}
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionCreateInput,
+    Prisma.ToeicSpeakingSessionUncheckedCreateInput
+  >;
+};
 
 /**
  * ToeicSpeakingSession createMany
  */
-export type ToeicSpeakingSessionCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionCreateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to create many ToeicSpeakingSessions.
    */
-  data: Prisma.ToeicSpeakingSessionCreateManyInput | Prisma.ToeicSpeakingSessionCreateManyInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicSpeakingSessionCreateManyInput
+    | Prisma.ToeicSpeakingSessionCreateManyInput[];
+  skipDuplicates?: boolean;
+};
 
 /**
  * ToeicSpeakingSession createManyAndReturn
  */
-export type ToeicSpeakingSessionCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionCreateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelectCreateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * The data used to create many ToeicSpeakingSessions.
    */
-  data: Prisma.ToeicSpeakingSessionCreateManyInput | Prisma.ToeicSpeakingSessionCreateManyInput[]
-  skipDuplicates?: boolean
+  data:
+    | Prisma.ToeicSpeakingSessionCreateManyInput
+    | Prisma.ToeicSpeakingSessionCreateManyInput[];
+  skipDuplicates?: boolean;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionIncludeCreateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.ToeicSpeakingSessionIncludeCreateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * ToeicSpeakingSession update
  */
-export type ToeicSpeakingSessionUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionUpdateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * The data needed to update a ToeicSpeakingSession.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateInput, Prisma.ToeicSpeakingSessionUncheckedUpdateInput>
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateInput
+  >;
   /**
    * Choose, which ToeicSpeakingSession to update.
    */
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSession updateMany
  */
-export type ToeicSpeakingSessionUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionUpdateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to update ToeicSpeakingSessions.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateManyMutationInput, Prisma.ToeicSpeakingSessionUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateManyMutationInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateManyInput
+  >;
   /**
    * Filter which ToeicSpeakingSessions to update
    */
-  where?: Prisma.ToeicSpeakingSessionWhereInput
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
   /**
    * Limit how many ToeicSpeakingSessions to update.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * ToeicSpeakingSession updateManyAndReturn
  */
-export type ToeicSpeakingSessionUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionUpdateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelectUpdateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * The data used to update ToeicSpeakingSessions.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateManyMutationInput, Prisma.ToeicSpeakingSessionUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateManyMutationInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateManyInput
+  >;
   /**
    * Filter which ToeicSpeakingSessions to update
    */
-  where?: Prisma.ToeicSpeakingSessionWhereInput
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
   /**
    * Limit how many ToeicSpeakingSessions to update.
    */
-  limit?: number
+  limit?: number;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionIncludeUpdateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.ToeicSpeakingSessionIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * ToeicSpeakingSession upsert
  */
-export type ToeicSpeakingSessionUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionUpsertArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * The filter to search for the ToeicSpeakingSession to update in case it exists.
    */
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
   /**
    * In case the ToeicSpeakingSession found by the `where` argument doesn't exist, create a new ToeicSpeakingSession with this data.
    */
-  create: Prisma.XOR<Prisma.ToeicSpeakingSessionCreateInput, Prisma.ToeicSpeakingSessionUncheckedCreateInput>
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionCreateInput,
+    Prisma.ToeicSpeakingSessionUncheckedCreateInput
+  >;
   /**
    * In case the ToeicSpeakingSession was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.ToeicSpeakingSessionUpdateInput, Prisma.ToeicSpeakingSessionUncheckedUpdateInput>
-}
+  update: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionUpdateInput,
+    Prisma.ToeicSpeakingSessionUncheckedUpdateInput
+  >;
+};
 
 /**
  * ToeicSpeakingSession delete
  */
-export type ToeicSpeakingSessionDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionDeleteArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
   /**
    * Filter which ToeicSpeakingSession to delete.
    */
-  where: Prisma.ToeicSpeakingSessionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSession deleteMany
  */
-export type ToeicSpeakingSessionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionDeleteManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which ToeicSpeakingSessions to delete
    */
-  where?: Prisma.ToeicSpeakingSessionWhereInput
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
   /**
    * Limit how many ToeicSpeakingSessions to delete.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * ToeicSpeakingSession.submissions
  */
-export type ToeicSpeakingSession$submissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSession$submissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
-  orderBy?: Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicSpeakingSubmissionScalarFieldEnum | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
+  orderBy?:
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[];
+};
 
 /**
  * ToeicSpeakingSession without action
  */
-export type ToeicSpeakingSessionDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSessionDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
-}
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
+};

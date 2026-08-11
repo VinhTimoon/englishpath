@@ -15,6 +15,7 @@ export type SpeakingSubmissionRecord = Readonly<{
   userId: string;
   idempotencyKey: string;
   responseMode: 'RECORDED_AUDIO';
+  contentType: string;
   durationSeconds: number;
   sizeBytes: number;
   submissionReference: string;
@@ -44,6 +45,7 @@ export type SpeakingSubmissionCreate = Readonly<{
   userId: string;
   idempotencyKey: string;
   responseMode: 'RECORDED_AUDIO';
+  contentType: string;
   durationSeconds: number;
   sizeBytes: number;
   submissionReference: string;

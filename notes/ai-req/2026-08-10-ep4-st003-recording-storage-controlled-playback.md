@@ -15,14 +15,31 @@ short-lived playback capability. Local/test must remain credential-free. Real
 production provider credentials, bucket/RLS configuration, deployment, and
 activation remain human-controlled and are not performed by this loop.
 
-## Why this is blocked
+## Credential-free implementation contract
+
+The local/test contract uses conservative defaults so implementation can proceed
+without another product decision:
+
+- Accepted MIME types: `audio/webm`, `audio/mp4`, `audio/mpeg`, `audio/wav`.
+- Maximum recording size: 10,000,000 bytes.
+- Maximum duration: 3,600 seconds.
+- Retention: 30 days from finalized submission; playback fails after `expiresAt`.
+- Lifecycle: `PENDING`, `AVAILABLE`, `REVOKED`, `EXPIRED`, `DELETED`.
+- Playback capability TTL: 300 seconds, application-issued and opaque.
+- Revocation/deletion is fail-closed and never exposes provider locators.
+
+These are credential-free application defaults. Production bucket/RLS,
+provider, deletion job, and activation configuration remain human-controlled.
+
+## Why this was previously blocked
 
 EP4-ST002 intentionally accepts only bounded recording metadata and a controlled
 application reference. It does not accept audio bytes or provide an upload,
 storage, retention, or playback authority. The existing EP3-ST006 controlled
 media adapter reports safe availability state only; it does not persist or serve
-learner recording bytes. Implementing ST003 without this decision would require
-inventing a provider, retention policy, schema boundary, or credential setup.
+learner recording bytes. Before the owner decision, implementing ST003 would
+have required inventing a provider, retention policy, schema boundary, or
+credential setup.
 
 Evidence:
 

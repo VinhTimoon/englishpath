@@ -14,40 +14,44 @@
  * model files in the `model` directory!
  */
 
-import * as runtime from "@prisma/client/runtime/index-browser"
+import * as runtime from '@prisma/client/runtime/index-browser';
 
-export type * from '../models.js'
-export type * from './prismaNamespace.js'
+export type * from '../models.js';
+export type * from './prismaNamespace.js';
 
-export const Decimal = runtime.Decimal
-
+export const Decimal = runtime.Decimal;
 
 export const NullTypes = {
-  DbNull: runtime.NullTypes.DbNull as (new (secret: never) => typeof runtime.DbNull),
-  JsonNull: runtime.NullTypes.JsonNull as (new (secret: never) => typeof runtime.JsonNull),
-  AnyNull: runtime.NullTypes.AnyNull as (new (secret: never) => typeof runtime.AnyNull),
-}
+  DbNull: runtime.NullTypes.DbNull as new (
+    secret: never,
+  ) => typeof runtime.DbNull,
+  JsonNull: runtime.NullTypes.JsonNull as new (
+    secret: never,
+  ) => typeof runtime.JsonNull,
+  AnyNull: runtime.NullTypes.AnyNull as new (
+    secret: never,
+  ) => typeof runtime.AnyNull,
+};
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const DbNull = runtime.DbNull
+export const DbNull = runtime.DbNull;
 
 /**
  * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const JsonNull = runtime.JsonNull
+export const JsonNull = runtime.JsonNull;
 
 /**
  * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
  *
  * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
  */
-export const AnyNull = runtime.AnyNull
-
+export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
   User: 'User',
@@ -92,12 +96,14 @@ export const ModelName = {
   ToeicTimedTestAnswer: 'ToeicTimedTestAnswer',
   ToeicSpeakingSession: 'ToeicSpeakingSession',
   ToeicSpeakingSubmission: 'ToeicSpeakingSubmission',
+  ToeicSpeakingRecording: 'ToeicSpeakingRecording',
+  ToeicSpeakingPlaybackCapability: 'ToeicSpeakingPlaybackCapability',
   ToeicWritingSession: 'ToeicWritingSession',
   ToeicWritingSubmission: 'ToeicWritingSubmission',
-  AiFeedbackUsage: 'AiFeedbackUsage'
-} as const
+  AiFeedbackUsage: 'AiFeedbackUsage',
+} as const;
 
-export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 
 /*
  * Enums
@@ -107,11 +113,11 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
-  Serializable: 'Serializable'
-} as const)
+  Serializable: 'Serializable',
+} as const);
 
-export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
-
+export type TransactionIsolationLevel =
+  (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
 export const UserScalarFieldEnum = {
   id: 'id',
@@ -121,11 +127,11 @@ export const UserScalarFieldEnum = {
   externalSubject: 'externalSubject',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
+export type UserScalarFieldEnum =
+  (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 
 export const LibraryContentScalarFieldEnum = {
   id: 'id',
@@ -134,11 +140,11 @@ export const LibraryContentScalarFieldEnum = {
   accessTier: 'accessTier',
   usageScope: 'usageScope',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type LibraryContentScalarFieldEnum = (typeof LibraryContentScalarFieldEnum)[keyof typeof LibraryContentScalarFieldEnum]
-
+export type LibraryContentScalarFieldEnum =
+  (typeof LibraryContentScalarFieldEnum)[keyof typeof LibraryContentScalarFieldEnum];
 
 export const LibraryContentVersionScalarFieldEnum = {
   id: 'id',
@@ -156,11 +162,11 @@ export const LibraryContentVersionScalarFieldEnum = {
   reviewedBy: 'reviewedBy',
   publishedAt: 'publishedAt',
   retiredAt: 'retiredAt',
-  createdAt: 'createdAt'
-} as const
+  createdAt: 'createdAt',
+} as const;
 
-export type LibraryContentVersionScalarFieldEnum = (typeof LibraryContentVersionScalarFieldEnum)[keyof typeof LibraryContentVersionScalarFieldEnum]
-
+export type LibraryContentVersionScalarFieldEnum =
+  (typeof LibraryContentVersionScalarFieldEnum)[keyof typeof LibraryContentVersionScalarFieldEnum];
 
 export const LibrarySourceManifestScalarFieldEnum = {
   id: 'id',
@@ -173,11 +179,11 @@ export const LibrarySourceManifestScalarFieldEnum = {
   manifestJson: 'manifestJson',
   inventoriedAt: 'inventoriedAt',
   createdAt: 'createdAt',
-  contentId: 'contentId'
-} as const
+  contentId: 'contentId',
+} as const;
 
-export type LibrarySourceManifestScalarFieldEnum = (typeof LibrarySourceManifestScalarFieldEnum)[keyof typeof LibrarySourceManifestScalarFieldEnum]
-
+export type LibrarySourceManifestScalarFieldEnum =
+  (typeof LibrarySourceManifestScalarFieldEnum)[keyof typeof LibrarySourceManifestScalarFieldEnum];
 
 export const LibraryStorageReferenceScalarFieldEnum = {
   id: 'id',
@@ -187,11 +193,11 @@ export const LibraryStorageReferenceScalarFieldEnum = {
   state: 'state',
   metadataJson: 'metadataJson',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type LibraryStorageReferenceScalarFieldEnum = (typeof LibraryStorageReferenceScalarFieldEnum)[keyof typeof LibraryStorageReferenceScalarFieldEnum]
-
+export type LibraryStorageReferenceScalarFieldEnum =
+  (typeof LibraryStorageReferenceScalarFieldEnum)[keyof typeof LibraryStorageReferenceScalarFieldEnum];
 
 export const LibraryMediaMetadataScalarFieldEnum = {
   contentVersionId: 'contentVersionId',
@@ -199,21 +205,21 @@ export const LibraryMediaMetadataScalarFieldEnum = {
   mimeType: 'mimeType',
   byteLength: 'byteLength',
   codec: 'codec',
-  language: 'language'
-} as const
+  language: 'language',
+} as const;
 
-export type LibraryMediaMetadataScalarFieldEnum = (typeof LibraryMediaMetadataScalarFieldEnum)[keyof typeof LibraryMediaMetadataScalarFieldEnum]
-
+export type LibraryMediaMetadataScalarFieldEnum =
+  (typeof LibraryMediaMetadataScalarFieldEnum)[keyof typeof LibraryMediaMetadataScalarFieldEnum];
 
 export const LibraryTranscriptMetadataScalarFieldEnum = {
   contentVersionId: 'contentVersionId',
   format: 'format',
   language: 'language',
-  segmentCount: 'segmentCount'
-} as const
+  segmentCount: 'segmentCount',
+} as const;
 
-export type LibraryTranscriptMetadataScalarFieldEnum = (typeof LibraryTranscriptMetadataScalarFieldEnum)[keyof typeof LibraryTranscriptMetadataScalarFieldEnum]
-
+export type LibraryTranscriptMetadataScalarFieldEnum =
+  (typeof LibraryTranscriptMetadataScalarFieldEnum)[keyof typeof LibraryTranscriptMetadataScalarFieldEnum];
 
 export const LibraryLearningProgressScalarFieldEnum = {
   id: 'id',
@@ -223,22 +229,22 @@ export const LibraryLearningProgressScalarFieldEnum = {
   positionSeconds: 'positionSeconds',
   version: 'version',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type LibraryLearningProgressScalarFieldEnum = (typeof LibraryLearningProgressScalarFieldEnum)[keyof typeof LibraryLearningProgressScalarFieldEnum]
-
+export type LibraryLearningProgressScalarFieldEnum =
+  (typeof LibraryLearningProgressScalarFieldEnum)[keyof typeof LibraryLearningProgressScalarFieldEnum];
 
 export const LibraryBookmarkScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   contentVersionId: 'contentVersionId',
   timestampSeconds: 'timestampSeconds',
-  createdAt: 'createdAt'
-} as const
+  createdAt: 'createdAt',
+} as const;
 
-export type LibraryBookmarkScalarFieldEnum = (typeof LibraryBookmarkScalarFieldEnum)[keyof typeof LibraryBookmarkScalarFieldEnum]
-
+export type LibraryBookmarkScalarFieldEnum =
+  (typeof LibraryBookmarkScalarFieldEnum)[keyof typeof LibraryBookmarkScalarFieldEnum];
 
 export const LibraryPersonalNoteScalarFieldEnum = {
   id: 'id',
@@ -246,11 +252,11 @@ export const LibraryPersonalNoteScalarFieldEnum = {
   contentVersionId: 'contentVersionId',
   body: 'body',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type LibraryPersonalNoteScalarFieldEnum = (typeof LibraryPersonalNoteScalarFieldEnum)[keyof typeof LibraryPersonalNoteScalarFieldEnum]
-
+export type LibraryPersonalNoteScalarFieldEnum =
+  (typeof LibraryPersonalNoteScalarFieldEnum)[keyof typeof LibraryPersonalNoteScalarFieldEnum];
 
 export const LibraryDrillOutcomeScalarFieldEnum = {
   id: 'id',
@@ -261,11 +267,11 @@ export const LibraryDrillOutcomeScalarFieldEnum = {
   selectedOptionId: 'selectedOptionId',
   isCorrect: 'isCorrect',
   score: 'score',
-  completedAt: 'completedAt'
-} as const
+  completedAt: 'completedAt',
+} as const;
 
-export type LibraryDrillOutcomeScalarFieldEnum = (typeof LibraryDrillOutcomeScalarFieldEnum)[keyof typeof LibraryDrillOutcomeScalarFieldEnum]
-
+export type LibraryDrillOutcomeScalarFieldEnum =
+  (typeof LibraryDrillOutcomeScalarFieldEnum)[keyof typeof LibraryDrillOutcomeScalarFieldEnum];
 
 export const LibraryShadowingAttemptScalarFieldEnum = {
   id: 'id',
@@ -278,11 +284,11 @@ export const LibraryShadowingAttemptScalarFieldEnum = {
   selfRating: 'selfRating',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  finalizedAt: 'finalizedAt'
-} as const
+  finalizedAt: 'finalizedAt',
+} as const;
 
-export type LibraryShadowingAttemptScalarFieldEnum = (typeof LibraryShadowingAttemptScalarFieldEnum)[keyof typeof LibraryShadowingAttemptScalarFieldEnum]
-
+export type LibraryShadowingAttemptScalarFieldEnum =
+  (typeof LibraryShadowingAttemptScalarFieldEnum)[keyof typeof LibraryShadowingAttemptScalarFieldEnum];
 
 export const LearnerOnboardingScalarFieldEnum = {
   userId: 'userId',
@@ -293,11 +299,11 @@ export const LearnerOnboardingScalarFieldEnum = {
   targetDays: 'targetDays',
   prioritySkills: 'prioritySkills',
   completedAt: 'completedAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type LearnerOnboardingScalarFieldEnum = (typeof LearnerOnboardingScalarFieldEnum)[keyof typeof LearnerOnboardingScalarFieldEnum]
-
+export type LearnerOnboardingScalarFieldEnum =
+  (typeof LearnerOnboardingScalarFieldEnum)[keyof typeof LearnerOnboardingScalarFieldEnum];
 
 export const PlacementAttemptScalarFieldEnum = {
   id: 'id',
@@ -308,11 +314,11 @@ export const PlacementAttemptScalarFieldEnum = {
   total: 'total',
   level: 'level',
   skillBreakdown: 'skillBreakdown',
-  submittedAt: 'submittedAt'
-} as const
+  submittedAt: 'submittedAt',
+} as const;
 
-export type PlacementAttemptScalarFieldEnum = (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum]
-
+export type PlacementAttemptScalarFieldEnum =
+  (typeof PlacementAttemptScalarFieldEnum)[keyof typeof PlacementAttemptScalarFieldEnum];
 
 export const RoadmapScalarFieldEnum = {
   id: 'id',
@@ -325,11 +331,11 @@ export const RoadmapScalarFieldEnum = {
   status: 'status',
   previousRoadmapId: 'previousRoadmapId',
   generatedAt: 'generatedAt',
-  supersededAt: 'supersededAt'
-} as const
+  supersededAt: 'supersededAt',
+} as const;
 
-export type RoadmapScalarFieldEnum = (typeof RoadmapScalarFieldEnum)[keyof typeof RoadmapScalarFieldEnum]
-
+export type RoadmapScalarFieldEnum =
+  (typeof RoadmapScalarFieldEnum)[keyof typeof RoadmapScalarFieldEnum];
 
 export const RoadmapItemScalarFieldEnum = {
   id: 'id',
@@ -342,11 +348,11 @@ export const RoadmapItemScalarFieldEnum = {
   title: 'title',
   minutes: 'minutes',
   status: 'status',
-  completedAt: 'completedAt'
-} as const
+  completedAt: 'completedAt',
+} as const;
 
-export type RoadmapItemScalarFieldEnum = (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum]
-
+export type RoadmapItemScalarFieldEnum =
+  (typeof RoadmapItemScalarFieldEnum)[keyof typeof RoadmapItemScalarFieldEnum];
 
 export const PracticeSessionScalarFieldEnum = {
   id: 'id',
@@ -359,11 +365,11 @@ export const PracticeSessionScalarFieldEnum = {
   total: 'total',
   xpAwarded: 'xpAwarded',
   startedAt: 'startedAt',
-  submittedAt: 'submittedAt'
-} as const
+  submittedAt: 'submittedAt',
+} as const;
 
-export type PracticeSessionScalarFieldEnum = (typeof PracticeSessionScalarFieldEnum)[keyof typeof PracticeSessionScalarFieldEnum]
-
+export type PracticeSessionScalarFieldEnum =
+  (typeof PracticeSessionScalarFieldEnum)[keyof typeof PracticeSessionScalarFieldEnum];
 
 export const PracticeAnswerScalarFieldEnum = {
   id: 'id',
@@ -371,22 +377,22 @@ export const PracticeAnswerScalarFieldEnum = {
   questionId: 'questionId',
   selectedOption: 'selectedOption',
   isCorrect: 'isCorrect',
-  answeredAt: 'answeredAt'
-} as const
+  answeredAt: 'answeredAt',
+} as const;
 
-export type PracticeAnswerScalarFieldEnum = (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum]
-
+export type PracticeAnswerScalarFieldEnum =
+  (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum];
 
 export const LearnerProgressScalarFieldEnum = {
   userId: 'userId',
   xp: 'xp',
   streakDays: 'streakDays',
   lastPracticeOn: 'lastPracticeOn',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type LearnerProgressScalarFieldEnum = (typeof LearnerProgressScalarFieldEnum)[keyof typeof LearnerProgressScalarFieldEnum]
-
+export type LearnerProgressScalarFieldEnum =
+  (typeof LearnerProgressScalarFieldEnum)[keyof typeof LearnerProgressScalarFieldEnum];
 
 export const ErrorNotebookEntryScalarFieldEnum = {
   id: 'id',
@@ -399,11 +405,11 @@ export const ErrorNotebookEntryScalarFieldEnum = {
   selectedOption: 'selectedOption',
   correctOption: 'correctOption',
   explanation: 'explanation',
-  createdAt: 'createdAt'
-} as const
+  createdAt: 'createdAt',
+} as const;
 
-export type ErrorNotebookEntryScalarFieldEnum = (typeof ErrorNotebookEntryScalarFieldEnum)[keyof typeof ErrorNotebookEntryScalarFieldEnum]
-
+export type ErrorNotebookEntryScalarFieldEnum =
+  (typeof ErrorNotebookEntryScalarFieldEnum)[keyof typeof ErrorNotebookEntryScalarFieldEnum];
 
 export const UserProfileScalarFieldEnum = {
   userId: 'userId',
@@ -412,11 +418,11 @@ export const UserProfileScalarFieldEnum = {
   locale: 'locale',
   timezone: 'timezone',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
-
+export type UserProfileScalarFieldEnum =
+  (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum];
 
 export const GovernedSentenceScalarFieldEnum = {
   id: 'id',
@@ -429,11 +435,11 @@ export const GovernedSentenceScalarFieldEnum = {
   publishStatus: 'publishStatus',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type GovernedSentenceScalarFieldEnum = (typeof GovernedSentenceScalarFieldEnum)[keyof typeof GovernedSentenceScalarFieldEnum]
-
+export type GovernedSentenceScalarFieldEnum =
+  (typeof GovernedSentenceScalarFieldEnum)[keyof typeof GovernedSentenceScalarFieldEnum];
 
 export const GovernedVocabularyItemScalarFieldEnum = {
   id: 'id',
@@ -449,11 +455,11 @@ export const GovernedVocabularyItemScalarFieldEnum = {
   publishStatus: 'publishStatus',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type GovernedVocabularyItemScalarFieldEnum = (typeof GovernedVocabularyItemScalarFieldEnum)[keyof typeof GovernedVocabularyItemScalarFieldEnum]
-
+export type GovernedVocabularyItemScalarFieldEnum =
+  (typeof GovernedVocabularyItemScalarFieldEnum)[keyof typeof GovernedVocabularyItemScalarFieldEnum];
 
 export const CmsTaxonomyNodeScalarFieldEnum = {
   id: 'id',
@@ -467,20 +473,20 @@ export const CmsTaxonomyNodeScalarFieldEnum = {
   toeicParts: 'toeicParts',
   createdByActorId: 'createdByActorId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type CmsTaxonomyNodeScalarFieldEnum = (typeof CmsTaxonomyNodeScalarFieldEnum)[keyof typeof CmsTaxonomyNodeScalarFieldEnum]
-
+export type CmsTaxonomyNodeScalarFieldEnum =
+  (typeof CmsTaxonomyNodeScalarFieldEnum)[keyof typeof CmsTaxonomyNodeScalarFieldEnum];
 
 export const CmsContentScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type CmsContentScalarFieldEnum = (typeof CmsContentScalarFieldEnum)[keyof typeof CmsContentScalarFieldEnum]
-
+export type CmsContentScalarFieldEnum =
+  (typeof CmsContentScalarFieldEnum)[keyof typeof CmsContentScalarFieldEnum];
 
 export const CmsContentVersionScalarFieldEnum = {
   id: 'id',
@@ -515,11 +521,11 @@ export const CmsContentVersionScalarFieldEnum = {
   reviewSourceVersion: 'reviewSourceVersion',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type CmsContentVersionScalarFieldEnum = (typeof CmsContentVersionScalarFieldEnum)[keyof typeof CmsContentVersionScalarFieldEnum]
-
+export type CmsContentVersionScalarFieldEnum =
+  (typeof CmsContentVersionScalarFieldEnum)[keyof typeof CmsContentVersionScalarFieldEnum];
 
 export const DailySentenceCompletionScalarFieldEnum = {
   id: 'id',
@@ -529,11 +535,11 @@ export const DailySentenceCompletionScalarFieldEnum = {
   submittedAnswer: 'submittedAnswer',
   isCorrect: 'isCorrect',
   feedback: 'feedback',
-  completedAt: 'completedAt'
-} as const
+  completedAt: 'completedAt',
+} as const;
 
-export type DailySentenceCompletionScalarFieldEnum = (typeof DailySentenceCompletionScalarFieldEnum)[keyof typeof DailySentenceCompletionScalarFieldEnum]
-
+export type DailySentenceCompletionScalarFieldEnum =
+  (typeof DailySentenceCompletionScalarFieldEnum)[keyof typeof DailySentenceCompletionScalarFieldEnum];
 
 export const VocabularyMasteryStateScalarFieldEnum = {
   id: 'id',
@@ -545,11 +551,11 @@ export const VocabularyMasteryStateScalarFieldEnum = {
   nextReviewAt: 'nextReviewAt',
   lastReviewedAt: 'lastReviewedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type VocabularyMasteryStateScalarFieldEnum = (typeof VocabularyMasteryStateScalarFieldEnum)[keyof typeof VocabularyMasteryStateScalarFieldEnum]
-
+export type VocabularyMasteryStateScalarFieldEnum =
+  (typeof VocabularyMasteryStateScalarFieldEnum)[keyof typeof VocabularyMasteryStateScalarFieldEnum];
 
 export const VocabularyReviewSubmissionScalarFieldEnum = {
   id: 'id',
@@ -558,33 +564,33 @@ export const VocabularyReviewSubmissionScalarFieldEnum = {
   clientSubmissionId: 'clientSubmissionId',
   quality: 'quality',
   result: 'result',
-  createdAt: 'createdAt'
-} as const
+  createdAt: 'createdAt',
+} as const;
 
-export type VocabularyReviewSubmissionScalarFieldEnum = (typeof VocabularyReviewSubmissionScalarFieldEnum)[keyof typeof VocabularyReviewSubmissionScalarFieldEnum]
-
+export type VocabularyReviewSubmissionScalarFieldEnum =
+  (typeof VocabularyReviewSubmissionScalarFieldEnum)[keyof typeof VocabularyReviewSubmissionScalarFieldEnum];
 
 export const RoleScalarFieldEnum = {
   id: 'id',
   code: 'code',
   description: 'description',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
-
+export type RoleScalarFieldEnum =
+  (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum];
 
 export const UserRoleScalarFieldEnum = {
   userId: 'userId',
   roleId: 'roleId',
   assignedAt: 'assignedAt',
   assignedByUserId: 'assignedByUserId',
-  assignmentReason: 'assignmentReason'
-} as const
+  assignmentReason: 'assignmentReason',
+} as const;
 
-export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
-
+export type UserRoleScalarFieldEnum =
+  (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum];
 
 export const PrivilegedAuditEventScalarFieldEnum = {
   id: 'id',
@@ -594,20 +600,20 @@ export const PrivilegedAuditEventScalarFieldEnum = {
   policyResult: 'policyResult',
   correlationId: 'correlationId',
   attributes: 'attributes',
-  occurredAt: 'occurredAt'
-} as const
+  occurredAt: 'occurredAt',
+} as const;
 
-export type PrivilegedAuditEventScalarFieldEnum = (typeof PrivilegedAuditEventScalarFieldEnum)[keyof typeof PrivilegedAuditEventScalarFieldEnum]
-
+export type PrivilegedAuditEventScalarFieldEnum =
+  (typeof PrivilegedAuditEventScalarFieldEnum)[keyof typeof PrivilegedAuditEventScalarFieldEnum];
 
 export const ToeicQuestionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
+  updatedAt: 'updatedAt',
+} as const;
 
-export type ToeicQuestionScalarFieldEnum = (typeof ToeicQuestionScalarFieldEnum)[keyof typeof ToeicQuestionScalarFieldEnum]
-
+export type ToeicQuestionScalarFieldEnum =
+  (typeof ToeicQuestionScalarFieldEnum)[keyof typeof ToeicQuestionScalarFieldEnum];
 
 export const ToeicQuestionVersionScalarFieldEnum = {
   id: 'id',
@@ -642,11 +648,11 @@ export const ToeicQuestionVersionScalarFieldEnum = {
   publicationState: 'publicationState',
   publishedAt: 'publishedAt',
   validUntil: 'validUntil',
-  createdAt: 'createdAt'
-} as const
+  createdAt: 'createdAt',
+} as const;
 
-export type ToeicQuestionVersionScalarFieldEnum = (typeof ToeicQuestionVersionScalarFieldEnum)[keyof typeof ToeicQuestionVersionScalarFieldEnum]
-
+export type ToeicQuestionVersionScalarFieldEnum =
+  (typeof ToeicQuestionVersionScalarFieldEnum)[keyof typeof ToeicQuestionVersionScalarFieldEnum];
 
 export const ToeicPracticeSessionScalarFieldEnum = {
   id: 'id',
@@ -659,11 +665,11 @@ export const ToeicPracticeSessionScalarFieldEnum = {
   total: 'total',
   score: 'score',
   startedAt: 'startedAt',
-  submittedAt: 'submittedAt'
-} as const
+  submittedAt: 'submittedAt',
+} as const;
 
-export type ToeicPracticeSessionScalarFieldEnum = (typeof ToeicPracticeSessionScalarFieldEnum)[keyof typeof ToeicPracticeSessionScalarFieldEnum]
-
+export type ToeicPracticeSessionScalarFieldEnum =
+  (typeof ToeicPracticeSessionScalarFieldEnum)[keyof typeof ToeicPracticeSessionScalarFieldEnum];
 
 export const ToeicPracticeAnswerScalarFieldEnum = {
   id: 'id',
@@ -671,11 +677,11 @@ export const ToeicPracticeAnswerScalarFieldEnum = {
   questionId: 'questionId',
   selectedOption: 'selectedOption',
   isCorrect: 'isCorrect',
-  answeredAt: 'answeredAt'
-} as const
+  answeredAt: 'answeredAt',
+} as const;
 
-export type ToeicPracticeAnswerScalarFieldEnum = (typeof ToeicPracticeAnswerScalarFieldEnum)[keyof typeof ToeicPracticeAnswerScalarFieldEnum]
-
+export type ToeicPracticeAnswerScalarFieldEnum =
+  (typeof ToeicPracticeAnswerScalarFieldEnum)[keyof typeof ToeicPracticeAnswerScalarFieldEnum];
 
 export const ToeicReadingPracticeSessionScalarFieldEnum = {
   id: 'id',
@@ -689,11 +695,11 @@ export const ToeicReadingPracticeSessionScalarFieldEnum = {
   total: 'total',
   score: 'score',
   startedAt: 'startedAt',
-  submittedAt: 'submittedAt'
-} as const
+  submittedAt: 'submittedAt',
+} as const;
 
-export type ToeicReadingPracticeSessionScalarFieldEnum = (typeof ToeicReadingPracticeSessionScalarFieldEnum)[keyof typeof ToeicReadingPracticeSessionScalarFieldEnum]
-
+export type ToeicReadingPracticeSessionScalarFieldEnum =
+  (typeof ToeicReadingPracticeSessionScalarFieldEnum)[keyof typeof ToeicReadingPracticeSessionScalarFieldEnum];
 
 export const ToeicReadingPracticeAnswerScalarFieldEnum = {
   id: 'id',
@@ -701,11 +707,11 @@ export const ToeicReadingPracticeAnswerScalarFieldEnum = {
   questionId: 'questionId',
   selectedOption: 'selectedOption',
   isCorrect: 'isCorrect',
-  answeredAt: 'answeredAt'
-} as const
+  answeredAt: 'answeredAt',
+} as const;
 
-export type ToeicReadingPracticeAnswerScalarFieldEnum = (typeof ToeicReadingPracticeAnswerScalarFieldEnum)[keyof typeof ToeicReadingPracticeAnswerScalarFieldEnum]
-
+export type ToeicReadingPracticeAnswerScalarFieldEnum =
+  (typeof ToeicReadingPracticeAnswerScalarFieldEnum)[keyof typeof ToeicReadingPracticeAnswerScalarFieldEnum];
 
 export const ToeicTimedTestSessionScalarFieldEnum = {
   id: 'id',
@@ -719,11 +725,11 @@ export const ToeicTimedTestSessionScalarFieldEnum = {
   status: 'status',
   total: 'total',
   score: 'score',
-  finalizedAt: 'finalizedAt'
-} as const
+  finalizedAt: 'finalizedAt',
+} as const;
 
-export type ToeicTimedTestSessionScalarFieldEnum = (typeof ToeicTimedTestSessionScalarFieldEnum)[keyof typeof ToeicTimedTestSessionScalarFieldEnum]
-
+export type ToeicTimedTestSessionScalarFieldEnum =
+  (typeof ToeicTimedTestSessionScalarFieldEnum)[keyof typeof ToeicTimedTestSessionScalarFieldEnum];
 
 export const ToeicTimedTestAnswerScalarFieldEnum = {
   id: 'id',
@@ -731,11 +737,11 @@ export const ToeicTimedTestAnswerScalarFieldEnum = {
   questionId: 'questionId',
   selectedOption: 'selectedOption',
   isCorrect: 'isCorrect',
-  answeredAt: 'answeredAt'
-} as const
+  answeredAt: 'answeredAt',
+} as const;
 
-export type ToeicTimedTestAnswerScalarFieldEnum = (typeof ToeicTimedTestAnswerScalarFieldEnum)[keyof typeof ToeicTimedTestAnswerScalarFieldEnum]
-
+export type ToeicTimedTestAnswerScalarFieldEnum =
+  (typeof ToeicTimedTestAnswerScalarFieldEnum)[keyof typeof ToeicTimedTestAnswerScalarFieldEnum];
 
 export const ToeicSpeakingSessionScalarFieldEnum = {
   id: 'id',
@@ -745,11 +751,11 @@ export const ToeicSpeakingSessionScalarFieldEnum = {
   startIdempotencyKey: 'startIdempotencyKey',
   status: 'status',
   startedAt: 'startedAt',
-  finalizedAt: 'finalizedAt'
-} as const
+  finalizedAt: 'finalizedAt',
+} as const;
 
-export type ToeicSpeakingSessionScalarFieldEnum = (typeof ToeicSpeakingSessionScalarFieldEnum)[keyof typeof ToeicSpeakingSessionScalarFieldEnum]
-
+export type ToeicSpeakingSessionScalarFieldEnum =
+  (typeof ToeicSpeakingSessionScalarFieldEnum)[keyof typeof ToeicSpeakingSessionScalarFieldEnum];
 
 export const ToeicSpeakingSubmissionScalarFieldEnum = {
   id: 'id',
@@ -757,14 +763,49 @@ export const ToeicSpeakingSubmissionScalarFieldEnum = {
   userId: 'userId',
   idempotencyKey: 'idempotencyKey',
   responseMode: 'responseMode',
+  contentType: 'contentType',
   durationSeconds: 'durationSeconds',
   sizeBytes: 'sizeBytes',
   submissionReference: 'submissionReference',
-  submittedAt: 'submittedAt'
-} as const
+  submittedAt: 'submittedAt',
+} as const;
 
-export type ToeicSpeakingSubmissionScalarFieldEnum = (typeof ToeicSpeakingSubmissionScalarFieldEnum)[keyof typeof ToeicSpeakingSubmissionScalarFieldEnum]
+export type ToeicSpeakingSubmissionScalarFieldEnum =
+  (typeof ToeicSpeakingSubmissionScalarFieldEnum)[keyof typeof ToeicSpeakingSubmissionScalarFieldEnum];
 
+export const ToeicSpeakingRecordingScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  provider: 'provider',
+  objectKey: 'objectKey',
+  state: 'state',
+  contentType: 'contentType',
+  durationSeconds: 'durationSeconds',
+  sizeBytes: 'sizeBytes',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ToeicSpeakingRecordingScalarFieldEnum =
+  (typeof ToeicSpeakingRecordingScalarFieldEnum)[keyof typeof ToeicSpeakingRecordingScalarFieldEnum];
+
+export const ToeicSpeakingPlaybackCapabilityScalarFieldEnum = {
+  id: 'id',
+  recordingId: 'recordingId',
+  userId: 'userId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  issuedAt: 'issuedAt',
+  revokedAt: 'revokedAt',
+} as const;
+
+export type ToeicSpeakingPlaybackCapabilityScalarFieldEnum =
+  (typeof ToeicSpeakingPlaybackCapabilityScalarFieldEnum)[keyof typeof ToeicSpeakingPlaybackCapabilityScalarFieldEnum];
 
 export const ToeicWritingSessionScalarFieldEnum = {
   id: 'id',
@@ -774,11 +815,11 @@ export const ToeicWritingSessionScalarFieldEnum = {
   startIdempotencyKey: 'startIdempotencyKey',
   status: 'status',
   startedAt: 'startedAt',
-  finalizedAt: 'finalizedAt'
-} as const
+  finalizedAt: 'finalizedAt',
+} as const;
 
-export type ToeicWritingSessionScalarFieldEnum = (typeof ToeicWritingSessionScalarFieldEnum)[keyof typeof ToeicWritingSessionScalarFieldEnum]
-
+export type ToeicWritingSessionScalarFieldEnum =
+  (typeof ToeicWritingSessionScalarFieldEnum)[keyof typeof ToeicWritingSessionScalarFieldEnum];
 
 export const ToeicWritingSubmissionScalarFieldEnum = {
   id: 'id',
@@ -789,11 +830,11 @@ export const ToeicWritingSubmissionScalarFieldEnum = {
   wordCount: 'wordCount',
   characterCount: 'characterCount',
   submittedText: 'submittedText',
-  submittedAt: 'submittedAt'
-} as const
+  submittedAt: 'submittedAt',
+} as const;
 
-export type ToeicWritingSubmissionScalarFieldEnum = (typeof ToeicWritingSubmissionScalarFieldEnum)[keyof typeof ToeicWritingSubmissionScalarFieldEnum]
-
+export type ToeicWritingSubmissionScalarFieldEnum =
+  (typeof ToeicWritingSubmissionScalarFieldEnum)[keyof typeof ToeicWritingSubmissionScalarFieldEnum];
 
 export const AiFeedbackUsageScalarFieldEnum = {
   id: 'id',
@@ -811,56 +852,53 @@ export const AiFeedbackUsageScalarFieldEnum = {
   quotaRemaining: 'quotaRemaining',
   feedbackJson: 'feedbackJson',
   correlationId: 'correlationId',
-  createdAt: 'createdAt'
-} as const
+  createdAt: 'createdAt',
+} as const;
 
-export type AiFeedbackUsageScalarFieldEnum = (typeof AiFeedbackUsageScalarFieldEnum)[keyof typeof AiFeedbackUsageScalarFieldEnum]
-
+export type AiFeedbackUsageScalarFieldEnum =
+  (typeof AiFeedbackUsageScalarFieldEnum)[keyof typeof AiFeedbackUsageScalarFieldEnum];
 
 export const SortOrder = {
   asc: 'asc',
-  desc: 'desc'
-} as const
+  desc: 'desc',
+} as const;
 
-export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 
 export const JsonNullValueInput = {
-  JsonNull: JsonNull
-} as const
+  JsonNull: JsonNull,
+} as const;
 
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
+export type JsonNullValueInput =
+  (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput];
 
 export const NullableJsonNullValueInput = {
   DbNull: DbNull,
-  JsonNull: JsonNull
-} as const
+  JsonNull: JsonNull,
+} as const;
 
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
-
+export type NullableJsonNullValueInput =
+  (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput];
 
 export const QueryMode = {
   default: 'default',
-  insensitive: 'insensitive'
-} as const
+  insensitive: 'insensitive',
+} as const;
 
-export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
 
 export const NullsOrder = {
   first: 'first',
-  last: 'last'
-} as const
+  last: 'last',
+} as const;
 
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
+  AnyNull: AnyNull,
+} as const;
 
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
+export type JsonNullValueFilter =
+  (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];

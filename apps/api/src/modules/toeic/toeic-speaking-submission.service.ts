@@ -15,6 +15,7 @@ import {
   type ToeicSpeakingTaskCatalogue,
 } from './toeic-speaking-submission.models';
 import type { SubmitToeicSpeakingDto } from './dto/toeic-speaking-submission.dto';
+import { ToeicRecordingService } from './toeic-recording.service';
 
 const TOKEN = /^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$/;
 
@@ -65,6 +66,7 @@ export class ToeicSpeakingSubmissionService {
     private readonly repository: ToeicSpeakingSubmissionRepository,
     @Inject(TOEIC_SPEAKING_TASK_CATALOGUE)
     private readonly catalogue: ToeicSpeakingTaskCatalogue,
+    private readonly recordings: ToeicRecordingService,
   ) {}
 
   async start(
@@ -153,6 +155,11 @@ export class ToeicSpeakingSubmissionService {
         key,
       );
       if (existing && this.sameSubmission(existing, sessionId, input)) {
+        await this.recordings.ensureForSubmission(
+          principal,
+          session,
+          input.contentType ?? 'audio/webm',
+        );
         return { session: safeSession(session, task), replayed: true };
       }
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
@@ -171,6 +178,7 @@ export class ToeicSpeakingSubmissionService {
           userId: principal.applicationUserId,
           idempotencyKey: key,
           responseMode: input.responseMode,
+          contentType: input.contentType ?? 'audio/webm',
           durationSeconds: input.durationSeconds,
           sizeBytes: input.sizeBytes,
           submissionReference: input.submissionReference.trim(),
@@ -191,10 +199,20 @@ export class ToeicSpeakingSubmissionService {
           existing &&
           this.sameSubmission(existing, sessionId, input)
         ) {
+          await this.recordings.ensureForSubmission(
+            principal,
+            current,
+            input.contentType ?? 'audio/webm',
+          );
           return { session: safeSession(current, task), replayed: true };
         }
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
       }
+      await this.recordings.ensureForSubmission(
+        principal,
+        result.session,
+        input.contentType ?? 'audio/webm',
+      );
       return {
         session: safeSession(result.session, task),
         replayed: !result.created,
@@ -215,6 +233,11 @@ export class ToeicSpeakingSubmissionService {
         existing &&
         this.sameSubmission(existing, sessionId, input)
       ) {
+        await this.recordings.ensureForSubmission(
+          principal,
+          current,
+          input.contentType ?? 'audio/webm',
+        );
         return { session: safeSession(current, task), replayed: true };
       }
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
@@ -229,6 +252,7 @@ export class ToeicSpeakingSubmissionService {
     return (
       submission.sessionId === sessionId &&
       submission.responseMode === input.responseMode &&
+      submission.contentType === (input.contentType ?? 'audio/webm') &&
       submission.durationSeconds === input.durationSeconds &&
       submission.sizeBytes === input.sizeBytes &&
       submission.submissionReference === input.submissionReference.trim()

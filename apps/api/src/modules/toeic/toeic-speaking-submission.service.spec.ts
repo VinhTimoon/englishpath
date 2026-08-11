@@ -6,6 +6,7 @@ import type {
   ToeicSpeakingTaskCatalogue,
 } from './toeic-speaking-submission.models';
 import { ToeicSpeakingSubmissionService } from './toeic-speaking-submission.service';
+import type { ToeicRecordingService } from './toeic-recording.service';
 import { createTaskVersion } from './toeic-speaking-writing.models';
 import type { SubmitToeicSpeakingDto } from './dto/toeic-speaking-submission.dto';
 
@@ -59,6 +60,7 @@ function submission(
     userId: principal.applicationUserId,
     idempotencyKey: 'submit-001',
     responseMode: 'RECORDED_AUDIO',
+    contentType: 'audio/webm',
     durationSeconds: 20,
     sizeBytes: 1024,
     submissionReference: 'recording-ref-001',
@@ -82,6 +84,9 @@ function dto(
 describe('ToeicSpeakingSubmissionService', () => {
   let repository: jest.Mocked<ToeicSpeakingSubmissionRepository>;
   let catalogue: jest.Mocked<ToeicSpeakingTaskCatalogue>;
+  let recordings: jest.Mocked<
+    Pick<ToeicRecordingService, 'ensureForSubmission'>
+  >;
   let service: ToeicSpeakingSubmissionService;
 
   beforeEach(() => {
@@ -93,7 +98,14 @@ describe('ToeicSpeakingSubmissionService', () => {
       finalizeWithSubmission: jest.fn(),
     };
     catalogue = { findPublished: jest.fn().mockResolvedValue(task) };
-    service = new ToeicSpeakingSubmissionService(repository, catalogue);
+    recordings = {
+      ensureForSubmission: jest.fn().mockResolvedValue(undefined),
+    };
+    service = new ToeicSpeakingSubmissionService(
+      repository,
+      catalogue,
+      recordings as unknown as ToeicRecordingService,
+    );
   });
 
   it('starts a published task and replays the same start key', async () => {
@@ -158,6 +170,12 @@ describe('ToeicSpeakingSubmissionService', () => {
     expect(first.session.submission).toEqual(
       expect.objectContaining({ submissionId: 'submission-001' }),
     );
+    expect(recordings.ensureForSubmission).toHaveBeenCalledWith(
+      principal,
+      finalized,
+      'audio/webm',
+    );
+    expect(recordings.ensureForSubmission).toHaveBeenCalledTimes(2);
     expect(JSON.stringify(first)).not.toMatch(/provider|credential|token|raw/i);
   });
 

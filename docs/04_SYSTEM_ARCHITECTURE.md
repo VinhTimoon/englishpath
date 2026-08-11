@@ -131,3 +131,14 @@ module loads the submission through the owner-scoped repository and passes the
 server-owned task ID and private response text to the gateway; only the gateway
 safe advisory projection returns to the learner. No feedback persistence model,
 queue, provider credential, or official score is introduced by this boundary.
+
+### EP4-ST003 controlled Speaking recordings
+
+Speaking recordings use a provider-neutral storage port and an additive,
+owner-scoped recording asset/capability boundary. The local adapter is
+credential-free and stores no audio bytes; it proves lifecycle, ownership, and
+capability semantics without activating production storage. The API exposes
+only recording state/metadata and an opaque five-minute playback capability.
+Provider locators, object keys, credentials, and long-lived URLs remain inside
+the storage boundary. Production bucket/RLS configuration, retention jobs, and
+activation remain human-controlled deployment work.

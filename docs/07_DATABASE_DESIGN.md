@@ -396,3 +396,15 @@ fingerprint, outcome, quota remainder, correlation id, and bounded advisory
 JSON. It stores no credentials, provider response, raw learner input, rubric
 internals, official score, or hidden prompt. Owner/idempotency uniqueness and
 UTC-day indexes support deterministic replay and quota decisions.
+
+## EP4-ST003 Speaking recording storage boundary
+
+`ToeicSpeakingRecording` is an additive, owner-scoped asset record linked one to
+one to a finalized `ToeicSpeakingSubmission`. It stores bounded media metadata,
+an internal controlled-storage reference, lifecycle state, and a 30-day
+retention expiry. `ToeicSpeakingPlaybackCapability` stores only a hash of an
+opaque five-minute application capability; the raw capability is never
+persisted or returned by database projections. Playback checks owner, state,
+recording expiry, and capability expiry before authorizing access. The local
+adapter is credential-free and state-only; the migration is generated evidence
+and must not be applied automatically to shared Supabase or production.

@@ -7,843 +7,1310 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as runtime from '@prisma/client/runtime/client';
+import type * as $Enums from '../enums.js';
+import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model ToeicSpeakingSubmission
  *
  */
-export type ToeicSpeakingSubmissionModel = runtime.Types.Result.DefaultSelection<Prisma.$ToeicSpeakingSubmissionPayload>
+export type ToeicSpeakingSubmissionModel =
+  runtime.Types.Result.DefaultSelection<Prisma.$ToeicSpeakingSubmissionPayload>;
 
 export type AggregateToeicSpeakingSubmission = {
-  _count: ToeicSpeakingSubmissionCountAggregateOutputType | null
-  _avg: ToeicSpeakingSubmissionAvgAggregateOutputType | null
-  _sum: ToeicSpeakingSubmissionSumAggregateOutputType | null
-  _min: ToeicSpeakingSubmissionMinAggregateOutputType | null
-  _max: ToeicSpeakingSubmissionMaxAggregateOutputType | null
-}
+  _count: ToeicSpeakingSubmissionCountAggregateOutputType | null;
+  _avg: ToeicSpeakingSubmissionAvgAggregateOutputType | null;
+  _sum: ToeicSpeakingSubmissionSumAggregateOutputType | null;
+  _min: ToeicSpeakingSubmissionMinAggregateOutputType | null;
+  _max: ToeicSpeakingSubmissionMaxAggregateOutputType | null;
+};
 
 export type ToeicSpeakingSubmissionAvgAggregateOutputType = {
-  durationSeconds: number | null
-  sizeBytes: number | null
-}
+  durationSeconds: number | null;
+  sizeBytes: number | null;
+};
 
 export type ToeicSpeakingSubmissionSumAggregateOutputType = {
-  durationSeconds: number | null
-  sizeBytes: number | null
-}
+  durationSeconds: number | null;
+  sizeBytes: number | null;
+};
 
 export type ToeicSpeakingSubmissionMinAggregateOutputType = {
-  id: string | null
-  sessionId: string | null
-  userId: string | null
-  idempotencyKey: string | null
-  responseMode: string | null
-  durationSeconds: number | null
-  sizeBytes: number | null
-  submissionReference: string | null
-  submittedAt: Date | null
-}
+  id: string | null;
+  sessionId: string | null;
+  userId: string | null;
+  idempotencyKey: string | null;
+  responseMode: string | null;
+  contentType: string | null;
+  durationSeconds: number | null;
+  sizeBytes: number | null;
+  submissionReference: string | null;
+  submittedAt: Date | null;
+};
 
 export type ToeicSpeakingSubmissionMaxAggregateOutputType = {
-  id: string | null
-  sessionId: string | null
-  userId: string | null
-  idempotencyKey: string | null
-  responseMode: string | null
-  durationSeconds: number | null
-  sizeBytes: number | null
-  submissionReference: string | null
-  submittedAt: Date | null
-}
+  id: string | null;
+  sessionId: string | null;
+  userId: string | null;
+  idempotencyKey: string | null;
+  responseMode: string | null;
+  contentType: string | null;
+  durationSeconds: number | null;
+  sizeBytes: number | null;
+  submissionReference: string | null;
+  submittedAt: Date | null;
+};
 
 export type ToeicSpeakingSubmissionCountAggregateOutputType = {
-  id: number
-  sessionId: number
-  userId: number
-  idempotencyKey: number
-  responseMode: number
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: number
-  submittedAt: number
-  _all: number
-}
-
+  id: number;
+  sessionId: number;
+  userId: number;
+  idempotencyKey: number;
+  responseMode: number;
+  contentType: number;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: number;
+  submittedAt: number;
+  _all: number;
+};
 
 export type ToeicSpeakingSubmissionAvgAggregateInputType = {
-  durationSeconds?: true
-  sizeBytes?: true
-}
+  durationSeconds?: true;
+  sizeBytes?: true;
+};
 
 export type ToeicSpeakingSubmissionSumAggregateInputType = {
-  durationSeconds?: true
-  sizeBytes?: true
-}
+  durationSeconds?: true;
+  sizeBytes?: true;
+};
 
 export type ToeicSpeakingSubmissionMinAggregateInputType = {
-  id?: true
-  sessionId?: true
-  userId?: true
-  idempotencyKey?: true
-  responseMode?: true
-  durationSeconds?: true
-  sizeBytes?: true
-  submissionReference?: true
-  submittedAt?: true
-}
+  id?: true;
+  sessionId?: true;
+  userId?: true;
+  idempotencyKey?: true;
+  responseMode?: true;
+  contentType?: true;
+  durationSeconds?: true;
+  sizeBytes?: true;
+  submissionReference?: true;
+  submittedAt?: true;
+};
 
 export type ToeicSpeakingSubmissionMaxAggregateInputType = {
-  id?: true
-  sessionId?: true
-  userId?: true
-  idempotencyKey?: true
-  responseMode?: true
-  durationSeconds?: true
-  sizeBytes?: true
-  submissionReference?: true
-  submittedAt?: true
-}
+  id?: true;
+  sessionId?: true;
+  userId?: true;
+  idempotencyKey?: true;
+  responseMode?: true;
+  contentType?: true;
+  durationSeconds?: true;
+  sizeBytes?: true;
+  submissionReference?: true;
+  submittedAt?: true;
+};
 
 export type ToeicSpeakingSubmissionCountAggregateInputType = {
-  id?: true
-  sessionId?: true
-  userId?: true
-  idempotencyKey?: true
-  responseMode?: true
-  durationSeconds?: true
-  sizeBytes?: true
-  submissionReference?: true
-  submittedAt?: true
-  _all?: true
-}
+  id?: true;
+  sessionId?: true;
+  userId?: true;
+  idempotencyKey?: true;
+  responseMode?: true;
+  contentType?: true;
+  durationSeconds?: true;
+  sizeBytes?: true;
+  submissionReference?: true;
+  submittedAt?: true;
+  _all?: true;
+};
 
-export type ToeicSpeakingSubmissionAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionAggregateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which ToeicSpeakingSubmission to aggregate.
    */
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Count returned ToeicSpeakingSubmissions
-  **/
-  _count?: true | ToeicSpeakingSubmissionCountAggregateInputType
+   **/
+  _count?: true | ToeicSpeakingSubmissionCountAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to average
-  **/
-  _avg?: ToeicSpeakingSubmissionAvgAggregateInputType
+   **/
+  _avg?: ToeicSpeakingSubmissionAvgAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to sum
-  **/
-  _sum?: ToeicSpeakingSubmissionSumAggregateInputType
+   **/
+  _sum?: ToeicSpeakingSubmissionSumAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
-  **/
-  _min?: ToeicSpeakingSubmissionMinAggregateInputType
+   **/
+  _min?: ToeicSpeakingSubmissionMinAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
-  **/
-  _max?: ToeicSpeakingSubmissionMaxAggregateInputType
-}
+   **/
+  _max?: ToeicSpeakingSubmissionMaxAggregateInputType;
+};
 
-export type GetToeicSpeakingSubmissionAggregateType<T extends ToeicSpeakingSubmissionAggregateArgs> = {
-      [P in keyof T & keyof AggregateToeicSpeakingSubmission]: P extends '_count' | 'count'
+export type GetToeicSpeakingSubmissionAggregateType<
+  T extends ToeicSpeakingSubmissionAggregateArgs,
+> = {
+  [P in keyof T & keyof AggregateToeicSpeakingSubmission]: P extends
+    '_count' | 'count'
     ? T[P] extends true
       ? number
       : Prisma.GetScalarType<T[P], AggregateToeicSpeakingSubmission[P]>
-    : Prisma.GetScalarType<T[P], AggregateToeicSpeakingSubmission[P]>
-}
+    : Prisma.GetScalarType<T[P], AggregateToeicSpeakingSubmission[P]>;
+};
 
-
-
-
-export type ToeicSpeakingSubmissionGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
-  orderBy?: Prisma.ToeicSpeakingSubmissionOrderByWithAggregationInput | Prisma.ToeicSpeakingSubmissionOrderByWithAggregationInput[]
-  by: Prisma.ToeicSpeakingSubmissionScalarFieldEnum[] | Prisma.ToeicSpeakingSubmissionScalarFieldEnum
-  having?: Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput
-  take?: number
-  skip?: number
-  _count?: ToeicSpeakingSubmissionCountAggregateInputType | true
-  _avg?: ToeicSpeakingSubmissionAvgAggregateInputType
-  _sum?: ToeicSpeakingSubmissionSumAggregateInputType
-  _min?: ToeicSpeakingSubmissionMinAggregateInputType
-  _max?: ToeicSpeakingSubmissionMaxAggregateInputType
-}
+export type ToeicSpeakingSubmissionGroupByArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
+  orderBy?:
+    | Prisma.ToeicSpeakingSubmissionOrderByWithAggregationInput
+    | Prisma.ToeicSpeakingSubmissionOrderByWithAggregationInput[];
+  by:
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[]
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum;
+  having?: Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput;
+  take?: number;
+  skip?: number;
+  _count?: ToeicSpeakingSubmissionCountAggregateInputType | true;
+  _avg?: ToeicSpeakingSubmissionAvgAggregateInputType;
+  _sum?: ToeicSpeakingSubmissionSumAggregateInputType;
+  _min?: ToeicSpeakingSubmissionMinAggregateInputType;
+  _max?: ToeicSpeakingSubmissionMaxAggregateInputType;
+};
 
 export type ToeicSpeakingSubmissionGroupByOutputType = {
-  id: string
-  sessionId: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt: Date
-  _count: ToeicSpeakingSubmissionCountAggregateOutputType | null
-  _avg: ToeicSpeakingSubmissionAvgAggregateOutputType | null
-  _sum: ToeicSpeakingSubmissionSumAggregateOutputType | null
-  _min: ToeicSpeakingSubmissionMinAggregateOutputType | null
-  _max: ToeicSpeakingSubmissionMaxAggregateOutputType | null
-}
+  id: string;
+  sessionId: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt: Date;
+  _count: ToeicSpeakingSubmissionCountAggregateOutputType | null;
+  _avg: ToeicSpeakingSubmissionAvgAggregateOutputType | null;
+  _sum: ToeicSpeakingSubmissionSumAggregateOutputType | null;
+  _min: ToeicSpeakingSubmissionMinAggregateOutputType | null;
+  _max: ToeicSpeakingSubmissionMaxAggregateOutputType | null;
+};
 
-export type GetToeicSpeakingSubmissionGroupByPayload<T extends ToeicSpeakingSubmissionGroupByArgs> = Prisma.PrismaPromise<
+export type GetToeicSpeakingSubmissionGroupByPayload<
+  T extends ToeicSpeakingSubmissionGroupByArgs,
+> = Prisma.PrismaPromise<
   Array<
-    Prisma.PickEnumerable<ToeicSpeakingSubmissionGroupByOutputType, T['by']> &
-      {
-        [P in ((keyof T) & (keyof ToeicSpeakingSubmissionGroupByOutputType))]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
-            : Prisma.GetScalarType<T[P], ToeicSpeakingSubmissionGroupByOutputType[P]>
-          : Prisma.GetScalarType<T[P], ToeicSpeakingSubmissionGroupByOutputType[P]>
-      }
-    >
+    Prisma.PickEnumerable<ToeicSpeakingSubmissionGroupByOutputType, T['by']> & {
+      [
+        P in keyof T & keyof ToeicSpeakingSubmissionGroupByOutputType
+      ]: P extends '_count'
+        ? T[P] extends boolean
+          ? number
+          : Prisma.GetScalarType<
+              T[P],
+              ToeicSpeakingSubmissionGroupByOutputType[P]
+            >
+        : Prisma.GetScalarType<
+            T[P],
+            ToeicSpeakingSubmissionGroupByOutputType[P]
+          >;
+    }
   >
-
-
+>;
 
 export type ToeicSpeakingSubmissionWhereInput = {
-  AND?: Prisma.ToeicSpeakingSubmissionWhereInput | Prisma.ToeicSpeakingSubmissionWhereInput[]
-  OR?: Prisma.ToeicSpeakingSubmissionWhereInput[]
-  NOT?: Prisma.ToeicSpeakingSubmissionWhereInput | Prisma.ToeicSpeakingSubmissionWhereInput[]
-  id?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  sessionId?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  userId?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  idempotencyKey?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  responseMode?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  durationSeconds?: Prisma.IntFilter<"ToeicSpeakingSubmission"> | number
-  sizeBytes?: Prisma.IntFilter<"ToeicSpeakingSubmission"> | number
-  submissionReference?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  submittedAt?: Prisma.DateTimeFilter<"ToeicSpeakingSubmission"> | Date | string
-  session?: Prisma.XOR<Prisma.ToeicSpeakingSessionScalarRelationFilter, Prisma.ToeicSpeakingSessionWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}
+  AND?:
+    | Prisma.ToeicSpeakingSubmissionWhereInput
+    | Prisma.ToeicSpeakingSubmissionWhereInput[];
+  OR?: Prisma.ToeicSpeakingSubmissionWhereInput[];
+  NOT?:
+    | Prisma.ToeicSpeakingSubmissionWhereInput
+    | Prisma.ToeicSpeakingSubmissionWhereInput[];
+  id?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  sessionId?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  userId?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  idempotencyKey?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  responseMode?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  contentType?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  durationSeconds?: Prisma.IntFilter<'ToeicSpeakingSubmission'> | number;
+  sizeBytes?: Prisma.IntFilter<'ToeicSpeakingSubmission'> | number;
+  submissionReference?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  submittedAt?:
+    Prisma.DateTimeFilter<'ToeicSpeakingSubmission'> | Date | string;
+  session?: Prisma.XOR<
+    Prisma.ToeicSpeakingSessionScalarRelationFilter,
+    Prisma.ToeicSpeakingSessionWhereInput
+  >;
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  recording?: Prisma.XOR<
+    Prisma.ToeicSpeakingRecordingNullableScalarRelationFilter,
+    Prisma.ToeicSpeakingRecordingWhereInput
+  > | null;
+};
 
 export type ToeicSpeakingSubmissionOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  durationSeconds?: Prisma.SortOrder
-  sizeBytes?: Prisma.SortOrder
-  submissionReference?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-  session?: Prisma.ToeicSpeakingSessionOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  contentType?: Prisma.SortOrder;
+  durationSeconds?: Prisma.SortOrder;
+  sizeBytes?: Prisma.SortOrder;
+  submissionReference?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+  session?: Prisma.ToeicSpeakingSessionOrderByWithRelationInput;
+  user?: Prisma.UserOrderByWithRelationInput;
+  recording?: Prisma.ToeicSpeakingRecordingOrderByWithRelationInput;
+};
 
-export type ToeicSpeakingSubmissionWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
-  sessionId?: string
-  userId_idempotencyKey?: Prisma.ToeicSpeakingSubmissionUserIdIdempotencyKeyCompoundUniqueInput
-  AND?: Prisma.ToeicSpeakingSubmissionWhereInput | Prisma.ToeicSpeakingSubmissionWhereInput[]
-  OR?: Prisma.ToeicSpeakingSubmissionWhereInput[]
-  NOT?: Prisma.ToeicSpeakingSubmissionWhereInput | Prisma.ToeicSpeakingSubmissionWhereInput[]
-  userId?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  idempotencyKey?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  responseMode?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  durationSeconds?: Prisma.IntFilter<"ToeicSpeakingSubmission"> | number
-  sizeBytes?: Prisma.IntFilter<"ToeicSpeakingSubmission"> | number
-  submissionReference?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  submittedAt?: Prisma.DateTimeFilter<"ToeicSpeakingSubmission"> | Date | string
-  session?: Prisma.XOR<Prisma.ToeicSpeakingSessionScalarRelationFilter, Prisma.ToeicSpeakingSessionWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id" | "sessionId" | "userId_idempotencyKey">
+export type ToeicSpeakingSubmissionWhereUniqueInput = Prisma.AtLeast<
+  {
+    id?: string;
+    sessionId?: string;
+    userId_idempotencyKey?: Prisma.ToeicSpeakingSubmissionUserIdIdempotencyKeyCompoundUniqueInput;
+    AND?:
+      | Prisma.ToeicSpeakingSubmissionWhereInput
+      | Prisma.ToeicSpeakingSubmissionWhereInput[];
+    OR?: Prisma.ToeicSpeakingSubmissionWhereInput[];
+    NOT?:
+      | Prisma.ToeicSpeakingSubmissionWhereInput
+      | Prisma.ToeicSpeakingSubmissionWhereInput[];
+    userId?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+    idempotencyKey?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+    responseMode?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+    contentType?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+    durationSeconds?: Prisma.IntFilter<'ToeicSpeakingSubmission'> | number;
+    sizeBytes?: Prisma.IntFilter<'ToeicSpeakingSubmission'> | number;
+    submissionReference?:
+      Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+    submittedAt?:
+      Prisma.DateTimeFilter<'ToeicSpeakingSubmission'> | Date | string;
+    session?: Prisma.XOR<
+      Prisma.ToeicSpeakingSessionScalarRelationFilter,
+      Prisma.ToeicSpeakingSessionWhereInput
+    >;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+    recording?: Prisma.XOR<
+      Prisma.ToeicSpeakingRecordingNullableScalarRelationFilter,
+      Prisma.ToeicSpeakingRecordingWhereInput
+    > | null;
+  },
+  'id' | 'sessionId' | 'userId_idempotencyKey'
+>;
 
 export type ToeicSpeakingSubmissionOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  durationSeconds?: Prisma.SortOrder
-  sizeBytes?: Prisma.SortOrder
-  submissionReference?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-  _count?: Prisma.ToeicSpeakingSubmissionCountOrderByAggregateInput
-  _avg?: Prisma.ToeicSpeakingSubmissionAvgOrderByAggregateInput
-  _max?: Prisma.ToeicSpeakingSubmissionMaxOrderByAggregateInput
-  _min?: Prisma.ToeicSpeakingSubmissionMinOrderByAggregateInput
-  _sum?: Prisma.ToeicSpeakingSubmissionSumOrderByAggregateInput
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  contentType?: Prisma.SortOrder;
+  durationSeconds?: Prisma.SortOrder;
+  sizeBytes?: Prisma.SortOrder;
+  submissionReference?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+  _count?: Prisma.ToeicSpeakingSubmissionCountOrderByAggregateInput;
+  _avg?: Prisma.ToeicSpeakingSubmissionAvgOrderByAggregateInput;
+  _max?: Prisma.ToeicSpeakingSubmissionMaxOrderByAggregateInput;
+  _min?: Prisma.ToeicSpeakingSubmissionMinOrderByAggregateInput;
+  _sum?: Prisma.ToeicSpeakingSubmissionSumOrderByAggregateInput;
+};
 
 export type ToeicSpeakingSubmissionScalarWhereWithAggregatesInput = {
-  AND?: Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput | Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput[]
-  OR?: Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput | Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSubmission"> | string
-  sessionId?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSubmission"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSubmission"> | string
-  idempotencyKey?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSubmission"> | string
-  responseMode?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSubmission"> | string
-  durationSeconds?: Prisma.IntWithAggregatesFilter<"ToeicSpeakingSubmission"> | number
-  sizeBytes?: Prisma.IntWithAggregatesFilter<"ToeicSpeakingSubmission"> | number
-  submissionReference?: Prisma.StringWithAggregatesFilter<"ToeicSpeakingSubmission"> | string
-  submittedAt?: Prisma.DateTimeWithAggregatesFilter<"ToeicSpeakingSubmission"> | Date | string
-}
+  AND?:
+    | Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput
+    | Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput[];
+  OR?: Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput[];
+  NOT?:
+    | Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput
+    | Prisma.ToeicSpeakingSubmissionScalarWhereWithAggregatesInput[];
+  id?: Prisma.StringWithAggregatesFilter<'ToeicSpeakingSubmission'> | string;
+  sessionId?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSubmission'> | string;
+  userId?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSubmission'> | string;
+  idempotencyKey?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSubmission'> | string;
+  responseMode?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSubmission'> | string;
+  contentType?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSubmission'> | string;
+  durationSeconds?:
+    Prisma.IntWithAggregatesFilter<'ToeicSpeakingSubmission'> | number;
+  sizeBytes?:
+    Prisma.IntWithAggregatesFilter<'ToeicSpeakingSubmission'> | number;
+  submissionReference?:
+    Prisma.StringWithAggregatesFilter<'ToeicSpeakingSubmission'> | string;
+  submittedAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'ToeicSpeakingSubmission'>
+    | Date
+    | string;
+};
 
 export type ToeicSpeakingSubmissionCreateInput = {
-  id?: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-  session: Prisma.ToeicSpeakingSessionCreateNestedOneWithoutSubmissionsInput
-  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSubmissionsInput
-}
+  id?: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+  session: Prisma.ToeicSpeakingSessionCreateNestedOneWithoutSubmissionsInput;
+  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSubmissionsInput;
+  recording?: Prisma.ToeicSpeakingRecordingCreateNestedOneWithoutSubmissionInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedCreateInput = {
-  id?: string
-  sessionId: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+  recording?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedOneWithoutSubmissionInput;
+};
 
 export type ToeicSpeakingSubmissionUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  session?: Prisma.ToeicSpeakingSessionUpdateOneRequiredWithoutSubmissionsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSubmissionsNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  session?: Prisma.ToeicSpeakingSessionUpdateOneRequiredWithoutSubmissionsNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSubmissionsNestedInput;
+  recording?: Prisma.ToeicSpeakingRecordingUpdateOneWithoutSubmissionNestedInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  recording?: Prisma.ToeicSpeakingRecordingUncheckedUpdateOneWithoutSubmissionNestedInput;
+};
 
 export type ToeicSpeakingSubmissionCreateManyInput = {
-  id?: string
-  sessionId: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicSpeakingSubmissionUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicSpeakingSubmissionUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicSpeakingSubmissionListRelationFilter = {
-  every?: Prisma.ToeicSpeakingSubmissionWhereInput
-  some?: Prisma.ToeicSpeakingSubmissionWhereInput
-  none?: Prisma.ToeicSpeakingSubmissionWhereInput
-}
+  every?: Prisma.ToeicSpeakingSubmissionWhereInput;
+  some?: Prisma.ToeicSpeakingSubmissionWhereInput;
+  none?: Prisma.ToeicSpeakingSubmissionWhereInput;
+};
 
 export type ToeicSpeakingSubmissionOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
+  _count?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSubmissionUserIdIdempotencyKeyCompoundUniqueInput = {
-  userId: string
-  idempotencyKey: string
-}
+  userId: string;
+  idempotencyKey: string;
+};
 
 export type ToeicSpeakingSubmissionCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  durationSeconds?: Prisma.SortOrder
-  sizeBytes?: Prisma.SortOrder
-  submissionReference?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  contentType?: Prisma.SortOrder;
+  durationSeconds?: Prisma.SortOrder;
+  sizeBytes?: Prisma.SortOrder;
+  submissionReference?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSubmissionAvgOrderByAggregateInput = {
-  durationSeconds?: Prisma.SortOrder
-  sizeBytes?: Prisma.SortOrder
-}
+  durationSeconds?: Prisma.SortOrder;
+  sizeBytes?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSubmissionMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  durationSeconds?: Prisma.SortOrder
-  sizeBytes?: Prisma.SortOrder
-  submissionReference?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  contentType?: Prisma.SortOrder;
+  durationSeconds?: Prisma.SortOrder;
+  sizeBytes?: Prisma.SortOrder;
+  submissionReference?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSubmissionMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  durationSeconds?: Prisma.SortOrder
-  sizeBytes?: Prisma.SortOrder
-  submissionReference?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  contentType?: Prisma.SortOrder;
+  durationSeconds?: Prisma.SortOrder;
+  sizeBytes?: Prisma.SortOrder;
+  submissionReference?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+};
 
 export type ToeicSpeakingSubmissionSumOrderByAggregateInput = {
-  durationSeconds?: Prisma.SortOrder
-  sizeBytes?: Prisma.SortOrder
-}
+  durationSeconds?: Prisma.SortOrder;
+  sizeBytes?: Prisma.SortOrder;
+};
+
+export type ToeicSpeakingSubmissionScalarRelationFilter = {
+  is?: Prisma.ToeicSpeakingSubmissionWhereInput;
+  isNot?: Prisma.ToeicSpeakingSubmissionWhereInput;
+};
 
 export type ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+};
 
 export type ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+};
 
 export type ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope
-  set?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ToeicSpeakingSubmissionScalarWhereInput | Prisma.ToeicSpeakingSubmissionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput[];
+};
 
 export type ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope
-  set?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ToeicSpeakingSubmissionScalarWhereInput | Prisma.ToeicSpeakingSubmissionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.ToeicSpeakingSubmissionCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput
+    | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput[];
+};
 
 export type ToeicSpeakingSubmissionCreateNestedManyWithoutSessionInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput,
+        Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput
+      >
+    | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[]
+    | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[];
+  createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope;
+  connect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+};
 
-export type ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutSessionInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-}
+export type ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutSessionInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput,
+          Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput
+        >
+      | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[]
+      | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[];
+    connectOrCreate?:
+      | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput
+      | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[];
+    createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope;
+    connect?:
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  };
 
 export type ToeicSpeakingSubmissionUpdateManyWithoutSessionNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[]
-  upsert?: Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope
-  set?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput[]
-  updateMany?: Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput[]
-  deleteMany?: Prisma.ToeicSpeakingSubmissionScalarWhereInput | Prisma.ToeicSpeakingSubmissionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput,
+        Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput
+      >
+    | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[]
+    | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[];
+  connectOrCreate?:
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput
+    | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[];
+  upsert?:
+    | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput
+    | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput[];
+  createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope;
+  set?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+    | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput
+    | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput[];
+  updateMany?:
+    | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput
+    | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput[];
+  deleteMany?:
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput[];
+};
 
-export type ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[]
-  upsert?: Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput[]
-  createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope
-  set?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput[]
-  updateMany?: Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput[]
-  deleteMany?: Prisma.ToeicSpeakingSubmissionScalarWhereInput | Prisma.ToeicSpeakingSubmissionScalarWhereInput[]
-}
+export type ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionNestedInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput,
+          Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput
+        >
+      | Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput[]
+      | Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput[];
+    connectOrCreate?:
+      | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput
+      | Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput[];
+    upsert?:
+      | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput
+      | Prisma.ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput[];
+    createMany?: Prisma.ToeicSpeakingSubmissionCreateManySessionInputEnvelope;
+    set?:
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+    disconnect?:
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+    delete?:
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+    connect?:
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+      | Prisma.ToeicSpeakingSubmissionWhereUniqueInput[];
+    update?:
+      | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput
+      | Prisma.ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput[];
+    updateMany?:
+      | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput
+      | Prisma.ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput[];
+    deleteMany?:
+      | Prisma.ToeicSpeakingSubmissionScalarWhereInput
+      | Prisma.ToeicSpeakingSubmissionScalarWhereInput[];
+  };
+
+export type ToeicSpeakingSubmissionCreateNestedOneWithoutRecordingInput = {
+  create?: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateWithoutRecordingInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutRecordingInput
+  >;
+  connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutRecordingInput;
+  connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+};
+
+export type ToeicSpeakingSubmissionUpdateOneRequiredWithoutRecordingNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.ToeicSpeakingSubmissionCreateWithoutRecordingInput,
+      Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutRecordingInput
+    >;
+    connectOrCreate?: Prisma.ToeicSpeakingSubmissionCreateOrConnectWithoutRecordingInput;
+    upsert?: Prisma.ToeicSpeakingSubmissionUpsertWithoutRecordingInput;
+    connect?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.ToeicSpeakingSubmissionUpdateToOneWithWhereWithoutRecordingInput,
+        Prisma.ToeicSpeakingSubmissionUpdateWithoutRecordingInput
+      >,
+      Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutRecordingInput
+    >;
+  };
 
 export type ToeicSpeakingSubmissionCreateWithoutUserInput = {
-  id?: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-  session: Prisma.ToeicSpeakingSessionCreateNestedOneWithoutSubmissionsInput
-}
+  id?: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+  session: Prisma.ToeicSpeakingSessionCreateNestedOneWithoutSubmissionsInput;
+  recording?: Prisma.ToeicSpeakingRecordingCreateNestedOneWithoutSubmissionInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput = {
-  id?: string
-  sessionId: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+  recording?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedOneWithoutSubmissionInput;
+};
 
 export type ToeicSpeakingSubmissionCreateOrConnectWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSubmissionCreateManyUserInputEnvelope = {
-  data: Prisma.ToeicSpeakingSubmissionCreateManyUserInput | Prisma.ToeicSpeakingSubmissionCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicSpeakingSubmissionCreateManyUserInput
+    | Prisma.ToeicSpeakingSubmissionCreateManyUserInput[];
+  skipDuplicates?: boolean;
+};
 
 export type ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateWithoutUserInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutUserInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateWithoutUserInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateWithoutUserInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateWithoutUserInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSubmissionUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.ToeicSpeakingSubmissionScalarWhereInput
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserInput
+  >;
+};
 
 export type ToeicSpeakingSubmissionScalarWhereInput = {
-  AND?: Prisma.ToeicSpeakingSubmissionScalarWhereInput | Prisma.ToeicSpeakingSubmissionScalarWhereInput[]
-  OR?: Prisma.ToeicSpeakingSubmissionScalarWhereInput[]
-  NOT?: Prisma.ToeicSpeakingSubmissionScalarWhereInput | Prisma.ToeicSpeakingSubmissionScalarWhereInput[]
-  id?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  sessionId?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  userId?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  idempotencyKey?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  responseMode?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  durationSeconds?: Prisma.IntFilter<"ToeicSpeakingSubmission"> | number
-  sizeBytes?: Prisma.IntFilter<"ToeicSpeakingSubmission"> | number
-  submissionReference?: Prisma.StringFilter<"ToeicSpeakingSubmission"> | string
-  submittedAt?: Prisma.DateTimeFilter<"ToeicSpeakingSubmission"> | Date | string
-}
+  AND?:
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput[];
+  OR?: Prisma.ToeicSpeakingSubmissionScalarWhereInput[];
+  NOT?:
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput
+    | Prisma.ToeicSpeakingSubmissionScalarWhereInput[];
+  id?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  sessionId?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  userId?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  idempotencyKey?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  responseMode?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  contentType?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  durationSeconds?: Prisma.IntFilter<'ToeicSpeakingSubmission'> | number;
+  sizeBytes?: Prisma.IntFilter<'ToeicSpeakingSubmission'> | number;
+  submissionReference?: Prisma.StringFilter<'ToeicSpeakingSubmission'> | string;
+  submittedAt?:
+    Prisma.DateTimeFilter<'ToeicSpeakingSubmission'> | Date | string;
+};
 
 export type ToeicSpeakingSubmissionCreateWithoutSessionInput = {
-  id?: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSubmissionsInput
-}
+  id?: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSubmissionsInput;
+  recording?: Prisma.ToeicSpeakingRecordingCreateNestedOneWithoutSubmissionInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput = {
-  id?: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+  recording?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedOneWithoutSubmissionInput;
+};
 
 export type ToeicSpeakingSubmissionCreateOrConnectWithoutSessionInput = {
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput
+  >;
+};
 
 export type ToeicSpeakingSubmissionCreateManySessionInputEnvelope = {
-  data: Prisma.ToeicSpeakingSubmissionCreateManySessionInput | Prisma.ToeicSpeakingSubmissionCreateManySessionInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicSpeakingSubmissionCreateManySessionInput
+    | Prisma.ToeicSpeakingSubmissionCreateManySessionInput[];
+  skipDuplicates?: boolean;
+};
 
 export type ToeicSpeakingSubmissionUpsertWithWhereUniqueWithoutSessionInput = {
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutSessionInput>
-  create: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateWithoutSessionInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutSessionInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateWithoutSessionInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutSessionInput
+  >;
+};
 
 export type ToeicSpeakingSubmissionUpdateWithWhereUniqueWithoutSessionInput = {
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateWithoutSessionInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutSessionInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateWithoutSessionInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutSessionInput
+  >;
+};
 
 export type ToeicSpeakingSubmissionUpdateManyWithWhereWithoutSessionInput = {
-  where: Prisma.ToeicSpeakingSubmissionScalarWhereInput
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionInput>
-}
+  where: Prisma.ToeicSpeakingSubmissionScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionInput
+  >;
+};
+
+export type ToeicSpeakingSubmissionCreateWithoutRecordingInput = {
+  id?: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+  session: Prisma.ToeicSpeakingSessionCreateNestedOneWithoutSubmissionsInput;
+  user: Prisma.UserCreateNestedOneWithoutToeicSpeakingSubmissionsInput;
+};
+
+export type ToeicSpeakingSubmissionUncheckedCreateWithoutRecordingInput = {
+  id?: string;
+  sessionId: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+};
+
+export type ToeicSpeakingSubmissionCreateOrConnectWithoutRecordingInput = {
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateWithoutRecordingInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutRecordingInput
+  >;
+};
+
+export type ToeicSpeakingSubmissionUpsertWithoutRecordingInput = {
+  update: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateWithoutRecordingInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutRecordingInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateWithoutRecordingInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateWithoutRecordingInput
+  >;
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
+};
+
+export type ToeicSpeakingSubmissionUpdateToOneWithWhereWithoutRecordingInput = {
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateWithoutRecordingInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateWithoutRecordingInput
+  >;
+};
+
+export type ToeicSpeakingSubmissionUpdateWithoutRecordingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  session?: Prisma.ToeicSpeakingSessionUpdateOneRequiredWithoutSubmissionsNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSubmissionsNestedInput;
+};
+
+export type ToeicSpeakingSubmissionUncheckedUpdateWithoutRecordingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicSpeakingSubmissionCreateManyUserInput = {
-  id?: string
-  sessionId: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicSpeakingSubmissionUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  session?: Prisma.ToeicSpeakingSessionUpdateOneRequiredWithoutSubmissionsNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  session?: Prisma.ToeicSpeakingSessionUpdateOneRequiredWithoutSubmissionsNestedInput;
+  recording?: Prisma.ToeicSpeakingRecordingUpdateOneWithoutSubmissionNestedInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  recording?: Prisma.ToeicSpeakingRecordingUncheckedUpdateOneWithoutSubmissionNestedInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicSpeakingSubmissionCreateManySessionInput = {
-  id?: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  durationSeconds: number
-  sizeBytes: number
-  submissionReference: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  contentType?: string;
+  durationSeconds: number;
+  sizeBytes: number;
+  submissionReference: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicSpeakingSubmissionUpdateWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSubmissionsNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  user?: Prisma.UserUpdateOneRequiredWithoutToeicSpeakingSubmissionsNestedInput;
+  recording?: Prisma.ToeicSpeakingRecordingUpdateOneWithoutSubmissionNestedInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedUpdateWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  recording?: Prisma.ToeicSpeakingRecordingUncheckedUpdateOneWithoutSubmissionNestedInput;
+};
 
 export type ToeicSpeakingSubmissionUncheckedUpdateManyWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
-  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  contentType?: Prisma.StringFieldUpdateOperationsInput | string;
+  durationSeconds?: Prisma.IntFieldUpdateOperationsInput | number;
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number;
+  submissionReference?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
+export type ToeicSpeakingSubmissionSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    sessionId?: boolean;
+    userId?: boolean;
+    idempotencyKey?: boolean;
+    responseMode?: boolean;
+    contentType?: boolean;
+    durationSeconds?: boolean;
+    sizeBytes?: boolean;
+    submissionReference?: boolean;
+    submittedAt?: boolean;
+    session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    recording?: boolean | Prisma.ToeicSpeakingSubmission$recordingArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicSpeakingSubmission']
+>;
 
+export type ToeicSpeakingSubmissionSelectCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    sessionId?: boolean;
+    userId?: boolean;
+    idempotencyKey?: boolean;
+    responseMode?: boolean;
+    contentType?: boolean;
+    durationSeconds?: boolean;
+    sizeBytes?: boolean;
+    submissionReference?: boolean;
+    submittedAt?: boolean;
+    session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicSpeakingSubmission']
+>;
 
-export type ToeicSpeakingSubmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  durationSeconds?: boolean
-  sizeBytes?: boolean
-  submissionReference?: boolean
-  submittedAt?: boolean
-  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicSpeakingSubmission"]>
-
-export type ToeicSpeakingSubmissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  durationSeconds?: boolean
-  sizeBytes?: boolean
-  submissionReference?: boolean
-  submittedAt?: boolean
-  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicSpeakingSubmission"]>
-
-export type ToeicSpeakingSubmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  durationSeconds?: boolean
-  sizeBytes?: boolean
-  submissionReference?: boolean
-  submittedAt?: boolean
-  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicSpeakingSubmission"]>
+export type ToeicSpeakingSubmissionSelectUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    sessionId?: boolean;
+    userId?: boolean;
+    idempotencyKey?: boolean;
+    responseMode?: boolean;
+    contentType?: boolean;
+    durationSeconds?: boolean;
+    sizeBytes?: boolean;
+    submissionReference?: boolean;
+    submittedAt?: boolean;
+    session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicSpeakingSubmission']
+>;
 
 export type ToeicSpeakingSubmissionSelectScalar = {
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  durationSeconds?: boolean
-  sizeBytes?: boolean
-  submissionReference?: boolean
-  submittedAt?: boolean
-}
+  id?: boolean;
+  sessionId?: boolean;
+  userId?: boolean;
+  idempotencyKey?: boolean;
+  responseMode?: boolean;
+  contentType?: boolean;
+  durationSeconds?: boolean;
+  sizeBytes?: boolean;
+  submissionReference?: boolean;
+  submittedAt?: boolean;
+};
 
-export type ToeicSpeakingSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sessionId" | "userId" | "idempotencyKey" | "responseMode" | "durationSeconds" | "sizeBytes" | "submissionReference" | "submittedAt", ExtArgs["result"]["toeicSpeakingSubmission"]>
-export type ToeicSpeakingSubmissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type ToeicSpeakingSubmissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type ToeicSpeakingSubmissionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
+export type ToeicSpeakingSubmissionOmit<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetOmit<
+  | 'id'
+  | 'sessionId'
+  | 'userId'
+  | 'idempotencyKey'
+  | 'responseMode'
+  | 'contentType'
+  | 'durationSeconds'
+  | 'sizeBytes'
+  | 'submissionReference'
+  | 'submittedAt',
+  ExtArgs['result']['toeicSpeakingSubmission']
+>;
+export type ToeicSpeakingSubmissionInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  recording?: boolean | Prisma.ToeicSpeakingSubmission$recordingArgs<ExtArgs>;
+};
+export type ToeicSpeakingSubmissionIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type ToeicSpeakingSubmissionIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  session?: boolean | Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
 
-export type $ToeicSpeakingSubmissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "ToeicSpeakingSubmission"
+export type $ToeicSpeakingSubmissionPayload<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  name: 'ToeicSpeakingSubmission';
   objects: {
-    session: Prisma.$ToeicSpeakingSessionPayload<ExtArgs>
-    user: Prisma.$UserPayload<ExtArgs>
-  }
-  scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    sessionId: string
-    userId: string
-    idempotencyKey: string
-    responseMode: string
-    durationSeconds: number
-    sizeBytes: number
-    submissionReference: string
-    submittedAt: Date
-  }, ExtArgs["result"]["toeicSpeakingSubmission"]>
-  composites: {}
-}
+    session: Prisma.$ToeicSpeakingSessionPayload<ExtArgs>;
+    user: Prisma.$UserPayload<ExtArgs>;
+    recording: Prisma.$ToeicSpeakingRecordingPayload<ExtArgs> | null;
+  };
+  scalars: runtime.Types.Extensions.GetPayloadResult<
+    {
+      id: string;
+      sessionId: string;
+      userId: string;
+      idempotencyKey: string;
+      responseMode: string;
+      contentType: string;
+      durationSeconds: number;
+      sizeBytes: number;
+      submissionReference: string;
+      submittedAt: Date;
+    },
+    ExtArgs['result']['toeicSpeakingSubmission']
+  >;
+  composites: {};
+};
 
-export type ToeicSpeakingSubmissionGetPayload<S extends boolean | null | undefined | ToeicSpeakingSubmissionDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload, S>
+export type ToeicSpeakingSubmissionGetPayload<
+  S extends boolean | null | undefined | ToeicSpeakingSubmissionDefaultArgs,
+> = runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload, S>;
 
-export type ToeicSpeakingSubmissionCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<ToeicSpeakingSubmissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-    select?: ToeicSpeakingSubmissionCountAggregateInputType | true
-  }
+export type ToeicSpeakingSubmissionCountArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = Omit<
+  ToeicSpeakingSubmissionFindManyArgs,
+  'select' | 'include' | 'distinct' | 'omit'
+> & {
+  select?: ToeicSpeakingSubmissionCountAggregateInputType | true;
+};
 
-export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ToeicSpeakingSubmission'], meta: { name: 'ToeicSpeakingSubmission' } }
+export interface ToeicSpeakingSubmissionDelegate<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> {
+  [K: symbol]: {
+    types: Prisma.TypeMap<ExtArgs>['model']['ToeicSpeakingSubmission'];
+    meta: { name: 'ToeicSpeakingSubmission' };
+  };
   /**
    * Find zero or one ToeicSpeakingSubmission that matches the filter.
    * @param {ToeicSpeakingSubmissionFindUniqueArgs} args - Arguments to find a ToeicSpeakingSubmission
@@ -855,7 +1322,22 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *   }
    * })
    */
-  findUnique<T extends ToeicSpeakingSubmissionFindUniqueArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionFindUniqueArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends ToeicSpeakingSubmissionFindUniqueArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionFindUniqueArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'findUnique',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find one ToeicSpeakingSubmission that matches the filter or throw an error with `error.code='P2025'`
@@ -869,7 +1351,22 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *   }
    * })
    */
-  findUniqueOrThrow<T extends ToeicSpeakingSubmissionFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends ToeicSpeakingSubmissionFindUniqueOrThrowArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionFindUniqueOrThrowArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first ToeicSpeakingSubmission that matches the filter.
@@ -884,7 +1381,22 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *   }
    * })
    */
-  findFirst<T extends ToeicSpeakingSubmissionFindFirstArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSubmissionFindFirstArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends ToeicSpeakingSubmissionFindFirstArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionFindFirstArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'findFirst',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first ToeicSpeakingSubmission that matches the filter or
@@ -900,7 +1412,22 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *   }
    * })
    */
-  findFirstOrThrow<T extends ToeicSpeakingSubmissionFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSubmissionFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends ToeicSpeakingSubmissionFindFirstOrThrowArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionFindFirstOrThrowArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'findFirstOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find zero or more ToeicSpeakingSubmissions that matches the filter.
@@ -918,7 +1445,16 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * const toeicSpeakingSubmissionWithIdOnly = await prisma.toeicSpeakingSubmission.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends ToeicSpeakingSubmissionFindManyArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSubmissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends ToeicSpeakingSubmissionFindManyArgs>(
+    args?: Prisma.SelectSubset<T, ToeicSpeakingSubmissionFindManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'findMany',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create a ToeicSpeakingSubmission.
@@ -932,7 +1468,19 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * })
    *
    */
-  create<T extends ToeicSpeakingSubmissionCreateArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionCreateArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends ToeicSpeakingSubmissionCreateArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionCreateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'create',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Create many ToeicSpeakingSubmissions.
@@ -946,7 +1494,12 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * })
    *
    */
-  createMany<T extends ToeicSpeakingSubmissionCreateManyArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSubmissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends ToeicSpeakingSubmissionCreateManyArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionCreateManyArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Create many ToeicSpeakingSubmissions and returns the data saved in the database.
@@ -970,7 +1523,19 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends ToeicSpeakingSubmissionCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSubmissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends ToeicSpeakingSubmissionCreateManyAndReturnArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionCreateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'createManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Delete a ToeicSpeakingSubmission.
@@ -984,7 +1549,19 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * })
    *
    */
-  delete<T extends ToeicSpeakingSubmissionDeleteArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionDeleteArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends ToeicSpeakingSubmissionDeleteArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionDeleteArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'delete',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Update one ToeicSpeakingSubmission.
@@ -1001,7 +1578,19 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * })
    *
    */
-  update<T extends ToeicSpeakingSubmissionUpdateArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionUpdateArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends ToeicSpeakingSubmissionUpdateArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionUpdateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'update',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Delete zero or more ToeicSpeakingSubmissions.
@@ -1015,7 +1604,12 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * })
    *
    */
-  deleteMany<T extends ToeicSpeakingSubmissionDeleteManyArgs>(args?: Prisma.SelectSubset<T, ToeicSpeakingSubmissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends ToeicSpeakingSubmissionDeleteManyArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionDeleteManyArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more ToeicSpeakingSubmissions.
@@ -1034,7 +1628,12 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * })
    *
    */
-  updateMany<T extends ToeicSpeakingSubmissionUpdateManyArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends ToeicSpeakingSubmissionUpdateManyArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionUpdateManyArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more ToeicSpeakingSubmissions and returns the data updated in the database.
@@ -1064,7 +1663,19 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends ToeicSpeakingSubmissionUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends ToeicSpeakingSubmissionUpdateManyAndReturnArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicSpeakingSubmissionUpdateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'updateManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create or update one ToeicSpeakingSubmission.
@@ -1083,8 +1694,19 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *   }
    * })
    */
-  upsert<T extends ToeicSpeakingSubmissionUpsertArgs>(args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionUpsertArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+  upsert<T extends ToeicSpeakingSubmissionUpsertArgs>(
+    args: Prisma.SelectSubset<T, ToeicSpeakingSubmissionUpsertArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+      T,
+      'upsert',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Count the number of ToeicSpeakingSubmissions.
@@ -1098,16 +1720,19 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *     // ... the filter for the ToeicSpeakingSubmissions we want to count
    *   }
    * })
-  **/
+   **/
   count<T extends ToeicSpeakingSubmissionCountArgs>(
     args?: Prisma.Subset<T, ToeicSpeakingSubmissionCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<T['select'], ToeicSpeakingSubmissionCountAggregateOutputType>
+        : Prisma.GetScalarType<
+            T['select'],
+            ToeicSpeakingSubmissionCountAggregateOutputType
+          >
       : number
-  >
+  >;
 
   /**
    * Allows you to perform aggregations operations on a ToeicSpeakingSubmission.
@@ -1132,8 +1757,10 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *   },
    *   take: 10,
    * })
-  **/
-  aggregate<T extends ToeicSpeakingSubmissionAggregateArgs>(args: Prisma.Subset<T, ToeicSpeakingSubmissionAggregateArgs>): Prisma.PrismaPromise<GetToeicSpeakingSubmissionAggregateType<T>>
+   **/
+  aggregate<T extends ToeicSpeakingSubmissionAggregateArgs>(
+    args: Prisma.Subset<T, ToeicSpeakingSubmissionAggregateArgs>,
+  ): Prisma.PrismaPromise<GetToeicSpeakingSubmissionAggregateType<T>>;
 
   /**
    * Group by ToeicSpeakingSubmission.
@@ -1152,69 +1779,80 @@ export interface ToeicSpeakingSubmissionDelegate<ExtArgs extends runtime.Types.E
    *   },
    * })
    *
-  **/
+   **/
   groupBy<
     T extends ToeicSpeakingSubmissionGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
-    OrderByArg extends Prisma.True extends HasSelectOrTake
+    OrderByArg extends (Prisma.True extends HasSelectOrTake
       ? { orderBy: ToeicSpeakingSubmissionGroupByArgs['orderBy'] }
-      : { orderBy?: ToeicSpeakingSubmissionGroupByArgs['orderBy'] },
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
+      : { orderBy?: ToeicSpeakingSubmissionGroupByArgs['orderBy'] }),
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<
+      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
+    >,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
-    InputErrors extends ByEmpty extends Prisma.True
-    ? `Error: "by" must not be empty.`
-    : HavingValid extends Prisma.False
-    ? {
-        [P in HavingFields]: P extends ByFields
-          ? never
-          : P extends string
-          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-          : [
-              Error,
-              'Field ',
-              P,
-              ` in "having" needs to be provided in "by"`,
-            ]
-      }[HavingFields]
-    : 'take' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
+    ByEmpty extends (T['by'] extends never[] ? Prisma.True : Prisma.False),
+    InputErrors extends (ByEmpty extends Prisma.True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends Prisma.False
+        ? {
+            [P in HavingFields]: P extends ByFields
               ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "take", you also need to provide "orderBy"'
-    : 'skip' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "skip", you also need to provide "orderBy"'
-    : ByValid extends Prisma.True
-    ? {}
-    : {
-        [P in OrderFields]: P extends ByFields
-          ? never
-          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-      }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, ToeicSpeakingSubmissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetToeicSpeakingSubmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-/**
- * Fields of the ToeicSpeakingSubmission model
- */
-readonly fields: ToeicSpeakingSubmissionFieldRefs;
+              : P extends string
+                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                : [
+                    Error,
+                    'Field ',
+                    P,
+                    ` in "having" needs to be provided in "by"`,
+                  ];
+          }[HavingFields]
+        : 'take' extends Prisma.Keys<T>
+          ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]
+            : 'Error: If you provide "take", you also need to provide "orderBy"'
+          : 'skip' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+              ? ByValid extends Prisma.True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "skip", you also need to provide "orderBy"'
+            : ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]),
+  >(
+    args: Prisma.SubsetIntersection<
+      T,
+      ToeicSpeakingSubmissionGroupByArgs,
+      OrderByArg
+    > &
+      InputErrors,
+  ): {} extends InputErrors
+    ? GetToeicSpeakingSubmissionGroupByPayload<T>
+    : Prisma.PrismaPromise<InputErrors>;
+  /**
+   * Fields of the ToeicSpeakingSubmission model
+   */
+  readonly fields: ToeicSpeakingSubmissionFieldRefs;
 }
 
 /**
@@ -1223,462 +1861,623 @@ readonly fields: ToeicSpeakingSubmissionFieldRefs;
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__ToeicSpeakingSubmissionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-  readonly [Symbol.toStringTag]: "PrismaPromise"
-  session<T extends Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__ToeicSpeakingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+export interface Prisma__ToeicSpeakingSubmissionClient<
+  T,
+  Null = never,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> extends Prisma.PrismaPromise<T> {
+  readonly [Symbol.toStringTag]: 'PrismaPromise';
+  session<T extends Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.ToeicSpeakingSessionDefaultArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicSpeakingSessionClient<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >
+    | Null,
+    Null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    | runtime.Types.Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >
+    | Null,
+    Null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  recording<
+    T extends Prisma.ToeicSpeakingSubmission$recordingArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.ToeicSpeakingSubmission$recordingArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicSpeakingRecordingClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicSpeakingRecordingPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of which ever callback is executed.
    */
-  then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?:
+      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+    onrejected?:
+      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
   /**
    * Attaches a callback for only the rejection of the Promise.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of the callback.
    */
-  catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>
+  catch<TResult = never>(
+    onrejected?:
+      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T | TResult>;
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
    * resolved value cannot be modified from the callback.
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
+  finally(
+    onfinally?: (() => void) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T>;
 }
-
-
-
 
 /**
  * Fields of the ToeicSpeakingSubmission model
  */
 export interface ToeicSpeakingSubmissionFieldRefs {
-  readonly id: Prisma.FieldRef<"ToeicSpeakingSubmission", 'String'>
-  readonly sessionId: Prisma.FieldRef<"ToeicSpeakingSubmission", 'String'>
-  readonly userId: Prisma.FieldRef<"ToeicSpeakingSubmission", 'String'>
-  readonly idempotencyKey: Prisma.FieldRef<"ToeicSpeakingSubmission", 'String'>
-  readonly responseMode: Prisma.FieldRef<"ToeicSpeakingSubmission", 'String'>
-  readonly durationSeconds: Prisma.FieldRef<"ToeicSpeakingSubmission", 'Int'>
-  readonly sizeBytes: Prisma.FieldRef<"ToeicSpeakingSubmission", 'Int'>
-  readonly submissionReference: Prisma.FieldRef<"ToeicSpeakingSubmission", 'String'>
-  readonly submittedAt: Prisma.FieldRef<"ToeicSpeakingSubmission", 'DateTime'>
+  readonly id: Prisma.FieldRef<'ToeicSpeakingSubmission', 'String'>;
+  readonly sessionId: Prisma.FieldRef<'ToeicSpeakingSubmission', 'String'>;
+  readonly userId: Prisma.FieldRef<'ToeicSpeakingSubmission', 'String'>;
+  readonly idempotencyKey: Prisma.FieldRef<'ToeicSpeakingSubmission', 'String'>;
+  readonly responseMode: Prisma.FieldRef<'ToeicSpeakingSubmission', 'String'>;
+  readonly contentType: Prisma.FieldRef<'ToeicSpeakingSubmission', 'String'>;
+  readonly durationSeconds: Prisma.FieldRef<'ToeicSpeakingSubmission', 'Int'>;
+  readonly sizeBytes: Prisma.FieldRef<'ToeicSpeakingSubmission', 'Int'>;
+  readonly submissionReference: Prisma.FieldRef<
+    'ToeicSpeakingSubmission',
+    'String'
+  >;
+  readonly submittedAt: Prisma.FieldRef<'ToeicSpeakingSubmission', 'DateTime'>;
 }
-
 
 // Custom InputTypes
 /**
  * ToeicSpeakingSubmission findUnique
  */
-export type ToeicSpeakingSubmissionFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionFindUniqueArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSubmission to fetch.
    */
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSubmission findUniqueOrThrow
  */
-export type ToeicSpeakingSubmissionFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionFindUniqueOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSubmission to fetch.
    */
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSubmission findFirst
  */
-export type ToeicSpeakingSubmissionFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionFindFirstArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSubmission to fetch.
    */
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for ToeicSpeakingSubmissions.
    */
-  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicSpeakingSubmissions.
    */
-  distinct?: Prisma.ToeicSpeakingSubmissionScalarFieldEnum | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[];
+};
 
 /**
  * ToeicSpeakingSubmission findFirstOrThrow
  */
-export type ToeicSpeakingSubmissionFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionFindFirstOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSubmission to fetch.
    */
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for ToeicSpeakingSubmissions.
    */
-  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicSpeakingSubmissions.
    */
-  distinct?: Prisma.ToeicSpeakingSubmissionScalarFieldEnum | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[];
+};
 
 /**
  * ToeicSpeakingSubmission findMany
  */
-export type ToeicSpeakingSubmissionFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionFindManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicSpeakingSubmissions to fetch.
    */
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicSpeakingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing ToeicSpeakingSubmissions.
    */
-  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicSpeakingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicSpeakingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicSpeakingSubmissions.
    */
-  distinct?: Prisma.ToeicSpeakingSubmissionScalarFieldEnum | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[];
+};
 
 /**
  * ToeicSpeakingSubmission create
  */
-export type ToeicSpeakingSubmissionCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionCreateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * The data needed to create a ToeicSpeakingSubmission.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateInput>
-}
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateInput
+  >;
+};
 
 /**
  * ToeicSpeakingSubmission createMany
  */
-export type ToeicSpeakingSubmissionCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionCreateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to create many ToeicSpeakingSubmissions.
    */
-  data: Prisma.ToeicSpeakingSubmissionCreateManyInput | Prisma.ToeicSpeakingSubmissionCreateManyInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicSpeakingSubmissionCreateManyInput
+    | Prisma.ToeicSpeakingSubmissionCreateManyInput[];
+  skipDuplicates?: boolean;
+};
 
 /**
  * ToeicSpeakingSubmission createManyAndReturn
  */
-export type ToeicSpeakingSubmissionCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionCreateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelectCreateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * The data used to create many ToeicSpeakingSubmissions.
    */
-  data: Prisma.ToeicSpeakingSubmissionCreateManyInput | Prisma.ToeicSpeakingSubmissionCreateManyInput[]
-  skipDuplicates?: boolean
+  data:
+    | Prisma.ToeicSpeakingSubmissionCreateManyInput
+    | Prisma.ToeicSpeakingSubmissionCreateManyInput[];
+  skipDuplicates?: boolean;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionIncludeCreateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.ToeicSpeakingSubmissionIncludeCreateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * ToeicSpeakingSubmission update
  */
-export type ToeicSpeakingSubmissionUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionUpdateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * The data needed to update a ToeicSpeakingSubmission.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateInput>
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateInput
+  >;
   /**
    * Choose, which ToeicSpeakingSubmission to update.
    */
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSubmission updateMany
  */
-export type ToeicSpeakingSubmissionUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionUpdateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to update ToeicSpeakingSubmissions.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyInput
+  >;
   /**
    * Filter which ToeicSpeakingSubmissions to update
    */
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
   /**
    * Limit how many ToeicSpeakingSubmissions to update.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * ToeicSpeakingSubmission updateManyAndReturn
  */
-export type ToeicSpeakingSubmissionUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionUpdateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelectUpdateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * The data used to update ToeicSpeakingSubmissions.
    */
-  data: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyInput
+  >;
   /**
    * Filter which ToeicSpeakingSubmissions to update
    */
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
   /**
    * Limit how many ToeicSpeakingSubmissions to update.
    */
-  limit?: number
+  limit?: number;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionIncludeUpdateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.ToeicSpeakingSubmissionIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * ToeicSpeakingSubmission upsert
  */
-export type ToeicSpeakingSubmissionUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionUpsertArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * The filter to search for the ToeicSpeakingSubmission to update in case it exists.
    */
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
   /**
    * In case the ToeicSpeakingSubmission found by the `where` argument doesn't exist, create a new ToeicSpeakingSubmission with this data.
    */
-  create: Prisma.XOR<Prisma.ToeicSpeakingSubmissionCreateInput, Prisma.ToeicSpeakingSubmissionUncheckedCreateInput>
+  create: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionCreateInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedCreateInput
+  >;
   /**
    * In case the ToeicSpeakingSubmission was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.ToeicSpeakingSubmissionUpdateInput, Prisma.ToeicSpeakingSubmissionUncheckedUpdateInput>
-}
+  update: Prisma.XOR<
+    Prisma.ToeicSpeakingSubmissionUpdateInput,
+    Prisma.ToeicSpeakingSubmissionUncheckedUpdateInput
+  >;
+};
 
 /**
  * ToeicSpeakingSubmission delete
  */
-export type ToeicSpeakingSubmissionDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionDeleteArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter which ToeicSpeakingSubmission to delete.
    */
-  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicSpeakingSubmission deleteMany
  */
-export type ToeicSpeakingSubmissionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionDeleteManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which ToeicSpeakingSubmissions to delete
    */
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
   /**
    * Limit how many ToeicSpeakingSubmissions to delete.
    */
-  limit?: number
-}
+  limit?: number;
+};
+
+/**
+ * ToeicSpeakingSubmission.recording
+ */
+export type ToeicSpeakingSubmission$recordingArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ToeicSpeakingRecording
+   */
+  select?: Prisma.ToeicSpeakingRecordingSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ToeicSpeakingRecording
+   */
+  omit?: Prisma.ToeicSpeakingRecordingOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ToeicSpeakingRecordingInclude<ExtArgs> | null;
+  where?: Prisma.ToeicSpeakingRecordingWhereInput;
+};
 
 /**
  * ToeicSpeakingSubmission without action
  */
-export type ToeicSpeakingSubmissionDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicSpeakingSubmissionDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
-}
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
+};

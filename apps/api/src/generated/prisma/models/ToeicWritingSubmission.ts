@@ -7,843 +7,1127 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as runtime from '@prisma/client/runtime/client';
+import type * as $Enums from '../enums.js';
+import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model ToeicWritingSubmission
  *
  */
-export type ToeicWritingSubmissionModel = runtime.Types.Result.DefaultSelection<Prisma.$ToeicWritingSubmissionPayload>
+export type ToeicWritingSubmissionModel =
+  runtime.Types.Result.DefaultSelection<Prisma.$ToeicWritingSubmissionPayload>;
 
 export type AggregateToeicWritingSubmission = {
-  _count: ToeicWritingSubmissionCountAggregateOutputType | null
-  _avg: ToeicWritingSubmissionAvgAggregateOutputType | null
-  _sum: ToeicWritingSubmissionSumAggregateOutputType | null
-  _min: ToeicWritingSubmissionMinAggregateOutputType | null
-  _max: ToeicWritingSubmissionMaxAggregateOutputType | null
-}
+  _count: ToeicWritingSubmissionCountAggregateOutputType | null;
+  _avg: ToeicWritingSubmissionAvgAggregateOutputType | null;
+  _sum: ToeicWritingSubmissionSumAggregateOutputType | null;
+  _min: ToeicWritingSubmissionMinAggregateOutputType | null;
+  _max: ToeicWritingSubmissionMaxAggregateOutputType | null;
+};
 
 export type ToeicWritingSubmissionAvgAggregateOutputType = {
-  wordCount: number | null
-  characterCount: number | null
-}
+  wordCount: number | null;
+  characterCount: number | null;
+};
 
 export type ToeicWritingSubmissionSumAggregateOutputType = {
-  wordCount: number | null
-  characterCount: number | null
-}
+  wordCount: number | null;
+  characterCount: number | null;
+};
 
 export type ToeicWritingSubmissionMinAggregateOutputType = {
-  id: string | null
-  sessionId: string | null
-  userId: string | null
-  idempotencyKey: string | null
-  responseMode: string | null
-  wordCount: number | null
-  characterCount: number | null
-  submittedText: string | null
-  submittedAt: Date | null
-}
+  id: string | null;
+  sessionId: string | null;
+  userId: string | null;
+  idempotencyKey: string | null;
+  responseMode: string | null;
+  wordCount: number | null;
+  characterCount: number | null;
+  submittedText: string | null;
+  submittedAt: Date | null;
+};
 
 export type ToeicWritingSubmissionMaxAggregateOutputType = {
-  id: string | null
-  sessionId: string | null
-  userId: string | null
-  idempotencyKey: string | null
-  responseMode: string | null
-  wordCount: number | null
-  characterCount: number | null
-  submittedText: string | null
-  submittedAt: Date | null
-}
+  id: string | null;
+  sessionId: string | null;
+  userId: string | null;
+  idempotencyKey: string | null;
+  responseMode: string | null;
+  wordCount: number | null;
+  characterCount: number | null;
+  submittedText: string | null;
+  submittedAt: Date | null;
+};
 
 export type ToeicWritingSubmissionCountAggregateOutputType = {
-  id: number
-  sessionId: number
-  userId: number
-  idempotencyKey: number
-  responseMode: number
-  wordCount: number
-  characterCount: number
-  submittedText: number
-  submittedAt: number
-  _all: number
-}
-
+  id: number;
+  sessionId: number;
+  userId: number;
+  idempotencyKey: number;
+  responseMode: number;
+  wordCount: number;
+  characterCount: number;
+  submittedText: number;
+  submittedAt: number;
+  _all: number;
+};
 
 export type ToeicWritingSubmissionAvgAggregateInputType = {
-  wordCount?: true
-  characterCount?: true
-}
+  wordCount?: true;
+  characterCount?: true;
+};
 
 export type ToeicWritingSubmissionSumAggregateInputType = {
-  wordCount?: true
-  characterCount?: true
-}
+  wordCount?: true;
+  characterCount?: true;
+};
 
 export type ToeicWritingSubmissionMinAggregateInputType = {
-  id?: true
-  sessionId?: true
-  userId?: true
-  idempotencyKey?: true
-  responseMode?: true
-  wordCount?: true
-  characterCount?: true
-  submittedText?: true
-  submittedAt?: true
-}
+  id?: true;
+  sessionId?: true;
+  userId?: true;
+  idempotencyKey?: true;
+  responseMode?: true;
+  wordCount?: true;
+  characterCount?: true;
+  submittedText?: true;
+  submittedAt?: true;
+};
 
 export type ToeicWritingSubmissionMaxAggregateInputType = {
-  id?: true
-  sessionId?: true
-  userId?: true
-  idempotencyKey?: true
-  responseMode?: true
-  wordCount?: true
-  characterCount?: true
-  submittedText?: true
-  submittedAt?: true
-}
+  id?: true;
+  sessionId?: true;
+  userId?: true;
+  idempotencyKey?: true;
+  responseMode?: true;
+  wordCount?: true;
+  characterCount?: true;
+  submittedText?: true;
+  submittedAt?: true;
+};
 
 export type ToeicWritingSubmissionCountAggregateInputType = {
-  id?: true
-  sessionId?: true
-  userId?: true
-  idempotencyKey?: true
-  responseMode?: true
-  wordCount?: true
-  characterCount?: true
-  submittedText?: true
-  submittedAt?: true
-  _all?: true
-}
+  id?: true;
+  sessionId?: true;
+  userId?: true;
+  idempotencyKey?: true;
+  responseMode?: true;
+  wordCount?: true;
+  characterCount?: true;
+  submittedText?: true;
+  submittedAt?: true;
+  _all?: true;
+};
 
-export type ToeicWritingSubmissionAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionAggregateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which ToeicWritingSubmission to aggregate.
    */
-  where?: Prisma.ToeicWritingSubmissionWhereInput
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicWritingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicWritingSubmissionOrderByWithRelationInput | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicWritingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicWritingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Count returned ToeicWritingSubmissions
-  **/
-  _count?: true | ToeicWritingSubmissionCountAggregateInputType
+   **/
+  _count?: true | ToeicWritingSubmissionCountAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to average
-  **/
-  _avg?: ToeicWritingSubmissionAvgAggregateInputType
+   **/
+  _avg?: ToeicWritingSubmissionAvgAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to sum
-  **/
-  _sum?: ToeicWritingSubmissionSumAggregateInputType
+   **/
+  _sum?: ToeicWritingSubmissionSumAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
-  **/
-  _min?: ToeicWritingSubmissionMinAggregateInputType
+   **/
+  _min?: ToeicWritingSubmissionMinAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
-  **/
-  _max?: ToeicWritingSubmissionMaxAggregateInputType
-}
+   **/
+  _max?: ToeicWritingSubmissionMaxAggregateInputType;
+};
 
-export type GetToeicWritingSubmissionAggregateType<T extends ToeicWritingSubmissionAggregateArgs> = {
-      [P in keyof T & keyof AggregateToeicWritingSubmission]: P extends '_count' | 'count'
+export type GetToeicWritingSubmissionAggregateType<
+  T extends ToeicWritingSubmissionAggregateArgs,
+> = {
+  [P in keyof T & keyof AggregateToeicWritingSubmission]: P extends
+    '_count' | 'count'
     ? T[P] extends true
       ? number
       : Prisma.GetScalarType<T[P], AggregateToeicWritingSubmission[P]>
-    : Prisma.GetScalarType<T[P], AggregateToeicWritingSubmission[P]>
-}
+    : Prisma.GetScalarType<T[P], AggregateToeicWritingSubmission[P]>;
+};
 
-
-
-
-export type ToeicWritingSubmissionGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicWritingSubmissionWhereInput
-  orderBy?: Prisma.ToeicWritingSubmissionOrderByWithAggregationInput | Prisma.ToeicWritingSubmissionOrderByWithAggregationInput[]
-  by: Prisma.ToeicWritingSubmissionScalarFieldEnum[] | Prisma.ToeicWritingSubmissionScalarFieldEnum
-  having?: Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput
-  take?: number
-  skip?: number
-  _count?: ToeicWritingSubmissionCountAggregateInputType | true
-  _avg?: ToeicWritingSubmissionAvgAggregateInputType
-  _sum?: ToeicWritingSubmissionSumAggregateInputType
-  _min?: ToeicWritingSubmissionMinAggregateInputType
-  _max?: ToeicWritingSubmissionMaxAggregateInputType
-}
+export type ToeicWritingSubmissionGroupByArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
+  orderBy?:
+    | Prisma.ToeicWritingSubmissionOrderByWithAggregationInput
+    | Prisma.ToeicWritingSubmissionOrderByWithAggregationInput[];
+  by:
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum[]
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum;
+  having?: Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput;
+  take?: number;
+  skip?: number;
+  _count?: ToeicWritingSubmissionCountAggregateInputType | true;
+  _avg?: ToeicWritingSubmissionAvgAggregateInputType;
+  _sum?: ToeicWritingSubmissionSumAggregateInputType;
+  _min?: ToeicWritingSubmissionMinAggregateInputType;
+  _max?: ToeicWritingSubmissionMaxAggregateInputType;
+};
 
 export type ToeicWritingSubmissionGroupByOutputType = {
-  id: string
-  sessionId: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt: Date
-  _count: ToeicWritingSubmissionCountAggregateOutputType | null
-  _avg: ToeicWritingSubmissionAvgAggregateOutputType | null
-  _sum: ToeicWritingSubmissionSumAggregateOutputType | null
-  _min: ToeicWritingSubmissionMinAggregateOutputType | null
-  _max: ToeicWritingSubmissionMaxAggregateOutputType | null
-}
+  id: string;
+  sessionId: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt: Date;
+  _count: ToeicWritingSubmissionCountAggregateOutputType | null;
+  _avg: ToeicWritingSubmissionAvgAggregateOutputType | null;
+  _sum: ToeicWritingSubmissionSumAggregateOutputType | null;
+  _min: ToeicWritingSubmissionMinAggregateOutputType | null;
+  _max: ToeicWritingSubmissionMaxAggregateOutputType | null;
+};
 
-export type GetToeicWritingSubmissionGroupByPayload<T extends ToeicWritingSubmissionGroupByArgs> = Prisma.PrismaPromise<
+export type GetToeicWritingSubmissionGroupByPayload<
+  T extends ToeicWritingSubmissionGroupByArgs,
+> = Prisma.PrismaPromise<
   Array<
-    Prisma.PickEnumerable<ToeicWritingSubmissionGroupByOutputType, T['by']> &
-      {
-        [P in ((keyof T) & (keyof ToeicWritingSubmissionGroupByOutputType))]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
-            : Prisma.GetScalarType<T[P], ToeicWritingSubmissionGroupByOutputType[P]>
-          : Prisma.GetScalarType<T[P], ToeicWritingSubmissionGroupByOutputType[P]>
-      }
-    >
+    Prisma.PickEnumerable<ToeicWritingSubmissionGroupByOutputType, T['by']> & {
+      [
+        P in keyof T & keyof ToeicWritingSubmissionGroupByOutputType
+      ]: P extends '_count'
+        ? T[P] extends boolean
+          ? number
+          : Prisma.GetScalarType<
+              T[P],
+              ToeicWritingSubmissionGroupByOutputType[P]
+            >
+        : Prisma.GetScalarType<
+            T[P],
+            ToeicWritingSubmissionGroupByOutputType[P]
+          >;
+    }
   >
-
-
+>;
 
 export type ToeicWritingSubmissionWhereInput = {
-  AND?: Prisma.ToeicWritingSubmissionWhereInput | Prisma.ToeicWritingSubmissionWhereInput[]
-  OR?: Prisma.ToeicWritingSubmissionWhereInput[]
-  NOT?: Prisma.ToeicWritingSubmissionWhereInput | Prisma.ToeicWritingSubmissionWhereInput[]
-  id?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  sessionId?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  userId?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  idempotencyKey?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  responseMode?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  wordCount?: Prisma.IntFilter<"ToeicWritingSubmission"> | number
-  characterCount?: Prisma.IntFilter<"ToeicWritingSubmission"> | number
-  submittedText?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  submittedAt?: Prisma.DateTimeFilter<"ToeicWritingSubmission"> | Date | string
-  session?: Prisma.XOR<Prisma.ToeicWritingSessionScalarRelationFilter, Prisma.ToeicWritingSessionWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}
+  AND?:
+    | Prisma.ToeicWritingSubmissionWhereInput
+    | Prisma.ToeicWritingSubmissionWhereInput[];
+  OR?: Prisma.ToeicWritingSubmissionWhereInput[];
+  NOT?:
+    | Prisma.ToeicWritingSubmissionWhereInput
+    | Prisma.ToeicWritingSubmissionWhereInput[];
+  id?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  sessionId?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  userId?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  idempotencyKey?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  responseMode?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  wordCount?: Prisma.IntFilter<'ToeicWritingSubmission'> | number;
+  characterCount?: Prisma.IntFilter<'ToeicWritingSubmission'> | number;
+  submittedText?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  submittedAt?: Prisma.DateTimeFilter<'ToeicWritingSubmission'> | Date | string;
+  session?: Prisma.XOR<
+    Prisma.ToeicWritingSessionScalarRelationFilter,
+    Prisma.ToeicWritingSessionWhereInput
+  >;
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+};
 
 export type ToeicWritingSubmissionOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  wordCount?: Prisma.SortOrder
-  characterCount?: Prisma.SortOrder
-  submittedText?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-  session?: Prisma.ToeicWritingSessionOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  wordCount?: Prisma.SortOrder;
+  characterCount?: Prisma.SortOrder;
+  submittedText?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+  session?: Prisma.ToeicWritingSessionOrderByWithRelationInput;
+  user?: Prisma.UserOrderByWithRelationInput;
+};
 
-export type ToeicWritingSubmissionWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
-  sessionId?: string
-  userId_idempotencyKey?: Prisma.ToeicWritingSubmissionUserIdIdempotencyKeyCompoundUniqueInput
-  AND?: Prisma.ToeicWritingSubmissionWhereInput | Prisma.ToeicWritingSubmissionWhereInput[]
-  OR?: Prisma.ToeicWritingSubmissionWhereInput[]
-  NOT?: Prisma.ToeicWritingSubmissionWhereInput | Prisma.ToeicWritingSubmissionWhereInput[]
-  userId?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  idempotencyKey?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  responseMode?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  wordCount?: Prisma.IntFilter<"ToeicWritingSubmission"> | number
-  characterCount?: Prisma.IntFilter<"ToeicWritingSubmission"> | number
-  submittedText?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  submittedAt?: Prisma.DateTimeFilter<"ToeicWritingSubmission"> | Date | string
-  session?: Prisma.XOR<Prisma.ToeicWritingSessionScalarRelationFilter, Prisma.ToeicWritingSessionWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id" | "sessionId" | "userId_idempotencyKey">
+export type ToeicWritingSubmissionWhereUniqueInput = Prisma.AtLeast<
+  {
+    id?: string;
+    sessionId?: string;
+    userId_idempotencyKey?: Prisma.ToeicWritingSubmissionUserIdIdempotencyKeyCompoundUniqueInput;
+    AND?:
+      | Prisma.ToeicWritingSubmissionWhereInput
+      | Prisma.ToeicWritingSubmissionWhereInput[];
+    OR?: Prisma.ToeicWritingSubmissionWhereInput[];
+    NOT?:
+      | Prisma.ToeicWritingSubmissionWhereInput
+      | Prisma.ToeicWritingSubmissionWhereInput[];
+    userId?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+    idempotencyKey?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+    responseMode?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+    wordCount?: Prisma.IntFilter<'ToeicWritingSubmission'> | number;
+    characterCount?: Prisma.IntFilter<'ToeicWritingSubmission'> | number;
+    submittedText?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+    submittedAt?:
+      Prisma.DateTimeFilter<'ToeicWritingSubmission'> | Date | string;
+    session?: Prisma.XOR<
+      Prisma.ToeicWritingSessionScalarRelationFilter,
+      Prisma.ToeicWritingSessionWhereInput
+    >;
+    user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
+  },
+  'id' | 'sessionId' | 'userId_idempotencyKey'
+>;
 
 export type ToeicWritingSubmissionOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  wordCount?: Prisma.SortOrder
-  characterCount?: Prisma.SortOrder
-  submittedText?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-  _count?: Prisma.ToeicWritingSubmissionCountOrderByAggregateInput
-  _avg?: Prisma.ToeicWritingSubmissionAvgOrderByAggregateInput
-  _max?: Prisma.ToeicWritingSubmissionMaxOrderByAggregateInput
-  _min?: Prisma.ToeicWritingSubmissionMinOrderByAggregateInput
-  _sum?: Prisma.ToeicWritingSubmissionSumOrderByAggregateInput
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  wordCount?: Prisma.SortOrder;
+  characterCount?: Prisma.SortOrder;
+  submittedText?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+  _count?: Prisma.ToeicWritingSubmissionCountOrderByAggregateInput;
+  _avg?: Prisma.ToeicWritingSubmissionAvgOrderByAggregateInput;
+  _max?: Prisma.ToeicWritingSubmissionMaxOrderByAggregateInput;
+  _min?: Prisma.ToeicWritingSubmissionMinOrderByAggregateInput;
+  _sum?: Prisma.ToeicWritingSubmissionSumOrderByAggregateInput;
+};
 
 export type ToeicWritingSubmissionScalarWhereWithAggregatesInput = {
-  AND?: Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput | Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput[]
-  OR?: Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput | Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"ToeicWritingSubmission"> | string
-  sessionId?: Prisma.StringWithAggregatesFilter<"ToeicWritingSubmission"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"ToeicWritingSubmission"> | string
-  idempotencyKey?: Prisma.StringWithAggregatesFilter<"ToeicWritingSubmission"> | string
-  responseMode?: Prisma.StringWithAggregatesFilter<"ToeicWritingSubmission"> | string
-  wordCount?: Prisma.IntWithAggregatesFilter<"ToeicWritingSubmission"> | number
-  characterCount?: Prisma.IntWithAggregatesFilter<"ToeicWritingSubmission"> | number
-  submittedText?: Prisma.StringWithAggregatesFilter<"ToeicWritingSubmission"> | string
-  submittedAt?: Prisma.DateTimeWithAggregatesFilter<"ToeicWritingSubmission"> | Date | string
-}
+  AND?:
+    | Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput
+    | Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput[];
+  OR?: Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput[];
+  NOT?:
+    | Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput
+    | Prisma.ToeicWritingSubmissionScalarWhereWithAggregatesInput[];
+  id?: Prisma.StringWithAggregatesFilter<'ToeicWritingSubmission'> | string;
+  sessionId?:
+    Prisma.StringWithAggregatesFilter<'ToeicWritingSubmission'> | string;
+  userId?: Prisma.StringWithAggregatesFilter<'ToeicWritingSubmission'> | string;
+  idempotencyKey?:
+    Prisma.StringWithAggregatesFilter<'ToeicWritingSubmission'> | string;
+  responseMode?:
+    Prisma.StringWithAggregatesFilter<'ToeicWritingSubmission'> | string;
+  wordCount?: Prisma.IntWithAggregatesFilter<'ToeicWritingSubmission'> | number;
+  characterCount?:
+    Prisma.IntWithAggregatesFilter<'ToeicWritingSubmission'> | number;
+  submittedText?:
+    Prisma.StringWithAggregatesFilter<'ToeicWritingSubmission'> | string;
+  submittedAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'ToeicWritingSubmission'>
+    | Date
+    | string;
+};
 
 export type ToeicWritingSubmissionCreateInput = {
-  id?: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-  session: Prisma.ToeicWritingSessionCreateNestedOneWithoutSubmissionsInput
-  user: Prisma.UserCreateNestedOneWithoutToeicWritingSubmissionsInput
-}
+  id?: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+  session: Prisma.ToeicWritingSessionCreateNestedOneWithoutSubmissionsInput;
+  user: Prisma.UserCreateNestedOneWithoutToeicWritingSubmissionsInput;
+};
 
 export type ToeicWritingSubmissionUncheckedCreateInput = {
-  id?: string
-  sessionId: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicWritingSubmissionUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  session?: Prisma.ToeicWritingSessionUpdateOneRequiredWithoutSubmissionsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutToeicWritingSubmissionsNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  session?: Prisma.ToeicWritingSessionUpdateOneRequiredWithoutSubmissionsNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutToeicWritingSubmissionsNestedInput;
+};
 
 export type ToeicWritingSubmissionUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicWritingSubmissionCreateManyInput = {
-  id?: string
-  sessionId: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicWritingSubmissionUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicWritingSubmissionUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicWritingSubmissionListRelationFilter = {
-  every?: Prisma.ToeicWritingSubmissionWhereInput
-  some?: Prisma.ToeicWritingSubmissionWhereInput
-  none?: Prisma.ToeicWritingSubmissionWhereInput
-}
+  every?: Prisma.ToeicWritingSubmissionWhereInput;
+  some?: Prisma.ToeicWritingSubmissionWhereInput;
+  none?: Prisma.ToeicWritingSubmissionWhereInput;
+};
 
 export type ToeicWritingSubmissionOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
+  _count?: Prisma.SortOrder;
+};
 
 export type ToeicWritingSubmissionUserIdIdempotencyKeyCompoundUniqueInput = {
-  userId: string
-  idempotencyKey: string
-}
+  userId: string;
+  idempotencyKey: string;
+};
 
 export type ToeicWritingSubmissionCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  wordCount?: Prisma.SortOrder
-  characterCount?: Prisma.SortOrder
-  submittedText?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  wordCount?: Prisma.SortOrder;
+  characterCount?: Prisma.SortOrder;
+  submittedText?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+};
 
 export type ToeicWritingSubmissionAvgOrderByAggregateInput = {
-  wordCount?: Prisma.SortOrder
-  characterCount?: Prisma.SortOrder
-}
+  wordCount?: Prisma.SortOrder;
+  characterCount?: Prisma.SortOrder;
+};
 
 export type ToeicWritingSubmissionMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  wordCount?: Prisma.SortOrder
-  characterCount?: Prisma.SortOrder
-  submittedText?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  wordCount?: Prisma.SortOrder;
+  characterCount?: Prisma.SortOrder;
+  submittedText?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+};
 
 export type ToeicWritingSubmissionMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  sessionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  idempotencyKey?: Prisma.SortOrder
-  responseMode?: Prisma.SortOrder
-  wordCount?: Prisma.SortOrder
-  characterCount?: Prisma.SortOrder
-  submittedText?: Prisma.SortOrder
-  submittedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  sessionId?: Prisma.SortOrder;
+  userId?: Prisma.SortOrder;
+  idempotencyKey?: Prisma.SortOrder;
+  responseMode?: Prisma.SortOrder;
+  wordCount?: Prisma.SortOrder;
+  characterCount?: Prisma.SortOrder;
+  submittedText?: Prisma.SortOrder;
+  submittedAt?: Prisma.SortOrder;
+};
 
 export type ToeicWritingSubmissionSumOrderByAggregateInput = {
-  wordCount?: Prisma.SortOrder
-  characterCount?: Prisma.SortOrder
-}
+  wordCount?: Prisma.SortOrder;
+  characterCount?: Prisma.SortOrder;
+};
 
 export type ToeicWritingSubmissionCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicWritingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+};
 
 export type ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicWritingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[];
+  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope;
+  connect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+};
 
 export type ToeicWritingSubmissionUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope
-  set?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ToeicWritingSubmissionScalarWhereInput | Prisma.ToeicWritingSubmissionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicWritingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput
+    | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.ToeicWritingSubmissionScalarWhereInput
+    | Prisma.ToeicWritingSubmissionScalarWhereInput[];
+};
 
 export type ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput> | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope
-  set?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ToeicWritingSubmissionScalarWhereInput | Prisma.ToeicWritingSubmissionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicWritingSubmissionCreateWithoutUserInput,
+        Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput
+      >
+    | Prisma.ToeicWritingSubmissionCreateWithoutUserInput[]
+    | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput[];
+  connectOrCreate?:
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutUserInput[];
+  upsert?:
+    | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput[];
+  createMany?: Prisma.ToeicWritingSubmissionCreateManyUserInputEnvelope;
+  set?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput
+    | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput[];
+  updateMany?:
+    | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput
+    | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput[];
+  deleteMany?:
+    | Prisma.ToeicWritingSubmissionScalarWhereInput
+    | Prisma.ToeicWritingSubmissionScalarWhereInput[];
+};
 
 export type ToeicWritingSubmissionCreateNestedManyWithoutSessionInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicWritingSubmissionCreateWithoutSessionInput,
+        Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput
+      >
+    | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[]
+    | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[];
+  connectOrCreate?:
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[];
+  createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope;
+  connect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+};
 
-export type ToeicWritingSubmissionUncheckedCreateNestedManyWithoutSessionInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-}
+export type ToeicWritingSubmissionUncheckedCreateNestedManyWithoutSessionInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.ToeicWritingSubmissionCreateWithoutSessionInput,
+          Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput
+        >
+      | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[]
+      | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[];
+    connectOrCreate?:
+      | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput
+      | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[];
+    createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope;
+    connect?:
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  };
 
 export type ToeicWritingSubmissionUpdateManyWithoutSessionNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[]
-  upsert?: Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope
-  set?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput[]
-  updateMany?: Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput[]
-  deleteMany?: Prisma.ToeicWritingSubmissionScalarWhereInput | Prisma.ToeicWritingSubmissionScalarWhereInput[]
-}
+  create?:
+    | Prisma.XOR<
+        Prisma.ToeicWritingSubmissionCreateWithoutSessionInput,
+        Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput
+      >
+    | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[]
+    | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[];
+  connectOrCreate?:
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput
+    | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[];
+  upsert?:
+    | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput
+    | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput[];
+  createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope;
+  set?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput
+    | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput
+    | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput[];
+  updateMany?:
+    | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput
+    | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput[];
+  deleteMany?:
+    | Prisma.ToeicWritingSubmissionScalarWhereInput
+    | Prisma.ToeicWritingSubmissionScalarWhereInput[];
+};
 
-export type ToeicWritingSubmissionUncheckedUpdateManyWithoutSessionNestedInput = {
-  create?: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput> | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[] | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[]
-  connectOrCreate?: Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[]
-  upsert?: Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput[]
-  createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope
-  set?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  disconnect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  delete?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  connect?: Prisma.ToeicWritingSubmissionWhereUniqueInput | Prisma.ToeicWritingSubmissionWhereUniqueInput[]
-  update?: Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput[]
-  updateMany?: Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput[]
-  deleteMany?: Prisma.ToeicWritingSubmissionScalarWhereInput | Prisma.ToeicWritingSubmissionScalarWhereInput[]
-}
+export type ToeicWritingSubmissionUncheckedUpdateManyWithoutSessionNestedInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.ToeicWritingSubmissionCreateWithoutSessionInput,
+          Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput
+        >
+      | Prisma.ToeicWritingSubmissionCreateWithoutSessionInput[]
+      | Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput[];
+    connectOrCreate?:
+      | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput
+      | Prisma.ToeicWritingSubmissionCreateOrConnectWithoutSessionInput[];
+    upsert?:
+      | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput
+      | Prisma.ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput[];
+    createMany?: Prisma.ToeicWritingSubmissionCreateManySessionInputEnvelope;
+    set?:
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+    disconnect?:
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+    delete?:
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+    connect?:
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput
+      | Prisma.ToeicWritingSubmissionWhereUniqueInput[];
+    update?:
+      | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput
+      | Prisma.ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput[];
+    updateMany?:
+      | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput
+      | Prisma.ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput[];
+    deleteMany?:
+      | Prisma.ToeicWritingSubmissionScalarWhereInput
+      | Prisma.ToeicWritingSubmissionScalarWhereInput[];
+  };
 
 export type ToeicWritingSubmissionCreateWithoutUserInput = {
-  id?: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-  session: Prisma.ToeicWritingSessionCreateNestedOneWithoutSubmissionsInput
-}
+  id?: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+  session: Prisma.ToeicWritingSessionCreateNestedOneWithoutSubmissionsInput;
+};
 
 export type ToeicWritingSubmissionUncheckedCreateWithoutUserInput = {
-  id?: string
-  sessionId: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicWritingSubmissionCreateOrConnectWithoutUserInput = {
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionCreateWithoutUserInput,
+    Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type ToeicWritingSubmissionCreateManyUserInputEnvelope = {
-  data: Prisma.ToeicWritingSubmissionCreateManyUserInput | Prisma.ToeicWritingSubmissionCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicWritingSubmissionCreateManyUserInput
+    | Prisma.ToeicWritingSubmissionCreateManyUserInput[];
+  skipDuplicates?: boolean;
+};
 
 export type ToeicWritingSubmissionUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput>
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateWithoutUserInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutUserInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionCreateWithoutUserInput,
+    Prisma.ToeicWritingSubmissionUncheckedCreateWithoutUserInput
+  >;
+};
 
 export type ToeicWritingSubmissionUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateWithoutUserInput, Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutUserInput>
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateWithoutUserInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutUserInput
+  >;
+};
 
 export type ToeicWritingSubmissionUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.ToeicWritingSubmissionScalarWhereInput
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateManyMutationInput, Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserInput>
-}
+  where: Prisma.ToeicWritingSubmissionScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserInput
+  >;
+};
 
 export type ToeicWritingSubmissionScalarWhereInput = {
-  AND?: Prisma.ToeicWritingSubmissionScalarWhereInput | Prisma.ToeicWritingSubmissionScalarWhereInput[]
-  OR?: Prisma.ToeicWritingSubmissionScalarWhereInput[]
-  NOT?: Prisma.ToeicWritingSubmissionScalarWhereInput | Prisma.ToeicWritingSubmissionScalarWhereInput[]
-  id?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  sessionId?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  userId?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  idempotencyKey?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  responseMode?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  wordCount?: Prisma.IntFilter<"ToeicWritingSubmission"> | number
-  characterCount?: Prisma.IntFilter<"ToeicWritingSubmission"> | number
-  submittedText?: Prisma.StringFilter<"ToeicWritingSubmission"> | string
-  submittedAt?: Prisma.DateTimeFilter<"ToeicWritingSubmission"> | Date | string
-}
+  AND?:
+    | Prisma.ToeicWritingSubmissionScalarWhereInput
+    | Prisma.ToeicWritingSubmissionScalarWhereInput[];
+  OR?: Prisma.ToeicWritingSubmissionScalarWhereInput[];
+  NOT?:
+    | Prisma.ToeicWritingSubmissionScalarWhereInput
+    | Prisma.ToeicWritingSubmissionScalarWhereInput[];
+  id?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  sessionId?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  userId?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  idempotencyKey?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  responseMode?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  wordCount?: Prisma.IntFilter<'ToeicWritingSubmission'> | number;
+  characterCount?: Prisma.IntFilter<'ToeicWritingSubmission'> | number;
+  submittedText?: Prisma.StringFilter<'ToeicWritingSubmission'> | string;
+  submittedAt?: Prisma.DateTimeFilter<'ToeicWritingSubmission'> | Date | string;
+};
 
 export type ToeicWritingSubmissionCreateWithoutSessionInput = {
-  id?: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutToeicWritingSubmissionsInput
-}
+  id?: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+  user: Prisma.UserCreateNestedOneWithoutToeicWritingSubmissionsInput;
+};
 
 export type ToeicWritingSubmissionUncheckedCreateWithoutSessionInput = {
-  id?: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicWritingSubmissionCreateOrConnectWithoutSessionInput = {
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput>
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionCreateWithoutSessionInput,
+    Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput
+  >;
+};
 
 export type ToeicWritingSubmissionCreateManySessionInputEnvelope = {
-  data: Prisma.ToeicWritingSubmissionCreateManySessionInput | Prisma.ToeicWritingSubmissionCreateManySessionInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicWritingSubmissionCreateManySessionInput
+    | Prisma.ToeicWritingSubmissionCreateManySessionInput[];
+  skipDuplicates?: boolean;
+};
 
 export type ToeicWritingSubmissionUpsertWithWhereUniqueWithoutSessionInput = {
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutSessionInput>
-  create: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput>
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateWithoutSessionInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutSessionInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionCreateWithoutSessionInput,
+    Prisma.ToeicWritingSubmissionUncheckedCreateWithoutSessionInput
+  >;
+};
 
 export type ToeicWritingSubmissionUpdateWithWhereUniqueWithoutSessionInput = {
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateWithoutSessionInput, Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutSessionInput>
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateWithoutSessionInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateWithoutSessionInput
+  >;
+};
 
 export type ToeicWritingSubmissionUpdateManyWithWhereWithoutSessionInput = {
-  where: Prisma.ToeicWritingSubmissionScalarWhereInput
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateManyMutationInput, Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutSessionInput>
-}
+  where: Prisma.ToeicWritingSubmissionScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutSessionInput
+  >;
+};
 
 export type ToeicWritingSubmissionCreateManyUserInput = {
-  id?: string
-  sessionId: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  sessionId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicWritingSubmissionUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  session?: Prisma.ToeicWritingSessionUpdateOneRequiredWithoutSubmissionsNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  session?: Prisma.ToeicWritingSessionUpdateOneRequiredWithoutSubmissionsNestedInput;
+};
 
 export type ToeicWritingSubmissionUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicWritingSubmissionUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicWritingSubmissionCreateManySessionInput = {
-  id?: string
-  userId: string
-  idempotencyKey: string
-  responseMode: string
-  wordCount: number
-  characterCount: number
-  submittedText: string
-  submittedAt?: Date | string
-}
+  id?: string;
+  userId: string;
+  idempotencyKey: string;
+  responseMode: string;
+  wordCount: number;
+  characterCount: number;
+  submittedText: string;
+  submittedAt?: Date | string;
+};
 
 export type ToeicWritingSubmissionUpdateWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutToeicWritingSubmissionsNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  user?: Prisma.UserUpdateOneRequiredWithoutToeicWritingSubmissionsNestedInput;
+};
 
 export type ToeicWritingSubmissionUncheckedUpdateWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ToeicWritingSubmissionUncheckedUpdateManyWithoutSessionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string
-  responseMode?: Prisma.StringFieldUpdateOperationsInput | string
-  wordCount?: Prisma.IntFieldUpdateOperationsInput | number
-  characterCount?: Prisma.IntFieldUpdateOperationsInput | number
-  submittedText?: Prisma.StringFieldUpdateOperationsInput | string
-  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  idempotencyKey?: Prisma.StringFieldUpdateOperationsInput | string;
+  responseMode?: Prisma.StringFieldUpdateOperationsInput | string;
+  wordCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  characterCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  submittedText?: Prisma.StringFieldUpdateOperationsInput | string;
+  submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
+export type ToeicWritingSubmissionSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    sessionId?: boolean;
+    userId?: boolean;
+    idempotencyKey?: boolean;
+    responseMode?: boolean;
+    wordCount?: boolean;
+    characterCount?: boolean;
+    submittedText?: boolean;
+    submittedAt?: boolean;
+    session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicWritingSubmission']
+>;
 
+export type ToeicWritingSubmissionSelectCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    sessionId?: boolean;
+    userId?: boolean;
+    idempotencyKey?: boolean;
+    responseMode?: boolean;
+    wordCount?: boolean;
+    characterCount?: boolean;
+    submittedText?: boolean;
+    submittedAt?: boolean;
+    session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicWritingSubmission']
+>;
 
-export type ToeicWritingSubmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  wordCount?: boolean
-  characterCount?: boolean
-  submittedText?: boolean
-  submittedAt?: boolean
-  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicWritingSubmission"]>
-
-export type ToeicWritingSubmissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  wordCount?: boolean
-  characterCount?: boolean
-  submittedText?: boolean
-  submittedAt?: boolean
-  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicWritingSubmission"]>
-
-export type ToeicWritingSubmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  wordCount?: boolean
-  characterCount?: boolean
-  submittedText?: boolean
-  submittedAt?: boolean
-  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["toeicWritingSubmission"]>
+export type ToeicWritingSubmissionSelectUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    sessionId?: boolean;
+    userId?: boolean;
+    idempotencyKey?: boolean;
+    responseMode?: boolean;
+    wordCount?: boolean;
+    characterCount?: boolean;
+    submittedText?: boolean;
+    submittedAt?: boolean;
+    session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>;
+    user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['toeicWritingSubmission']
+>;
 
 export type ToeicWritingSubmissionSelectScalar = {
-  id?: boolean
-  sessionId?: boolean
-  userId?: boolean
-  idempotencyKey?: boolean
-  responseMode?: boolean
-  wordCount?: boolean
-  characterCount?: boolean
-  submittedText?: boolean
-  submittedAt?: boolean
-}
+  id?: boolean;
+  sessionId?: boolean;
+  userId?: boolean;
+  idempotencyKey?: boolean;
+  responseMode?: boolean;
+  wordCount?: boolean;
+  characterCount?: boolean;
+  submittedText?: boolean;
+  submittedAt?: boolean;
+};
 
-export type ToeicWritingSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sessionId" | "userId" | "idempotencyKey" | "responseMode" | "wordCount" | "characterCount" | "submittedText" | "submittedAt", ExtArgs["result"]["toeicWritingSubmission"]>
-export type ToeicWritingSubmissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type ToeicWritingSubmissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
-export type ToeicWritingSubmissionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}
+export type ToeicWritingSubmissionOmit<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetOmit<
+  | 'id'
+  | 'sessionId'
+  | 'userId'
+  | 'idempotencyKey'
+  | 'responseMode'
+  | 'wordCount'
+  | 'characterCount'
+  | 'submittedText'
+  | 'submittedAt',
+  ExtArgs['result']['toeicWritingSubmission']
+>;
+export type ToeicWritingSubmissionInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type ToeicWritingSubmissionIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
+export type ToeicWritingSubmissionIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  session?: boolean | Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>;
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+};
 
-export type $ToeicWritingSubmissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "ToeicWritingSubmission"
+export type $ToeicWritingSubmissionPayload<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  name: 'ToeicWritingSubmission';
   objects: {
-    session: Prisma.$ToeicWritingSessionPayload<ExtArgs>
-    user: Prisma.$UserPayload<ExtArgs>
-  }
-  scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    sessionId: string
-    userId: string
-    idempotencyKey: string
-    responseMode: string
-    wordCount: number
-    characterCount: number
-    submittedText: string
-    submittedAt: Date
-  }, ExtArgs["result"]["toeicWritingSubmission"]>
-  composites: {}
-}
+    session: Prisma.$ToeicWritingSessionPayload<ExtArgs>;
+    user: Prisma.$UserPayload<ExtArgs>;
+  };
+  scalars: runtime.Types.Extensions.GetPayloadResult<
+    {
+      id: string;
+      sessionId: string;
+      userId: string;
+      idempotencyKey: string;
+      responseMode: string;
+      wordCount: number;
+      characterCount: number;
+      submittedText: string;
+      submittedAt: Date;
+    },
+    ExtArgs['result']['toeicWritingSubmission']
+  >;
+  composites: {};
+};
 
-export type ToeicWritingSubmissionGetPayload<S extends boolean | null | undefined | ToeicWritingSubmissionDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload, S>
+export type ToeicWritingSubmissionGetPayload<
+  S extends boolean | null | undefined | ToeicWritingSubmissionDefaultArgs,
+> = runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload, S>;
 
-export type ToeicWritingSubmissionCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<ToeicWritingSubmissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-    select?: ToeicWritingSubmissionCountAggregateInputType | true
-  }
+export type ToeicWritingSubmissionCountArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = Omit<
+  ToeicWritingSubmissionFindManyArgs,
+  'select' | 'include' | 'distinct' | 'omit'
+> & {
+  select?: ToeicWritingSubmissionCountAggregateInputType | true;
+};
 
-export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ToeicWritingSubmission'], meta: { name: 'ToeicWritingSubmission' } }
+export interface ToeicWritingSubmissionDelegate<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> {
+  [K: symbol]: {
+    types: Prisma.TypeMap<ExtArgs>['model']['ToeicWritingSubmission'];
+    meta: { name: 'ToeicWritingSubmission' };
+  };
   /**
    * Find zero or one ToeicWritingSubmission that matches the filter.
    * @param {ToeicWritingSubmissionFindUniqueArgs} args - Arguments to find a ToeicWritingSubmission
@@ -855,7 +1139,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *   }
    * })
    */
-  findUnique<T extends ToeicWritingSubmissionFindUniqueArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionFindUniqueArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends ToeicWritingSubmissionFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, ToeicWritingSubmissionFindUniqueArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'findUnique',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find one ToeicWritingSubmission that matches the filter or throw an error with `error.code='P2025'`
@@ -869,7 +1165,22 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *   }
    * })
    */
-  findUniqueOrThrow<T extends ToeicWritingSubmissionFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends ToeicWritingSubmissionFindUniqueOrThrowArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicWritingSubmissionFindUniqueOrThrowArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first ToeicWritingSubmission that matches the filter.
@@ -884,7 +1195,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *   }
    * })
    */
-  findFirst<T extends ToeicWritingSubmissionFindFirstArgs>(args?: Prisma.SelectSubset<T, ToeicWritingSubmissionFindFirstArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends ToeicWritingSubmissionFindFirstArgs>(
+    args?: Prisma.SelectSubset<T, ToeicWritingSubmissionFindFirstArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'findFirst',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first ToeicWritingSubmission that matches the filter or
@@ -900,7 +1223,22 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *   }
    * })
    */
-  findFirstOrThrow<T extends ToeicWritingSubmissionFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, ToeicWritingSubmissionFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends ToeicWritingSubmissionFindFirstOrThrowArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicWritingSubmissionFindFirstOrThrowArgs<ExtArgs>
+    >,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'findFirstOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find zero or more ToeicWritingSubmissions that matches the filter.
@@ -918,7 +1256,16 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * const toeicWritingSubmissionWithIdOnly = await prisma.toeicWritingSubmission.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends ToeicWritingSubmissionFindManyArgs>(args?: Prisma.SelectSubset<T, ToeicWritingSubmissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends ToeicWritingSubmissionFindManyArgs>(
+    args?: Prisma.SelectSubset<T, ToeicWritingSubmissionFindManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'findMany',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create a ToeicWritingSubmission.
@@ -932,7 +1279,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * })
    *
    */
-  create<T extends ToeicWritingSubmissionCreateArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionCreateArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends ToeicWritingSubmissionCreateArgs>(
+    args: Prisma.SelectSubset<T, ToeicWritingSubmissionCreateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'create',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Create many ToeicWritingSubmissions.
@@ -946,7 +1305,12 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * })
    *
    */
-  createMany<T extends ToeicWritingSubmissionCreateManyArgs>(args?: Prisma.SelectSubset<T, ToeicWritingSubmissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends ToeicWritingSubmissionCreateManyArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicWritingSubmissionCreateManyArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Create many ToeicWritingSubmissions and returns the data saved in the database.
@@ -970,7 +1334,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends ToeicWritingSubmissionCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ToeicWritingSubmissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends ToeicWritingSubmissionCreateManyAndReturnArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicWritingSubmissionCreateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'createManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Delete a ToeicWritingSubmission.
@@ -984,7 +1360,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * })
    *
    */
-  delete<T extends ToeicWritingSubmissionDeleteArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionDeleteArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends ToeicWritingSubmissionDeleteArgs>(
+    args: Prisma.SelectSubset<T, ToeicWritingSubmissionDeleteArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'delete',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Update one ToeicWritingSubmission.
@@ -1001,7 +1389,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * })
    *
    */
-  update<T extends ToeicWritingSubmissionUpdateArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionUpdateArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends ToeicWritingSubmissionUpdateArgs>(
+    args: Prisma.SelectSubset<T, ToeicWritingSubmissionUpdateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'update',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Delete zero or more ToeicWritingSubmissions.
@@ -1015,7 +1415,12 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * })
    *
    */
-  deleteMany<T extends ToeicWritingSubmissionDeleteManyArgs>(args?: Prisma.SelectSubset<T, ToeicWritingSubmissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends ToeicWritingSubmissionDeleteManyArgs>(
+    args?: Prisma.SelectSubset<
+      T,
+      ToeicWritingSubmissionDeleteManyArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more ToeicWritingSubmissions.
@@ -1034,7 +1439,9 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * })
    *
    */
-  updateMany<T extends ToeicWritingSubmissionUpdateManyArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends ToeicWritingSubmissionUpdateManyArgs>(
+    args: Prisma.SelectSubset<T, ToeicWritingSubmissionUpdateManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more ToeicWritingSubmissions and returns the data updated in the database.
@@ -1064,7 +1471,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends ToeicWritingSubmissionUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends ToeicWritingSubmissionUpdateManyAndReturnArgs>(
+    args: Prisma.SelectSubset<
+      T,
+      ToeicWritingSubmissionUpdateManyAndReturnArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'updateManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create or update one ToeicWritingSubmission.
@@ -1083,8 +1502,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *   }
    * })
    */
-  upsert<T extends ToeicWritingSubmissionUpsertArgs>(args: Prisma.SelectSubset<T, ToeicWritingSubmissionUpsertArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSubmissionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+  upsert<T extends ToeicWritingSubmissionUpsertArgs>(
+    args: Prisma.SelectSubset<T, ToeicWritingSubmissionUpsertArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicWritingSubmissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+      T,
+      'upsert',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Count the number of ToeicWritingSubmissions.
@@ -1098,16 +1528,19 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *     // ... the filter for the ToeicWritingSubmissions we want to count
    *   }
    * })
-  **/
+   **/
   count<T extends ToeicWritingSubmissionCountArgs>(
     args?: Prisma.Subset<T, ToeicWritingSubmissionCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<T['select'], ToeicWritingSubmissionCountAggregateOutputType>
+        : Prisma.GetScalarType<
+            T['select'],
+            ToeicWritingSubmissionCountAggregateOutputType
+          >
       : number
-  >
+  >;
 
   /**
    * Allows you to perform aggregations operations on a ToeicWritingSubmission.
@@ -1132,8 +1565,10 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *   },
    *   take: 10,
    * })
-  **/
-  aggregate<T extends ToeicWritingSubmissionAggregateArgs>(args: Prisma.Subset<T, ToeicWritingSubmissionAggregateArgs>): Prisma.PrismaPromise<GetToeicWritingSubmissionAggregateType<T>>
+   **/
+  aggregate<T extends ToeicWritingSubmissionAggregateArgs>(
+    args: Prisma.Subset<T, ToeicWritingSubmissionAggregateArgs>,
+  ): Prisma.PrismaPromise<GetToeicWritingSubmissionAggregateType<T>>;
 
   /**
    * Group by ToeicWritingSubmission.
@@ -1152,69 +1587,80 @@ export interface ToeicWritingSubmissionDelegate<ExtArgs extends runtime.Types.Ex
    *   },
    * })
    *
-  **/
+   **/
   groupBy<
     T extends ToeicWritingSubmissionGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
-    OrderByArg extends Prisma.True extends HasSelectOrTake
+    OrderByArg extends (Prisma.True extends HasSelectOrTake
       ? { orderBy: ToeicWritingSubmissionGroupByArgs['orderBy'] }
-      : { orderBy?: ToeicWritingSubmissionGroupByArgs['orderBy'] },
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
+      : { orderBy?: ToeicWritingSubmissionGroupByArgs['orderBy'] }),
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<
+      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
+    >,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
-    InputErrors extends ByEmpty extends Prisma.True
-    ? `Error: "by" must not be empty.`
-    : HavingValid extends Prisma.False
-    ? {
-        [P in HavingFields]: P extends ByFields
-          ? never
-          : P extends string
-          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-          : [
-              Error,
-              'Field ',
-              P,
-              ` in "having" needs to be provided in "by"`,
-            ]
-      }[HavingFields]
-    : 'take' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
+    ByEmpty extends (T['by'] extends never[] ? Prisma.True : Prisma.False),
+    InputErrors extends (ByEmpty extends Prisma.True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends Prisma.False
+        ? {
+            [P in HavingFields]: P extends ByFields
               ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "take", you also need to provide "orderBy"'
-    : 'skip' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "skip", you also need to provide "orderBy"'
-    : ByValid extends Prisma.True
-    ? {}
-    : {
-        [P in OrderFields]: P extends ByFields
-          ? never
-          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-      }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, ToeicWritingSubmissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetToeicWritingSubmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-/**
- * Fields of the ToeicWritingSubmission model
- */
-readonly fields: ToeicWritingSubmissionFieldRefs;
+              : P extends string
+                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                : [
+                    Error,
+                    'Field ',
+                    P,
+                    ` in "having" needs to be provided in "by"`,
+                  ];
+          }[HavingFields]
+        : 'take' extends Prisma.Keys<T>
+          ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]
+            : 'Error: If you provide "take", you also need to provide "orderBy"'
+          : 'skip' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+              ? ByValid extends Prisma.True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "skip", you also need to provide "orderBy"'
+            : ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]),
+  >(
+    args: Prisma.SubsetIntersection<
+      T,
+      ToeicWritingSubmissionGroupByArgs,
+      OrderByArg
+    > &
+      InputErrors,
+  ): {} extends InputErrors
+    ? GetToeicWritingSubmissionGroupByPayload<T>
+    : Prisma.PrismaPromise<InputErrors>;
+  /**
+   * Fields of the ToeicWritingSubmission model
+   */
+  readonly fields: ToeicWritingSubmissionFieldRefs;
 }
 
 /**
@@ -1223,462 +1669,579 @@ readonly fields: ToeicWritingSubmissionFieldRefs;
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__ToeicWritingSubmissionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-  readonly [Symbol.toStringTag]: "PrismaPromise"
-  session<T extends Prisma.ToeicWritingSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__ToeicWritingSessionClient<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+export interface Prisma__ToeicWritingSubmissionClient<
+  T,
+  Null = never,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> extends Prisma.PrismaPromise<T> {
+  readonly [Symbol.toStringTag]: 'PrismaPromise';
+  session<T extends Prisma.ToeicWritingSessionDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.ToeicWritingSessionDefaultArgs<ExtArgs>>,
+  ): Prisma.Prisma__ToeicWritingSessionClient<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicWritingSessionPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >
+    | Null,
+    Null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    | runtime.Types.Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >
+    | Null,
+    Null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of which ever callback is executed.
    */
-  then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?:
+      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+    onrejected?:
+      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
   /**
    * Attaches a callback for only the rejection of the Promise.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of the callback.
    */
-  catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>
+  catch<TResult = never>(
+    onrejected?:
+      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T | TResult>;
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
    * resolved value cannot be modified from the callback.
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
+  finally(
+    onfinally?: (() => void) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T>;
 }
-
-
-
 
 /**
  * Fields of the ToeicWritingSubmission model
  */
 export interface ToeicWritingSubmissionFieldRefs {
-  readonly id: Prisma.FieldRef<"ToeicWritingSubmission", 'String'>
-  readonly sessionId: Prisma.FieldRef<"ToeicWritingSubmission", 'String'>
-  readonly userId: Prisma.FieldRef<"ToeicWritingSubmission", 'String'>
-  readonly idempotencyKey: Prisma.FieldRef<"ToeicWritingSubmission", 'String'>
-  readonly responseMode: Prisma.FieldRef<"ToeicWritingSubmission", 'String'>
-  readonly wordCount: Prisma.FieldRef<"ToeicWritingSubmission", 'Int'>
-  readonly characterCount: Prisma.FieldRef<"ToeicWritingSubmission", 'Int'>
-  readonly submittedText: Prisma.FieldRef<"ToeicWritingSubmission", 'String'>
-  readonly submittedAt: Prisma.FieldRef<"ToeicWritingSubmission", 'DateTime'>
+  readonly id: Prisma.FieldRef<'ToeicWritingSubmission', 'String'>;
+  readonly sessionId: Prisma.FieldRef<'ToeicWritingSubmission', 'String'>;
+  readonly userId: Prisma.FieldRef<'ToeicWritingSubmission', 'String'>;
+  readonly idempotencyKey: Prisma.FieldRef<'ToeicWritingSubmission', 'String'>;
+  readonly responseMode: Prisma.FieldRef<'ToeicWritingSubmission', 'String'>;
+  readonly wordCount: Prisma.FieldRef<'ToeicWritingSubmission', 'Int'>;
+  readonly characterCount: Prisma.FieldRef<'ToeicWritingSubmission', 'Int'>;
+  readonly submittedText: Prisma.FieldRef<'ToeicWritingSubmission', 'String'>;
+  readonly submittedAt: Prisma.FieldRef<'ToeicWritingSubmission', 'DateTime'>;
 }
-
 
 // Custom InputTypes
 /**
  * ToeicWritingSubmission findUnique
  */
-export type ToeicWritingSubmissionFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionFindUniqueArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicWritingSubmission to fetch.
    */
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicWritingSubmission findUniqueOrThrow
  */
-export type ToeicWritingSubmissionFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionFindUniqueOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicWritingSubmission to fetch.
    */
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicWritingSubmission findFirst
  */
-export type ToeicWritingSubmissionFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionFindFirstArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicWritingSubmission to fetch.
    */
-  where?: Prisma.ToeicWritingSubmissionWhereInput
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicWritingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicWritingSubmissionOrderByWithRelationInput | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for ToeicWritingSubmissions.
    */
-  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicWritingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicWritingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicWritingSubmissions.
    */
-  distinct?: Prisma.ToeicWritingSubmissionScalarFieldEnum | Prisma.ToeicWritingSubmissionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum[];
+};
 
 /**
  * ToeicWritingSubmission findFirstOrThrow
  */
-export type ToeicWritingSubmissionFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionFindFirstOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicWritingSubmission to fetch.
    */
-  where?: Prisma.ToeicWritingSubmissionWhereInput
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicWritingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicWritingSubmissionOrderByWithRelationInput | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for ToeicWritingSubmissions.
    */
-  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicWritingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicWritingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicWritingSubmissions.
    */
-  distinct?: Prisma.ToeicWritingSubmissionScalarFieldEnum | Prisma.ToeicWritingSubmissionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum[];
+};
 
 /**
  * ToeicWritingSubmission findMany
  */
-export type ToeicWritingSubmissionFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionFindManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter, which ToeicWritingSubmissions to fetch.
    */
-  where?: Prisma.ToeicWritingSubmissionWhereInput
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of ToeicWritingSubmissions to fetch.
    */
-  orderBy?: Prisma.ToeicWritingSubmissionOrderByWithRelationInput | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[]
+  orderBy?:
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing ToeicWritingSubmissions.
    */
-  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput
+  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` ToeicWritingSubmissions from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` ToeicWritingSubmissions.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of ToeicWritingSubmissions.
    */
-  distinct?: Prisma.ToeicWritingSubmissionScalarFieldEnum | Prisma.ToeicWritingSubmissionScalarFieldEnum[]
-}
+  distinct?:
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum[];
+};
 
 /**
  * ToeicWritingSubmission create
  */
-export type ToeicWritingSubmissionCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionCreateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * The data needed to create a ToeicWritingSubmission.
    */
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateInput, Prisma.ToeicWritingSubmissionUncheckedCreateInput>
-}
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionCreateInput,
+    Prisma.ToeicWritingSubmissionUncheckedCreateInput
+  >;
+};
 
 /**
  * ToeicWritingSubmission createMany
  */
-export type ToeicWritingSubmissionCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionCreateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to create many ToeicWritingSubmissions.
    */
-  data: Prisma.ToeicWritingSubmissionCreateManyInput | Prisma.ToeicWritingSubmissionCreateManyInput[]
-  skipDuplicates?: boolean
-}
+  data:
+    | Prisma.ToeicWritingSubmissionCreateManyInput
+    | Prisma.ToeicWritingSubmissionCreateManyInput[];
+  skipDuplicates?: boolean;
+};
 
 /**
  * ToeicWritingSubmission createManyAndReturn
  */
-export type ToeicWritingSubmissionCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionCreateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelectCreateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * The data used to create many ToeicWritingSubmissions.
    */
-  data: Prisma.ToeicWritingSubmissionCreateManyInput | Prisma.ToeicWritingSubmissionCreateManyInput[]
-  skipDuplicates?: boolean
+  data:
+    | Prisma.ToeicWritingSubmissionCreateManyInput
+    | Prisma.ToeicWritingSubmissionCreateManyInput[];
+  skipDuplicates?: boolean;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionIncludeCreateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.ToeicWritingSubmissionIncludeCreateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * ToeicWritingSubmission update
  */
-export type ToeicWritingSubmissionUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionUpdateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * The data needed to update a ToeicWritingSubmission.
    */
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateInput, Prisma.ToeicWritingSubmissionUncheckedUpdateInput>
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateInput
+  >;
   /**
    * Choose, which ToeicWritingSubmission to update.
    */
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicWritingSubmission updateMany
  */
-export type ToeicWritingSubmissionUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionUpdateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to update ToeicWritingSubmissions.
    */
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateManyMutationInput, Prisma.ToeicWritingSubmissionUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateManyInput
+  >;
   /**
    * Filter which ToeicWritingSubmissions to update
    */
-  where?: Prisma.ToeicWritingSubmissionWhereInput
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
   /**
    * Limit how many ToeicWritingSubmissions to update.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * ToeicWritingSubmission updateManyAndReturn
  */
-export type ToeicWritingSubmissionUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionUpdateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelectUpdateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * The data used to update ToeicWritingSubmissions.
    */
-  data: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateManyMutationInput, Prisma.ToeicWritingSubmissionUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateManyMutationInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateManyInput
+  >;
   /**
    * Filter which ToeicWritingSubmissions to update
    */
-  where?: Prisma.ToeicWritingSubmissionWhereInput
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
   /**
    * Limit how many ToeicWritingSubmissions to update.
    */
-  limit?: number
+  limit?: number;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionIncludeUpdateManyAndReturn<ExtArgs> | null
-}
+  include?: Prisma.ToeicWritingSubmissionIncludeUpdateManyAndReturn<ExtArgs> | null;
+};
 
 /**
  * ToeicWritingSubmission upsert
  */
-export type ToeicWritingSubmissionUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionUpsertArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * The filter to search for the ToeicWritingSubmission to update in case it exists.
    */
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
   /**
    * In case the ToeicWritingSubmission found by the `where` argument doesn't exist, create a new ToeicWritingSubmission with this data.
    */
-  create: Prisma.XOR<Prisma.ToeicWritingSubmissionCreateInput, Prisma.ToeicWritingSubmissionUncheckedCreateInput>
+  create: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionCreateInput,
+    Prisma.ToeicWritingSubmissionUncheckedCreateInput
+  >;
   /**
    * In case the ToeicWritingSubmission was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.ToeicWritingSubmissionUpdateInput, Prisma.ToeicWritingSubmissionUncheckedUpdateInput>
-}
+  update: Prisma.XOR<
+    Prisma.ToeicWritingSubmissionUpdateInput,
+    Prisma.ToeicWritingSubmissionUncheckedUpdateInput
+  >;
+};
 
 /**
  * ToeicWritingSubmission delete
  */
-export type ToeicWritingSubmissionDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionDeleteArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
   /**
    * Filter which ToeicWritingSubmission to delete.
    */
-  where: Prisma.ToeicWritingSubmissionWhereUniqueInput
-}
+  where: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+};
 
 /**
  * ToeicWritingSubmission deleteMany
  */
-export type ToeicWritingSubmissionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionDeleteManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which ToeicWritingSubmissions to delete
    */
-  where?: Prisma.ToeicWritingSubmissionWhereInput
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
   /**
    * Limit how many ToeicWritingSubmissions to delete.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * ToeicWritingSubmission without action
  */
-export type ToeicWritingSubmissionDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ToeicWritingSubmissionDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
-}
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
+};

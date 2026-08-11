@@ -12,232 +12,244 @@
  * 🟢 You can import this file directly.
  */
 
-import * as Prisma from './internal/prismaNamespaceBrowser.js'
-export { Prisma }
-export * as $Enums from './enums.js'
+import * as Prisma from './internal/prismaNamespaceBrowser.js';
+export { Prisma };
+export * as $Enums from './enums.js';
 export * from './enums.js';
 /**
  * Model User
  *
  */
-export type User = Prisma.UserModel
+export type User = Prisma.UserModel;
 /**
  * Model LibraryContent
  *
  */
-export type LibraryContent = Prisma.LibraryContentModel
+export type LibraryContent = Prisma.LibraryContentModel;
 /**
  * Model LibraryContentVersion
  *
  */
-export type LibraryContentVersion = Prisma.LibraryContentVersionModel
+export type LibraryContentVersion = Prisma.LibraryContentVersionModel;
 /**
  * Model LibrarySourceManifest
  *
  */
-export type LibrarySourceManifest = Prisma.LibrarySourceManifestModel
+export type LibrarySourceManifest = Prisma.LibrarySourceManifestModel;
 /**
  * Model LibraryStorageReference
  *
  */
-export type LibraryStorageReference = Prisma.LibraryStorageReferenceModel
+export type LibraryStorageReference = Prisma.LibraryStorageReferenceModel;
 /**
  * Model LibraryMediaMetadata
  *
  */
-export type LibraryMediaMetadata = Prisma.LibraryMediaMetadataModel
+export type LibraryMediaMetadata = Prisma.LibraryMediaMetadataModel;
 /**
  * Model LibraryTranscriptMetadata
  *
  */
-export type LibraryTranscriptMetadata = Prisma.LibraryTranscriptMetadataModel
+export type LibraryTranscriptMetadata = Prisma.LibraryTranscriptMetadataModel;
 /**
  * Model LibraryLearningProgress
  *
  */
-export type LibraryLearningProgress = Prisma.LibraryLearningProgressModel
+export type LibraryLearningProgress = Prisma.LibraryLearningProgressModel;
 /**
  * Model LibraryBookmark
  *
  */
-export type LibraryBookmark = Prisma.LibraryBookmarkModel
+export type LibraryBookmark = Prisma.LibraryBookmarkModel;
 /**
  * Model LibraryPersonalNote
  *
  */
-export type LibraryPersonalNote = Prisma.LibraryPersonalNoteModel
+export type LibraryPersonalNote = Prisma.LibraryPersonalNoteModel;
 /**
  * Model LibraryDrillOutcome
  *
  */
-export type LibraryDrillOutcome = Prisma.LibraryDrillOutcomeModel
+export type LibraryDrillOutcome = Prisma.LibraryDrillOutcomeModel;
 /**
  * Model LibraryShadowingAttempt
  *
  */
-export type LibraryShadowingAttempt = Prisma.LibraryShadowingAttemptModel
+export type LibraryShadowingAttempt = Prisma.LibraryShadowingAttemptModel;
 /**
  * Model LearnerOnboarding
  *
  */
-export type LearnerOnboarding = Prisma.LearnerOnboardingModel
+export type LearnerOnboarding = Prisma.LearnerOnboardingModel;
 /**
  * Model PlacementAttempt
  *
  */
-export type PlacementAttempt = Prisma.PlacementAttemptModel
+export type PlacementAttempt = Prisma.PlacementAttemptModel;
 /**
  * Model Roadmap
  *
  */
-export type Roadmap = Prisma.RoadmapModel
+export type Roadmap = Prisma.RoadmapModel;
 /**
  * Model RoadmapItem
  *
  */
-export type RoadmapItem = Prisma.RoadmapItemModel
+export type RoadmapItem = Prisma.RoadmapItemModel;
 /**
  * Model PracticeSession
  *
  */
-export type PracticeSession = Prisma.PracticeSessionModel
+export type PracticeSession = Prisma.PracticeSessionModel;
 /**
  * Model PracticeAnswer
  *
  */
-export type PracticeAnswer = Prisma.PracticeAnswerModel
+export type PracticeAnswer = Prisma.PracticeAnswerModel;
 /**
  * Model LearnerProgress
  *
  */
-export type LearnerProgress = Prisma.LearnerProgressModel
+export type LearnerProgress = Prisma.LearnerProgressModel;
 /**
  * Model ErrorNotebookEntry
  *
  */
-export type ErrorNotebookEntry = Prisma.ErrorNotebookEntryModel
+export type ErrorNotebookEntry = Prisma.ErrorNotebookEntryModel;
 /**
  * Model UserProfile
  *
  */
-export type UserProfile = Prisma.UserProfileModel
+export type UserProfile = Prisma.UserProfileModel;
 /**
  * Model GovernedSentence
  *
  */
-export type GovernedSentence = Prisma.GovernedSentenceModel
+export type GovernedSentence = Prisma.GovernedSentenceModel;
 /**
  * Model GovernedVocabularyItem
  *
  */
-export type GovernedVocabularyItem = Prisma.GovernedVocabularyItemModel
+export type GovernedVocabularyItem = Prisma.GovernedVocabularyItemModel;
 /**
  * Model CmsTaxonomyNode
  *
  */
-export type CmsTaxonomyNode = Prisma.CmsTaxonomyNodeModel
+export type CmsTaxonomyNode = Prisma.CmsTaxonomyNodeModel;
 /**
  * Model CmsContent
  *
  */
-export type CmsContent = Prisma.CmsContentModel
+export type CmsContent = Prisma.CmsContentModel;
 /**
  * Model CmsContentVersion
  *
  */
-export type CmsContentVersion = Prisma.CmsContentVersionModel
+export type CmsContentVersion = Prisma.CmsContentVersionModel;
 /**
  * Model DailySentenceCompletion
  *
  */
-export type DailySentenceCompletion = Prisma.DailySentenceCompletionModel
+export type DailySentenceCompletion = Prisma.DailySentenceCompletionModel;
 /**
  * Model VocabularyMasteryState
  *
  */
-export type VocabularyMasteryState = Prisma.VocabularyMasteryStateModel
+export type VocabularyMasteryState = Prisma.VocabularyMasteryStateModel;
 /**
  * Model VocabularyReviewSubmission
  *
  */
-export type VocabularyReviewSubmission = Prisma.VocabularyReviewSubmissionModel
+export type VocabularyReviewSubmission = Prisma.VocabularyReviewSubmissionModel;
 /**
  * Model Role
  *
  */
-export type Role = Prisma.RoleModel
+export type Role = Prisma.RoleModel;
 /**
  * Model UserRole
  *
  */
-export type UserRole = Prisma.UserRoleModel
+export type UserRole = Prisma.UserRoleModel;
 /**
  * Model PrivilegedAuditEvent
  *
  */
-export type PrivilegedAuditEvent = Prisma.PrivilegedAuditEventModel
+export type PrivilegedAuditEvent = Prisma.PrivilegedAuditEventModel;
 /**
  * Model ToeicQuestion
  *
  */
-export type ToeicQuestion = Prisma.ToeicQuestionModel
+export type ToeicQuestion = Prisma.ToeicQuestionModel;
 /**
  * Model ToeicQuestionVersion
  *
  */
-export type ToeicQuestionVersion = Prisma.ToeicQuestionVersionModel
+export type ToeicQuestionVersion = Prisma.ToeicQuestionVersionModel;
 /**
  * Model ToeicPracticeSession
  *
  */
-export type ToeicPracticeSession = Prisma.ToeicPracticeSessionModel
+export type ToeicPracticeSession = Prisma.ToeicPracticeSessionModel;
 /**
  * Model ToeicPracticeAnswer
  *
  */
-export type ToeicPracticeAnswer = Prisma.ToeicPracticeAnswerModel
+export type ToeicPracticeAnswer = Prisma.ToeicPracticeAnswerModel;
 /**
  * Model ToeicReadingPracticeSession
  *
  */
-export type ToeicReadingPracticeSession = Prisma.ToeicReadingPracticeSessionModel
+export type ToeicReadingPracticeSession =
+  Prisma.ToeicReadingPracticeSessionModel;
 /**
  * Model ToeicReadingPracticeAnswer
  *
  */
-export type ToeicReadingPracticeAnswer = Prisma.ToeicReadingPracticeAnswerModel
+export type ToeicReadingPracticeAnswer = Prisma.ToeicReadingPracticeAnswerModel;
 /**
  * Model ToeicTimedTestSession
  *
  */
-export type ToeicTimedTestSession = Prisma.ToeicTimedTestSessionModel
+export type ToeicTimedTestSession = Prisma.ToeicTimedTestSessionModel;
 /**
  * Model ToeicTimedTestAnswer
  *
  */
-export type ToeicTimedTestAnswer = Prisma.ToeicTimedTestAnswerModel
+export type ToeicTimedTestAnswer = Prisma.ToeicTimedTestAnswerModel;
 /**
  * Model ToeicSpeakingSession
  *
  */
-export type ToeicSpeakingSession = Prisma.ToeicSpeakingSessionModel
+export type ToeicSpeakingSession = Prisma.ToeicSpeakingSessionModel;
 /**
  * Model ToeicSpeakingSubmission
  *
  */
-export type ToeicSpeakingSubmission = Prisma.ToeicSpeakingSubmissionModel
+export type ToeicSpeakingSubmission = Prisma.ToeicSpeakingSubmissionModel;
+/**
+ * Model ToeicSpeakingRecording
+ *
+ */
+export type ToeicSpeakingRecording = Prisma.ToeicSpeakingRecordingModel;
+/**
+ * Model ToeicSpeakingPlaybackCapability
+ *
+ */
+export type ToeicSpeakingPlaybackCapability =
+  Prisma.ToeicSpeakingPlaybackCapabilityModel;
 /**
  * Model ToeicWritingSession
  *
  */
-export type ToeicWritingSession = Prisma.ToeicWritingSessionModel
+export type ToeicWritingSession = Prisma.ToeicWritingSessionModel;
 /**
  * Model ToeicWritingSubmission
  *
  */
-export type ToeicWritingSubmission = Prisma.ToeicWritingSubmissionModel
+export type ToeicWritingSubmission = Prisma.ToeicWritingSubmissionModel;
 /**
  * Model AiFeedbackUsage
  *
  */
-export type AiFeedbackUsage = Prisma.AiFeedbackUsageModel
+export type AiFeedbackUsage = Prisma.AiFeedbackUsageModel;

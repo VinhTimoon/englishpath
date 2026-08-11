@@ -7,5500 +7,7186 @@
  *
  * 🟢 You can import this file directly.
  */
-import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as runtime from '@prisma/client/runtime/client';
+import type * as $Enums from '../enums.js';
+import type * as Prisma from '../internal/prismaNamespace.js';
 
 /**
  * Model User
  *
  */
-export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayload>
+export type UserModel =
+  runtime.Types.Result.DefaultSelection<Prisma.$UserPayload>;
 
 export type AggregateUser = {
-  _count: UserCountAggregateOutputType | null
-  _min: UserMinAggregateOutputType | null
-  _max: UserMaxAggregateOutputType | null
-}
+  _count: UserCountAggregateOutputType | null;
+  _min: UserMinAggregateOutputType | null;
+  _max: UserMaxAggregateOutputType | null;
+};
 
 export type UserMinAggregateOutputType = {
-  id: string | null
-  email: string | null
-  legacyName: string | null
-  authProvider: $Enums.IdentityProvider | null
-  externalSubject: string | null
-  status: $Enums.UserStatus | null
-  createdAt: Date | null
-  updatedAt: Date | null
-}
+  id: string | null;
+  email: string | null;
+  legacyName: string | null;
+  authProvider: $Enums.IdentityProvider | null;
+  externalSubject: string | null;
+  status: $Enums.UserStatus | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+};
 
 export type UserMaxAggregateOutputType = {
-  id: string | null
-  email: string | null
-  legacyName: string | null
-  authProvider: $Enums.IdentityProvider | null
-  externalSubject: string | null
-  status: $Enums.UserStatus | null
-  createdAt: Date | null
-  updatedAt: Date | null
-}
+  id: string | null;
+  email: string | null;
+  legacyName: string | null;
+  authProvider: $Enums.IdentityProvider | null;
+  externalSubject: string | null;
+  status: $Enums.UserStatus | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+};
 
 export type UserCountAggregateOutputType = {
-  id: number
-  email: number
-  legacyName: number
-  authProvider: number
-  externalSubject: number
-  status: number
-  createdAt: number
-  updatedAt: number
-  _all: number
-}
-
+  id: number;
+  email: number;
+  legacyName: number;
+  authProvider: number;
+  externalSubject: number;
+  status: number;
+  createdAt: number;
+  updatedAt: number;
+  _all: number;
+};
 
 export type UserMinAggregateInputType = {
-  id?: true
-  email?: true
-  legacyName?: true
-  authProvider?: true
-  externalSubject?: true
-  status?: true
-  createdAt?: true
-  updatedAt?: true
-}
+  id?: true;
+  email?: true;
+  legacyName?: true;
+  authProvider?: true;
+  externalSubject?: true;
+  status?: true;
+  createdAt?: true;
+  updatedAt?: true;
+};
 
 export type UserMaxAggregateInputType = {
-  id?: true
-  email?: true
-  legacyName?: true
-  authProvider?: true
-  externalSubject?: true
-  status?: true
-  createdAt?: true
-  updatedAt?: true
-}
+  id?: true;
+  email?: true;
+  legacyName?: true;
+  authProvider?: true;
+  externalSubject?: true;
+  status?: true;
+  createdAt?: true;
+  updatedAt?: true;
+};
 
 export type UserCountAggregateInputType = {
-  id?: true
-  email?: true
-  legacyName?: true
-  authProvider?: true
-  externalSubject?: true
-  status?: true
-  createdAt?: true
-  updatedAt?: true
-  _all?: true
-}
+  id?: true;
+  email?: true;
+  legacyName?: true;
+  authProvider?: true;
+  externalSubject?: true;
+  status?: true;
+  createdAt?: true;
+  updatedAt?: true;
+  _all?: true;
+};
 
-export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserAggregateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which User to aggregate.
    */
-  where?: Prisma.UserWhereInput
+  where?: Prisma.UserWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of Users to fetch.
    */
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  orderBy?:
+    Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.UserWhereUniqueInput
+  cursor?: Prisma.UserWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Count returned Users
-  **/
-  _count?: true | UserCountAggregateInputType
+   **/
+  _count?: true | UserCountAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
-  **/
-  _min?: UserMinAggregateInputType
+   **/
+  _min?: UserMinAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
-  **/
-  _max?: UserMaxAggregateInputType
-}
+   **/
+  _max?: UserMaxAggregateInputType;
+};
 
 export type GetUserAggregateType<T extends UserAggregateArgs> = {
-      [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+  [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
     ? T[P] extends true
       ? number
       : Prisma.GetScalarType<T[P], AggregateUser[P]>
-    : Prisma.GetScalarType<T[P], AggregateUser[P]>
-}
+    : Prisma.GetScalarType<T[P], AggregateUser[P]>;
+};
 
-
-
-
-export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithAggregationInput | Prisma.UserOrderByWithAggregationInput[]
-  by: Prisma.UserScalarFieldEnum[] | Prisma.UserScalarFieldEnum
-  having?: Prisma.UserScalarWhereWithAggregatesInput
-  take?: number
-  skip?: number
-  _count?: UserCountAggregateInputType | true
-  _min?: UserMinAggregateInputType
-  _max?: UserMaxAggregateInputType
-}
+export type UserGroupByArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.UserWhereInput;
+  orderBy?:
+    | Prisma.UserOrderByWithAggregationInput
+    | Prisma.UserOrderByWithAggregationInput[];
+  by: Prisma.UserScalarFieldEnum[] | Prisma.UserScalarFieldEnum;
+  having?: Prisma.UserScalarWhereWithAggregatesInput;
+  take?: number;
+  skip?: number;
+  _count?: UserCountAggregateInputType | true;
+  _min?: UserMinAggregateInputType;
+  _max?: UserMaxAggregateInputType;
+};
 
 export type UserGroupByOutputType = {
-  id: string
-  email: string
-  legacyName: string | null
-  authProvider: $Enums.IdentityProvider
-  externalSubject: string | null
-  status: $Enums.UserStatus
-  createdAt: Date
-  updatedAt: Date
-  _count: UserCountAggregateOutputType | null
-  _min: UserMinAggregateOutputType | null
-  _max: UserMaxAggregateOutputType | null
-}
+  id: string;
+  email: string;
+  legacyName: string | null;
+  authProvider: $Enums.IdentityProvider;
+  externalSubject: string | null;
+  status: $Enums.UserStatus;
+  createdAt: Date;
+  updatedAt: Date;
+  _count: UserCountAggregateOutputType | null;
+  _min: UserMinAggregateOutputType | null;
+  _max: UserMaxAggregateOutputType | null;
+};
 
-export type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
-  Array<
-    Prisma.PickEnumerable<UserGroupByOutputType, T['by']> &
-      {
-        [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+export type GetUserGroupByPayload<T extends UserGroupByArgs> =
+  Prisma.PrismaPromise<
+    Array<
+      Prisma.PickEnumerable<UserGroupByOutputType, T['by']> & {
+        [P in keyof T & keyof UserGroupByOutputType]: P extends '_count'
           ? T[P] extends boolean
             ? number
             : Prisma.GetScalarType<T[P], UserGroupByOutputType[P]>
-          : Prisma.GetScalarType<T[P], UserGroupByOutputType[P]>
+          : Prisma.GetScalarType<T[P], UserGroupByOutputType[P]>;
       }
     >
-  >
-
-
+  >;
 
 export type UserWhereInput = {
-  AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  OR?: Prisma.UserWhereInput[]
-  NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  id?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
-  legacyName?: Prisma.StringNullableFilter<"User"> | string | null
-  authProvider?: Prisma.EnumIdentityProviderFilter<"User"> | $Enums.IdentityProvider
-  externalSubject?: Prisma.StringNullableFilter<"User"> | string | null
-  status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  profile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
-  roleAssignments?: Prisma.UserRoleListRelationFilter
-  roleAssignmentsAuthored?: Prisma.UserRoleListRelationFilter
-  onboarding?: Prisma.XOR<Prisma.LearnerOnboardingNullableScalarRelationFilter, Prisma.LearnerOnboardingWhereInput> | null
-  placementAttempts?: Prisma.PlacementAttemptListRelationFilter
-  roadmaps?: Prisma.RoadmapListRelationFilter
-  practiceSessions?: Prisma.PracticeSessionListRelationFilter
-  learnerProgress?: Prisma.XOR<Prisma.LearnerProgressNullableScalarRelationFilter, Prisma.LearnerProgressWhereInput> | null
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionListRelationFilter
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateListRelationFilter
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventListRelationFilter
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionListRelationFilter
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionListRelationFilter
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionListRelationFilter
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionListRelationFilter
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter
-  toeicWritingSessions?: Prisma.ToeicWritingSessionListRelationFilter
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionListRelationFilter
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageListRelationFilter
-  libraryProgress?: Prisma.LibraryLearningProgressListRelationFilter
-  libraryBookmarks?: Prisma.LibraryBookmarkListRelationFilter
-  libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeListRelationFilter
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptListRelationFilter
-}
+  AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
+  OR?: Prisma.UserWhereInput[];
+  NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
+  id?: Prisma.StringFilter<'User'> | string;
+  email?: Prisma.StringFilter<'User'> | string;
+  legacyName?: Prisma.StringNullableFilter<'User'> | string | null;
+  authProvider?:
+    Prisma.EnumIdentityProviderFilter<'User'> | $Enums.IdentityProvider;
+  externalSubject?: Prisma.StringNullableFilter<'User'> | string | null;
+  status?: Prisma.EnumUserStatusFilter<'User'> | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+  profile?: Prisma.XOR<
+    Prisma.UserProfileNullableScalarRelationFilter,
+    Prisma.UserProfileWhereInput
+  > | null;
+  roleAssignments?: Prisma.UserRoleListRelationFilter;
+  roleAssignmentsAuthored?: Prisma.UserRoleListRelationFilter;
+  onboarding?: Prisma.XOR<
+    Prisma.LearnerOnboardingNullableScalarRelationFilter,
+    Prisma.LearnerOnboardingWhereInput
+  > | null;
+  placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
+  roadmaps?: Prisma.RoadmapListRelationFilter;
+  practiceSessions?: Prisma.PracticeSessionListRelationFilter;
+  learnerProgress?: Prisma.XOR<
+    Prisma.LearnerProgressNullableScalarRelationFilter,
+    Prisma.LearnerProgressWhereInput
+  > | null;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionListRelationFilter;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateListRelationFilter;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventListRelationFilter;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionListRelationFilter;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionListRelationFilter;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionListRelationFilter;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionListRelationFilter;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingListRelationFilter;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityListRelationFilter;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionListRelationFilter;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionListRelationFilter;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageListRelationFilter;
+  libraryProgress?: Prisma.LibraryLearningProgressListRelationFilter;
+  libraryBookmarks?: Prisma.LibraryBookmarkListRelationFilter;
+  libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeListRelationFilter;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptListRelationFilter;
+};
 
 export type UserOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  legacyName?: Prisma.SortOrderInput | Prisma.SortOrder
-  authProvider?: Prisma.SortOrder
-  externalSubject?: Prisma.SortOrderInput | Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  profile?: Prisma.UserProfileOrderByWithRelationInput
-  roleAssignments?: Prisma.UserRoleOrderByRelationAggregateInput
-  roleAssignmentsAuthored?: Prisma.UserRoleOrderByRelationAggregateInput
-  onboarding?: Prisma.LearnerOnboardingOrderByWithRelationInput
-  placementAttempts?: Prisma.PlacementAttemptOrderByRelationAggregateInput
-  roadmaps?: Prisma.RoadmapOrderByRelationAggregateInput
-  practiceSessions?: Prisma.PracticeSessionOrderByRelationAggregateInput
-  learnerProgress?: Prisma.LearnerProgressOrderByWithRelationInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryOrderByRelationAggregateInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionOrderByRelationAggregateInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateOrderByRelationAggregateInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionOrderByRelationAggregateInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventOrderByRelationAggregateInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionOrderByRelationAggregateInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionOrderByRelationAggregateInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionOrderByRelationAggregateInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionOrderByRelationAggregateInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionOrderByRelationAggregateInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionOrderByRelationAggregateInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionOrderByRelationAggregateInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageOrderByRelationAggregateInput
-  libraryProgress?: Prisma.LibraryLearningProgressOrderByRelationAggregateInput
-  libraryBookmarks?: Prisma.LibraryBookmarkOrderByRelationAggregateInput
-  libraryNotes?: Prisma.LibraryPersonalNoteOrderByRelationAggregateInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeOrderByRelationAggregateInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptOrderByRelationAggregateInput
-}
+  id?: Prisma.SortOrder;
+  email?: Prisma.SortOrder;
+  legacyName?: Prisma.SortOrderInput | Prisma.SortOrder;
+  authProvider?: Prisma.SortOrder;
+  externalSubject?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+  profile?: Prisma.UserProfileOrderByWithRelationInput;
+  roleAssignments?: Prisma.UserRoleOrderByRelationAggregateInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleOrderByRelationAggregateInput;
+  onboarding?: Prisma.LearnerOnboardingOrderByWithRelationInput;
+  placementAttempts?: Prisma.PlacementAttemptOrderByRelationAggregateInput;
+  roadmaps?: Prisma.RoadmapOrderByRelationAggregateInput;
+  practiceSessions?: Prisma.PracticeSessionOrderByRelationAggregateInput;
+  learnerProgress?: Prisma.LearnerProgressOrderByWithRelationInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryOrderByRelationAggregateInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionOrderByRelationAggregateInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateOrderByRelationAggregateInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionOrderByRelationAggregateInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventOrderByRelationAggregateInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionOrderByRelationAggregateInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionOrderByRelationAggregateInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionOrderByRelationAggregateInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionOrderByRelationAggregateInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionOrderByRelationAggregateInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingOrderByRelationAggregateInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityOrderByRelationAggregateInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionOrderByRelationAggregateInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionOrderByRelationAggregateInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageOrderByRelationAggregateInput;
+  libraryProgress?: Prisma.LibraryLearningProgressOrderByRelationAggregateInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkOrderByRelationAggregateInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteOrderByRelationAggregateInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeOrderByRelationAggregateInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptOrderByRelationAggregateInput;
+};
 
-export type UserWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
-  email?: string
-  authProvider_externalSubject?: Prisma.UserAuthProviderExternalSubjectCompoundUniqueInput
-  AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  OR?: Prisma.UserWhereInput[]
-  NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  legacyName?: Prisma.StringNullableFilter<"User"> | string | null
-  authProvider?: Prisma.EnumIdentityProviderFilter<"User"> | $Enums.IdentityProvider
-  externalSubject?: Prisma.StringNullableFilter<"User"> | string | null
-  status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  profile?: Prisma.XOR<Prisma.UserProfileNullableScalarRelationFilter, Prisma.UserProfileWhereInput> | null
-  roleAssignments?: Prisma.UserRoleListRelationFilter
-  roleAssignmentsAuthored?: Prisma.UserRoleListRelationFilter
-  onboarding?: Prisma.XOR<Prisma.LearnerOnboardingNullableScalarRelationFilter, Prisma.LearnerOnboardingWhereInput> | null
-  placementAttempts?: Prisma.PlacementAttemptListRelationFilter
-  roadmaps?: Prisma.RoadmapListRelationFilter
-  practiceSessions?: Prisma.PracticeSessionListRelationFilter
-  learnerProgress?: Prisma.XOR<Prisma.LearnerProgressNullableScalarRelationFilter, Prisma.LearnerProgressWhereInput> | null
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionListRelationFilter
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateListRelationFilter
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventListRelationFilter
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionListRelationFilter
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionListRelationFilter
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionListRelationFilter
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionListRelationFilter
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter
-  toeicWritingSessions?: Prisma.ToeicWritingSessionListRelationFilter
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionListRelationFilter
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageListRelationFilter
-  libraryProgress?: Prisma.LibraryLearningProgressListRelationFilter
-  libraryBookmarks?: Prisma.LibraryBookmarkListRelationFilter
-  libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeListRelationFilter
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptListRelationFilter
-}, "id" | "email" | "authProvider_externalSubject">
+export type UserWhereUniqueInput = Prisma.AtLeast<
+  {
+    id?: string;
+    email?: string;
+    authProvider_externalSubject?: Prisma.UserAuthProviderExternalSubjectCompoundUniqueInput;
+    AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
+    OR?: Prisma.UserWhereInput[];
+    NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
+    legacyName?: Prisma.StringNullableFilter<'User'> | string | null;
+    authProvider?:
+      Prisma.EnumIdentityProviderFilter<'User'> | $Enums.IdentityProvider;
+    externalSubject?: Prisma.StringNullableFilter<'User'> | string | null;
+    status?: Prisma.EnumUserStatusFilter<'User'> | $Enums.UserStatus;
+    createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+    profile?: Prisma.XOR<
+      Prisma.UserProfileNullableScalarRelationFilter,
+      Prisma.UserProfileWhereInput
+    > | null;
+    roleAssignments?: Prisma.UserRoleListRelationFilter;
+    roleAssignmentsAuthored?: Prisma.UserRoleListRelationFilter;
+    onboarding?: Prisma.XOR<
+      Prisma.LearnerOnboardingNullableScalarRelationFilter,
+      Prisma.LearnerOnboardingWhereInput
+    > | null;
+    placementAttempts?: Prisma.PlacementAttemptListRelationFilter;
+    roadmaps?: Prisma.RoadmapListRelationFilter;
+    practiceSessions?: Prisma.PracticeSessionListRelationFilter;
+    learnerProgress?: Prisma.XOR<
+      Prisma.LearnerProgressNullableScalarRelationFilter,
+      Prisma.LearnerProgressWhereInput
+    > | null;
+    errorNotebookEntries?: Prisma.ErrorNotebookEntryListRelationFilter;
+    dailySentenceCompletions?: Prisma.DailySentenceCompletionListRelationFilter;
+    vocabularyMasteryStates?: Prisma.VocabularyMasteryStateListRelationFilter;
+    vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionListRelationFilter;
+    privilegedAuditEvents?: Prisma.PrivilegedAuditEventListRelationFilter;
+    toeicPracticeSessions?: Prisma.ToeicPracticeSessionListRelationFilter;
+    toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionListRelationFilter;
+    toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionListRelationFilter;
+    toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionListRelationFilter;
+    toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionListRelationFilter;
+    toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingListRelationFilter;
+    toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityListRelationFilter;
+    toeicWritingSessions?: Prisma.ToeicWritingSessionListRelationFilter;
+    toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionListRelationFilter;
+    aiFeedbackUsages?: Prisma.AiFeedbackUsageListRelationFilter;
+    libraryProgress?: Prisma.LibraryLearningProgressListRelationFilter;
+    libraryBookmarks?: Prisma.LibraryBookmarkListRelationFilter;
+    libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter;
+    libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeListRelationFilter;
+    shadowingAttempts?: Prisma.LibraryShadowingAttemptListRelationFilter;
+  },
+  'id' | 'email' | 'authProvider_externalSubject'
+>;
 
 export type UserOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  legacyName?: Prisma.SortOrderInput | Prisma.SortOrder
-  authProvider?: Prisma.SortOrder
-  externalSubject?: Prisma.SortOrderInput | Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  _count?: Prisma.UserCountOrderByAggregateInput
-  _max?: Prisma.UserMaxOrderByAggregateInput
-  _min?: Prisma.UserMinOrderByAggregateInput
-}
+  id?: Prisma.SortOrder;
+  email?: Prisma.SortOrder;
+  legacyName?: Prisma.SortOrderInput | Prisma.SortOrder;
+  authProvider?: Prisma.SortOrder;
+  externalSubject?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+  _count?: Prisma.UserCountOrderByAggregateInput;
+  _max?: Prisma.UserMaxOrderByAggregateInput;
+  _min?: Prisma.UserMinOrderByAggregateInput;
+};
 
 export type UserScalarWhereWithAggregatesInput = {
-  AND?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
-  OR?: Prisma.UserScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"User"> | string
-  email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  legacyName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  authProvider?: Prisma.EnumIdentityProviderWithAggregatesFilter<"User"> | $Enums.IdentityProvider
-  externalSubject?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-}
+  AND?:
+    | Prisma.UserScalarWhereWithAggregatesInput
+    | Prisma.UserScalarWhereWithAggregatesInput[];
+  OR?: Prisma.UserScalarWhereWithAggregatesInput[];
+  NOT?:
+    | Prisma.UserScalarWhereWithAggregatesInput
+    | Prisma.UserScalarWhereWithAggregatesInput[];
+  id?: Prisma.StringWithAggregatesFilter<'User'> | string;
+  email?: Prisma.StringWithAggregatesFilter<'User'> | string;
+  legacyName?:
+    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderWithAggregatesFilter<'User'>
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.StringNullableWithAggregatesFilter<'User'> | string | null;
+  status?:
+    Prisma.EnumUserStatusWithAggregatesFilter<'User'> | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
+};
 
 export type UserCreateInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateManyInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
 
 export type UserUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type UserUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type UserAuthProviderExternalSubjectCompoundUniqueInput = {
-  authProvider: $Enums.IdentityProvider
-  externalSubject: string
-}
+  authProvider: $Enums.IdentityProvider;
+  externalSubject: string;
+};
 
 export type UserCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  legacyName?: Prisma.SortOrder
-  authProvider?: Prisma.SortOrder
-  externalSubject?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  email?: Prisma.SortOrder;
+  legacyName?: Prisma.SortOrder;
+  authProvider?: Prisma.SortOrder;
+  externalSubject?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+};
 
 export type UserMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  legacyName?: Prisma.SortOrder
-  authProvider?: Prisma.SortOrder
-  externalSubject?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  email?: Prisma.SortOrder;
+  legacyName?: Prisma.SortOrder;
+  authProvider?: Prisma.SortOrder;
+  externalSubject?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+};
 
 export type UserMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  legacyName?: Prisma.SortOrder
-  authProvider?: Prisma.SortOrder
-  externalSubject?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
+  id?: Prisma.SortOrder;
+  email?: Prisma.SortOrder;
+  legacyName?: Prisma.SortOrder;
+  authProvider?: Prisma.SortOrder;
+  externalSubject?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
+  createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
+};
 
 export type UserScalarRelationFilter = {
-  is?: Prisma.UserWhereInput
-  isNot?: Prisma.UserWhereInput
-}
+  is?: Prisma.UserWhereInput;
+  isNot?: Prisma.UserWhereInput;
+};
 
 export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
-}
+  is?: Prisma.UserWhereInput | null;
+  isNot?: Prisma.UserWhereInput | null;
+};
 
 export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
+  set?: string;
+};
 
 export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
+  set?: string | null;
+};
 
 export type EnumIdentityProviderFieldUpdateOperationsInput = {
-  set?: $Enums.IdentityProvider
-}
+  set?: $Enums.IdentityProvider;
+};
 
 export type EnumUserStatusFieldUpdateOperationsInput = {
-  set?: $Enums.UserStatus
-}
+  set?: $Enums.UserStatus;
+};
 
 export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
+  set?: Date | string;
+};
 
 export type UserCreateNestedOneWithoutLibraryProgressInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryProgressInput, Prisma.UserUncheckedCreateWithoutLibraryProgressInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryProgressInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryProgressInput,
+    Prisma.UserUncheckedCreateWithoutLibraryProgressInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryProgressInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutLibraryProgressNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryProgressInput, Prisma.UserUncheckedCreateWithoutLibraryProgressInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryProgressInput
-  upsert?: Prisma.UserUpsertWithoutLibraryProgressInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLibraryProgressInput, Prisma.UserUpdateWithoutLibraryProgressInput>, Prisma.UserUncheckedUpdateWithoutLibraryProgressInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryProgressInput,
+    Prisma.UserUncheckedCreateWithoutLibraryProgressInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryProgressInput;
+  upsert?: Prisma.UserUpsertWithoutLibraryProgressInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutLibraryProgressInput,
+      Prisma.UserUpdateWithoutLibraryProgressInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutLibraryProgressInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutLibraryBookmarksInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryBookmarksInput, Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryBookmarksInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryBookmarksInput,
+    Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryBookmarksInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutLibraryBookmarksNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryBookmarksInput, Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryBookmarksInput
-  upsert?: Prisma.UserUpsertWithoutLibraryBookmarksInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLibraryBookmarksInput, Prisma.UserUpdateWithoutLibraryBookmarksInput>, Prisma.UserUncheckedUpdateWithoutLibraryBookmarksInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryBookmarksInput,
+    Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryBookmarksInput;
+  upsert?: Prisma.UserUpsertWithoutLibraryBookmarksInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutLibraryBookmarksInput,
+      Prisma.UserUpdateWithoutLibraryBookmarksInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutLibraryBookmarksInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutLibraryNotesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryNotesInput, Prisma.UserUncheckedCreateWithoutLibraryNotesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryNotesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryNotesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryNotesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryNotesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutLibraryNotesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryNotesInput, Prisma.UserUncheckedCreateWithoutLibraryNotesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryNotesInput
-  upsert?: Prisma.UserUpsertWithoutLibraryNotesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLibraryNotesInput, Prisma.UserUpdateWithoutLibraryNotesInput>, Prisma.UserUncheckedUpdateWithoutLibraryNotesInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryNotesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryNotesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryNotesInput;
+  upsert?: Prisma.UserUpsertWithoutLibraryNotesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutLibraryNotesInput,
+      Prisma.UserUpdateWithoutLibraryNotesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutLibraryNotesInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutLibraryDrillOutcomesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryDrillOutcomesInput, Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryDrillOutcomesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryDrillOutcomesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryDrillOutcomesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutLibraryDrillOutcomesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLibraryDrillOutcomesInput, Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryDrillOutcomesInput
-  upsert?: Prisma.UserUpsertWithoutLibraryDrillOutcomesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLibraryDrillOutcomesInput, Prisma.UserUpdateWithoutLibraryDrillOutcomesInput>, Prisma.UserUncheckedUpdateWithoutLibraryDrillOutcomesInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryDrillOutcomesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLibraryDrillOutcomesInput;
+  upsert?: Prisma.UserUpsertWithoutLibraryDrillOutcomesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutLibraryDrillOutcomesInput,
+      Prisma.UserUpdateWithoutLibraryDrillOutcomesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutLibraryDrillOutcomesInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutShadowingAttemptsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutShadowingAttemptsInput, Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShadowingAttemptsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutShadowingAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShadowingAttemptsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutShadowingAttemptsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutShadowingAttemptsInput, Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShadowingAttemptsInput
-  upsert?: Prisma.UserUpsertWithoutShadowingAttemptsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutShadowingAttemptsInput, Prisma.UserUpdateWithoutShadowingAttemptsInput>, Prisma.UserUncheckedUpdateWithoutShadowingAttemptsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutShadowingAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShadowingAttemptsInput;
+  upsert?: Prisma.UserUpsertWithoutShadowingAttemptsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutShadowingAttemptsInput,
+      Prisma.UserUpdateWithoutShadowingAttemptsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutShadowingAttemptsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutOnboardingInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOnboardingInput, Prisma.UserUncheckedCreateWithoutOnboardingInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOnboardingInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOnboardingInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutOnboardingNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOnboardingInput, Prisma.UserUncheckedCreateWithoutOnboardingInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOnboardingInput
-  upsert?: Prisma.UserUpsertWithoutOnboardingInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOnboardingInput, Prisma.UserUpdateWithoutOnboardingInput>, Prisma.UserUncheckedUpdateWithoutOnboardingInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOnboardingInput;
+  upsert?: Prisma.UserUpsertWithoutOnboardingInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutOnboardingInput,
+      Prisma.UserUpdateWithoutOnboardingInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutOnboardingInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutPlacementAttemptsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPlacementAttemptsInput, Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlacementAttemptsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlacementAttemptsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutPlacementAttemptsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPlacementAttemptsInput, Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlacementAttemptsInput
-  upsert?: Prisma.UserUpsertWithoutPlacementAttemptsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPlacementAttemptsInput, Prisma.UserUpdateWithoutPlacementAttemptsInput>, Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPlacementAttemptsInput;
+  upsert?: Prisma.UserUpsertWithoutPlacementAttemptsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutPlacementAttemptsInput,
+      Prisma.UserUpdateWithoutPlacementAttemptsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutRoadmapsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRoadmapsInput, Prisma.UserUncheckedCreateWithoutRoadmapsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoadmapsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoadmapsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutRoadmapsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRoadmapsInput, Prisma.UserUncheckedCreateWithoutRoadmapsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoadmapsInput
-  upsert?: Prisma.UserUpsertWithoutRoadmapsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoadmapsInput, Prisma.UserUpdateWithoutRoadmapsInput>, Prisma.UserUncheckedUpdateWithoutRoadmapsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoadmapsInput;
+  upsert?: Prisma.UserUpsertWithoutRoadmapsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutRoadmapsInput,
+      Prisma.UserUpdateWithoutRoadmapsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutRoadmapsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutPracticeSessionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutPracticeSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutPracticeSessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutPracticeSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeSessionsInput
-  upsert?: Prisma.UserUpsertWithoutPracticeSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPracticeSessionsInput, Prisma.UserUpdateWithoutPracticeSessionsInput>, Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeSessionsInput;
+  upsert?: Prisma.UserUpsertWithoutPracticeSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutPracticeSessionsInput,
+      Prisma.UserUpdateWithoutPracticeSessionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutLearnerProgressInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLearnerProgressInput, Prisma.UserUncheckedCreateWithoutLearnerProgressInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearnerProgressInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearnerProgressInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutLearnerProgressNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLearnerProgressInput, Prisma.UserUncheckedCreateWithoutLearnerProgressInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearnerProgressInput
-  upsert?: Prisma.UserUpsertWithoutLearnerProgressInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLearnerProgressInput, Prisma.UserUpdateWithoutLearnerProgressInput>, Prisma.UserUncheckedUpdateWithoutLearnerProgressInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLearnerProgressInput;
+  upsert?: Prisma.UserUpsertWithoutLearnerProgressInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutLearnerProgressInput,
+      Prisma.UserUpdateWithoutLearnerProgressInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutLearnerProgressInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutErrorNotebookEntriesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutErrorNotebookEntriesInput, Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutErrorNotebookEntriesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutErrorNotebookEntriesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutErrorNotebookEntriesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutErrorNotebookEntriesInput, Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutErrorNotebookEntriesInput
-  upsert?: Prisma.UserUpsertWithoutErrorNotebookEntriesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutErrorNotebookEntriesInput, Prisma.UserUpdateWithoutErrorNotebookEntriesInput>, Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutErrorNotebookEntriesInput;
+  upsert?: Prisma.UserUpsertWithoutErrorNotebookEntriesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutErrorNotebookEntriesInput,
+      Prisma.UserUpdateWithoutErrorNotebookEntriesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutProfileInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutProfileInput,
+    Prisma.UserUncheckedCreateWithoutProfileInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput
-  upsert?: Prisma.UserUpsertWithoutProfileInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProfileInput, Prisma.UserUpdateWithoutProfileInput>, Prisma.UserUncheckedUpdateWithoutProfileInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutProfileInput,
+    Prisma.UserUncheckedCreateWithoutProfileInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProfileInput;
+  upsert?: Prisma.UserUpsertWithoutProfileInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutProfileInput,
+      Prisma.UserUpdateWithoutProfileInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutProfileInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutDailySentenceCompletionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutDailySentenceCompletionsInput, Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDailySentenceCompletionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutDailySentenceCompletionsInput,
+    Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDailySentenceCompletionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutDailySentenceCompletionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutDailySentenceCompletionsInput, Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDailySentenceCompletionsInput
-  upsert?: Prisma.UserUpsertWithoutDailySentenceCompletionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDailySentenceCompletionsInput, Prisma.UserUpdateWithoutDailySentenceCompletionsInput>, Prisma.UserUncheckedUpdateWithoutDailySentenceCompletionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutDailySentenceCompletionsInput,
+    Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDailySentenceCompletionsInput;
+  upsert?: Prisma.UserUpsertWithoutDailySentenceCompletionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutDailySentenceCompletionsInput,
+      Prisma.UserUpdateWithoutDailySentenceCompletionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutDailySentenceCompletionsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutVocabularyMasteryStatesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyMasteryStatesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutVocabularyMasteryStatesInput,
+    Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyMasteryStatesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutVocabularyMasteryStatesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyMasteryStatesInput
-  upsert?: Prisma.UserUpsertWithoutVocabularyMasteryStatesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVocabularyMasteryStatesInput, Prisma.UserUpdateWithoutVocabularyMasteryStatesInput>, Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutVocabularyMasteryStatesInput,
+    Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyMasteryStatesInput;
+  upsert?: Prisma.UserUpsertWithoutVocabularyMasteryStatesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutVocabularyMasteryStatesInput,
+      Prisma.UserUpdateWithoutVocabularyMasteryStatesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutVocabularyReviewSubmissionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
-export type UserUpdateOneRequiredWithoutVocabularyReviewSubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput
-  upsert?: Prisma.UserUpsertWithoutVocabularyReviewSubmissionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVocabularyReviewSubmissionsInput, Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput>
-}
+export type UserUpdateOneRequiredWithoutVocabularyReviewSubmissionsNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput,
+      Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput
+    >;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput;
+    upsert?: Prisma.UserUpsertWithoutVocabularyReviewSubmissionsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.UserUpdateToOneWithWhereWithoutVocabularyReviewSubmissionsInput,
+        Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput
+      >,
+      Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput
+    >;
+  };
 
 export type UserCreateNestedOneWithoutRoleAssignmentsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserCreateNestedOneWithoutRoleAssignmentsAuthoredInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutRoleAssignmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsInput
-  upsert?: Prisma.UserUpsertWithoutRoleAssignmentsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoleAssignmentsInput, Prisma.UserUpdateWithoutRoleAssignmentsInput>, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsInput;
+  upsert?: Prisma.UserUpsertWithoutRoleAssignmentsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutRoleAssignmentsInput,
+      Prisma.UserUpdateWithoutRoleAssignmentsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutRoleAssignmentsInput
+  >;
+};
 
 export type UserUpdateOneWithoutRoleAssignmentsAuthoredNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput
-  upsert?: Prisma.UserUpsertWithoutRoleAssignmentsAuthoredInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRoleAssignmentsAuthoredInput, Prisma.UserUpdateWithoutRoleAssignmentsAuthoredInput>, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput;
+  upsert?: Prisma.UserUpsertWithoutRoleAssignmentsAuthoredInput;
+  disconnect?: Prisma.UserWhereInput | boolean;
+  delete?: Prisma.UserWhereInput | boolean;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutRoleAssignmentsAuthoredInput,
+      Prisma.UserUpdateWithoutRoleAssignmentsAuthoredInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutPrivilegedAuditEventsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPrivilegedAuditEventsInput, Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrivilegedAuditEventsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPrivilegedAuditEventsInput,
+    Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrivilegedAuditEventsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneWithoutPrivilegedAuditEventsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPrivilegedAuditEventsInput, Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrivilegedAuditEventsInput
-  upsert?: Prisma.UserUpsertWithoutPrivilegedAuditEventsInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPrivilegedAuditEventsInput, Prisma.UserUpdateWithoutPrivilegedAuditEventsInput>, Prisma.UserUncheckedUpdateWithoutPrivilegedAuditEventsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPrivilegedAuditEventsInput,
+    Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrivilegedAuditEventsInput;
+  upsert?: Prisma.UserUpsertWithoutPrivilegedAuditEventsInput;
+  disconnect?: Prisma.UserWhereInput | boolean;
+  delete?: Prisma.UserWhereInput | boolean;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutPrivilegedAuditEventsInput,
+      Prisma.UserUpdateWithoutPrivilegedAuditEventsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutPrivilegedAuditEventsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutToeicPracticeSessionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicPracticeSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicPracticeSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutToeicPracticeSessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicPracticeSessionsInput
-  upsert?: Prisma.UserUpsertWithoutToeicPracticeSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicPracticeSessionsInput, Prisma.UserUpdateWithoutToeicPracticeSessionsInput>, Prisma.UserUncheckedUpdateWithoutToeicPracticeSessionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicPracticeSessionsInput;
+  upsert?: Prisma.UserUpsertWithoutToeicPracticeSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutToeicPracticeSessionsInput,
+      Prisma.UserUpdateWithoutToeicPracticeSessionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutToeicPracticeSessionsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutToeicReadingPracticeSessionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicReadingPracticeSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicReadingPracticeSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
-export type UserUpdateOneRequiredWithoutToeicReadingPracticeSessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicReadingPracticeSessionsInput
-  upsert?: Prisma.UserUpsertWithoutToeicReadingPracticeSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicReadingPracticeSessionsInput, Prisma.UserUpdateWithoutToeicReadingPracticeSessionsInput>, Prisma.UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput>
-}
+export type UserUpdateOneRequiredWithoutToeicReadingPracticeSessionsNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput,
+      Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput
+    >;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicReadingPracticeSessionsInput;
+    upsert?: Prisma.UserUpsertWithoutToeicReadingPracticeSessionsInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.UserUpdateToOneWithWhereWithoutToeicReadingPracticeSessionsInput,
+        Prisma.UserUpdateWithoutToeicReadingPracticeSessionsInput
+      >,
+      Prisma.UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput
+    >;
+  };
 
 export type UserCreateNestedOneWithoutToeicTimedTestSessionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicTimedTestSessionsInput, Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicTimedTestSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicTimedTestSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicTimedTestSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutToeicTimedTestSessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicTimedTestSessionsInput, Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicTimedTestSessionsInput
-  upsert?: Prisma.UserUpsertWithoutToeicTimedTestSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicTimedTestSessionsInput, Prisma.UserUpdateWithoutToeicTimedTestSessionsInput>, Prisma.UserUncheckedUpdateWithoutToeicTimedTestSessionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicTimedTestSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicTimedTestSessionsInput;
+  upsert?: Prisma.UserUpsertWithoutToeicTimedTestSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutToeicTimedTestSessionsInput,
+      Prisma.UserUpdateWithoutToeicTimedTestSessionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutToeicTimedTestSessionsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutToeicSpeakingSessionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutToeicSpeakingSessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSessionsInput
-  upsert?: Prisma.UserUpsertWithoutToeicSpeakingSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicSpeakingSessionsInput, Prisma.UserUpdateWithoutToeicSpeakingSessionsInput>, Prisma.UserUncheckedUpdateWithoutToeicSpeakingSessionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSessionsInput;
+  upsert?: Prisma.UserUpsertWithoutToeicSpeakingSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutToeicSpeakingSessionsInput,
+      Prisma.UserUpdateWithoutToeicSpeakingSessionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingSessionsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutToeicSpeakingSubmissionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSubmissionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSubmissionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutToeicSpeakingSubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSubmissionsInput
-  upsert?: Prisma.UserUpsertWithoutToeicSpeakingSubmissionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicSpeakingSubmissionsInput, Prisma.UserUpdateWithoutToeicSpeakingSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingSubmissionsInput;
+  upsert?: Prisma.UserUpsertWithoutToeicSpeakingSubmissionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutToeicSpeakingSubmissionsInput,
+      Prisma.UserUpdateWithoutToeicSpeakingSubmissionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutToeicSpeakingRecordingsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingRecordingsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingRecordingsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingRecordingsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutToeicSpeakingRecordingsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingRecordingsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingRecordingsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingRecordingsInput;
+  upsert?: Prisma.UserUpsertWithoutToeicSpeakingRecordingsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutToeicSpeakingRecordingsInput,
+      Prisma.UserUpdateWithoutToeicSpeakingRecordingsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingRecordingsInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutToeicSpeakingPlaybackCapabilitiesInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingPlaybackCapabilitiesInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingPlaybackCapabilitiesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingPlaybackCapabilitiesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutToeicSpeakingPlaybackCapabilitiesNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.UserCreateWithoutToeicSpeakingPlaybackCapabilitiesInput,
+      Prisma.UserUncheckedCreateWithoutToeicSpeakingPlaybackCapabilitiesInput
+    >;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicSpeakingPlaybackCapabilitiesInput;
+    upsert?: Prisma.UserUpsertWithoutToeicSpeakingPlaybackCapabilitiesInput;
+    connect?: Prisma.UserWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.UserUpdateToOneWithWhereWithoutToeicSpeakingPlaybackCapabilitiesInput,
+        Prisma.UserUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput
+      >,
+      Prisma.UserUncheckedUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput
+    >;
+  };
 
 export type UserCreateNestedOneWithoutToeicWritingSessionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutToeicWritingSessionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSessionsInput
-  upsert?: Prisma.UserUpsertWithoutToeicWritingSessionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicWritingSessionsInput, Prisma.UserUpdateWithoutToeicWritingSessionsInput>, Prisma.UserUncheckedUpdateWithoutToeicWritingSessionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSessionsInput;
+  upsert?: Prisma.UserUpsertWithoutToeicWritingSessionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutToeicWritingSessionsInput,
+      Prisma.UserUpdateWithoutToeicWritingSessionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutToeicWritingSessionsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutToeicWritingSubmissionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSubmissionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSubmissionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutToeicWritingSubmissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSubmissionsInput
-  upsert?: Prisma.UserUpsertWithoutToeicWritingSubmissionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutToeicWritingSubmissionsInput, Prisma.UserUpdateWithoutToeicWritingSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutToeicWritingSubmissionsInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutToeicWritingSubmissionsInput;
+  upsert?: Prisma.UserUpsertWithoutToeicWritingSubmissionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutToeicWritingSubmissionsInput,
+      Prisma.UserUpdateWithoutToeicWritingSubmissionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutToeicWritingSubmissionsInput
+  >;
+};
 
 export type UserCreateNestedOneWithoutAiFeedbackUsagesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiFeedbackUsagesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutAiFeedbackUsagesInput,
+    Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiFeedbackUsagesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
 
 export type UserUpdateOneRequiredWithoutAiFeedbackUsagesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiFeedbackUsagesInput
-  upsert?: Prisma.UserUpsertWithoutAiFeedbackUsagesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiFeedbackUsagesInput, Prisma.UserUpdateWithoutAiFeedbackUsagesInput>, Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput>
-}
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutAiFeedbackUsagesInput,
+    Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiFeedbackUsagesInput;
+  upsert?: Prisma.UserUpsertWithoutAiFeedbackUsagesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutAiFeedbackUsagesInput,
+      Prisma.UserUpdateWithoutAiFeedbackUsagesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput
+  >;
+};
 
 export type UserCreateWithoutLibraryProgressInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutLibraryProgressInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutLibraryProgressInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryProgressInput, Prisma.UserUncheckedCreateWithoutLibraryProgressInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryProgressInput,
+    Prisma.UserUncheckedCreateWithoutLibraryProgressInput
+  >;
+};
 
 export type UserUpsertWithoutLibraryProgressInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLibraryProgressInput, Prisma.UserUncheckedUpdateWithoutLibraryProgressInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryProgressInput, Prisma.UserUncheckedCreateWithoutLibraryProgressInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryProgressInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryProgressInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryProgressInput,
+    Prisma.UserUncheckedCreateWithoutLibraryProgressInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutLibraryProgressInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLibraryProgressInput, Prisma.UserUncheckedUpdateWithoutLibraryProgressInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryProgressInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryProgressInput
+  >;
+};
 
 export type UserUpdateWithoutLibraryProgressInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutLibraryProgressInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutLibraryBookmarksInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutLibraryBookmarksInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutLibraryBookmarksInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryBookmarksInput, Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryBookmarksInput,
+    Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput
+  >;
+};
 
 export type UserUpsertWithoutLibraryBookmarksInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLibraryBookmarksInput, Prisma.UserUncheckedUpdateWithoutLibraryBookmarksInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryBookmarksInput, Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryBookmarksInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryBookmarksInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryBookmarksInput,
+    Prisma.UserUncheckedCreateWithoutLibraryBookmarksInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutLibraryBookmarksInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLibraryBookmarksInput, Prisma.UserUncheckedUpdateWithoutLibraryBookmarksInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryBookmarksInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryBookmarksInput
+  >;
+};
 
 export type UserUpdateWithoutLibraryBookmarksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutLibraryBookmarksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutLibraryNotesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutLibraryNotesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutLibraryNotesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryNotesInput, Prisma.UserUncheckedCreateWithoutLibraryNotesInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryNotesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryNotesInput
+  >;
+};
 
 export type UserUpsertWithoutLibraryNotesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLibraryNotesInput, Prisma.UserUncheckedUpdateWithoutLibraryNotesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryNotesInput, Prisma.UserUncheckedCreateWithoutLibraryNotesInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryNotesInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryNotesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryNotesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryNotesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutLibraryNotesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLibraryNotesInput, Prisma.UserUncheckedUpdateWithoutLibraryNotesInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryNotesInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryNotesInput
+  >;
+};
 
 export type UserUpdateWithoutLibraryNotesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutLibraryNotesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutLibraryDrillOutcomesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutLibraryDrillOutcomesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutLibraryDrillOutcomesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryDrillOutcomesInput, Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryDrillOutcomesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput
+  >;
+};
 
 export type UserUpsertWithoutLibraryDrillOutcomesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLibraryDrillOutcomesInput, Prisma.UserUncheckedUpdateWithoutLibraryDrillOutcomesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLibraryDrillOutcomesInput, Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryDrillOutcomesInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryDrillOutcomesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLibraryDrillOutcomesInput,
+    Prisma.UserUncheckedCreateWithoutLibraryDrillOutcomesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutLibraryDrillOutcomesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLibraryDrillOutcomesInput, Prisma.UserUncheckedUpdateWithoutLibraryDrillOutcomesInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutLibraryDrillOutcomesInput,
+    Prisma.UserUncheckedUpdateWithoutLibraryDrillOutcomesInput
+  >;
+};
 
 export type UserUpdateWithoutLibraryDrillOutcomesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutLibraryDrillOutcomesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutShadowingAttemptsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutShadowingAttemptsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutShadowingAttemptsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutShadowingAttemptsInput, Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutShadowingAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput
+  >;
+};
 
 export type UserUpsertWithoutShadowingAttemptsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutShadowingAttemptsInput, Prisma.UserUncheckedUpdateWithoutShadowingAttemptsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutShadowingAttemptsInput, Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutShadowingAttemptsInput,
+    Prisma.UserUncheckedUpdateWithoutShadowingAttemptsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutShadowingAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutShadowingAttemptsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutShadowingAttemptsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutShadowingAttemptsInput, Prisma.UserUncheckedUpdateWithoutShadowingAttemptsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutShadowingAttemptsInput,
+    Prisma.UserUncheckedUpdateWithoutShadowingAttemptsInput
+  >;
+};
 
 export type UserUpdateWithoutShadowingAttemptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutShadowingAttemptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutOnboardingInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutOnboardingInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutOnboardingInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutOnboardingInput, Prisma.UserUncheckedCreateWithoutOnboardingInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+};
 
 export type UserUpsertWithoutOnboardingInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutOnboardingInput, Prisma.UserUncheckedUpdateWithoutOnboardingInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutOnboardingInput, Prisma.UserUncheckedCreateWithoutOnboardingInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutOnboardingInput,
+    Prisma.UserUncheckedUpdateWithoutOnboardingInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutOnboardingInput,
+    Prisma.UserUncheckedCreateWithoutOnboardingInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutOnboardingInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutOnboardingInput, Prisma.UserUncheckedUpdateWithoutOnboardingInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutOnboardingInput,
+    Prisma.UserUncheckedUpdateWithoutOnboardingInput
+  >;
+};
 
 export type UserUpdateWithoutOnboardingInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutOnboardingInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutPlacementAttemptsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutPlacementAttemptsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPlacementAttemptsInput, Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+};
 
 export type UserUpsertWithoutPlacementAttemptsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPlacementAttemptsInput, Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPlacementAttemptsInput, Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedCreateWithoutPlacementAttemptsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutPlacementAttemptsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPlacementAttemptsInput, Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutPlacementAttemptsInput,
+    Prisma.UserUncheckedUpdateWithoutPlacementAttemptsInput
+  >;
+};
 
 export type UserUpdateWithoutPlacementAttemptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutRoadmapsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutRoadmapsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutRoadmapsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutRoadmapsInput, Prisma.UserUncheckedCreateWithoutRoadmapsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+};
 
 export type UserUpsertWithoutRoadmapsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutRoadmapsInput, Prisma.UserUncheckedUpdateWithoutRoadmapsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutRoadmapsInput, Prisma.UserUncheckedCreateWithoutRoadmapsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoadmapsInput,
+    Prisma.UserUncheckedUpdateWithoutRoadmapsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoadmapsInput,
+    Prisma.UserUncheckedCreateWithoutRoadmapsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutRoadmapsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutRoadmapsInput, Prisma.UserUncheckedUpdateWithoutRoadmapsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoadmapsInput,
+    Prisma.UserUncheckedUpdateWithoutRoadmapsInput
+  >;
+};
 
 export type UserUpdateWithoutRoadmapsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutRoadmapsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutPracticeSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutPracticeSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutPracticeSessionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutPracticeSessionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+};
 
 export type UserUpsertWithoutPracticeSessionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPracticeSessionsInput, Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutPracticeSessionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutPracticeSessionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutPracticeSessionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPracticeSessionsInput, Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutPracticeSessionsInput
+  >;
+};
 
 export type UserUpdateWithoutPracticeSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutLearnerProgressInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutLearnerProgressInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutLearnerProgressInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLearnerProgressInput, Prisma.UserUncheckedCreateWithoutLearnerProgressInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+};
 
 export type UserUpsertWithoutLearnerProgressInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLearnerProgressInput, Prisma.UserUncheckedUpdateWithoutLearnerProgressInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLearnerProgressInput, Prisma.UserUncheckedCreateWithoutLearnerProgressInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedUpdateWithoutLearnerProgressInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedCreateWithoutLearnerProgressInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutLearnerProgressInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLearnerProgressInput, Prisma.UserUncheckedUpdateWithoutLearnerProgressInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutLearnerProgressInput,
+    Prisma.UserUncheckedUpdateWithoutLearnerProgressInput
+  >;
+};
 
 export type UserUpdateWithoutLearnerProgressInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutLearnerProgressInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutErrorNotebookEntriesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutErrorNotebookEntriesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutErrorNotebookEntriesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutErrorNotebookEntriesInput, Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+};
 
 export type UserUpsertWithoutErrorNotebookEntriesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutErrorNotebookEntriesInput, Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutErrorNotebookEntriesInput, Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedCreateWithoutErrorNotebookEntriesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutErrorNotebookEntriesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutErrorNotebookEntriesInput, Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutErrorNotebookEntriesInput,
+    Prisma.UserUncheckedUpdateWithoutErrorNotebookEntriesInput
+  >;
+};
 
 export type UserUpdateWithoutErrorNotebookEntriesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutErrorNotebookEntriesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutProfileInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutProfileInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutProfileInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutProfileInput,
+    Prisma.UserUncheckedCreateWithoutProfileInput
+  >;
+};
 
 export type UserUpsertWithoutProfileInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutProfileInput, Prisma.UserUncheckedCreateWithoutProfileInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutProfileInput,
+    Prisma.UserUncheckedUpdateWithoutProfileInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutProfileInput,
+    Prisma.UserUncheckedCreateWithoutProfileInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutProfileInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutProfileInput, Prisma.UserUncheckedUpdateWithoutProfileInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutProfileInput,
+    Prisma.UserUncheckedUpdateWithoutProfileInput
+  >;
+};
 
 export type UserUpdateWithoutProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutDailySentenceCompletionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutDailySentenceCompletionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutDailySentenceCompletionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutDailySentenceCompletionsInput, Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutDailySentenceCompletionsInput,
+    Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput
+  >;
+};
 
 export type UserUpsertWithoutDailySentenceCompletionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutDailySentenceCompletionsInput, Prisma.UserUncheckedUpdateWithoutDailySentenceCompletionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutDailySentenceCompletionsInput, Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutDailySentenceCompletionsInput,
+    Prisma.UserUncheckedUpdateWithoutDailySentenceCompletionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutDailySentenceCompletionsInput,
+    Prisma.UserUncheckedCreateWithoutDailySentenceCompletionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutDailySentenceCompletionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutDailySentenceCompletionsInput, Prisma.UserUncheckedUpdateWithoutDailySentenceCompletionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutDailySentenceCompletionsInput,
+    Prisma.UserUncheckedUpdateWithoutDailySentenceCompletionsInput
+  >;
+};
 
 export type UserUpdateWithoutDailySentenceCompletionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutDailySentenceCompletionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutVocabularyMasteryStatesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutVocabularyMasteryStatesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutVocabularyMasteryStatesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutVocabularyMasteryStatesInput,
+    Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput
+  >;
+};
 
 export type UserUpsertWithoutVocabularyMasteryStatesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutVocabularyMasteryStatesInput,
+    Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutVocabularyMasteryStatesInput,
+    Prisma.UserUncheckedCreateWithoutVocabularyMasteryStatesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutVocabularyMasteryStatesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyMasteryStatesInput, Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutVocabularyMasteryStatesInput,
+    Prisma.UserUncheckedUpdateWithoutVocabularyMasteryStatesInput
+  >;
+};
 
 export type UserUpdateWithoutVocabularyMasteryStatesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutVocabularyMasteryStatesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutVocabularyReviewSubmissionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput
+  >;
+};
 
 export type UserUpsertWithoutVocabularyReviewSubmissionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput,
+    Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutVocabularyReviewSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutVocabularyReviewSubmissionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput, Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutVocabularyReviewSubmissionsInput,
+    Prisma.UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput
+  >;
+};
 
 export type UserUpdateWithoutVocabularyReviewSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutRoleAssignmentsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutRoleAssignmentsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput
+  >;
+};
 
 export type UserCreateWithoutRoleAssignmentsAuthoredInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput
+  >;
+};
 
 export type UserUpsertWithoutRoleAssignmentsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutRoleAssignmentsInput, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoleAssignmentsInput,
+    Prisma.UserUncheckedUpdateWithoutRoleAssignmentsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutRoleAssignmentsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutRoleAssignmentsInput, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoleAssignmentsInput,
+    Prisma.UserUncheckedUpdateWithoutRoleAssignmentsInput
+  >;
+};
 
 export type UserUpdateWithoutRoleAssignmentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUpsertWithoutRoleAssignmentsAuthoredInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutRoleAssignmentsAuthoredInput, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput, Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoleAssignmentsAuthoredInput,
+    Prisma.UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutRoleAssignmentsAuthoredInput,
+    Prisma.UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutRoleAssignmentsAuthoredInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutRoleAssignmentsAuthoredInput, Prisma.UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutRoleAssignmentsAuthoredInput,
+    Prisma.UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput
+  >;
+};
 
 export type UserUpdateWithoutRoleAssignmentsAuthoredInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutPrivilegedAuditEventsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutPrivilegedAuditEventsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutPrivilegedAuditEventsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPrivilegedAuditEventsInput, Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPrivilegedAuditEventsInput,
+    Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput
+  >;
+};
 
 export type UserUpsertWithoutPrivilegedAuditEventsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPrivilegedAuditEventsInput, Prisma.UserUncheckedUpdateWithoutPrivilegedAuditEventsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPrivilegedAuditEventsInput, Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutPrivilegedAuditEventsInput,
+    Prisma.UserUncheckedUpdateWithoutPrivilegedAuditEventsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPrivilegedAuditEventsInput,
+    Prisma.UserUncheckedCreateWithoutPrivilegedAuditEventsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutPrivilegedAuditEventsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPrivilegedAuditEventsInput, Prisma.UserUncheckedUpdateWithoutPrivilegedAuditEventsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutPrivilegedAuditEventsInput,
+    Prisma.UserUncheckedUpdateWithoutPrivilegedAuditEventsInput
+  >;
+};
 
 export type UserUpdateWithoutPrivilegedAuditEventsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutPrivilegedAuditEventsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutToeicPracticeSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutToeicPracticeSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutToeicPracticeSessionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput
+  >;
+};
 
 export type UserUpsertWithoutToeicPracticeSessionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutToeicPracticeSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicPracticeSessionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicPracticeSessionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicPracticeSessionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutToeicPracticeSessionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutToeicPracticeSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicPracticeSessionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicPracticeSessionsInput
+  >;
+};
 
 export type UserUpdateWithoutToeicPracticeSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutToeicPracticeSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutToeicReadingPracticeSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutToeicReadingPracticeSessionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput
+  >;
+};
 
 export type UserUpsertWithoutToeicReadingPracticeSessionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutToeicReadingPracticeSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput, Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicReadingPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicReadingPracticeSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutToeicReadingPracticeSessionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutToeicReadingPracticeSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicReadingPracticeSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput
+  >;
+};
 
 export type UserUpdateWithoutToeicReadingPracticeSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutToeicTimedTestSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutToeicTimedTestSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutToeicTimedTestSessionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicTimedTestSessionsInput, Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicTimedTestSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput
+  >;
+};
 
 export type UserUpsertWithoutToeicTimedTestSessionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutToeicTimedTestSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicTimedTestSessionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicTimedTestSessionsInput, Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicTimedTestSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicTimedTestSessionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicTimedTestSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicTimedTestSessionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutToeicTimedTestSessionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutToeicTimedTestSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicTimedTestSessionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicTimedTestSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicTimedTestSessionsInput
+  >;
+};
 
 export type UserUpdateWithoutToeicTimedTestSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutToeicTimedTestSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutToeicSpeakingSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutToeicSpeakingSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutToeicSpeakingSessionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput
+  >;
+};
 
 export type UserUpsertWithoutToeicSpeakingSessionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutToeicSpeakingSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicSpeakingSessionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicSpeakingSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingSessionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSessionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutToeicSpeakingSessionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutToeicSpeakingSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicSpeakingSessionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicSpeakingSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingSessionsInput
+  >;
+};
 
 export type UserUpdateWithoutToeicSpeakingSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutToeicSpeakingSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutToeicSpeakingSubmissionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutToeicSpeakingSubmissionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput
+  >;
+};
 
 export type UserUpsertWithoutToeicSpeakingSubmissionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutToeicSpeakingSubmissionsInput, Prisma.UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicSpeakingSubmissionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutToeicSpeakingSubmissionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutToeicSpeakingSubmissionsInput, Prisma.UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicSpeakingSubmissionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput
+  >;
+};
 
 export type UserUpdateWithoutToeicSpeakingSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutToeicSpeakingRecordingsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutToeicSpeakingRecordingsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutToeicSpeakingRecordingsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingRecordingsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingRecordingsInput
+  >;
+};
+
+export type UserUpsertWithoutToeicSpeakingRecordingsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicSpeakingRecordingsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingRecordingsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingRecordingsInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingRecordingsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutToeicSpeakingRecordingsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicSpeakingRecordingsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingRecordingsInput
+  >;
+};
+
+export type UserUpdateWithoutToeicSpeakingRecordingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutToeicSpeakingRecordingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutToeicSpeakingPlaybackCapabilitiesInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingPlaybackCapabilitiesInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingPlaybackCapabilitiesInput
+  >;
+};
+
+export type UserUpsertWithoutToeicSpeakingPlaybackCapabilitiesInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput,
+    Prisma.UserUncheckedUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicSpeakingPlaybackCapabilitiesInput,
+    Prisma.UserUncheckedCreateWithoutToeicSpeakingPlaybackCapabilitiesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutToeicSpeakingPlaybackCapabilitiesInput =
+  {
+    where?: Prisma.UserWhereInput;
+    data: Prisma.XOR<
+      Prisma.UserUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput,
+      Prisma.UserUncheckedUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput
+    >;
+  };
+
+export type UserUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutToeicWritingSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutToeicWritingSessionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutToeicWritingSessionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput
+  >;
+};
 
 export type UserUpsertWithoutToeicWritingSessionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutToeicWritingSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicWritingSessionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSessionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicWritingSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicWritingSessionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSessionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSessionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutToeicWritingSessionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutToeicWritingSessionsInput, Prisma.UserUncheckedUpdateWithoutToeicWritingSessionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicWritingSessionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicWritingSessionsInput
+  >;
+};
 
 export type UserUpdateWithoutToeicWritingSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutToeicWritingSessionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutToeicWritingSubmissionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutToeicWritingSubmissionsInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutToeicWritingSubmissionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput
+  >;
+};
 
 export type UserUpsertWithoutToeicWritingSubmissionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutToeicWritingSubmissionsInput, Prisma.UserUncheckedUpdateWithoutToeicWritingSubmissionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutToeicWritingSubmissionsInput, Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicWritingSubmissionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicWritingSubmissionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutToeicWritingSubmissionsInput,
+    Prisma.UserUncheckedCreateWithoutToeicWritingSubmissionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutToeicWritingSubmissionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutToeicWritingSubmissionsInput, Prisma.UserUncheckedUpdateWithoutToeicWritingSubmissionsInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutToeicWritingSubmissionsInput,
+    Prisma.UserUncheckedUpdateWithoutToeicWritingSubmissionsInput
+  >;
+};
 
 export type UserUpdateWithoutToeicWritingSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutToeicWritingSubmissionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 export type UserCreateWithoutAiFeedbackUsagesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+};
 
 export type UserUncheckedCreateWithoutAiFeedbackUsagesInput = {
-  id?: string
-  email: string
-  legacyName?: string | null
-  authProvider?: $Enums.IdentityProvider
-  externalSubject?: string | null
-  status?: $Enums.UserStatus
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput
-  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput
-  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput
-}
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+};
 
 export type UserCreateOrConnectWithoutAiFeedbackUsagesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
-}
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutAiFeedbackUsagesInput,
+    Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput
+  >;
+};
 
 export type UserUpsertWithoutAiFeedbackUsagesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput>
-  where?: Prisma.UserWhereInput
-}
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutAiFeedbackUsagesInput,
+    Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutAiFeedbackUsagesInput,
+    Prisma.UserUncheckedCreateWithoutAiFeedbackUsagesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
 
 export type UserUpdateToOneWithWhereWithoutAiFeedbackUsagesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutAiFeedbackUsagesInput, Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput>
-}
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutAiFeedbackUsagesInput,
+    Prisma.UserUncheckedUpdateWithoutAiFeedbackUsagesInput
+  >;
+};
 
 export type UserUpdateWithoutAiFeedbackUsagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput
-}
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+};
 
 export type UserUncheckedUpdateWithoutAiFeedbackUsagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  authProvider?: Prisma.EnumIdentityProviderFieldUpdateOperationsInput | $Enums.IdentityProvider
-  externalSubject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput
-  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput
-  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput
-  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput
-  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput
-  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput
-  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput
-  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput
-  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput
-  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput
-  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput
-  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput
-  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput
-  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput
-  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput
-  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput
-}
-
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+};
 
 /**
  * Count Type UserCountOutputType
  */
 
 export type UserCountOutputType = {
-  roleAssignments: number
-  roleAssignmentsAuthored: number
-  placementAttempts: number
-  roadmaps: number
-  practiceSessions: number
-  errorNotebookEntries: number
-  dailySentenceCompletions: number
-  vocabularyMasteryStates: number
-  vocabularyReviewSubmissions: number
-  privilegedAuditEvents: number
-  toeicPracticeSessions: number
-  toeicReadingPracticeSessions: number
-  toeicTimedTestSessions: number
-  toeicSpeakingSessions: number
-  toeicSpeakingSubmissions: number
-  toeicWritingSessions: number
-  toeicWritingSubmissions: number
-  aiFeedbackUsages: number
-  libraryProgress: number
-  libraryBookmarks: number
-  libraryNotes: number
-  libraryDrillOutcomes: number
-  shadowingAttempts: number
-}
+  roleAssignments: number;
+  roleAssignmentsAuthored: number;
+  placementAttempts: number;
+  roadmaps: number;
+  practiceSessions: number;
+  errorNotebookEntries: number;
+  dailySentenceCompletions: number;
+  vocabularyMasteryStates: number;
+  vocabularyReviewSubmissions: number;
+  privilegedAuditEvents: number;
+  toeicPracticeSessions: number;
+  toeicReadingPracticeSessions: number;
+  toeicTimedTestSessions: number;
+  toeicSpeakingSessions: number;
+  toeicSpeakingSubmissions: number;
+  toeicSpeakingRecordings: number;
+  toeicSpeakingPlaybackCapabilities: number;
+  toeicWritingSessions: number;
+  toeicWritingSubmissions: number;
+  aiFeedbackUsages: number;
+  libraryProgress: number;
+  libraryBookmarks: number;
+  libraryNotes: number;
+  libraryDrillOutcomes: number;
+  shadowingAttempts: number;
+};
 
-export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  roleAssignments?: boolean | UserCountOutputTypeCountRoleAssignmentsArgs
-  roleAssignmentsAuthored?: boolean | UserCountOutputTypeCountRoleAssignmentsAuthoredArgs
-  placementAttempts?: boolean | UserCountOutputTypeCountPlacementAttemptsArgs
-  roadmaps?: boolean | UserCountOutputTypeCountRoadmapsArgs
-  practiceSessions?: boolean | UserCountOutputTypeCountPracticeSessionsArgs
-  errorNotebookEntries?: boolean | UserCountOutputTypeCountErrorNotebookEntriesArgs
-  dailySentenceCompletions?: boolean | UserCountOutputTypeCountDailySentenceCompletionsArgs
-  vocabularyMasteryStates?: boolean | UserCountOutputTypeCountVocabularyMasteryStatesArgs
-  vocabularyReviewSubmissions?: boolean | UserCountOutputTypeCountVocabularyReviewSubmissionsArgs
-  privilegedAuditEvents?: boolean | UserCountOutputTypeCountPrivilegedAuditEventsArgs
-  toeicPracticeSessions?: boolean | UserCountOutputTypeCountToeicPracticeSessionsArgs
-  toeicReadingPracticeSessions?: boolean | UserCountOutputTypeCountToeicReadingPracticeSessionsArgs
-  toeicTimedTestSessions?: boolean | UserCountOutputTypeCountToeicTimedTestSessionsArgs
-  toeicSpeakingSessions?: boolean | UserCountOutputTypeCountToeicSpeakingSessionsArgs
-  toeicSpeakingSubmissions?: boolean | UserCountOutputTypeCountToeicSpeakingSubmissionsArgs
-  toeicWritingSessions?: boolean | UserCountOutputTypeCountToeicWritingSessionsArgs
-  toeicWritingSubmissions?: boolean | UserCountOutputTypeCountToeicWritingSubmissionsArgs
-  aiFeedbackUsages?: boolean | UserCountOutputTypeCountAiFeedbackUsagesArgs
-  libraryProgress?: boolean | UserCountOutputTypeCountLibraryProgressArgs
-  libraryBookmarks?: boolean | UserCountOutputTypeCountLibraryBookmarksArgs
-  libraryNotes?: boolean | UserCountOutputTypeCountLibraryNotesArgs
-  libraryDrillOutcomes?: boolean | UserCountOutputTypeCountLibraryDrillOutcomesArgs
-  shadowingAttempts?: boolean | UserCountOutputTypeCountShadowingAttemptsArgs
-}
+export type UserCountOutputTypeSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  roleAssignments?: boolean | UserCountOutputTypeCountRoleAssignmentsArgs;
+  roleAssignmentsAuthored?:
+    boolean | UserCountOutputTypeCountRoleAssignmentsAuthoredArgs;
+  placementAttempts?: boolean | UserCountOutputTypeCountPlacementAttemptsArgs;
+  roadmaps?: boolean | UserCountOutputTypeCountRoadmapsArgs;
+  practiceSessions?: boolean | UserCountOutputTypeCountPracticeSessionsArgs;
+  errorNotebookEntries?:
+    boolean | UserCountOutputTypeCountErrorNotebookEntriesArgs;
+  dailySentenceCompletions?:
+    boolean | UserCountOutputTypeCountDailySentenceCompletionsArgs;
+  vocabularyMasteryStates?:
+    boolean | UserCountOutputTypeCountVocabularyMasteryStatesArgs;
+  vocabularyReviewSubmissions?:
+    boolean | UserCountOutputTypeCountVocabularyReviewSubmissionsArgs;
+  privilegedAuditEvents?:
+    boolean | UserCountOutputTypeCountPrivilegedAuditEventsArgs;
+  toeicPracticeSessions?:
+    boolean | UserCountOutputTypeCountToeicPracticeSessionsArgs;
+  toeicReadingPracticeSessions?:
+    boolean | UserCountOutputTypeCountToeicReadingPracticeSessionsArgs;
+  toeicTimedTestSessions?:
+    boolean | UserCountOutputTypeCountToeicTimedTestSessionsArgs;
+  toeicSpeakingSessions?:
+    boolean | UserCountOutputTypeCountToeicSpeakingSessionsArgs;
+  toeicSpeakingSubmissions?:
+    boolean | UserCountOutputTypeCountToeicSpeakingSubmissionsArgs;
+  toeicSpeakingRecordings?:
+    boolean | UserCountOutputTypeCountToeicSpeakingRecordingsArgs;
+  toeicSpeakingPlaybackCapabilities?:
+    boolean | UserCountOutputTypeCountToeicSpeakingPlaybackCapabilitiesArgs;
+  toeicWritingSessions?:
+    boolean | UserCountOutputTypeCountToeicWritingSessionsArgs;
+  toeicWritingSubmissions?:
+    boolean | UserCountOutputTypeCountToeicWritingSubmissionsArgs;
+  aiFeedbackUsages?: boolean | UserCountOutputTypeCountAiFeedbackUsagesArgs;
+  libraryProgress?: boolean | UserCountOutputTypeCountLibraryProgressArgs;
+  libraryBookmarks?: boolean | UserCountOutputTypeCountLibraryBookmarksArgs;
+  libraryNotes?: boolean | UserCountOutputTypeCountLibraryNotesArgs;
+  libraryDrillOutcomes?:
+    boolean | UserCountOutputTypeCountLibraryDrillOutcomesArgs;
+  shadowingAttempts?: boolean | UserCountOutputTypeCountShadowingAttemptsArgs;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the UserCountOutputType
    */
-  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
-}
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountRoleAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserRoleWhereInput
-}
+export type UserCountOutputTypeCountRoleAssignmentsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.UserRoleWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountRoleAssignmentsAuthoredArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserRoleWhereInput
-}
+export type UserCountOutputTypeCountRoleAssignmentsAuthoredArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.UserRoleWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountPlacementAttemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PlacementAttemptWhereInput
-}
+export type UserCountOutputTypeCountPlacementAttemptsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PlacementAttemptWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountRoadmapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RoadmapWhereInput
-}
+export type UserCountOutputTypeCountRoadmapsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.RoadmapWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountPracticeSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PracticeSessionWhereInput
-}
+export type UserCountOutputTypeCountPracticeSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PracticeSessionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountErrorNotebookEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ErrorNotebookEntryWhereInput
-}
+export type UserCountOutputTypeCountErrorNotebookEntriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ErrorNotebookEntryWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountDailySentenceCompletionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DailySentenceCompletionWhereInput
-}
+export type UserCountOutputTypeCountDailySentenceCompletionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.DailySentenceCompletionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountVocabularyMasteryStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.VocabularyMasteryStateWhereInput
-}
+export type UserCountOutputTypeCountVocabularyMasteryStatesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.VocabularyMasteryStateWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountVocabularyReviewSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.VocabularyReviewSubmissionWhereInput
-}
+export type UserCountOutputTypeCountVocabularyReviewSubmissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.VocabularyReviewSubmissionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountPrivilegedAuditEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PrivilegedAuditEventWhereInput
-}
+export type UserCountOutputTypeCountPrivilegedAuditEventsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PrivilegedAuditEventWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountToeicPracticeSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicPracticeSessionWhereInput
-}
+export type UserCountOutputTypeCountToeicPracticeSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicPracticeSessionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountToeicReadingPracticeSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicReadingPracticeSessionWhereInput
-}
+export type UserCountOutputTypeCountToeicReadingPracticeSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicReadingPracticeSessionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountToeicTimedTestSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicTimedTestSessionWhereInput
-}
+export type UserCountOutputTypeCountToeicTimedTestSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicTimedTestSessionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountToeicSpeakingSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicSpeakingSessionWhereInput
-}
+export type UserCountOutputTypeCountToeicSpeakingSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountToeicSpeakingSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
-}
+export type UserCountOutputTypeCountToeicSpeakingSubmissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountToeicWritingSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicWritingSessionWhereInput
-}
+export type UserCountOutputTypeCountToeicSpeakingRecordingsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicSpeakingRecordingWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountToeicWritingSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ToeicWritingSubmissionWhereInput
-}
+export type UserCountOutputTypeCountToeicSpeakingPlaybackCapabilitiesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicSpeakingPlaybackCapabilityWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountAiFeedbackUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AiFeedbackUsageWhereInput
-}
+export type UserCountOutputTypeCountToeicWritingSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicWritingSessionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountLibraryProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LibraryLearningProgressWhereInput
-}
+export type UserCountOutputTypeCountToeicWritingSubmissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountLibraryBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LibraryBookmarkWhereInput
-}
+export type UserCountOutputTypeCountAiFeedbackUsagesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.AiFeedbackUsageWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountLibraryNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LibraryPersonalNoteWhereInput
-}
+export type UserCountOutputTypeCountLibraryProgressArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LibraryLearningProgressWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountLibraryDrillOutcomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LibraryDrillOutcomeWhereInput
-}
+export type UserCountOutputTypeCountLibraryBookmarksArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LibraryBookmarkWhereInput;
+};
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountShadowingAttemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LibraryShadowingAttemptWhereInput
-}
+export type UserCountOutputTypeCountLibraryNotesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LibraryPersonalNoteWhereInput;
+};
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLibraryDrillOutcomesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LibraryDrillOutcomeWhereInput;
+};
 
-export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  email?: boolean
-  legacyName?: boolean
-  authProvider?: boolean
-  externalSubject?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
-  roleAssignments?: boolean | Prisma.User$roleAssignmentsArgs<ExtArgs>
-  roleAssignmentsAuthored?: boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>
-  onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>
-  placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>
-  roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>
-  practiceSessions?: boolean | Prisma.User$practiceSessionsArgs<ExtArgs>
-  learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>
-  errorNotebookEntries?: boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>
-  dailySentenceCompletions?: boolean | Prisma.User$dailySentenceCompletionsArgs<ExtArgs>
-  vocabularyMasteryStates?: boolean | Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>
-  vocabularyReviewSubmissions?: boolean | Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>
-  privilegedAuditEvents?: boolean | Prisma.User$privilegedAuditEventsArgs<ExtArgs>
-  toeicPracticeSessions?: boolean | Prisma.User$toeicPracticeSessionsArgs<ExtArgs>
-  toeicReadingPracticeSessions?: boolean | Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs>
-  toeicTimedTestSessions?: boolean | Prisma.User$toeicTimedTestSessionsArgs<ExtArgs>
-  toeicSpeakingSessions?: boolean | Prisma.User$toeicSpeakingSessionsArgs<ExtArgs>
-  toeicSpeakingSubmissions?: boolean | Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>
-  toeicWritingSessions?: boolean | Prisma.User$toeicWritingSessionsArgs<ExtArgs>
-  toeicWritingSubmissions?: boolean | Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>
-  aiFeedbackUsages?: boolean | Prisma.User$aiFeedbackUsagesArgs<ExtArgs>
-  libraryProgress?: boolean | Prisma.User$libraryProgressArgs<ExtArgs>
-  libraryBookmarks?: boolean | Prisma.User$libraryBookmarksArgs<ExtArgs>
-  libraryNotes?: boolean | Prisma.User$libraryNotesArgs<ExtArgs>
-  libraryDrillOutcomes?: boolean | Prisma.User$libraryDrillOutcomesArgs<ExtArgs>
-  shadowingAttempts?: boolean | Prisma.User$shadowingAttemptsArgs<ExtArgs>
-  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["user"]>
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountShadowingAttemptsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LibraryShadowingAttemptWhereInput;
+};
 
-export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  email?: boolean
-  legacyName?: boolean
-  authProvider?: boolean
-  externalSubject?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-}, ExtArgs["result"]["user"]>
+export type UserSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    email?: boolean;
+    legacyName?: boolean;
+    authProvider?: boolean;
+    externalSubject?: boolean;
+    status?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+    profile?: boolean | Prisma.User$profileArgs<ExtArgs>;
+    roleAssignments?: boolean | Prisma.User$roleAssignmentsArgs<ExtArgs>;
+    roleAssignmentsAuthored?:
+      boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>;
+    onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
+    placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
+    roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>;
+    practiceSessions?: boolean | Prisma.User$practiceSessionsArgs<ExtArgs>;
+    learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>;
+    errorNotebookEntries?:
+      boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>;
+    dailySentenceCompletions?:
+      boolean | Prisma.User$dailySentenceCompletionsArgs<ExtArgs>;
+    vocabularyMasteryStates?:
+      boolean | Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>;
+    vocabularyReviewSubmissions?:
+      boolean | Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>;
+    privilegedAuditEvents?:
+      boolean | Prisma.User$privilegedAuditEventsArgs<ExtArgs>;
+    toeicPracticeSessions?:
+      boolean | Prisma.User$toeicPracticeSessionsArgs<ExtArgs>;
+    toeicReadingPracticeSessions?:
+      boolean | Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs>;
+    toeicTimedTestSessions?:
+      boolean | Prisma.User$toeicTimedTestSessionsArgs<ExtArgs>;
+    toeicSpeakingSessions?:
+      boolean | Prisma.User$toeicSpeakingSessionsArgs<ExtArgs>;
+    toeicSpeakingSubmissions?:
+      boolean | Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>;
+    toeicSpeakingRecordings?:
+      boolean | Prisma.User$toeicSpeakingRecordingsArgs<ExtArgs>;
+    toeicSpeakingPlaybackCapabilities?:
+      boolean | Prisma.User$toeicSpeakingPlaybackCapabilitiesArgs<ExtArgs>;
+    toeicWritingSessions?:
+      boolean | Prisma.User$toeicWritingSessionsArgs<ExtArgs>;
+    toeicWritingSubmissions?:
+      boolean | Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>;
+    aiFeedbackUsages?: boolean | Prisma.User$aiFeedbackUsagesArgs<ExtArgs>;
+    libraryProgress?: boolean | Prisma.User$libraryProgressArgs<ExtArgs>;
+    libraryBookmarks?: boolean | Prisma.User$libraryBookmarksArgs<ExtArgs>;
+    libraryNotes?: boolean | Prisma.User$libraryNotesArgs<ExtArgs>;
+    libraryDrillOutcomes?:
+      boolean | Prisma.User$libraryDrillOutcomesArgs<ExtArgs>;
+    shadowingAttempts?: boolean | Prisma.User$shadowingAttemptsArgs<ExtArgs>;
+    _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
+  },
+  ExtArgs['result']['user']
+>;
 
-export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  email?: boolean
-  legacyName?: boolean
-  authProvider?: boolean
-  externalSubject?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-}, ExtArgs["result"]["user"]>
+export type UserSelectCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    email?: boolean;
+    legacyName?: boolean;
+    authProvider?: boolean;
+    externalSubject?: boolean;
+    status?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+  },
+  ExtArgs['result']['user']
+>;
+
+export type UserSelectUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetSelect<
+  {
+    id?: boolean;
+    email?: boolean;
+    legacyName?: boolean;
+    authProvider?: boolean;
+    externalSubject?: boolean;
+    status?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+  },
+  ExtArgs['result']['user']
+>;
 
 export type UserSelectScalar = {
-  id?: boolean
-  email?: boolean
-  legacyName?: boolean
-  authProvider?: boolean
-  externalSubject?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-}
+  id?: boolean;
+  email?: boolean;
+  legacyName?: boolean;
+  authProvider?: boolean;
+  externalSubject?: boolean;
+  status?: boolean;
+  createdAt?: boolean;
+  updatedAt?: boolean;
+};
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "legacyName" | "authProvider" | "externalSubject" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
-export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  profile?: boolean | Prisma.User$profileArgs<ExtArgs>
-  roleAssignments?: boolean | Prisma.User$roleAssignmentsArgs<ExtArgs>
-  roleAssignmentsAuthored?: boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>
-  onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>
-  placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>
-  roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>
-  practiceSessions?: boolean | Prisma.User$practiceSessionsArgs<ExtArgs>
-  learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>
-  errorNotebookEntries?: boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>
-  dailySentenceCompletions?: boolean | Prisma.User$dailySentenceCompletionsArgs<ExtArgs>
-  vocabularyMasteryStates?: boolean | Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>
-  vocabularyReviewSubmissions?: boolean | Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>
-  privilegedAuditEvents?: boolean | Prisma.User$privilegedAuditEventsArgs<ExtArgs>
-  toeicPracticeSessions?: boolean | Prisma.User$toeicPracticeSessionsArgs<ExtArgs>
-  toeicReadingPracticeSessions?: boolean | Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs>
-  toeicTimedTestSessions?: boolean | Prisma.User$toeicTimedTestSessionsArgs<ExtArgs>
-  toeicSpeakingSessions?: boolean | Prisma.User$toeicSpeakingSessionsArgs<ExtArgs>
-  toeicSpeakingSubmissions?: boolean | Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>
-  toeicWritingSessions?: boolean | Prisma.User$toeicWritingSessionsArgs<ExtArgs>
-  toeicWritingSubmissions?: boolean | Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>
-  aiFeedbackUsages?: boolean | Prisma.User$aiFeedbackUsagesArgs<ExtArgs>
-  libraryProgress?: boolean | Prisma.User$libraryProgressArgs<ExtArgs>
-  libraryBookmarks?: boolean | Prisma.User$libraryBookmarksArgs<ExtArgs>
-  libraryNotes?: boolean | Prisma.User$libraryNotesArgs<ExtArgs>
-  libraryDrillOutcomes?: boolean | Prisma.User$libraryDrillOutcomesArgs<ExtArgs>
-  shadowingAttempts?: boolean | Prisma.User$shadowingAttemptsArgs<ExtArgs>
-  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
-}
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserOmit<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = runtime.Types.Extensions.GetOmit<
+  | 'id'
+  | 'email'
+  | 'legacyName'
+  | 'authProvider'
+  | 'externalSubject'
+  | 'status'
+  | 'createdAt'
+  | 'updatedAt',
+  ExtArgs['result']['user']
+>;
+export type UserInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  profile?: boolean | Prisma.User$profileArgs<ExtArgs>;
+  roleAssignments?: boolean | Prisma.User$roleAssignmentsArgs<ExtArgs>;
+  roleAssignmentsAuthored?:
+    boolean | Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>;
+  onboarding?: boolean | Prisma.User$onboardingArgs<ExtArgs>;
+  placementAttempts?: boolean | Prisma.User$placementAttemptsArgs<ExtArgs>;
+  roadmaps?: boolean | Prisma.User$roadmapsArgs<ExtArgs>;
+  practiceSessions?: boolean | Prisma.User$practiceSessionsArgs<ExtArgs>;
+  learnerProgress?: boolean | Prisma.User$learnerProgressArgs<ExtArgs>;
+  errorNotebookEntries?:
+    boolean | Prisma.User$errorNotebookEntriesArgs<ExtArgs>;
+  dailySentenceCompletions?:
+    boolean | Prisma.User$dailySentenceCompletionsArgs<ExtArgs>;
+  vocabularyMasteryStates?:
+    boolean | Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>;
+  vocabularyReviewSubmissions?:
+    boolean | Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>;
+  privilegedAuditEvents?:
+    boolean | Prisma.User$privilegedAuditEventsArgs<ExtArgs>;
+  toeicPracticeSessions?:
+    boolean | Prisma.User$toeicPracticeSessionsArgs<ExtArgs>;
+  toeicReadingPracticeSessions?:
+    boolean | Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs>;
+  toeicTimedTestSessions?:
+    boolean | Prisma.User$toeicTimedTestSessionsArgs<ExtArgs>;
+  toeicSpeakingSessions?:
+    boolean | Prisma.User$toeicSpeakingSessionsArgs<ExtArgs>;
+  toeicSpeakingSubmissions?:
+    boolean | Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>;
+  toeicSpeakingRecordings?:
+    boolean | Prisma.User$toeicSpeakingRecordingsArgs<ExtArgs>;
+  toeicSpeakingPlaybackCapabilities?:
+    boolean | Prisma.User$toeicSpeakingPlaybackCapabilitiesArgs<ExtArgs>;
+  toeicWritingSessions?:
+    boolean | Prisma.User$toeicWritingSessionsArgs<ExtArgs>;
+  toeicWritingSubmissions?:
+    boolean | Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>;
+  aiFeedbackUsages?: boolean | Prisma.User$aiFeedbackUsagesArgs<ExtArgs>;
+  libraryProgress?: boolean | Prisma.User$libraryProgressArgs<ExtArgs>;
+  libraryBookmarks?: boolean | Prisma.User$libraryBookmarksArgs<ExtArgs>;
+  libraryNotes?: boolean | Prisma.User$libraryNotesArgs<ExtArgs>;
+  libraryDrillOutcomes?:
+    boolean | Prisma.User$libraryDrillOutcomesArgs<ExtArgs>;
+  shadowingAttempts?: boolean | Prisma.User$shadowingAttemptsArgs<ExtArgs>;
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type UserIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {};
+export type UserIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {};
 
-export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "User"
+export type $UserPayload<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  name: 'User';
   objects: {
-    profile: Prisma.$UserProfilePayload<ExtArgs> | null
-    roleAssignments: Prisma.$UserRolePayload<ExtArgs>[]
-    roleAssignmentsAuthored: Prisma.$UserRolePayload<ExtArgs>[]
-    onboarding: Prisma.$LearnerOnboardingPayload<ExtArgs> | null
-    placementAttempts: Prisma.$PlacementAttemptPayload<ExtArgs>[]
-    roadmaps: Prisma.$RoadmapPayload<ExtArgs>[]
-    practiceSessions: Prisma.$PracticeSessionPayload<ExtArgs>[]
-    learnerProgress: Prisma.$LearnerProgressPayload<ExtArgs> | null
-    errorNotebookEntries: Prisma.$ErrorNotebookEntryPayload<ExtArgs>[]
-    dailySentenceCompletions: Prisma.$DailySentenceCompletionPayload<ExtArgs>[]
-    vocabularyMasteryStates: Prisma.$VocabularyMasteryStatePayload<ExtArgs>[]
-    vocabularyReviewSubmissions: Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>[]
-    privilegedAuditEvents: Prisma.$PrivilegedAuditEventPayload<ExtArgs>[]
-    toeicPracticeSessions: Prisma.$ToeicPracticeSessionPayload<ExtArgs>[]
-    toeicReadingPracticeSessions: Prisma.$ToeicReadingPracticeSessionPayload<ExtArgs>[]
-    toeicTimedTestSessions: Prisma.$ToeicTimedTestSessionPayload<ExtArgs>[]
-    toeicSpeakingSessions: Prisma.$ToeicSpeakingSessionPayload<ExtArgs>[]
-    toeicSpeakingSubmissions: Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>[]
-    toeicWritingSessions: Prisma.$ToeicWritingSessionPayload<ExtArgs>[]
-    toeicWritingSubmissions: Prisma.$ToeicWritingSubmissionPayload<ExtArgs>[]
-    aiFeedbackUsages: Prisma.$AiFeedbackUsagePayload<ExtArgs>[]
-    libraryProgress: Prisma.$LibraryLearningProgressPayload<ExtArgs>[]
-    libraryBookmarks: Prisma.$LibraryBookmarkPayload<ExtArgs>[]
-    libraryNotes: Prisma.$LibraryPersonalNotePayload<ExtArgs>[]
-    libraryDrillOutcomes: Prisma.$LibraryDrillOutcomePayload<ExtArgs>[]
-    shadowingAttempts: Prisma.$LibraryShadowingAttemptPayload<ExtArgs>[]
-  }
-  scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    email: string
-    legacyName: string | null
-    authProvider: $Enums.IdentityProvider
-    externalSubject: string | null
-    status: $Enums.UserStatus
-    createdAt: Date
-    updatedAt: Date
-  }, ExtArgs["result"]["user"]>
-  composites: {}
-}
+    profile: Prisma.$UserProfilePayload<ExtArgs> | null;
+    roleAssignments: Prisma.$UserRolePayload<ExtArgs>[];
+    roleAssignmentsAuthored: Prisma.$UserRolePayload<ExtArgs>[];
+    onboarding: Prisma.$LearnerOnboardingPayload<ExtArgs> | null;
+    placementAttempts: Prisma.$PlacementAttemptPayload<ExtArgs>[];
+    roadmaps: Prisma.$RoadmapPayload<ExtArgs>[];
+    practiceSessions: Prisma.$PracticeSessionPayload<ExtArgs>[];
+    learnerProgress: Prisma.$LearnerProgressPayload<ExtArgs> | null;
+    errorNotebookEntries: Prisma.$ErrorNotebookEntryPayload<ExtArgs>[];
+    dailySentenceCompletions: Prisma.$DailySentenceCompletionPayload<ExtArgs>[];
+    vocabularyMasteryStates: Prisma.$VocabularyMasteryStatePayload<ExtArgs>[];
+    vocabularyReviewSubmissions: Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>[];
+    privilegedAuditEvents: Prisma.$PrivilegedAuditEventPayload<ExtArgs>[];
+    toeicPracticeSessions: Prisma.$ToeicPracticeSessionPayload<ExtArgs>[];
+    toeicReadingPracticeSessions: Prisma.$ToeicReadingPracticeSessionPayload<ExtArgs>[];
+    toeicTimedTestSessions: Prisma.$ToeicTimedTestSessionPayload<ExtArgs>[];
+    toeicSpeakingSessions: Prisma.$ToeicSpeakingSessionPayload<ExtArgs>[];
+    toeicSpeakingSubmissions: Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>[];
+    toeicSpeakingRecordings: Prisma.$ToeicSpeakingRecordingPayload<ExtArgs>[];
+    toeicSpeakingPlaybackCapabilities: Prisma.$ToeicSpeakingPlaybackCapabilityPayload<ExtArgs>[];
+    toeicWritingSessions: Prisma.$ToeicWritingSessionPayload<ExtArgs>[];
+    toeicWritingSubmissions: Prisma.$ToeicWritingSubmissionPayload<ExtArgs>[];
+    aiFeedbackUsages: Prisma.$AiFeedbackUsagePayload<ExtArgs>[];
+    libraryProgress: Prisma.$LibraryLearningProgressPayload<ExtArgs>[];
+    libraryBookmarks: Prisma.$LibraryBookmarkPayload<ExtArgs>[];
+    libraryNotes: Prisma.$LibraryPersonalNotePayload<ExtArgs>[];
+    libraryDrillOutcomes: Prisma.$LibraryDrillOutcomePayload<ExtArgs>[];
+    shadowingAttempts: Prisma.$LibraryShadowingAttemptPayload<ExtArgs>[];
+  };
+  scalars: runtime.Types.Extensions.GetPayloadResult<
+    {
+      id: string;
+      email: string;
+      legacyName: string | null;
+      authProvider: $Enums.IdentityProvider;
+      externalSubject: string | null;
+      status: $Enums.UserStatus;
+      createdAt: Date;
+      updatedAt: Date;
+    },
+    ExtArgs['result']['user']
+  >;
+  composites: {};
+};
 
-export type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$UserPayload, S>
+export type UserGetPayload<
+  S extends boolean | null | undefined | UserDefaultArgs,
+> = runtime.Types.Result.GetResult<Prisma.$UserPayload, S>;
 
-export type UserCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-    select?: UserCountAggregateInputType | true
-  }
+export type UserCountArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+  select?: UserCountAggregateInputType | true;
+};
 
-export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+export interface UserDelegate<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> {
+  [K: symbol]: {
+    types: Prisma.TypeMap<ExtArgs>['model']['User'];
+    meta: { name: 'User' };
+  };
   /**
    * Find zero or one User that matches the filter.
    * @param {UserFindUniqueArgs} args - Arguments to find a User
@@ -5512,7 +7198,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   }
    * })
    */
-  findUnique<T extends UserFindUniqueArgs>(args: Prisma.SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends UserFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, UserFindUniqueArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'findUnique',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find one User that matches the filter or throw an error with `error.code='P2025'`
@@ -5526,7 +7224,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   }
    * })
    */
-  findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(
+    args: Prisma.SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first User that matches the filter.
@@ -5541,7 +7251,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   }
    * })
    */
-  findFirst<T extends UserFindFirstArgs>(args?: Prisma.SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends UserFindFirstArgs>(
+    args?: Prisma.SelectSubset<T, UserFindFirstArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'findFirst',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find the first User that matches the filter or
@@ -5557,7 +7279,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   }
    * })
    */
-  findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(
+    args?: Prisma.SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'findFirstOrThrow',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Find zero or more Users that matches the filter.
@@ -5575,7 +7309,16 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends UserFindManyArgs>(args?: Prisma.SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends UserFindManyArgs>(
+    args?: Prisma.SelectSubset<T, UserFindManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'findMany',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create a User.
@@ -5589,7 +7332,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * })
    *
    */
-  create<T extends UserCreateArgs>(args: Prisma.SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends UserCreateArgs>(
+    args: Prisma.SelectSubset<T, UserCreateArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'create',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Create many Users.
@@ -5603,7 +7358,9 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * })
    *
    */
-  createMany<T extends UserCreateManyArgs>(args?: Prisma.SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends UserCreateManyArgs>(
+    args?: Prisma.SelectSubset<T, UserCreateManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Create many Users and returns the data saved in the database.
@@ -5627,7 +7384,16 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends UserCreateManyAndReturnArgs>(
+    args?: Prisma.SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'createManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Delete a User.
@@ -5641,7 +7407,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * })
    *
    */
-  delete<T extends UserDeleteArgs>(args: Prisma.SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends UserDeleteArgs>(
+    args: Prisma.SelectSubset<T, UserDeleteArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'delete',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Update one User.
@@ -5658,7 +7436,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * })
    *
    */
-  update<T extends UserUpdateArgs>(args: Prisma.SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends UserUpdateArgs>(
+    args: Prisma.SelectSubset<T, UserUpdateArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'update',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Delete zero or more Users.
@@ -5672,7 +7462,9 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * })
    *
    */
-  deleteMany<T extends UserDeleteManyArgs>(args?: Prisma.SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends UserDeleteManyArgs>(
+    args?: Prisma.SelectSubset<T, UserDeleteManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more Users.
@@ -5691,7 +7483,9 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * })
    *
    */
-  updateMany<T extends UserUpdateManyArgs>(args: Prisma.SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends UserUpdateManyArgs>(
+    args: Prisma.SelectSubset<T, UserUpdateManyArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
    * Update zero or more Users and returns the data updated in the database.
@@ -5721,7 +7515,16 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(
+    args: Prisma.SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'updateManyAndReturn',
+      GlobalOmitOptions
+    >
+  >;
 
   /**
    * Create or update one User.
@@ -5740,8 +7543,19 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   }
    * })
    */
-  upsert<T extends UserUpsertArgs>(args: Prisma.SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+  upsert<T extends UserUpsertArgs>(
+    args: Prisma.SelectSubset<T, UserUpsertArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPayload<ExtArgs>,
+      T,
+      'upsert',
+      GlobalOmitOptions
+    >,
+    never,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
 
   /**
    * Count the number of Users.
@@ -5755,7 +7569,7 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *     // ... the filter for the Users we want to count
    *   }
    * })
-  **/
+   **/
   count<T extends UserCountArgs>(
     args?: Prisma.Subset<T, UserCountArgs>,
   ): Prisma.PrismaPromise<
@@ -5764,7 +7578,7 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
         ? number
         : Prisma.GetScalarType<T['select'], UserCountAggregateOutputType>
       : number
-  >
+  >;
 
   /**
    * Allows you to perform aggregations operations on a User.
@@ -5789,8 +7603,10 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   },
    *   take: 10,
    * })
-  **/
-  aggregate<T extends UserAggregateArgs>(args: Prisma.Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+   **/
+  aggregate<T extends UserAggregateArgs>(
+    args: Prisma.Subset<T, UserAggregateArgs>,
+  ): Prisma.PrismaPromise<GetUserAggregateType<T>>;
 
   /**
    * Group by User.
@@ -5809,69 +7625,76 @@ export interface UserDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   },
    * })
    *
-  **/
+   **/
   groupBy<
     T extends UserGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
-    OrderByArg extends Prisma.True extends HasSelectOrTake
+    OrderByArg extends (Prisma.True extends HasSelectOrTake
       ? { orderBy: UserGroupByArgs['orderBy'] }
-      : { orderBy?: UserGroupByArgs['orderBy'] },
-    OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
+      : { orderBy?: UserGroupByArgs['orderBy'] }),
+    OrderFields extends Prisma.ExcludeUnderscoreKeys<
+      Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
+    >,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T['having']>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
-    InputErrors extends ByEmpty extends Prisma.True
-    ? `Error: "by" must not be empty.`
-    : HavingValid extends Prisma.False
-    ? {
-        [P in HavingFields]: P extends ByFields
-          ? never
-          : P extends string
-          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-          : [
-              Error,
-              'Field ',
-              P,
-              ` in "having" needs to be provided in "by"`,
-            ]
-      }[HavingFields]
-    : 'take' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
+    ByEmpty extends (T['by'] extends never[] ? Prisma.True : Prisma.False),
+    InputErrors extends (ByEmpty extends Prisma.True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends Prisma.False
+        ? {
+            [P in HavingFields]: P extends ByFields
               ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "take", you also need to provide "orderBy"'
-    : 'skip' extends Prisma.Keys<T>
-    ? 'orderBy' extends Prisma.Keys<T>
-      ? ByValid extends Prisma.True
-        ? {}
-        : {
-            [P in OrderFields]: P extends ByFields
-              ? never
-              : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-          }[OrderFields]
-      : 'Error: If you provide "skip", you also need to provide "orderBy"'
-    : ByValid extends Prisma.True
-    ? {}
-    : {
-        [P in OrderFields]: P extends ByFields
-          ? never
-          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-      }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-/**
- * Fields of the User model
- */
-readonly fields: UserFieldRefs;
+              : P extends string
+                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                : [
+                    Error,
+                    'Field ',
+                    P,
+                    ` in "having" needs to be provided in "by"`,
+                  ];
+          }[HavingFields]
+        : 'take' extends Prisma.Keys<T>
+          ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]
+            : 'Error: If you provide "take", you also need to provide "orderBy"'
+          : 'skip' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+              ? ByValid extends Prisma.True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "skip", you also need to provide "orderBy"'
+            : ByValid extends Prisma.True
+              ? {}
+              : {
+                  [P in OrderFields]: P extends ByFields
+                    ? never
+                    : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                }[OrderFields]),
+  >(
+    args: Prisma.SubsetIntersection<T, UserGroupByArgs, OrderByArg> &
+      InputErrors,
+  ): {} extends InputErrors
+    ? GetUserGroupByPayload<T>
+    : Prisma.PrismaPromise<InputErrors>;
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
 }
 
 /**
@@ -5880,1086 +7703,1707 @@ readonly fields: UserFieldRefs;
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-  readonly [Symbol.toStringTag]: "PrismaPromise"
-  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__UserProfileClient<runtime.Types.Result.GetResult<Prisma.$UserProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  roleAssignments<T extends Prisma.User$roleAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roleAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  roleAssignmentsAuthored<T extends Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  onboarding<T extends Prisma.User$onboardingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$onboardingArgs<ExtArgs>>): Prisma.Prisma__LearnerOnboardingClient<runtime.Types.Result.GetResult<Prisma.$LearnerOnboardingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  placementAttempts<T extends Prisma.User$placementAttemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$placementAttemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlacementAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  roadmaps<T extends Prisma.User$roadmapsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roadmapsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoadmapPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  practiceSessions<T extends Prisma.User$practiceSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$practiceSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  learnerProgress<T extends Prisma.User$learnerProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$learnerProgressArgs<ExtArgs>>): Prisma.Prisma__LearnerProgressClient<runtime.Types.Result.GetResult<Prisma.$LearnerProgressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  errorNotebookEntries<T extends Prisma.User$errorNotebookEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$errorNotebookEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ErrorNotebookEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  dailySentenceCompletions<T extends Prisma.User$dailySentenceCompletionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$dailySentenceCompletionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DailySentenceCompletionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  vocabularyMasteryStates<T extends Prisma.User$vocabularyMasteryStatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyMasteryStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  vocabularyReviewSubmissions<T extends Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  privilegedAuditEvents<T extends Prisma.User$privilegedAuditEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$privilegedAuditEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrivilegedAuditEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  toeicPracticeSessions<T extends Prisma.User$toeicPracticeSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicPracticeSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicPracticeSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  toeicReadingPracticeSessions<T extends Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicReadingPracticeSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  toeicTimedTestSessions<T extends Prisma.User$toeicTimedTestSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicTimedTestSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicTimedTestSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  toeicSpeakingSessions<T extends Prisma.User$toeicSpeakingSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicSpeakingSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  toeicSpeakingSubmissions<T extends Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  toeicWritingSessions<T extends Prisma.User$toeicWritingSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicWritingSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  toeicWritingSubmissions<T extends Prisma.User$toeicWritingSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ToeicWritingSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  aiFeedbackUsages<T extends Prisma.User$aiFeedbackUsagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiFeedbackUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiFeedbackUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  libraryProgress<T extends Prisma.User$libraryProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$libraryProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryLearningProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  libraryBookmarks<T extends Prisma.User$libraryBookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$libraryBookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryBookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  libraryNotes<T extends Prisma.User$libraryNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$libraryNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryPersonalNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  libraryDrillOutcomes<T extends Prisma.User$libraryDrillOutcomesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$libraryDrillOutcomesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryDrillOutcomePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  shadowingAttempts<T extends Prisma.User$shadowingAttemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shadowingAttemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LibraryShadowingAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+export interface Prisma__UserClient<
+  T,
+  Null = never,
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+  GlobalOmitOptions = {},
+> extends Prisma.PrismaPromise<T> {
+  readonly [Symbol.toStringTag]: 'PrismaPromise';
+  profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserProfileClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserProfilePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  roleAssignments<T extends Prisma.User$roleAssignmentsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$roleAssignmentsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$UserRolePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  roleAssignmentsAuthored<
+    T extends Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$roleAssignmentsAuthoredArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$UserRolePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  onboarding<T extends Prisma.User$onboardingArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$onboardingArgs<ExtArgs>>,
+  ): Prisma.Prisma__LearnerOnboardingClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$LearnerOnboardingPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  placementAttempts<T extends Prisma.User$placementAttemptsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$placementAttemptsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PlacementAttemptPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  roadmaps<T extends Prisma.User$roadmapsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$roadmapsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$RoadmapPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  practiceSessions<T extends Prisma.User$practiceSessionsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$practiceSessionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PracticeSessionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  learnerProgress<T extends Prisma.User$learnerProgressArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$learnerProgressArgs<ExtArgs>>,
+  ): Prisma.Prisma__LearnerProgressClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$LearnerProgressPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  errorNotebookEntries<
+    T extends Prisma.User$errorNotebookEntriesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$errorNotebookEntriesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ErrorNotebookEntryPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  dailySentenceCompletions<
+    T extends Prisma.User$dailySentenceCompletionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$dailySentenceCompletionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$DailySentenceCompletionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  vocabularyMasteryStates<
+    T extends Prisma.User$vocabularyMasteryStatesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$vocabularyMasteryStatesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$VocabularyMasteryStatePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  vocabularyReviewSubmissions<
+    T extends Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.User$vocabularyReviewSubmissionsArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$VocabularyReviewSubmissionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  privilegedAuditEvents<
+    T extends Prisma.User$privilegedAuditEventsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$privilegedAuditEventsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PrivilegedAuditEventPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicPracticeSessions<
+    T extends Prisma.User$toeicPracticeSessionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$toeicPracticeSessionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicPracticeSessionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicReadingPracticeSessions<
+    T extends Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.User$toeicReadingPracticeSessionsArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicReadingPracticeSessionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicTimedTestSessions<
+    T extends Prisma.User$toeicTimedTestSessionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$toeicTimedTestSessionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicTimedTestSessionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicSpeakingSessions<
+    T extends Prisma.User$toeicSpeakingSessionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$toeicSpeakingSessionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicSpeakingSessionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicSpeakingSubmissions<
+    T extends Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$toeicSpeakingSubmissionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicSpeakingSubmissionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicSpeakingRecordings<
+    T extends Prisma.User$toeicSpeakingRecordingsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$toeicSpeakingRecordingsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicSpeakingRecordingPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicSpeakingPlaybackCapabilities<
+    T extends Prisma.User$toeicSpeakingPlaybackCapabilitiesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.User$toeicSpeakingPlaybackCapabilitiesArgs<ExtArgs>
+    >,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicSpeakingPlaybackCapabilityPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicWritingSessions<
+    T extends Prisma.User$toeicWritingSessionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$toeicWritingSessionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicWritingSessionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  toeicWritingSubmissions<
+    T extends Prisma.User$toeicWritingSubmissionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$toeicWritingSubmissionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ToeicWritingSubmissionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  aiFeedbackUsages<T extends Prisma.User$aiFeedbackUsagesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$aiFeedbackUsagesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$AiFeedbackUsagePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  libraryProgress<T extends Prisma.User$libraryProgressArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$libraryProgressArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LibraryLearningProgressPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  libraryBookmarks<T extends Prisma.User$libraryBookmarksArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$libraryBookmarksArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LibraryBookmarkPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  libraryNotes<T extends Prisma.User$libraryNotesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$libraryNotesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LibraryPersonalNotePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  libraryDrillOutcomes<
+    T extends Prisma.User$libraryDrillOutcomesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$libraryDrillOutcomesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LibraryDrillOutcomePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  shadowingAttempts<T extends Prisma.User$shadowingAttemptsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$shadowingAttemptsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LibraryShadowingAttemptPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of which ever callback is executed.
    */
-  then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>
+  then<TResult1 = T, TResult2 = never>(
+    onfulfilled?:
+      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+    onrejected?:
+      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
   /**
    * Attaches a callback for only the rejection of the Promise.
    * @param onrejected The callback to execute when the Promise is rejected.
    * @returns A Promise for the completion of the callback.
    */
-  catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>
+  catch<TResult = never>(
+    onrejected?:
+      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T | TResult>;
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
    * resolved value cannot be modified from the callback.
    * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
    * @returns A Promise for the completion of the callback.
    */
-  finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>
+  finally(
+    onfinally?: (() => void) | undefined | null,
+  ): runtime.Types.Utils.JsPromise<T>;
 }
-
-
-
 
 /**
  * Fields of the User model
  */
 export interface UserFieldRefs {
-  readonly id: Prisma.FieldRef<"User", 'String'>
-  readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly legacyName: Prisma.FieldRef<"User", 'String'>
-  readonly authProvider: Prisma.FieldRef<"User", 'IdentityProvider'>
-  readonly externalSubject: Prisma.FieldRef<"User", 'String'>
-  readonly status: Prisma.FieldRef<"User", 'UserStatus'>
-  readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly id: Prisma.FieldRef<'User', 'String'>;
+  readonly email: Prisma.FieldRef<'User', 'String'>;
+  readonly legacyName: Prisma.FieldRef<'User', 'String'>;
+  readonly authProvider: Prisma.FieldRef<'User', 'IdentityProvider'>;
+  readonly externalSubject: Prisma.FieldRef<'User', 'String'>;
+  readonly status: Prisma.FieldRef<'User', 'UserStatus'>;
+  readonly createdAt: Prisma.FieldRef<'User', 'DateTime'>;
+  readonly updatedAt: Prisma.FieldRef<'User', 'DateTime'>;
 }
-
 
 // Custom InputTypes
 /**
  * User findUnique
  */
-export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserFindUniqueArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * Filter, which User to fetch.
    */
-  where: Prisma.UserWhereUniqueInput
-}
+  where: Prisma.UserWhereUniqueInput;
+};
 
 /**
  * User findUniqueOrThrow
  */
-export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserFindUniqueOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * Filter, which User to fetch.
    */
-  where: Prisma.UserWhereUniqueInput
-}
+  where: Prisma.UserWhereUniqueInput;
+};
 
 /**
  * User findFirst
  */
-export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserFindFirstArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * Filter, which User to fetch.
    */
-  where?: Prisma.UserWhereInput
+  where?: Prisma.UserWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of Users to fetch.
    */
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  orderBy?:
+    Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Users.
    */
-  cursor?: Prisma.UserWhereUniqueInput
+  cursor?: Prisma.UserWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Users.
    */
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
-}
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[];
+};
 
 /**
  * User findFirstOrThrow
  */
-export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserFindFirstOrThrowArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * Filter, which User to fetch.
    */
-  where?: Prisma.UserWhereInput
+  where?: Prisma.UserWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of Users to fetch.
    */
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  orderBy?:
+    Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for searching for Users.
    */
-  cursor?: Prisma.UserWhereUniqueInput
+  cursor?: Prisma.UserWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Users.
    */
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
-}
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[];
+};
 
 /**
  * User findMany
  */
-export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserFindManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * Filter, which Users to fetch.
    */
-  where?: Prisma.UserWhereInput
+  where?: Prisma.UserWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
    * Determine the order of Users to fetch.
    */
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  orderBy?:
+    Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the position for listing Users.
    */
-  cursor?: Prisma.UserWhereUniqueInput
+  cursor?: Prisma.UserWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Take `±n` Users from the position of the cursor.
    */
-  take?: number
+  take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
    * Skip the first `n` Users.
    */
-  skip?: number
+  skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
    * Filter by unique combinations of Users.
    */
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
-}
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[];
+};
 
 /**
  * User create
  */
-export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCreateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * The data needed to create a User.
    */
-  data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
-}
+  data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>;
+};
 
 /**
  * User createMany
  */
-export type UserCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCreateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to create many Users.
    */
-  data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
-  skipDuplicates?: boolean
-}
+  data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[];
+  skipDuplicates?: boolean;
+};
 
 /**
  * User createManyAndReturn
  */
-export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCreateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.UserSelectCreateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * The data used to create many Users.
    */
-  data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
-  skipDuplicates?: boolean
-}
+  data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[];
+  skipDuplicates?: boolean;
+};
 
 /**
  * User update
  */
-export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserUpdateArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * The data needed to update a User.
    */
-  data: Prisma.XOR<Prisma.UserUpdateInput, Prisma.UserUncheckedUpdateInput>
+  data: Prisma.XOR<Prisma.UserUpdateInput, Prisma.UserUncheckedUpdateInput>;
   /**
    * Choose, which User to update.
    */
-  where: Prisma.UserWhereUniqueInput
-}
+  where: Prisma.UserWhereUniqueInput;
+};
 
 /**
  * User updateMany
  */
-export type UserUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserUpdateManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * The data used to update Users.
    */
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.UserUpdateManyMutationInput,
+    Prisma.UserUncheckedUpdateManyInput
+  >;
   /**
    * Filter which Users to update
    */
-  where?: Prisma.UserWhereInput
+  where?: Prisma.UserWhereInput;
   /**
    * Limit how many Users to update.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * User updateManyAndReturn
  */
-export type UserUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserUpdateManyAndReturnArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.UserSelectUpdateManyAndReturn<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * The data used to update Users.
    */
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyInput>
+  data: Prisma.XOR<
+    Prisma.UserUpdateManyMutationInput,
+    Prisma.UserUncheckedUpdateManyInput
+  >;
   /**
    * Filter which Users to update
    */
-  where?: Prisma.UserWhereInput
+  where?: Prisma.UserWhereInput;
   /**
    * Limit how many Users to update.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * User upsert
  */
-export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserUpsertArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * The filter to search for the User to update in case it exists.
    */
-  where: Prisma.UserWhereUniqueInput
+  where: Prisma.UserWhereUniqueInput;
   /**
    * In case the User found by the `where` argument doesn't exist, create a new User with this data.
    */
-  create: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
+  create: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>;
   /**
    * In case the User was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.UserUpdateInput, Prisma.UserUncheckedUpdateInput>
-}
+  update: Prisma.XOR<Prisma.UserUpdateInput, Prisma.UserUncheckedUpdateInput>;
+};
 
 /**
  * User delete
  */
-export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserDeleteArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
+  include?: Prisma.UserInclude<ExtArgs> | null;
   /**
    * Filter which User to delete.
    */
-  where: Prisma.UserWhereUniqueInput
-}
+  where: Prisma.UserWhereUniqueInput;
+};
 
 /**
  * User deleteMany
  */
-export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserDeleteManyArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Filter which Users to delete
    */
-  where?: Prisma.UserWhereInput
+  where?: Prisma.UserWhereInput;
   /**
    * Limit how many Users to delete.
    */
-  limit?: number
-}
+  limit?: number;
+};
 
 /**
  * User.profile
  */
-export type User$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$profileArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the UserProfile
    */
-  select?: Prisma.UserProfileSelect<ExtArgs> | null
+  select?: Prisma.UserProfileSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the UserProfile
    */
-  omit?: Prisma.UserProfileOmit<ExtArgs> | null
+  omit?: Prisma.UserProfileOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserProfileInclude<ExtArgs> | null
-  where?: Prisma.UserProfileWhereInput
-}
+  include?: Prisma.UserProfileInclude<ExtArgs> | null;
+  where?: Prisma.UserProfileWhereInput;
+};
 
 /**
  * User.roleAssignments
  */
-export type User$roleAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$roleAssignmentsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the UserRole
    */
-  select?: Prisma.UserRoleSelect<ExtArgs> | null
+  select?: Prisma.UserRoleSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the UserRole
    */
-  omit?: Prisma.UserRoleOmit<ExtArgs> | null
+  omit?: Prisma.UserRoleOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserRoleInclude<ExtArgs> | null
-  where?: Prisma.UserRoleWhereInput
-  orderBy?: Prisma.UserRoleOrderByWithRelationInput | Prisma.UserRoleOrderByWithRelationInput[]
-  cursor?: Prisma.UserRoleWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[]
-}
+  include?: Prisma.UserRoleInclude<ExtArgs> | null;
+  where?: Prisma.UserRoleWhereInput;
+  orderBy?:
+    | Prisma.UserRoleOrderByWithRelationInput
+    | Prisma.UserRoleOrderByWithRelationInput[];
+  cursor?: Prisma.UserRoleWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[];
+};
 
 /**
  * User.roleAssignmentsAuthored
  */
-export type User$roleAssignmentsAuthoredArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$roleAssignmentsAuthoredArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the UserRole
    */
-  select?: Prisma.UserRoleSelect<ExtArgs> | null
+  select?: Prisma.UserRoleSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the UserRole
    */
-  omit?: Prisma.UserRoleOmit<ExtArgs> | null
+  omit?: Prisma.UserRoleOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserRoleInclude<ExtArgs> | null
-  where?: Prisma.UserRoleWhereInput
-  orderBy?: Prisma.UserRoleOrderByWithRelationInput | Prisma.UserRoleOrderByWithRelationInput[]
-  cursor?: Prisma.UserRoleWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[]
-}
+  include?: Prisma.UserRoleInclude<ExtArgs> | null;
+  where?: Prisma.UserRoleWhereInput;
+  orderBy?:
+    | Prisma.UserRoleOrderByWithRelationInput
+    | Prisma.UserRoleOrderByWithRelationInput[];
+  cursor?: Prisma.UserRoleWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.UserRoleScalarFieldEnum | Prisma.UserRoleScalarFieldEnum[];
+};
 
 /**
  * User.onboarding
  */
-export type User$onboardingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$onboardingArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the LearnerOnboarding
    */
-  select?: Prisma.LearnerOnboardingSelect<ExtArgs> | null
+  select?: Prisma.LearnerOnboardingSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the LearnerOnboarding
    */
-  omit?: Prisma.LearnerOnboardingOmit<ExtArgs> | null
+  omit?: Prisma.LearnerOnboardingOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LearnerOnboardingInclude<ExtArgs> | null
-  where?: Prisma.LearnerOnboardingWhereInput
-}
+  include?: Prisma.LearnerOnboardingInclude<ExtArgs> | null;
+  where?: Prisma.LearnerOnboardingWhereInput;
+};
 
 /**
  * User.placementAttempts
  */
-export type User$placementAttemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$placementAttemptsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the PlacementAttempt
    */
-  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null
+  select?: Prisma.PlacementAttemptSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the PlacementAttempt
    */
-  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null
+  omit?: Prisma.PlacementAttemptOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null
-  where?: Prisma.PlacementAttemptWhereInput
-  orderBy?: Prisma.PlacementAttemptOrderByWithRelationInput | Prisma.PlacementAttemptOrderByWithRelationInput[]
-  cursor?: Prisma.PlacementAttemptWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PlacementAttemptScalarFieldEnum | Prisma.PlacementAttemptScalarFieldEnum[]
-}
+  include?: Prisma.PlacementAttemptInclude<ExtArgs> | null;
+  where?: Prisma.PlacementAttemptWhereInput;
+  orderBy?:
+    | Prisma.PlacementAttemptOrderByWithRelationInput
+    | Prisma.PlacementAttemptOrderByWithRelationInput[];
+  cursor?: Prisma.PlacementAttemptWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PlacementAttemptScalarFieldEnum
+    | Prisma.PlacementAttemptScalarFieldEnum[];
+};
 
 /**
  * User.roadmaps
  */
-export type User$roadmapsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$roadmapsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the Roadmap
    */
-  select?: Prisma.RoadmapSelect<ExtArgs> | null
+  select?: Prisma.RoadmapSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the Roadmap
    */
-  omit?: Prisma.RoadmapOmit<ExtArgs> | null
+  omit?: Prisma.RoadmapOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.RoadmapInclude<ExtArgs> | null
-  where?: Prisma.RoadmapWhereInput
-  orderBy?: Prisma.RoadmapOrderByWithRelationInput | Prisma.RoadmapOrderByWithRelationInput[]
-  cursor?: Prisma.RoadmapWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.RoadmapScalarFieldEnum | Prisma.RoadmapScalarFieldEnum[]
-}
+  include?: Prisma.RoadmapInclude<ExtArgs> | null;
+  where?: Prisma.RoadmapWhereInput;
+  orderBy?:
+    | Prisma.RoadmapOrderByWithRelationInput
+    | Prisma.RoadmapOrderByWithRelationInput[];
+  cursor?: Prisma.RoadmapWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.RoadmapScalarFieldEnum | Prisma.RoadmapScalarFieldEnum[];
+};
 
 /**
  * User.practiceSessions
  */
-export type User$practiceSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$practiceSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the PracticeSession
    */
-  select?: Prisma.PracticeSessionSelect<ExtArgs> | null
+  select?: Prisma.PracticeSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the PracticeSession
    */
-  omit?: Prisma.PracticeSessionOmit<ExtArgs> | null
+  omit?: Prisma.PracticeSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PracticeSessionInclude<ExtArgs> | null
-  where?: Prisma.PracticeSessionWhereInput
-  orderBy?: Prisma.PracticeSessionOrderByWithRelationInput | Prisma.PracticeSessionOrderByWithRelationInput[]
-  cursor?: Prisma.PracticeSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PracticeSessionScalarFieldEnum | Prisma.PracticeSessionScalarFieldEnum[]
-}
+  include?: Prisma.PracticeSessionInclude<ExtArgs> | null;
+  where?: Prisma.PracticeSessionWhereInput;
+  orderBy?:
+    | Prisma.PracticeSessionOrderByWithRelationInput
+    | Prisma.PracticeSessionOrderByWithRelationInput[];
+  cursor?: Prisma.PracticeSessionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PracticeSessionScalarFieldEnum
+    | Prisma.PracticeSessionScalarFieldEnum[];
+};
 
 /**
  * User.learnerProgress
  */
-export type User$learnerProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$learnerProgressArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the LearnerProgress
    */
-  select?: Prisma.LearnerProgressSelect<ExtArgs> | null
+  select?: Prisma.LearnerProgressSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the LearnerProgress
    */
-  omit?: Prisma.LearnerProgressOmit<ExtArgs> | null
+  omit?: Prisma.LearnerProgressOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LearnerProgressInclude<ExtArgs> | null
-  where?: Prisma.LearnerProgressWhereInput
-}
+  include?: Prisma.LearnerProgressInclude<ExtArgs> | null;
+  where?: Prisma.LearnerProgressWhereInput;
+};
 
 /**
  * User.errorNotebookEntries
  */
-export type User$errorNotebookEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$errorNotebookEntriesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ErrorNotebookEntry
    */
-  select?: Prisma.ErrorNotebookEntrySelect<ExtArgs> | null
+  select?: Prisma.ErrorNotebookEntrySelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ErrorNotebookEntry
    */
-  omit?: Prisma.ErrorNotebookEntryOmit<ExtArgs> | null
+  omit?: Prisma.ErrorNotebookEntryOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ErrorNotebookEntryInclude<ExtArgs> | null
-  where?: Prisma.ErrorNotebookEntryWhereInput
-  orderBy?: Prisma.ErrorNotebookEntryOrderByWithRelationInput | Prisma.ErrorNotebookEntryOrderByWithRelationInput[]
-  cursor?: Prisma.ErrorNotebookEntryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ErrorNotebookEntryScalarFieldEnum | Prisma.ErrorNotebookEntryScalarFieldEnum[]
-}
+  include?: Prisma.ErrorNotebookEntryInclude<ExtArgs> | null;
+  where?: Prisma.ErrorNotebookEntryWhereInput;
+  orderBy?:
+    | Prisma.ErrorNotebookEntryOrderByWithRelationInput
+    | Prisma.ErrorNotebookEntryOrderByWithRelationInput[];
+  cursor?: Prisma.ErrorNotebookEntryWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ErrorNotebookEntryScalarFieldEnum
+    | Prisma.ErrorNotebookEntryScalarFieldEnum[];
+};
 
 /**
  * User.dailySentenceCompletions
  */
-export type User$dailySentenceCompletionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$dailySentenceCompletionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the DailySentenceCompletion
    */
-  select?: Prisma.DailySentenceCompletionSelect<ExtArgs> | null
+  select?: Prisma.DailySentenceCompletionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the DailySentenceCompletion
    */
-  omit?: Prisma.DailySentenceCompletionOmit<ExtArgs> | null
+  omit?: Prisma.DailySentenceCompletionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DailySentenceCompletionInclude<ExtArgs> | null
-  where?: Prisma.DailySentenceCompletionWhereInput
-  orderBy?: Prisma.DailySentenceCompletionOrderByWithRelationInput | Prisma.DailySentenceCompletionOrderByWithRelationInput[]
-  cursor?: Prisma.DailySentenceCompletionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.DailySentenceCompletionScalarFieldEnum | Prisma.DailySentenceCompletionScalarFieldEnum[]
-}
+  include?: Prisma.DailySentenceCompletionInclude<ExtArgs> | null;
+  where?: Prisma.DailySentenceCompletionWhereInput;
+  orderBy?:
+    | Prisma.DailySentenceCompletionOrderByWithRelationInput
+    | Prisma.DailySentenceCompletionOrderByWithRelationInput[];
+  cursor?: Prisma.DailySentenceCompletionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.DailySentenceCompletionScalarFieldEnum
+    | Prisma.DailySentenceCompletionScalarFieldEnum[];
+};
 
 /**
  * User.vocabularyMasteryStates
  */
-export type User$vocabularyMasteryStatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$vocabularyMasteryStatesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the VocabularyMasteryState
    */
-  select?: Prisma.VocabularyMasteryStateSelect<ExtArgs> | null
+  select?: Prisma.VocabularyMasteryStateSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the VocabularyMasteryState
    */
-  omit?: Prisma.VocabularyMasteryStateOmit<ExtArgs> | null
+  omit?: Prisma.VocabularyMasteryStateOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.VocabularyMasteryStateInclude<ExtArgs> | null
-  where?: Prisma.VocabularyMasteryStateWhereInput
-  orderBy?: Prisma.VocabularyMasteryStateOrderByWithRelationInput | Prisma.VocabularyMasteryStateOrderByWithRelationInput[]
-  cursor?: Prisma.VocabularyMasteryStateWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.VocabularyMasteryStateScalarFieldEnum | Prisma.VocabularyMasteryStateScalarFieldEnum[]
-}
+  include?: Prisma.VocabularyMasteryStateInclude<ExtArgs> | null;
+  where?: Prisma.VocabularyMasteryStateWhereInput;
+  orderBy?:
+    | Prisma.VocabularyMasteryStateOrderByWithRelationInput
+    | Prisma.VocabularyMasteryStateOrderByWithRelationInput[];
+  cursor?: Prisma.VocabularyMasteryStateWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.VocabularyMasteryStateScalarFieldEnum
+    | Prisma.VocabularyMasteryStateScalarFieldEnum[];
+};
 
 /**
  * User.vocabularyReviewSubmissions
  */
-export type User$vocabularyReviewSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$vocabularyReviewSubmissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the VocabularyReviewSubmission
    */
-  select?: Prisma.VocabularyReviewSubmissionSelect<ExtArgs> | null
+  select?: Prisma.VocabularyReviewSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the VocabularyReviewSubmission
    */
-  omit?: Prisma.VocabularyReviewSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.VocabularyReviewSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.VocabularyReviewSubmissionInclude<ExtArgs> | null
-  where?: Prisma.VocabularyReviewSubmissionWhereInput
-  orderBy?: Prisma.VocabularyReviewSubmissionOrderByWithRelationInput | Prisma.VocabularyReviewSubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.VocabularyReviewSubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.VocabularyReviewSubmissionScalarFieldEnum | Prisma.VocabularyReviewSubmissionScalarFieldEnum[]
-}
+  include?: Prisma.VocabularyReviewSubmissionInclude<ExtArgs> | null;
+  where?: Prisma.VocabularyReviewSubmissionWhereInput;
+  orderBy?:
+    | Prisma.VocabularyReviewSubmissionOrderByWithRelationInput
+    | Prisma.VocabularyReviewSubmissionOrderByWithRelationInput[];
+  cursor?: Prisma.VocabularyReviewSubmissionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.VocabularyReviewSubmissionScalarFieldEnum
+    | Prisma.VocabularyReviewSubmissionScalarFieldEnum[];
+};
 
 /**
  * User.privilegedAuditEvents
  */
-export type User$privilegedAuditEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$privilegedAuditEventsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the PrivilegedAuditEvent
    */
-  select?: Prisma.PrivilegedAuditEventSelect<ExtArgs> | null
+  select?: Prisma.PrivilegedAuditEventSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the PrivilegedAuditEvent
    */
-  omit?: Prisma.PrivilegedAuditEventOmit<ExtArgs> | null
+  omit?: Prisma.PrivilegedAuditEventOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PrivilegedAuditEventInclude<ExtArgs> | null
-  where?: Prisma.PrivilegedAuditEventWhereInput
-  orderBy?: Prisma.PrivilegedAuditEventOrderByWithRelationInput | Prisma.PrivilegedAuditEventOrderByWithRelationInput[]
-  cursor?: Prisma.PrivilegedAuditEventWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PrivilegedAuditEventScalarFieldEnum | Prisma.PrivilegedAuditEventScalarFieldEnum[]
-}
+  include?: Prisma.PrivilegedAuditEventInclude<ExtArgs> | null;
+  where?: Prisma.PrivilegedAuditEventWhereInput;
+  orderBy?:
+    | Prisma.PrivilegedAuditEventOrderByWithRelationInput
+    | Prisma.PrivilegedAuditEventOrderByWithRelationInput[];
+  cursor?: Prisma.PrivilegedAuditEventWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PrivilegedAuditEventScalarFieldEnum
+    | Prisma.PrivilegedAuditEventScalarFieldEnum[];
+};
 
 /**
  * User.toeicPracticeSessions
  */
-export type User$toeicPracticeSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$toeicPracticeSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicPracticeSession
    */
-  select?: Prisma.ToeicPracticeSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicPracticeSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicPracticeSession
    */
-  omit?: Prisma.ToeicPracticeSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicPracticeSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicPracticeSessionInclude<ExtArgs> | null
-  where?: Prisma.ToeicPracticeSessionWhereInput
-  orderBy?: Prisma.ToeicPracticeSessionOrderByWithRelationInput | Prisma.ToeicPracticeSessionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicPracticeSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicPracticeSessionScalarFieldEnum | Prisma.ToeicPracticeSessionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicPracticeSessionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicPracticeSessionWhereInput;
+  orderBy?:
+    | Prisma.ToeicPracticeSessionOrderByWithRelationInput
+    | Prisma.ToeicPracticeSessionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicPracticeSessionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicPracticeSessionScalarFieldEnum
+    | Prisma.ToeicPracticeSessionScalarFieldEnum[];
+};
 
 /**
  * User.toeicReadingPracticeSessions
  */
-export type User$toeicReadingPracticeSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$toeicReadingPracticeSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicReadingPracticeSession
    */
-  select?: Prisma.ToeicReadingPracticeSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicReadingPracticeSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicReadingPracticeSession
    */
-  omit?: Prisma.ToeicReadingPracticeSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicReadingPracticeSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicReadingPracticeSessionInclude<ExtArgs> | null
-  where?: Prisma.ToeicReadingPracticeSessionWhereInput
-  orderBy?: Prisma.ToeicReadingPracticeSessionOrderByWithRelationInput | Prisma.ToeicReadingPracticeSessionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicReadingPracticeSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicReadingPracticeSessionScalarFieldEnum | Prisma.ToeicReadingPracticeSessionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicReadingPracticeSessionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicReadingPracticeSessionWhereInput;
+  orderBy?:
+    | Prisma.ToeicReadingPracticeSessionOrderByWithRelationInput
+    | Prisma.ToeicReadingPracticeSessionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicReadingPracticeSessionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicReadingPracticeSessionScalarFieldEnum
+    | Prisma.ToeicReadingPracticeSessionScalarFieldEnum[];
+};
 
 /**
  * User.toeicTimedTestSessions
  */
-export type User$toeicTimedTestSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$toeicTimedTestSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicTimedTestSession
    */
-  select?: Prisma.ToeicTimedTestSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicTimedTestSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicTimedTestSession
    */
-  omit?: Prisma.ToeicTimedTestSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicTimedTestSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicTimedTestSessionInclude<ExtArgs> | null
-  where?: Prisma.ToeicTimedTestSessionWhereInput
-  orderBy?: Prisma.ToeicTimedTestSessionOrderByWithRelationInput | Prisma.ToeicTimedTestSessionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicTimedTestSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicTimedTestSessionScalarFieldEnum | Prisma.ToeicTimedTestSessionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicTimedTestSessionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicTimedTestSessionWhereInput;
+  orderBy?:
+    | Prisma.ToeicTimedTestSessionOrderByWithRelationInput
+    | Prisma.ToeicTimedTestSessionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicTimedTestSessionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicTimedTestSessionScalarFieldEnum
+    | Prisma.ToeicTimedTestSessionScalarFieldEnum[];
+};
 
 /**
  * User.toeicSpeakingSessions
  */
-export type User$toeicSpeakingSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$toeicSpeakingSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSession
    */
-  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSession
    */
-  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null
-  where?: Prisma.ToeicSpeakingSessionWhereInput
-  orderBy?: Prisma.ToeicSpeakingSessionOrderByWithRelationInput | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicSpeakingSessionScalarFieldEnum | Prisma.ToeicSpeakingSessionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicSpeakingSessionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicSpeakingSessionWhereInput;
+  orderBy?:
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSessionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicSpeakingSessionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum
+    | Prisma.ToeicSpeakingSessionScalarFieldEnum[];
+};
 
 /**
  * User.toeicSpeakingSubmissions
  */
-export type User$toeicSpeakingSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$toeicSpeakingSubmissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicSpeakingSubmission
    */
-  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicSpeakingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicSpeakingSubmission
    */
-  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicSpeakingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null
-  where?: Prisma.ToeicSpeakingSubmissionWhereInput
-  orderBy?: Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicSpeakingSubmissionScalarFieldEnum | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicSpeakingSubmissionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicSpeakingSubmissionWhereInput;
+  orderBy?:
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicSpeakingSubmissionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicSpeakingSubmissionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum
+    | Prisma.ToeicSpeakingSubmissionScalarFieldEnum[];
+};
+
+/**
+ * User.toeicSpeakingRecordings
+ */
+export type User$toeicSpeakingRecordingsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ToeicSpeakingRecording
+   */
+  select?: Prisma.ToeicSpeakingRecordingSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ToeicSpeakingRecording
+   */
+  omit?: Prisma.ToeicSpeakingRecordingOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ToeicSpeakingRecordingInclude<ExtArgs> | null;
+  where?: Prisma.ToeicSpeakingRecordingWhereInput;
+  orderBy?:
+    | Prisma.ToeicSpeakingRecordingOrderByWithRelationInput
+    | Prisma.ToeicSpeakingRecordingOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicSpeakingRecordingWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicSpeakingRecordingScalarFieldEnum
+    | Prisma.ToeicSpeakingRecordingScalarFieldEnum[];
+};
+
+/**
+ * User.toeicSpeakingPlaybackCapabilities
+ */
+export type User$toeicSpeakingPlaybackCapabilitiesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ToeicSpeakingPlaybackCapability
+   */
+  select?: Prisma.ToeicSpeakingPlaybackCapabilitySelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ToeicSpeakingPlaybackCapability
+   */
+  omit?: Prisma.ToeicSpeakingPlaybackCapabilityOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ToeicSpeakingPlaybackCapabilityInclude<ExtArgs> | null;
+  where?: Prisma.ToeicSpeakingPlaybackCapabilityWhereInput;
+  orderBy?:
+    | Prisma.ToeicSpeakingPlaybackCapabilityOrderByWithRelationInput
+    | Prisma.ToeicSpeakingPlaybackCapabilityOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicSpeakingPlaybackCapabilityWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicSpeakingPlaybackCapabilityScalarFieldEnum
+    | Prisma.ToeicSpeakingPlaybackCapabilityScalarFieldEnum[];
+};
 
 /**
  * User.toeicWritingSessions
  */
-export type User$toeicWritingSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$toeicWritingSessionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSession
    */
-  select?: Prisma.ToeicWritingSessionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSessionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSession
    */
-  omit?: Prisma.ToeicWritingSessionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSessionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSessionInclude<ExtArgs> | null
-  where?: Prisma.ToeicWritingSessionWhereInput
-  orderBy?: Prisma.ToeicWritingSessionOrderByWithRelationInput | Prisma.ToeicWritingSessionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicWritingSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicWritingSessionScalarFieldEnum | Prisma.ToeicWritingSessionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicWritingSessionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicWritingSessionWhereInput;
+  orderBy?:
+    | Prisma.ToeicWritingSessionOrderByWithRelationInput
+    | Prisma.ToeicWritingSessionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicWritingSessionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicWritingSessionScalarFieldEnum
+    | Prisma.ToeicWritingSessionScalarFieldEnum[];
+};
 
 /**
  * User.toeicWritingSubmissions
  */
-export type User$toeicWritingSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$toeicWritingSubmissionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the ToeicWritingSubmission
    */
-  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null
+  select?: Prisma.ToeicWritingSubmissionSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the ToeicWritingSubmission
    */
-  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null
+  omit?: Prisma.ToeicWritingSubmissionOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null
-  where?: Prisma.ToeicWritingSubmissionWhereInput
-  orderBy?: Prisma.ToeicWritingSubmissionOrderByWithRelationInput | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ToeicWritingSubmissionScalarFieldEnum | Prisma.ToeicWritingSubmissionScalarFieldEnum[]
-}
+  include?: Prisma.ToeicWritingSubmissionInclude<ExtArgs> | null;
+  where?: Prisma.ToeicWritingSubmissionWhereInput;
+  orderBy?:
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput
+    | Prisma.ToeicWritingSubmissionOrderByWithRelationInput[];
+  cursor?: Prisma.ToeicWritingSubmissionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum
+    | Prisma.ToeicWritingSubmissionScalarFieldEnum[];
+};
 
 /**
  * User.aiFeedbackUsages
  */
-export type User$aiFeedbackUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$aiFeedbackUsagesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the AiFeedbackUsage
    */
-  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null
+  select?: Prisma.AiFeedbackUsageSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the AiFeedbackUsage
    */
-  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null
+  omit?: Prisma.AiFeedbackUsageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null
-  where?: Prisma.AiFeedbackUsageWhereInput
-  orderBy?: Prisma.AiFeedbackUsageOrderByWithRelationInput | Prisma.AiFeedbackUsageOrderByWithRelationInput[]
-  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AiFeedbackUsageScalarFieldEnum | Prisma.AiFeedbackUsageScalarFieldEnum[]
-}
+  include?: Prisma.AiFeedbackUsageInclude<ExtArgs> | null;
+  where?: Prisma.AiFeedbackUsageWhereInput;
+  orderBy?:
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput
+    | Prisma.AiFeedbackUsageOrderByWithRelationInput[];
+  cursor?: Prisma.AiFeedbackUsageWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.AiFeedbackUsageScalarFieldEnum
+    | Prisma.AiFeedbackUsageScalarFieldEnum[];
+};
 
 /**
  * User.libraryProgress
  */
-export type User$libraryProgressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$libraryProgressArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the LibraryLearningProgress
    */
-  select?: Prisma.LibraryLearningProgressSelect<ExtArgs> | null
+  select?: Prisma.LibraryLearningProgressSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the LibraryLearningProgress
    */
-  omit?: Prisma.LibraryLearningProgressOmit<ExtArgs> | null
+  omit?: Prisma.LibraryLearningProgressOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LibraryLearningProgressInclude<ExtArgs> | null
-  where?: Prisma.LibraryLearningProgressWhereInput
-  orderBy?: Prisma.LibraryLearningProgressOrderByWithRelationInput | Prisma.LibraryLearningProgressOrderByWithRelationInput[]
-  cursor?: Prisma.LibraryLearningProgressWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LibraryLearningProgressScalarFieldEnum | Prisma.LibraryLearningProgressScalarFieldEnum[]
-}
+  include?: Prisma.LibraryLearningProgressInclude<ExtArgs> | null;
+  where?: Prisma.LibraryLearningProgressWhereInput;
+  orderBy?:
+    | Prisma.LibraryLearningProgressOrderByWithRelationInput
+    | Prisma.LibraryLearningProgressOrderByWithRelationInput[];
+  cursor?: Prisma.LibraryLearningProgressWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.LibraryLearningProgressScalarFieldEnum
+    | Prisma.LibraryLearningProgressScalarFieldEnum[];
+};
 
 /**
  * User.libraryBookmarks
  */
-export type User$libraryBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$libraryBookmarksArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the LibraryBookmark
    */
-  select?: Prisma.LibraryBookmarkSelect<ExtArgs> | null
+  select?: Prisma.LibraryBookmarkSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the LibraryBookmark
    */
-  omit?: Prisma.LibraryBookmarkOmit<ExtArgs> | null
+  omit?: Prisma.LibraryBookmarkOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LibraryBookmarkInclude<ExtArgs> | null
-  where?: Prisma.LibraryBookmarkWhereInput
-  orderBy?: Prisma.LibraryBookmarkOrderByWithRelationInput | Prisma.LibraryBookmarkOrderByWithRelationInput[]
-  cursor?: Prisma.LibraryBookmarkWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LibraryBookmarkScalarFieldEnum | Prisma.LibraryBookmarkScalarFieldEnum[]
-}
+  include?: Prisma.LibraryBookmarkInclude<ExtArgs> | null;
+  where?: Prisma.LibraryBookmarkWhereInput;
+  orderBy?:
+    | Prisma.LibraryBookmarkOrderByWithRelationInput
+    | Prisma.LibraryBookmarkOrderByWithRelationInput[];
+  cursor?: Prisma.LibraryBookmarkWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.LibraryBookmarkScalarFieldEnum
+    | Prisma.LibraryBookmarkScalarFieldEnum[];
+};
 
 /**
  * User.libraryNotes
  */
-export type User$libraryNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$libraryNotesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the LibraryPersonalNote
    */
-  select?: Prisma.LibraryPersonalNoteSelect<ExtArgs> | null
+  select?: Prisma.LibraryPersonalNoteSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the LibraryPersonalNote
    */
-  omit?: Prisma.LibraryPersonalNoteOmit<ExtArgs> | null
+  omit?: Prisma.LibraryPersonalNoteOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LibraryPersonalNoteInclude<ExtArgs> | null
-  where?: Prisma.LibraryPersonalNoteWhereInput
-  orderBy?: Prisma.LibraryPersonalNoteOrderByWithRelationInput | Prisma.LibraryPersonalNoteOrderByWithRelationInput[]
-  cursor?: Prisma.LibraryPersonalNoteWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LibraryPersonalNoteScalarFieldEnum | Prisma.LibraryPersonalNoteScalarFieldEnum[]
-}
+  include?: Prisma.LibraryPersonalNoteInclude<ExtArgs> | null;
+  where?: Prisma.LibraryPersonalNoteWhereInput;
+  orderBy?:
+    | Prisma.LibraryPersonalNoteOrderByWithRelationInput
+    | Prisma.LibraryPersonalNoteOrderByWithRelationInput[];
+  cursor?: Prisma.LibraryPersonalNoteWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.LibraryPersonalNoteScalarFieldEnum
+    | Prisma.LibraryPersonalNoteScalarFieldEnum[];
+};
 
 /**
  * User.libraryDrillOutcomes
  */
-export type User$libraryDrillOutcomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$libraryDrillOutcomesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the LibraryDrillOutcome
    */
-  select?: Prisma.LibraryDrillOutcomeSelect<ExtArgs> | null
+  select?: Prisma.LibraryDrillOutcomeSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the LibraryDrillOutcome
    */
-  omit?: Prisma.LibraryDrillOutcomeOmit<ExtArgs> | null
+  omit?: Prisma.LibraryDrillOutcomeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LibraryDrillOutcomeInclude<ExtArgs> | null
-  where?: Prisma.LibraryDrillOutcomeWhereInput
-  orderBy?: Prisma.LibraryDrillOutcomeOrderByWithRelationInput | Prisma.LibraryDrillOutcomeOrderByWithRelationInput[]
-  cursor?: Prisma.LibraryDrillOutcomeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LibraryDrillOutcomeScalarFieldEnum | Prisma.LibraryDrillOutcomeScalarFieldEnum[]
-}
+  include?: Prisma.LibraryDrillOutcomeInclude<ExtArgs> | null;
+  where?: Prisma.LibraryDrillOutcomeWhereInput;
+  orderBy?:
+    | Prisma.LibraryDrillOutcomeOrderByWithRelationInput
+    | Prisma.LibraryDrillOutcomeOrderByWithRelationInput[];
+  cursor?: Prisma.LibraryDrillOutcomeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.LibraryDrillOutcomeScalarFieldEnum
+    | Prisma.LibraryDrillOutcomeScalarFieldEnum[];
+};
 
 /**
  * User.shadowingAttempts
  */
-export type User$shadowingAttemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$shadowingAttemptsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the LibraryShadowingAttempt
    */
-  select?: Prisma.LibraryShadowingAttemptSelect<ExtArgs> | null
+  select?: Prisma.LibraryShadowingAttemptSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the LibraryShadowingAttempt
    */
-  omit?: Prisma.LibraryShadowingAttemptOmit<ExtArgs> | null
+  omit?: Prisma.LibraryShadowingAttemptOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LibraryShadowingAttemptInclude<ExtArgs> | null
-  where?: Prisma.LibraryShadowingAttemptWhereInput
-  orderBy?: Prisma.LibraryShadowingAttemptOrderByWithRelationInput | Prisma.LibraryShadowingAttemptOrderByWithRelationInput[]
-  cursor?: Prisma.LibraryShadowingAttemptWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LibraryShadowingAttemptScalarFieldEnum | Prisma.LibraryShadowingAttemptScalarFieldEnum[]
-}
+  include?: Prisma.LibraryShadowingAttemptInclude<ExtArgs> | null;
+  where?: Prisma.LibraryShadowingAttemptWhereInput;
+  orderBy?:
+    | Prisma.LibraryShadowingAttemptOrderByWithRelationInput
+    | Prisma.LibraryShadowingAttemptOrderByWithRelationInput[];
+  cursor?: Prisma.LibraryShadowingAttemptWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.LibraryShadowingAttemptScalarFieldEnum
+    | Prisma.LibraryShadowingAttemptScalarFieldEnum[];
+};
 
 /**
  * User without action
  */
-export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
   /**
    * Select specific fields to fetch from the User
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null;
   /**
    * Omit specific fields from the User
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
-}
+  include?: Prisma.UserInclude<ExtArgs> | null;
+};

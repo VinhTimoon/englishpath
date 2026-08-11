@@ -97,6 +97,16 @@ export class ToeicExceptionFilter implements ExceptionFilter {
           code = 'INCOMPLETE_SESSION';
           message = 'All selected questions must be answered.';
           break;
+        case TOEIC_ERROR_CODES.RECORDING_UNAVAILABLE:
+          status = 422;
+          code = 'RECORDING_UNAVAILABLE';
+          message = 'The recording is not available for playback.';
+          break;
+        case TOEIC_ERROR_CODES.CAPABILITY_INVALID:
+          status = 403;
+          code = 'PLAYBACK_FORBIDDEN';
+          message = 'The playback capability is invalid or expired.';
+          break;
         default:
           message = 'TOEIC questions are temporarily unavailable.';
       }

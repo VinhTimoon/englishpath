@@ -616,6 +616,24 @@ controlled application reference; it never accepts audio bytes, provider URLs,
 scores, rubric internals, or client ownership. Exact retries replay the safe
 acknowledgement, while changed payloads, cross-owner access, missing/withdrawn
 tasks, and finalized sessions return sanitized conflicts/not-found responses.
+
+## TOEIC Speaking recording boundary (EP4-ST003)
+
+Authenticated routes are:
+
+- `GET /api/v1/toeic/speaking/recordings/:recordingId`
+- `POST /api/v1/toeic/speaking/recordings/:recordingId/playback-capability`
+- `GET /api/v1/toeic/speaking/recordings/:recordingId/playback`
+- `POST /api/v1/toeic/speaking/recordings/:recordingId/revoke`
+
+Recording metadata is restricted to the approved audio MIME allowlist, 10 MB,
+and 3,600 seconds. A finalized owner submission creates an `AVAILABLE` local
+controlled asset with a 30-day expiry. Playback requires an owner-scoped,
+opaque capability valid for at most five minutes and is denied after expiry,
+revocation, deletion, or ownership failure. Responses never include provider,
+object-key, credential, raw audio, or long-lived URL fields. The local/test
+adapter is credential-free; production storage activation is not performed by
+the application loop.
 ## EP4-ST005 Writing task/submission API
 
 Authenticated routes:

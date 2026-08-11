@@ -61,6 +61,7 @@ import { ToeicSpeakingSubmissionService } from './toeic-speaking-submission.serv
 import { SubmitToeicWritingDto } from './dto/toeic-writing-submission.dto';
 import { ToeicWritingSubmissionService } from './toeic-writing-submission.service';
 import { ToeicWritingFeedbackService } from './toeic-writing-feedback.service';
+import { ToeicRecordingService } from './toeic-recording.service';
 
 const strictValidation = new ValidationPipe({
   transform: true,
@@ -89,6 +90,7 @@ export class ToeicController {
     private readonly speakingSubmission: ToeicSpeakingSubmissionService,
     private readonly writingSubmission: ToeicWritingSubmissionService,
     private readonly writingFeedback: ToeicWritingFeedbackService,
+    private readonly recordings: ToeicRecordingService,
   ) {}
 
   @Post('speaking/tasks/:taskId/sessions')
@@ -147,6 +149,92 @@ export class ToeicController {
         meta: {
           correlationId: authCorrelationId(correlation),
           idempotencyStatus: data.replayed ? 'replayed' : 'created',
+        },
+      }));
+  }
+
+  @Get('speaking/recordings/:recordingId')
+  @ApiOperation({ summary: 'Read an owner-scoped Speaking recording state' })
+  @ApiNotFoundResponse({ description: 'The recording is unavailable.' })
+  getSpeakingRecording(
+    @Param('recordingId') recordingId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.recordings
+      .get(request.principal!, recordingId)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: 'not_applicable',
+        },
+      }));
+  }
+
+  @Post('speaking/recordings/:recordingId/playback-capability')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Issue a short-lived Speaking playback capability' })
+  @ApiOkResponse({
+    description: 'Short-lived application playback capability.',
+  })
+  @ApiForbiddenResponse({ description: 'The recording cannot be played.' })
+  issueSpeakingPlayback(
+    @Param('recordingId') recordingId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.recordings
+      .issuePlayback(request.principal!, recordingId)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: 'created',
+        },
+      }));
+  }
+
+  @Get('speaking/recordings/:recordingId/playback')
+  @ApiHeader({
+    name: 'X-Playback-Capability',
+    required: true,
+    description: 'Short-lived application capability issued by the backend.',
+  })
+  @ApiOperation({ summary: 'Authorize controlled Speaking playback' })
+  @ApiForbiddenResponse({ description: 'The playback capability is invalid.' })
+  authorizeSpeakingPlayback(
+    @Param('recordingId') recordingId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-playback-capability') capability?: string,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.recordings
+      .authorizePlayback(request.principal!, recordingId, capability)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: 'not_applicable',
+        },
+      }));
+  }
+
+  @Post('speaking/recordings/:recordingId/revoke')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Revoke a Speaking recording and its playback' })
+  revokeSpeakingRecording(
+    @Param('recordingId') recordingId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.recordings
+      .revoke(request.principal!, recordingId)
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: 'not_applicable',
         },
       }));
   }

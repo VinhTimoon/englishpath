@@ -19,6 +19,12 @@ import type {
 } from '../src/modules/toeic/toeic-speaking-submission.models';
 import { TOEIC_SPEAKING_TASK_CATALOGUE } from '../src/modules/toeic/toeic-speaking-submission.models';
 import type { ToeicSpeakingTaskCatalogue } from '../src/modules/toeic/toeic-speaking-submission.models';
+import { TOEIC_SPEAKING_RECORDING_REPOSITORY } from '../src/modules/toeic/toeic-recording.models';
+import type {
+  PlaybackCapabilityRecord,
+  SpeakingRecordingRecord,
+  ToeicSpeakingRecordingRepository,
+} from '../src/modules/toeic/toeic-recording.models';
 import { createTaskVersion } from '../src/modules/toeic/toeic-speaking-writing.models';
 import { PrismaService } from '../src/prisma/prisma.service';
 
@@ -59,6 +65,16 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
   const catalogue: jest.Mocked<ToeicSpeakingTaskCatalogue> = {
     findPublished: jest.fn().mockResolvedValue(task),
   };
+  const recordingRepository: jest.Mocked<ToeicSpeakingRecordingRepository> = {
+    findBySubmission: jest.fn(),
+    findById: jest.fn(),
+    create: jest.fn(),
+    markExpired: jest.fn(),
+    revoke: jest.fn(),
+    createCapability: jest.fn(),
+    findCapability: jest.fn(),
+  };
+  let latestCapabilityHash = '';
 
   const activeSession = (): SpeakingSessionRecord => ({
     id: 'speaking-session-e2e',
@@ -76,10 +92,26 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
     userId: principal.applicationUserId,
     idempotencyKey: 'submit-e2e',
     responseMode: 'RECORDED_AUDIO',
+    contentType: 'audio/webm',
     durationSeconds: 20,
     sizeBytes: 2048,
     submissionReference: 'recording-ref-e2e',
     submittedAt: new Date('2026-08-10T00:01:00.000Z'),
+  });
+  const recording = (): SpeakingRecordingRecord => ({
+    id: 'speaking-recording-e2e',
+    submissionId: finalSubmission().id,
+    sessionId: activeSession().id,
+    userId: principal.applicationUserId,
+    provider: 'local-controlled-recording',
+    objectKey: 'internal/recording-e2e',
+    state: 'AVAILABLE',
+    contentType: 'audio/webm',
+    durationSeconds: 20,
+    sizeBytes: 2048,
+    expiresAt: new Date('2026-09-09T00:01:00.000Z'),
+    revokedAt: null,
+    deletedAt: null,
   });
 
   beforeEach(async () => {
@@ -96,6 +128,39 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
       },
       created: true,
     });
+    recordingRepository.findBySubmission.mockResolvedValue(null);
+    recordingRepository.findById.mockResolvedValue(recording());
+    recordingRepository.create.mockResolvedValue(recording());
+    recordingRepository.markExpired.mockResolvedValue(undefined);
+    recordingRepository.revoke.mockResolvedValue(undefined);
+    recordingRepository.createCapability.mockImplementation(
+      (input): Promise<PlaybackCapabilityRecord> => {
+        latestCapabilityHash = input.tokenHash;
+        return Promise.resolve({
+          id: 'capability-e2e',
+          recordingId: input.recordingId,
+          userId: input.userId,
+          tokenHash: input.tokenHash,
+          expiresAt: input.expiresAt,
+          revokedAt: null,
+        });
+      },
+    );
+    recordingRepository.findCapability.mockImplementation(
+      (_userId, _recordingId, tokenHash) =>
+        Promise.resolve(
+          tokenHash === latestCapabilityHash
+            ? {
+                id: 'capability-e2e',
+                recordingId: recording().id,
+                userId: principal.applicationUserId,
+                tokenHash,
+                expiresAt: new Date(Date.now() + 60_000),
+                revokedAt: null,
+              }
+            : null,
+        ),
+    );
     const module = await Test.createTestingModule({ imports: [AppModule] })
       .overrideProvider(PrismaService)
       .useValue({ $queryRaw: jest.fn().mockResolvedValue([{ result: 1 }]) })
@@ -107,6 +172,8 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
       .useValue(repository)
       .overrideProvider(TOEIC_SPEAKING_TASK_CATALOGUE)
       .useValue(catalogue)
+      .overrideProvider(TOEIC_SPEAKING_RECORDING_REPOSITORY)
+      .useValue(recordingRepository)
       .compile();
     app = module.createNestApplication();
     await app.init();
@@ -178,5 +245,64 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
         submissionReference: 'recording-ref-e2e',
       })
       .expect(422);
+  });
+
+  it('issues owner-scoped playback capability and fails closed after revocation', async () => {
+    const recordingResponse = await request(app.getHttpServer())
+      .get('/api/v1/toeic/speaking/recordings/speaking-recording-e2e')
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(200);
+    expect(JSON.stringify(recordingResponse.body)).not.toMatch(
+      /objectKey|provider|credential|tokenHash/i,
+    );
+
+    const capabilityResponse = await request(app.getHttpServer())
+      .post(
+        '/api/v1/toeic/speaking/recordings/speaking-recording-e2e/playback-capability',
+      )
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(200);
+    const capabilityBody = capabilityResponse.body as {
+      data: { playback: { capability: string } };
+    };
+    const capability = capabilityBody.data.playback.capability;
+    expect(capability).toMatch(/^[A-Za-z0-9_-]{43}$/);
+
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/speaking/recordings/speaking-recording-e2e/playback')
+      .set('Authorization', 'Bearer local.token.value')
+      .set('X-Playback-Capability', 'invalid-playback-capability-123456789')
+      .expect(403);
+
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/speaking/recordings/speaking-recording-e2e/playback')
+      .set('Authorization', 'Bearer local.token.value')
+      .set('X-Playback-Capability', capability)
+      .expect(200);
+
+    await request(app.getHttpServer())
+      .post('/api/v1/toeic/speaking/recordings/speaking-recording-e2e/revoke')
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(200);
+    recordingRepository.findById.mockResolvedValueOnce({
+      ...recording(),
+      state: 'REVOKED',
+      revokedAt: new Date(),
+    });
+    await request(app.getHttpServer())
+      .post(
+        '/api/v1/toeic/speaking/recordings/speaking-recording-e2e/playback-capability',
+      )
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(422);
+
+    recordingRepository.findById.mockResolvedValueOnce(null);
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/speaking/recordings/foreign-recording')
+      .set('Authorization', 'Bearer local.token.value')
+      .expect(404);
+    await request(app.getHttpServer())
+      .get('/api/v1/toeic/speaking/recordings/speaking-recording-e2e')
+      .expect(401);
   });
 });

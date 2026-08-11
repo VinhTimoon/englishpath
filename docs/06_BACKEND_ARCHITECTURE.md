@@ -301,3 +301,12 @@ repository boundaries separate. The controller never invokes an adapter
 directly. Idempotency fingerprints, quota decisions, redaction, and output
 validation are server-owned in the service; usage evidence is additive and
 owner-scoped.
+
+## EP4-ST003 recording storage layering
+
+The TOEIC recording service owns MIME/size/duration/lifecycle validation and
+playback-capability policy. The recording repository owns Prisma access and
+always requires the authenticated application user ID. The injectable storage
+port owns controlled object references; the local implementation reports
+availability without credentials or raw bytes. Controllers expose only safe
+recording projections and never construct provider URLs.

@@ -35,6 +35,8 @@ model User {
   toeicTimedTestSessions       ToeicTimedTestSession[]
   toeicSpeakingSessions        ToeicSpeakingSession[]
   toeicSpeakingSubmissions     ToeicSpeakingSubmission[]
+  toeicSpeakingRecordings      ToeicSpeakingRecording[]
+  toeicSpeakingPlaybackCapabilities ToeicSpeakingPlaybackCapability[]
   toeicWritingSessions         ToeicWritingSession[]
   toeicWritingSubmissions      ToeicWritingSubmission[]
   aiFeedbackUsages             AiFeedbackUsage[]
@@ -777,15 +779,63 @@ model ToeicSpeakingSubmission {
   userId              String
   idempotencyKey      String
   responseMode        String
+  contentType         String               @default("audio/webm")
   durationSeconds     Int
   sizeBytes           Int
   submissionReference String
   submittedAt         DateTime             @default(now())
   session             ToeicSpeakingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recording           ToeicSpeakingRecording?
 
   @@unique([userId, idempotencyKey])
   @@index([userId, submittedAt])
+}
+
+enum ToeicSpeakingRecordingState {
+  PENDING
+  AVAILABLE
+  REVOKED
+  EXPIRED
+  DELETED
+}
+
+model ToeicSpeakingRecording {
+  id               String                       @id @default(cuid())
+  submissionId     String                       @unique
+  sessionId        String
+  userId           String
+  provider         String
+  objectKey        String
+  state            ToeicSpeakingRecordingState  @default(PENDING)
+  contentType      String
+  durationSeconds  Int
+  sizeBytes        Int
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  deletedAt        DateTime?
+  createdAt        DateTime                     @default(now())
+  updatedAt        DateTime                     @updatedAt
+  submission       ToeicSpeakingSubmission     @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  user             User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  capabilities     ToeicSpeakingPlaybackCapability[]
+
+  @@index([userId, state, expiresAt])
+  @@index([sessionId, userId])
+}
+
+model ToeicSpeakingPlaybackCapability {
+  id          String                 @id @default(cuid())
+  recordingId String
+  userId      String
+  tokenHash   String                 @unique
+  expiresAt   DateTime
+  issuedAt    DateTime               @default(now())
+  revokedAt   DateTime?
+  recording   ToeicSpeakingRecording @relation(fields: [recordingId], references: [id], onDelete: Cascade)
+  user       User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([recordingId, userId, expiresAt])
 }
 
 enum ToeicWritingSessionStatus {
