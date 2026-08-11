@@ -5,6 +5,16 @@
 Approve the production-safe recording storage and controlled playback boundary
 for TOEIC Speaking recordings before EP4-ST003 is implemented.
 
+## Owner decision — approved 2026-08-11
+
+**Selected option: Option 1 — EnglishPath-owned controlled object storage.**
+
+Implementation may proceed with an additive, owner-scoped recording asset
+contract, injectable storage adapter, retention/state policy, and backend-issued
+short-lived playback capability. Local/test must remain credential-free. Real
+production provider credentials, bucket/RLS configuration, deployment, and
+activation remain human-controlled and are not performed by this loop.
+
 ## Why this is blocked
 
 EP4-ST002 intentionally accepts only bounded recording metadata and a controlled
@@ -71,7 +81,7 @@ recording bounds before schema or migration work begins.
 
 ## Current lifecycle action
 
-EP4-ST003 is blocked by this request and must not be resumed until the decision
-is recorded. EP4-ST004, EP4-ST008, and EP4-ST012 are dependency-blocked and have
-been recorded as owner-deferred with this same request. No production storage,
-credential, migration, or external provider change was performed.
+EP4-ST003 is unblocked for credential-free local/test implementation under the
+approved boundary. EP4-ST004 and EP4-ST008 remain dependency-blocked until the
+ST003 contract passes. EP4-ST012 remains blocked until all dependencies pass.
+No production storage, credential, or external provider change was performed.

@@ -1,7 +1,7 @@
 ---
 id: EP4-ST003
 title: Recording Storage And Controlled Playback
-status: blocked
+status: in-progress
 type: backend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills

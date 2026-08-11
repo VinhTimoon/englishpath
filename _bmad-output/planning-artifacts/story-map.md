@@ -185,11 +185,11 @@ Execution queue: `EP3-ST001` through `EP3-ST012`, `EP4-ST001`, and `EP4-ST010`
 are complete and merged to `dev`, including the approved additive `EP4-ST011`
 roadmap projection. `EP4-ST002` and `EP4-ST005` are done under their approved
 additive boundaries. `EP4-ST007` is done under the approved local/no-op gateway
-policy. `EP4-ST006` and `EP4-ST009` are done and merged. EP4-ST003, EP4-ST004,
-EP4-ST008, and EP4-ST012 are owner-deferred and blocked by the recording
-storage/playback decision in
+policy. `EP4-ST006` and `EP4-ST009` are done and merged. EP4-ST003 is now
+in-progress under the owner-approved recording storage decision in
 `notes/ai-req/2026-08-10-ep4-st003-recording-storage-controlled-playback.md`.
-No story is ready while that decision is outstanding.
+EP4-ST004, EP4-ST008, and EP4-ST012 remain dependency-blocked until its
+credential-free contract passes.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |
