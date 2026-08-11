@@ -1,7 +1,7 @@
 ---
 id: EP5-ST001
 title: Full mock test assembly and versioned blueprint boundary
-status: blocked
+status: review
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -37,6 +37,13 @@ max_fix_rounds: 2
 risk: high
 delivery_mode: full
 ---
+
+## Recovery Review Evidence
+
+- The first loop attempt was blocked by the Windows read-only review runner failing to start (`CreateProcessWithLogonW failed: 2`), not by an implementation or quality-gate failure.
+- Recovery review was run against the complete delta from baseline `2b54147`, including new files, with Codex CLI in read-only mode.
+- Recovery review result: `Status: pass`; no P0/P1 findings.
+- Full story checks passed on 2026-08-11, including lint, typecheck, unit/integration tests, build, Prisma validation, API E2E, browser E2E (99 passed), planning traceability, story doctor, story verification, format check, and `git diff --check`.
 
 # Story: Full mock test assembly and versioned blueprint boundary
 

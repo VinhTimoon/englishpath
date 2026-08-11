@@ -310,3 +310,14 @@ always requires the authenticated application user ID. The injectable storage
 port owns controlled object references; the local implementation reports
 availability without credentials or raw bytes. Controllers expose only safe
 recording projections and never construct provider URLs.
+
+## EP5-ST001 full-mock assembly boundary
+
+The Phase 5 full-mock foundation is an internal, pure TOEIC policy/assembly
+boundary. It freezes a versioned 200-question blueprint (Parts 1-7 quotas
+6/25/39/30/30/16/54, 120 minutes) and consumes only an already-governed private
+question catalogue. It deduplicates to one newest version per canonical question,
+allocates every Part quota deterministically, and returns an immutable version-ID
+snapshot or an explicit insufficient-catalogue result. It introduces no route,
+session persistence, timer, scoring, provider, or Prisma schema change; EP5-ST002
+owns the authenticated session boundary.

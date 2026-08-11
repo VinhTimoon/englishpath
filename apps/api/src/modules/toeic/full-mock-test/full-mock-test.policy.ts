@@ -38,23 +38,44 @@ export class FullMockPolicyError extends Error {
 
 export function validateFullMockPolicy(policy: FullMockPolicy): void {
   if (
-    !policy.version ||
+    typeof policy !== 'object' ||
+    policy === null ||
+    typeof policy.partQuotas !== 'object' ||
+    policy.partQuotas === null ||
+    Array.isArray(policy.partQuotas)
+  ) {
+    throw new FullMockPolicyError('Full-mock policy must be an object.');
+  }
+  if (
+    typeof policy.version !== 'string' ||
+    !policy.version.trim() ||
     policy.total !== 200 ||
     !Number.isInteger(policy.durationSeconds) ||
-    policy.durationSeconds <= 0
+    policy.durationSeconds <= 0 ||
+    !Number.isInteger(policy.listeningTotal) ||
+    policy.listeningTotal <= 0 ||
+    !Number.isInteger(policy.readingTotal) ||
+    policy.readingTotal <= 0
   ) {
     throw new FullMockPolicyError(
       'Full-mock version and duration must be valid.',
     );
   }
-  const parts = Object.values(policy.partQuotas);
-  if (parts.some((quota) => !Number.isInteger(quota) || quota <= 0)) {
+  const partKeys = Object.values(ToeicPart);
+  if (
+    Object.keys(policy.partQuotas).length !== partKeys.length ||
+    partKeys.some((part) => !(part in policy.partQuotas))
+  ) {
+    throw new FullMockPolicyError('Every TOEIC Part quota must be declared.');
+  }
+  const quotas = partKeys.map((part) => policy.partQuotas[part]);
+  if (quotas.some((quota) => !Number.isInteger(quota) || quota <= 0)) {
     throw new FullMockPolicyError(
       'Every Part quota must be a positive integer.',
     );
   }
   if (
-    parts.reduce((sum, quota) => sum + quota, 0) !== policy.total ||
+    quotas.reduce((sum, quota) => sum + quota, 0) !== policy.total ||
     policy.partQuotas[ToeicPart.PART_1] +
       policy.partQuotas[ToeicPart.PART_2] +
       policy.partQuotas[ToeicPart.PART_3] +

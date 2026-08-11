@@ -408,3 +408,12 @@ persisted or returned by database projections. Playback checks owner, state,
 recording expiry, and capability expiry before authorizing access. The local
 adapter is credential-free and state-only; the migration is generated evidence
 and must not be applied automatically to shared Supabase or production.
+
+## EP5-ST001 full-mock versioning boundary
+
+EP5-ST001 intentionally adds no Prisma model or migration. The full-mock blueprint
+version and deterministic selected question-version snapshot are pure backend
+assembly output consumed by the later session story. Attempt persistence, owner
+binding, server deadlines, finalization, answers, integrity events, and scores remain
+out of this boundary and are owned by EP5-ST002 through EP5-ST004. No question,
+answer key, source, license, or provider evidence is copied into a new data store.

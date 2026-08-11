@@ -234,10 +234,10 @@ roadmaps work without AI authoring official scores.
 
 ## Phase 5 Full Test, Adaptive AI, And Community
 
-Execution queue: `EP5-ST001` is the sole dependency-ready story and is prepared in
-`stories/ready/`. The remaining Phase 5 stories stay backlog until their direct
-predecessor passes; Phase 6 remains suspended indefinitely until production has
-many users.
+Execution queue: `EP5-ST001` has passed implementation and quality gates and is
+in `stories/review/` pending lifecycle merge/closure. The remaining Phase 5
+stories stay backlog until their direct predecessor passes; Phase 6 remains
+suspended indefinitely until production has many users.
 
 | Story       | Increment                                                                    | Depends on                            |
 | ----------- | ---------------------------------------------------------------------------- | ------------------------------------- |

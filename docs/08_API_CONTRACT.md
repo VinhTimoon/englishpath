@@ -678,3 +678,13 @@ same quota, idempotency, policy, and cost boundary and returns the explicit
 from duration, size, metadata, or an opaque recording reference. Missing,
 expired, revoked, deleted, cross-owner, active, and submission-less sessions
 fail closed and do not call the gateway.
+
+## EP5-ST001 full-mock assembly boundary
+
+EP5-ST001 introduces no HTTP endpoint. The backend owns the immutable full-mock
+blueprint version, 200-question Part quota shape, and deterministic selection of
+governed question versions for the later EP5 session service. An incomplete eligible
+catalogue produces an internal insufficient-content result and never a partial or
+fabricated test. FULL is not added to the existing MINI/HALF session input until
+EP5-ST002 defines authenticated persistence, timer, finalization, and safe response
+contracts.

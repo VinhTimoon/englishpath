@@ -305,3 +305,13 @@ raw input. Usage records are owner-scoped, quota is server-owned, and output
 validation permits only bounded advisory fields. No provider credentials,
 network call, raw provider response, rubric internals, official score, or
 progress mutation is allowed.
+
+## EP5-ST001 full-mock selection controls
+
+Full-mock assembly is backend-only and accepts no learner-authored policy, duration,
+Part quota, question ID, answer, or score. It selects only the existing governed
+TOEIC catalogue, deduplicates canonical question history before quota allocation,
+returns only an immutable blueprint/version-ID snapshot, and fails closed without
+partial or fabricated content. The assembly boundary does not create a session or
+expose answer keys; owner binding, timer, finalization, and integrity-event controls
+remain required in EP5-ST002 through EP5-ST004.

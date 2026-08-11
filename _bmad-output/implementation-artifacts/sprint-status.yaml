@@ -169,7 +169,7 @@ development_status:
   epic-4-retrospective: optional
 
   epic-5: in-progress
-  5-1-full-mock-test-assembly-and-versioning: blocked
+  5-1-full-mock-test-assembly-and-versioning: review
   5-2-full-exam-session-timer-and-finalization: backlog
   5-3-strict-exam-ui-and-interruption-handling: backlog
   5-4-scoring-integrity-and-weakness-analysis: backlog

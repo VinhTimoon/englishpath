@@ -119,3 +119,14 @@ MINI/HALF repositories require `MOCK_TEST`, practice repositories require
 `PRACTICE`, and every learner predicate must also require the approved source
 identity. This is an application-policy hardening change with no schema or
 external-provider change.
+
+### Decision: full-mock blueprint and assembly boundary (EP5-ST001)
+
+Use one server-owned FULL-MOCK-BETA-V1 blueprint with 200 questions, 120 minutes,
+and fixed Parts 1-7 quotas of 6/25/39/30/30/16/54. Assemble only from reviewed,
+published, licensed, mock-test-eligible question versions; choose one newest version
+per canonical question and fail closed when any quota is unavailable. Keep the
+boundary pure and immutable with no route or persistence change. The policy is a
+practice-simulation contract, not official score conversion or official exam
+provenance; session, timing, finalization, scoring, and suspicious-event handling
+are deferred to EP5-ST002 through EP5-ST004.

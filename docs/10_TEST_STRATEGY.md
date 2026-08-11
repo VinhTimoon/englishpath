@@ -457,3 +457,13 @@ conflict, unsafe-output fail-closed behavior, and redaction.
 Writing feedback service and API tests cover finalized-session gating,
 owner-scoped repository lookup, gateway delegation, safe advisory fallback,
 idempotent replay, active/incomplete rejection, and response redaction.
+
+## EP5-ST001 full-mock assembly coverage
+
+The full-mock foundation tests freeze the blueprint version and quota arithmetic,
+validate positive/integer policy values and complete Part declarations, select one
+newest eligible version per canonical question, reject duplicate identities and
+cross-Part histories, preserve deterministic Part ordering, fail atomically when a
+quota is unavailable, freeze nested snapshots, and assert forbidden-field absence.
+Existing MINI/HALF policy tests remain a regression gate; no full-session route or
+shared database is required until EP5-ST002.
