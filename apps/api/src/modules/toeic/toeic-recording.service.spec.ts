@@ -197,6 +197,13 @@ describe('ToeicRecordingService', () => {
     expect(repository.create.mock.calls).toHaveLength(0);
   });
 
+  it('fails closed when a finalized submission has no recording asset', async () => {
+    repository.findBySubmission.mockResolvedValue(null);
+    await expect(
+      service.getForSubmission(principal, submission.id),
+    ).rejects.toMatchObject({ code: 'NOT_FOUND' });
+  });
+
   it('fails closed for invalid metadata and incomplete sessions', async () => {
     await expect(
       service.ensureForSubmission(principal, session, 'video/mp4'),

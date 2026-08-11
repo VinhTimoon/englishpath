@@ -104,6 +104,19 @@ export class ToeicRecordingService {
     return { recording: safeRecording(recording) };
   }
 
+  async getForSubmission(
+    principal: ApplicationPrincipal,
+    submissionId: string,
+  ) {
+    const recording = await this.repository.findBySubmission(
+      principal.applicationUserId,
+      submissionId,
+    );
+    if (!recording) throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
+    const current = await this.findCurrent(principal, recording.id);
+    return { recording: safeRecording(current) };
+  }
+
   async issuePlayback(principal: ApplicationPrincipal, recordingId: string) {
     const recording = await this.findCurrent(principal, recordingId);
     const now = new Date();

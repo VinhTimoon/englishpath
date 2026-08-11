@@ -27,6 +27,7 @@ import type {
 } from '../src/modules/toeic/toeic-recording.models';
 import { createTaskVersion } from '../src/modules/toeic/toeic-speaking-writing.models';
 import { PrismaService } from '../src/prisma/prisma.service';
+import { AiFeedbackGatewayService } from '../src/modules/ai-gateway/ai-feedback.service';
 
 describe('TOEIC Speaking submission vertical slice (e2e)', () => {
   let app: INestApplication<App>;
@@ -75,6 +76,9 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
     findCapability: jest.fn(),
   };
   let latestCapabilityHash = '';
+  const speakingFeedbackGateway = {
+    requestUnavailable: jest.fn(),
+  };
 
   const activeSession = (): SpeakingSessionRecord => ({
     id: 'speaking-session-e2e',
@@ -161,6 +165,18 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
             : null,
         ),
     );
+    speakingFeedbackGateway.requestUnavailable.mockResolvedValue({
+      feedback: {
+        outcome: 'PROVIDER_UNAVAILABLE',
+        policyVersion: 'feedback-gateway-v1',
+        promptVersion: 'local-fixture-v1',
+        feature: 'SPEAKING',
+        skill: 'SPEAKING',
+        quotaRemaining: 9,
+        feedback: null,
+      },
+      replayed: false,
+    });
     const module = await Test.createTestingModule({ imports: [AppModule] })
       .overrideProvider(PrismaService)
       .useValue({ $queryRaw: jest.fn().mockResolvedValue([{ result: 1 }]) })
@@ -174,6 +190,8 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
       .useValue(catalogue)
       .overrideProvider(TOEIC_SPEAKING_RECORDING_REPOSITORY)
       .useValue(recordingRepository)
+      .overrideProvider(AiFeedbackGatewayService)
+      .useValue(speakingFeedbackGateway)
       .compile();
     app = module.createNestApplication();
     await app.init();
@@ -246,6 +264,65 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
         submissionReference: 'recording-ref-e2e',
       })
       .expect(422);
+  });
+
+  it('fails closed for Speaking feedback while preserving gateway ownership and idempotency', async () => {
+    repository.findSession.mockResolvedValue({
+      ...activeSession(),
+      status: 'FINALIZED',
+      finalizedAt: new Date('2026-08-10T00:01:00.000Z'),
+      submission: finalSubmission(),
+    });
+    recordingRepository.findBySubmission.mockResolvedValue(recording());
+
+    const response = await request(app.getHttpServer())
+      .post(`/api/v1/toeic/speaking/sessions/${activeSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-speaking-e2e')
+      .set('X-Correlation-Id', 'corr-speaking-e2e')
+      .expect(200);
+    const responseBody = response.body as {
+      data: {
+        feedback: { outcome: string; feedback: unknown };
+      };
+    };
+    expect(responseBody.data.feedback.outcome).toBe('PROVIDER_UNAVAILABLE');
+    expect(responseBody.data.feedback.feedback).toBeNull();
+    expect(JSON.stringify(response.body)).not.toMatch(
+      /audioBytes|objectKey|credential|rubric|score|submissionReference/i,
+    );
+    expect(speakingFeedbackGateway.requestUnavailable).toHaveBeenCalledWith(
+      principal,
+      expect.objectContaining({
+        feature: 'SPEAKING',
+        skill: 'SPEAKING',
+        taskId: task.id,
+        inputReference: recording().id,
+      }),
+      'feedback-speaking-e2e',
+      'corr-speaking-e2e',
+    );
+
+    repository.findSession.mockResolvedValue(activeSession());
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/speaking/sessions/${activeSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-speaking-active')
+      .expect(422);
+
+    repository.findSession.mockResolvedValue({
+      ...activeSession(),
+      status: 'FINALIZED',
+      finalizedAt: new Date('2026-08-10T00:01:00.000Z'),
+      submission: finalSubmission(),
+    });
+    recordingRepository.findBySubmission.mockResolvedValue(null);
+    await request(app.getHttpServer())
+      .post(`/api/v1/toeic/speaking/sessions/${activeSession().id}/feedback`)
+      .set('Authorization', 'Bearer local.token.value')
+      .set('Idempotency-Key', 'feedback-speaking-missing-recording')
+      .expect(404);
+    expect(speakingFeedbackGateway.requestUnavailable).toHaveBeenCalledTimes(1);
   });
 
   it('issues owner-scoped playback capability and fails closed after revocation', async () => {

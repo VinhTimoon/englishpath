@@ -161,7 +161,7 @@ development_status:
   4-5-toeic-writing-task-and-submission-api: done
   4-7-provider-neutral-ai-feedback-gateway: done
   4-6-toeic-writing-practice-ui: done
-  4-8-speaking-feedback-worker-and-fallback: ready
+  4-8-speaking-feedback-worker-and-fallback: review
   4-9-writing-feedback-worker-and-fallback: done
   4-10-four-skills-roadmap-balance-rules: done
   4-11-four-skills-progress-dashboard: done

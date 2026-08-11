@@ -69,6 +69,26 @@ function fingerprint(input: AiFeedbackRequestDto) {
     .digest('hex');
 }
 
+function unavailableFingerprint(input: {
+  feature: string;
+  skill: string;
+  promptVersion: string;
+  taskId: string;
+  inputReference: string;
+}) {
+  return createHash('sha256')
+    .update(
+      JSON.stringify({
+        feature: input.feature,
+        skill: input.skill,
+        promptVersion: input.promptVersion,
+        taskId: input.taskId,
+        inputReference: input.inputReference,
+      }),
+    )
+    .digest('hex');
+}
+
 function safeFeedback(value: unknown): AdvisoryFeedback | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const candidate = value as Record<string, unknown>;
@@ -203,18 +223,117 @@ export class AiFeedbackGatewayService {
     }
   }
 
+  async requestUnavailable(
+    principal: ApplicationPrincipal,
+    input: {
+      feature: 'SPEAKING';
+      skill: 'SPEAKING';
+      promptVersion: string;
+      taskId: string;
+      inputReference: string;
+    },
+    idempotencyKey: string | undefined,
+    correlationId: string,
+  ) {
+    const key = requireKey(idempotencyKey);
+    this.assertSharedContract(
+      input.feature,
+      input.skill,
+      input.promptVersion,
+      input.taskId,
+    );
+    if (!TOKEN.test(input.inputReference)) {
+      throw new UnprocessableEntityException(
+        'The feedback input reference is invalid.',
+      );
+    }
+    const requestFingerprint = unavailableFingerprint(input);
+    const existing = await this.repository.findByIdempotency(
+      principal.applicationUserId,
+      key,
+    );
+    if (existing) {
+      if (existing.requestFingerprint !== requestFingerprint) {
+        throw new ConflictException(
+          'The feedback request conflicts with an existing idempotency key.',
+        );
+      }
+      return { feedback: safeResponse(existing), replayed: true };
+    }
+
+    const count = await this.repository.countSince(
+      principal.applicationUserId,
+      utcDayStart(new Date()),
+    );
+    const quotaRemaining = Math.max(0, AI_FEEDBACK_DAILY_QUOTA - count - 1);
+    const outcome =
+      count >= AI_FEEDBACK_DAILY_QUOTA
+        ? ('DENIED' as const)
+        : ('PROVIDER_UNAVAILABLE' as const);
+
+    try {
+      const created = await this.repository.create({
+        userId: principal.applicationUserId,
+        feature: input.feature,
+        skill: input.skill,
+        policyVersion: AI_FEEDBACK_POLICY_VERSION,
+        promptVersion: input.promptVersion,
+        adapterKind: AI_FEEDBACK_ADAPTER_KIND,
+        modelVersion: AI_FEEDBACK_MODEL_VERSION,
+        idempotencyKey: key,
+        requestFingerprint,
+        outcome,
+        estimatedCostMicros: 0,
+        quotaRemaining,
+        feedback: null,
+        correlationId,
+      });
+      return { feedback: safeResponse(created), replayed: false };
+    } catch (error) {
+      if (!isUniqueConstraintError(error)) throw error;
+      const replay = await this.repository.findByIdempotency(
+        principal.applicationUserId,
+        key,
+      );
+      if (replay && replay.requestFingerprint === requestFingerprint) {
+        return { feedback: safeResponse(replay), replayed: true };
+      }
+      throw new ConflictException(
+        'The feedback request conflicts with an existing idempotency key.',
+      );
+    }
+  }
+
   private assertContract(input: AiFeedbackRequestDto) {
-    const feature = input.feature;
-    const skill = input.skill;
+    this.assertSharedContract(
+      input.feature,
+      input.skill,
+      input.promptVersion,
+      input.taskId,
+    );
+    if (
+      typeof input.inputText !== 'string' ||
+      input.inputText.trim().length === 0 ||
+      input.inputText.length > 4000
+    ) {
+      throw new UnprocessableEntityException(
+        'The feedback contract is invalid.',
+      );
+    }
+  }
+
+  private assertSharedContract(
+    feature: string,
+    skill: string,
+    promptVersion: string,
+    taskId: string,
+  ) {
     if (
       (feature !== 'SPEAKING' && feature !== 'WRITING') ||
       (skill !== 'SPEAKING' && skill !== 'WRITING') ||
       feature !== skill ||
-      input.promptVersion !== AI_FEEDBACK_PROMPT_VERSION ||
-      !TOKEN.test(input.taskId) ||
-      typeof input.inputText !== 'string' ||
-      input.inputText.trim().length === 0 ||
-      input.inputText.length > 4000
+      promptVersion !== AI_FEEDBACK_PROMPT_VERSION ||
+      !TOKEN.test(taskId)
     ) {
       throw new UnprocessableEntityException(
         'The feedback contract is invalid.',

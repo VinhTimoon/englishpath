@@ -661,3 +661,20 @@ The response is an allowlisted projection containing outcome,
 feedback-gateway-v1 policy version, prompt version, feature, skill, quota
 remainder, and advisory-only feedback. It never contains provider credentials,
 raw response/input, hidden prompt, rubric weights, or official scores.
+
+## EP4-ST008 Speaking feedback fallback
+
+Authenticated route:
+
+- POST /api/v1/toeic/speaking/sessions/:sessionId/feedback
+
+The backend first resolves the session by the authenticated application user,
+requires `FINALIZED` plus a submission, and rechecks the owner-scoped recording
+asset through the EP4-ST003 boundary. Only an `AVAILABLE` recording may enter
+the gateway. The current approved local/no-op gateway has no speech-to-text or
+audio-capable adapter, so this route records the bounded attempt through the
+same quota, idempotency, policy, and cost boundary and returns the explicit
+`PROVIDER_UNAVAILABLE` outcome with `feedback: null`. It never derives feedback
+from duration, size, metadata, or an opaque recording reference. Missing,
+expired, revoked, deleted, cross-owner, active, and submission-less sessions
+fail closed and do not call the gateway.

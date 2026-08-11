@@ -35,6 +35,7 @@ import {
 } from './toeic-speaking-submission.models';
 import { ToeicWritingSubmissionService } from './toeic-writing-submission.service';
 import { ToeicWritingFeedbackService } from './toeic-writing-feedback.service';
+import { ToeicSpeakingFeedbackService } from './toeic-speaking-feedback.service';
 import { PrismaToeicWritingSubmissionRepository } from './toeic-writing-submission.repository';
 import { EnglishPathWritingTaskCatalogue } from './toeic-writing-task.catalogue';
 import {
@@ -65,6 +66,7 @@ import {
     ToeicPracticeCatalogueService,
     ToeicTimedTestService,
     ToeicSpeakingSubmissionService,
+    ToeicSpeakingFeedbackService,
     ToeicRecordingService,
     PrismaToeicSpeakingRecordingRepository,
     LocalToeicSpeakingRecordingStorage,

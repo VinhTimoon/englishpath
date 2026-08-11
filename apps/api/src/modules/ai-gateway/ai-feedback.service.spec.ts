@@ -28,6 +28,13 @@ const input: AiFeedbackRequestDto = {
   taskId: 'task-001',
   inputText: 'A bounded learner response.',
 };
+const speakingUnavailableInput = {
+  feature: 'SPEAKING' as const,
+  skill: 'SPEAKING' as const,
+  promptVersion: 'local-fixture-v1',
+  taskId: 'speaking-task-001',
+  inputReference: 'speaking-recording-001',
+};
 
 function record(
   overrides: Partial<FeedbackUsageRecord> = {},
@@ -187,5 +194,65 @@ describe('AiFeedbackGatewayService', () => {
     );
     expect(unsafe.feedback.feedback).toBeNull();
     expect(unsafe.feedback.outcome).toBe('PROVIDER_UNAVAILABLE');
+  });
+
+  it('records Speaking input unavailability with quota and exact idempotency semantics', async () => {
+    repository.create.mockImplementationOnce((value: FeedbackUsageCreate) =>
+      Promise.resolve(
+        record({
+          ...value,
+          feature: 'SPEAKING',
+          skill: 'SPEAKING',
+          outcome: 'PROVIDER_UNAVAILABLE',
+          feedback: null,
+        }),
+      ),
+    );
+    const first = await service.requestUnavailable(
+      principal,
+      speakingUnavailableInput,
+      'speaking-feedback-001',
+      'corr-speaking-001',
+    );
+    expect(first.feedback.outcome).toBe('PROVIDER_UNAVAILABLE');
+    const created = repository.create.mock.calls.at(-1)?.[0];
+    repository.findByIdempotency.mockResolvedValue(
+      record({
+        ...created,
+        feature: 'SPEAKING',
+        skill: 'SPEAKING',
+        outcome: 'PROVIDER_UNAVAILABLE',
+        feedback: null,
+      }),
+    );
+    const replay = await service.requestUnavailable(
+      principal,
+      speakingUnavailableInput,
+      'speaking-feedback-001',
+      'corr-speaking-replay',
+    );
+    expect(replay.replayed).toBe(true);
+    await expect(
+      service.requestUnavailable(
+        principal,
+        {
+          ...speakingUnavailableInput,
+          inputReference: 'speaking-recording-002',
+        },
+        'speaking-feedback-001',
+        'corr-speaking-conflict',
+      ),
+    ).rejects.toBeInstanceOf(ConflictException);
+
+    repository.findByIdempotency.mockResolvedValue(null);
+    repository.countSince.mockResolvedValue(10);
+    const denied = await service.requestUnavailable(
+      principal,
+      speakingUnavailableInput,
+      'speaking-feedback-002',
+      'corr-speaking-denied',
+    );
+    expect(denied.feedback.outcome).toBe('DENIED');
+    expect(denied.feedback.quotaRemaining).toBe(0);
   });
 });
