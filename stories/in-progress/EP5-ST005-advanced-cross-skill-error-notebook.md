@@ -1,7 +1,7 @@
 ---
 id: EP5-ST005
 title: Advanced cross-skill Error Notebook projection
-status: ready
+status: in-progress
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
