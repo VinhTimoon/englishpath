@@ -17,10 +17,11 @@ import {
   TOEIC_TIMED_TEST_REPOSITORY,
 } from './toeic-timed-test.models';
 import {
-  TOEIC_TIMED_TEST_POLICY_VERSION,
   timedTestPolicy,
+  timedTestPolicyVersion,
   type TimedTestMode,
 } from './toeic-timed-test.policy';
+import { assembleFullMockTest } from './full-mock-test/full-mock-test.assembler';
 import { buildTimedTestAnalysis } from './toeic-timed-test.analysis';
 import type { RemediationPack } from './toeic-timed-test.analysis';
 import { VocabularyService } from '../vocabulary/vocabulary.service';
@@ -127,7 +128,7 @@ function safeSession(
 }
 
 function asMode(value: string): TimedTestMode {
-  if (value === 'MINI' || value === 'HALF') return value;
+  if (value === 'MINI' || value === 'HALF' || value === 'FULL') return value;
   throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
 }
 
@@ -171,26 +172,54 @@ export class ToeicTimedTestService {
       const policy = timedTestPolicy(mode);
       const startedAt = this.clock();
       const eligible = await this.repository.eligibleQuestions(startedAt);
-      const byPart = new Map<string, TimedPrivateQuestion[]>();
-      for (const question of eligible) {
-        const bucket = byPart.get(question.part) ?? [];
-        bucket.push(question);
-        byPart.set(question.part, bucket);
-      }
-      const selected: TimedPrivateQuestion[] = [];
-      for (const [part, count] of Object.entries(policy.quotas)) {
-        const bucket = byPart.get(part) ?? [];
-        if (bucket.length < count) {
+      let selected: TimedPrivateQuestion[];
+      if (mode === 'FULL') {
+        const assembly = assembleFullMockTest(
+          eligible.map((question) => ({
+            canonicalQuestionId: question.questionId,
+            versionId: question.id,
+            version: question.version ?? 1,
+            part: question.part,
+          })),
+        );
+        if (
+          !assembly.ok ||
+          assembly.assembly.selectedVersionIds.length !== policy.total
+        ) {
           throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
         }
-        selected.push(...bucket.slice(0, count));
+        const byId = new Map(
+          eligible.map((question) => [question.id, question]),
+        );
+        selected = assembly.assembly.selectedVersionIds
+          .map((id) => byId.get(id))
+          .filter((question): question is TimedPrivateQuestion =>
+            Boolean(question),
+          );
+        if (selected.length !== policy.total) {
+          throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
+        }
+      } else {
+        const byPart = new Map<string, TimedPrivateQuestion[]>();
+        for (const question of eligible) {
+          const bucket = byPart.get(question.part) ?? [];
+          bucket.push(question);
+          byPart.set(question.part, bucket);
+        }
+        selected = [];
+        for (const [part, count] of Object.entries(policy.quotas)) {
+          const bucket = byPart.get(part) ?? [];
+          if (bucket.length < count)
+            throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
+          selected.push(...bucket.slice(0, count));
+        }
       }
 
       const created = await this.repository.create({
         userId: principal.applicationUserId,
         clientSessionId: input.clientSessionId,
         mode,
-        policyVersion: TOEIC_TIMED_TEST_POLICY_VERSION,
+        policyVersion: timedTestPolicyVersion(mode),
         questionIds: selected.map((question) => question.id),
         startedAt,
         deadlineAt: new Date(

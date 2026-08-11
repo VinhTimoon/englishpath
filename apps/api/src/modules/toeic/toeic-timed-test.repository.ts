@@ -23,7 +23,7 @@ type DbSession = {
   id: string;
   userId: string;
   clientSessionId: string;
-  mode: 'MINI' | 'HALF';
+  mode: 'MINI' | 'HALF' | 'FULL';
   policyVersion: string;
   questionIds: string[];
   startedAt: Date;
@@ -48,6 +48,7 @@ type DbQuestion = {
   mediaReference: string | null;
   explanation: string | null;
   correctAnswer?: string;
+  version?: number;
 };
 
 type TimedTransaction = {
@@ -115,6 +116,7 @@ const QUESTION_FIELDS = {
 const PRIVATE_QUESTION_SELECT = {
   ...QUESTION_FIELDS,
   correctAnswer: true,
+  version: true,
 } as const;
 
 function asSession(value: unknown): TimedSession {
@@ -155,7 +157,11 @@ function asQuestion(value: unknown): TimedQuestion {
 
 function asPrivateQuestion(value: unknown): TimedPrivateQuestion {
   const row = value as DbQuestion & { correctAnswer: string };
-  return { ...asQuestion(row), correctAnswer: row.correctAnswer };
+  return {
+    ...asQuestion(row),
+    correctAnswer: row.correctAnswer,
+    ...(typeof row.version === 'number' ? { version: row.version } : {}),
+  };
 }
 
 function isUniqueConstraint(error: unknown) {

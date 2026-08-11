@@ -3,6 +3,7 @@ import { IsEnum, IsString, Length, Matches } from 'class-validator';
 export enum TimedTestModeDto {
   MINI = 'MINI',
   HALF = 'HALF',
+  FULL = 'FULL',
 }
 
 export class StartToeicTimedTestDto {

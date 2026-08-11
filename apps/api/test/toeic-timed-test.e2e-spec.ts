@@ -281,7 +281,7 @@ describe('TOEIC timed-test API', () => {
     await request(app.getHttpServer())
       .post('/api/v1/toeic/tests/sessions')
       .set('Authorization', 'Bearer local.signed.token')
-      .send({ clientSessionId: 'timed-client-1', mode: 'FULL' })
+      .send({ clientSessionId: 'timed-client-1', mode: 'INVALID' })
       .expect(400);
     expect(repository.create.mock.calls).toHaveLength(0);
   });

@@ -417,3 +417,8 @@ assembly output consumed by the later session story. Attempt persistence, owner
 binding, server deadlines, finalization, answers, integrity events, and scores remain
 out of this boundary and are owned by EP5-ST002 through EP5-ST004. No question,
 answer key, source, license, or provider evidence is copied into a new data store.
+Timed test sessions use the existing `ToeicTimedTestSession` model. EP5-ST002
+adds only the additive `FULL` value to `ToeicTimedTestMode`; it stores the
+server-owned deadline, policy version, and immutable ordered question-version
+snapshot in the existing columns. No new session model or destructive migration
+is introduced.

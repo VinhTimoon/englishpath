@@ -1,6 +1,7 @@
 import { ToeicPart } from '../../generated/prisma/enums';
+import { FULL_MOCK_POLICY } from './full-mock-test/full-mock-test.policy';
 
-export type TimedTestMode = 'MINI' | 'HALF';
+export type TimedTestMode = 'MINI' | 'HALF' | 'FULL';
 export type TimedTestStatus = 'ACTIVE' | 'SUBMITTED' | 'EXPIRED';
 
 export const TOEIC_TIMED_TEST_POLICY_VERSION = 'v1';
@@ -47,8 +48,24 @@ const HALF_POLICY: TimedTestPolicy = Object.freeze({
 
 export const TOEIC_TIMED_TEST_POLICIES: Readonly<
   Record<TimedTestMode, TimedTestPolicy>
-> = Object.freeze({ MINI: MINI_POLICY, HALF: HALF_POLICY });
+> = Object.freeze({
+  MINI: MINI_POLICY,
+  HALF: HALF_POLICY,
+  FULL: Object.freeze({
+    total: FULL_MOCK_POLICY.total,
+    durationSeconds: FULL_MOCK_POLICY.durationSeconds,
+    listening: FULL_MOCK_POLICY.listeningTotal,
+    reading: FULL_MOCK_POLICY.readingTotal,
+    quotas: FULL_MOCK_POLICY.partQuotas,
+  }),
+});
 
 export function timedTestPolicy(mode: TimedTestMode): TimedTestPolicy {
   return TOEIC_TIMED_TEST_POLICIES[mode];
+}
+
+export function timedTestPolicyVersion(mode: TimedTestMode): string {
+  return mode === 'FULL'
+    ? FULL_MOCK_POLICY.version
+    : TOEIC_TIMED_TEST_POLICY_VERSION;
 }

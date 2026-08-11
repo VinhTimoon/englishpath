@@ -1,7 +1,7 @@
 ---
 id: EP5-ST002
 title: Full exam session, server timer, finalization, and idempotency
-status: ready
+status: blocked
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -171,3 +171,19 @@ git diff --check
 
 Created as the sole dependency-ready Phase 5 story after EP5-ST001 passed review and
 merged into `dev`; Phase 6 remains suspended indefinitely by product direction.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```

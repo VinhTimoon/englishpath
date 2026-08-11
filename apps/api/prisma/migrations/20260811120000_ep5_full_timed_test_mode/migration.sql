@@ -1,0 +1,1 @@
+ALTER TYPE "ToeicTimedTestMode" ADD VALUE IF NOT EXISTS 'FULL';

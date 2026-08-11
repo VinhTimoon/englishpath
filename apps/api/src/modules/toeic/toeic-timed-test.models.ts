@@ -33,7 +33,7 @@ export type TimedQuestion = Readonly<{
 }>;
 
 export type TimedPrivateQuestion = TimedQuestion &
-  Readonly<{ correctAnswer: string }>;
+  Readonly<{ correctAnswer: string; version?: number }>;
 
 export type TimedAnswer = Readonly<{
   questionId: string;
