@@ -7,7 +7,6 @@ const meta = { correlationId: "e2e-toeic-timed", idempotencyStatus: "created" };
 function questions(total = 20) {
   return Array.from({ length: total }, (_, index) => ({
     id: `timed-version-${index + 1}`,
-    questionId: `timed-question-${index + 1}`,
     prompt: `Câu hỏi bài thi ${index + 1}`,
     options: [
       { id: "A", text: "Lựa chọn A" },
@@ -15,9 +14,6 @@ function questions(total = 20) {
       { id: "C", text: "Lựa chọn C" },
       { id: "D", text: "Lựa chọn D" },
     ],
-    part: index < 10 ? "PART_1" : "PART_5",
-    questionType: "INCOMPLETE_SENTENCE",
-    difficulty: "BEGINNER",
   }));
 }
 
@@ -25,9 +21,9 @@ function activeResponse(
   sessionId = "timed-session-1",
   answered = 0,
   remainingSeconds = 1200,
-  mode: "MINI" | "HALF" = "MINI",
+  mode: "MINI" | "HALF" | "FULL" = "MINI",
 ) {
-  const total = mode === "MINI" ? 20 : 50;
+  const total = mode === "MINI" ? 20 : mode === "HALF" ? 50 : 200;
   return {
     data: {
       session: {
@@ -38,7 +34,7 @@ function activeResponse(
         answered,
         remainingSeconds,
         startedAt: "2026-08-06T09:00:00.000Z",
-        deadlineAt: `2026-08-06T09:${mode === "MINI" ? "20" : "45"}:00.000Z`,
+        deadlineAt: `2026-08-06T09:${mode === "MINI" ? "20" : mode === "HALF" ? "45" : "00"}:00.000Z`,
       },
       questions: questions(total),
     },
@@ -205,6 +201,308 @@ test.describe("TOEIC timed test learner journey", () => {
     ).toBeVisible();
     await expect(page.getByText("Câu 2 / 20")).toBeVisible();
     await expect(page.getByText("Câu 1 / 20")).toHaveCount(0);
+  });
+
+  test("starts the server-owned FULL test with 200 ordered questions", async ({
+    page,
+  }) => {
+    await installSession(page);
+    let requestBody: Record<string, unknown> | null = null;
+    await page.route(`${apiOrigin}/toeic/tests/sessions`, async (route) => {
+      requestBody = route.request().postDataJSON() as Record<string, unknown>;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(activeResponse("full-session", 0, 7200, "FULL")),
+      });
+    });
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-session/answers`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              accepted: true,
+              replayed: false,
+              questionId: "timed-version-1",
+              answered: 1,
+              total: 200,
+            },
+            meta,
+          }),
+        }),
+    );
+
+    await page.goto("/toeic/test");
+    await page.getByRole("button", { name: /FULL/ }).click();
+    await page.locator("button").nth(3).click();
+    await expect(page.locator("h2").first()).toContainText("1");
+    await expect(page.getByText(/120:00|119:/)).toBeVisible();
+    expect(requestBody).toEqual({
+      clientSessionId: expect.any(String),
+      mode: "FULL",
+    });
+    expect(await page.locator("progress").getAttribute("max")).toBe("200");
+    await expect(
+      page.locator("button").filter({ hasText: "Ghi" }).last(),
+    ).toBeDisabled();
+    await page.locator("button").filter({ hasText: "A" }).first().click();
+    await page.locator("button").filter({ hasText: "Ghi" }).last().click();
+    await expect(page.locator("h2").first()).toContainText("2");
+    expect(await page.locator("main").textContent()).not.toContain(
+      "correctAnswer",
+    );
+  });
+
+  test("does not reconcile during a pending FULL answer", async ({ page }) => {
+    await installSession(page);
+    let releaseAnswer: (() => void) | undefined;
+    const answerReady = new Promise<void>((resolve) => {
+      releaseAnswer = resolve;
+    });
+    let answerRequests = 0;
+    await page.route(`${apiOrigin}/toeic/tests/sessions`, (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(
+          activeResponse("full-race-session", 0, 7200, "FULL"),
+        ),
+      }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-race-session/answers`,
+      async (route) => {
+        answerRequests += 1;
+        await answerReady;
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              accepted: true,
+              replayed: false,
+              questionId: "timed-version-1",
+              answered: 1,
+              total: 200,
+            },
+            meta,
+          }),
+        });
+      },
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-race-session/result`,
+      async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 150));
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            activeResponse("full-race-session", 0, 7200, "FULL"),
+          ),
+        });
+      },
+    );
+
+    await page.goto("/toeic/test");
+    await page.getByRole("button", { name: /FULL/ }).click();
+    await page.locator("button").nth(3).click();
+    await expect(page.locator("h2").first()).toContainText("1");
+    await page.locator("button").filter({ hasText: "A" }).first().click();
+    const answerButton = page
+      .locator("button")
+      .filter({ hasText: "Ghi" })
+      .last();
+    const answerRequest = page.waitForRequest(
+      `${apiOrigin}/toeic/tests/sessions/full-race-session/answers`,
+    );
+    await answerButton.evaluate((button) => {
+      button.click();
+      button.click();
+    });
+    await answerRequest;
+    await page.evaluate(() => window.dispatchEvent(new Event("online")));
+    await expect(answerButton).toBeDisabled();
+    releaseAnswer?.();
+    await expect(page.locator("h2").first()).toContainText("2");
+    await page.waitForTimeout(250);
+    await expect(page.locator("h2").first()).toContainText("2");
+    expect(answerRequests).toBe(1);
+  });
+
+  test("resumes the FULL server position after refresh on a mobile keyboard journey", async ({
+    page,
+  }) => {
+    await installSession(page);
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.toeic.test.active",
+        "full-resume-session",
+      );
+    });
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-resume-session`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify(
+            activeResponse("full-resume-session", 1, 7100, "FULL"),
+          ),
+        }),
+    );
+
+    await page.goto("/toeic/test");
+    await expect(page.locator("h2").first()).toContainText("2");
+    await expect(page.getByText("Câu 2 / 200")).toBeVisible();
+    const option = page.locator("button").filter({ hasText: "A" }).first();
+    await option.focus();
+    await expect(option).toBeFocused();
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(360);
+    await page.reload();
+    await expect(page.locator("h2").first()).toContainText("2");
+    await expect(
+      page.evaluate(() =>
+        window.localStorage.getItem("englishpath.toeic.test.active"),
+      ),
+    ).resolves.toBe("full-resume-session");
+  });
+
+  test("retries FULL expiry reconciliation and keeps the server result safe", async ({
+    page,
+  }) => {
+    await installSession(page);
+    let resultAttempts = 0;
+    await page.route(`${apiOrigin}/toeic/tests/sessions`, (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(
+          activeResponse("full-expiry-session", 0, 100, "FULL"),
+        ),
+      }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-expiry-session/result`,
+      async (route) => {
+        resultAttempts += 1;
+        if (resultAttempts === 1) {
+          await route.fulfill({ status: 503, body: "temporary" });
+          return;
+        }
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              session: {
+                sessionId: "full-expiry-session",
+                mode: "FULL",
+                status: "EXPIRED",
+                total: 200,
+                answered: 0,
+                remainingSeconds: 0,
+                score: null,
+              },
+              questions: [],
+            },
+            meta,
+          }),
+        });
+      },
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-expiry-session/analysis`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ data: { analysis: null }, meta }),
+        }),
+    );
+
+    await page.goto("/toeic/test");
+    await page.getByRole("button", { name: /FULL/ }).click();
+    await page.locator("button").nth(3).click();
+    await expect(page.locator("h2").first()).toContainText("1");
+    await page.evaluate(() => window.dispatchEvent(new Event("online")));
+    await expect.poll(() => resultAttempts).toBe(1);
+    await page.waitForTimeout(100);
+    await page.evaluate(() => window.dispatchEvent(new Event("online")));
+    await expect(
+      page.getByRole("heading", { name: "Bài thi đã hết giờ" }),
+    ).toBeVisible();
+    expect(resultAttempts).toBe(2);
+    expect(await page.locator("main").textContent()).not.toContain(
+      "correctAnswer",
+    );
+    expect(await page.locator("main").textContent()).not.toContain("isCorrect");
+  });
+
+  test("renders a safe submitted FULL result on a 360px accessible surface", async ({
+    page,
+  }) => {
+    await installSession(page);
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "englishpath.toeic.test.active",
+        "full-submitted-session",
+      );
+    });
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-submitted-session`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            data: {
+              session: {
+                sessionId: "full-submitted-session",
+                mode: "FULL",
+                status: "SUBMITTED",
+                total: 200,
+                answered: 200,
+                remainingSeconds: 0,
+                score: 160,
+              },
+              questions: [],
+            },
+            meta,
+          }),
+        }),
+    );
+    await page.route(
+      `${apiOrigin}/toeic/tests/sessions/full-submitted-session/analysis`,
+      (route) =>
+        route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({ data: { analysis: null }, meta }),
+        }),
+    );
+
+    await page.goto("/toeic/test");
+    await expect(page.locator("h2").first()).toContainText("Kết quả");
+    await expect(page.getByText("FULL")).toBeVisible();
+    await expect(page.getByText("160", { exact: true })).toBeVisible();
+    const resultText = await page.locator("main").textContent();
+    expect(resultText).not.toContain("correctAnswer");
+    expect(resultText).not.toContain("isCorrect");
+    expect(resultText).not.toContain("selectedAnswer");
+    expect(resultText).not.toContain("provider");
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(360);
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   });
 
   test("uses the HALF mode sent to the server and tolerates malformed stored IDs", async ({

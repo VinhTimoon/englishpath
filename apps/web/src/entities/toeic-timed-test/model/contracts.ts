@@ -116,6 +116,7 @@ function parseQuestion(value: unknown): TimedQuestion | null {
   const question = record(value);
   if (
     !question ||
+    !hasOnlyKeys(question, ["id", "prompt", "options"]) ||
     !nonEmptyString(question.id) ||
     !nonEmptyString(question.prompt) ||
     !Array.isArray(question.options) ||
@@ -130,6 +131,7 @@ function parseQuestion(value: unknown): TimedQuestion | null {
     const option = record(value);
     if (
       !option ||
+      !hasOnlyKeys(option, ["id", "text"]) ||
       !nonEmptyString(option.id) ||
       !nonEmptyString(option.text) ||
       seen.has(option.id)
@@ -165,6 +167,19 @@ export function parseTimedSession(value: unknown): TimedSession {
 
   if (
     !session ||
+    !hasOnlyKeys(root, ["data", "meta"]) ||
+    !hasOnlyKeys(data, ["session", "questions"]) ||
+    !hasOnlyKeys(session, [
+      "sessionId",
+      "mode",
+      "status",
+      "total",
+      "answered",
+      "startedAt",
+      "deadlineAt",
+      "remainingSeconds",
+      "score",
+    ]) ||
     hasForbiddenKey(value) ||
     !shape ||
     !nonEmptyString(session.sessionId) ||
@@ -179,7 +194,16 @@ export function parseTimedSession(value: unknown): TimedSession {
     questions.some((question) => question === null) ||
     (session.status === "ACTIVE" && questions.length !== session.total) ||
     (session.status !== "ACTIVE" && questions.length !== 0) ||
-    (session.status === "ACTIVE" && "score" in session)
+    (session.status === "ACTIVE" && "score" in session) ||
+    ("score" in session &&
+      session.score !== null &&
+      (typeof session.score !== "number" || !Number.isFinite(session.score))) ||
+    ("startedAt" in session &&
+      session.startedAt !== undefined &&
+      !nonEmptyString(session.startedAt)) ||
+    ("deadlineAt" in session &&
+      session.deadlineAt !== undefined &&
+      !nonEmptyString(session.deadlineAt))
   ) {
     throw new Error("INVALID_RESPONSE");
   }

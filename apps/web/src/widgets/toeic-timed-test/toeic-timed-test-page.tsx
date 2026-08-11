@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   formatRemaining,
   TIMED_TEST_SHAPE,
@@ -58,11 +58,21 @@ export function ToeicTimedTestPage() {
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisError, setAnalysisError] = useState(false);
   const [analysisRetry, setAnalysisRetry] = useState(0);
+  const operationVersion = useRef(0);
+  const answerInFlight = useRef(false);
+  const latestAcknowledgedAnswered = useRef(0);
+  const pendingOperations = useRef(0);
 
   const reconcile = useCallback(async (sessionId: string) => {
+    const version = ++operationVersion.current;
+    pendingOperations.current += 1;
     setBusy(true);
     try {
       const value = await resultTimedTest(sessionId);
+      if (version !== operationVersion.current || answerInFlight.current)
+        return;
+      if (value.answered < latestAcknowledgedAnswered.current) return;
+      latestAcknowledgedAnswered.current = value.answered;
       setSession(value);
       setRemaining(value.remainingSeconds);
       setError("");
@@ -75,7 +85,8 @@ export function ToeicTimedTestPage() {
         ),
       );
     } finally {
-      setBusy(false);
+      pendingOperations.current = Math.max(0, pendingOperations.current - 1);
+      if (pendingOperations.current === 0) setBusy(false);
     }
   }, []);
 
@@ -96,6 +107,7 @@ export function ToeicTimedTestPage() {
     void getTimedTest(activeSessionId)
       .then((value) => {
         if (cancelled) return;
+        latestAcknowledgedAnswered.current = value.answered;
         setSession(value);
         setMode(value.mode);
         setRemaining(value.remainingSeconds);
@@ -182,18 +194,23 @@ export function ToeicTimedTestPage() {
     document.addEventListener("visibilitychange", reconcileAfterInterruption);
     window.addEventListener("online", reconnect);
     return () => {
-      document.removeEventListener("visibilitychange", reconcileAfterInterruption);
+      document.removeEventListener(
+        "visibilitychange",
+        reconcileAfterInterruption,
+      );
       window.removeEventListener("online", reconnect);
     };
   }, [reconcile, sessionId, sessionStatus]);
 
   async function start() {
     if (busy) return;
+    pendingOperations.current += 1;
     setBusy(true);
     setError("");
     setEmpty(false);
     try {
       const value = await startTimedTest(readClientSessionId(), mode);
+      latestAcknowledgedAnswered.current = value.answered;
       setSession(value);
       setRemaining(value.remainingSeconds);
       setSelected("");
@@ -202,7 +219,8 @@ export function ToeicTimedTestPage() {
       setEmpty(learnerApiStatus(startError) === 404);
       setError(requestMessage(startError, "Chưa mở được bài thi."));
     } finally {
-      setBusy(false);
+      pendingOperations.current = Math.max(0, pendingOperations.current - 1);
+      if (pendingOperations.current === 0) setBusy(false);
     }
   }
 
@@ -211,7 +229,18 @@ export function ToeicTimedTestPage() {
       session?.status === "ACTIVE"
         ? session.questions[session.answered]
         : undefined;
-    if (!session || !current || !selected || busy || remaining <= 0) return;
+    if (
+      !session ||
+      !current ||
+      !selected ||
+      busy ||
+      pendingOperations.current > 0 ||
+      remaining <= 0
+    )
+      return;
+    ++operationVersion.current;
+    answerInFlight.current = true;
+    pendingOperations.current += 1;
     setBusy(true);
     setError("");
     try {
@@ -219,6 +248,10 @@ export function ToeicTimedTestPage() {
         session.sessionId,
         current.id,
         selected,
+      );
+      latestAcknowledgedAnswered.current = Math.max(
+        latestAcknowledgedAnswered.current,
+        acknowledgement.answered,
       );
       setSession((previous) =>
         previous
@@ -229,28 +262,37 @@ export function ToeicTimedTestPage() {
     } catch (answerError) {
       setError(requestMessage(answerError, "Chưa ghi nhận được câu trả lời."));
     } finally {
-      setBusy(false);
+      answerInFlight.current = false;
+      pendingOperations.current = Math.max(0, pendingOperations.current - 1);
+      if (pendingOperations.current === 0) setBusy(false);
     }
   }
 
   async function submit() {
     if (!session || session.answered < session.total || busy) return;
+    pendingOperations.current += 1;
     setBusy(true);
     setError("");
     try {
       const value = await submitTimedTest(session.sessionId);
+      latestAcknowledgedAnswered.current = Math.max(
+        latestAcknowledgedAnswered.current,
+        value.answered,
+      );
       setSession(value);
       setRemaining(value.remainingSeconds);
       if (value.status !== "ACTIVE") clearActiveSessionId();
     } catch (submitError) {
       setError(requestMessage(submitError, "Chưa tải được kết quả."));
     } finally {
-      setBusy(false);
+      pendingOperations.current = Math.max(0, pendingOperations.current - 1);
+      if (pendingOperations.current === 0) setBusy(false);
     }
   }
 
   function startNewTest() {
     clearActiveSessionId();
+    latestAcknowledgedAnswered.current = 0;
     setSession(null);
     setSelected("");
     setRemaining(0);
