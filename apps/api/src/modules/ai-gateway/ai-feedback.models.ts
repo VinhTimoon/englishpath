@@ -7,6 +7,8 @@ export const AI_FEEDBACK_FEATURES = ['SPEAKING', 'WRITING'] as const;
 export type AiFeedbackFeature = (typeof AI_FEEDBACK_FEATURES)[number];
 export const AI_FEEDBACK_SKILLS = ['SPEAKING', 'WRITING'] as const;
 export type AiFeedbackSkill = (typeof AI_FEEDBACK_SKILLS)[number];
+export type AiUsageFeature = AiFeedbackFeature | 'EXPLANATION';
+export type AiUsageSkill = AiFeedbackSkill | 'EXPLANATION';
 export const AI_FEEDBACK_OUTCOMES = [
   'ALLOWED',
   'DENIED',
@@ -47,8 +49,8 @@ export interface AiFeedbackAdapter {
 export type FeedbackUsageRecord = Readonly<{
   id: string;
   userId: string;
-  feature: AiFeedbackFeature;
-  skill: AiFeedbackSkill;
+  feature: AiUsageFeature;
+  skill: AiUsageSkill;
   policyVersion: string;
   promptVersion: string;
   adapterKind: string;
@@ -68,6 +70,9 @@ export type FeedbackUsageCreate = Omit<FeedbackUsageRecord, 'id' | 'createdAt'>;
 export interface AiFeedbackUsageRepository {
   findByIdempotency(
     userId: string,
+    idempotencyKey: string,
+  ): Promise<FeedbackUsageRecord | null>;
+  findAnyByIdempotency(
     idempotencyKey: string,
   ): Promise<FeedbackUsageRecord | null>;
   countSince(userId: string, since: Date): Promise<number>;

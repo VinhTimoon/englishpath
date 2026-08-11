@@ -2,12 +2,21 @@ import type {
   ErrorNotebookCapture,
   ErrorNotebookPage,
   ErrorNotebookQuery,
+  ErrorNotebookExplanation,
   PersistedPracticeAnswer,
   PracticeAnswerInput,
   PracticeSessionState,
   ProgressSummary,
   RoadmapAdaptiveEvidence,
 } from './practice.models';
+
+export interface PracticeExplanationRepository {
+  findErrorNotebookExplanation(
+    userId: string,
+    source: ErrorNotebookQuery['source'],
+    questionId: string,
+  ): Promise<ErrorNotebookExplanation | null>;
+}
 
 export interface PracticeRepository {
   roadmapAdaptiveEvidence?(userId: string): Promise<RoadmapAdaptiveEvidence>;

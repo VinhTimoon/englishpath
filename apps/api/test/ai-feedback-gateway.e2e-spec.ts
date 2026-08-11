@@ -37,6 +37,7 @@ describe('AI feedback gateway vertical slice (e2e)', () => {
   });
   const repository: jest.Mocked<AiFeedbackUsageRepository> = {
     findByIdempotency: jest.fn().mockResolvedValue(null),
+    findAnyByIdempotency: jest.fn().mockResolvedValue(null),
     countSince: jest.fn().mockResolvedValue(0),
     create: jest.fn().mockImplementation(
       (value) =>

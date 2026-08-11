@@ -492,4 +492,16 @@ cannot replace or alter the authoritative score.
 
 ### Adaptive roadmap regression coverage
 
+## EP5-ST007 explanation coverage
+
+Focused unit and API E2E tests cover authentication, strict source/reference
+validation, owner-scoped repository lookup, safe redaction, grounded success,
+missing and malformed unavailable fallback, quota denial, zero-cost evidence,
+exact replay, changed-request conflict, another-owner key conflict, and
+correlation metadata. The existing AI feedback E2E suite remains a regression
+for unchanged Speaking/Writing behavior. Repository tests assert the narrow
+explanation select and absence of answer/prompt fields. Tests use mocked Prisma,
+identity, usage, and adapter boundaries and do not call providers, read
+credentials, or touch shared databases.
+
 The roadmap policy suite verifies stable state-based ordering (without count-derived weights), bounded item preservation, protected status slots, and fail-closed evidence. API/E2E coverage verifies owner isolation, repeated recalculation, successor lineage, historical immutability, redaction, concurrent repository races, Four Skills projection, and unchanged today counts.

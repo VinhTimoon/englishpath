@@ -714,6 +714,29 @@ before a session write. The additive Prisma enum migration is local/generated
 evidence only and must not be applied to shared Supabase or production by
 automation.
 
+## EP5-ST007 grounded explanation
+
+Authenticated route:
+
+- `POST /api/v1/ai-gateway/explanation` accepts exactly `{ source,
+  questionId }`, where `source` is `PRACTICE` or `TOEIC_TIMED_TEST` and the
+  question reference is bounded by the DTO. `Idempotency-Key` is required;
+  identity, policy version, prompt version, quota, and adapter/model evidence
+  are server-owned.
+
+The success envelope contains only `outcome`, `policyVersion`, `promptVersion`,
+`source`, `quotaRemaining`, and an advisory `feedback` allowlist. Grounded
+success uses `ALLOWED` and reproduces only the existing owner-scoped Error
+Notebook explanation with a bounded next-step suggestion. Missing, malformed,
+or unavailable grounding uses `PROVIDER_UNAVAILABLE` with `feedback: null`;
+this outcome does not claim that a provider was called. Quota exhaustion uses
+`DENIED` with `feedback: null`. No question ID, prompt, selected answer,
+correct option, raw submission, provider metadata, credential, hidden prompt,
+official score, or rubric internals are returned. Exact owner/request replays
+return the original safe result; changed requests or another owner's claimed
+key return `IDEMPOTENCY_CONFLICT` without the prior result. Speaking/Writing
+feedback keeps its existing contract.
+
 ### Roadmap recalculation
 
 `POST /api/v1/roadmaps/recalculate` derives identity and evidence from the authenticated principal. Request fields cannot supply identity, scores, evidence, weights, priorities, or policy versions. Recalculation preserves item count, statuses, completion timestamps, and protected slots, creates a successor only when the canonical existing-item ordering changes, and never creates prompts, submissions, official scores, AI output, or Speaking/Writing tasks. The policy validates `entryCount` but never uses it as a score or priority weight; it only orders supported `available` coverage before `empty` coverage with a fixed `LISTENING`/`READING` tie-break. Unavailable domains produce no signal. The current schema has no evidence fingerprint; an evidence change that yields an equivalent candidate is therefore a safe no-op.

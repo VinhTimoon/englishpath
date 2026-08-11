@@ -73,6 +73,7 @@ describe('AiFeedbackGatewayService', () => {
   beforeEach(() => {
     repository = {
       findByIdempotency: jest.fn().mockResolvedValue(null),
+      findAnyByIdempotency: jest.fn().mockResolvedValue(null),
       countSince: jest.fn().mockResolvedValue(0),
       create: jest
         .fn()

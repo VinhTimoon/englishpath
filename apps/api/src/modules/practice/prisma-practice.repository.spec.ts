@@ -36,6 +36,32 @@ type UpsertPayload = {
 };
 
 describe('PrismaPracticeRepository Error Notebook integration', () => {
+  it('resolves only the owner-scoped explanation projection', async () => {
+    const findFirst = jest.fn().mockResolvedValue({
+      source: 'PRACTICE',
+      questionId: 'p2',
+      explanation: 'Review this rule.',
+    });
+    const repository = new PrismaPracticeRepository({
+      errorNotebookEntry: { findFirst },
+    } as never);
+
+    await expect(
+      repository.findErrorNotebookExplanation('learner-1', 'PRACTICE', 'p2'),
+    ).resolves.toEqual({
+      source: 'PRACTICE',
+      questionId: 'p2',
+      explanation: 'Review this rule.',
+    });
+    expect(findFirst).toHaveBeenCalledWith({
+      where: { userId: 'learner-1', source: 'PRACTICE', questionId: 'p2' },
+      select: { source: true, questionId: true, explanation: true },
+    });
+    expect(JSON.stringify(findFirst.mock.calls)).not.toMatch(
+      /selectedOption|correctOption|prompt/i,
+    );
+  });
+
   it('captures only incorrect TOEIC answers with stable owner-scoped uniqueness', async () => {
     const upsert = jest
       .fn<Promise<{ id: string }>, [UpsertPayload]>()

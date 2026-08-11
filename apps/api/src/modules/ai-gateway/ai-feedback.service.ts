@@ -16,6 +16,8 @@ import {
   AI_FEEDBACK_PROMPT_VERSION,
   AI_FEEDBACK_USAGE_REPOSITORY,
   type AdvisoryFeedback,
+  type AiFeedbackFeature,
+  type AiFeedbackSkill,
   type AiFeedbackAdapter,
   type FeedbackAdapterResult,
   type FeedbackUsageRecord,
@@ -89,7 +91,7 @@ function unavailableFingerprint(input: {
     .digest('hex');
 }
 
-function safeFeedback(value: unknown): AdvisoryFeedback | null {
+export function safeFeedback(value: unknown): AdvisoryFeedback | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const candidate = value as Record<string, unknown>;
   if (
@@ -134,8 +136,8 @@ function safeResponse(record: FeedbackUsageRecord): SafeFeedbackResponse {
     outcome: record.outcome,
     policyVersion: record.policyVersion,
     promptVersion: record.promptVersion,
-    feature: record.feature,
-    skill: record.skill,
+    feature: record.feature as AiFeedbackFeature,
+    skill: record.skill as AiFeedbackSkill,
     quotaRemaining: record.quotaRemaining,
     feedback: record.feedback,
   };

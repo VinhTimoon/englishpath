@@ -3,11 +3,15 @@ import type { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 import type {
   ErrorNotebookCapture,
+  ErrorNotebookExplanation,
   ErrorNotebookQuery,
   PracticeAnswerInput,
   PracticeSessionState,
 } from './practice.models';
-import type { PracticeRepository } from './practice.ports';
+import type {
+  PracticeExplanationRepository,
+  PracticeRepository,
+} from './practice.ports';
 
 const include = {
   answers: true,
@@ -61,8 +65,29 @@ function state(record: PracticeRecord): PracticeSessionState {
 }
 
 @Injectable()
-export class PrismaPracticeRepository implements PracticeRepository {
+export class PrismaPracticeRepository
+  implements PracticeRepository, PracticeExplanationRepository
+{
   constructor(private readonly prisma: PrismaService) {}
+
+  async findErrorNotebookExplanation(
+    userId: string,
+    source: 'PRACTICE' | 'TOEIC_TIMED_TEST' | undefined,
+    questionId: string,
+  ): Promise<ErrorNotebookExplanation | null> {
+    if (!source) return null;
+    const entry = await this.prisma.errorNotebookEntry.findFirst({
+      where: { userId, source, questionId },
+      select: { source: true, questionId: true, explanation: true },
+    });
+    return entry
+      ? {
+          source: entry.source,
+          questionId: entry.questionId,
+          explanation: entry.explanation,
+        }
+      : null;
+  }
 
   async captureToeicErrors(input: ErrorNotebookCapture) {
     const questions = new Map(

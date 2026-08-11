@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from '../auth/auth.module';
+import { PracticeModule } from '../practice/practice.module';
 import { AiGatewayController } from './ai-gateway.controller';
 import {
   AI_FEEDBACK_ADAPTER,
@@ -8,12 +9,14 @@ import {
 import { AiFeedbackGatewayService } from './ai-feedback.service';
 import { PrismaAiFeedbackUsageRepository } from './ai-feedback.repository';
 import { LocalNoopFeedbackAdapter } from './local-noop-feedback.adapter';
+import { AiExplanationGatewayService } from './ai-explanation.service';
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule, PracticeModule],
   controllers: [AiGatewayController],
   providers: [
     AiFeedbackGatewayService,
+    AiExplanationGatewayService,
     PrismaAiFeedbackUsageRepository,
     LocalNoopFeedbackAdapter,
     {

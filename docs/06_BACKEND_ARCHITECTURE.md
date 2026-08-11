@@ -347,6 +347,17 @@ Speaking and Writing remain explicitly unavailable because this boundary has no
 approved notebook evidence for them. No score, recurrence, schedule, provider,
 feedback, rubric, submission, or schema model is introduced.
 
+## EP5-ST007 explanation layering
+
+The explanation controller accepts only the validated `source`, bounded
+`questionId`, authenticated principal, correlation ID, and required
+`Idempotency-Key`. `AiExplanationGatewayService` owns prompt/policy constants,
+UTC-day quota, request fingerprints, idempotency replay/conflict behavior,
+grounded safe projection, and explicit unavailable semantics. The practice
+repository exposes a narrow owner-scoped explanation port selecting only
+`source`, `questionId`, and `explanation`; answer, prompt, and submission fields
+remain outside that port. The local fallback is deterministic and credential-free.
+
 ### Adaptive roadmap boundary (EP5-ST006)
 
 `adaptive-roadmap-v1` is a pure, deterministic server policy. Its allowlist is the owner-scoped roadmap item status and the sanitized Error Notebook coverage projection (`GENERAL`, `LISTENING`, `READING`, `SPEAKING`, `WRITING`). Unavailable, malformed, duplicate, or unsupported evidence fails closed; it is never treated as zero performance. `entryCount` is validated for consistency but is not a score or priority weight. The policy uses only the approved coverage state (`available` before `empty`) plus the fixed `LISTENING`/`READING` tie-break; unavailable domains have no adaptive signal and remain in place. It reorders only existing pending items within their existing day/slot set.

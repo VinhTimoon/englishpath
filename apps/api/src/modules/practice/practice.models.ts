@@ -54,6 +54,12 @@ export type ErrorNotebookEntry = Readonly<{
   }>;
 }>;
 
+export type ErrorNotebookExplanation = Readonly<{
+  source: ErrorNotebookSource;
+  questionId: string;
+  explanation: string | null;
+}>;
+
 export type ErrorNotebookDomain =
   'GENERAL' | 'LISTENING' | 'READING' | 'SPEAKING' | 'WRITING';
 export type ErrorNotebookCoverageDomain = Readonly<{

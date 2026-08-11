@@ -337,6 +337,20 @@ partial or fabricated content. The assembly boundary does not create a session o
 expose answer keys; owner binding, timer, finalization, and integrity-event controls
 remain required in EP5-ST002 through EP5-ST004.
 
+## EP5-ST007 explanation controls
+
+Explanation requests are authenticated and owner-bound at the practice
+repository query (`userId`, `source`, and `questionId`); the client cannot submit
+explanation text, identity, prompt version, provider, or answer data. The
+response allowlist contains only the gateway outcome/policy metadata, source,
+quota remainder, and advisory feedback. Feedback is accepted only when the
+persisted explanation is non-empty, bounded, and free of provider, credential,
+raw-answer, official-score, and rubric claims. The deterministic next step is
+fixed and bounded. Missing or malformed grounding fails closed with
+`feedback: null`; the route makes no external call and records zero cost.
+Idempotency conflicts disclose neither the previous result nor its owner, and
+Speaking/Writing gateway behavior remains unchanged.
+
 ### Adaptive roadmap security
 
 Evidence is queried with the authenticated application user ID through the practice repository. Only aggregate Error Notebook coverage crosses into roadmap policy; raw answers, correct answers, prompts, submissions, provider data, and official scoring do not. Unsupported or unavailable evidence produces no adaptive signal.

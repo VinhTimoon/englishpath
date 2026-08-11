@@ -10,6 +10,7 @@ import type {
 type FeedbackDb = {
   aiFeedbackUsage: {
     findUnique(args: Record<string, unknown>): Promise<unknown>;
+    findFirst(args: Record<string, unknown>): Promise<unknown>;
     count(args: Record<string, unknown>): Promise<number>;
     create(args: Record<string, unknown>): Promise<unknown>;
   };
@@ -67,6 +68,14 @@ export class PrismaAiFeedbackUsageRepository implements AiFeedbackUsageRepositor
   async findByIdempotency(userId: string, idempotencyKey: string) {
     const row = await this.db.aiFeedbackUsage.findUnique({
       where: { userId_idempotencyKey: { userId, idempotencyKey } },
+      select: SELECT,
+    });
+    return row ? asRecord(row) : null;
+  }
+
+  async findAnyByIdempotency(idempotencyKey: string) {
+    const row = await this.db.aiFeedbackUsage.findFirst({
+      where: { idempotencyKey },
       select: SELECT,
     });
     return row ? asRecord(row) : null;

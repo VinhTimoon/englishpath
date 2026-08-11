@@ -1,7 +1,7 @@
 ---
 id: EP5-ST007
 title: AI explanation service and grounded fallback
-status: in-progress
+status: review
 type: backend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -99,14 +99,14 @@ an explicit safe unavailable outcome and do not fabricate explanation content.
 ## Verification commands
 
 ```text
-node scripts/story-doctor.mjs stories/ready/EP5-ST007-ai-explanation-grounded-fallback.md
+node scripts/story-doctor.mjs stories/in-progress/EP5-ST007-ai-explanation-grounded-fallback.md
 pnpm planning:traceability
 pnpm --filter api exec jest --runInBand src/modules/ai-gateway/**/*.spec.ts src/modules/practice/**/*.spec.ts
 pnpm --filter api test:e2e -- ai-gateway.e2e-spec.ts practice.e2e-spec.ts
 pnpm --filter api lint
 pnpm --filter api typecheck
 pnpm format:check
-pnpm story:verify stories/ready/EP5-ST007-ai-explanation-grounded-fallback.md
+pnpm story:verify stories/in-progress/EP5-ST007-ai-explanation-grounded-fallback.md
 pnpm story:checks
 git diff --check
 ```

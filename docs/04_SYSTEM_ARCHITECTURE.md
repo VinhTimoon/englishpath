@@ -142,3 +142,15 @@ only recording state/metadata and an opaque five-minute playback capability.
 Provider locators, object keys, credentials, and long-lived URLs remain inside
 the storage boundary. Production bucket/RLS configuration, retention jobs, and
 activation remain human-controlled deployment work.
+
+## EP5-ST007 grounded explanation boundary
+
+`POST /api/v1/ai-gateway/explanation` is an additive authenticated gateway route.
+It resolves only the authenticated owner's existing Error Notebook explanation
+through a narrow practice repository port. The local grounded fallback returns
+that persisted learner-safe explanation plus one bounded retry suggestion; it is
+not a provider result, official score, rubric decision, or AI claim. Missing,
+malformed, or unavailable grounding returns `PROVIDER_UNAVAILABLE` with
+`feedback: null` and never calls an external provider. The route reuses the
+existing UTC-day quota, zero-cost usage evidence, correlation, and idempotency
+boundary without a schema, migration, provider, or frontend change.
