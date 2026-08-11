@@ -234,9 +234,8 @@ roadmaps work without AI authoring official scores.
 
 ## Phase 5 Full Test, Adaptive AI, And Community
 
-Execution queue: `EP5-ST001` and `EP5-ST002` are done and merged into `dev`.
-`EP5-ST003`, `EP5-ST004`, and `EP5-ST005` are done and merged into `dev`;
-`EP5-ST006` is the single ready Phase 5 story and is being prepared for
+Execution queue: `EP5-ST001` through `EP5-ST006` are done and merged into
+`dev`; `EP5-ST007` is the single ready Phase 5 story and is being prepared for
 implementation. Later stories stay backlog until their direct predecessor passes.
 Phase 6 remains suspended indefinitely until production has many users.
 
