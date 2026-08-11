@@ -168,8 +168,8 @@ development_status:
   4-12-four-skills-phase-exit-review: done
   epic-4-retrospective: optional
 
-  epic-5: backlog
-  5-1-full-mock-test-assembly-and-versioning: backlog
+  epic-5: in-progress
+  5-1-full-mock-test-assembly-and-versioning: ready-for-dev
   5-2-full-exam-session-timer-and-finalization: backlog
   5-3-strict-exam-ui-and-interruption-handling: backlog
   5-4-scoring-integrity-and-weakness-analysis: backlog
