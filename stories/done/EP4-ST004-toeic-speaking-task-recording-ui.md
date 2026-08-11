@@ -1,7 +1,7 @@
 ---
 id: EP4-ST004
 title: TOEIC Speaking Task And Recording UI
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-4-toeic-speaking-writing-and-four-skills

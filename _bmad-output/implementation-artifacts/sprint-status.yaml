@@ -157,7 +157,7 @@ development_status:
   4-1-speaking-writing-task-and-rubric-models: done
   4-2-toeic-speaking-task-and-submission-api: done
   4-3-recording-storage-and-controlled-playback: done
-  4-4-toeic-speaking-task-and-recording-ui: review
+  4-4-toeic-speaking-task-and-recording-ui: done
   4-5-toeic-writing-task-and-submission-api: done
   4-7-provider-neutral-ai-feedback-gateway: done
   4-6-toeic-writing-practice-ui: done

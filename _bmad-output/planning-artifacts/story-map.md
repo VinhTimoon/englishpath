@@ -188,9 +188,9 @@ additive boundaries. `EP4-ST007` is done under the approved local/no-op gateway
 policy. `EP4-ST006` and `EP4-ST009` are done and merged. EP4-ST003 is now
 done and merged to `dev` under the owner-approved recording storage decision in
 `notes/ai-req/2026-08-10-ep4-st003-recording-storage-controlled-playback.md`.
-EP4-ST004 is implemented and in review after passing the full quality gate.
-EP4-ST008 is dependency-ready and is the next implementation slice after
-EP4-ST004 closes. EP4-ST012 remains blocked until all Phase 4 slices pass.
+EP4-ST004 is done after passing the full quality gate and fast-forward merge to
+`dev`. EP4-ST008 is dependency-ready and is the next implementation slice.
+EP4-ST012 remains blocked until all Phase 4 slices pass.
 
 | Story       | Increment                                                              | Depends on                       |
 | ----------- | ---------------------------------------------------------------------- | -------------------------------- |
