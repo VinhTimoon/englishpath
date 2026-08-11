@@ -11,9 +11,13 @@ import {
   Query,
   UseFilters,
   UseGuards,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
+  UploadedFile,
+  Res,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -30,6 +34,7 @@ import {
 } from '@nestjs/swagger';
 import { authCorrelationId } from '../auth/auth-exception.filter';
 import type { AuthenticatedRequest } from '../auth/auth-request';
+import type { Response } from 'express';
 import { AuthenticationGuard } from '../auth/auth.guards';
 import { ToeicExceptionFilter } from './toeic-exception.filter';
 import { ToeicAdminService } from './toeic-admin.service';
@@ -218,6 +223,64 @@ export class ToeicController {
           idempotencyStatus: 'not_applicable',
         },
       }));
+  }
+
+  @Post('speaking/recordings/:recordingId/content')
+  @HttpCode(HttpStatus.OK)
+  @UseInterceptors(
+    FileInterceptor('file', { limits: { fileSize: 10_000_000 } }),
+  )
+  @ApiOperation({ summary: 'Store owner-scoped Speaking recording content' })
+  @ApiOkResponse({ description: 'Recording content stored safely.' })
+  uploadSpeakingRecording(
+    @Param('recordingId') recordingId: string,
+    @UploadedFile() file: { buffer: Buffer; mimetype: string } | undefined,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-correlation-id') correlation?: string,
+  ) {
+    return this.recordings
+      .uploadContent(
+        request.principal!,
+        recordingId,
+        file?.buffer ?? Buffer.alloc(0),
+        file?.mimetype,
+      )
+      .then((data) => ({
+        data,
+        meta: {
+          correlationId: authCorrelationId(correlation),
+          idempotencyStatus: 'not_applicable',
+        },
+      }));
+  }
+
+  @Get('speaking/recordings/:recordingId/playback/content')
+  @ApiOperation({ summary: 'Stream controlled owner-scoped Speaking playback' })
+  @ApiHeader({
+    name: 'X-Playback-Capability',
+    required: true,
+    description: 'Short-lived application capability issued by the backend.',
+  })
+  async streamSpeakingPlayback(
+    @Param('recordingId') recordingId: string,
+    @Req() request: AuthenticatedRequest,
+    @Headers('x-playback-capability') capability: string | undefined,
+    @Res() response: Response,
+  ) {
+    const result = await this.recordings.readPlayback(
+      request.principal!,
+      recordingId,
+      capability,
+    );
+    response
+      .status(HttpStatus.OK)
+      .set({
+        'Cache-Control': 'private, no-store',
+        'Content-Type': result.contentType,
+        'Content-Length': String(result.content.length),
+        'Content-Disposition': 'inline',
+      })
+      .send(result.content);
   }
 
   @Post('speaking/recordings/:recordingId/revoke')

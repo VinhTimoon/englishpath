@@ -221,6 +221,7 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
     expect(submitBody.data.session.submission).toEqual(
       expect.objectContaining({
         submissionId: 'speaking-submission-e2e',
+        recordingId: 'speaking-recording-e2e',
         durationSeconds: 20,
       }),
     );
@@ -279,6 +280,28 @@ describe('TOEIC Speaking submission vertical slice (e2e)', () => {
       .set('Authorization', 'Bearer local.token.value')
       .set('X-Playback-Capability', capability)
       .expect(200);
+
+    const upload = await request(app.getHttpServer())
+      .post('/api/v1/toeic/speaking/recordings/speaking-recording-e2e/content')
+      .set('Authorization', 'Bearer local.token.value')
+      .attach('file', Buffer.alloc(2048, 1), {
+        filename: 'speaking.webm',
+        contentType: 'audio/webm',
+      })
+      .expect(200);
+    expect((upload.body as { data: { uploaded: boolean } }).data.uploaded).toBe(
+      true,
+    );
+
+    const content = await request(app.getHttpServer())
+      .get(
+        '/api/v1/toeic/speaking/recordings/speaking-recording-e2e/playback/content',
+      )
+      .set('Authorization', 'Bearer local.token.value')
+      .set('X-Playback-Capability', capability)
+      .expect(200);
+    expect(content.headers['content-type']).toContain('audio/webm');
+    expect(content.body).toEqual(Buffer.alloc(2048, 1));
 
     await request(app.getHttpServer())
       .post('/api/v1/toeic/speaking/recordings/speaking-recording-e2e/revoke')

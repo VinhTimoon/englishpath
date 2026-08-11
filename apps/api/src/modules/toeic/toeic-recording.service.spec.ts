@@ -97,6 +97,8 @@ describe('ToeicRecordingService', () => {
     };
     storage = {
       register: jest.fn().mockResolvedValue({ state: 'AVAILABLE' }),
+      write: jest.fn().mockResolvedValue(undefined),
+      read: jest.fn().mockResolvedValue(Buffer.alloc(2_048, 1)),
     };
     service = new ToeicRecordingService(repository, storage);
   });
@@ -231,6 +233,27 @@ describe('ToeicRecordingService', () => {
     );
   });
 
+  it('stores bounded owner content and reads it only with a valid capability', async () => {
+    const content = Buffer.alloc(2_048, 1);
+    await expect(
+      service.uploadContent(principal, recording().id, content, 'audio/webm'),
+    ).resolves.toEqual(expect.objectContaining({ uploaded: true }));
+    expect(storage.write.mock.calls[0]).toEqual([
+      expect.objectContaining({ objectKey: recording().objectKey }),
+      content,
+      'audio/webm',
+    ]);
+
+    const issued = await service.issuePlayback(principal, recording().id);
+    await expect(
+      service.readPlayback(
+        principal,
+        recording().id,
+        issued.playback.capability,
+      ),
+    ).resolves.toEqual({ content, contentType: 'audio/webm' });
+  });
+
   it('rejects a wrong-length-valid capability instead of trusting its shape', async () => {
     repository.findCapability.mockResolvedValueOnce(null);
     await expect(
@@ -253,6 +276,31 @@ describe('ToeicRecordingService', () => {
     await expect(
       service.authorizePlayback(principal, recording().id, 'a'.repeat(43)),
     ).rejects.toMatchObject({ code: 'CAPABILITY_INVALID' });
+  });
+
+  it('rejects content mutation after revocation and rejects size drift', async () => {
+    await expect(
+      service.uploadContent(
+        principal,
+        recording().id,
+        Buffer.alloc(2_047),
+        'audio/webm',
+      ),
+    ).rejects.toMatchObject({ code: 'INVALID_CONTENT' });
+
+    repository.findById.mockResolvedValueOnce({
+      ...recording(),
+      state: 'REVOKED',
+      revokedAt: new Date(),
+    });
+    await expect(
+      service.uploadContent(
+        principal,
+        recording().id,
+        Buffer.alloc(2_048),
+        'audio/webm',
+      ),
+    ).rejects.toMatchObject({ code: 'RECORDING_UNAVAILABLE' });
   });
 
   it('revokes playback through the owner-scoped repository', async () => {

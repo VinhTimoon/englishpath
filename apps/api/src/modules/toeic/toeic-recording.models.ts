@@ -84,6 +84,12 @@ export interface ToeicSpeakingRecordingStorage {
   register(reference: ControlledRecordingReference): Promise<{
     state: 'AVAILABLE';
   }>;
+  write(
+    reference: ControlledRecordingReference,
+    content: Buffer,
+    contentType: ToeicRecordingContentType,
+  ): Promise<void>;
+  read(reference: ControlledRecordingReference): Promise<Buffer | null>;
 }
 
 export type SafeSpeakingRecording = Readonly<{

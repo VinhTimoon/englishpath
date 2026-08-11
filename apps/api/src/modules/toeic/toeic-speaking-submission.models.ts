@@ -88,6 +88,7 @@ export type SafeSpeakingSession = Readonly<{
   finalizedAt: Date | null;
   submission: Readonly<{
     submissionId: string;
+    recordingId?: string;
     responseMode: 'RECORDED_AUDIO';
     durationSeconds: number;
     sizeBytes: number;

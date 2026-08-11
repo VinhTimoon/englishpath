@@ -99,7 +99,14 @@ describe('ToeicSpeakingSubmissionService', () => {
     };
     catalogue = { findPublished: jest.fn().mockResolvedValue(task) };
     recordings = {
-      ensureForSubmission: jest.fn().mockResolvedValue(undefined),
+      ensureForSubmission: jest.fn().mockResolvedValue({
+        recordingId: 'recording-001',
+        state: 'AVAILABLE',
+        contentType: 'audio/webm',
+        durationSeconds: 20,
+        sizeBytes: 1024,
+        expiresAt: new Date('2026-09-09T00:00:00.000Z'),
+      }),
     };
     service = new ToeicSpeakingSubmissionService(
       repository,
@@ -194,5 +201,23 @@ describe('ToeicSpeakingSubmissionService', () => {
     await expect(
       service.submit(principal, 'other-session', dto(), 'submit-002'),
     ).rejects.toMatchObject({ code: 'NOT_FOUND' });
+  });
+
+  it('projects the owner recording reference when a finalized session is resumed', async () => {
+    const finalized = session({
+      status: 'FINALIZED',
+      finalizedAt: new Date('2026-08-10T00:01:00.000Z'),
+      submission: submission(),
+    });
+    repository.findSession.mockResolvedValue(finalized);
+    const result = await service.get(principal, finalized.id);
+    expect(result.session.submission).toEqual(
+      expect.objectContaining({ recordingId: 'recording-001' }),
+    );
+    expect(recordings.ensureForSubmission).toHaveBeenCalledWith(
+      principal,
+      finalized,
+      'audio/webm',
+    );
   });
 });

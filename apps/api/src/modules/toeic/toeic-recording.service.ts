@@ -126,6 +126,38 @@ export class ToeicRecordingService {
     return { playback: result };
   }
 
+  async uploadContent(
+    principal: ApplicationPrincipal,
+    recordingId: string,
+    content: Buffer,
+    contentType: unknown,
+  ) {
+    const recording = await this.findCurrent(principal, recordingId);
+    if (recording.state !== 'AVAILABLE') {
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.RECORDING_UNAVAILABLE);
+    }
+    const normalizedContentType = this.validateMetadata(
+      contentType,
+      recording.durationSeconds,
+      content.length,
+    );
+    if (
+      normalizedContentType !== recording.contentType ||
+      content.length !== recording.sizeBytes
+    ) {
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.INVALID_CONTENT);
+    }
+    await this.storage.write(
+      { provider: recording.provider, objectKey: recording.objectKey },
+      content,
+      normalizedContentType,
+    );
+    return {
+      uploaded: true as const,
+      recording: safeRecording(recording),
+    };
+  }
+
   async authorizePlayback(
     principal: ApplicationPrincipal,
     recordingId: string,
@@ -134,27 +166,35 @@ export class ToeicRecordingService {
     if (!capability || capability.length < 32) {
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.CAPABILITY_INVALID);
     }
-    const recording = await this.findCurrent(principal, recordingId);
-    const now = new Date();
-    if (!canPlayback(recording.state, now, recording.expiresAt)) {
-      throw new ToeicQuestionError(TOEIC_ERROR_CODES.RECORDING_UNAVAILABLE);
-    }
-    const token = await this.repository.findCapability(
-      principal.applicationUserId,
+    const { recording, token } = await this.authorizeCapability(
+      principal,
       recordingId,
-      hashCapability(capability),
+      capability,
     );
-    if (
-      !token ||
-      token.revokedAt ||
-      token.expiresAt.getTime() <= now.getTime()
-    ) {
-      throw new ToeicQuestionError(TOEIC_ERROR_CODES.CAPABILITY_INVALID);
-    }
     return {
       recording: safeRecording(recording),
       playback: { authorized: true as const, expiresAt: token.expiresAt },
     };
+  }
+
+  async readPlayback(
+    principal: ApplicationPrincipal,
+    recordingId: string,
+    capability: string | undefined,
+  ) {
+    const { recording } = await this.authorizeCapability(
+      principal,
+      recordingId,
+      capability,
+    );
+    const content = await this.storage.read({
+      provider: recording.provider,
+      objectKey: recording.objectKey,
+    });
+    if (!content) {
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.RECORDING_UNAVAILABLE);
+    }
+    return { content, contentType: recording.contentType };
   }
 
   async revoke(principal: ApplicationPrincipal, recordingId: string) {
@@ -187,6 +227,34 @@ export class ToeicRecordingService {
       return { ...recording, state: 'EXPIRED' as const };
     }
     return recording;
+  }
+
+  private async authorizeCapability(
+    principal: ApplicationPrincipal,
+    recordingId: string,
+    capability: string | undefined,
+  ) {
+    if (!capability || capability.length < 32) {
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.CAPABILITY_INVALID);
+    }
+    const recording = await this.findCurrent(principal, recordingId);
+    const now = new Date();
+    if (!canPlayback(recording.state, now, recording.expiresAt)) {
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.RECORDING_UNAVAILABLE);
+    }
+    const token = await this.repository.findCapability(
+      principal.applicationUserId,
+      recordingId,
+      hashCapability(capability),
+    );
+    if (
+      !token ||
+      token.revokedAt ||
+      token.expiresAt.getTime() <= now.getTime()
+    ) {
+      throw new ToeicQuestionError(TOEIC_ERROR_CODES.CAPABILITY_INVALID);
+    }
+    return { recording, token };
   }
 
   private validateMetadata(

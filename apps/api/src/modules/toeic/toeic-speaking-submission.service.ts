@@ -35,9 +35,13 @@ function isUniqueConstraintError(error: unknown) {
   );
 }
 
-function safeSubmission(submission: SpeakingSubmissionRecord) {
+function safeSubmission(
+  submission: SpeakingSubmissionRecord,
+  recordingId?: string,
+) {
   return {
     submissionId: submission.id,
+    ...(recordingId ? { recordingId } : {}),
     responseMode: submission.responseMode,
     durationSeconds: submission.durationSeconds,
     sizeBytes: submission.sizeBytes,
@@ -48,6 +52,7 @@ function safeSubmission(submission: SpeakingSubmissionRecord) {
 function safeSession(
   session: SpeakingSessionRecord,
   task: TaskVersion,
+  recordingId?: string,
 ): SafeSpeakingSession {
   return {
     sessionId: session.id,
@@ -55,7 +60,9 @@ function safeSession(
     task: learnerTaskProjection(task),
     startedAt: session.startedAt,
     finalizedAt: session.finalizedAt,
-    submission: session.submission ? safeSubmission(session.submission) : null,
+    submission: session.submission
+      ? safeSubmission(session.submission, recordingId)
+      : null,
   };
 }
 
@@ -130,7 +137,17 @@ export class ToeicSpeakingSubmissionService {
     if (!task || task.version !== session.taskVersion) {
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.NOT_FOUND);
     }
-    return { session: safeSession(session, task) };
+    const recording =
+      session.status === 'FINALIZED' && session.submission
+        ? await this.recordings.ensureForSubmission(
+            principal,
+            session,
+            session.submission.contentType,
+          )
+        : undefined;
+    return {
+      session: safeSession(session, task, recording?.recordingId),
+    };
   }
 
   async submit(
@@ -155,12 +172,15 @@ export class ToeicSpeakingSubmissionService {
         key,
       );
       if (existing && this.sameSubmission(existing, sessionId, input)) {
-        await this.recordings.ensureForSubmission(
+        const recording = await this.recordings.ensureForSubmission(
           principal,
           session,
           input.contentType ?? 'audio/webm',
         );
-        return { session: safeSession(session, task), replayed: true };
+        return {
+          session: safeSession(session, task, recording.recordingId),
+          replayed: true,
+        };
       }
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
     }
@@ -199,22 +219,25 @@ export class ToeicSpeakingSubmissionService {
           existing &&
           this.sameSubmission(existing, sessionId, input)
         ) {
-          await this.recordings.ensureForSubmission(
+          const recording = await this.recordings.ensureForSubmission(
             principal,
             current,
             input.contentType ?? 'audio/webm',
           );
-          return { session: safeSession(current, task), replayed: true };
+          return {
+            session: safeSession(current, task, recording.recordingId),
+            replayed: true,
+          };
         }
         throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
       }
-      await this.recordings.ensureForSubmission(
+      const recording = await this.recordings.ensureForSubmission(
         principal,
         result.session,
         input.contentType ?? 'audio/webm',
       );
       return {
-        session: safeSession(result.session, task),
+        session: safeSession(result.session, task, recording.recordingId),
         replayed: !result.created,
       };
     } catch (error) {
@@ -233,12 +256,15 @@ export class ToeicSpeakingSubmissionService {
         existing &&
         this.sameSubmission(existing, sessionId, input)
       ) {
-        await this.recordings.ensureForSubmission(
+        const recording = await this.recordings.ensureForSubmission(
           principal,
           current,
           input.contentType ?? 'audio/webm',
         );
-        return { session: safeSession(current, task), replayed: true };
+        return {
+          session: safeSession(current, task, recording.recordingId),
+          replayed: true,
+        };
       }
       throw new ToeicQuestionError(TOEIC_ERROR_CODES.CONFLICT);
     }
