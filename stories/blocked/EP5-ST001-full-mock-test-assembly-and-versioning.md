@@ -1,7 +1,7 @@
 ---
 id: EP5-ST001
 title: Full mock test assembly and versioned blueprint boundary
-status: ready
+status: blocked
 type: backend
 priority: highest
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -168,3 +168,19 @@ Phase 5 at the start of execution. EP5-ST002 must consume this approved assembly
 contract and must not reimplement the blueprint or make `FULL` available through the
 existing MINI/HALF endpoints. EP5-ST003 and later stories remain backlog until their
 dependencies pass.
+
+
+
+## Blocked Report
+
+- Failed step: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+- Exit code: 42
+- Attempts: 1
+- Summary: The automated loop produced a valid blocked outcome and stopped without further retries.
+
+### Evidence
+
+```text
+Child process returned blocked exit code 42.
+Command failed with exit code 42: "node" "scripts/codex-runner.mjs" "review" ".codex-review-task.md"
+```
