@@ -524,3 +524,12 @@ fail-closed parsing, redaction, retryable errors, mobile overflow, keyboard
 focus, and axe accessibility coverage. No test uses a provider, shared
 database migration, learner-data inference, idempotency-key inference,
 fingerprint inference, or audit-row inference.
+
+## EP5 Phase 5 exit evidence
+
+The consolidated Phase 5 exit run on 2026-08-12 passed Prisma validation,
+formatting, planning traceability, lint, typecheck, 78 API unit suites / 555
+tests, 26 API E2E suites / 149 tests, 129 Playwright browser tests, the ST012
+targeted 4-test browser suite, build, `story:checks`, and `git diff --check`.
+This evidence covers the completed TOEIC, Error Notebook, adaptive roadmap,
+AI, community, admin, accessibility, and vocabulary regression surfaces.

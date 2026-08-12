@@ -377,3 +377,12 @@ projection. `DENIED` is counted as quota denial by explicit contract.
 infer them from keys, fingerprints, audit evidence, or learner data. Unknown
 outcomes, malformed counts, inconsistent totals, and unsafe costs fail closed.
 No automatic quota, moderation, entitlement, or suspension action is attached.
+
+### Phase 5 exit boundary
+
+The Phase 5 local/beta exit preserves server-owned TOEIC answer/timer/scoring,
+owner-scoped learner data, advisory-only AI output, transactional community
+moderation, and explicit unavailable provider/abuse states. Production
+credentials, paid providers, external billing/quota, real observability
+activation, and promotion to `main` remain owner-controlled and are not implied
+by local quality-gate evidence.

@@ -93,3 +93,12 @@ configure the approved object-storage bucket, RLS/ownership policy, retention
 deletion job, credentials/secrets, and deployment environment. No production
 bucket, credential, migration, or provider configuration is changed by the
 story loop.
+
+## Phase 5 local/beta exit boundary
+
+Phase 5 is verified only on the controlled local-equivalent boundary using API
+port `3005` and web/browser port `4177` for the final clean-port run. The exit
+evidence proves build, API, browser, accessibility, redaction, and governance
+checks; it does not claim production deployment. Paid AI/provider activation,
+production observability, credentials, external billing/quota, shared Supabase
+operations, and promotion to `main` require separate owner-controlled action.

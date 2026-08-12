@@ -188,3 +188,12 @@ denial count. `REPLAYED` and abuse metrics remain explicitly unavailable.
 Neither metric may be inferred from idempotency keys, fingerprints, audit rows,
 or learner data. The projection is read-only, redacted, and cannot mutate
 quota, entitlement, moderation, or provider state.
+
+### Decision: Phase 5 local/beta exit (EP5-ST013)
+
+Close Phase 5 for the approved local/beta boundary after the consolidated
+security, redaction, API, unit, browser, accessibility, build, and governance
+gates pass. Keep Phase 6 suspended/backlog until the product has many
+production users. Production promotion, paid AI/provider activation, external
+billing/quota, real observability, credentials, and shared Supabase operations
+remain owner-controlled and are not claimed by this exit review.

@@ -234,10 +234,9 @@ roadmaps work without AI authoring official scores.
 
 ## Phase 5 Full Test, Adaptive AI, And Community
 
-Execution queue: `EP5-ST001` through `EP5-ST011` are done and merged into
-`dev`; `EP5-ST012` is implementation-complete pending lifecycle close and
-`EP5-ST013` is the dependency-ready phase exit review. No recovery story is
-created for ST012; its approved owner decision is recorded in
+Execution queue: `EP5-ST001` through `EP5-ST013` are done and merged into
+`dev` with local/beta exit evidence. No recovery story is created for ST012;
+its approved owner decision is recorded in
 `notes/ai-req/2026-08-12-ep5-st012-ai-operations-contract.md`.
 Phase 6 remains suspended indefinitely until production has many users.
 
@@ -259,6 +258,8 @@ Phase 6 remains suspended indefinitely until production has many users.
 
 Exit: secure full tests, adaptive review, AI learning, and moderated sharing pass
 integrity, evaluation, abuse, observability, accessibility, and performance gates.
+Phase 5 is complete for the approved local/beta boundary; production/provider
+activation and Phase 6 remain owner-controlled/deferred.
 
 ## Phase 6 Mobile And Premium Expansion
 
