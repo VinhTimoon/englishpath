@@ -370,3 +370,14 @@ learner and moderation projections; the repository owns bounded Prisma queries
 and transactions. A moderation state change, idempotency decision, and
 redacted audit event share one transaction. No client status, actor identity,
 AI provider, or publication decision is trusted from request data.
+
+### AI operations projection boundary (EP5-ST012)
+
+`GET /api/v1/admin/ai-operations` is a read-only, role-gated projection over
+server-owned `AiFeedbackUsage` aggregates. The repository performs bounded
+count/group/sum queries; it never sends usage rows, learner identity,
+idempotency keys, fingerprints, feedback JSON, prompts, or provider payloads
+to the admin service. The service validates aggregate arithmetic and maps only
+approved outcome, feature, skill, quota-denial, and cost fields into the
+response. Replay and abuse are explicit unavailable states under approved
+Option 1; no database migration or inference source is introduced.

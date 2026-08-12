@@ -179,3 +179,12 @@ repeat that explanation and one fixed next step; it must never infer an answer,
 score, rubric result, or provider claim. Missing or malformed grounding is an
 explicit unavailable result with `feedback: null`. No provider, schema field,
 migration, or frontend surface is introduced.
+
+### Decision: AI operations projection contract (EP5-ST012)
+
+Approve Option 1: expose a bounded, authenticated aggregate projection from
+existing `AiFeedbackUsage` evidence without a migration. `DENIED` is the quota
+denial count. `REPLAYED` and abuse metrics remain explicitly unavailable.
+Neither metric may be inferred from idempotency keys, fingerprints, audit rows,
+or learner data. The projection is read-only, redacted, and cannot mutate
+quota, entitlement, moderation, or provider state.

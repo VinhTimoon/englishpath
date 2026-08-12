@@ -1,7 +1,7 @@
 ---
 id: EP5-ST012
 title: AI quota, cost, and abuse operations dashboard
-status: blocked
+status: review
 type: full-stack
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -47,9 +47,8 @@ forbidden_paths:
   - Phase 6
 requires_human_approval: false
 max_fix_rounds: 2
-blocked_reason: "Approved contract lacks persisted replay evidence and abuse semantics; owner decision required."
+owner_decision: "Option 1 approved 2026-08-12: REPLAYED and abuse are unavailable; DENIED counts as quota denial; no migration or sensitive-field inference."
 ai_request: notes/ai-req/2026-08-12-ep5-st012-ai-operations-contract.md
-resume_policy: "Do not resume this story until the linked AI request is decided and the decision is recorded."
 ---
 
 # Story: AI quota, cost, and abuse operations dashboard
@@ -143,7 +142,7 @@ entitlement, or observability adapter contracts. Do not add Phase 6 work.
 - `pnpm e2e -- tests/e2e/ai-operations-dashboard.spec.ts`
 - `pnpm e2e`
 - `pnpm build`
-- `pnpm story:verify stories/blocked/EP5-ST012-ai-quota-cost-abuse-operations-dashboard.md`
+- `pnpm story:verify stories/in-progress/EP5-ST012-ai-quota-cost-abuse-operations-dashboard.md`
 - `pnpm story:checks`
 - `git diff --check`
 
@@ -154,8 +153,10 @@ existing AI usage evidence, with no invented quota/cost/abuse semantics, no
 provider activation, complete quality-gate evidence, and no unrelated story
 implementation.
 
-## Blocked state
+## Owner decision and resumed state
 
-This story is blocked and must not be resumed, re-run, or marked done until the
-owner decides the linked AI request and records the exact replay, quota-denial,
-and abuse semantics. No recovery story is being created.
+The owner approved Option 1 on 2026-08-12. Replay and abuse are explicit
+`unavailable`; persisted `DENIED` rows are the approved quota-denial aggregate.
+No migration is allowed, and no inference from idempotency keys, fingerprints,
+audit rows, or learner data is allowed. This is the same story resumed in place;
+no recovery story is being created.

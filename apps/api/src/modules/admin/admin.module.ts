@@ -6,9 +6,10 @@ import { AdminAuthenticationGuard } from './admin-authentication.guard';
 import { AdminRoleGuard } from './admin-role.guard';
 import { AdminRepository } from './admin.repository';
 import { AdminService } from './admin.service';
+import { AiGatewayModule } from '../ai-gateway/ai-gateway.module';
 
 @Module({
-  imports: [AuthModule, AuditModule],
+  imports: [AuthModule, AuditModule, AiGatewayModule],
   controllers: [AdminController],
   providers: [
     AdminRepository,

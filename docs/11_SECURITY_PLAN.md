@@ -365,3 +365,15 @@ client-supplied roles, status, actor IDs, claims, provider data, and raw report
 text are ignored or rejected. A decision and its redacted audit event commit in
 one transaction, and exact replays do not create a second state change or
 audit side effect. No external moderation provider or credential is used.
+
+### AI operations controls (EP5-ST012)
+
+The AI operations endpoint is protected by the existing authentication and
+active application-role guards. Its repository boundary returns only aggregate
+counts and persisted cost sums; learner IDs, prompts, feedback, provider data,
+idempotency keys, fingerprints, and audit rows never cross into the
+projection. `DENIED` is counted as quota denial by explicit contract.
+`REPLAYED` and abuse metrics are explicitly unavailable; the system does not
+infer them from keys, fingerprints, audit evidence, or learner data. Unknown
+outcomes, malformed counts, inconsistent totals, and unsafe costs fail closed.
+No automatic quota, moderation, entitlement, or suspension action is attached.

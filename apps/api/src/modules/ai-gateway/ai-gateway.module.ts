@@ -28,6 +28,6 @@ import { AiExplanationGatewayService } from './ai-explanation.service';
       useExisting: LocalNoopFeedbackAdapter,
     },
   ],
-  exports: [AiFeedbackGatewayService],
+  exports: [AiFeedbackGatewayService, AI_FEEDBACK_USAGE_REPOSITORY],
 })
 export class AiGatewayModule {}

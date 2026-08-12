@@ -1,6 +1,8 @@
 ---
 story: EP5-ST012
-status: awaiting-owner-decision
+status: approved
+decision_date: 2026-08-12
+decision: "Option 1 approved: REPLAYED and abuse metrics are unavailable; DENIED is quota denial; no migration or sensitive-field inference."
 ---
 
 # EP5-ST012 — AI operations dashboard contract decision
@@ -69,6 +71,20 @@ Approve Option 1 for the beta, with an explicit unavailable state for replay and
 - `docs/07_DATABASE_DESIGN.md`, `docs/08_API_CONTRACT.md`, `docs/11_SECURITY_PLAN.md`, and `docs/13_DECISION_LOG.md`: existing boundaries require backend ownership, redaction, quota evidence, and abuse controls but do not approve the missing dashboard semantics.
 - Planning artifact: `C:\Users\ACER\AppData\Local\Temp\englishpath-ep5-st012-plan.md`.
 
+## Owner decision
+
+Approved by the owner on 2026-08-12:
+
+- Use Option 1.
+- `REPLAYED` and abuse metrics are explicit `unavailable`.
+- Persisted `DENIED` rows count as quota denials.
+- Do not add a migration.
+- Do not infer from idempotency keys, request fingerprints, audit rows, or learner data.
+
+EP5-ST012 may resume in place and must implement only the approved server-side
+projection and its strict allowlist.
+
 ## Story state
 
-EP5-ST012 is blocked pending this owner decision and must not be resumed or marked done without the decision being recorded and the required implementation/verification evidence.
+EP5-ST012 is unblocked and resumed in place pending implementation and required
+verification evidence.

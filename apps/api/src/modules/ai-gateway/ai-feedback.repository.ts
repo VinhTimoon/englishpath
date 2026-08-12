@@ -6,6 +6,7 @@ import type {
   FeedbackUsageCreate,
   FeedbackUsageRecord,
 } from './ai-feedback.models';
+import type { AiOperationsEvidence } from '../admin/ai-operations.models';
 
 type FeedbackDb = {
   aiFeedbackUsage: {
@@ -13,6 +14,8 @@ type FeedbackDb = {
     findFirst(args: Record<string, unknown>): Promise<unknown>;
     count(args: Record<string, unknown>): Promise<number>;
     create(args: Record<string, unknown>): Promise<unknown>;
+    groupBy(args: Record<string, unknown>): Promise<unknown[]>;
+    aggregate(args: Record<string, unknown>): Promise<unknown>;
   };
 };
 
@@ -85,6 +88,55 @@ export class PrismaAiFeedbackUsageRepository implements AiFeedbackUsageRepositor
     return this.db.aiFeedbackUsage.count({
       where: { userId, createdAt: { gte: since } },
     });
+  }
+
+  async aggregateSince(since: Date): Promise<AiOperationsEvidence> {
+    const where = { createdAt: { gte: since } };
+    const [totalRequests, outcomes, features, skills, cost] = await Promise.all(
+      [
+        this.db.aiFeedbackUsage.count({ where }),
+        this.db.aiFeedbackUsage.groupBy({
+          by: ['outcome'],
+          where,
+          _count: { _all: true },
+        }),
+        this.db.aiFeedbackUsage.groupBy({
+          by: ['feature'],
+          where,
+          _count: { _all: true },
+        }),
+        this.db.aiFeedbackUsage.groupBy({
+          by: ['skill'],
+          where,
+          _count: { _all: true },
+        }),
+        this.db.aiFeedbackUsage.aggregate({
+          where,
+          _sum: { estimatedCostMicros: true },
+        }),
+      ],
+    );
+
+    const groups = (rows: unknown[], key: string) =>
+      rows.map((row) => {
+        const value = row as Record<string, unknown>;
+        const count = value._count as Record<string, unknown> | undefined;
+        return {
+          key: String(value[key]),
+          count: Number(count?._all),
+        };
+      });
+
+    const costValue = cost as {
+      _sum?: { estimatedCostMicros?: number | null };
+    };
+    return {
+      totalRequests,
+      outcomes: groups(outcomes, 'outcome'),
+      features: groups(features, 'feature'),
+      skills: groups(skills, 'skill'),
+      estimatedCostMicros: Number(costValue._sum?.estimatedCostMicros ?? 0),
+    };
   }
 
   async create(input: FeedbackUsageCreate) {

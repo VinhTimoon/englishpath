@@ -514,3 +514,13 @@ redaction, report idempotency, role separation, valid and invalid moderation
 transitions, transaction-scoped audit callbacks, sanitized errors, and absence
 of private report or actor fields. The suite uses mocked authentication and
 repository boundaries and does not execute a migration against shared data.
+
+## EP5-ST012 AI operations coverage
+
+The AI operations unit/API/browser suites verify admin role gating, server-owned
+24-hour aggregate arithmetic, `DENIED` quota-denial mapping, zero-cost local
+usage, explicit replay/abuse unavailability, malformed/unknown-field
+fail-closed parsing, redaction, retryable errors, mobile overflow, keyboard
+focus, and axe accessibility coverage. No test uses a provider, shared
+database migration, learner-data inference, idempotency-key inference,
+fingerprint inference, or audit-row inference.

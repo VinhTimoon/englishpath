@@ -1,28 +1,6 @@
 import { readSession } from "@/features/auth/model/auth-session";
-import { isAdminOverview, type AdminOverview } from "../model/admin-overview";
-
-export function getAdminApiBase() {
-  const configured =
-    process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3005/api/v1";
-  let url: URL;
-  try {
-    url = new URL(configured);
-  } catch {
-    throw new AdminApiError(0);
-  }
-  const localHost = ["localhost", "127.0.0.1"].includes(url.hostname);
-  if (url.protocol !== "https:" && !(localHost && url.protocol === "http:")) {
-    throw new AdminApiError(0);
-  }
-  return url.toString().replace(/\/$/, "");
-}
-
-export class AdminApiError extends Error {
-  constructor(readonly status: number) {
-    super("Không thể tải khu vực quản trị lúc này.");
-    this.name = "AdminApiError";
-  }
-}
+import { AdminApiError, getAdminApiBase } from "./get-admin-overview";
+import { isAiOperations, type AiOperations } from "../model/ai-operations";
 
 type Envelope = {
   data: unknown;
@@ -32,24 +10,27 @@ type Envelope = {
 function isEnvelope(value: unknown): value is Envelope {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
   const candidate = value as Record<string, unknown>;
+  const keys = Object.keys(candidate).sort().join(",");
+  if (keys !== "data,meta") return false;
   const meta = candidate.meta;
   if (!meta || typeof meta !== "object" || Array.isArray(meta)) return false;
   const metadata = meta as Record<string, unknown>;
   return (
+    Object.keys(metadata).sort().join(",") ===
+      "correlationId,idempotencyStatus" &&
     typeof metadata.correlationId === "string" &&
     /^[A-Za-z0-9][A-Za-z0-9._:-]{7,127}$/.test(metadata.correlationId) &&
     metadata.idempotencyStatus === "not_applicable"
   );
 }
 
-export async function getAdminOverview(options?: {
+export async function getAiOperations(options?: {
   signal?: AbortSignal;
-}): Promise<AdminOverview> {
+}): Promise<AiOperations> {
   const session = readSession();
   if (!session) throw new AdminApiError(401);
-
   try {
-    const response = await fetch(`${getAdminApiBase()}/admin/overview`, {
+    const response = await fetch(`${getAdminApiBase()}/admin/ai-operations`, {
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${session.accessToken}`,
@@ -58,7 +39,7 @@ export async function getAdminOverview(options?: {
     });
     if (!response.ok) throw new AdminApiError(response.status);
     const body: unknown = await response.json();
-    if (!isEnvelope(body) || !isAdminOverview(body.data)) {
+    if (!isEnvelope(body) || !isAiOperations(body.data)) {
       throw new AdminApiError(500);
     }
     return body.data;

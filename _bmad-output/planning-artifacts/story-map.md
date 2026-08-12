@@ -235,10 +235,10 @@ roadmaps work without AI authoring official scores.
 ## Phase 5 Full Test, Adaptive AI, And Community
 
 Execution queue: `EP5-ST001` through `EP5-ST011` are done and merged into
-`dev`; `EP5-ST012` is blocked pending the owner decision in
-`notes/ai-req/2026-08-12-ep5-st012-ai-operations-contract.md`. It must not be
-resumed or replaced by a recovery story until that decision is recorded. Later
-stories stay backlog until their direct predecessor passes.
+`dev`; `EP5-ST012` is implementation-complete pending lifecycle close and
+`EP5-ST013` is the dependency-ready phase exit review. No recovery story is
+created for ST012; its approved owner decision is recorded in
+`notes/ai-req/2026-08-12-ep5-st012-ai-operations-contract.md`.
 Phase 6 remains suspended indefinitely until production has many users.
 
 | Story       | Increment                                                                    | Depends on                            |

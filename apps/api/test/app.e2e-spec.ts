@@ -83,6 +83,11 @@ describe('API (e2e)', () => {
     user: { count: jest.fn() },
     userRole: { count: jest.fn() },
     privilegedAuditEvent: { create: jest.fn() },
+    aiFeedbackUsage: {
+      count: jest.fn(),
+      groupBy: jest.fn(),
+      aggregate: jest.fn(),
+    },
   };
 
   async function createApp(
@@ -130,6 +135,14 @@ describe('API (e2e)', () => {
     prisma.user.count.mockResolvedValue(4);
     prisma.userRole.count.mockResolvedValue(3);
     prisma.privilegedAuditEvent.create.mockResolvedValue({ id: 'audit-001' });
+    prisma.aiFeedbackUsage.count.mockResolvedValue(0);
+    prisma.aiFeedbackUsage.groupBy
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([]);
+    prisma.aiFeedbackUsage.aggregate.mockResolvedValue({
+      _sum: { estimatedCostMicros: 0 },
+    });
     app = await createApp();
   });
 
@@ -227,6 +240,122 @@ describe('API (e2e)', () => {
       /secret|token|claim|payload|private|progress/i,
     );
     expect(prisma.privilegedAuditEvent.create).toHaveBeenCalled();
+  });
+
+  it('serves the role-gated AI operations projection without sensitive usage fields', async () => {
+    prisma.aiFeedbackUsage.count.mockResolvedValue(4);
+    prisma.aiFeedbackUsage.groupBy
+      .mockReset()
+      .mockResolvedValueOnce([
+        { outcome: 'ALLOWED', _count: { _all: 2 } },
+        { outcome: 'DENIED', _count: { _all: 1 } },
+        { outcome: 'PROVIDER_UNAVAILABLE', _count: { _all: 1 } },
+      ])
+      .mockResolvedValueOnce([{ feature: 'EXPLANATION', _count: { _all: 4 } }])
+      .mockResolvedValueOnce([{ skill: 'EXPLANATION', _count: { _all: 4 } }]);
+    prisma.aiFeedbackUsage.aggregate.mockResolvedValue({
+      _sum: { estimatedCostMicros: 0 },
+    });
+
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'external-ai-admin-001',
+      issuer: 'issuer',
+      audience: 'audience',
+    });
+    await app.close();
+    app = await createApp(undefined, {
+      verifier: { verify: jest.fn().mockResolvedValue(external) },
+      resolver: {
+        resolve: jest.fn().mockResolvedValue(
+          createApplicationPrincipal({
+            applicationUserId: 'application-user-ai-admin',
+            externalIdentity: external,
+            roles: ['ADMIN'],
+            ownerships: [],
+            entitlements: [],
+          }),
+        ),
+      },
+      profiles: { findOwned: jest.fn(), upsertOwned: jest.fn() },
+    });
+
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/admin/ai-operations')
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('X-Correlation-Id', 'ai-operations-001')
+      .expect(200);
+    expect(response.body).toMatchObject({
+      data: {
+        role: 'ADMIN',
+        totals: {
+          requests: 4,
+          allowed: 2,
+          denied: 1,
+          unavailable: 1,
+          quotaDenials: 1,
+          estimatedCostMicros: 0,
+        },
+        replayed: { state: 'unavailable' },
+        abuse: { state: 'unavailable' },
+      },
+      meta: {
+        correlationId: 'ai-operations-001',
+        idempotencyStatus: 'not_applicable',
+      },
+    });
+    const data = (response.body as ApiEnvelope).data as Record<string, unknown>;
+    expect(data).toEqual(
+      expect.objectContaining({
+        replayed: { state: 'unavailable' },
+        abuse: { state: 'unavailable' },
+      }),
+    );
+    expect(data).not.toHaveProperty('userId');
+    expect(data).not.toHaveProperty('correlationId');
+    expect(data).not.toHaveProperty('idempotencyKey');
+    expect(data).not.toHaveProperty('fingerprint');
+    expect(data).not.toHaveProperty('feedback');
+    expect(data).not.toHaveProperty('prompt');
+    expect(data).not.toHaveProperty('provider');
+  });
+
+  it('denies the AI operations projection to learners', async () => {
+    const external = createExternalIdentity({
+      provider: 'SUPABASE',
+      subject: 'external-ai-learner-001',
+      issuer: 'issuer',
+      audience: 'audience',
+    });
+    await app.close();
+    app = await createApp(undefined, {
+      verifier: { verify: jest.fn().mockResolvedValue(external) },
+      resolver: {
+        resolve: jest.fn().mockResolvedValue(
+          createApplicationPrincipal({
+            applicationUserId: 'application-user-ai-learner',
+            externalIdentity: external,
+            roles: ['FREE_USER'],
+            ownerships: [],
+            entitlements: [],
+          }),
+        ),
+      },
+      profiles: { findOwned: jest.fn(), upsertOwned: jest.fn() },
+    });
+
+    await request(app.getHttpServer())
+      .get('/api/v1/admin/ai-operations')
+      .set('Authorization', 'Bearer local.signed.token')
+      .set('X-Correlation-Id', 'ai-operations-denied')
+      .expect(403)
+      .expect(({ body }) => {
+        expect(body).toMatchObject({
+          error: { code: 'RESOURCE_FORBIDDEN' },
+          meta: { correlationId: 'ai-operations-denied' },
+        });
+        expect((body as ApiEnvelope).data).toBeUndefined();
+      });
   });
 
   it('protects and updates only the authenticated profile', async () => {

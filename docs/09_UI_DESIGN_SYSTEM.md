@@ -143,6 +143,7 @@ The drill uses explicit loading, unavailable/empty, retryable error, active,
 and submitted-result states. Options are labelled buttons with visible focus;
 the result is expressed as text and score, not color alone. Once submitted,
 choices are disabled and the UI renders only the server result.
+
 ## EP3-ST012 phase-exit evidence
 
 The five Phase 3 learner journeys were exercised at 360px with keyboard
@@ -150,3 +151,12 @@ navigation, loading/success, empty, unavailable, retryable-error, and safe
 projection assertions. The full Chromium browser suite passed 87 tests with
 no serious or critical accessibility findings and no horizontal overflow in
 the covered mobile journeys.
+
+## EP5-ST012 AI operations states
+
+The admin AI operations panel is mobile-first and exposes loading, success,
+empty, retryable error, unauthorized, and forbidden states as text and live
+regions where appropriate. Zero-cost local/no-op usage is explicit. Replay and
+abuse are labelled unavailable and operational, never as evidence of
+wrongdoing. The panel remains readable at 360px with no horizontal overflow
+and never renders sensitive usage fields.

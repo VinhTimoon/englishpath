@@ -719,7 +719,7 @@ automation.
 Authenticated route:
 
 - `POST /api/v1/ai-gateway/explanation` accepts exactly `{ source,
-  questionId }`, where `source` is `PRACTICE` or `TOEIC_TIMED_TEST` and the
+questionId }`, where `source` is `PRACTICE` or `TOEIC_TIMED_TEST` and the
   question reference is bounded by the DTO. `Idempotency-Key` is required;
   identity, policy version, prompt version, quota, and adapter/model evidence
   are server-owned.
@@ -754,3 +754,18 @@ boundary. Moderation queue and decisions require `CONTENT_EDITOR`, `ADMIN`, or
 idempotency key, and return only the safe decision result. Mutation responses
 include a correlation ID and `created`/`replayed` idempotency status; errors
 are sanitized envelopes.
+
+### AI operations dashboard (EP5-ST012)
+
+`GET /api/v1/admin/ai-operations` requires the existing authenticated
+`CONTENT_EDITOR`, `ADMIN`, or `SUPER_ADMIN` role boundary. The server owns the
+last-24-hour window and returns an allowlisted envelope containing `role`,
+`window`, `totals`, bounded feature/skill summaries, and explicit
+`{ "state": "unavailable" }` values for `replayed` and `abuse`.
+
+`DENIED` is the approved quota-denial count. Replay and abuse are never
+converted into zero or inferred from idempotency keys, fingerprints, audit
+rows, or learner data. Unknown or inconsistent aggregate evidence fails
+closed. The response excludes user IDs, correlation IDs inside data, raw
+input/output, feedback JSON, prompts, provider details, credentials, and
+internal audit fields.

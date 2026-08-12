@@ -8,6 +8,8 @@ import {
 } from "@/features/admin/api/get-admin-overview";
 import type { AdminOverview } from "@/features/admin/model/admin-overview";
 import { CmsWorkspace } from "./cms-workspace";
+import { getAiOperations } from "@/features/admin/api/get-ai-operations";
+import type { AiOperations } from "@/features/admin/model/ai-operations";
 import styles from "./admin-shell.module.css";
 
 type AdminState =
@@ -150,8 +152,146 @@ function SuccessOverview({ data }: { data: AdminOverview }) {
         </div>
       )}
       <CmsWorkspace role={data.role} />
-      <p><Link className={styles.secondary} href="/admin/library">Open library inventory</Link></p>
+      <AiOperationsPanel />
+      <p>
+        <Link className={styles.secondary} href="/admin/library">
+          Open library inventory
+        </Link>
+      </p>
     </div>
+  );
+}
+
+function AiOperationsPanel() {
+  type OperationsState =
+    | { kind: "loading" }
+    | { kind: "success"; data: AiOperations }
+    | { kind: "unauthorized" }
+    | { kind: "forbidden" }
+    | { kind: "error" };
+  const [state, setState] = useState<OperationsState>({ kind: "loading" });
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    getAiOperations({ signal: controller.signal })
+      .then((data) => setState({ kind: "success", data }))
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        if (error instanceof AdminApiError && error.status === 401) {
+          setState({ kind: "unauthorized" });
+          return;
+        }
+        if (error instanceof AdminApiError && error.status === 403) {
+          setState({ kind: "forbidden" });
+          return;
+        }
+        setState({ kind: "error" });
+      });
+    return () => controller.abort();
+  }, [attempt]);
+
+  if (state.kind === "loading") {
+    return (
+      <div className={styles.panel} role="status" aria-live="polite">
+        <span className={styles.skeleton} aria-hidden="true" />
+        Loading AI operations…
+      </div>
+    );
+  }
+  if (state.kind === "unauthorized") {
+    return (
+      <div className={styles.panel} role="alert">
+        <h2>Sign in required</h2>
+        <p>The operations projection requires an active admin session.</p>
+      </div>
+    );
+  }
+  if (state.kind === "forbidden") {
+    return (
+      <div className={styles.panel} role="alert">
+        <h2>Operations access is restricted</h2>
+        <p>Your backend role cannot read this projection.</p>
+      </div>
+    );
+  }
+  if (state.kind === "error") {
+    return (
+      <div className={styles.panel} role="alert">
+        <h2>AI operations unavailable</h2>
+        <p>Retry later; no sensitive usage details are shown.</p>
+        <button
+          className={styles.secondary}
+          type="button"
+          onClick={() => setAttempt((value) => value + 1)}
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+  const data = state.data!;
+  return (
+    <section className={styles.panel} aria-labelledby="ai-operations-title">
+      <p className={styles.label}>Server-owned projection · last 24 hours</p>
+      <h2 id="ai-operations-title">AI gateway operations</h2>
+      {data.totals.requests === 0 ? (
+        <p role="status">No persisted AI usage in this window.</p>
+      ) : (
+        <div className={styles.metrics} aria-label="AI usage totals">
+          <article className={styles.metric}>
+            <span>Requests</span>
+            <strong>{data.totals.requests}</strong>
+          </article>
+          <article className={styles.metric}>
+            <span>Allowed</span>
+            <strong>{data.totals.allowed}</strong>
+          </article>
+          <article className={styles.metric}>
+            <span>Denied / quota</span>
+            <strong>{data.totals.quotaDenials}</strong>
+          </article>
+          <article className={styles.metric}>
+            <span>Unavailable</span>
+            <strong>{data.totals.unavailable}</strong>
+          </article>
+        </div>
+      )}
+      <div className={styles.muted}>
+        <p>
+          Estimated cost:{" "}
+          {data.totals.estimatedCostMicros === 0
+            ? "0 (local/no-op)"
+            : "non-zero aggregate"}
+          .
+        </p>
+        <p>
+          Replay and abuse signals: unavailable. These are operational signals,
+          not proof of wrongdoing.
+        </p>
+      </div>
+      <div
+        className={styles.metrics}
+        aria-label="AI feature and skill summaries"
+      >
+        <article className={styles.metric}>
+          <span>Features</span>
+          <span>
+            {data.featureSummary
+              .map((group) => `${group.key}: ${group.count}`)
+              .join(", ") || "None"}
+          </span>
+        </article>
+        <article className={styles.metric}>
+          <span>Skills</span>
+          <span>
+            {data.skillSummary
+              .map((group) => `${group.key}: ${group.count}`)
+              .join(", ") || "None"}
+          </span>
+        </article>
+      </div>
+    </section>
   );
 }
 

@@ -76,6 +76,9 @@ export interface AiFeedbackUsageRepository {
     idempotencyKey: string,
   ): Promise<FeedbackUsageRecord | null>;
   countSince(userId: string, since: Date): Promise<number>;
+  aggregateSince?(
+    since: Date,
+  ): Promise<import('../admin/ai-operations.models').AiOperationsEvidence>;
   create(input: FeedbackUsageCreate): Promise<FeedbackUsageRecord>;
 }
 
