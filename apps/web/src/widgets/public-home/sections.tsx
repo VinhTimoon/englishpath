@@ -39,7 +39,10 @@ export function Hero() {
         <div className="site-container hero-grid">
           <div className="hero-copy">
             <p className="eyebrow">Một bước nhỏ, mỗi ngày</p>
-            <h1>Đừng học nhiều hơn. Hãy học đúng đường.</h1>
+            <h1>
+              Đừng học nhiều hơn.
+              <br className="hero-break" /> Hãy học đúng đường.
+            </h1>
             <p className="hero-lead">
               EnglishPath biến mục tiêu tiếng Anh của bạn thành một nhịp học
               ngắn, rõ việc và đủ bền để tiến bộ thật.
