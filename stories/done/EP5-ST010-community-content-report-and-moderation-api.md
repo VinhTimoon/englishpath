@@ -40,6 +40,25 @@ requires_human_approval: false
 max_fix_rounds: 2
 ---
 
+## Goal
+
+Provide a server-owned, authenticated community reporting and moderation API
+that protects learner ownership, keeps publication state behind approved roles,
+and preserves safe audit/idempotency boundaries.
+
+## Acceptance Criteria
+
+- Authenticated learners can submit and report bounded community content through
+  owner-scoped, idempotent API boundaries.
+- Only approved content roles can read moderation work and make safe
+  compare-and-set decisions.
+- Responses are strictly redacted and never expose credentials, provider data,
+  private learner input, or internal audit details.
+- Duplicate and conflicting requests are deterministic, and audit writes remain
+  transactionally coupled to moderation state changes.
+- No provider activation, production/shared-database mutation, or unrelated
+  frontend/Phase 6 work is introduced.
+
 # Story: Community content reporting and moderation API
 
 Implemented the authenticated, owner-scoped community post/report API and
@@ -49,7 +68,9 @@ decisions use compare-and-set transitions, transaction-scoped audit writes, and
 safe redacted projections. The additive Prisma migration is local evidence only
 and was not applied to shared Supabase or production.
 
-## Verification evidence
+## Verification
+
+The story was verified with the following commands:
 
 - `pnpm format:check`
 - `pnpm planning:traceability`
