@@ -1,7 +1,7 @@
 ---
 id: EP5-ST012
 title: AI quota, cost, and abuse operations dashboard
-status: review
+status: done
 type: full-stack
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
