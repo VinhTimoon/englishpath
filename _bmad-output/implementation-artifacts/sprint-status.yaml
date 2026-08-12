@@ -1,5 +1,5 @@
 # generated: 2026-07-19T09:13:12+07:00
-# last_updated: 2026-08-12T10:34:36.382Z
+# last_updated: 2026-08-12T11:30:00+07:00
 # project: englishpath
 # project_key: NOKEY
 # tracking_system: file-system
@@ -21,7 +21,7 @@
 #   a status changes.
 
 generated: 2026-07-19T09:13:12+07:00
-last_updated: 2026-08-12T10:34:36.382Z
+last_updated: 2026-08-12T11:30:00+07:00
 project: englishpath
 project_key: NOKEY
 tracking_system: file-system
@@ -179,7 +179,7 @@ development_status:
   5-8-ai-speaking-room: done
   5-9-ai-writing-coach: done
   5-10-community-content-report-and-moderation-api: done
-  5-11-community-sharing-and-moderation-ui: backlog
+  5-11-community-sharing-and-moderation-ui: ready-for-dev
   5-12-ai-quota-cost-and-abuse-dashboard: backlog
   5-13-phase-5-exit-review: backlog
   epic-5-retrospective: optional
