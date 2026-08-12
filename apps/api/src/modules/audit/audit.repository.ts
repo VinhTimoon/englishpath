@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
+import type { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 
 export type AuditPolicyResult = 'ALLOW' | 'DENY';
@@ -18,7 +19,11 @@ export class AuditRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   append(entry: AuditEntry) {
-    return this.prisma.privilegedAuditEvent.create({
+    return this.appendWithClient(this.prisma, entry);
+  }
+
+  appendWithClient(client: Prisma.TransactionClient, entry: AuditEntry) {
+    return client.privilegedAuditEvent.create({
       data: {
         id: randomUUID(),
         actorUserId: entry.actorUserId ?? null,

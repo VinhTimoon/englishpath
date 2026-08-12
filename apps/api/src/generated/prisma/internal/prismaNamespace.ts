@@ -443,6 +443,9 @@ export const ModelName = {
   Role: 'Role',
   UserRole: 'UserRole',
   PrivilegedAuditEvent: 'PrivilegedAuditEvent',
+  CommunityPost: 'CommunityPost',
+  CommunityReport: 'CommunityReport',
+  CommunityDecision: 'CommunityDecision',
   ToeicQuestion: 'ToeicQuestion',
   ToeicQuestionVersion: 'ToeicQuestionVersion',
   ToeicPracticeSession: 'ToeicPracticeSession',
@@ -512,6 +515,9 @@ export type TypeMap<
       | 'role'
       | 'userRole'
       | 'privilegedAuditEvent'
+      | 'communityPost'
+      | 'communityReport'
+      | 'communityDecision'
       | 'toeicQuestion'
       | 'toeicQuestionVersion'
       | 'toeicPracticeSession'
@@ -2962,6 +2968,234 @@ export type TypeMap<
         };
       };
     };
+    CommunityPost: {
+      payload: Prisma.$CommunityPostPayload<ExtArgs>;
+      fields: Prisma.CommunityPostFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.CommunityPostFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.CommunityPostFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>;
+        };
+        findFirst: {
+          args: Prisma.CommunityPostFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.CommunityPostFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>;
+        };
+        findMany: {
+          args: Prisma.CommunityPostFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>[];
+        };
+        create: {
+          args: Prisma.CommunityPostCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>;
+        };
+        createMany: {
+          args: Prisma.CommunityPostCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.CommunityPostCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>[];
+        };
+        delete: {
+          args: Prisma.CommunityPostDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>;
+        };
+        update: {
+          args: Prisma.CommunityPostUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>;
+        };
+        deleteMany: {
+          args: Prisma.CommunityPostDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.CommunityPostUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.CommunityPostUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>[];
+        };
+        upsert: {
+          args: Prisma.CommunityPostUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityPostPayload>;
+        };
+        aggregate: {
+          args: Prisma.CommunityPostAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCommunityPost>;
+        };
+        groupBy: {
+          args: Prisma.CommunityPostGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.CommunityPostGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.CommunityPostCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.CommunityPostCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    CommunityReport: {
+      payload: Prisma.$CommunityReportPayload<ExtArgs>;
+      fields: Prisma.CommunityReportFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.CommunityReportFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.CommunityReportFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>;
+        };
+        findFirst: {
+          args: Prisma.CommunityReportFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.CommunityReportFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>;
+        };
+        findMany: {
+          args: Prisma.CommunityReportFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>[];
+        };
+        create: {
+          args: Prisma.CommunityReportCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>;
+        };
+        createMany: {
+          args: Prisma.CommunityReportCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.CommunityReportCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>[];
+        };
+        delete: {
+          args: Prisma.CommunityReportDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>;
+        };
+        update: {
+          args: Prisma.CommunityReportUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>;
+        };
+        deleteMany: {
+          args: Prisma.CommunityReportDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.CommunityReportUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.CommunityReportUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>[];
+        };
+        upsert: {
+          args: Prisma.CommunityReportUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityReportPayload>;
+        };
+        aggregate: {
+          args: Prisma.CommunityReportAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCommunityReport>;
+        };
+        groupBy: {
+          args: Prisma.CommunityReportGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.CommunityReportGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.CommunityReportCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.CommunityReportCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    CommunityDecision: {
+      payload: Prisma.$CommunityDecisionPayload<ExtArgs>;
+      fields: Prisma.CommunityDecisionFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.CommunityDecisionFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.CommunityDecisionFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>;
+        };
+        findFirst: {
+          args: Prisma.CommunityDecisionFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.CommunityDecisionFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>;
+        };
+        findMany: {
+          args: Prisma.CommunityDecisionFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>[];
+        };
+        create: {
+          args: Prisma.CommunityDecisionCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>;
+        };
+        createMany: {
+          args: Prisma.CommunityDecisionCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.CommunityDecisionCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>[];
+        };
+        delete: {
+          args: Prisma.CommunityDecisionDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>;
+        };
+        update: {
+          args: Prisma.CommunityDecisionUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>;
+        };
+        deleteMany: {
+          args: Prisma.CommunityDecisionDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.CommunityDecisionUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.CommunityDecisionUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>[];
+        };
+        upsert: {
+          args: Prisma.CommunityDecisionUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommunityDecisionPayload>;
+        };
+        aggregate: {
+          args: Prisma.CommunityDecisionAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCommunityDecision>;
+        };
+        groupBy: {
+          args: Prisma.CommunityDecisionGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.CommunityDecisionGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.CommunityDecisionCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.CommunityDecisionCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     ToeicQuestion: {
       payload: Prisma.$ToeicQuestionPayload<ExtArgs>;
       fields: Prisma.ToeicQuestionFieldRefs;
@@ -4628,6 +4862,50 @@ export const PrivilegedAuditEventScalarFieldEnum = {
 export type PrivilegedAuditEventScalarFieldEnum =
   (typeof PrivilegedAuditEventScalarFieldEnum)[keyof typeof PrivilegedAuditEventScalarFieldEnum];
 
+export const CommunityPostScalarFieldEnum = {
+  id: 'id',
+  ownerUserId: 'ownerUserId',
+  creationIdempotencyKey: 'creationIdempotencyKey',
+  creationRequestHash: 'creationRequestHash',
+  title: 'title',
+  body: 'body',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  publishedAt: 'publishedAt',
+} as const;
+
+export type CommunityPostScalarFieldEnum =
+  (typeof CommunityPostScalarFieldEnum)[keyof typeof CommunityPostScalarFieldEnum];
+
+export const CommunityReportScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  reporterUserId: 'reporterUserId',
+  reason: 'reason',
+  idempotencyKey: 'idempotencyKey',
+  requestHash: 'requestHash',
+  correlationId: 'correlationId',
+  createdAt: 'createdAt',
+} as const;
+
+export type CommunityReportScalarFieldEnum =
+  (typeof CommunityReportScalarFieldEnum)[keyof typeof CommunityReportScalarFieldEnum];
+
+export const CommunityDecisionScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  actorUserId: 'actorUserId',
+  idempotencyKey: 'idempotencyKey',
+  requestHash: 'requestHash',
+  decision: 'decision',
+  correlationId: 'correlationId',
+  createdAt: 'createdAt',
+} as const;
+
+export type CommunityDecisionScalarFieldEnum =
+  (typeof CommunityDecisionScalarFieldEnum)[keyof typeof CommunityDecisionScalarFieldEnum];
+
 export const ToeicQuestionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -5294,6 +5572,42 @@ export type ListEnumAuditPolicyResultFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, 'AuditPolicyResult[]'>;
 
 /**
+ * Reference to a field of type 'CommunityPostStatus'
+ */
+export type EnumCommunityPostStatusFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'CommunityPostStatus'>;
+
+/**
+ * Reference to a field of type 'CommunityPostStatus[]'
+ */
+export type ListEnumCommunityPostStatusFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'CommunityPostStatus[]'>;
+
+/**
+ * Reference to a field of type 'CommunityReportReason'
+ */
+export type EnumCommunityReportReasonFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'CommunityReportReason'>;
+
+/**
+ * Reference to a field of type 'CommunityReportReason[]'
+ */
+export type ListEnumCommunityReportReasonFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'CommunityReportReason[]'>;
+
+/**
+ * Reference to a field of type 'CommunityDecisionAction'
+ */
+export type EnumCommunityDecisionActionFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'CommunityDecisionAction'>;
+
+/**
+ * Reference to a field of type 'CommunityDecisionAction[]'
+ */
+export type ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, 'CommunityDecisionAction[]'>;
+
+/**
  * Reference to a field of type 'ToeicPart'
  */
 export type EnumToeicPartFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -5661,6 +5975,9 @@ export type GlobalOmitConfig = {
   role?: Prisma.RoleOmit;
   userRole?: Prisma.UserRoleOmit;
   privilegedAuditEvent?: Prisma.PrivilegedAuditEventOmit;
+  communityPost?: Prisma.CommunityPostOmit;
+  communityReport?: Prisma.CommunityReportOmit;
+  communityDecision?: Prisma.CommunityDecisionOmit;
   toeicQuestion?: Prisma.ToeicQuestionOmit;
   toeicQuestionVersion?: Prisma.ToeicQuestionVersionOmit;
   toeicPracticeSession?: Prisma.ToeicPracticeSessionOmit;

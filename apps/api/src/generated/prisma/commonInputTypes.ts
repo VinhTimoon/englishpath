@@ -1074,6 +1074,110 @@ export type EnumAuditPolicyResultWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumAuditPolicyResultFilter<$PrismaModel>;
 };
 
+export type EnumCommunityPostStatusFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.CommunityPostStatus
+    | Prisma.EnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityPostStatus[]
+    | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityPostStatus[]
+    | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityPostStatusFilter<$PrismaModel>
+    | $Enums.CommunityPostStatus;
+};
+
+export type EnumCommunityPostStatusWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.CommunityPostStatus
+      | Prisma.EnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.CommunityPostStatus[]
+      | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.CommunityPostStatus[]
+      | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumCommunityPostStatusWithAggregatesFilter<$PrismaModel>
+      | $Enums.CommunityPostStatus;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumCommunityPostStatusFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumCommunityPostStatusFilter<$PrismaModel>;
+  };
+
+export type EnumCommunityReportReasonFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.CommunityReportReason
+    | Prisma.EnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityReportReasonFilter<$PrismaModel>
+    | $Enums.CommunityReportReason;
+};
+
+export type EnumCommunityReportReasonWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.CommunityReportReason
+    | Prisma.EnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityReportReasonWithAggregatesFilter<$PrismaModel>
+    | $Enums.CommunityReportReason;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumCommunityReportReasonFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumCommunityReportReasonFilter<$PrismaModel>;
+};
+
+export type EnumCommunityDecisionActionFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.CommunityDecisionAction
+    | Prisma.EnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityDecisionActionFilter<$PrismaModel>
+    | $Enums.CommunityDecisionAction;
+};
+
+export type EnumCommunityDecisionActionWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.CommunityDecisionAction
+    | Prisma.EnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityDecisionActionWithAggregatesFilter<$PrismaModel>
+    | $Enums.CommunityDecisionAction;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumCommunityDecisionActionFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumCommunityDecisionActionFilter<$PrismaModel>;
+};
+
 export type EnumToeicPartFilter<$PrismaModel = never> = {
   equals?: $Enums.ToeicPart | Prisma.EnumToeicPartFieldRefInput<$PrismaModel>;
   in?: $Enums.ToeicPart[] | Prisma.ListEnumToeicPartFieldRefInput<$PrismaModel>;
@@ -2674,6 +2778,111 @@ export type NestedEnumAuditPolicyResultWithAggregatesFilter<
   _count?: Prisma.NestedIntFilter<$PrismaModel>;
   _min?: Prisma.NestedEnumAuditPolicyResultFilter<$PrismaModel>;
   _max?: Prisma.NestedEnumAuditPolicyResultFilter<$PrismaModel>;
+};
+
+export type NestedEnumCommunityPostStatusFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.CommunityPostStatus
+    | Prisma.EnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityPostStatus[]
+    | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityPostStatus[]
+    | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityPostStatusFilter<$PrismaModel>
+    | $Enums.CommunityPostStatus;
+};
+
+export type NestedEnumCommunityPostStatusWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.CommunityPostStatus
+    | Prisma.EnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityPostStatus[]
+    | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityPostStatus[]
+    | Prisma.ListEnumCommunityPostStatusFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityPostStatusWithAggregatesFilter<$PrismaModel>
+    | $Enums.CommunityPostStatus;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumCommunityPostStatusFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumCommunityPostStatusFilter<$PrismaModel>;
+};
+
+export type NestedEnumCommunityReportReasonFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.CommunityReportReason
+    | Prisma.EnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityReportReasonFilter<$PrismaModel>
+    | $Enums.CommunityReportReason;
+};
+
+export type NestedEnumCommunityReportReasonWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.CommunityReportReason
+    | Prisma.EnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityReportReason[]
+    | Prisma.ListEnumCommunityReportReasonFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityReportReasonWithAggregatesFilter<$PrismaModel>
+    | $Enums.CommunityReportReason;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumCommunityReportReasonFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumCommunityReportReasonFilter<$PrismaModel>;
+};
+
+export type NestedEnumCommunityDecisionActionFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.CommunityDecisionAction
+    | Prisma.EnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityDecisionActionFilter<$PrismaModel>
+    | $Enums.CommunityDecisionAction;
+};
+
+export type NestedEnumCommunityDecisionActionWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.CommunityDecisionAction
+    | Prisma.EnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.CommunityDecisionAction[]
+    | Prisma.ListEnumCommunityDecisionActionFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumCommunityDecisionActionWithAggregatesFilter<$PrismaModel>
+    | $Enums.CommunityDecisionAction;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumCommunityDecisionActionFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumCommunityDecisionActionFilter<$PrismaModel>;
 };
 
 export type NestedEnumToeicPartFilter<$PrismaModel = never> = {

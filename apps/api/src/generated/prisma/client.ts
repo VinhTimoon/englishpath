@@ -205,6 +205,21 @@ export type UserRole = Prisma.UserRoleModel;
  */
 export type PrivilegedAuditEvent = Prisma.PrivilegedAuditEventModel;
 /**
+ * Model CommunityPost
+ *
+ */
+export type CommunityPost = Prisma.CommunityPostModel;
+/**
+ * Model CommunityReport
+ *
+ */
+export type CommunityReport = Prisma.CommunityReportModel;
+/**
+ * Model CommunityDecision
+ *
+ */
+export type CommunityDecision = Prisma.CommunityDecisionModel;
+/**
  * Model ToeicQuestion
  *
  */

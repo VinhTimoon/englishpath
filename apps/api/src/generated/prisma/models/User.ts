@@ -247,6 +247,9 @@ export type UserWhereInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeListRelationFilter;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptListRelationFilter;
+  communityPosts?: Prisma.CommunityPostListRelationFilter;
+  communityReports?: Prisma.CommunityReportListRelationFilter;
+  communityDecisions?: Prisma.CommunityDecisionListRelationFilter;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -286,6 +289,9 @@ export type UserOrderByWithRelationInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteOrderByRelationAggregateInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeOrderByRelationAggregateInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptOrderByRelationAggregateInput;
+  communityPosts?: Prisma.CommunityPostOrderByRelationAggregateInput;
+  communityReports?: Prisma.CommunityReportOrderByRelationAggregateInput;
+  communityDecisions?: Prisma.CommunityDecisionOrderByRelationAggregateInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -340,6 +346,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     libraryNotes?: Prisma.LibraryPersonalNoteListRelationFilter;
     libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeListRelationFilter;
     shadowingAttempts?: Prisma.LibraryShadowingAttemptListRelationFilter;
+    communityPosts?: Prisma.CommunityPostListRelationFilter;
+    communityReports?: Prisma.CommunityReportListRelationFilter;
+    communityDecisions?: Prisma.CommunityDecisionListRelationFilter;
   },
   'id' | 'email' | 'authProvider_externalSubject'
 >;
@@ -418,6 +427,9 @@ export type UserCreateInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateInput = {
@@ -457,6 +469,9 @@ export type UserUncheckedCreateInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserUpdateInput = {
@@ -499,6 +514,9 @@ export type UserUpdateInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -541,6 +559,9 @@ export type UserUncheckedUpdateInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateManyInput = {
@@ -1123,6 +1144,84 @@ export type UserUpdateOneWithoutPrivilegedAuditEventsNestedInput = {
   >;
 };
 
+export type UserCreateNestedOneWithoutCommunityPostsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityPostsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityPostsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityPostsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutCommunityPostsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityPostsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityPostsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityPostsInput;
+  upsert?: Prisma.UserUpsertWithoutCommunityPostsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutCommunityPostsInput,
+      Prisma.UserUpdateWithoutCommunityPostsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutCommunityPostsInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutCommunityReportsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityReportsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityReportsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityReportsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutCommunityReportsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityReportsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityReportsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityReportsInput;
+  upsert?: Prisma.UserUpsertWithoutCommunityReportsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutCommunityReportsInput,
+      Prisma.UserUpdateWithoutCommunityReportsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutCommunityReportsInput
+  >;
+};
+
+export type UserCreateNestedOneWithoutCommunityDecisionsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityDecisionsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityDecisionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityDecisionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutCommunityDecisionsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityDecisionsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityDecisionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityDecisionsInput;
+  upsert?: Prisma.UserUpsertWithoutCommunityDecisionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutCommunityDecisionsInput,
+      Prisma.UserUpdateWithoutCommunityDecisionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutCommunityDecisionsInput
+  >;
+};
+
 export type UserCreateNestedOneWithoutToeicPracticeSessionsInput = {
   create?: Prisma.XOR<
     Prisma.UserCreateWithoutToeicPracticeSessionsInput,
@@ -1421,6 +1520,9 @@ export type UserCreateWithoutLibraryProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutLibraryProgressInput = {
@@ -1459,6 +1561,9 @@ export type UserUncheckedCreateWithoutLibraryProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutLibraryProgressInput = {
@@ -1528,6 +1633,9 @@ export type UserUpdateWithoutLibraryProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutLibraryProgressInput = {
@@ -1569,6 +1677,9 @@ export type UserUncheckedUpdateWithoutLibraryProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutLibraryBookmarksInput = {
@@ -1607,6 +1718,9 @@ export type UserCreateWithoutLibraryBookmarksInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutLibraryBookmarksInput = {
@@ -1645,6 +1759,9 @@ export type UserUncheckedCreateWithoutLibraryBookmarksInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutLibraryBookmarksInput = {
@@ -1714,6 +1831,9 @@ export type UserUpdateWithoutLibraryBookmarksInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutLibraryBookmarksInput = {
@@ -1755,6 +1875,9 @@ export type UserUncheckedUpdateWithoutLibraryBookmarksInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutLibraryNotesInput = {
@@ -1793,6 +1916,9 @@ export type UserCreateWithoutLibraryNotesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutLibraryNotesInput = {
@@ -1831,6 +1957,9 @@ export type UserUncheckedCreateWithoutLibraryNotesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutLibraryNotesInput = {
@@ -1900,6 +2029,9 @@ export type UserUpdateWithoutLibraryNotesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutLibraryNotesInput = {
@@ -1941,6 +2073,9 @@ export type UserUncheckedUpdateWithoutLibraryNotesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutLibraryDrillOutcomesInput = {
@@ -1979,6 +2114,9 @@ export type UserCreateWithoutLibraryDrillOutcomesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutLibraryDrillOutcomesInput = {
@@ -2017,6 +2155,9 @@ export type UserUncheckedCreateWithoutLibraryDrillOutcomesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutLibraryDrillOutcomesInput = {
@@ -2086,6 +2227,9 @@ export type UserUpdateWithoutLibraryDrillOutcomesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutLibraryDrillOutcomesInput = {
@@ -2127,6 +2271,9 @@ export type UserUncheckedUpdateWithoutLibraryDrillOutcomesInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutShadowingAttemptsInput = {
@@ -2165,6 +2312,9 @@ export type UserCreateWithoutShadowingAttemptsInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutShadowingAttemptsInput = {
@@ -2203,6 +2353,9 @@ export type UserUncheckedCreateWithoutShadowingAttemptsInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutShadowingAttemptsInput = {
@@ -2272,6 +2425,9 @@ export type UserUpdateWithoutShadowingAttemptsInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutShadowingAttemptsInput = {
@@ -2313,6 +2469,9 @@ export type UserUncheckedUpdateWithoutShadowingAttemptsInput = {
   libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutOnboardingInput = {
@@ -2351,6 +2510,9 @@ export type UserCreateWithoutOnboardingInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutOnboardingInput = {
@@ -2389,6 +2551,9 @@ export type UserUncheckedCreateWithoutOnboardingInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutOnboardingInput = {
@@ -2458,6 +2623,9 @@ export type UserUpdateWithoutOnboardingInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutOnboardingInput = {
@@ -2499,6 +2667,9 @@ export type UserUncheckedUpdateWithoutOnboardingInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutPlacementAttemptsInput = {
@@ -2537,6 +2708,9 @@ export type UserCreateWithoutPlacementAttemptsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
@@ -2575,6 +2749,9 @@ export type UserUncheckedCreateWithoutPlacementAttemptsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutPlacementAttemptsInput = {
@@ -2644,6 +2821,9 @@ export type UserUpdateWithoutPlacementAttemptsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
@@ -2685,6 +2865,9 @@ export type UserUncheckedUpdateWithoutPlacementAttemptsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutRoadmapsInput = {
@@ -2723,6 +2906,9 @@ export type UserCreateWithoutRoadmapsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutRoadmapsInput = {
@@ -2761,6 +2947,9 @@ export type UserUncheckedCreateWithoutRoadmapsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutRoadmapsInput = {
@@ -2830,6 +3019,9 @@ export type UserUpdateWithoutRoadmapsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoadmapsInput = {
@@ -2871,6 +3063,9 @@ export type UserUncheckedUpdateWithoutRoadmapsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutPracticeSessionsInput = {
@@ -2909,6 +3104,9 @@ export type UserCreateWithoutPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutPracticeSessionsInput = {
@@ -2947,6 +3145,9 @@ export type UserUncheckedCreateWithoutPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutPracticeSessionsInput = {
@@ -3016,6 +3217,9 @@ export type UserUpdateWithoutPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
@@ -3057,6 +3261,9 @@ export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutLearnerProgressInput = {
@@ -3095,6 +3302,9 @@ export type UserCreateWithoutLearnerProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutLearnerProgressInput = {
@@ -3133,6 +3343,9 @@ export type UserUncheckedCreateWithoutLearnerProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutLearnerProgressInput = {
@@ -3202,6 +3415,9 @@ export type UserUpdateWithoutLearnerProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutLearnerProgressInput = {
@@ -3243,6 +3459,9 @@ export type UserUncheckedUpdateWithoutLearnerProgressInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutErrorNotebookEntriesInput = {
@@ -3281,6 +3500,9 @@ export type UserCreateWithoutErrorNotebookEntriesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutErrorNotebookEntriesInput = {
@@ -3319,6 +3541,9 @@ export type UserUncheckedCreateWithoutErrorNotebookEntriesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutErrorNotebookEntriesInput = {
@@ -3388,6 +3613,9 @@ export type UserUpdateWithoutErrorNotebookEntriesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutErrorNotebookEntriesInput = {
@@ -3429,6 +3657,9 @@ export type UserUncheckedUpdateWithoutErrorNotebookEntriesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutProfileInput = {
@@ -3467,6 +3698,9 @@ export type UserCreateWithoutProfileInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -3505,6 +3739,9 @@ export type UserUncheckedCreateWithoutProfileInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -3574,6 +3811,9 @@ export type UserUpdateWithoutProfileInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -3615,6 +3855,9 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutDailySentenceCompletionsInput = {
@@ -3653,6 +3896,9 @@ export type UserCreateWithoutDailySentenceCompletionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutDailySentenceCompletionsInput = {
@@ -3691,6 +3937,9 @@ export type UserUncheckedCreateWithoutDailySentenceCompletionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutDailySentenceCompletionsInput = {
@@ -3760,6 +4009,9 @@ export type UserUpdateWithoutDailySentenceCompletionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutDailySentenceCompletionsInput = {
@@ -3801,6 +4053,9 @@ export type UserUncheckedUpdateWithoutDailySentenceCompletionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutVocabularyMasteryStatesInput = {
@@ -3839,6 +4094,9 @@ export type UserCreateWithoutVocabularyMasteryStatesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutVocabularyMasteryStatesInput = {
@@ -3877,6 +4135,9 @@ export type UserUncheckedCreateWithoutVocabularyMasteryStatesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutVocabularyMasteryStatesInput = {
@@ -3946,6 +4207,9 @@ export type UserUpdateWithoutVocabularyMasteryStatesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutVocabularyMasteryStatesInput = {
@@ -3987,6 +4251,9 @@ export type UserUncheckedUpdateWithoutVocabularyMasteryStatesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutVocabularyReviewSubmissionsInput = {
@@ -4025,6 +4292,9 @@ export type UserCreateWithoutVocabularyReviewSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput = {
@@ -4063,6 +4333,9 @@ export type UserUncheckedCreateWithoutVocabularyReviewSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutVocabularyReviewSubmissionsInput = {
@@ -4132,6 +4405,9 @@ export type UserUpdateWithoutVocabularyReviewSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput = {
@@ -4173,6 +4449,9 @@ export type UserUncheckedUpdateWithoutVocabularyReviewSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutRoleAssignmentsInput = {
@@ -4211,6 +4490,9 @@ export type UserCreateWithoutRoleAssignmentsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
@@ -4249,6 +4531,9 @@ export type UserUncheckedCreateWithoutRoleAssignmentsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsInput = {
@@ -4295,6 +4580,9 @@ export type UserCreateWithoutRoleAssignmentsAuthoredInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
@@ -4333,6 +4621,9 @@ export type UserUncheckedCreateWithoutRoleAssignmentsAuthoredInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutRoleAssignmentsAuthoredInput = {
@@ -4402,6 +4693,9 @@ export type UserUpdateWithoutRoleAssignmentsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
@@ -4443,6 +4737,9 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUpsertWithoutRoleAssignmentsAuthoredInput = {
@@ -4504,6 +4801,9 @@ export type UserUpdateWithoutRoleAssignmentsAuthoredInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
@@ -4545,6 +4845,9 @@ export type UserUncheckedUpdateWithoutRoleAssignmentsAuthoredInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutPrivilegedAuditEventsInput = {
@@ -4583,6 +4886,9 @@ export type UserCreateWithoutPrivilegedAuditEventsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutPrivilegedAuditEventsInput = {
@@ -4621,6 +4927,9 @@ export type UserUncheckedCreateWithoutPrivilegedAuditEventsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutPrivilegedAuditEventsInput = {
@@ -4690,6 +4999,9 @@ export type UserUpdateWithoutPrivilegedAuditEventsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutPrivilegedAuditEventsInput = {
@@ -4731,6 +5043,603 @@ export type UserUncheckedUpdateWithoutPrivilegedAuditEventsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
+};
+
+export type UserCreateWithoutCommunityPostsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
+};
+
+export type UserUncheckedCreateWithoutCommunityPostsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
+};
+
+export type UserCreateOrConnectWithoutCommunityPostsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityPostsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityPostsInput
+  >;
+};
+
+export type UserUpsertWithoutCommunityPostsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutCommunityPostsInput,
+    Prisma.UserUncheckedUpdateWithoutCommunityPostsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityPostsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityPostsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutCommunityPostsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutCommunityPostsInput,
+    Prisma.UserUncheckedUpdateWithoutCommunityPostsInput
+  >;
+};
+
+export type UserUpdateWithoutCommunityPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutCommunityPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
+};
+
+export type UserCreateWithoutCommunityReportsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
+};
+
+export type UserUncheckedCreateWithoutCommunityReportsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
+};
+
+export type UserCreateOrConnectWithoutCommunityReportsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityReportsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityReportsInput
+  >;
+};
+
+export type UserUpsertWithoutCommunityReportsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutCommunityReportsInput,
+    Prisma.UserUncheckedUpdateWithoutCommunityReportsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityReportsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityReportsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutCommunityReportsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutCommunityReportsInput,
+    Prisma.UserUncheckedUpdateWithoutCommunityReportsInput
+  >;
+};
+
+export type UserUpdateWithoutCommunityReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutCommunityReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
+};
+
+export type UserCreateWithoutCommunityDecisionsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+};
+
+export type UserUncheckedCreateWithoutCommunityDecisionsInput = {
+  id?: string;
+  email: string;
+  legacyName?: string | null;
+  authProvider?: $Enums.IdentityProvider;
+  externalSubject?: string | null;
+  status?: $Enums.UserStatus;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  profile?: Prisma.UserProfileUncheckedCreateNestedOneWithoutUserInput;
+  roleAssignments?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedCreateNestedManyWithoutAssignedByInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedCreateNestedOneWithoutUserInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedCreateNestedManyWithoutUserInput;
+  roadmaps?: Prisma.RoadmapUncheckedCreateNestedManyWithoutUserInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedCreateNestedOneWithoutUserInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedCreateNestedManyWithoutUserInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedCreateNestedManyWithoutUserInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedCreateNestedManyWithoutActorInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedCreateNestedManyWithoutUserInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedCreateNestedManyWithoutUserInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedCreateNestedManyWithoutUserInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedCreateNestedManyWithoutUserInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedCreateNestedManyWithoutUserInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedCreateNestedManyWithoutUserInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+};
+
+export type UserCreateOrConnectWithoutCommunityDecisionsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityDecisionsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityDecisionsInput
+  >;
+};
+
+export type UserUpsertWithoutCommunityDecisionsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutCommunityDecisionsInput,
+    Prisma.UserUncheckedUpdateWithoutCommunityDecisionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutCommunityDecisionsInput,
+    Prisma.UserUncheckedCreateWithoutCommunityDecisionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutCommunityDecisionsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutCommunityDecisionsInput,
+    Prisma.UserUncheckedUpdateWithoutCommunityDecisionsInput
+  >;
+};
+
+export type UserUpdateWithoutCommunityDecisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutCommunityDecisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  legacyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  authProvider?:
+    | Prisma.EnumIdentityProviderFieldUpdateOperationsInput
+    | $Enums.IdentityProvider;
+  externalSubject?:
+    Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  profile?: Prisma.UserProfileUncheckedUpdateOneWithoutUserNestedInput;
+  roleAssignments?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+  roleAssignmentsAuthored?: Prisma.UserRoleUncheckedUpdateManyWithoutAssignedByNestedInput;
+  onboarding?: Prisma.LearnerOnboardingUncheckedUpdateOneWithoutUserNestedInput;
+  placementAttempts?: Prisma.PlacementAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  roadmaps?: Prisma.RoadmapUncheckedUpdateManyWithoutUserNestedInput;
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  learnerProgress?: Prisma.LearnerProgressUncheckedUpdateOneWithoutUserNestedInput;
+  errorNotebookEntries?: Prisma.ErrorNotebookEntryUncheckedUpdateManyWithoutUserNestedInput;
+  dailySentenceCompletions?: Prisma.DailySentenceCompletionUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyMasteryStates?: Prisma.VocabularyMasteryStateUncheckedUpdateManyWithoutUserNestedInput;
+  vocabularyReviewSubmissions?: Prisma.VocabularyReviewSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  privilegedAuditEvents?: Prisma.PrivilegedAuditEventUncheckedUpdateManyWithoutActorNestedInput;
+  toeicPracticeSessions?: Prisma.ToeicPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicReadingPracticeSessions?: Prisma.ToeicReadingPracticeSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicTimedTestSessions?: Prisma.ToeicTimedTestSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSessions?: Prisma.ToeicSpeakingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingSubmissions?: Prisma.ToeicSpeakingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingRecordings?: Prisma.ToeicSpeakingRecordingUncheckedUpdateManyWithoutUserNestedInput;
+  toeicSpeakingPlaybackCapabilities?: Prisma.ToeicSpeakingPlaybackCapabilityUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSessions?: Prisma.ToeicWritingSessionUncheckedUpdateManyWithoutUserNestedInput;
+  toeicWritingSubmissions?: Prisma.ToeicWritingSubmissionUncheckedUpdateManyWithoutUserNestedInput;
+  aiFeedbackUsages?: Prisma.AiFeedbackUsageUncheckedUpdateManyWithoutUserNestedInput;
+  libraryProgress?: Prisma.LibraryLearningProgressUncheckedUpdateManyWithoutUserNestedInput;
+  libraryBookmarks?: Prisma.LibraryBookmarkUncheckedUpdateManyWithoutUserNestedInput;
+  libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
+  libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
+  shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
 };
 
 export type UserCreateWithoutToeicPracticeSessionsInput = {
@@ -4769,6 +5678,9 @@ export type UserCreateWithoutToeicPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicPracticeSessionsInput = {
@@ -4807,6 +5719,9 @@ export type UserUncheckedCreateWithoutToeicPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicPracticeSessionsInput = {
@@ -4876,6 +5791,9 @@ export type UserUpdateWithoutToeicPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicPracticeSessionsInput = {
@@ -4917,6 +5835,9 @@ export type UserUncheckedUpdateWithoutToeicPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicReadingPracticeSessionsInput = {
@@ -4955,6 +5876,9 @@ export type UserCreateWithoutToeicReadingPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput = {
@@ -4993,6 +5917,9 @@ export type UserUncheckedCreateWithoutToeicReadingPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicReadingPracticeSessionsInput = {
@@ -5062,6 +5989,9 @@ export type UserUpdateWithoutToeicReadingPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput = {
@@ -5103,6 +6033,9 @@ export type UserUncheckedUpdateWithoutToeicReadingPracticeSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicTimedTestSessionsInput = {
@@ -5141,6 +6074,9 @@ export type UserCreateWithoutToeicTimedTestSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicTimedTestSessionsInput = {
@@ -5179,6 +6115,9 @@ export type UserUncheckedCreateWithoutToeicTimedTestSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicTimedTestSessionsInput = {
@@ -5248,6 +6187,9 @@ export type UserUpdateWithoutToeicTimedTestSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicTimedTestSessionsInput = {
@@ -5289,6 +6231,9 @@ export type UserUncheckedUpdateWithoutToeicTimedTestSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicSpeakingSessionsInput = {
@@ -5327,6 +6272,9 @@ export type UserCreateWithoutToeicSpeakingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicSpeakingSessionsInput = {
@@ -5365,6 +6313,9 @@ export type UserUncheckedCreateWithoutToeicSpeakingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicSpeakingSessionsInput = {
@@ -5434,6 +6385,9 @@ export type UserUpdateWithoutToeicSpeakingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicSpeakingSessionsInput = {
@@ -5475,6 +6429,9 @@ export type UserUncheckedUpdateWithoutToeicSpeakingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicSpeakingSubmissionsInput = {
@@ -5513,6 +6470,9 @@ export type UserCreateWithoutToeicSpeakingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput = {
@@ -5551,6 +6511,9 @@ export type UserUncheckedCreateWithoutToeicSpeakingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicSpeakingSubmissionsInput = {
@@ -5620,6 +6583,9 @@ export type UserUpdateWithoutToeicSpeakingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput = {
@@ -5661,6 +6627,9 @@ export type UserUncheckedUpdateWithoutToeicSpeakingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicSpeakingRecordingsInput = {
@@ -5699,6 +6668,9 @@ export type UserCreateWithoutToeicSpeakingRecordingsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicSpeakingRecordingsInput = {
@@ -5737,6 +6709,9 @@ export type UserUncheckedCreateWithoutToeicSpeakingRecordingsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicSpeakingRecordingsInput = {
@@ -5806,6 +6781,9 @@ export type UserUpdateWithoutToeicSpeakingRecordingsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicSpeakingRecordingsInput = {
@@ -5847,6 +6825,9 @@ export type UserUncheckedUpdateWithoutToeicSpeakingRecordingsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
@@ -5885,6 +6866,9 @@ export type UserCreateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
@@ -5923,6 +6907,9 @@ export type UserUncheckedCreateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicSpeakingPlaybackCapabilitiesInput = {
@@ -5993,6 +6980,9 @@ export type UserUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
@@ -6034,6 +7024,9 @@ export type UserUncheckedUpdateWithoutToeicSpeakingPlaybackCapabilitiesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicWritingSessionsInput = {
@@ -6072,6 +7065,9 @@ export type UserCreateWithoutToeicWritingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicWritingSessionsInput = {
@@ -6110,6 +7106,9 @@ export type UserUncheckedCreateWithoutToeicWritingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicWritingSessionsInput = {
@@ -6179,6 +7178,9 @@ export type UserUpdateWithoutToeicWritingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicWritingSessionsInput = {
@@ -6220,6 +7222,9 @@ export type UserUncheckedUpdateWithoutToeicWritingSessionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutToeicWritingSubmissionsInput = {
@@ -6258,6 +7263,9 @@ export type UserCreateWithoutToeicWritingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutToeicWritingSubmissionsInput = {
@@ -6296,6 +7304,9 @@ export type UserUncheckedCreateWithoutToeicWritingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutToeicWritingSubmissionsInput = {
@@ -6365,6 +7376,9 @@ export type UserUpdateWithoutToeicWritingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutToeicWritingSubmissionsInput = {
@@ -6406,6 +7420,9 @@ export type UserUncheckedUpdateWithoutToeicWritingSubmissionsInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 export type UserCreateWithoutAiFeedbackUsagesInput = {
@@ -6444,6 +7461,9 @@ export type UserCreateWithoutAiFeedbackUsagesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionCreateNestedManyWithoutActorInput;
 };
 
 export type UserUncheckedCreateWithoutAiFeedbackUsagesInput = {
@@ -6482,6 +7502,9 @@ export type UserUncheckedCreateWithoutAiFeedbackUsagesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedCreateNestedManyWithoutUserInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedCreateNestedManyWithoutUserInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedCreateNestedManyWithoutUserInput;
+  communityPosts?: Prisma.CommunityPostUncheckedCreateNestedManyWithoutOwnerInput;
+  communityReports?: Prisma.CommunityReportUncheckedCreateNestedManyWithoutReporterInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedCreateNestedManyWithoutActorInput;
 };
 
 export type UserCreateOrConnectWithoutAiFeedbackUsagesInput = {
@@ -6551,6 +7574,9 @@ export type UserUpdateWithoutAiFeedbackUsagesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUpdateManyWithoutActorNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutAiFeedbackUsagesInput = {
@@ -6592,6 +7618,9 @@ export type UserUncheckedUpdateWithoutAiFeedbackUsagesInput = {
   libraryNotes?: Prisma.LibraryPersonalNoteUncheckedUpdateManyWithoutUserNestedInput;
   libraryDrillOutcomes?: Prisma.LibraryDrillOutcomeUncheckedUpdateManyWithoutUserNestedInput;
   shadowingAttempts?: Prisma.LibraryShadowingAttemptUncheckedUpdateManyWithoutUserNestedInput;
+  communityPosts?: Prisma.CommunityPostUncheckedUpdateManyWithoutOwnerNestedInput;
+  communityReports?: Prisma.CommunityReportUncheckedUpdateManyWithoutReporterNestedInput;
+  communityDecisions?: Prisma.CommunityDecisionUncheckedUpdateManyWithoutActorNestedInput;
 };
 
 /**
@@ -6624,6 +7653,9 @@ export type UserCountOutputType = {
   libraryNotes: number;
   libraryDrillOutcomes: number;
   shadowingAttempts: number;
+  communityPosts: number;
+  communityReports: number;
+  communityDecisions: number;
 };
 
 export type UserCountOutputTypeSelect<
@@ -6671,6 +7703,9 @@ export type UserCountOutputTypeSelect<
   libraryDrillOutcomes?:
     boolean | UserCountOutputTypeCountLibraryDrillOutcomesArgs;
   shadowingAttempts?: boolean | UserCountOutputTypeCountShadowingAttemptsArgs;
+  communityPosts?: boolean | UserCountOutputTypeCountCommunityPostsArgs;
+  communityReports?: boolean | UserCountOutputTypeCountCommunityReportsArgs;
+  communityDecisions?: boolean | UserCountOutputTypeCountCommunityDecisionsArgs;
 };
 
 /**
@@ -6936,6 +7971,36 @@ export type UserCountOutputTypeCountShadowingAttemptsArgs<
   where?: Prisma.LibraryShadowingAttemptWhereInput;
 };
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommunityPostsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.CommunityPostWhereInput;
+};
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommunityReportsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.CommunityReportWhereInput;
+};
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommunityDecisionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.CommunityDecisionWhereInput;
+};
+
 export type UserSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -6993,6 +8058,9 @@ export type UserSelect<
     libraryDrillOutcomes?:
       boolean | Prisma.User$libraryDrillOutcomesArgs<ExtArgs>;
     shadowingAttempts?: boolean | Prisma.User$shadowingAttemptsArgs<ExtArgs>;
+    communityPosts?: boolean | Prisma.User$communityPostsArgs<ExtArgs>;
+    communityReports?: boolean | Prisma.User$communityReportsArgs<ExtArgs>;
+    communityDecisions?: boolean | Prisma.User$communityDecisionsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
@@ -7105,6 +8173,9 @@ export type UserInclude<
   libraryDrillOutcomes?:
     boolean | Prisma.User$libraryDrillOutcomesArgs<ExtArgs>;
   shadowingAttempts?: boolean | Prisma.User$shadowingAttemptsArgs<ExtArgs>;
+  communityPosts?: boolean | Prisma.User$communityPostsArgs<ExtArgs>;
+  communityReports?: boolean | Prisma.User$communityReportsArgs<ExtArgs>;
+  communityDecisions?: boolean | Prisma.User$communityDecisionsArgs<ExtArgs>;
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
@@ -7150,6 +8221,9 @@ export type $UserPayload<
     libraryNotes: Prisma.$LibraryPersonalNotePayload<ExtArgs>[];
     libraryDrillOutcomes: Prisma.$LibraryDrillOutcomePayload<ExtArgs>[];
     shadowingAttempts: Prisma.$LibraryShadowingAttemptPayload<ExtArgs>[];
+    communityPosts: Prisma.$CommunityPostPayload<ExtArgs>[];
+    communityReports: Prisma.$CommunityReportPayload<ExtArgs>[];
+    communityDecisions: Prisma.$CommunityDecisionPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -8060,6 +9134,41 @@ export interface Prisma__UserClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$LibraryShadowingAttemptPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  communityPosts<T extends Prisma.User$communityPostsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$communityPostsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$CommunityPostPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  communityReports<T extends Prisma.User$communityReportsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$communityReportsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$CommunityReportPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  communityDecisions<
+    T extends Prisma.User$communityDecisionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.User$communityDecisionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$CommunityDecisionPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -9385,6 +10494,98 @@ export type User$shadowingAttemptsArgs<
   distinct?:
     | Prisma.LibraryShadowingAttemptScalarFieldEnum
     | Prisma.LibraryShadowingAttemptScalarFieldEnum[];
+};
+
+/**
+ * User.communityPosts
+ */
+export type User$communityPostsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the CommunityPost
+   */
+  select?: Prisma.CommunityPostSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the CommunityPost
+   */
+  omit?: Prisma.CommunityPostOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommunityPostInclude<ExtArgs> | null;
+  where?: Prisma.CommunityPostWhereInput;
+  orderBy?:
+    | Prisma.CommunityPostOrderByWithRelationInput
+    | Prisma.CommunityPostOrderByWithRelationInput[];
+  cursor?: Prisma.CommunityPostWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    Prisma.CommunityPostScalarFieldEnum | Prisma.CommunityPostScalarFieldEnum[];
+};
+
+/**
+ * User.communityReports
+ */
+export type User$communityReportsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the CommunityReport
+   */
+  select?: Prisma.CommunityReportSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the CommunityReport
+   */
+  omit?: Prisma.CommunityReportOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommunityReportInclude<ExtArgs> | null;
+  where?: Prisma.CommunityReportWhereInput;
+  orderBy?:
+    | Prisma.CommunityReportOrderByWithRelationInput
+    | Prisma.CommunityReportOrderByWithRelationInput[];
+  cursor?: Prisma.CommunityReportWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.CommunityReportScalarFieldEnum
+    | Prisma.CommunityReportScalarFieldEnum[];
+};
+
+/**
+ * User.communityDecisions
+ */
+export type User$communityDecisionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the CommunityDecision
+   */
+  select?: Prisma.CommunityDecisionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the CommunityDecision
+   */
+  omit?: Prisma.CommunityDecisionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommunityDecisionInclude<ExtArgs> | null;
+  where?: Prisma.CommunityDecisionWhereInput;
+  orderBy?:
+    | Prisma.CommunityDecisionOrderByWithRelationInput
+    | Prisma.CommunityDecisionOrderByWithRelationInput[];
+  cursor?: Prisma.CommunityDecisionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.CommunityDecisionScalarFieldEnum
+    | Prisma.CommunityDecisionScalarFieldEnum[];
 };
 
 /**

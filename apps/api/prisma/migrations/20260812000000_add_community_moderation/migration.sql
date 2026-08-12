@@ -1,0 +1,17 @@
+CREATE TYPE "CommunityPostStatus" AS ENUM ('PENDING_REVIEW','PUBLISHED','FLAGGED','REJECTED','ARCHIVED');
+CREATE TYPE "CommunityReportReason" AS ENUM ('SPAM','HARASSMENT','HARMFUL_CONTENT','COPYRIGHT','OTHER');
+CREATE TYPE "CommunityDecisionAction" AS ENUM ('PUBLISH','REJECT','ARCHIVE');
+CREATE TABLE "CommunityPost" ("id" TEXT NOT NULL,"ownerUserId" TEXT NOT NULL,"creationIdempotencyKey" TEXT NOT NULL,"creationRequestHash" TEXT NOT NULL,"title" TEXT NOT NULL,"body" TEXT NOT NULL,"status" "CommunityPostStatus" NOT NULL DEFAULT 'PENDING_REVIEW',"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,"updatedAt" TIMESTAMP(3) NOT NULL,"publishedAt" TIMESTAMP(3),CONSTRAINT "CommunityPost_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "CommunityReport" ("id" TEXT NOT NULL,"postId" TEXT NOT NULL,"reporterUserId" TEXT NOT NULL,"reason" "CommunityReportReason" NOT NULL,"idempotencyKey" TEXT NOT NULL,"requestHash" TEXT NOT NULL,"correlationId" TEXT NOT NULL,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,CONSTRAINT "CommunityReport_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "CommunityDecision" ("id" TEXT NOT NULL,"postId" TEXT NOT NULL,"actorUserId" TEXT NOT NULL,"idempotencyKey" TEXT NOT NULL,"requestHash" TEXT NOT NULL,"decision" "CommunityDecisionAction" NOT NULL,"correlationId" TEXT NOT NULL,"createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,CONSTRAINT "CommunityDecision_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "CommunityReport_postId_reporterUserId_key" ON "CommunityReport"("postId","reporterUserId");
+CREATE UNIQUE INDEX "CommunityPost_ownerUserId_creationIdempotencyKey_key" ON "CommunityPost"("ownerUserId","creationIdempotencyKey");
+CREATE UNIQUE INDEX "CommunityReport_reporterUserId_idempotencyKey_key" ON "CommunityReport"("reporterUserId","idempotencyKey");
+CREATE UNIQUE INDEX "CommunityDecision_actorUserId_idempotencyKey_key" ON "CommunityDecision"("actorUserId","idempotencyKey");
+CREATE INDEX "CommunityPost_status_createdAt_id_idx" ON "CommunityPost"("status","createdAt","id");
+CREATE INDEX "CommunityReport_postId_createdAt_idx" ON "CommunityReport"("postId","createdAt");
+ALTER TABLE "CommunityPost" ADD CONSTRAINT "CommunityPost_ownerUserId_fkey" FOREIGN KEY ("ownerUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "CommunityReport" ADD CONSTRAINT "CommunityReport_postId_fkey" FOREIGN KEY ("postId") REFERENCES "CommunityPost"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "CommunityReport" ADD CONSTRAINT "CommunityReport_reporterUserId_fkey" FOREIGN KEY ("reporterUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "CommunityDecision" ADD CONSTRAINT "CommunityDecision_postId_fkey" FOREIGN KEY ("postId") REFERENCES "CommunityPost"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "CommunityDecision" ADD CONSTRAINT "CommunityDecision_actorUserId_fkey" FOREIGN KEY ("actorUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

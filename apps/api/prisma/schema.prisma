@@ -45,6 +45,9 @@ model User {
   libraryNotes                 LibraryPersonalNote[]
   libraryDrillOutcomes         LibraryDrillOutcome[]
   shadowingAttempts            LibraryShadowingAttempt[]
+  communityPosts               CommunityPost[] @relation("CommunityPostOwner")
+  communityReports             CommunityReport[]
+  communityDecisions           CommunityDecision[]
 
   @@unique([authProvider, externalSubject])
   @@index([status])
@@ -590,6 +593,56 @@ model PrivilegedAuditEvent {
   @@index([correlationId])
 }
 
+model CommunityPost {
+  id              String @id @default(cuid())
+  ownerUserId     String
+  creationIdempotencyKey String
+  creationRequestHash String
+  title           String
+  body            String
+  status          CommunityPostStatus @default(PENDING_REVIEW)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  publishedAt     DateTime?
+  owner           User @relation("CommunityPostOwner", fields: [ownerUserId], references: [id], onDelete: Restrict)
+  reports         CommunityReport[]
+  decisions       CommunityDecision[]
+  @@index([status, createdAt, id])
+  @@index([ownerUserId, createdAt])
+  @@unique([ownerUserId, creationIdempotencyKey])
+}
+
+model CommunityReport {
+  id              String @id @default(cuid())
+  postId          String
+  reporterUserId  String
+  reason          CommunityReportReason
+  idempotencyKey  String
+  requestHash     String
+  correlationId   String
+  createdAt       DateTime @default(now())
+  post            CommunityPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  reporter        User @relation(fields: [reporterUserId], references: [id], onDelete: Restrict)
+  @@unique([postId, reporterUserId])
+  @@unique([reporterUserId, idempotencyKey])
+  @@index([postId, createdAt])
+}
+
+model CommunityDecision {
+  id              String @id @default(cuid())
+  postId          String
+  actorUserId     String
+  idempotencyKey  String
+  requestHash     String
+  decision        CommunityDecisionAction
+  correlationId   String
+  createdAt       DateTime @default(now())
+  post            CommunityPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  actor           User @relation(fields: [actorUserId], references: [id], onDelete: Restrict)
+  @@unique([actorUserId, idempotencyKey])
+  @@index([postId, createdAt])
+}
+
 model ToeicQuestion {
   id        String                 @id
   versions  ToeicQuestionVersion[]
@@ -1125,4 +1178,24 @@ enum LibraryUsageScope {
   COURSE
   REVIEW
   INTERNAL
+}
+
+enum CommunityPostStatus {
+  PENDING_REVIEW
+  PUBLISHED
+  FLAGGED
+  REJECTED
+  ARCHIVED
+}
+enum CommunityReportReason {
+  SPAM
+  HARASSMENT
+  HARMFUL_CONTENT
+  COPYRIGHT
+  OTHER
+}
+enum CommunityDecisionAction {
+  PUBLISH
+  REJECT
+  ARCHIVE
 }

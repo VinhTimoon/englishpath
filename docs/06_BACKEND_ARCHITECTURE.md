@@ -361,3 +361,12 @@ remain outside that port. The local fallback is deterministic and credential-fre
 ### Adaptive roadmap boundary (EP5-ST006)
 
 `adaptive-roadmap-v1` is a pure, deterministic server policy. Its allowlist is the owner-scoped roadmap item status and the sanitized Error Notebook coverage projection (`GENERAL`, `LISTENING`, `READING`, `SPEAKING`, `WRITING`). Unavailable, malformed, duplicate, or unsupported evidence fails closed; it is never treated as zero performance. `entryCount` is validated for consistency but is not a score or priority weight. The policy uses only the approved coverage state (`available` before `empty`) plus the fixed `LISTENING`/`READING` tie-break; unavailable domains have no adaptive signal and remain in place. It reorders only existing pending items within their existing day/slot set.
+
+### Community moderation boundary (EP5-ST010)
+
+The community module follows controller -> service -> repository layering.
+Authentication and role guards establish the actor; the service shapes safe
+learner and moderation projections; the repository owns bounded Prisma queries
+and transactions. A moderation state change, idempotency decision, and
+redacted audit event share one transaction. No client status, actor identity,
+AI provider, or publication decision is trusted from request data.

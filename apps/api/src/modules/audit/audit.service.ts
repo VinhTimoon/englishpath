@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import type { Prisma } from '../../generated/prisma/client';
 import { AuditRepository, type AuditEntry } from './audit.repository';
 
 const SAFE_ATTRIBUTE_KEYS = new Set(['capability', 'count', 'outcome', 'role']);
@@ -71,6 +72,35 @@ export class AuditService {
       attributes?: Readonly<Record<string, unknown>>;
     },
   ) {
+    return this.repository.append(this.prepare(input));
+  }
+
+  appendWithTransaction(
+    client: Prisma.TransactionClient,
+    input: Omit<
+      AuditEntry,
+      'action' | 'target' | 'correlationId' | 'attributes'
+    > & {
+      action: string;
+      target: string;
+      correlationId: string;
+      attributes?: Readonly<Record<string, unknown>>;
+    },
+  ) {
+    return this.repository.appendWithClient(client, this.prepare(input));
+  }
+
+  private prepare(
+    input: Omit<
+      AuditEntry,
+      'action' | 'target' | 'correlationId' | 'attributes'
+    > & {
+      action: string;
+      target: string;
+      correlationId: string;
+      attributes?: Readonly<Record<string, unknown>>;
+    },
+  ): AuditEntry {
     const entry: AuditEntry = {
       ...(input.actorUserId
         ? { actorUserId: boundedText(input.actorUserId, 191, 'actor') }
@@ -89,6 +119,6 @@ export class AuditService {
     if (entry.policyResult !== 'ALLOW' && entry.policyResult !== 'DENY') {
       throw new Error('Invalid audit policy result.');
     }
-    return this.repository.append(entry);
+    return entry;
   }
 }

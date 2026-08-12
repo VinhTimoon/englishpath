@@ -349,6 +349,7 @@ only; automation must not apply it to shared Supabase infrastructure. Owner-
 approved rollback, if ever required, removes version foreign keys/indexes/table,
 then the canonical table and new enums, preserving all existing learner, CMS,
 vocabulary, progress, and identity data.
+
 ### EP3-ST011 governed import invariants
 
 The local reviewed-batch boundary treats `(contentId, versionId)` as the
@@ -356,12 +357,14 @@ governed version identity and binds it to checksum and source version. Batch
 preflight is all-or-nothing; exact replay is idempotent, while changed source
 evidence is a conflict. These are conceptual invariants only and require no
 Prisma schema or migration change.
+
 ### EP3-ST012 phase-exit boundary
 
 Phase 3 closes without a Prisma schema or migration change. Storage provider
 locators, object keys, checksums, rights ownership, review evidence, and
 operator identity remain server-owned projections; learner state continues to
 reference only the governed version and authenticated owner.
+
 # EP4-ST001 additive boundary
 
 Speaking/Writing task versions and advisory rubrics are currently pure, immutable
@@ -379,6 +382,7 @@ reference; it never stores raw audio bytes, provider locators, credentials, or
 official scores. Migration `20260810100000_toeic_speaking_submission_boundary`
 is local/generated evidence and must not be applied automatically to shared
 Supabase or production.
+
 ## EP4-ST005 Writing submission boundary
 
 The approved additive Writing boundary uses `ToeicWritingSession` and
@@ -388,6 +392,7 @@ repository finalizes an active session and creates its single submission in one
 transaction. Submitted text is bounded and retained only for the owning
 learner; learner projections expose counts/timestamps, never raw text, scores,
 rubric internals, answer keys, or provider data.
+
 ## EP4-ST007 feedback usage evidence
 
 AiFeedbackUsage stores only owner-scoped policy and cost evidence: feature,
@@ -422,3 +427,7 @@ adds only the additive `FULL` value to `ToeicTimedTestMode`; it stores the
 server-owned deadline, policy version, and immutable ordered question-version
 snapshot in the existing columns. No new session model or destructive migration
 is introduced.
+
+# Community moderation (EP5-ST010)
+
+`CommunityPost`, `CommunityReport`, and `CommunityDecision` are additive, owner-scoped models. Posts default to `PENDING_REVIEW`; only approved operator decisions transition pending/flagged posts. Reports are unique per post and reporter. Decisions are unique per actor and idempotency key and retain a bounded request hash and correlation ID. Learner and queue projections are explicit allowlists. The migration is local/generated evidence only and must not be applied to shared Supabase or production automatically; rollback requires a reviewed, human-approved migration because the tables contain user-generated records. The moderation audit event is appended in the same transaction; no raw report text, token, claim, provider field, or credential is stored.

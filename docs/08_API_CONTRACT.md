@@ -740,3 +740,17 @@ feedback keeps its existing contract.
 ### Roadmap recalculation
 
 `POST /api/v1/roadmaps/recalculate` derives identity and evidence from the authenticated principal. Request fields cannot supply identity, scores, evidence, weights, priorities, or policy versions. Recalculation preserves item count, statuses, completion timestamps, and protected slots, creates a successor only when the canonical existing-item ordering changes, and never creates prompts, submissions, official scores, AI output, or Speaking/Writing tasks. The policy validates `entryCount` but never uses it as a score or priority weight; it only orders supported `available` coverage before `empty` coverage with a fixed `LISTENING`/`READING` tie-break. Unavailable domains produce no signal. The current schema has no evidence fingerprint; an evidence change that yields an equivalent candidate is therefore a safe no-op.
+
+### Community moderation API (EP5-ST010)
+
+All community routes are authenticated under `/api/v1/community`. Post
+creation accepts only bounded `title` and `body`, requires `Idempotency-Key`,
+and returns a server-owned `PENDING_REVIEW` post. Published listing uses
+bounded `limit`/`offset` pagination and returns only `id`, `title`, `body`, and
+publication/creation timestamps. Report accepts one enum reason and is
+owner-attributed; missing or unpublished targets use the same not-found
+boundary. Moderation queue and decisions require `CONTENT_EDITOR`, `ADMIN`, or
+`SUPER_ADMIN`; decisions are `PUBLISH`, `REJECT`, or `ARCHIVE`, require an
+idempotency key, and return only the safe decision result. Mutation responses
+include a correlation ID and `created`/`replayed` idempotency status; errors
+are sanitized envelopes.

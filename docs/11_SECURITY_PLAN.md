@@ -354,3 +354,14 @@ Speaking/Writing gateway behavior remains unchanged.
 ### Adaptive roadmap security
 
 Evidence is queried with the authenticated application user ID through the practice repository. Only aggregate Error Notebook coverage crosses into roadmap policy; raw answers, correct answers, prompts, submissions, provider data, and official scoring do not. Unsupported or unavailable evidence produces no adaptive signal.
+
+### Community abuse and moderation controls (EP5-ST010)
+
+Community writes are authenticated, bounded, allowlisted, and idempotent.
+Learner identity and report ownership come only from the resolved application
+principal. Published reads exclude every non-published state and moderation
+field. Queue and decision routes require the existing application roles;
+client-supplied roles, status, actor IDs, claims, provider data, and raw report
+text are ignored or rejected. A decision and its redacted audit event commit in
+one transaction, and exact replays do not create a second state change or
+audit side effect. No external moderation provider or credential is used.

@@ -377,3 +377,34 @@ export const LibraryUsageScope = {
 
 export type LibraryUsageScope =
   (typeof LibraryUsageScope)[keyof typeof LibraryUsageScope];
+
+export const CommunityPostStatus = {
+  PENDING_REVIEW: 'PENDING_REVIEW',
+  PUBLISHED: 'PUBLISHED',
+  FLAGGED: 'FLAGGED',
+  REJECTED: 'REJECTED',
+  ARCHIVED: 'ARCHIVED',
+} as const;
+
+export type CommunityPostStatus =
+  (typeof CommunityPostStatus)[keyof typeof CommunityPostStatus];
+
+export const CommunityReportReason = {
+  SPAM: 'SPAM',
+  HARASSMENT: 'HARASSMENT',
+  HARMFUL_CONTENT: 'HARMFUL_CONTENT',
+  COPYRIGHT: 'COPYRIGHT',
+  OTHER: 'OTHER',
+} as const;
+
+export type CommunityReportReason =
+  (typeof CommunityReportReason)[keyof typeof CommunityReportReason];
+
+export const CommunityDecisionAction = {
+  PUBLISH: 'PUBLISH',
+  REJECT: 'REJECT',
+  ARCHIVE: 'ARCHIVE',
+} as const;
+
+export type CommunityDecisionAction =
+  (typeof CommunityDecisionAction)[keyof typeof CommunityDecisionAction];

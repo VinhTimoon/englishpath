@@ -14,6 +14,7 @@ import { AdminModule } from './modules/admin/admin.module';
 import { CmsModule } from './modules/cms/cms.module';
 import { ToeicModule } from './modules/toeic/toeic.module';
 import { LibraryModule } from './modules/library/library.module';
+import { CommunityModule } from './modules/community/community.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { LibraryModule } from './modules/library/library.module';
     CmsModule,
     ToeicModule,
     LibraryModule,
+    CommunityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

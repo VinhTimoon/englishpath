@@ -159,6 +159,16 @@ submission, schema, or migration change is part of this decision.
 
 Adopted policy version `adaptive-roadmap-v1`. Because no schema change is allowed, idempotence is determined by canonical comparison with the current roadmap; changed existing-item ordering creates a successor with repository-managed lineage, while an evidence change that produces an equivalent candidate is a safe no-op. Existing completion timestamps are carried into successor items. `entryCount` is validation-only: it is not converted into a score, threshold, or priority weight. The only adaptive ordering rule is `available` before `empty`, with a fixed `LISTENING` then `READING` tie-break; unavailable domains produce no signal. No persistence field is used to encode policy state, and no required/due metadata is invented beyond the current roadmap contract.
 
+### Decision: community moderation API boundary (EP5-ST010)
+
+Use a local pending-review workflow with explicit `CommunityPost`,
+`CommunityReport`, and `CommunityDecision` records. Learners can submit and
+report bounded content; only approved content roles can decide publication.
+The implementation is provider-neutral, uses deterministic pagination and
+idempotency, and keeps moderation audit persistence in the same transaction as
+the state transition. AI moderation, media, comments, and sharing UI remain
+outside this story.
+
 ### Decision: grounded Error Notebook explanation fallback (EP5-ST007)
 
 Reuse the existing AI usage/quota/idempotency evidence boundary and add an

@@ -505,3 +505,12 @@ identity, usage, and adapter boundaries and do not call providers, read
 credentials, or touch shared databases.
 
 The roadmap policy suite verifies stable state-based ordering (without count-derived weights), bounded item preservation, protected status slots, and fail-closed evidence. API/E2E coverage verifies owner isolation, repeated recalculation, successor lineage, historical immutability, redaction, concurrent repository races, Four Skills projection, and unchanged today counts.
+
+## EP5-ST010 community moderation coverage
+
+The community unit and API E2E suites verify authenticated access, strict DTO
+allowlisting, owner-derived identity, bounded pagination, published-only
+redaction, report idempotency, role separation, valid and invalid moderation
+transitions, transaction-scoped audit callbacks, sanitized errors, and absence
+of private report or actor fields. The suite uses mocked authentication and
+repository boundaries and does not execute a migration against shared data.

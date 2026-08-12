@@ -86,6 +86,9 @@ export const ModelName = {
   Role: 'Role',
   UserRole: 'UserRole',
   PrivilegedAuditEvent: 'PrivilegedAuditEvent',
+  CommunityPost: 'CommunityPost',
+  CommunityReport: 'CommunityReport',
+  CommunityDecision: 'CommunityDecision',
   ToeicQuestion: 'ToeicQuestion',
   ToeicQuestionVersion: 'ToeicQuestionVersion',
   ToeicPracticeSession: 'ToeicPracticeSession',
@@ -605,6 +608,50 @@ export const PrivilegedAuditEventScalarFieldEnum = {
 
 export type PrivilegedAuditEventScalarFieldEnum =
   (typeof PrivilegedAuditEventScalarFieldEnum)[keyof typeof PrivilegedAuditEventScalarFieldEnum];
+
+export const CommunityPostScalarFieldEnum = {
+  id: 'id',
+  ownerUserId: 'ownerUserId',
+  creationIdempotencyKey: 'creationIdempotencyKey',
+  creationRequestHash: 'creationRequestHash',
+  title: 'title',
+  body: 'body',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  publishedAt: 'publishedAt',
+} as const;
+
+export type CommunityPostScalarFieldEnum =
+  (typeof CommunityPostScalarFieldEnum)[keyof typeof CommunityPostScalarFieldEnum];
+
+export const CommunityReportScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  reporterUserId: 'reporterUserId',
+  reason: 'reason',
+  idempotencyKey: 'idempotencyKey',
+  requestHash: 'requestHash',
+  correlationId: 'correlationId',
+  createdAt: 'createdAt',
+} as const;
+
+export type CommunityReportScalarFieldEnum =
+  (typeof CommunityReportScalarFieldEnum)[keyof typeof CommunityReportScalarFieldEnum];
+
+export const CommunityDecisionScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  actorUserId: 'actorUserId',
+  idempotencyKey: 'idempotencyKey',
+  requestHash: 'requestHash',
+  decision: 'decision',
+  correlationId: 'correlationId',
+  createdAt: 'createdAt',
+} as const;
+
+export type CommunityDecisionScalarFieldEnum =
+  (typeof CommunityDecisionScalarFieldEnum)[keyof typeof CommunityDecisionScalarFieldEnum];
 
 export const ToeicQuestionScalarFieldEnum = {
   id: 'id',
