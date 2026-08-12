@@ -1,7 +1,7 @@
 ---
 id: EP5-ST012
 title: AI quota, cost, and abuse operations dashboard
-status: ready
+status: blocked
 type: full-stack
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -34,6 +34,7 @@ allowed_paths:
   - stories/**
   - _bmad-output/implementation-artifacts/sprint-status.yaml
   - _bmad-output/planning-artifacts/story-map.md
+  - notes/ai-req/2026-08-12-ep5-st012-ai-operations-contract.md
 forbidden_paths:
   - apps/web/.env*
   - package.json
@@ -46,6 +47,9 @@ forbidden_paths:
   - Phase 6
 requires_human_approval: false
 max_fix_rounds: 2
+blocked_reason: "Approved contract lacks persisted replay evidence and abuse semantics; owner decision required."
+ai_request: notes/ai-req/2026-08-12-ep5-st012-ai-operations-contract.md
+resume_policy: "Do not resume this story until the linked AI request is decided and the decision is recorded."
 ---
 
 # Story: AI quota, cost, and abuse operations dashboard
@@ -139,7 +143,7 @@ entitlement, or observability adapter contracts. Do not add Phase 6 work.
 - `pnpm e2e -- tests/e2e/ai-operations-dashboard.spec.ts`
 - `pnpm e2e`
 - `pnpm build`
-- `pnpm story:verify stories/ready/EP5-ST012-ai-quota-cost-abuse-operations-dashboard.md`
+- `pnpm story:verify stories/blocked/EP5-ST012-ai-quota-cost-abuse-operations-dashboard.md`
 - `pnpm story:checks`
 - `git diff --check`
 
@@ -149,3 +153,9 @@ The operations surface is a server-owned, role-gated, redacted projection of
 existing AI usage evidence, with no invented quota/cost/abuse semantics, no
 provider activation, complete quality-gate evidence, and no unrelated story
 implementation.
+
+## Blocked state
+
+This story is blocked and must not be resumed, re-run, or marked done until the
+owner decides the linked AI request and records the exact replay, quota-denial,
+and abuse semantics. No recovery story is being created.
