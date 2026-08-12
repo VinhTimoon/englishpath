@@ -1,7 +1,7 @@
 ---
 id: EP5-ST009
 title: AI Writing Coach learner feedback surface
-status: ready
+status: review
 type: frontend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -61,6 +61,20 @@ Give an authenticated learner a safe, explicit way to request advisory Writing
 feedback after the existing server has finalized and persisted the learner's
 Writing submission. Preserve the current completion result and fail closed when
 the approved gateway cannot provide feedback.
+
+## Acceptance Criteria
+
+- A finalized authenticated Writing session can explicitly request advisory
+  feedback through the existing owner-scoped endpoint.
+- The request uses one stable idempotency key, sends no raw answer body, and
+  never submits the Writing answer again.
+- Only the existing allowlisted advisory projection is rendered; sensitive or
+  unknown fields fail closed.
+- ALLOWED, PROVIDER_UNAVAILABLE, DENIED, validation, and retryable error states
+  are explicit, accessible, mobile-safe, and preserve the finalized result.
+- Browser contract coverage proves safe success, unavailable/denied/validation
+  behavior, malformed-response rejection, duplicate-click protection, stable
+  retry, and existing Writing regressions without a new unit framework.
 
 ## Existing contract to reuse
 
@@ -169,25 +183,11 @@ schema, provider, credential, or Phase 6 change.
 Created from the dependency-ready Phase 5 queue after EP5-ST008 was merged.
 The implementation must remain a single vertical frontend slice and must not
 create a recovery story or reopen historical blocked work.
-## Acceptance Criteria
-
-- A finalized authenticated Writing session can explicitly request advisory
-  feedback through the existing owner-scoped endpoint.
-- The request uses one stable idempotency key, sends no raw answer body, and
-  never submits the Writing answer again.
-- Only the existing allowlisted advisory projection is rendered; provider,
-  credential, submission, rubric, hidden-prompt, model, and official-score
-  fields fail closed.
-- ALLOWED, PROVIDER_UNAVAILABLE, DENIED, validation, and retryable error states
-  are explicit, accessible, mobile-safe, and preserve the finalized result.
-- Browser contract coverage proves safe success, unavailable/denied/validation
-  behavior, malformed-response rejection, duplicate-click protection, stable
-  retry, and existing Writing regressions without a new unit framework.
 
 ## Verification
 
-- `node scripts/story-doctor.mjs stories/ready/EP5-ST009-ai-writing-coach.md`
-- `pnpm story:verify stories/ready/EP5-ST009-ai-writing-coach.md`
+- `node scripts/story-doctor.mjs stories/in-progress/EP5-ST009-ai-writing-coach.md`
+- `pnpm story:verify stories/in-progress/EP5-ST009-ai-writing-coach.md`
 - `pnpm --filter web lint`
 - `pnpm --filter web typecheck`
 - `pnpm --filter api test:e2e -- toeic-writing.e2e-spec.ts`
@@ -195,3 +195,4 @@ create a recovery story or reopen historical blocked work.
 - `pnpm format:check`
 - `pnpm story:checks`
 - `git diff --check`
+

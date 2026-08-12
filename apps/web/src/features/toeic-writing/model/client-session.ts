@@ -5,6 +5,7 @@ export type WritingClientAttempt = {
   sessionId: string | null;
   startKey: string;
   submitKey: string;
+  feedbackKey: string;
 };
 
 function newKey(prefix: string) {
@@ -15,14 +16,24 @@ function newKey(prefix: string) {
   return `${prefix}-${suffix}`;
 }
 
+function validKey(value: unknown, prefix: string): value is string {
+  return (
+    typeof value === "string" &&
+    value.startsWith(`${prefix}-`) &&
+    value.length > prefix.length + 1 &&
+    value.length <= 200
+  );
+}
+
 function valid(value: unknown): value is WritingClientAttempt {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
   const attempt = value as Record<string, unknown>;
   return (
     typeof attempt.taskId === "string" &&
     (attempt.sessionId === null || typeof attempt.sessionId === "string") &&
-    typeof attempt.startKey === "string" &&
-    typeof attempt.submitKey === "string"
+    validKey(attempt.startKey, "writing-start") &&
+    validKey(attempt.submitKey, "writing-submit") &&
+    validKey(attempt.feedbackKey, "writing-feedback")
   );
 }
 
@@ -32,7 +43,25 @@ export function readWritingAttempt(): WritingClientAttempt | null {
     const parsed: unknown = JSON.parse(
       window.localStorage.getItem(STORAGE_KEY) ?? "null",
     );
-    return valid(parsed) ? parsed : null;
+    if (valid(parsed)) return parsed;
+    if (
+      parsed &&
+      typeof parsed === "object" &&
+      !Array.isArray(parsed) &&
+      typeof (parsed as Record<string, unknown>).taskId === "string" &&
+      ((parsed as Record<string, unknown>).sessionId === null ||
+        typeof (parsed as Record<string, unknown>).sessionId === "string") &&
+      validKey((parsed as Record<string, unknown>).startKey, "writing-start") &&
+      validKey((parsed as Record<string, unknown>).submitKey, "writing-submit")
+    ) {
+      const migrated = {
+        ...(parsed as Omit<WritingClientAttempt, "feedbackKey">),
+        feedbackKey: newKey("writing-feedback"),
+      };
+      rememberWritingAttempt(migrated);
+      return migrated;
+    }
+    return null;
   } catch {
     return null;
   }
@@ -44,6 +73,7 @@ export function createWritingAttempt(taskId: string): WritingClientAttempt {
     sessionId: null,
     startKey: newKey("writing-start"),
     submitKey: newKey("writing-submit"),
+    feedbackKey: newKey("writing-feedback"),
   };
   rememberWritingAttempt(attempt);
   return attempt;

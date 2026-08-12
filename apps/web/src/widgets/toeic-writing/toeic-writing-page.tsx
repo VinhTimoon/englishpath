@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   type WritingSession,
   type WritingSubmission,
+  type WritingFeedbackResult,
 } from "@/entities/toeic-writing/model/contracts";
 import {
   getWriting,
+  requestWritingFeedback,
   startWriting,
   submitWriting,
   WRITING_TASK_ID,
@@ -30,6 +32,23 @@ type ViewState =
   | "unavailable"
   | "error"
   | "conflict";
+type FeedbackState =
+  | "ready"
+  | "loading"
+  | "success"
+  | "unavailable"
+  | "denied"
+  | "validation"
+  | "error";
+
+function feedbackFailureState(error: unknown): FeedbackState {
+  const status = learnerApiStatus(error);
+  const malformedResponse =
+    error instanceof Error && error.message === "INVALID_RESPONSE";
+  return malformedResponse || [401, 403, 404, 409, 422].includes(status ?? 0)
+    ? "validation"
+    : "error";
+}
 
 function wordCount(value: string) {
   return (
@@ -78,6 +97,11 @@ export function ToeicWritingPage() {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [feedbackState, setFeedbackState] = useState<FeedbackState>("ready");
+  const [feedback, setFeedback] =
+    useState<WritingFeedbackResult["feedback"]>(null);
+  const feedbackBusy = useRef(false);
+  const feedbackOperation = useRef(0);
 
   const count = useMemo(() => wordCount(text), [text]);
   const task = session?.task;
@@ -102,6 +126,12 @@ export function ToeicWritingPage() {
       const resumed = await getWriting(candidate.sessionId);
       setSession(resumed);
       setView(viewForSession(resumed));
+      if (viewForSession(resumed) === "finalized") {
+        feedbackOperation.current += 1;
+        feedbackBusy.current = false;
+        setFeedback(null);
+        setFeedbackState("ready");
+      }
       if (viewForSession(resumed) === "conflict") {
         setError(
           "Lượt Writing này đã bị hủy hoặc không có dữ liệu hoàn tất hợp lệ.",
@@ -144,6 +174,10 @@ export function ToeicWritingPage() {
       setAttempt(withSession);
       setSession(result.session);
       setView(viewForSession(result.session));
+      feedbackOperation.current += 1;
+      feedbackBusy.current = false;
+      setFeedback(null);
+      setFeedbackState("ready");
       if (viewForSession(result.session) === "conflict") {
         setError(
           "Lượt Writing không còn hoạt động. Hãy tải lại trạng thái để không mở lại nhầm lượt.",
@@ -194,6 +228,12 @@ export function ToeicWritingPage() {
       );
       setSession(result.session);
       setView(viewForSession(result.session));
+      if (viewForSession(result.session) === "finalized") {
+        feedbackOperation.current += 1;
+        feedbackBusy.current = false;
+        setFeedback(null);
+        setFeedbackState("ready");
+      }
     } catch (caught) {
       setError(messageFor(caught, "submit"));
       setView(learnerApiStatus(caught) === 409 ? "conflict" : "active");
@@ -203,12 +243,51 @@ export function ToeicWritingPage() {
   }
 
   function newAttempt() {
+    feedbackOperation.current += 1;
+    feedbackBusy.current = false;
     forgetWritingAttempt();
     setAttempt(null);
     setSession(null);
     setText("");
     setError("");
     setView("ready");
+    setFeedback(null);
+    setFeedbackState("ready");
+  }
+
+  async function requestFeedback() {
+    if (
+      !attempt?.sessionId ||
+      !attempt.feedbackKey ||
+      !session?.submission ||
+      session.status !== "FINALIZED" ||
+      attempt.sessionId !== session.sessionId ||
+      (feedbackState !== "ready" && feedbackState !== "error") ||
+      feedbackBusy.current
+    ) {
+      return;
+    }
+    feedbackBusy.current = true;
+    const operation = ++feedbackOperation.current;
+    const origin = attempt.sessionId;
+    setFeedbackState("loading");
+    try {
+      const result = await requestWritingFeedback(origin, attempt.feedbackKey);
+      if (feedbackOperation.current !== operation) return;
+      setFeedback(result.feedback);
+      setFeedbackState(
+        result.outcome === "ALLOWED"
+          ? "success"
+          : result.outcome === "DENIED"
+            ? "denied"
+            : "unavailable",
+      );
+    } catch (caught) {
+      if (feedbackOperation.current !== operation) return;
+      setFeedbackState(feedbackFailureState(caught));
+    } finally {
+      if (feedbackOperation.current === operation) feedbackBusy.current = false;
+    }
   }
 
   return (
@@ -386,7 +465,78 @@ export function ToeicWritingPage() {
             <p className={styles.stateCopy}>
               Chưa có điểm số hay phản hồi chính thức trong lượt này.
             </p>
+            <section
+              className={styles.feedbackBox}
+              aria-busy={feedbackState === "loading"}
+              aria-live="polite"
+              aria-labelledby="writing-feedback-title"
+              data-feedback-state={feedbackState}
+            >
+              <h3 id="writing-feedback-title">Phản hồi hướng dẫn</h3>
+              {feedbackState === "ready" && (
+                <p>
+                  Nhận gợi ý ngắn gọn từ hệ thống sau khi bài viết đã được lưu.
+                </p>
+              )}
+              {feedbackState === "loading" && (
+                <p>Đang tải phản hồi hướng dẫn…</p>
+              )}
+              {feedbackState === "success" && feedback && (
+                <>
+                  <p>{feedback.summary}</p>
+                  <h4>Điểm mạnh</h4>
+                  <ul>
+                    {feedback.strengths.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <h4>Bước tiếp theo</h4>
+                  <ul>
+                    {feedback.nextSteps.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              {feedbackState === "unavailable" && (
+                <p>
+                  Phản hồi hướng dẫn hiện chưa khả dụng. Kết quả bài Writing của
+                  bạn vẫn được giữ nguyên.
+                </p>
+              )}
+              {feedbackState === "denied" && (
+                <p>
+                  Yêu cầu phản hồi không được thực hiện theo giới hạn hoặc chính
+                  sách hiện tại. Kết quả bài Writing vẫn được giữ nguyên.
+                </p>
+              )}
+              {feedbackState === "validation" && (
+                <p>
+                  Không thể xác nhận yêu cầu phản hồi này. Kết quả bài Writing
+                  vẫn được giữ nguyên. Hãy bắt đầu lượt mới hoặc tải lại phiên
+                  để thử lại.
+                </p>
+              )}
+              {feedbackState === "error" && (
+                <p role="alert">Chưa tải được phản hồi. Bạn có thể thử lại.</p>
+              )}
+            </section>
             <div className={styles.actions}>
+              {(feedbackState === "ready" ||
+                feedbackState === "loading" ||
+                feedbackState === "error") && (
+                <button
+                  className={styles.primary}
+                  disabled={feedbackState === "loading"}
+                  data-feedback-action="request"
+                  onClick={() => void requestFeedback()}
+                  type="button"
+                >
+                  {feedbackState === "error"
+                    ? "Thử lại phản hồi"
+                    : "Nhận phản hồi hướng dẫn"}
+                </button>
+              )}
               <Link href="/dashboard" className={styles.primary}>
                 Về dashboard
               </Link>

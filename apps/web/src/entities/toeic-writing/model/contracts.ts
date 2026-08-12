@@ -58,6 +58,126 @@ function nonNegativeInteger(value: unknown): value is number {
   return typeof value === "number" && Number.isInteger(value) && value >= 0;
 }
 
+export type WritingFeedback = {
+  advisoryOnly: true;
+  summary: string;
+  strengths: string[];
+  nextSteps: string[];
+};
+
+export type WritingFeedbackResult = {
+  outcome: "ALLOWED" | "PROVIDER_UNAVAILABLE" | "DENIED";
+  policyVersion: string;
+  promptVersion: string;
+  feature: "WRITING";
+  skill: "WRITING";
+  quotaRemaining: number;
+  feedback: WritingFeedback | null;
+  replayed: boolean;
+};
+
+const UNSAFE_FEEDBACK_TEXT =
+  /provider|credential|secret|api[-_ ]?key|token|rubric|official score|raw response|\b(?:score|scored|points?|grade|graded|correct|incorrect|right|wrong|model|progress|rating)\b|\d+\s*\/\s*\d+|(?:điểm\s*(?:số|của bạn)|chấm\s*điểm|mô\s*hình|tiến\s*bộ)|(?:selected|chosen|your)\s+(?:answer|option|choice)|(?:raw|full|verbatim)\s+submission/i;
+
+function boundedText(value: unknown, maximum: number): value is string {
+  return (
+    typeof value === "string" &&
+    value.trim().length > 0 &&
+    value.length <= maximum &&
+    !UNSAFE_FEEDBACK_TEXT.test(value)
+  );
+}
+
+function parseWritingAdvisory(value: unknown): WritingFeedback | null {
+  const feedback = record(value);
+  if (
+    !feedback ||
+    !hasOnlyKeys(feedback, [
+      "advisoryOnly",
+      "summary",
+      "strengths",
+      "nextSteps",
+    ]) ||
+    feedback.advisoryOnly !== true ||
+    !boundedText(feedback.summary, 500)
+  ) {
+    return null;
+  }
+  const boundedList = (candidate: unknown): candidate is string[] =>
+    Array.isArray(candidate) &&
+    candidate.length <= 3 &&
+    candidate.every((item) => boundedText(item, 200));
+  if (!boundedList(feedback.strengths) || !boundedList(feedback.nextSteps)) {
+    return null;
+  }
+  return {
+    advisoryOnly: true,
+    summary: feedback.summary,
+    strengths: [...feedback.strengths],
+    nextSteps: [...feedback.nextSteps],
+  };
+}
+
+export function parseWritingFeedback(value: unknown): WritingFeedbackResult {
+  const root = record(value);
+  const data = record(root?.data);
+  if (
+    !root ||
+    !hasOnlyKeys(root, ["data", "meta"]) ||
+    !safeFeedbackMeta(root.meta) ||
+    !data ||
+    !hasOnlyKeys(data, ["feedback", "replayed"]) ||
+    typeof data.replayed !== "boolean"
+  ) {
+    throw new Error("INVALID_RESPONSE");
+  }
+
+  const envelope = record(data.feedback);
+  if (
+    !envelope ||
+    !hasOnlyKeys(envelope, [
+      "outcome",
+      "policyVersion",
+      "promptVersion",
+      "feature",
+      "skill",
+      "quotaRemaining",
+      "feedback",
+    ]) ||
+    !["ALLOWED", "PROVIDER_UNAVAILABLE", "DENIED"].includes(
+      String(envelope.outcome),
+    ) ||
+    !boundedText(envelope.policyVersion, 100) ||
+    !boundedText(envelope.promptVersion, 100) ||
+    envelope.feature !== "WRITING" ||
+    envelope.skill !== "WRITING" ||
+    !nonNegativeInteger(envelope.quotaRemaining)
+  ) {
+    throw new Error("INVALID_RESPONSE");
+  }
+
+  const feedback =
+    envelope.feedback === null ? null : parseWritingAdvisory(envelope.feedback);
+  if (
+    (envelope.feedback !== null && !feedback) ||
+    (envelope.outcome === "ALLOWED") !== Boolean(feedback) ||
+    (envelope.outcome !== "ALLOWED" && envelope.feedback !== null)
+  ) {
+    throw new Error("INVALID_RESPONSE");
+  }
+
+  return {
+    outcome: envelope.outcome as WritingFeedbackResult["outcome"],
+    policyVersion: envelope.policyVersion,
+    promptVersion: envelope.promptVersion,
+    feature: "WRITING",
+    skill: "WRITING",
+    quotaRemaining: envelope.quotaRemaining,
+    feedback,
+    replayed: data.replayed,
+  };
+}
+
 function safeMeta(value: unknown): boolean {
   if (value === undefined) return true;
   const meta = record(value);
@@ -66,6 +186,17 @@ function safeMeta(value: unknown): boolean {
     hasOnlyKeys(meta, ["correlationId", "idempotencyStatus"]) &&
     (meta.correlationId === undefined || text(meta.correlationId)) &&
     (meta.idempotencyStatus === undefined || text(meta.idempotencyStatus)),
+  );
+}
+
+function safeFeedbackMeta(value: unknown): boolean {
+  const meta = record(value);
+  return Boolean(
+    meta &&
+    hasOnlyKeys(meta, ["correlationId", "idempotencyStatus"]) &&
+    text(meta.correlationId) &&
+    meta.correlationId.length <= 128 &&
+    ["created", "replayed"].includes(String(meta.idempotencyStatus)),
   );
 }
 

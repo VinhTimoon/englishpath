@@ -1,8 +1,10 @@
 import {
   parseWritingResult,
   parseWritingSession,
+  parseWritingFeedback,
   type WritingSession,
   type WritingSessionResult,
+  type WritingFeedbackResult,
 } from "@/entities/toeic-writing/model/contracts";
 import { requestLearnerApi } from "@/shared/api/learner-api-client";
 
@@ -37,6 +39,18 @@ export async function submitWriting(
     await requestLearnerApi<unknown>(
       `/toeic/writing/sessions/${encodeURIComponent(sessionId)}/submissions`,
       { method: "POST", body: { text }, idempotencyKey },
+    ),
+  );
+}
+
+export async function requestWritingFeedback(
+  sessionId: string,
+  idempotencyKey: string,
+): Promise<WritingFeedbackResult> {
+  return parseWritingFeedback(
+    await requestLearnerApi<unknown>(
+      `/toeic/writing/sessions/${encodeURIComponent(sessionId)}/feedback`,
+      { method: "POST", idempotencyKey },
     ),
   );
 }

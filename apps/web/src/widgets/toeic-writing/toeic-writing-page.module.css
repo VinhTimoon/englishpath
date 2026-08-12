@@ -93,6 +93,27 @@
   justify-content: space-between;
   gap: 1rem;
 }
+
+.feedbackBox {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+  overflow-wrap: anywhere;
+}
+.feedbackBox h3,
+.feedbackBox h4 {
+  margin: 0.5rem 0 0;
+}
+.feedbackBox p {
+  margin: 0.75rem 0 0;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+.feedbackBox ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
 .metaRow {
   align-items: flex-start;
   margin-bottom: 1.5rem;
