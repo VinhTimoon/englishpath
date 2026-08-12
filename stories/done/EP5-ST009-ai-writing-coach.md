@@ -1,7 +1,7 @@
 ---
 id: EP5-ST009
 title: AI Writing Coach learner feedback surface
-status: review
+status: done
 type: frontend
 priority: high
 phase: phase-5-full-test-adaptive-ai-and-community
@@ -195,4 +195,5 @@ create a recovery story or reopen historical blocked work.
 - `pnpm format:check`
 - `pnpm story:checks`
 - `git diff --check`
+
 
